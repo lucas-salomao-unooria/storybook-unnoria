@@ -8,7 +8,7 @@ import {
   lineHeights,
   letterSpacings,
   TypographyStyle,
-} from '../src/tokens/typography';
+} from '../src/whatsapp/tokens/typography';
 
 /**
  * Documentação e visualização interativa dos Tokens de Tipografia

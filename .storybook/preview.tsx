@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/nextjs-vite';
 import '../app/globals.css';
-import '../src/tokens/spacing.css';
+import '../src/whatsapp/tokens/spacing.css';
 import '../src/whatsapp/tokens/colors.css';
-import '../src/tokens/typography.css';
+import '../src/whatsapp/tokens/typography.css';
 
 const preview: Preview = {
   parameters: {
