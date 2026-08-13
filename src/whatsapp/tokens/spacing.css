@@ -1,0 +1,26 @@
+/* Tokens de Espaçamento e Raio de Borda - WhatsApp UI / Conversa UI */
+
+:root {
+  /* Escala de Espaçamento (4px base grid) */
+  --spacing-2xs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem;   /* 8px */
+  --spacing-sm: 0.75rem;  /* 12px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2rem;     /* 32px */
+
+  /* Valores em pixels para usos específicos */
+  --spacing-2xs-px: 4px;
+  --spacing-xs-px: 8px;
+  --spacing-sm-px: 12px;
+  --spacing-md-px: 16px;
+  --spacing-lg-px: 24px;
+  --spacing-xl-px: 32px;
+
+  /* Tokens de Raio de Borda (Radius) */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-bubble: 18px;
+  --radius-full: 9999px;
+}

@@ -1,11 +1,15 @@
-import type { Preview } from '@storybook/nextjs-vite'
+import type { Preview } from '@storybook/nextjs-vite';
+import '../app/globals.css';
+import '../src/tokens/spacing.css';
+import '../src/whatsapp/tokens/colors.css';
+import '../src/tokens/typography.css';
 
 const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
 

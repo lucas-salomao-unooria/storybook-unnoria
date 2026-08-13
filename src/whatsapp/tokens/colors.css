@@ -1,0 +1,42 @@
+/* ==========================================================================
+   Tokens de Cores - WhatsApp UI Design System (Conversa UI)
+   ========================================================================== */
+
+/* Tema Claro (Light Mode) - Padrão */
+:root,
+[data-theme="light"] {
+  --color-bg-canvas: #F3F5F2;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-brand: #18A87A;
+  --color-bg-chat-sent: #AFE3D4;
+  --color-text-primary: #17211E;
+  --color-text-secondary: #697773;
+  --color-status-online: #18A87A;
+  --color-border: #DFE5E1;
+}
+
+/* Tema Escuro (Dark Mode) */
+[data-theme="dark"] {
+  --color-bg-canvas: #101816;
+  --color-bg-surface: #17211E;
+  --color-bg-brand: #18A87A;
+  --color-bg-chat-sent: #0B594D;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9BABA5;
+  --color-status-online: #53D0AA;
+  --color-border: #697773;
+}
+
+/* Preferência do sistema operacional para modo escuro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg-canvas: #101816;
+    --color-bg-surface: #17211E;
+    --color-bg-brand: #18A87A;
+    --color-bg-chat-sent: #0B594D;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #9BABA5;
+    --color-status-online: #53D0AA;
+    --color-border: #697773;
+  }
+}
