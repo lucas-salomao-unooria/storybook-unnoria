@@ -521,7 +521,7 @@ const UnooriaGridsDocumentation: React.FC<{
 };
 
 const meta: Meta<typeof UnooriaGridsDocumentation> = {
-  title: 'Plataforma Unooria/Tokens/Grids',
+  title: 'Plataforma Unooria/Fundamentos/Grids',
   component: UnooriaGridsDocumentation,
   parameters: {
     layout: 'fullscreen',

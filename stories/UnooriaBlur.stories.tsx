@@ -362,7 +362,7 @@ const UnooriaBlurDocumentation: React.FC = () => {
 };
 
 const meta: Meta<typeof UnooriaBlurDocumentation> = {
-  title: 'Plataforma Unooria/Efeitos & Layout/Background Blur',
+  title: 'Plataforma Unooria/Fundamentos/Background Blur',
   component: UnooriaBlurDocumentation,
   parameters: {
     layout: 'fullscreen',

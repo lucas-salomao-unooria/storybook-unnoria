@@ -28,7 +28,7 @@ import '../src/unooria/tokens/colors.css';
  * Documentação interativa e completa da paleta visual extraída do Figma.
  */
 const meta: Meta = {
-  title: 'Plataforma Unooria/Tokens/Cores',
+  title: 'Plataforma Unooria/Fundamentos/Cores',
   parameters: {
     layout: 'padded',
     docs: {

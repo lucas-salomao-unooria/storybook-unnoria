@@ -461,7 +461,7 @@ const UnooriaGridsWidgetsDocumentation: React.FC<{
 };
 
 const meta: Meta<typeof UnooriaGridsWidgetsDocumentation> = {
-  title: 'Plataforma Unooria/Foundations/Grids Widgets',
+  title: 'Plataforma Unooria/Fundamentos/Grids Widgets',
   component: UnooriaGridsWidgetsDocumentation,
   parameters: {
     layout: 'fullscreen',

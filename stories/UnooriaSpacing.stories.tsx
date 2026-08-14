@@ -799,7 +799,7 @@ const UnooriaSpacingDocumentation: React.FC<{
 };
 
 const meta: Meta<typeof UnooriaSpacingDocumentation> = {
-  title: 'Plataforma Unooria/Tokens/Espaçamento',
+  title: 'Plataforma Unooria/Fundamentos/Espaçamento',
   component: UnooriaSpacingDocumentation,
   parameters: {
     layout: 'fullscreen',

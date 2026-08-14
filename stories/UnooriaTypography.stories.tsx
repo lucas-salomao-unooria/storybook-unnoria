@@ -18,7 +18,7 @@ import '../src/unooria/tokens/typography.css';
  * Sincronizado estritamente com as especificações oficiais extraídas do Figma.
  */
 const meta = {
-  title: 'Plataforma Unooria/Tokens/Tipografia',
+  title: 'Plataforma Unooria/Fundamentos/Tipografia',
   component: UnooriaTypographyGuide,
   parameters: {
     layout: 'padded',
