@@ -1,0 +1,167 @@
+/**
+ * Estilos do Componente Breadcrumb - Plataforma Unooria
+ * Utiliza tokens oficiais CSS de cores, tipografia e espaçamento.
+ */
+
+.unooria-breadcrumb {
+  display: flex;
+  align-items: center;
+  font-family: var(--unooria-font-sans, 'Open Sans', system-ui, -apple-system, sans-serif);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.unooria-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tamanhos */
+.unooria-breadcrumb--size-xs {
+  font-size: var(--unooria-size-body-xxs, 12px);
+  line-height: var(--unooria-line-height-body-xxs, 18px);
+  gap: var(--unooria-spacing-xxxs, 4px);
+}
+
+.unooria-breadcrumb--size-s {
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-breadcrumb--size-m {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+/* Item e Links */
+.unooria-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+}
+
+.unooria-breadcrumb__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  text-decoration: none;
+  font-weight: var(--unooria-weight-regular, 400);
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: -2px -4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, outline-color 0.15s ease-in-out;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.unooria-breadcrumb__link--current {
+  font-weight: var(--unooria-weight-semibold, 600);
+  cursor: default;
+  pointer-events: none;
+}
+
+.unooria-breadcrumb__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.unooria-breadcrumb__separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.unooria-breadcrumb__ellipsis-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: var(--unooria-weight-semibold, 600);
+  font-size: inherit;
+  font-family: inherit;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* TEMA LIGHT (Default) */
+.unooria-breadcrumb--light .unooria-breadcrumb__link {
+  color: var(--unooria-color-neutral-600, #536167);
+}
+
+.unooria-breadcrumb--light .unooria-breadcrumb__link:hover:not(.unooria-breadcrumb__link--current) {
+  color: var(--unooria-color-brandnavy-900, #2F4F7F);
+  background-color: var(--unooria-color-brandnavy-50, #F5F8FC);
+  text-decoration: underline;
+}
+
+.unooria-breadcrumb--light .unooria-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
+  outline-offset: 1px;
+}
+
+.unooria-breadcrumb--light .unooria-breadcrumb__link--current {
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-breadcrumb--light .unooria-breadcrumb__separator {
+  color: var(--unooria-color-neutral-300, #A7B5B9);
+}
+
+.unooria-breadcrumb--light .unooria-breadcrumb__ellipsis-btn {
+  color: var(--unooria-color-neutral-600, #536167);
+}
+
+.unooria-breadcrumb--light .unooria-breadcrumb__ellipsis-btn:hover {
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-brandnavy-900, #2F4F7F);
+}
+
+/* TEMA DARK */
+.unooria-breadcrumb--dark .unooria-breadcrumb__link {
+  color: var(--unooria-color-neutraldark-700, #7C8E94);
+}
+
+.unooria-breadcrumb--dark .unooria-breadcrumb__link:hover:not(.unooria-breadcrumb__link--current) {
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+  background-color: rgba(255, 255, 255, 0.08);
+  text-decoration: underline;
+}
+
+.unooria-breadcrumb--dark .unooria-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--unooria-color-brandnavy-400, #A4BDE9);
+  outline-offset: 1px;
+}
+
+.unooria-breadcrumb--dark .unooria-breadcrumb__link--current {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-breadcrumb--dark .unooria-breadcrumb__separator {
+  color: var(--unooria-color-neutraldark-300, #475157);
+}
+
+.unooria-breadcrumb--dark .unooria-breadcrumb__ellipsis-btn {
+  color: var(--unooria-color-neutraldark-700, #7C8E94);
+}
+
+.unooria-breadcrumb--dark .unooria-breadcrumb__ellipsis-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}

@@ -4,3 +4,6 @@
 
 export * as tokens from './tokens';
 export * from './tokens';
+
+// Componentes
+export * from './components';
