@@ -6,6 +6,7 @@ import {
   GridWidgetSpec,
 } from '../src/unooria/tokens/grids';
 import '../src/unooria/tokens/grids.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Componente visual para documentação e simulação interativa de Grids Widgets da Plataforma Unooria.
@@ -39,51 +40,16 @@ const UnooriaGridsWidgetsDocumentation: React.FC<{
   ];
 
   return (
-    <div style={{
-      fontFamily: 'Open Sans, system-ui, -apple-system, sans-serif',
-      color: '#22272A',
-      maxWidth: '1280px',
-      margin: '0 auto',
-      padding: '32px 24px',
-      backgroundColor: '#FFFFFF'
-    }}>
-      
-      {/* Cabeçalho Principal com Identidade Visual Unooria */}
-      <header style={{ marginBottom: '40px', borderBottom: '1px solid #E4E8E9', paddingBottom: '32px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-          <span style={{
-            background: '#22272A',
-            color: '#FFFFFF',
-            fontSize: '11px',
-            fontWeight: 700,
-            padding: '4px 12px',
-            borderRadius: '16px',
-            letterSpacing: '0.5px',
-            textTransform: 'uppercase'
-          }}>
-            Plataforma Unooria
-          </span>
-          <span style={{
-            background: '#E4E8E9',
-            color: '#475157',
-            fontSize: '11px',
-            fontWeight: 600,
-            padding: '4px 10px',
-            borderRadius: '12px'
-          }}>
-            Foundations &bull; Grids Widgets
-          </span>
-        </div>
-
-        <h1 style={{ fontSize: '36px', fontWeight: 700, margin: '0 0 12px 0', color: '#22272A', letterSpacing: '-0.5px' }}>
-          Grids Widgets
-        </h1>
-
-        <p style={{ fontSize: '16px', color: '#475157', margin: 0, lineHeight: '1.6', maxWidth: '850px' }}>
-          Diretrizes de layout e distribuição de <strong>widgets flexíveis</strong> em relação ao container e à viewport da Plataforma Unooria.
-          Garante alinhamento, fluidez proporcional e legibilidade em todas as resoluções (Mobile, Tablet, Notebook e Desktop).
-        </p>
-      </header>
+    <UnooriaDocShell>
+      <UnooriaDocHeader
+        category="Foundations • Grids Widgets"
+        title="Grids Widgets"
+        description={
+          <>
+            Diretrizes de layout e distribuição de <strong>widgets flexíveis</strong> em relação ao container e à viewport da Plataforma Unooria. Garante alinhamento, fluidez proporcional e legibilidade em todas as resoluções (Mobile, Tablet, Notebook e Desktop).
+          </>
+        }
+      />
 
       {/* Controle de Dispositivos / Breakpoints */}
       <section style={{ marginBottom: '40px' }}>
@@ -455,8 +421,7 @@ const UnooriaGridsWidgetsDocumentation: React.FC<{
           </table>
         </div>
       </section>
-
-    </div>
+    </UnooriaDocShell>
   );
 };
 

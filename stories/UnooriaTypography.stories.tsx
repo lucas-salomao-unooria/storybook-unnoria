@@ -12,6 +12,7 @@ import {
   TypographyTokenStyle,
 } from '../src/unooria/tokens/typography';
 import '../src/unooria/tokens/typography.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Guia e Documentação Interativa dos Tokens de Tipografia da Plataforma Unooria.
@@ -433,63 +434,16 @@ function UnooriaTypographyGuide({
   });
 
   return (
-    <div
-      style={{
-        fontFamily: '"Open Sans", -apple-system, sans-serif',
-        maxWidth: '1100px',
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        color: '#22272A',
-      }}
-    >
-      {/* Hero / Header */}
-      <div
-        style={{
-          background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
-          borderRadius: '16px',
-          padding: '32px',
-          color: '#FFFFFF',
-          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-        }}
-      >
-        <span
-          style={{
-            fontSize: '12px',
-            fontWeight: 700,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: '#38BDF8',
-          }}
-        >
-          Design System • Plataforma Unooria
-        </span>
-        <h1
-          style={{
-            fontSize: '32px',
-            fontWeight: 700,
-            lineHeight: '42px',
-            margin: '8px 0 12px 0',
-            fontFamily: '"Open Sans", sans-serif',
-          }}
-        >
-          Tokens de Tipografia
-        </h1>
-        <p
-          style={{
-            fontSize: '15px',
-            lineHeight: '24px',
-            color: '#94A3B8',
-            maxWidth: '800px',
-            margin: 0,
-          }}
-        >
-          A tipografia oficial da Plataforma Unooria utiliza a fonte <strong>Open Sans</strong> com
-          uma escala rigorosa e responsiva para Desktop e Mobile. Todas as variações de tamanho,
-          altura de linha e peso seguem regras formais do sistema.
-        </p>
-      </div>
+    <UnooriaDocShell>
+      <UnooriaDocHeader
+        category="Foundations • Tipografia"
+        title="Tokens de Tipografia"
+        description={
+          <>
+            A tipografia oficial da Plataforma Unooria utiliza a fonte <strong>Open Sans</strong> com uma escala rigorosa e responsiva para Desktop e Mobile. Todas as variações de tamanho, altura de linha e peso seguem regras formais do sistema.
+          </>
+        }
+      />
 
       {/* Seção de Regras e Diretrizes do Sistema */}
       {showRules && <RulesSection />}
@@ -622,7 +576,7 @@ function UnooriaTypographyGuide({
           </div>
         )}
       </div>
-    </div>
+    </UnooriaDocShell>
   );
 }
 

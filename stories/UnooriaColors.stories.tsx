@@ -22,6 +22,7 @@ import {
   gradients,
 } from '../src/unooria/tokens/colors';
 import '../src/unooria/tokens/colors.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Storybook da Plataforma Unooria - Tokens de Cores
@@ -333,28 +334,12 @@ const ColorGroup: React.FC<ColorGroupProps> = ({ title, description, children })
 export const VisaoGeral: Story = {
   render: () => {
     return (
-      <div style={{ fontFamily: 'Open Sans, sans-serif', maxWidth: '1200px', margin: '0 auto', color: '#22272A' }}>
-        {/* Cabeçalho da Documentação */}
-        <div
-          style={{
-            marginBottom: '36px',
-            background: 'linear-gradient(135deg, #FFF6ED 0%, #EEF7FF 100%)',
-            padding: '36px',
-            borderRadius: '24px',
-            border: '1px solid #E4E8E9',
-          }}
-        >
-          <div style={{ fontSize: '13px', fontWeight: 700, color: '#E84910', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            Foundations • Design System
-          </div>
-          <h1 style={{ fontSize: '36px', fontWeight: 800, margin: '8px 0 12px 0', color: '#22272A' }}>
-            Tokens de Cores - Plataforma Unooria
-          </h1>
-          <p style={{ fontSize: '16px', lineHeight: '26px', color: '#475157', margin: 0, maxWidth: '900px' }}>
-            A paleta da Plataforma Unooria foi projetada para oferecer alta acessibilidade (conformidade WCAG AAA/AA),
-            harmonização visual dinâmica e flexibilidade entre temas claro e escuro.
-          </p>
-        </div>
+      <UnooriaDocShell>
+        <UnooriaDocHeader
+          category="Foundations • Cores"
+          title="Tokens de Cores"
+          description="A paleta da Plataforma Unooria foi projetada para oferecer alta acessibilidade (conformidade WCAG AAA/AA), harmonização visual dinâmica e flexibilidade entre temas claro e escuro."
+        />
 
         {/* Section 1 (Node 14667:55): Primary Color + Primary Overlay */}
         <ColorGroup
@@ -654,7 +639,7 @@ export const VisaoGeral: Story = {
             </div>
           ))}
         </ColorGroup>
-      </div>
+      </UnooriaDocShell>
     );
   },
 };

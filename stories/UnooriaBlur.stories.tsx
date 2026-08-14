@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { backgroundBlur, BackgroundBlurLevel } from '../src/unooria/tokens/blur';
 import '../src/unooria/tokens/blur.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Componente visual para documentação e simulação do Background Blur (Efeitos de Blur de Fundo & Glassmorphism)
@@ -33,27 +34,16 @@ const UnooriaBlurDocumentation: React.FC = () => {
   const levels: BackgroundBlurLevel[] = [300, 400, 500, 700, 900];
 
   return (
-    <div style={{ fontFamily: 'Open Sans, system-ui, -apple-system, sans-serif', color: '#22272A', maxWidth: '1400px', margin: '0 auto', padding: '32px 24px', backgroundColor: '#F8FAFC' }}>
-      
-      {/* Cabecalho Principal da Pagina */}
-      <header style={{ marginBottom: '40px', borderBottom: '1px solid #E2E8F0', paddingBottom: '32px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-          <span style={{ background: '#22272A', color: '#FFFFFF', fontSize: '11px', fontWeight: 700, padding: '4px 12px', borderRadius: '16px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-            Plataforma Unooria
-          </span>
-          <span style={{ background: '#E2E8F0', color: '#475157', fontSize: '11px', fontWeight: 600, padding: '4px 10px', borderRadius: '12px' }}>
-            Efeitos & Glassmorphism
-          </span>
-        </div>
-
-        <h1 style={{ fontSize: '36px', fontWeight: 700, margin: '0 0 12px 0', color: '#22272A', letterSpacing: '-0.5px' }}>
-          Tokens de Background Blur
-        </h1>
-
-        <p style={{ fontSize: '16px', color: '#475157', margin: 0, lineHeight: '1.6', maxWidth: '850px' }}>
-          Sistema de desfocagem de fundo (<em>backdrop blur</em>) e opacidade para criação de efeitos de profundidade e <strong>Glassmorphism</strong> em componentes e cards da Plataforma Unooria.
-        </p>
-      </header>
+    <UnooriaDocShell>
+      <UnooriaDocHeader
+        category="Foundations • Background Blur"
+        title="Background Blur"
+        description={
+          <>
+            Sistema de desfocagem de fundo (<em>backdrop blur</em>) e opacidade para criação de efeitos de profundidade e <strong>Glassmorphism</strong> em componentes e cards da Plataforma Unooria.
+          </>
+        }
+      />
 
       {/* FEEDBACK DE COPIA */}
       {copiedText && (
@@ -356,8 +346,7 @@ const UnooriaBlurDocumentation: React.FC = () => {
           </table>
         </div>
       </section>
-
-    </div>
+    </UnooriaDocShell>
   );
 };
 

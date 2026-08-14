@@ -6,6 +6,7 @@ import {
   ElevationTokenDetail,
 } from '../src/unooria/tokens/elevation';
 import '../src/unooria/tokens/elevation.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Componente visual para documentação e simulação das Elevações e Sombras (Elevation / Box Shadows)
@@ -38,84 +39,16 @@ const UnooriaElevationDocumentation: React.FC<{
   const neutralTokens = elevationEntries.filter(([, detail]) => detail.category === 'Neutral');
 
   return (
-    <div
-      style={{
-        fontFamily: "'Open Sans', system-ui, -apple-system, sans-serif",
-        color: '#22272A',
-        maxWidth: '1280px',
-        margin: '0 auto',
-        padding: '32px 24px',
-        backgroundColor: '#F8FAFC',
-      }}
-    >
-      {/* Cabeçalho de Contexto da Página */}
-      <header
-        style={{
-          marginBottom: '40px',
-          borderBottom: '1px solid #E2E8F0',
-          paddingBottom: '32px',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            marginBottom: '12px',
-          }}
-        >
-          <span
-            style={{
-              background: '#22272A',
-              color: '#FFFFFF',
-              fontSize: '11px',
-              fontWeight: 700,
-              padding: '4px 12px',
-              borderRadius: '16px',
-              letterSpacing: '0.5px',
-              textTransform: 'uppercase',
-            }}
-          >
-            Plataforma Unooria
-          </span>
-          <span
-            style={{
-              background: '#E2E8F0',
-              color: '#475157',
-              fontSize: '11px',
-              fontWeight: 600,
-              padding: '4px 10px',
-              borderRadius: '12px',
-            }}
-          >
-            Design Tokens / Elevação & Sombras
-          </span>
-        </div>
-
-        <h1
-          style={{
-            fontSize: '36px',
-            fontWeight: 700,
-            margin: '0 0 12px 0',
-            color: '#22272A',
-            letterSpacing: '-0.5px',
-          }}
-        >
-          Tokens de Elevação (Elevation)
-        </h1>
-
-        <p
-          style={{
-            fontSize: '16px',
-            color: '#475157',
-            margin: 0,
-            lineHeight: '1.6',
-            maxWidth: '850px',
-          }}
-        >
-          Sistema de profundidade e hierarquia visual através de sombras projetadas (<em>box-shadow</em>) para destacar elementos interativos, modais, cartões e notificações na Plataforma Unooria.
-        </p>
-      </header>
+    <UnooriaDocShell>
+      <UnooriaDocHeader
+        category="Foundations • Elevação & Sombras"
+        title="Elevação & Sombras"
+        description={
+          <>
+            Sistema de profundidade e hierarquia visual através de sombras projetadas (<em>box-shadow</em>) para destacar elementos interativos, modais, cartões e notificações na Plataforma Unooria.
+          </>
+        }
+      />
 
       {/* FEEDBACK DE CÓPIA */}
       {copiedToken && (
@@ -946,7 +879,7 @@ const UnooriaElevationDocumentation: React.FC<{
           </table>
         </div>
       </section>
-    </div>
+    </UnooriaDocShell>
   );
 };
 

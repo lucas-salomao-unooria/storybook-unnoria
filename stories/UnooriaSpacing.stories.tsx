@@ -6,6 +6,7 @@ import {
   UnooriaSpacingKey,
 } from '../src/unooria/tokens/spacing';
 import '../src/unooria/tokens/spacing.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Componente visual para documentação e simulação do Espaçamento (Space)
@@ -47,85 +48,12 @@ const UnooriaSpacingDocumentation: React.FC<{
   ];
 
   return (
-    <div
-      style={{
-        fontFamily: "'Open Sans', system-ui, -apple-system, sans-serif",
-        color: '#22272A',
-        maxWidth: '1280px',
-        margin: '0 auto',
-        padding: '32px 24px',
-        backgroundColor: '#F8FAFC',
-      }}
-    >
-      {/* Cabeçalho de contexto da página */}
-      <header
-        style={{
-          marginBottom: '40px',
-          borderBottom: '1px solid #E2E8F0',
-          paddingBottom: '32px',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            marginBottom: '12px',
-          }}
-        >
-          <span
-            style={{
-              background: '#22272A',
-              color: '#FFFFFF',
-              fontSize: '11px',
-              fontWeight: 700,
-              padding: '4px 12px',
-              borderRadius: '16px',
-              letterSpacing: '0.5px',
-              textTransform: 'uppercase',
-            }}
-          >
-            Plataforma Unooria
-          </span>
-          <span
-            style={{
-              background: '#E2E8F0',
-              color: '#475157',
-              fontSize: '11px',
-              fontWeight: 600,
-              padding: '4px 10px',
-              borderRadius: '12px',
-            }}
-          >
-            Design Tokens / Space
-          </span>
-        </div>
-
-        <h1
-          style={{
-            fontSize: '36px',
-            fontWeight: 700,
-            margin: '0 0 12px 0',
-            color: '#22272A',
-            letterSpacing: '-0.5px',
-          }}
-        >
-          Tokens de Espaçamento (Space)
-        </h1>
-
-        <p
-          style={{
-            fontSize: '16px',
-            color: '#475157',
-            margin: 0,
-            lineHeight: '1.6',
-            maxWidth: '850px',
-          }}
-        >
-          Sistema de escala de espaçamentos para garantir organização, ritmo visual,
-          legibilidade e consistência de layouts em toda a Plataforma Unooria.
-        </p>
-      </header>
+    <UnooriaDocShell>
+      <UnooriaDocHeader
+        category="Foundations • Espaçamento"
+        title="Espaçamento"
+        description="Sistema de escala de espaçamentos para garantir organização, ritmo visual, legibilidade e consistência de layouts em toda a Plataforma Unooria."
+      />
 
       {/* FEEDBACK DE CÓPIA */}
       {copiedToken && (
@@ -794,7 +722,7 @@ const UnooriaSpacingDocumentation: React.FC<{
           </table>
         </div>
       </section>
-    </div>
+    </UnooriaDocShell>
   );
 };
 

@@ -10,6 +10,7 @@ import {
   breakpoints,
 } from '../src/unooria/tokens/grids';
 import '../src/unooria/tokens/grids.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
 
 /**
  * Componente visual para documentação e simulação interativa dos Grids da Plataforma Unooria.
@@ -36,27 +37,16 @@ const UnooriaGridsDocumentation: React.FC<{
   const breakpointKeys: GridBreakpointKey[] = ['mobile', 'tablet', 'notebook', 'desktop'];
 
   return (
-    <div style={{ fontFamily: 'Open Sans, system-ui, -apple-system, sans-serif', color: '#22272A', maxWidth: '1200px', margin: '0 auto', padding: '32px 24px', backgroundColor: '#FFFFFF' }}>
-      
-      {/* Cabecalho Principal */}
-      <header style={{ marginBottom: '40px', borderBottom: '1px solid #E4E8E9', paddingBottom: '32px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-          <span style={{ background: '#22272A', color: '#FFFFFF', fontSize: '11px', fontWeight: 700, padding: '4px 12px', borderRadius: '16px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-            Plataforma Unooria
-          </span>
-          <span style={{ background: '#E4E8E9', color: '#475157', fontSize: '11px', fontWeight: 600, padding: '4px 10px', borderRadius: '12px' }}>
-            Layout & Tokens
-          </span>
-        </div>
-
-        <h1 style={{ fontSize: '36px', fontWeight: 700, margin: '0 0 12px 0', color: '#22272A', letterSpacing: '-0.5px' }}>
-          Tokens de Grids & Layout
-        </h1>
-
-        <p style={{ fontSize: '16px', color: '#475157', margin: 0, lineHeight: '1.6', maxWidth: '850px' }}>
-          Sistema de grid responsivo com base em <strong>4, 8 e 12 colunas</strong> projetado para garantir alinhamento, fluidez, proporção e ritmo visual em todas as telas da Plataforma Unooria.
-        </p>
-      </header>
+    <UnooriaDocShell>
+      <UnooriaDocHeader
+        category="Foundations • Grids & Layout"
+        title="Grids & Layout"
+        description={
+          <>
+            Sistema de grid responsivo com base em <strong>4, 8 e 12 colunas</strong> projetado para garantir alinhamento, fluidez, proporção e ritmo visual em todas as telas da Plataforma Unooria.
+          </>
+        }
+      />
 
       {/* Seção 1: Seletor de Breakpoints e Painel de Métricas */}
       <section style={{ marginBottom: '48px' }}>
@@ -515,8 +505,7 @@ const UnooriaGridsDocumentation: React.FC<{
           </table>
         </div>
       </section>
-
-    </div>
+    </UnooriaDocShell>
   );
 };
 
