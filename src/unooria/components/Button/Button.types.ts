@@ -1,35 +1,71 @@
 import React from 'react';
 
+/**
+ * Variantes visuais disponíveis para o Button
+ */
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-export type ButtonSize = 'sm' | 'md' | 'lg';
-export type ButtonState = 'default' | 'hover' | 'active' | 'focus' | 'disabled' | 'loading';
-export type UnooriaTheme = 'light' | 'dark';
 
+/**
+ * Escala de tamanhos padronizada da Unooria
+ * - sm: 36px de altura
+ * - md: 44px de altura (padrão)
+ * - lg: 52px de altura
+ */
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
+/**
+ * Estados interativos e de homologação visual suportados
+ */
+export type ButtonState = 'default' | 'hover' | 'active' | 'focus' | 'disabled' | 'loading';
+
+import type { UnooriaTheme } from '../../tokens';
+
+export type ButtonTheme = UnooriaTheme;
+
+/**
+ * Propriedades públicas do componente Button
+ */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Variantes estéticas do botão */
+  /** Variante visual e nível hierárquico da ação */
   variant?: ButtonVariant;
-  /** Tamanhos do botão (sm: 36px, md: 44px, lg: 52px) */
+  /** Tamanho do botão e escala tipográfica */
   size?: ButtonSize;
-  /** Estado isolado forçado para documentação/testes */
-  state?: ButtonState;
-  /** Força o estado de Hover */
-  isHovered?: boolean;
-  /** Força o estado de Active (pressionado) */
-  isActive?: boolean;
-  /** Força o estado de Focus (foco de teclado) */
-  isFocused?: boolean;
-  /** Estado de desabilitado */
-  isDisabled?: boolean;
-  /** Estado de carregamento com spinner */
-  isLoading?: boolean;
-  /** Ícone exibido à esquerda do texto */
-  leftIcon?: React.ReactNode;
-  /** Ícone exibido à direita do texto */
-  rightIcon?: React.ReactNode;
-  /** Se verdadeiro, o botão ocupa 100% da largura do contêiner */
-  fullWidth?: boolean;
-  /** Tema visual do componente ('light' | 'dark') */
+  /** Tema de cor da interface (Light ou Dark) */
   theme?: UnooriaTheme;
-  /** Conteúdo textual ou elementos React */
+  /** Força um estado isolado para testes visuais e documentação */
+  state?: ButtonState;
+  /** Força o estado de hover */
+  isHovered?: boolean;
+  /** Força o estado ativo / pressionado */
+  isActive?: boolean;
+  /** Força o estado de foco */
+  isFocused?: boolean;
+  /** Desabilita o botão aplicando estilos e bloqueando interações */
+  isDisabled?: boolean;
+  /** Exibe indicador de carregamento animado (spinner) e bloqueia ações */
+  isLoading?: boolean;
+  /** Texto alternativo a ser exibido durante o estado de carregamento */
+  loadingText?: string;
+  /** Elemento ou ícone renderizado à esquerda do texto */
+  leftIcon?: React.ReactNode;
+  /** Elemento ou ícone renderizado à direita do texto */
+  rightIcon?: React.ReactNode;
+  /** Expande o botão para ocupar 100% da largura do contêiner */
+  fullWidth?: boolean;
+  /** Permite renderizar o botão como outro elemento React ou tag HTML (ex: 'a') */
+  as?: React.ElementType;
+  /** URL de destino quando renderizado como link */
+  href?: string;
+  /** Alvo de abertura quando renderizado como link */
+  target?: string;
+  /** Relação do link quando renderizado como link */
+  rel?: string;
+  /** Conteúdo interno ou rótulo textual do botão */
   children?: React.ReactNode;
+  /** Classe CSS customizada */
+  className?: string;
+  /** Estilos inline customizados */
+  style?: React.CSSProperties;
+  /** Atributos arbitrários adicionais para renderização polimórfica */
+  [key: string]: any;
 }

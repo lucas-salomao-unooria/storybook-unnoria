@@ -1,0 +1,436 @@
+/**
+ * Estilos do Componente Button - Design System Plataforma Unooria
+ * Baseado estritamente nos tokens oficiais de cores, espaçamentos, tipografia e elevação.
+ */
+
+@keyframes unooria-button-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.unooria-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-weight: var(--unooria-weight-semibold, 600);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+  position: relative;
+  border-style: solid;
+  border-width: 0;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================================================
+   TAMANHOS (SIZES)
+   ========================================================================== */
+
+.unooria-button--size-sm {
+  height: 36px;
+  padding: 0 var(--unooria-spacing-xs, 12px);
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  gap: var(--unooria-spacing-xxxs, 4px);
+  border-radius: 8px;
+}
+
+.unooria-button--size-md {
+  height: 44px;
+  padding: 0 var(--unooria-spacing-s, 16px);
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  gap: var(--unooria-spacing-xxs, 8px);
+  border-radius: 10px;
+}
+
+.unooria-button--size-lg {
+  height: 52px;
+  padding: 0 var(--unooria-spacing-m, 24px);
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+  gap: var(--unooria-spacing-xs, 12px);
+  border-radius: 12px;
+}
+
+/* Largura Total (Full Width) */
+.unooria-button--full-width {
+  width: 100%;
+}
+
+/* ==========================================================================
+   ELEMENTOS INTERNOS (ÍCONES, SPINNER, CONTEÚDO)
+   ========================================================================== */
+
+.unooria-button__content {
+  display: inline-flex;
+  align-items: center;
+  line-height: inherit;
+}
+
+.unooria-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.unooria-button--size-sm .unooria-button__icon {
+  font-size: 16px;
+}
+
+.unooria-button--size-md .unooria-button__icon {
+  font-size: 18px;
+}
+
+.unooria-button--size-lg .unooria-button__icon {
+  font-size: 22px;
+}
+
+.unooria-button__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: unooria-button-spin 0.8s linear infinite;
+}
+
+/* ==========================================================================
+   ESTADOS GERAIS (DISABLED, LOADING)
+   ========================================================================== */
+
+.unooria-button:disabled,
+.unooria-button--disabled,
+.unooria-button--state-disabled {
+  cursor: not-allowed !important;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.unooria-button--loading,
+.unooria-button--state-loading {
+  cursor: wait !important;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   TEMA LIGHT (MODO CLARO)
+   ========================================================================== */
+
+/* Primary - Light */
+.unooria-button--light.unooria-button--variant-primary,
+:not([data-theme="dark"]) .unooria-button--variant-primary {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.unooria-button--light.unooria-button--variant-primary:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-primary.unooria-button--state-hover {
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-button--light.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-primary.unooria-button--state-active {
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-button--light.unooria-button--variant-primary:focus-visible,
+.unooria-button--light.unooria-button--variant-primary.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
+  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
+  outline-offset: 2px;
+}
+
+/* Secondary - Light */
+.unooria-button--light.unooria-button--variant-secondary,
+:not([data-theme="dark"]) .unooria-button--variant-secondary {
+  background-color: var(--unooria-color-brandpurple-900, #0E1039);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.unooria-button--light.unooria-button--variant-secondary:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-secondary.unooria-button--state-hover {
+  background-color: var(--unooria-color-brandpurple-800, #34375C);
+}
+
+.unooria-button--light.unooria-button--variant-secondary:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-secondary.unooria-button--state-active {
+  background-color: var(--unooria-color-brandpurple-700, #57547D);
+}
+
+.unooria-button--light.unooria-button--variant-secondary:focus-visible,
+.unooria-button--light.unooria-button--variant-secondary.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-brand-secondary, 0px 0px 10px 0px rgba(14, 16, 57, 0.3));
+  outline: 2px solid var(--unooria-color-brandpurple-900, #0E1039);
+  outline-offset: 2px;
+}
+
+/* Outline - Light */
+.unooria-button--light.unooria-button--variant-outline,
+:not([data-theme="dark"]) .unooria-button--variant-outline {
+  background-color: transparent;
+  color: var(--unooria-color-brandnavy-800, #49699F);
+  border-width: 1.5px;
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-button--light.unooria-button--variant-outline:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-outline.unooria-button--state-hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+}
+
+.unooria-button--light.unooria-button--variant-outline:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-outline.unooria-button--state-active {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+}
+
+.unooria-button--light.unooria-button--variant-outline:focus-visible,
+.unooria-button--light.unooria-button--variant-outline.unooria-button--state-focus {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
+  outline-offset: 2px;
+}
+
+/* Ghost - Light */
+.unooria-button--light.unooria-button--variant-ghost,
+:not([data-theme="dark"]) .unooria-button--variant-ghost {
+  background-color: transparent;
+  color: var(--unooria-color-brandnavy-800, #49699F);
+  border-color: transparent;
+}
+
+.unooria-button--light.unooria-button--variant-ghost:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-ghost.unooria-button--state-hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+}
+
+.unooria-button--light.unooria-button--variant-ghost:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-ghost.unooria-button--state-active {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+}
+
+.unooria-button--light.unooria-button--variant-ghost:focus-visible,
+.unooria-button--light.unooria-button--variant-ghost.unooria-button--state-focus {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
+  outline-offset: 2px;
+}
+
+/* Danger - Light */
+.unooria-button--light.unooria-button--variant-danger,
+:not([data-theme="dark"]) .unooria-button--variant-danger {
+  background-color: var(--unooria-color-danger-600, #E31A1A);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.unooria-button--light.unooria-button--variant-danger:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-danger.unooria-button--state-hover {
+  background-color: var(--unooria-color-danger-700, #C11414);
+}
+
+.unooria-button--light.unooria-button--variant-danger:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-danger.unooria-button--state-active {
+  background-color: var(--unooria-color-danger-800, #9F1515);
+}
+
+.unooria-button--light.unooria-button--variant-danger:focus-visible,
+.unooria-button--light.unooria-button--variant-danger.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-semantic-danger, 0px 0px 10px 0px rgba(227, 26, 26, 0.3));
+  outline: 2px solid var(--unooria-color-danger-600, #E31A1A);
+  outline-offset: 2px;
+}
+
+/* Disabled - Light */
+.unooria-button--light:disabled,
+.unooria-button--light.unooria-button--disabled,
+.unooria-button--light.unooria-button--state-disabled {
+  background-color: var(--unooria-color-neutral-200, #CBD4D6);
+  color: var(--unooria-color-neutral-400, #7C8E94);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.unooria-button--light.unooria-button--variant-outline:disabled,
+.unooria-button--light.unooria-button--variant-outline.unooria-button--disabled,
+.unooria-button--light.unooria-button--variant-outline.unooria-button--state-disabled {
+  background-color: transparent;
+  border-color: var(--unooria-color-neutral-200, #CBD4D6);
+  color: var(--unooria-color-neutral-400, #7C8E94);
+}
+
+.unooria-button--light.unooria-button--variant-ghost:disabled,
+.unooria-button--light.unooria-button--variant-ghost.unooria-button--disabled,
+.unooria-button--light.unooria-button--variant-ghost.unooria-button--state-disabled {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--unooria-color-neutral-400, #7C8E94);
+}
+
+/* ==========================================================================
+   TEMA DARK (MODO ESCURO)
+   ========================================================================== */
+
+/* Primary - Dark */
+.unooria-button--dark.unooria-button--variant-primary,
+[data-theme="dark"] .unooria-button--variant-primary {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: transparent;
+}
+
+.unooria-button--dark.unooria-button--variant-primary:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-primary.unooria-button--state-hover {
+  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+}
+
+.unooria-button--dark.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-primary.unooria-button--state-active {
+  background-color: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-button--dark.unooria-button--variant-primary:focus-visible,
+.unooria-button--dark.unooria-button--variant-primary.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
+  outline: 2px solid var(--unooria-color-neutraldark-50, #22272A);
+  outline-offset: 2px;
+}
+
+/* Secondary - Dark */
+.unooria-button--dark.unooria-button--variant-secondary,
+[data-theme="dark"] .unooria-button--variant-secondary {
+  background-color: var(--unooria-color-brandpurple-600, #716C98);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.unooria-button--dark.unooria-button--variant-secondary:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-secondary.unooria-button--state-hover {
+  background-color: var(--unooria-color-brandpurple-500, #8B85AC);
+}
+
+.unooria-button--dark.unooria-button--variant-secondary:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-secondary.unooria-button--state-active {
+  background-color: var(--unooria-color-brandpurple-400, #AAA5C2);
+}
+
+.unooria-button--dark.unooria-button--variant-secondary:focus-visible,
+.unooria-button--dark.unooria-button--variant-secondary.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-brand-secondary, 0px 0px 10px 0px rgba(14, 16, 57, 0.3));
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* Outline - Dark */
+.unooria-button--dark.unooria-button--variant-outline,
+[data-theme="dark"] .unooria-button--variant-outline {
+  background-color: transparent;
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+  border-width: 1.5px;
+  border-color: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-button--dark.unooria-button--variant-outline:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-outline.unooria-button--state-hover {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+}
+
+.unooria-button--dark.unooria-button--variant-outline:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-outline.unooria-button--state-active {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+}
+
+.unooria-button--dark.unooria-button--variant-outline:focus-visible,
+.unooria-button--dark.unooria-button--variant-outline.unooria-button--state-focus {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-400, rgba(127, 165, 226, 0.40));
+  outline: 2px solid var(--unooria-color-brandnavy-300, #BDD0EF);
+  outline-offset: 2px;
+}
+
+/* Ghost - Dark */
+.unooria-button--dark.unooria-button--variant-ghost,
+[data-theme="dark"] .unooria-button--variant-ghost {
+  background-color: transparent;
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+  border-color: transparent;
+}
+
+.unooria-button--dark.unooria-button--variant-ghost:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-hover {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+}
+
+.unooria-button--dark.unooria-button--variant-ghost:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-active {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+}
+
+.unooria-button--dark.unooria-button--variant-ghost:focus-visible,
+.unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-focus {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-400, rgba(127, 165, 226, 0.40));
+  outline: 2px solid var(--unooria-color-brandnavy-300, #BDD0EF);
+  outline-offset: 2px;
+}
+
+/* Danger - Dark */
+.unooria-button--dark.unooria-button--variant-danger,
+[data-theme="dark"] .unooria-button--variant-danger {
+  background-color: var(--unooria-color-danger-500, #F83B3B);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.unooria-button--dark.unooria-button--variant-danger:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-danger.unooria-button--state-hover {
+  background-color: var(--unooria-color-danger-400, #FF6A6A);
+}
+
+.unooria-button--dark.unooria-button--variant-danger:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-danger.unooria-button--state-active {
+  background-color: var(--unooria-color-danger-300, #FFA1A1);
+}
+
+.unooria-button--dark.unooria-button--variant-danger:focus-visible,
+.unooria-button--dark.unooria-button--variant-danger.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-semantic-danger, 0px 0px 10px 0px rgba(227, 26, 26, 0.3));
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* Disabled - Dark */
+.unooria-button--dark:disabled,
+.unooria-button--dark.unooria-button--disabled,
+.unooria-button--dark.unooria-button--state-disabled {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: var(--unooria-color-neutraldark-500, #617379);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.unooria-button--dark.unooria-button--variant-outline:disabled,
+.unooria-button--dark.unooria-button--variant-outline.unooria-button--disabled,
+.unooria-button--dark.unooria-button--variant-outline.unooria-button--state-disabled {
+  background-color: transparent;
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: var(--unooria-color-neutraldark-400, #536167);
+}
+
+.unooria-button--dark.unooria-button--variant-ghost:disabled,
+.unooria-button--dark.unooria-button--variant-ghost.unooria-button--disabled,
+.unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-disabled {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--unooria-color-neutraldark-400, #536167);
+}

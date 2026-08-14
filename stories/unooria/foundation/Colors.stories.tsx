@@ -7,6 +7,8 @@ import {
   brandPurpleOverlay,
   brandBlue,
   brandBlueOverlay,
+  brandOrange,
+  brandOrangeOverlay,
   neutral,
   neutralLightOverlay,
   neutralDark,
@@ -20,9 +22,9 @@ import {
   info,
   infoOverlay,
   gradients,
-} from '../src/unooria/tokens/colors';
-import '../src/unooria/tokens/colors.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
+} from '../../../src/unooria/tokens/colors';
+import '../../../src/unooria/tokens/colors.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
 
 /**
  * Storybook da Plataforma Unooria - Tokens de Cores
@@ -343,7 +345,7 @@ export const VisaoGeral: Story = {
 
         {/* Section 1 (Node 14667:55): Primary Color + Primary Overlay */}
         <ColorGroup
-          title="Primary- Brand Navy"
+          title="Primary - Brand Navy"
           description="A cor primária é aplicada em elementos interativos, como botões e links, com o objetivo de guiar a navegação do usuário e facilitar a interação com a interface."
         >
           <SwatchCard step="50" value={brandNavy[50]} displayHex="#F5F8FC" cssVar="--unooria-color-brandnavy-50" contrast="AAA" />
@@ -360,7 +362,7 @@ export const VisaoGeral: Story = {
         </ColorGroup>
 
         <ColorGroup
-          title="Primary- Brand Navy Overlay"
+          title="Primary - Brand Navy Overlay"
           description="As cores com opacidade são cores com certa transparência. Em nosso sistema de design, elas são utilizadas para as sombras dos elementos e para obter o efeito ideal no glassmorfismo."
         >
           {Object.entries(brandNavyOverlay).map(([step, val]) => (
@@ -404,6 +406,38 @@ export const VisaoGeral: Story = {
               value={val}
               displayHex="#0E1039"
               cssVar={`--unooria-color-opacity-brandpurple-${step}`}
+              opacityText={`${Number(step) / 10}%`}
+            />
+          ))}
+        </ColorGroup>
+
+        {/* Brand Orange (Legado) */}
+        <ColorGroup
+          title="Brand Orange (Legado / Destaque)"
+          description="Escala de laranjas utilizada para elementos de destaque e retrocompatibilidade do sistema."
+        >
+          {Object.entries(brandOrange).map(([step, val]) => (
+            <SwatchCard
+              key={step}
+              step={step}
+              value={val}
+              cssVar={`--unooria-color-brandorange-${step}`}
+              isBase={step === '600'}
+              textColor={Number(step) >= 500 ? '#FFFFFF' : '#22272A'}
+            />
+          ))}
+        </ColorGroup>
+
+        <ColorGroup
+          title="Brand Orange Overlay"
+          description="Overlays com base na cor laranja para efeitos de sombra e destaques luminosos."
+        >
+          {Object.entries(brandOrangeOverlay).map(([step, val]) => (
+            <SwatchCard
+              key={step}
+              step={step}
+              value={val}
+              cssVar={`--unooria-color-opacity-brandorange-${step}`}
               opacityText={`${Number(step) / 10}%`}
             />
           ))}
@@ -645,6 +679,387 @@ export const VisaoGeral: Story = {
 };
 
 /**
+ * Story com Simulador Interativo de Componente de UI em Tempo Real
+ */
+export const SimuladorDeCoresUI: Story = {
+  render: () => {
+    const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light');
+    const [brandTheme, setBrandTheme] = useState<'navy' | 'purple' | 'orange'>('navy');
+    const [feedbackStatus, setFeedbackStatus] = useState<'success' | 'warning' | 'danger' | 'info'>('success');
+    const [useGradientBg, setUseGradientBg] = useState<boolean>(false);
+
+    // Mapeamento dinâmico
+    const brandMap = {
+      navy: {
+        primary: brandNavy[600],
+        primaryHover: brandNavy[700],
+        lightBg: brandNavy[50],
+        tokenName: 'brandNavy[600]',
+        cssVar: 'var(--unooria-color-brandnavy-600)',
+      },
+      purple: {
+        primary: brandPurple[600],
+        primaryHover: brandPurple[700],
+        lightBg: brandPurple[50],
+        tokenName: 'brandPurple[600]',
+        cssVar: 'var(--unooria-color-brandpurple-600)',
+      },
+      orange: {
+        primary: brandOrange[600],
+        primaryHover: brandOrange[700],
+        lightBg: brandOrange[50],
+        tokenName: 'brandOrange[600]',
+        cssVar: 'var(--unooria-color-brandorange-600)',
+      },
+    };
+
+    const feedbackMap = {
+      success: {
+        color: success[500],
+        bg: success[50],
+        border: success[200],
+        label: 'Operação concluída com sucesso',
+        icon: '✓',
+        cssVar: 'var(--unooria-color-success-500)',
+      },
+      warning: {
+        color: warning[500],
+        bg: warning[50],
+        border: warning[200],
+        label: 'Atenção: verifique suas configurações',
+        icon: '⚠',
+        cssVar: 'var(--unooria-color-warning-500)',
+      },
+      danger: {
+        color: danger[600],
+        bg: danger[50],
+        border: danger[200],
+        label: 'Erro crítico na sincronização',
+        icon: '✕',
+        cssVar: 'var(--unooria-color-danger-600)',
+      },
+      info: {
+        color: info[500],
+        bg: info[50],
+        border: info[200],
+        label: 'Nova atualização do sistema disponível',
+        icon: 'ℹ',
+        cssVar: 'var(--unooria-color-info-500)',
+      },
+    };
+
+    const currentBrand = brandMap[brandTheme];
+    const currentFeedback = feedbackMap[feedbackStatus];
+
+    const isDark = themeMode === 'dark';
+    const cardBg = isDark ? neutralDark[100] : neutral[50];
+    const textPrimary = isDark ? neutralDark[950] : neutral[950];
+    const textSecondary = isDark ? neutralDark[700] : neutral[500];
+    const borderColor = isDark ? neutralDark[300] : neutral[150];
+
+    return (
+      <div style={{ fontFamily: 'Open Sans, sans-serif', maxWidth: '1000px', margin: '0 auto', color: '#22272A' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '8px' }}>
+          Simulador Interativo de Interface com Tokens de Cores
+        </h2>
+        <p style={{ color: '#617379', marginBottom: '24px', fontSize: '14px' }}>
+          Experimente a aplicação dinâmica dos tokens de cores em um componente real, alternando temas, cores de marca e estados de feedback.
+        </p>
+
+        {/* Controles do Simulador */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+            backgroundColor: '#F8FAFC',
+            padding: '20px',
+            borderRadius: '16px',
+            border: '1px solid #E2E8F0',
+            marginBottom: '28px',
+          }}
+        >
+          {/* Seletor de Tema */}
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '8px' }}>
+              Modo de Tema:
+            </label>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                onClick={() => setThemeMode('light')}
+                style={{
+                  flex: 1,
+                  padding: '8px 12px',
+                  borderRadius: '8px',
+                  border: `2px solid ${themeMode === 'light' ? '#1670FA' : '#CBD5E1'}`,
+                  backgroundColor: themeMode === 'light' ? '#FFFFFF' : '#F1F5F9',
+                  color: '#1E293B',
+                  fontWeight: 600,
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                }}
+              >
+                ☀ Light
+              </button>
+              <button
+                onClick={() => setThemeMode('dark')}
+                style={{
+                  flex: 1,
+                  padding: '8px 12px',
+                  borderRadius: '8px',
+                  border: `2px solid ${themeMode === 'dark' ? '#1670FA' : '#CBD5E1'}`,
+                  backgroundColor: themeMode === 'dark' ? '#22272A' : '#F1F5F9',
+                  color: themeMode === 'dark' ? '#FFFFFF' : '#1E293B',
+                  fontWeight: 600,
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                }}
+              >
+                🌙 Dark
+              </button>
+            </div>
+          </div>
+
+          {/* Seletor de Cor Primária */}
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '8px' }}>
+              Cor de Marca:
+            </label>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {(['navy', 'purple', 'orange'] as const).map((b) => (
+                <button
+                  key={b}
+                  onClick={() => setBrandTheme(b)}
+                  style={{
+                    flex: 1,
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: `2px solid ${brandTheme === b ? '#1670FA' : '#CBD5E1'}`,
+                    backgroundColor: b === 'navy' ? brandNavy[600] : b === 'purple' ? brandPurple[600] : brandOrange[600],
+                    color: '#FFFFFF',
+                    fontWeight: 700,
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {b}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Seletor de Feedback */}
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '8px' }}>
+              Estado de Feedback:
+            </label>
+            <select
+              value={feedbackStatus}
+              onChange={(e) => setFeedbackStatus(e.target.value as any)}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid #CBD5E1',
+                backgroundColor: '#FFFFFF',
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#1E293B',
+                cursor: 'pointer',
+              }}
+            >
+              <option value="success">Success (Verde)</option>
+              <option value="warning">Warning (Laranja/Amarelo)</option>
+              <option value="danger">Danger (Vermelho)</option>
+              <option value="info">Info (Azul)</option>
+            </select>
+          </div>
+
+          {/* Toggle de Gradiente */}
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '8px' }}>
+              Fundo com Gradiente:
+            </label>
+            <button
+              onClick={() => setUseGradientBg(!useGradientBg)}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: `2px solid ${useGradientBg ? '#1670FA' : '#CBD5E1'}`,
+                backgroundColor: useGradientBg ? '#1670FA' : '#FFFFFF',
+                color: useGradientBg ? '#FFFFFF' : '#334155',
+                fontWeight: 600,
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              {useGradientBg ? '✦ Gradiente 1 Ativo' : 'Sólido / Neutro'}
+            </button>
+          </div>
+        </div>
+
+        {/* Display do Card de Teste */}
+        <div
+          style={{
+            padding: '48px 24px',
+            borderRadius: '24px',
+            background: useGradientBg
+              ? gradients[1]
+              : isDark
+              ? '#0E1039'
+              : '#F5F8FC',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            boxShadow: 'inset 0 0 24px rgba(0,0,0,0.06)',
+            marginBottom: '28px',
+            transition: 'all 0.3s ease',
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '460px',
+              backgroundColor: cardBg,
+              borderRadius: '20px',
+              padding: '28px',
+              boxShadow: isDark
+                ? '0 20px 40px rgba(0, 0, 0, 0.45)'
+                : '0 12px 32px rgba(14, 16, 57, 0.08)',
+              border: `1px solid ${borderColor}`,
+              color: textPrimary,
+              transition: 'all 0.3s ease',
+            }}
+          >
+            {/* Header do Card */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    backgroundColor: currentBrand.primary,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#FFFFFF',
+                    fontWeight: 800,
+                    fontSize: '16px',
+                  }}
+                >
+                  U
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: textPrimary }}>
+                    Painel Unooria
+                  </h4>
+                  <span style={{ fontSize: '12px', color: textSecondary }}>
+                    Design System v1.0.0
+                  </span>
+                </div>
+              </div>
+
+              <span
+                style={{
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  padding: '4px 10px',
+                  borderRadius: '20px',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : currentBrand.lightBg,
+                  color: currentBrand.primary,
+                }}
+              >
+                {themeMode.toUpperCase()}
+              </span>
+            </div>
+
+            {/* Banner de Feedback */}
+            <div
+              style={{
+                backgroundColor: isDark ? 'rgba(0,0,0,0.25)' : currentFeedback.bg,
+                border: `1px solid ${currentFeedback.border}`,
+                borderRadius: '12px',
+                padding: '12px 16px',
+                marginBottom: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+              }}
+            >
+              <span style={{ color: currentFeedback.color, fontWeight: 800, fontSize: '14px' }}>
+                {currentFeedback.icon}
+              </span>
+              <span style={{ fontSize: '13px', color: textPrimary, fontWeight: 600 }}>
+                {currentFeedback.label}
+              </span>
+            </div>
+
+            {/* Ações */}
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                style={{
+                  flex: 1,
+                  padding: '12px 16px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  backgroundColor: currentBrand.primary,
+                  color: '#FFFFFF',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  boxShadow: `0 4px 12px ${currentBrand.primary}40`,
+                  transition: 'opacity 0.2s ease',
+                }}
+              >
+                Ação Primária
+              </button>
+              <button
+                style={{
+                  padding: '12px 16px',
+                  borderRadius: '10px',
+                  border: `1px solid ${borderColor}`,
+                  backgroundColor: 'transparent',
+                  color: textPrimary,
+                  fontWeight: 600,
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                }}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Tokens Utilizados com Cópia Rápida */}
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: '16px',
+            border: '1px solid #E4E8E9',
+            padding: '20px',
+          }}
+        >
+          <h4 style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: 700, color: '#22272A' }}>
+            Tokens de Cores Aplicados nesta Configuração:
+          </h4>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            <CopyBadge text={currentBrand.cssVar} />
+            <CopyBadge text={currentFeedback.cssVar} />
+            <CopyBadge text={isDark ? 'var(--unooria-color-neutraldark-100)' : 'var(--unooria-color-neutral-50)'} />
+            <CopyBadge text={isDark ? 'var(--unooria-color-neutraldark-950)' : 'var(--unooria-color-neutral-950)'} />
+            {useGradientBg && <CopyBadge text="var(--unooria-color-gradient-1)" />}
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
+
+/**
  * Story Interativa com Filtro por Categoria e Copiador de Código
  */
 export const ExploradorInterativo: Story = {
@@ -657,8 +1072,11 @@ export const ExploradorInterativo: Story = {
       brandNavyOverlay: { label: 'Brand Navy Overlay', tokens: brandNavyOverlay, prefix: 'opacity-brandnavy' },
       brandPurple: { label: 'Brand Purple (Secundária)', tokens: brandPurple, prefix: 'brandpurple' },
       brandPurpleOverlay: { label: 'Brand Purple Overlay', tokens: brandPurpleOverlay, prefix: 'opacity-brandpurple' },
-      neutral: { label: 'Neutras', tokens: neutral, prefix: 'neutral' },
+      brandOrange: { label: 'Brand Orange (Destaque)', tokens: brandOrange, prefix: 'brandorange' },
+      brandOrangeOverlay: { label: 'Brand Orange Overlay', tokens: brandOrangeOverlay, prefix: 'opacity-brandorange' },
+      neutral: { label: 'Neutras Light', tokens: neutral, prefix: 'neutral' },
       neutralLightOverlay: { label: 'Neutras Light Overlay', tokens: neutralLightOverlay, prefix: 'opacity-neutrallight' },
+      neutralDark: { label: 'Neutras Dark', tokens: neutralDark, prefix: 'neutraldark' },
       neutralDarkOverlay: { label: 'Neutras Dark Overlay', tokens: neutralDarkOverlay, prefix: 'opacity-neutraldark' },
       danger: { label: 'Danger', tokens: danger, prefix: 'danger' },
       dangerOverlay: { label: 'Danger Overlay', tokens: dangerOverlay, prefix: 'opacity-danger' },
@@ -760,7 +1178,12 @@ export const TabelaDeTokens: Story = {
       { name: 'Brand Navy Overlay', tokens: brandNavyOverlay, prefix: 'opacity-brandnavy' },
       { name: 'Brand Purple (Secundária)', tokens: brandPurple, prefix: 'brandpurple' },
       { name: 'Brand Purple Overlay', tokens: brandPurpleOverlay, prefix: 'opacity-brandpurple' },
-      { name: 'Neutros', tokens: neutral, prefix: 'neutral' },
+      { name: 'Brand Orange (Destaque)', tokens: brandOrange, prefix: 'brandorange' },
+      { name: 'Brand Orange Overlay', tokens: brandOrangeOverlay, prefix: 'opacity-brandorange' },
+      { name: 'Neutros Light', tokens: neutral, prefix: 'neutral' },
+      { name: 'Neutros Light Overlay', tokens: neutralLightOverlay, prefix: 'opacity-neutrallight' },
+      { name: 'Neutros Dark', tokens: neutralDark, prefix: 'neutraldark' },
+      { name: 'Neutros Dark Overlay', tokens: neutralDarkOverlay, prefix: 'opacity-neutraldark' },
       { name: 'Danger', tokens: danger, prefix: 'danger' },
       { name: 'Danger Overlay', tokens: dangerOverlay, prefix: 'opacity-danger' },
       { name: 'Success', tokens: success, prefix: 'sucess' },
@@ -774,7 +1197,7 @@ export const TabelaDeTokens: Story = {
     return (
       <div style={{ fontFamily: 'Open Sans, sans-serif', maxWidth: '1100px', margin: '0 auto', color: '#22272A' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '16px' }}>
-          Tabela Completa de Mapeamento dos Tokens
+          Tabela Completa de Mapeamento dos Tokens de Cores
         </h2>
 
         <div
@@ -793,6 +1216,7 @@ export const TabelaDeTokens: Story = {
                 <th style={{ padding: '12px 16px', fontWeight: 700 }}>Variável CSS</th>
                 <th style={{ padding: '12px 16px', fontWeight: 700 }}>Amostra</th>
                 <th style={{ padding: '12px 16px', fontWeight: 700 }}>Valor Hex / RGBA</th>
+                <th style={{ padding: '12px 16px', fontWeight: 700, textAlign: 'right' }}>Ação</th>
               </tr>
             </thead>
             <tbody>
@@ -839,6 +1263,9 @@ export const TabelaDeTokens: Story = {
                       </td>
                       <td style={{ padding: '10px 16px', fontFamily: 'monospace', fontWeight: 600 }}>
                         {formatDisplayHex(value)}
+                      </td>
+                      <td style={{ padding: '10px 16px', textAlign: 'right' }}>
+                        <CopyBadge text={`var(${cssVar})`} />
                       </td>
                     </tr>
                   );

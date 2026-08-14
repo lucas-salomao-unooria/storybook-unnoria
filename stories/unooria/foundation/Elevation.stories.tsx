@@ -4,9 +4,44 @@ import {
   unooriaElevation,
   UnooriaElevationKey,
   ElevationTokenDetail,
-} from '../src/unooria/tokens/elevation';
-import '../src/unooria/tokens/elevation.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
+} from '../../../src/unooria/tokens/elevation';
+import '../../../src/unooria/tokens/elevation.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+
+// Componente para notificação ao copiar
+const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      title="Clique para copiar"
+      style={{
+        background: copied ? '#01B574' : 'rgba(0, 0, 0, 0.06)',
+        color: copied ? '#FFFFFF' : '#334155',
+        border: 'none',
+        borderRadius: '4px',
+        padding: '2px 6px',
+        fontSize: '11px',
+        fontFamily: 'monospace',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '4px',
+      }}
+    >
+      {copied ? '✓ Copiado!' : label || text}
+    </button>
+  );
+};
 
 /**
  * Componente visual para documentação e simulação das Elevações e Sombras (Elevation / Box Shadows)
@@ -50,7 +85,7 @@ const UnooriaElevationDocumentation: React.FC<{
         }
       />
 
-      {/* FEEDBACK DE CÓPIA */}
+      {/* FEEDBACK DE CÓPIA GLOBAL */}
       {copiedToken && (
         <div
           style={{
@@ -430,27 +465,10 @@ const UnooriaElevationDocumentation: React.FC<{
               boxSizing: 'border-box',
             }}
           >
-            {/* Logo Marca Unooria */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg
-                width="73"
-                height="17"
-                viewBox="0 0 73 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <text
-                  x="0"
-                  y="14"
-                  fill="#CBD4D6"
-                  fontFamily="'Open Sans', sans-serif"
-                  fontWeight="700"
-                  fontSize="16"
-                  letterSpacing="0.5px"
-                >
-                  Unooria
-                </text>
-              </svg>
+              <span style={{ color: '#CBD4D6', fontFamily: "'Open Sans', sans-serif", fontWeight: 700, fontSize: '18px', letterSpacing: '0.5px' }}>
+                Unooria
+              </span>
             </div>
             <div
               style={{
@@ -494,7 +512,7 @@ const UnooriaElevationDocumentation: React.FC<{
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '320px 1fr',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '24px',
             alignItems: 'start',
           }}
@@ -629,6 +647,9 @@ const UnooriaElevationDocumentation: React.FC<{
                   {unooriaElevation[activeTokenKey].boxShadow}
                 </code>
               </div>
+              <div style={{ marginTop: '12px' }}>
+                <CopyBadge text={`box-shadow: var(${unooriaElevation[activeTokenKey].cssVar});`} label="Copiar CSS" />
+              </div>
             </div>
           </div>
 
@@ -662,8 +683,8 @@ const UnooriaElevationDocumentation: React.FC<{
                 backgroundColor: previewBg === 'light' ? '#FFFFFF' : '#22272A',
                 color: previewBg === 'light' ? '#0F172A' : '#FFFFFF',
                 boxShadow: unooriaElevation[activeTokenKey].boxShadow,
-                backdropFilter: unooriaElevation[activeTokenKey].backdropFilter,
-                WebkitBackdropFilter: unooriaElevation[activeTokenKey].backdropFilter,
+                backdropFilter: (unooriaElevation[activeTokenKey] as any).backdropFilter || 'none',
+                WebkitBackdropFilter: (unooriaElevation[activeTokenKey] as any).backdropFilter || 'none',
                 textAlign: 'center',
                 transition: 'all 0.3s ease',
                 border: previewBg === 'light' ? '1px solid #E2E8F0' : '1px solid rgba(255,255,255,0.05)',
@@ -709,7 +730,7 @@ const UnooriaElevationDocumentation: React.FC<{
         </div>
       </section>
 
-      {/* SEÇÃO 3: TABELA DE REFERÊNCIA RÁPIDA DE TOKENS */}
+      {/* SEÇÃO 3: TABELA DE REFERÊNCIA RÁPIDA DE TOKENS E CLASSES UTILITÁRIAS */}
       <section>
         <h2
           style={{
@@ -731,7 +752,7 @@ const UnooriaElevationDocumentation: React.FC<{
               display: 'inline-block',
             }}
           />
-          Tabela Completa de Variáveis CSS de Elevação
+          Tabela Completa de Variáveis CSS e Classes Utilitárias de Elevação
         </h2>
 
         <div
@@ -770,111 +791,108 @@ const UnooriaElevationDocumentation: React.FC<{
                   Variável CSS
                 </th>
                 <th style={{ padding: '16px 20px', fontSize: '13px', color: '#475569' }}>
+                  Classe Utilitária CSS
+                </th>
+                <th style={{ padding: '16px 20px', fontSize: '13px', color: '#475569', textAlign: 'right' }}>
                   Ação
                 </th>
               </tr>
             </thead>
             <tbody>
-              {elevationEntries.map(([key, detail]) => (
-                <tr
-                  key={key}
-                  style={{
-                    borderBottom: '1px solid #F1F5F9',
-                    transition: 'background-color 0.15s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#F8FAFC';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
-                >
-                  <td style={{ padding: '14px 20px' }}>
-                    <span
+              {elevationEntries.map(([key, detail]) => {
+                const utilClass = `.unooria-${detail.cssVar.replace('--unooria-', '')}`;
+                return (
+                  <tr
+                    key={key}
+                    style={{
+                      borderBottom: '1px solid #F1F5F9',
+                      transition: 'background-color 0.15s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#F8FAFC';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <td style={{ padding: '14px 20px' }}>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          padding: '4px 8px',
+                          borderRadius: '12px',
+                          backgroundColor:
+                            detail.category === 'Brand'
+                              ? '#EFF6FF'
+                              : detail.category === 'Semantic'
+                              ? '#FEF2F2'
+                              : '#F1F5F9',
+                          color:
+                            detail.category === 'Brand'
+                              ? '#1D4ED8'
+                              : detail.category === 'Semantic'
+                              ? '#DC2626'
+                              : '#475569',
+                        }}
+                      >
+                        {detail.category}
+                      </span>
+                    </td>
+                    <td
                       style={{
-                        fontSize: '11px',
+                        padding: '14px 20px',
+                        fontSize: '14px',
                         fontWeight: 700,
-                        padding: '4px 8px',
-                        borderRadius: '12px',
-                        backgroundColor:
-                          detail.category === 'Brand'
-                            ? '#EFF6FF'
-                            : detail.category === 'Semantic'
-                            ? '#FEF2F2'
-                            : '#F1F5F9',
-                        color:
-                          detail.category === 'Brand'
-                            ? '#1D4ED8'
-                            : detail.category === 'Semantic'
-                            ? '#DC2626'
-                            : '#475569',
+                        color: '#0F172A',
                       }}
                     >
-                      {detail.category}
-                    </span>
-                  </td>
-                  <td
-                    style={{
-                      padding: '14px 20px',
-                      fontSize: '14px',
-                      fontWeight: 700,
-                      color: '#0F172A',
-                    }}
-                  >
-                    {detail.name}
-                  </td>
-                  <td
-                    style={{
-                      padding: '14px 20px',
-                      fontSize: '12px',
-                      color: '#475569',
-                      fontFamily: 'monospace',
-                    }}
-                  >
-                    {detail.boxShadow}
-                  </td>
-                  <td style={{ padding: '14px 20px' }}>
-                    <code
+                      {detail.name}
+                    </td>
+                    <td
                       style={{
-                        backgroundColor: '#F1F5F9',
-                        color: '#0F172A',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
+                        padding: '14px 20px',
                         fontSize: '12px',
+                        color: '#475569',
                         fontFamily: 'monospace',
                       }}
                     >
-                      {detail.cssVar}
-                    </code>
-                  </td>
-                  <td style={{ padding: '14px 20px' }}>
-                    <button
-                      onClick={() => handleCopy(`var(${detail.cssVar})`)}
-                      style={{
-                        padding: '6px 12px',
-                        borderRadius: '6px',
-                        border: '1px solid #CBD5E1',
-                        backgroundColor: '#FFFFFF',
-                        color: '#0F172A',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#0F172A';
-                        e.currentTarget.style.color = '#FFFFFF';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#FFFFFF';
-                        e.currentTarget.style.color = '#0F172A';
-                      }}
-                    >
-                      Copiar CSS
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      {detail.boxShadow}
+                    </td>
+                    <td style={{ padding: '14px 20px' }}>
+                      <code
+                        style={{
+                          backgroundColor: '#F1F5F9',
+                          color: '#0F172A',
+                          padding: '4px 8px',
+                          borderRadius: '4px',
+                          fontSize: '12px',
+                          fontFamily: 'monospace',
+                        }}
+                      >
+                        {detail.cssVar}
+                      </code>
+                    </td>
+                    <td style={{ padding: '14px 20px' }}>
+                      <code
+                        style={{
+                          backgroundColor: '#F1F5F9',
+                          color: '#0F172A',
+                          padding: '4px 8px',
+                          borderRadius: '4px',
+                          fontSize: '12px',
+                          fontFamily: 'monospace',
+                        }}
+                      >
+                        {utilClass}
+                      </code>
+                    </td>
+                    <td style={{ padding: '14px 20px', textAlign: 'right' }}>
+                      <CopyBadge text={`var(${detail.cssVar})`} label="Copiar CSS" />
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

@@ -7,3 +7,5 @@ export * from './tokens';
 
 // Componentes
 export * from './components';
+
+export type { UnooriaTheme } from './tokens';

@@ -3,6 +3,9 @@
  * Extraídos diretamente das especificações do Figma.
  */
 
+/** Esquema de cores e temas suportados pela Plataforma Unooria */
+export type UnooriaTheme = 'light' | 'dark';
+
 /** Cores Primárias - Brand Navy (Azul/Navy Institucional) / Primary Color */
 export const brandNavy = {
   50: '#F5F8FC',
@@ -15,7 +18,7 @@ export const brandNavy = {
   700: '#6487C2',
   800: '#49699F',
   900: '#2F4F7F',
-  950: '#0e1039',
+  950: '#0E1039',
 } as const;
 
 /** Overlays / Opacidade de Primary Color (Transparência baseada em #7FA5E2 / rgb(127, 165, 226)) */
@@ -32,7 +35,7 @@ export const brandNavyOverlay = {
   900: 'rgba(127, 165, 226, 0.90)',
 } as const;
 
-/** Aliases para compatibilidade */
+/** Aliases para retrocompatibilidade */
 export const brandBlue = brandNavy;
 export const brandBlueOverlay = brandNavyOverlay;
 
@@ -277,10 +280,14 @@ export const gradients = {
 
 /** Coleção Completa dos Tokens de Cores Plataforma Unooria */
 export const unooriaColors = {
-  brandOrange,
-  brandOrangeOverlay,
+  brandNavy,
+  brandNavyOverlay,
+  brandPurple,
+  brandPurpleOverlay,
   brandBlue,
   brandBlueOverlay,
+  brandOrange,
+  brandOrangeOverlay,
   neutral,
   neutralLightOverlay,
   neutralDark,
@@ -296,7 +303,14 @@ export const unooriaColors = {
   gradients,
 } as const;
 
+/** Alias simplificado */
+export const colors = unooriaColors;
+
 /** Tipagens TypeScript dos Tokens de Cores */
+export type BrandNavyTokens = typeof brandNavy;
+export type BrandNavyOverlayTokens = typeof brandNavyOverlay;
+export type BrandPurpleTokens = typeof brandPurple;
+export type BrandPurpleOverlayTokens = typeof brandPurpleOverlay;
 export type BrandOrangeTokens = typeof brandOrange;
 export type BrandOrangeOverlayTokens = typeof brandOrangeOverlay;
 export type BrandBlueTokens = typeof brandBlue;
@@ -315,3 +329,32 @@ export type InfoTokens = typeof info;
 export type InfoOverlayTokens = typeof infoOverlay;
 export type GradientTokens = typeof gradients;
 export type UnooriaColorTokens = typeof unooriaColors;
+
+/** Escalas numéricas e chaves derivadas */
+export type BrandNavyScale = keyof typeof brandNavy;
+export type BrandPurpleScale = keyof typeof brandPurple;
+export type BrandOrangeScale = keyof typeof brandOrange;
+export type BrandBlueScale = keyof typeof brandBlue;
+export type NeutralScale = keyof typeof neutral;
+export type NeutralDarkScale = keyof typeof neutralDark;
+export type DangerScale = keyof typeof danger;
+export type SuccessScale = keyof typeof success;
+export type WarningScale = keyof typeof warning;
+export type InfoScale = keyof typeof info;
+export type GradientKey = keyof typeof gradients;
+export type UnooriaColorGroup = keyof typeof unooriaColors;
+
+/** Identificador completo de token de cor */
+export type UnooriaColorKey =
+  | `brandNavy.${BrandNavyScale}`
+  | `brandPurple.${BrandPurpleScale}`
+  | `brandOrange.${BrandOrangeScale}`
+  | `neutral.${NeutralScale}`
+  | `neutralDark.${NeutralDarkScale}`
+  | `danger.${DangerScale}`
+  | `success.${SuccessScale}`
+  | `warning.${WarningScale}`
+  | `info.${InfoScale}`
+  | `gradients.${GradientKey}`;
+
+export default unooriaColors;

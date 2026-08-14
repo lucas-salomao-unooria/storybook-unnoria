@@ -3,10 +3,46 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   unooriaSpacing,
   unooriaSpacingPx,
+  unooriaSpacingRem,
   UnooriaSpacingKey,
-} from '../src/unooria/tokens/spacing';
-import '../src/unooria/tokens/spacing.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
+} from '../../../src/unooria/tokens/spacing';
+import '../../../src/unooria/tokens/spacing.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+
+// Componente para notificação ao copiar
+const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      title="Clique para copiar"
+      style={{
+        background: copied ? '#01B574' : 'rgba(0, 0, 0, 0.06)',
+        color: copied ? '#FFFFFF' : '#334155',
+        border: 'none',
+        borderRadius: '4px',
+        padding: '2px 6px',
+        fontSize: '11px',
+        fontFamily: 'monospace',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '4px',
+      }}
+    >
+      {copied ? '✓ Copiado!' : label || text}
+    </button>
+  );
+};
 
 /**
  * Componente visual para documentação e simulação do Espaçamento (Space)
@@ -55,7 +91,7 @@ const UnooriaSpacingDocumentation: React.FC<{
         description="Sistema de escala de espaçamentos para garantir organização, ritmo visual, legibilidade e consistência de layouts em toda a Plataforma Unooria."
       />
 
-      {/* FEEDBACK DE CÓPIA */}
+      {/* FEEDBACK DE CÓPIA GLOBAL */}
       {copiedToken && (
         <div
           style={{
@@ -304,27 +340,10 @@ const UnooriaSpacingDocumentation: React.FC<{
               boxSizing: 'border-box',
             }}
           >
-            {/* Logo Marca Unooria */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg
-                width="73"
-                height="17"
-                viewBox="0 0 73 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <text
-                  x="0"
-                  y="14"
-                  fill="#CBD4D6"
-                  fontFamily="'Open Sans', sans-serif"
-                  fontWeight="700"
-                  fontSize="16"
-                  letterSpacing="0.5px"
-                >
-                  Unooria
-                </text>
-              </svg>
+              <span style={{ color: '#CBD4D6', fontFamily: "'Open Sans', sans-serif", fontWeight: 700, fontSize: '18px', letterSpacing: '0.5px' }}>
+                Unooria
+              </span>
             </div>
             <div
               style={{
@@ -362,7 +381,7 @@ const UnooriaSpacingDocumentation: React.FC<{
               display: 'inline-block',
             }}
           />
-          Simulador Interativo de Espaçamentos
+          Simulador Interativo de Espaçamentos (Box-Model)
         </h2>
 
         {/* Controles do Simulador */}
@@ -504,11 +523,22 @@ const UnooriaSpacingDocumentation: React.FC<{
               fontSize: '13px',
               color: '#64748B',
               fontFamily: 'monospace',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '12px',
             }}
           >
-            Styles: <code>padding: {unooriaSpacingPx[currentPadding]}px</code> |{' '}
-            <code>gap: {unooriaSpacingPx[currentGap]}px</code> |{' '}
-            <code>margin: {unooriaSpacingPx[currentMargin]}px</code>
+            <span>
+              Styles: <code>padding: {unooriaSpacingPx[currentPadding]}px</code> |{' '}
+              <code>gap: {unooriaSpacingPx[currentGap]}px</code> |{' '}
+              <code>margin: {unooriaSpacingPx[currentMargin]}px</code>
+            </span>
+            <CopyBadge
+              text={`padding: var(${unooriaSpacing[currentPadding].cssVar}); gap: var(${unooriaSpacing[currentGap].cssVar}); margin: var(${unooriaSpacing[currentMargin].cssVar});`}
+              label="Copiar CSS do Box"
+            />
           </div>
 
           {/* Wrapper com visualização de área de padding */}
@@ -562,7 +592,7 @@ const UnooriaSpacingDocumentation: React.FC<{
         </div>
       </section>
 
-      {/* SEÇÃO 3: TABELA DE REFERÊNCIA RÁPIDA DE TOKENS */}
+      {/* SEÇÃO 3: TABELA DE REFERÊNCIA RÁPIDA DE TOKENS E CLASSES UTILITÁRIAS */}
       <section>
         <h2
           style={{
@@ -584,7 +614,7 @@ const UnooriaSpacingDocumentation: React.FC<{
               display: 'inline-block',
             }}
           />
-          Referência de Variáveis CSS e REM
+          Referência de Tokens, Variáveis CSS e Classes Utilitárias
         </h2>
 
         <div
@@ -623,6 +653,9 @@ const UnooriaSpacingDocumentation: React.FC<{
                   Variável CSS
                 </th>
                 <th style={{ padding: '16px 20px', fontSize: '13px', color: '#475569' }}>
+                  Classes Utilitárias (Padding / Margin / Gap)
+                </th>
+                <th style={{ padding: '16px 20px', fontSize: '13px', color: '#475569', textAlign: 'right' }}>
                   Ação
                 </th>
               </tr>
@@ -630,6 +663,7 @@ const UnooriaSpacingDocumentation: React.FC<{
             <tbody>
               {spacingKeys.map((key) => {
                 const token = unooriaSpacing[key];
+                const keyLower = key.toLowerCase();
 
                 return (
                   <tr
@@ -690,30 +724,20 @@ const UnooriaSpacingDocumentation: React.FC<{
                       </code>
                     </td>
                     <td style={{ padding: '14px 20px' }}>
-                      <button
-                        onClick={() => handleCopy(`var(${token.cssVar})`)}
-                        style={{
-                          padding: '6px 12px',
-                          borderRadius: '6px',
-                          border: '1px solid #CBD5E1',
-                          backgroundColor: '#FFFFFF',
-                          color: '#0F172A',
-                          fontSize: '12px',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#0F172A';
-                          e.currentTarget.style.color = '#FFFFFF';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#FFFFFF';
-                          e.currentTarget.style.color = '#0F172A';
-                        }}
-                      >
-                        Copiar CSS
-                      </button>
+                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                        <code style={{ fontSize: '11px', backgroundColor: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
+                          .unooria-p-{keyLower}
+                        </code>
+                        <code style={{ fontSize: '11px', backgroundColor: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
+                          .unooria-m-{keyLower}
+                        </code>
+                        <code style={{ fontSize: '11px', backgroundColor: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
+                          .unooria-gap-{keyLower}
+                        </code>
+                      </div>
+                    </td>
+                    <td style={{ padding: '14px 20px', textAlign: 'right' }}>
+                      <CopyBadge text={`var(${token.cssVar})`} label="Copiar CSS" />
                     </td>
                   </tr>
                 );
@@ -773,7 +797,7 @@ export const SmallSpacing: Story = {
   args: {
     selectedPadding: 'XS',
     selectedGap: '4XS',
-    selectedMargin: '3XS' as UnooriaSpacingKey,
+    selectedMargin: 'XXXS',
   },
 };
 

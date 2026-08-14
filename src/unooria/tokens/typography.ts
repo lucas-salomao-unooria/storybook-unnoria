@@ -311,7 +311,7 @@ export const typographyStyles: Record<string, TypographyTokenStyle> = {
     ],
     sampleText: 'DESIGN SYSTEM • PLATAFORMA UNOORIA',
   },
-};
+} as const;
 
 export const typographyRules = {
   title: 'Regras da Tipografia da Plataforma Unooria',
@@ -376,9 +376,9 @@ export const typographyRules = {
       ],
     },
   ],
-};
+} as const;
 
-export const typography = {
+export const unooriaTypography = {
   fontFamilies,
   fontWeights,
   fontSizes,
@@ -391,5 +391,31 @@ export const typography = {
   styles: typographyStyles,
   rules: typographyRules,
 } as const;
+
+export const typography = unooriaTypography;
+
+/** Tipos derivados de Tipografia */
+export type FontFamiliesTokens = typeof fontFamilies;
+export type UnooriaFontFamilyKey = keyof typeof fontFamilies;
+
+export type FontWeightsTokens = typeof fontWeights;
+export type UnooriaFontWeightKey = keyof typeof fontWeights;
+
+export type DesktopFontSizesTokens = typeof desktopFontSizes;
+export type UnooriaFontSizeKey = keyof typeof desktopFontSizes;
+
+export type DesktopLineHeightsTokens = typeof desktopLineHeights;
+export type UnooriaLineHeightKey = keyof typeof desktopLineHeights;
+
+export type MobileFontSizesTokens = typeof mobileFontSizes;
+export type MobileLineHeightsTokens = typeof mobileLineHeights;
+
+export type LetterSpacingsTokens = typeof letterSpacings;
+export type UnooriaLetterSpacingKey = keyof typeof letterSpacings;
+
+export type TypographyStylesTokens = typeof typographyStyles;
+export type UnooriaTypographyStyleKey = keyof typeof typographyStyles;
+
+export type UnooriaTypographyTokens = typeof unooriaTypography;
 
 export default typography;

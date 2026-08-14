@@ -40,7 +40,7 @@
   --unooria-color-brandblue-700: #6487C2;
   --unooria-color-brandblue-800: #49699F;
   --unooria-color-brandblue-900: #2F4F7F;
-  --unooria-color-brandblue-950: #1C3252;
+  --unooria-color-brandblue-950: #0E1039;
 
   /* Brand Blue Overlays */
   --unooria-color-opacity-brandblue-50: rgba(127, 165, 226, 0.05);
@@ -181,28 +181,50 @@
   --unooria-color-opacity-danger-900: rgba(227, 26, 26, 0.90);
 
   /* Success / Sucesso */
-  --unooria-color-sucess-50: #EBFEF4;
-  --unooria-color-sucess-100: #CDFEE4;
-  --unooria-color-sucess-200: #A0FACE;
-  --unooria-color-sucess-300: #63F2B5;
-  --unooria-color-sucess-400: #26E197;
-  --unooria-color-sucess-500: #01B574;
-  --unooria-color-sucess-600: #00A369;
-  --unooria-color-sucess-700: #008257;
-  --unooria-color-sucess-800: #006746;
-  --unooria-color-sucess-900: #00543C;
+  --unooria-color-success-50: #EBFEF4;
+  --unooria-color-success-100: #CDFEE4;
+  --unooria-color-success-200: #A0FACE;
+  --unooria-color-success-300: #63F2B5;
+  --unooria-color-success-400: #26E197;
+  --unooria-color-success-500: #01B574;
+  --unooria-color-success-600: #00A369;
+  --unooria-color-success-700: #008257;
+  --unooria-color-success-800: #006746;
+  --unooria-color-success-900: #00543C;
+
+  /* Aliases para compatibilidade */
+  --unooria-color-sucess-50: var(--unooria-color-success-50);
+  --unooria-color-sucess-100: var(--unooria-color-success-100);
+  --unooria-color-sucess-200: var(--unooria-color-success-200);
+  --unooria-color-sucess-300: var(--unooria-color-success-300);
+  --unooria-color-sucess-400: var(--unooria-color-success-400);
+  --unooria-color-sucess-500: var(--unooria-color-success-500);
+  --unooria-color-sucess-600: var(--unooria-color-success-600);
+  --unooria-color-sucess-700: var(--unooria-color-success-700);
+  --unooria-color-sucess-800: var(--unooria-color-success-800);
+  --unooria-color-sucess-900: var(--unooria-color-success-900);
 
   /* Success Overlays */
-  --unooria-color-opacity-sucess-50: rgba(1, 181, 116, 0.05);
-  --unooria-color-opacity-sucess-100: rgba(1, 181, 116, 0.10);
-  --unooria-color-opacity-sucess-200: rgba(1, 181, 116, 0.20);
-  --unooria-color-opacity-sucess-300: rgba(1, 181, 116, 0.30);
-  --unooria-color-opacity-sucess-400: rgba(1, 181, 116, 0.40);
-  --unooria-color-opacity-sucess-500: rgba(1, 181, 116, 0.50);
-  --unooria-color-opacity-sucess-600: rgba(1, 181, 116, 0.60);
-  --unooria-color-opacity-sucess-700: rgba(1, 181, 116, 0.70);
-  --unooria-color-opacity-sucess-800: rgba(1, 181, 116, 0.80);
-  --unooria-color-opacity-sucess-900: rgba(1, 181, 116, 0.90);
+  --unooria-color-opacity-success-50: rgba(1, 181, 116, 0.05);
+  --unooria-color-opacity-success-100: rgba(1, 181, 116, 0.10);
+  --unooria-color-opacity-success-200: rgba(1, 181, 116, 0.20);
+  --unooria-color-opacity-success-300: rgba(1, 181, 116, 0.30);
+  --unooria-color-opacity-success-400: rgba(1, 181, 116, 0.40);
+  --unooria-color-opacity-success-500: rgba(1, 181, 116, 0.50);
+  --unooria-color-opacity-success-600: rgba(1, 181, 116, 0.60);
+  --unooria-color-opacity-success-700: rgba(1, 181, 116, 0.70);
+  --unooria-color-opacity-success-800: rgba(1, 181, 116, 0.80);
+  --unooria-color-opacity-success-900: rgba(1, 181, 116, 0.90);
+  --unooria-color-opacity-sucess-50: var(--unooria-color-opacity-success-50);
+  --unooria-color-opacity-sucess-100: var(--unooria-color-opacity-success-100);
+  --unooria-color-opacity-sucess-200: var(--unooria-color-opacity-success-200);
+  --unooria-color-opacity-sucess-300: var(--unooria-color-opacity-success-300);
+  --unooria-color-opacity-sucess-400: var(--unooria-color-opacity-success-400);
+  --unooria-color-opacity-sucess-500: var(--unooria-color-opacity-success-500);
+  --unooria-color-opacity-sucess-600: var(--unooria-color-opacity-success-600);
+  --unooria-color-opacity-sucess-700: var(--unooria-color-opacity-success-700);
+  --unooria-color-opacity-sucess-800: var(--unooria-color-opacity-success-800);
+  --unooria-color-opacity-sucess-900: var(--unooria-color-opacity-success-900);
 
   /* Warning / Aviso */
   --unooria-color-warning-50: #FFF8EB;
@@ -260,3 +282,36 @@
   --unooria-color-gradient-5: radial-gradient(circle at 50% 50%, rgba(127, 165, 226, 0.15) 0%, rgba(249, 118, 7, 0.02) 100%);
   --unooria-color-gradient-6: radial-gradient(circle at 50% 50%, rgba(1, 181, 116, 0.12) 0%, rgba(1, 181, 116, 0.01) 100%);
 }
+
+/* ==========================================================================
+   Classes Utilitárias de Background
+   ========================================================================== */
+.unooria-bg-brandnavy-600 { background-color: var(--unooria-color-brandnavy-600); }
+.unooria-bg-brandnavy-700 { background-color: var(--unooria-color-brandnavy-700); }
+.unooria-bg-brandnavy-900 { background-color: var(--unooria-color-brandnavy-900); }
+.unooria-bg-brandnavy-950 { background-color: var(--unooria-color-brandnavy-950); }
+
+.unooria-bg-brandpurple-600 { background-color: var(--unooria-color-brandpurple-600); }
+.unooria-bg-brandpurple-900 { background-color: var(--unooria-color-brandpurple-900); }
+
+.unooria-bg-neutral-50 { background-color: var(--unooria-color-neutral-50); }
+.unooria-bg-neutral-100 { background-color: var(--unooria-color-neutral-100); }
+.unooria-bg-neutral-950 { background-color: var(--unooria-color-neutral-950); }
+
+.unooria-bg-danger-600 { background-color: var(--unooria-color-danger-600); }
+.unooria-bg-success-500 { background-color: var(--unooria-color-success-500); }
+.unooria-bg-warning-500 { background-color: var(--unooria-color-warning-500); }
+.unooria-bg-info-500 { background-color: var(--unooria-color-info-500); }
+
+/* ==========================================================================
+   Classes Utilitárias de Cor de Texto
+   ========================================================================== */
+.unooria-text-brandnavy-600 { color: var(--unooria-color-brandnavy-600); }
+.unooria-text-brandpurple-600 { color: var(--unooria-color-brandpurple-600); }
+.unooria-text-neutral-50 { color: var(--unooria-color-neutral-50); }
+.unooria-text-neutral-900 { color: var(--unooria-color-neutral-900); }
+.unooria-text-neutral-950 { color: var(--unooria-color-neutral-950); }
+.unooria-text-danger-600 { color: var(--unooria-color-danger-600); }
+.unooria-text-success-600 { color: var(--unooria-color-success-600); }
+.unooria-text-warning-600 { color: var(--unooria-color-warning-600); }
+.unooria-text-info-600 { color: var(--unooria-color-info-600); }

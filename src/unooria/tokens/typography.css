@@ -2,8 +2,6 @@
  * CSS Variables e Utilitários de Tipografia da Plataforma Unooria
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 :root {
   /* Font Family */
   --unooria-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -83,8 +81,11 @@
 /* Classes Utilitárias do Design System Unooria */
 .unooria-typography-base {
   font-family: var(--unooria-font-sans);
-  color: #22272a;
+  color: var(--unooria-color-neutral-950, #22272a);
 }
+
+.unooria-font-sans { font-family: var(--unooria-font-sans); }
+.unooria-font-mono { font-family: var(--unooria-font-mono); }
 
 .unooria-text-heading-4xl {
   font-family: var(--unooria-font-sans);
@@ -161,3 +162,8 @@
 .unooria-weight-medium { font-weight: var(--unooria-weight-medium) !important; }
 .unooria-weight-semibold { font-weight: var(--unooria-weight-semibold) !important; }
 .unooria-weight-bold { font-weight: var(--unooria-weight-bold) !important; }
+
+/* Letter Spacing */
+.unooria-tracking-tight { letter-spacing: var(--unooria-letter-spacing-tight); }
+.unooria-tracking-normal { letter-spacing: var(--unooria-letter-spacing-normal); }
+.unooria-tracking-wide { letter-spacing: var(--unooria-letter-spacing-wide); }

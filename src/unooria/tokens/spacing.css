@@ -1,5 +1,5 @@
 /**
- * Variáveis CSS de Espaçamento - Plataforma Unooria
+ * Variáveis CSS e Utilitários de Espaçamento - Plataforma Unooria
  * Extraído do Figma (Node 6189:512)
  */
 
@@ -17,3 +17,92 @@
   --unooria-spacing-xxxl: 80px;
   --unooria-spacing-4xl: 96px;
 }
+
+/* ==========================================================================
+   Classes Utilitárias de Padding (Gerais e por Eixo)
+   ========================================================================== */
+.unooria-p-none  { padding: var(--unooria-spacing-none); }
+.unooria-p-4xs   { padding: var(--unooria-spacing-4xs); }
+.unooria-p-xxxs  { padding: var(--unooria-spacing-xxxs); }
+.unooria-p-xxs   { padding: var(--unooria-spacing-xxs); }
+.unooria-p-xs    { padding: var(--unooria-spacing-xs); }
+.unooria-p-s     { padding: var(--unooria-spacing-s); }
+.unooria-p-m     { padding: var(--unooria-spacing-m); }
+.unooria-p-l     { padding: var(--unooria-spacing-l); }
+.unooria-p-xl    { padding: var(--unooria-spacing-xl); }
+.unooria-p-xxl   { padding: var(--unooria-spacing-xxl); }
+.unooria-p-xxxl  { padding: var(--unooria-spacing-xxxl); }
+.unooria-p-4xl   { padding: var(--unooria-spacing-4xl); }
+
+.unooria-px-none { padding-left: var(--unooria-spacing-none); padding-right: var(--unooria-spacing-none); }
+.unooria-px-4xs  { padding-left: var(--unooria-spacing-4xs); padding-right: var(--unooria-spacing-4xs); }
+.unooria-px-xxxs { padding-left: var(--unooria-spacing-xxxs); padding-right: var(--unooria-spacing-xxxs); }
+.unooria-px-xxs  { padding-left: var(--unooria-spacing-xxs); padding-right: var(--unooria-spacing-xxs); }
+.unooria-px-xs   { padding-left: var(--unooria-spacing-xs); padding-right: var(--unooria-spacing-xs); }
+.unooria-px-s    { padding-left: var(--unooria-spacing-s); padding-right: var(--unooria-spacing-s); }
+.unooria-px-m    { padding-left: var(--unooria-spacing-m); padding-right: var(--unooria-spacing-m); }
+.unooria-px-l    { padding-left: var(--unooria-spacing-l); padding-right: var(--unooria-spacing-l); }
+.unooria-px-xl   { padding-left: var(--unooria-spacing-xl); padding-right: var(--unooria-spacing-xl); }
+
+.unooria-py-none { padding-top: var(--unooria-spacing-none); padding-bottom: var(--unooria-spacing-none); }
+.unooria-py-4xs  { padding-top: var(--unooria-spacing-4xs); padding-bottom: var(--unooria-spacing-4xs); }
+.unooria-py-xxxs { padding-top: var(--unooria-spacing-xxxs); padding-bottom: var(--unooria-spacing-xxxs); }
+.unooria-py-xxs  { padding-top: var(--unooria-spacing-xxs); padding-bottom: var(--unooria-spacing-xxs); }
+.unooria-py-xs   { padding-top: var(--unooria-spacing-xs); padding-bottom: var(--unooria-spacing-xs); }
+.unooria-py-s    { padding-top: var(--unooria-spacing-s); padding-bottom: var(--unooria-spacing-s); }
+.unooria-py-m    { padding-top: var(--unooria-spacing-m); padding-bottom: var(--unooria-spacing-m); }
+.unooria-py-l    { padding-top: var(--unooria-spacing-l); padding-bottom: var(--unooria-spacing-l); }
+.unooria-py-xl   { padding-top: var(--unooria-spacing-xl); padding-bottom: var(--unooria-spacing-xl); }
+
+/* ==========================================================================
+   Classes Utilitárias de Margem (Gerais e por Eixo)
+   ========================================================================== */
+.unooria-m-none  { margin: var(--unooria-spacing-none); }
+.unooria-m-4xs   { margin: var(--unooria-spacing-4xs); }
+.unooria-m-xxxs  { margin: var(--unooria-spacing-xxxs); }
+.unooria-m-xxs   { margin: var(--unooria-spacing-xxs); }
+.unooria-m-xs    { margin: var(--unooria-spacing-xs); }
+.unooria-m-s     { margin: var(--unooria-spacing-s); }
+.unooria-m-m     { margin: var(--unooria-spacing-m); }
+.unooria-m-l     { margin: var(--unooria-spacing-l); }
+.unooria-m-xl    { margin: var(--unooria-spacing-xl); }
+.unooria-m-xxl   { margin: var(--unooria-spacing-xxl); }
+.unooria-m-xxxl  { margin: var(--unooria-spacing-xxxl); }
+.unooria-m-4xl   { margin: var(--unooria-spacing-4xl); }
+
+.unooria-mx-auto { margin-left: auto; margin-right: auto; }
+.unooria-mx-none { margin-left: var(--unooria-spacing-none); margin-right: var(--unooria-spacing-none); }
+.unooria-mx-4xs  { margin-left: var(--unooria-spacing-4xs); margin-right: var(--unooria-spacing-4xs); }
+.unooria-mx-xxxs { margin-left: var(--unooria-spacing-xxxs); margin-right: var(--unooria-spacing-xxxs); }
+.unooria-mx-xxs  { margin-left: var(--unooria-spacing-xxs); margin-right: var(--unooria-spacing-xxs); }
+.unooria-mx-xs   { margin-left: var(--unooria-spacing-xs); margin-right: var(--unooria-spacing-xs); }
+.unooria-mx-s    { margin-left: var(--unooria-spacing-s); margin-right: var(--unooria-spacing-s); }
+.unooria-mx-m    { margin-left: var(--unooria-spacing-m); margin-right: var(--unooria-spacing-m); }
+.unooria-mx-l    { margin-left: var(--unooria-spacing-l); margin-right: var(--unooria-spacing-l); }
+.unooria-mx-xl   { margin-left: var(--unooria-spacing-xl); margin-right: var(--unooria-spacing-xl); }
+
+.unooria-my-none { margin-top: var(--unooria-spacing-none); margin-bottom: var(--unooria-spacing-none); }
+.unooria-my-4xs  { margin-top: var(--unooria-spacing-4xs); margin-bottom: var(--unooria-spacing-4xs); }
+.unooria-my-xxxs { margin-top: var(--unooria-spacing-xxxs); margin-bottom: var(--unooria-spacing-xxxs); }
+.unooria-my-xxs  { margin-top: var(--unooria-spacing-xxs); margin-bottom: var(--unooria-spacing-xxs); }
+.unooria-my-xs   { margin-top: var(--unooria-spacing-xs); margin-bottom: var(--unooria-spacing-xs); }
+.unooria-my-s    { margin-top: var(--unooria-spacing-s); margin-bottom: var(--unooria-spacing-s); }
+.unooria-my-m    { margin-top: var(--unooria-spacing-m); margin-bottom: var(--unooria-spacing-m); }
+.unooria-my-l    { margin-top: var(--unooria-spacing-l); margin-bottom: var(--unooria-spacing-l); }
+.unooria-my-xl   { margin-top: var(--unooria-spacing-xl); margin-bottom: var(--unooria-spacing-xl); }
+
+/* ==========================================================================
+   Classes Utilitárias de Gap (Flexbox e Grid)
+   ========================================================================== */
+.unooria-gap-none  { gap: var(--unooria-spacing-none); }
+.unooria-gap-4xs   { gap: var(--unooria-spacing-4xs); }
+.unooria-gap-xxxs  { gap: var(--unooria-spacing-xxxs); }
+.unooria-gap-xxs   { gap: var(--unooria-spacing-xxs); }
+.unooria-gap-xs    { gap: var(--unooria-spacing-xs); }
+.unooria-gap-s     { gap: var(--unooria-spacing-s); }
+.unooria-gap-m     { gap: var(--unooria-spacing-m); }
+.unooria-gap-l     { gap: var(--unooria-spacing-l); }
+.unooria-gap-xl    { gap: var(--unooria-spacing-xl); }
+.unooria-gap-xxl   { gap: var(--unooria-spacing-xxl); }
+.unooria-gap-xxxl  { gap: var(--unooria-spacing-xxxl); }
+.unooria-gap-4xl   { gap: var(--unooria-spacing-4xl); }

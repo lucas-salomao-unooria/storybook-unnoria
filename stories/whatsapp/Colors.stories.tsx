@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { lightColors, darkColors, semanticColorNames, cssVariableNames, ColorTokens } from '../src/whatsapp/tokens/colors';
+import { lightColors, darkColors, semanticColorNames, cssVariableNames, ColorTokens } from '../../src/whatsapp/tokens/colors';
 
 /**
  * Story interativa para documentação dos Tokens de Cores do WhatsApp UI (Conversa UI).

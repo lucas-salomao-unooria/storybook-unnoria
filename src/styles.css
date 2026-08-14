@@ -1,0 +1,24 @@
+/**
+ * Unooria Design System - Estilos Globais e Componentes
+ * Padrão Ouro de Pacote NPM
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Plataforma Unooria)
+ * ---------------------------------------------------- */
+@import './unooria/tokens/colors.css';
+@import './unooria/tokens/typography.css';
+@import './unooria/tokens/spacing.css';
+@import './unooria/tokens/elevation.css';
+@import './unooria/tokens/blur.css';
+@import './unooria/tokens/grids.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes
+ * ---------------------------------------------------- */
+@import './unooria/components/AlertBox/AlertBox.css';
+@import './unooria/components/Badge/Badge.css';
+@import './unooria/components/Breadcrumb/Breadcrumb.css';
+@import './unooria/components/Button/Button.css';

@@ -43,5 +43,13 @@ export const backgroundBlur = {
   },
 } as const;
 
+export const blur = backgroundBlur;
+
 export type BackgroundBlurTokens = typeof backgroundBlur;
 export type BackgroundBlurLevel = keyof typeof backgroundBlur;
+
+export type UnooriaBlurKey = BackgroundBlurLevel;
+export type UnooriaBlurTokens = typeof backgroundBlur;
+export type UnooriaBlurValue = typeof backgroundBlur[BackgroundBlurLevel];
+
+export default backgroundBlur;

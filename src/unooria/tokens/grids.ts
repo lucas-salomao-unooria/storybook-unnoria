@@ -35,7 +35,7 @@ export interface GridBreakpointConfig {
 }
 
 /** Configurações detalhadas dos breakpoints do sistema de grid da Plataforma Unooria */
-export const gridBreakpoints: Record<GridBreakpointKey, GridBreakpointConfig> = {
+export const gridBreakpoints = {
   mobile: {
     name: 'Mobile',
     description: 'Dispositivos móveis e telas pequenas (smartphones)',
@@ -96,39 +96,39 @@ export const gridBreakpoints: Record<GridBreakpointKey, GridBreakpointConfig> = 
     maxContainerWidthPx: 1824,
     maxContainerWidth: '1824px',
   },
-};
+} as const;
 
 /** Mapeamento de quantidade de colunas por breakpoint */
-export const gridColumns: Record<GridBreakpointKey, number> = {
+export const gridColumns = {
   mobile: gridBreakpoints.mobile.columns,
   tablet: gridBreakpoints.tablet.columns,
   notebook: gridBreakpoints.notebook.columns,
   desktop: gridBreakpoints.desktop.columns,
-};
+} as const;
 
 /** Mapeamento de espaçamentos entre colunas (gutters) por breakpoint */
-export const gridGutters: Record<GridBreakpointKey, string> = {
+export const gridGutters = {
   mobile: gridBreakpoints.mobile.gutter,
   tablet: gridBreakpoints.tablet.gutter,
   notebook: gridBreakpoints.notebook.gutter,
   desktop: gridBreakpoints.desktop.gutter,
-};
+} as const;
 
 /** Mapeamento de margens laterais externas por breakpoint */
-export const gridMargins: Record<GridBreakpointKey, string> = {
+export const gridMargins = {
   mobile: gridBreakpoints.mobile.margin,
   tablet: gridBreakpoints.tablet.margin,
   notebook: gridBreakpoints.notebook.margin,
   desktop: gridBreakpoints.desktop.margin,
-};
+} as const;
 
 /** Mapeamento de larguras máximas de container por breakpoint */
-export const gridContainerWidths: Record<GridBreakpointKey, string> = {
+export const gridContainerWidths = {
   mobile: gridBreakpoints.mobile.maxContainerWidth,
   tablet: gridBreakpoints.tablet.maxContainerWidth,
   notebook: gridBreakpoints.notebook.maxContainerWidth,
   desktop: gridBreakpoints.desktop.maxContainerWidth,
-};
+} as const;
 
 /** Mapeamento de pontos de interrupção (breakpoints de media query) */
 export const breakpoints = {
@@ -182,14 +182,14 @@ export interface GridWidgetSpec {
   /** Gutter formatado */
   gutter: string;
   /** Lista de widgets dispostos no layout de referência */
-  widgets: WidgetLayoutItem[];
+  widgets: readonly WidgetLayoutItem[];
 }
 
 /** Configuração detalhada dos layouts de Grids Widgets por breakpoint do Figma */
-export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
+export const gridWidgetsBreakpoints = {
   mobile360: {
     name: 'Mobile 360px',
-    deviceCategory: 'Mobile',
+    deviceCategory: 'Mobile' as const,
     canvasWidthPx: 360,
     marginPx: 16,
     margin: '16px',
@@ -207,7 +207,7 @@ export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
   },
   mobile375: {
     name: 'Mobile 375px',
-    deviceCategory: 'Mobile',
+    deviceCategory: 'Mobile' as const,
     canvasWidthPx: 375,
     marginPx: 16,
     margin: '16px',
@@ -225,7 +225,7 @@ export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
   },
   tabletPortrait: {
     name: 'Tablet (Retrato)',
-    deviceCategory: 'Tablet',
+    deviceCategory: 'Tablet' as const,
     orientation: 'Portrait',
     canvasWidthPx: 800,
     marginPx: 24,
@@ -251,7 +251,7 @@ export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
   },
   tabletLandscape: {
     name: 'Tablet (Paisagem)',
-    deviceCategory: 'Tablet',
+    deviceCategory: 'Tablet' as const,
     orientation: 'Landscape',
     canvasWidthPx: 1280,
     marginPx: 24,
@@ -277,7 +277,7 @@ export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
   },
   notebook: {
     name: 'Notebook',
-    deviceCategory: 'Notebook',
+    deviceCategory: 'Notebook' as const,
     canvasWidthPx: 1440,
     marginPx: 48,
     margin: '48px',
@@ -309,7 +309,7 @@ export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
   },
   desktop: {
     name: 'Desktop',
-    deviceCategory: 'Desktop',
+    deviceCategory: 'Desktop' as const,
     canvasWidthPx: 1920,
     marginPx: 48,
     margin: '48px',
@@ -339,5 +339,24 @@ export const gridWidgetsBreakpoints: Record<GridWidgetKey, GridWidgetSpec> = {
       },
     ],
   },
-};
+} as const;
 
+/** Coleção agregada de Grid Tokens */
+export const unooriaGrids = {
+  gridBreakpoints,
+  gridColumns,
+  gridGutters,
+  gridMargins,
+  gridContainerWidths,
+  breakpoints,
+  gridWidgetsBreakpoints,
+} as const;
+
+export const grids = unooriaGrids;
+
+/** Tipos derivados de Grid */
+export type UnooriaGridTokens = typeof gridBreakpoints;
+export type UnooriaGridWidgetTokens = typeof gridWidgetsBreakpoints;
+export type UnooriaGridsTokens = typeof unooriaGrids;
+
+export default unooriaGrids;

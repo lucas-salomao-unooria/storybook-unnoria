@@ -13,7 +13,7 @@ export type AlertBoxTheme = 'light' | 'dark';
 /**
  * Propriedades do componente AlertBox
  */
-export interface AlertBoxProps {
+export interface AlertBoxProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * Tipo / Severidade do alerta.
    * @default 'info'
@@ -42,7 +42,7 @@ export interface AlertBoxProps {
    * - `React.ReactNode`: Renderiza um ícone customizado fornecido.
    * @default true
    */
-  icon?: React.ReactNode | boolean;
+  icon?: boolean | React.ReactNode;
 
   /**
    * Indica se o alerta pode ser dispensado/fechado pelo usuário.
@@ -53,32 +53,32 @@ export interface AlertBoxProps {
   /**
    * Callback executado ao clicar no botão de fechar/dispensar.
    */
-  onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 
   /**
-   * Elemento de ação opcional (ex: botão de confirmação, link, etc.).
+   * Elemento ou botão de ação individual.
+   */
+  action?: React.ReactNode;
+
+  /**
+   * Elementos ou botões de ações complementares.
+   */
+  actions?: React.ReactNode;
+
+  /**
+   * Elemento de ação (mantido para retrocompatibilidade com action).
    */
   actionButton?: React.ReactNode;
 
   /**
+   * Se verdadeiro, exibe borda externa de destaque no alerta.
+   * @default true
+   */
+  bordered?: boolean;
+
+  /**
    * Tema visual do componente ('light' | 'dark').
-   * Se omitido, pode herdar do contexto ou padrão 'light'.
    * @default 'light'
    */
   theme?: AlertBoxTheme;
-
-  /**
-   * Classes CSS adicionais para customização.
-   */
-  className?: string;
-
-  /**
-   * Estilos CSS inline adicionais.
-   */
-  style?: React.CSSProperties;
-
-  /**
-   * Rótulo de acessibilidade ARIA.
-   */
-  'aria-label'?: string;
 }

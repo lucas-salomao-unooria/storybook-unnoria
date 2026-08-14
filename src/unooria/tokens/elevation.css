@@ -1,5 +1,5 @@
 /**
- * Variáveis CSS de Elevação e Sombras - Plataforma Unooria
+ * Variáveis CSS e Utilitários de Elevação e Sombras - Plataforma Unooria
  * Extraído do Figma (Node 6188:6091)
  */
 
@@ -22,3 +22,25 @@
   --unooria-elevation-neutral-5: 0px 0px 8px 4px rgba(255, 255, 255, 0.4);
   --unooria-elevation-neutral-6: 0px 0px 8px 4px rgba(255, 255, 255, 0.5);
 }
+
+/* ==========================================================================
+   Classes Utilitárias de Sombra e Elevação
+   ========================================================================== */
+.unooria-elevation-brand-primary { box-shadow: var(--unooria-elevation-brand-primary); }
+.unooria-elevation-brand-secondary { box-shadow: var(--unooria-elevation-brand-secondary); }
+
+.unooria-elevation-semantic-danger { box-shadow: var(--unooria-elevation-semantic-danger); }
+.unooria-elevation-semantic-warning { box-shadow: var(--unooria-elevation-semantic-warning); }
+.unooria-elevation-semantic-success { box-shadow: var(--unooria-elevation-semantic-success); }
+.unooria-elevation-semantic-info { box-shadow: var(--unooria-elevation-semantic-info); }
+
+.unooria-elevation-neutral-1 {
+  box-shadow: var(--unooria-elevation-neutral-1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.unooria-elevation-neutral-2 { box-shadow: var(--unooria-elevation-neutral-2); }
+.unooria-elevation-neutral-3 { box-shadow: var(--unooria-elevation-neutral-3); }
+.unooria-elevation-neutral-4 { box-shadow: var(--unooria-elevation-neutral-4); }
+.unooria-elevation-neutral-5 { box-shadow: var(--unooria-elevation-neutral-5); }
+.unooria-elevation-neutral-6 { box-shadow: var(--unooria-elevation-neutral-6); }

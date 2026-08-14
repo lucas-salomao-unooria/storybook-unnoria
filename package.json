@@ -1,14 +1,39 @@
 {
-  "name": "storybook-unooria",
+  "name": "@unooria/design-system",
   "version": "0.1.0",
-  "private": true,
+  "description": "Design System oficial da Plataforma Unooria para React e Next.js com suporte completo a temas Light/Dark",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6007",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build:package": "tsup",
+    "prepublishOnly": "npm run build:package"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "next": "16.3.0",
@@ -16,26 +41,27 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "latest",
+    "@storybook/addon-a11y": "^10.5.7",
+    "@storybook/addon-docs": "^10.5.7",
+    "@storybook/addon-mcp": "latest",
+    "@storybook/addon-vitest": "^10.5.7",
+    "@storybook/nextjs-vite": "^10.5.7",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser-playwright": "latest",
+    "@vitest/coverage-v8": "latest",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "storybook": "^10.5.7",
-    "@storybook/nextjs-vite": "^10.5.7",
-    "@chromatic-com/storybook": "latest",
-    "@storybook/addon-vitest": "^10.5.7",
-    "@storybook/addon-a11y": "^10.5.7",
-    "@storybook/addon-docs": "^10.5.7",
-    "@storybook/addon-mcp": "latest",
-    "vite": "latest",
     "eslint-plugin-storybook": "^10.5.7",
-    "vitest": "latest",
     "playwright": "latest",
-    "@vitest/browser-playwright": "latest",
-    "@vitest/coverage-v8": "latest"
+    "storybook": "^10.5.7",
+    "tailwindcss": "^4",
+    "tsup": "^8.5.1",
+    "typescript": "^5",
+    "vite": "latest",
+    "vitest": "latest"
   }
 }

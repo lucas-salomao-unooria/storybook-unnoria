@@ -1,4 +1,5 @@
 import React from 'react';
+import type { UnooriaTheme } from '../../tokens';
 
 /**
  * Variantes de status/cor do componente Badge.
@@ -18,9 +19,9 @@ export type BadgeVariant =
 export type BadgeSize = 'sm' | 'md' | 'lg';
 
 /**
- * Temas suportados para alteração de esquema de cores (Light / Dark).
+ * Alias retrocompatível para UnooriaTheme.
  */
-export type BadgeTheme = 'light' | 'dark';
+export type BadgeTheme = UnooriaTheme;
 
 /**
  * Posição do ícone em relação ao texto do Badge.
@@ -46,7 +47,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
   /**
    * Tamanho do Badge.
-   * Suporta 'sm' (pequeno), 'md' (médio) e 'lg' (grande).
+   * Suporta 'sm' (pequeno: 20px), 'md' (médio: 24px) e 'lg' (grande: 30px).
    * @default 'md'
    */
   size?: BadgeSize;
@@ -55,7 +56,37 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
    * Tema visual do componente ('light' | 'dark').
    * @default 'light'
    */
-  theme?: BadgeTheme;
+  theme?: UnooriaTheme;
+
+  /**
+   * Exibe um ponto (dot) de status colorido antecedendo o texto.
+   * @default false
+   */
+  dot?: boolean;
+
+  /**
+   * Define o formato em pílula (arredondamento máximo de 9999px).
+   * Se `false`, o Badge adquire bordas suavemente arredondadas (4px).
+   * @default true
+   */
+  pill?: boolean;
+
+  /**
+   * Indica se o Badge está desabilitado (reduz a opacidade e desativa eventos interativos).
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Se verdadeiro, renderiza um botão de fechar/remover (X) acessível ao lado do texto.
+   * @default false
+   */
+  dismissible?: boolean;
+
+  /**
+   * Callback acionado ao clicar no botão de fechamento (X).
+   */
+  onClose?: (e: React.MouseEvent<HTMLButtonElement | HTMLElement>) => void;
 
   /**
    * Ícone opcional (ReactNode ou elemento SVG).
@@ -66,55 +97,16 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
    * Posição do ícone em relação ao conteúdo ('left' | 'right').
    * @default 'left'
    */
-  iconPosition?: BadgeIconPosition;
+  iconPosition?: 'left' | 'right';
 
   /**
-   * Exibe um ponto (dot) de status colorido antecedendo o texto.
-   * @default false
+   * Elemento ou componente HTML customizado para renderização polimórfica (ex: 'span', 'a', 'button', Link).
+   * @default 'span'
    */
-  dot?: boolean;
+  as?: React.ElementType;
 
   /**
-   * Define o formato em pílula (arredondamento máximo de 9999px).
-   * Se `false`, o Badge adquire bordas suavemente arredondadas.
-   * @default true
+   * Atributos arbitrários adicionais para renderização polimórfica flexível.
    */
-  pill?: boolean;
-
-  /**
-   * Indica se o Badge é desabilitado (reduz a opacidade e desativa eventos de clique).
-   * @default false
-   */
-  disabled?: boolean;
-
-  /**
-   * Conteúdo interno (texto, contadores, etiquetas).
-   */
-  children?: React.ReactNode;
-
-  /**
-   * Classes CSS adicionais.
-   */
-  className?: string;
-
-  /**
-   * Estilos CSS inline customizados.
-   */
-  style?: React.CSSProperties;
-
-  /**
-   * Evento de clique no Badge (torna o componente interativo com efeito hover/active).
-   */
-  onClick?: React.MouseEventHandler<HTMLSpanElement>;
-
-  /**
-   * Se verdadeiro, renderiza um botão de fechar/remover (X) ao lado do texto.
-   * @default false
-   */
-  dismissible?: boolean;
-
-  /**
-   * Callback acionado ao clicar no botão de fechamento (X).
-   */
-  onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  [key: string]: any;
 }

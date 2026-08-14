@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AlertBoxProps, AlertBoxVariant, AlertBoxTheme } from './AlertBox.types';
+import { AlertBoxProps, AlertBoxVariant } from './AlertBox.types';
+import './AlertBox.css';
 
 /**
  * Ícone SVG para a variante 'info'
@@ -110,7 +111,7 @@ const CloseIcon: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 /**
- * Obtém o ícone padrão para cada variante
+ * Retorna o ícone padrão para cada variante de severidade
  */
 function getDefaultIcon(variant: AlertBoxVariant) {
   switch (variant) {
@@ -127,214 +128,124 @@ function getDefaultIcon(variant: AlertBoxVariant) {
 }
 
 /**
- * Obtém o mapa de cores baseado no tema e variante
- */
-function getVariantStyles(variant: AlertBoxVariant, theme: AlertBoxTheme) {
-  const isDark = theme === 'dark';
-
-  switch (variant) {
-    case 'success':
-      return {
-        background: isDark ? 'var(--unooria-color-sucess-900)' : 'var(--unooria-color-sucess-50)',
-        border: isDark ? 'var(--unooria-color-sucess-700)' : 'var(--unooria-color-sucess-200)',
-        iconColor: isDark ? 'var(--unooria-color-sucess-300)' : 'var(--unooria-color-sucess-600)',
-        titleColor: isDark ? 'var(--unooria-color-sucess-50)' : 'var(--unooria-color-sucess-900)',
-        descriptionColor: isDark ? 'var(--unooria-color-sucess-100)' : 'var(--unooria-color-neutral-800)',
-        closeHoverBg: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-      };
-    case 'warning':
-      return {
-        background: isDark ? 'var(--unooria-color-warning-900)' : 'var(--unooria-color-warning-50)',
-        border: isDark ? 'var(--unooria-color-warning-700)' : 'var(--unooria-color-warning-200)',
-        iconColor: isDark ? 'var(--unooria-color-warning-300)' : 'var(--unooria-color-warning-600)',
-        titleColor: isDark ? 'var(--unooria-color-warning-50)' : 'var(--unooria-color-warning-900)',
-        descriptionColor: isDark ? 'var(--unooria-color-warning-100)' : 'var(--unooria-color-neutral-800)',
-        closeHoverBg: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-      };
-    case 'error':
-      return {
-        background: isDark ? 'var(--unooria-color-danger-900)' : 'var(--unooria-color-danger-50)',
-        border: isDark ? 'var(--unooria-color-danger-700)' : 'var(--unooria-color-danger-200)',
-        iconColor: isDark ? 'var(--unooria-color-danger-300)' : 'var(--unooria-color-danger-600)',
-        titleColor: isDark ? 'var(--unooria-color-danger-50)' : 'var(--unooria-color-danger-900)',
-        descriptionColor: isDark ? 'var(--unooria-color-danger-100)' : 'var(--unooria-color-neutral-800)',
-        closeHoverBg: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-      };
-    case 'info':
-    default:
-      return {
-        background: isDark ? 'var(--unooria-color-info-900)' : 'var(--unooria-color-info-50)',
-        border: isDark ? 'var(--unooria-color-info-700)' : 'var(--unooria-color-info-200)',
-        iconColor: isDark ? 'var(--unooria-color-info-300)' : 'var(--unooria-color-info-600)',
-        titleColor: isDark ? 'var(--unooria-color-info-50)' : 'var(--unooria-color-info-900)',
-        descriptionColor: isDark ? 'var(--unooria-color-info-100)' : 'var(--unooria-color-neutral-800)',
-        closeHoverBg: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-      };
-  }
-}
-
-/**
- * Componente AlertBox - Plataforma Unooria
+ * Componente AlertBox - Design System Unooria
  *
- * Exibe mensagens informativas, de sucesso, aviso ou erro de forma acessível e responsiva.
+ * Exibe mensagens informativas, de confirmação/sucesso, aviso preventivo ou falhas críticas
+ * de forma acessível, responsiva e alinhada às diretrizes de design do Figma.
  */
-export const AlertBox: React.FC<AlertBoxProps> = ({
-  variant = 'info',
-  title,
-  description,
-  children,
-  icon = true,
-  isDismissible = false,
-  onClose,
-  actionButton,
-  theme = 'light',
-  className = '',
-  style = {},
-  'aria-label': ariaLabel,
-}) => {
-  const [visible, setVisible] = useState(true);
-  const [closeBtnHovered, setCloseBtnHovered] = useState(false);
+export const AlertBox = React.forwardRef<HTMLDivElement, AlertBoxProps>(
+  (
+    {
+      variant = 'info',
+      title,
+      description,
+      children,
+      icon = true,
+      isDismissible = false,
+      onClose,
+      action,
+      actions,
+      actionButton,
+      bordered = true,
+      theme = 'light',
+      className = '',
+      style,
+      role,
+      'aria-label': ariaLabel,
+      'aria-live': ariaLive = 'polite',
+      ...restProps
+    },
+    ref
+  ) => {
+    const [visible, setVisible] = useState(true);
 
-  if (!visible) {
-    return null;
-  }
-
-  const styles = getVariantStyles(variant, theme);
-
-  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setVisible(false);
-    if (onClose) {
-      onClose(e);
+    if (!visible) {
+      return null;
     }
-  };
 
-  // Determina o ícone a exibir
-  let renderedIcon: React.ReactNode = null;
-  if (icon === true) {
-    renderedIcon = getDefaultIcon(variant);
-  } else if (icon !== false && icon !== null && icon !== undefined) {
-    renderedIcon = icon;
-  }
+    const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+      setVisible(false);
+      if (onClose) {
+        onClose(e);
+      }
+    };
 
-  const hasBody = description || children;
+    // Determina o ícone a ser renderizado
+    let renderedIcon: React.ReactNode = null;
+    if (icon === true) {
+      renderedIcon = getDefaultIcon(variant);
+    } else if (icon !== false && icon !== null && icon !== undefined) {
+      renderedIcon = icon;
+    }
 
-  return (
-    <div
-      role="alert"
-      aria-label={ariaLabel || (typeof title === 'string' ? title : `Alerta ${variant}`)}
-      data-theme={theme}
-      className={`unooria-alertbox unooria-alertbox--${variant} unooria-alertbox--${theme} ${className}`}
-      style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: 'var(--unooria-spacing-xs, 12px)',
-        padding: 'var(--unooria-spacing-s, 16px)',
-        borderRadius: '8px',
-        border: `1px solid ${styles.border}`,
-        backgroundColor: styles.background,
-        boxSizing: 'border-box',
-        width: '100%',
-        fontFamily: 'var(--unooria-font-sans, "Open Sans", sans-serif)',
-        transition: 'all 0.2s ease-in-out',
-        position: 'relative',
-        ...style,
-      }}
-    >
-      {/* Ícone de Severidade */}
-      {renderedIcon && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: styles.iconColor,
-            flexShrink: 0,
-            marginTop: '2px',
-          }}
-        >
-          {renderedIcon}
-        </div>
-      )}
+    const hasBody = description || children;
+    const actionContent = action || actions || actionButton;
 
-      {/* Conteúdo Principal (Título, Descrição / Children, Ações) */}
+    // Acessibilidade semântica: erros e avisos recebem role 'alert', informativos e sucessos 'status'
+    const computedRole = role || (variant === 'error' || variant === 'warning' ? 'alert' : 'status');
+    const computedAriaLabel = ariaLabel || (typeof title === 'string' ? title : `Alerta ${variant}`);
+
+    const alertClasses = [
+      'unooria-alertbox',
+      `unooria-alertbox--${variant}`,
+      `unooria-alertbox--${theme}`,
+      bordered ? 'unooria-alertbox--bordered' : 'unooria-alertbox--borderless',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
       <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          flexGrow: 1,
-          gap: 'var(--unooria-spacing-xxxs, 4px)',
-          minWidth: 0,
-        }}
+        ref={ref}
+        role={computedRole}
+        aria-live={ariaLive}
+        aria-atomic="true"
+        aria-label={computedAriaLabel}
+        data-theme={theme}
+        className={alertClasses}
+        style={style}
+        {...restProps}
       >
-        {title && (
-          <div
-            style={{
-              fontSize: 'var(--unooria-size-body-s, 16px)',
-              lineHeight: 'var(--unooria-line-height-body-s, 24px)',
-              fontWeight: 'var(--unooria-weight-semibold, 600)',
-              color: styles.titleColor,
-              wordBreak: 'break-word',
-            }}
-          >
-            {title}
+        {/* Ícone de Severidade */}
+        {renderedIcon && (
+          <div className="unooria-alertbox__icon" aria-hidden="true">
+            {renderedIcon}
           </div>
         )}
 
-        {hasBody && (
-          <div
-            style={{
-              fontSize: 'var(--unooria-size-body-xs, 14px)',
-              lineHeight: 'var(--unooria-line-height-body-xs, 20px)',
-              fontWeight: 'var(--unooria-weight-regular, 400)',
-              color: styles.descriptionColor,
-              wordBreak: 'break-word',
-            }}
-          >
-            {description}
-            {children}
-          </div>
-        )}
+        {/* Conteúdo Principal (Título, Descrição / Children, Ações) */}
+        <div className="unooria-alertbox__body">
+          {title && <div className="unooria-alertbox__title">{title}</div>}
 
-        {actionButton && (
-          <div
-            style={{
-              marginTop: 'var(--unooria-spacing-xxs, 8px)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 'var(--unooria-spacing-xs, 12px)',
-            }}
+          {hasBody && (
+            <div className="unooria-alertbox__description">
+              {description}
+              {children}
+            </div>
+          )}
+
+          {actionContent && (
+            <div className="unooria-alertbox__actions">
+              {actionContent}
+            </div>
+          )}
+        </div>
+
+        {/* Botão Dispensável / Fechar */}
+        {isDismissible && (
+          <button
+            type="button"
+            className="unooria-alertbox__close-btn"
+            onClick={handleClose}
+            aria-label="Fechar alerta"
           >
-            {actionButton}
-          </div>
+            <CloseIcon />
+          </button>
         )}
       </div>
+    );
+  }
+);
 
-      {/* Botão Dispensável / Fechar */}
-      {isDismissible && (
-        <button
-          type="button"
-          onClick={handleClose}
-          aria-label="Fechar alerta"
-          onMouseEnter={() => setCloseBtnHovered(true)}
-          onMouseLeave={() => setCloseBtnHovered(false)}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '4px',
-            border: 'none',
-            borderRadius: '4px',
-            background: closeBtnHovered ? styles.closeHoverBg : 'transparent',
-            color: styles.iconColor,
-            cursor: 'pointer',
-            flexShrink: 0,
-            transition: 'background-color 0.15s ease, opacity 0.15s ease',
-            outline: 'none',
-          }}
-        >
-          <CloseIcon />
-        </button>
-      )}
-    </div>
-  );
-};
+AlertBox.displayName = 'AlertBox';

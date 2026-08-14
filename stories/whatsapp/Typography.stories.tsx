@@ -8,46 +8,7 @@ import {
   lineHeights,
   letterSpacings,
   TypographyStyle,
-} from '../src/whatsapp/tokens/typography';
-
-/**
- * Documentação e visualização interativa dos Tokens de Tipografia
- * do Design System WhatsApp UI (Conversa UI).
- */
-const meta = {
-  title: 'WhatsApp/Tokens/Tipografia',
-  component: TypographyDesignSystemGuide,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component:
-          'Sistema de tipografia projetado para garantir máxima legibilidade em interfaces densas de bate-papo e simulação. Utiliza a fonte **Inter** com hierarquia visual rigorosa baseada em papéis (roles), evitando tamanhos arbitrários de fonte.',
-      },
-    },
-  },
-  argTypes: {
-    sampleText: {
-      control: 'text',
-      description: 'Texto de exemplo para testar em todos os estilos de tipografia',
-      defaultValue: 'Conversa UI — Sistema de Simulação de IA',
-    },
-    filterRole: {
-      control: 'select',
-      options: ['all', 'display', 'sectionTitle', 'heading', 'chatTitle', 'body', 'bodyCompact', 'label', 'metadata', 'spec'],
-      description: 'Filtrar estilo de texto específico',
-    },
-    showDetails: {
-      control: 'boolean',
-      description: 'Exibir detalhes técnicos de CSS em cada preview',
-      defaultValue: true,
-    },
-  },
-} satisfies Meta<typeof TypographyDesignSystemGuide>;
-
-export default meta;
-
-type Story = StoryObj<typeof TypographyDesignSystemGuide>;
+} from '../../src/whatsapp/tokens/typography';
 
 // Componente para renderizar cada item de estilo de texto
 const TypographyItem: React.FC<{
@@ -369,7 +330,46 @@ function TypographyDesignSystemGuide({
       </div>
     </div>
   );
-};
+}
+
+/**
+ * Documentação e visualização interativa dos Tokens de Tipografia
+ * do Design System WhatsApp UI (Conversa UI).
+ */
+const meta = {
+  title: 'WhatsApp/Tokens/Tipografia',
+  component: TypographyDesignSystemGuide,
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Sistema de tipografia projetado para garantir máxima legibilidade em interfaces densas de bate-papo e simulação. Utiliza a fonte **Inter** com hierarquia visual rigorosa baseada em papéis (roles), evitando tamanhos arbitrários de fonte.',
+      },
+    },
+  },
+  argTypes: {
+    sampleText: {
+      control: 'text',
+      description: 'Texto de exemplo para testar em todos os estilos de tipografia',
+      defaultValue: 'Conversa UI — Sistema de Simulação de IA',
+    },
+    filterRole: {
+      control: 'select',
+      options: ['all', 'display', 'sectionTitle', 'heading', 'chatTitle', 'body', 'bodyCompact', 'label', 'metadata', 'spec'],
+      description: 'Filtrar estilo de texto específico',
+    },
+    showDetails: {
+      control: 'boolean',
+      description: 'Exibir detalhes técnicos de CSS em cada preview',
+      defaultValue: true,
+    },
+  },
+} satisfies Meta<typeof TypographyDesignSystemGuide>;
+
+export default meta;
+
+type Story = StoryObj<typeof TypographyDesignSystemGuide>;
 
 // Story principal da Guia de Tipografia
 export const GuiaTipografia: Story = {

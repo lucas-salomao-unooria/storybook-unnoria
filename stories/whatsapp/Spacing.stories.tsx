@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { spacing, spacingPx, radius, radiusPx, SpacingToken, RadiusToken } from '../src/whatsapp/tokens/spacing';
+import { spacing, spacingPx, radius, radiusPx, SpacingToken, RadiusToken } from '../../src/whatsapp/tokens/spacing';
 
 // Componente visual para demonstrar a escala de espaçamentos do WhatsApp UI
 const SpacingDocumentation: React.FC<{

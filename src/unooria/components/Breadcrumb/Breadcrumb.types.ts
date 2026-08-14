@@ -1,4 +1,11 @@
 import React from 'react';
+import type { UnooriaTheme } from '../../tokens';
+
+/**
+ * Tamanhos de exibição tipográfica e espaçamento suportados pelo Breadcrumb.
+ */
+export type BreadcrumbSize = 'xs' | 's' | 'm';
+
 
 /**
  * Interface que representa um item individual do Breadcrumb.
@@ -28,18 +35,38 @@ export interface BreadcrumbItem {
   /**
    * Handler opcional para o evento de clique.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement>) => void;
+  onClick?: (event: React.MouseEvent<any>) => void;
 
   /**
-   * Rótulo acessível individual para o item.
+   * Componente customizado ou polimórfico para renderização do link (ex: Next.js Link, React Router Link).
+   */
+  as?: React.ElementType;
+
+  /**
+   * Classe CSS adicional para o item/link.
+   */
+  className?: string;
+
+  /**
+   * Estilos CSS inline customizados para o item/link.
+   */
+  style?: React.CSSProperties;
+
+  /**
+   * Rótulo acessível individual para o item (leitores de tela).
    */
   ariaLabel?: string;
+
+  /**
+   * Propriedades extras arbitrárias passadas ao elemento do item (ex: `to`, `target`, `rel`, `data-*`).
+   */
+  [key: string]: any;
 }
 
 /**
- * Propriedades do componente Breadcrumb.
+ * Propriedades do componente Breadcrumb da Plataforma Unooria.
  */
-export interface BreadcrumbProps {
+export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Lista de itens do breadcrumb em ordem hierárquica.
    */
@@ -55,7 +82,7 @@ export interface BreadcrumbProps {
    * Tema visual para o componente: 'light' (claro) ou 'dark' (escuro).
    * @default 'light'
    */
-  theme?: 'light' | 'dark';
+  theme?: UnooriaTheme;
 
   /**
    * Rótulo acessível da navegação estrutural para leitores de tela.
@@ -67,7 +94,7 @@ export interface BreadcrumbProps {
    * Tamanho de exibição da tipografia e espaçamentos.
    * @default 's'
    */
-  size?: 'xs' | 's' | 'm';
+  size?: BreadcrumbSize;
 
   /**
    * Número máximo de itens visíveis antes de colapsar os itens intermediários em "...".
@@ -75,12 +102,14 @@ export interface BreadcrumbProps {
   maxItems?: number;
 
   /**
-   * Classes CSS adicionais para o container `<nav>`.
+   * Quantidade de itens visíveis no início da trilha antes do botão de colapso.
+   * @default 1
    */
-  className?: string;
+  itemsBeforeCollapse?: number;
 
   /**
-   * Estilos inline customizados para o container `<nav>`.
+   * Quantidade de itens visíveis no final da trilha após o botão de colapso.
+   * @default 1
    */
-  style?: React.CSSProperties;
+  itemsAfterCollapse?: number;
 }

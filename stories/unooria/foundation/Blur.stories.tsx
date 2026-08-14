@@ -1,8 +1,43 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { backgroundBlur, BackgroundBlurLevel } from '../src/unooria/tokens/blur';
-import '../src/unooria/tokens/blur.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
+import { backgroundBlur, BackgroundBlurLevel } from '../../../src/unooria/tokens/blur';
+import '../../../src/unooria/tokens/blur.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+
+// Componente para notificação ao copiar
+const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      title="Clique para copiar"
+      style={{
+        background: copied ? '#01B574' : 'rgba(0, 0, 0, 0.06)',
+        color: copied ? '#FFFFFF' : '#334155',
+        border: 'none',
+        borderRadius: '4px',
+        padding: '2px 6px',
+        fontSize: '11px',
+        fontFamily: 'monospace',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '4px',
+      }}
+    >
+      {copied ? '✓ Copiado!' : label || text}
+    </button>
+  );
+};
 
 /**
  * Componente visual para documentação e simulação do Background Blur (Efeitos de Blur de Fundo & Glassmorphism)
@@ -14,6 +49,7 @@ const UnooriaBlurDocumentation: React.FC = () => {
   const [customBlurPx, setCustomBlurPx] = useState<number>(32);
   const [customOpacity, setCustomOpacity] = useState<number>(0.5);
   const [activeBg, setActiveBg] = useState<'holographic' | 'vibrant' | 'shapes' | 'photo'>('holographic');
+  const [activeUiPreset, setActiveUiPreset] = useState<'card' | 'modal' | 'navbar'>('card');
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -37,15 +73,15 @@ const UnooriaBlurDocumentation: React.FC = () => {
     <UnooriaDocShell>
       <UnooriaDocHeader
         category="Foundations • Background Blur"
-        title="Background Blur"
+        title="Background Blur & Glassmorphism"
         description={
           <>
-            Sistema de desfocagem de fundo (<em>backdrop blur</em>) e opacidade para criação de efeitos de profundidade e <strong>Glassmorphism</strong> em componentes e cards da Plataforma Unooria.
+            Sistema de desfocagem de fundo (<em>backdrop blur</em>) e opacidade para criação de efeitos de profundidade e <strong>Glassmorphism</strong> em componentes, cartões e modais da Plataforma Unooria.
           </>
         }
       />
 
-      {/* FEEDBACK DE COPIA */}
+      {/* FEEDBACK DE CÓPIA */}
       {copiedText && (
         <div style={{ position: 'fixed', bottom: '24px', right: '24px', backgroundColor: '#22272A', color: '#FFFFFF', padding: '12px 20px', borderRadius: '8px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)', fontSize: '14px', fontWeight: 600, zIndex: 9999, display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span>✓</span> Copiado: <code style={{ color: '#7FA5E2', backgroundColor: 'rgba(255,255,255,0.1)', padding: '2px 6px', borderRadius: '4px' }}>{copiedText}</code>
@@ -133,15 +169,16 @@ const UnooriaBlurDocumentation: React.FC = () => {
 
       {/* SECAO 2: EXPLORADOR INTERATIVO E PLAYGROUND */}
       <section style={{ marginBottom: '60px', backgroundColor: '#FFFFFF', padding: '32px', borderRadius: '24px', border: '1px solid #E2E8F0', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-        <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#22272A', margin: '0 0 8px 0' }}>
-          Playground Interativo de Blur & Fundo
+        <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#22272A', margin: '0 0 8px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ width: '8px', height: '22px', background: '#0086FF', borderRadius: '4px', display: 'inline-block' }} />
+          Playground Interativo de Blur & Glassmorphism
         </h2>
         <p style={{ fontSize: '14px', color: '#64748B', margin: '0 0 24px 0' }}>
-          Teste o efeito de desfoque de fundo trocando o nível do token e a imagem/padrão de fundo.
+          Teste o efeito de desfoque de fundo em tempo real trocando o nível do token, imagem de fundo e tipo de componente.
         </p>
 
         {/* Controles de Teste */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '32px', backgroundColor: '#F8FAFC', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '32px', backgroundColor: '#F8FAFC', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
           
           {/* Seletor de Nivel Token */}
           <div>
@@ -158,7 +195,7 @@ const UnooriaBlurDocumentation: React.FC = () => {
                     setCustomOpacity(backgroundBlur[lvl].opacity);
                   }}
                   style={{
-                    padding: '8px 14px',
+                    padding: '8px 12px',
                     borderRadius: '8px',
                     fontSize: '13px',
                     fontWeight: 700,
@@ -183,8 +220,8 @@ const UnooriaBlurDocumentation: React.FC = () => {
             </label>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               {[
-                { id: 'holographic', label: 'Holográfico Figma' },
-                { id: 'vibrant', label: 'Gradiente Colorido' },
+                { id: 'holographic', label: 'Holográfico' },
+                { id: 'vibrant', label: 'Vibrante' },
                 { id: 'shapes', label: 'Geométrico' },
                 { id: 'photo', label: 'Suave' },
               ].map((bg) => (
@@ -192,9 +229,9 @@ const UnooriaBlurDocumentation: React.FC = () => {
                   key={bg.id}
                   onClick={() => setActiveBg(bg.id as any)}
                   style={{
-                    padding: '8px 12px',
+                    padding: '8px 10px',
                     borderRadius: '8px',
-                    fontSize: '13px',
+                    fontSize: '12px',
                     fontWeight: 600,
                     border: '1px solid',
                     borderColor: activeBg === bg.id ? '#22272A' : '#CBD5E1',
@@ -209,6 +246,36 @@ const UnooriaBlurDocumentation: React.FC = () => {
             </div>
           </div>
 
+          {/* Tipo de Componente */}
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#475157', marginBottom: '8px' }}>
+              Preset de Interface:
+            </label>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {(['card', 'modal', 'navbar'] as const).map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setActiveUiPreset(p)}
+                  style={{
+                    flex: 1,
+                    padding: '8px',
+                    borderRadius: '8px',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    border: '1px solid',
+                    borderColor: activeUiPreset === p ? '#0086FF' : '#CBD5E1',
+                    backgroundColor: activeUiPreset === p ? '#EFF6FF' : '#FFFFFF',
+                    color: activeUiPreset === p ? '#0086FF' : '#475157',
+                    cursor: 'pointer',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Sliders Customizados */}
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#475157', marginBottom: '4px' }}>
@@ -217,10 +284,10 @@ const UnooriaBlurDocumentation: React.FC = () => {
             <input
               type="range"
               min="0"
-              max="100"
+              max="80"
               value={customBlurPx}
               onChange={(e) => setCustomBlurPx(Number(e.target.value))}
-              style={{ width: '100%', marginBottom: '12px' }}
+              style={{ width: '100%', marginBottom: '8px' }}
             />
 
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#475157', marginBottom: '4px' }}>
@@ -228,8 +295,8 @@ const UnooriaBlurDocumentation: React.FC = () => {
             </label>
             <input
               type="range"
-              min="0"
-              max="1"
+              min="0.05"
+              max="0.95"
               step="0.05"
               value={customOpacity}
               onChange={(e) => setCustomOpacity(Number(e.target.value))}
@@ -241,7 +308,7 @@ const UnooriaBlurDocumentation: React.FC = () => {
 
         {/* Display do Teste em Tempo Real */}
         <div style={{
-          height: '320px',
+          minHeight: '340px',
           borderRadius: '20px',
           position: 'relative',
           overflow: 'hidden',
@@ -249,48 +316,102 @@ const UnooriaBlurDocumentation: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '24px',
+          padding: '36px',
           boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)'
         }}>
-          {/* Card Glassmorphic de Teste */}
-          <div style={{
-            maxWidth: '500px',
-            width: '100%',
-            padding: '32px',
-            borderRadius: '20px',
-            backgroundColor: `rgba(14, 16, 57, ${customOpacity})`,
-            backdropFilter: `blur(${customBlurPx}px)`,
-            WebkitBackdropFilter: `blur(${customBlurPx}px)`,
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
-            color: '#FFFFFF',
-            textAlign: 'center'
-          }}>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: '24px', fontWeight: 700 }}>
-              Painel de Blur Ativo ({activeLevel})
-            </h3>
-            <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: '1.5', opacity: 0.85 }}>
-              Este cartão demonstra o efeito de refração fosca aplicado sobre conteúdos com o token ativo de <strong>{customBlurPx}px</strong> e opacidade de <strong>{Math.round(customOpacity * 100)}%</strong>.
-            </p>
-            <div style={{ display: 'inline-flex', gap: '8px' }}>
-              <span style={{ background: '#22272A', color: '#FFFFFF', fontSize: '12px', fontWeight: 600, padding: '6px 12px', borderRadius: '6px' }}>
-                backdrop-filter: blur({customBlurPx}px)
-              </span>
-              <span style={{ background: '#0086FF', color: '#FFFFFF', fontSize: '12px', fontWeight: 600, padding: '6px 12px', borderRadius: '6px' }}>
-                opacity: {customOpacity}
-              </span>
+          {activeUiPreset === 'card' && (
+            <div style={{
+              maxWidth: '480px',
+              width: '100%',
+              padding: '28px',
+              borderRadius: '20px',
+              backgroundColor: `rgba(14, 16, 57, ${customOpacity})`,
+              backdropFilter: `blur(${customBlurPx}px)`,
+              WebkitBackdropFilter: `blur(${customBlurPx}px)`,
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+              color: '#FFFFFF',
+              textAlign: 'center'
+            }}>
+              <h3 style={{ margin: '0 0 8px 0', fontSize: '22px', fontWeight: 700 }}>
+                Glassmorphic Card ({activeLevel})
+              </h3>
+              <p style={{ margin: '0 0 16px 0', fontSize: '13px', lineHeight: '1.5', opacity: 0.85 }}>
+                Efeito de refração e desfoque aplicado sobre o plano de fundo com token de <strong>{customBlurPx}px</strong>.
+              </p>
+              <div style={{ display: 'inline-flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <CopyBadge text={`backdrop-filter: blur(${customBlurPx}px);`} label={`blur: ${customBlurPx}px`} />
+                <CopyBadge text={`opacity: ${customOpacity};`} label={`opacity: ${Math.round(customOpacity * 100)}%`} />
+              </div>
             </div>
-          </div>
+          )}
+
+          {activeUiPreset === 'modal' && (
+            <div style={{
+              maxWidth: '420px',
+              width: '100%',
+              padding: '32px',
+              borderRadius: '24px',
+              backgroundColor: `rgba(14, 16, 57, ${customOpacity})`,
+              backdropFilter: `blur(${customBlurPx}px)`,
+              WebkitBackdropFilter: `blur(${customBlurPx}px)`,
+              border: '1px solid rgba(255, 255, 255, 0.25)',
+              boxShadow: '0 25px 60px rgba(0,0,0,0.4)',
+              color: '#FFFFFF',
+            }}>
+              <div style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>Modal Glassmorphism</div>
+              <p style={{ fontSize: '13px', opacity: 0.85, margin: '0 0 20px 0', lineHeight: '1.5' }}>
+                Modais translúcidos garantem foco no conteúdo mantendo o contexto da tela subjacente.
+              </p>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <button style={{ flex: 1, padding: '10px', borderRadius: '8px', background: '#0086FF', color: '#FFF', border: 'none', fontWeight: 600, fontSize: '12px' }}>
+                  Confirmar
+                </button>
+                <button style={{ padding: '10px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: '#FFF', border: '1px solid rgba(255,255,255,0.2)', fontWeight: 600, fontSize: '12px' }}>
+                  Fechar
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activeUiPreset === 'navbar' && (
+            <div style={{
+              maxWidth: '600px',
+              width: '100%',
+              padding: '16px 24px',
+              borderRadius: '50px',
+              backgroundColor: `rgba(14, 16, 57, ${customOpacity})`,
+              backdropFilter: `blur(${customBlurPx}px)`,
+              WebkitBackdropFilter: `blur(${customBlurPx}px)`,
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 12px 36px rgba(0,0,0,0.25)',
+              color: '#FFFFFF',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+              <div style={{ fontWeight: 700, fontSize: '14px', color: '#7FA5E2' }}>Unooria GlassNav</div>
+              <div style={{ display: 'flex', gap: '16px', fontSize: '13px', fontWeight: 500 }}>
+                <span>Início</span>
+                <span>Produtos</span>
+                <span>Tokens</span>
+              </div>
+              <button style={{ padding: '6px 14px', borderRadius: '20px', background: '#0086FF', color: '#FFF', border: 'none', fontSize: '12px', fontWeight: 600 }}>
+                Entrar
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* SECAO 3: TABELA COMPLETA DE TOKENS */}
+      {/* SECAO 3: TABELA COMPLETA DE TOKENS E CLASSES UTILITÁRIAS */}
       <section style={{ backgroundColor: '#FFFFFF', padding: '32px', borderRadius: '24px', border: '1px solid #E2E8F0' }}>
-        <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#22272A', margin: '0 0 8px 0' }}>
-          Tabela de Tokens de Background Blur
+        <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#22272A', margin: '0 0 8px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ width: '8px', height: '22px', background: '#01B574', borderRadius: '4px', display: 'inline-block' }} />
+          Tabela de Tokens e Classes Utilitárias de Blur
         </h2>
         <p style={{ fontSize: '14px', color: '#64748B', margin: '0 0 24px 0' }}>
-          Relação de variáveis CSS, tokens TypeScript e valores de desfoque.
+          Relação completa de variáveis CSS `:root`, classes utilitárias e tokens TypeScript.
         </p>
 
         <div style={{ overflowX: 'auto' }}>
@@ -300,8 +421,9 @@ const UnooriaBlurDocumentation: React.FC = () => {
                 <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Nível</th>
                 <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Desfoque (Blur)</th>
                 <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Opacidade</th>
-                <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Variável CSS</th>
-                <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Objeto TypeScript</th>
+                <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Variável CSS Blur</th>
+                <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Variável CSS Opacity</th>
+                <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157' }}>Classe Utilitária</th>
                 <th style={{ padding: '12px 16px', fontWeight: 700, color: '#475157', textAlign: 'right' }}>Ação</th>
               </tr>
             </thead>
@@ -322,22 +444,22 @@ const UnooriaBlurDocumentation: React.FC = () => {
                       {token.opacityPercent} ({token.opacity})
                     </td>
                     <td style={{ padding: '14px 16px' }}>
-                      <code style={{ backgroundColor: '#F1F5F9', padding: '4px 8px', borderRadius: '4px', color: '#0F172A', fontSize: '13px' }}>
+                      <code style={{ backgroundColor: '#F1F5F9', padding: '4px 8px', borderRadius: '4px', color: '#0F172A', fontSize: '12px' }}>
                         --unooria-blur-{lvl}
                       </code>
                     </td>
                     <td style={{ padding: '14px 16px' }}>
-                      <code style={{ backgroundColor: '#F1F5F9', padding: '4px 8px', borderRadius: '4px', color: '#0F172A', fontSize: '13px' }}>
-                        backgroundBlur[{lvl}]
+                      <code style={{ backgroundColor: '#F1F5F9', padding: '4px 8px', borderRadius: '4px', color: '#0F172A', fontSize: '12px' }}>
+                        --unooria-opacity-blur-{lvl}
+                      </code>
+                    </td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <code style={{ backgroundColor: '#F1F5F9', padding: '4px 8px', borderRadius: '4px', color: '#0F172A', fontSize: '12px' }}>
+                        .unooria-blur-{lvl}
                       </code>
                     </td>
                     <td style={{ padding: '14px 16px', textAlign: 'right' }}>
-                      <button
-                        onClick={() => handleCopy(`backdrop-filter: blur(var(--unooria-blur-${lvl})); opacity: var(--unooria-opacity-blur-${lvl});`)}
-                        style={{ backgroundColor: '#F1F5F9', color: '#22272A', border: '1px solid #CBD5E1', borderRadius: '6px', padding: '6px 12px', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}
-                      >
-                        Copiar CSS
-                      </button>
+                      <CopyBadge text={`backdrop-filter: blur(var(--unooria-blur-${lvl})); opacity: var(--unooria-opacity-blur-${lvl});`} label="Copiar CSS" />
                     </td>
                   </tr>
                 );

@@ -26,7 +26,11 @@ export const unooriaSpacing = {
   '4XL': { name: '4XL', key: '4XL', px: 96, rem: '6rem', cssVar: '--unooria-spacing-4xl' },
 } as const;
 
+export const spacing = unooriaSpacing;
+
 export type UnooriaSpacingKey = keyof typeof unooriaSpacing;
+export type UnooriaSpacingTokens = typeof unooriaSpacing;
+export type UnooriaSpacingValue = typeof unooriaSpacing[UnooriaSpacingKey];
 
 export const unooriaSpacingPx: Record<UnooriaSpacingKey, number> = {
   None: 0,
@@ -41,4 +45,24 @@ export const unooriaSpacingPx: Record<UnooriaSpacingKey, number> = {
   XXL: 64,
   XXXL: 80,
   '4XL': 96,
-};
+} as const;
+
+export const unooriaSpacingRem: Record<UnooriaSpacingKey, string> = {
+  None: '0rem',
+  '4XS': '0.125rem',
+  XXXS: '0.25rem',
+  XXS: '0.5rem',
+  XS: '0.75rem',
+  S: '1rem',
+  M: '1.5rem',
+  L: '2rem',
+  XL: '3rem',
+  XXL: '4rem',
+  XXXL: '5rem',
+  '4XL': '6rem',
+} as const;
+
+export type UnooriaSpacingPxTokens = typeof unooriaSpacingPx;
+export type UnooriaSpacingRemTokens = typeof unooriaSpacingRem;
+
+export default unooriaSpacing;

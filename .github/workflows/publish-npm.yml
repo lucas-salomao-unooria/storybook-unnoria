@@ -1,0 +1,38 @@
+name: Publicar Pacote no NPM
+
+on:
+  release:
+    types: [published, created]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Build & Publicar @unooria/design-system
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar Node.js 20 & Registro NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📦 Instalar Dependências
+        run: npm ci
+
+      - name: 🔍 Verificação de Tipos TypeScript (Typecheck)
+        run: npx tsc --noEmit
+
+      - name: 🏗️ Compilar Pacote NPM (@unooria/design-system)
+        run: npm run build:package
+
+      - name: 🚀 Publicar Pacote no NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

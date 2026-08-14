@@ -1,0 +1,246 @@
+/**
+ * AlertBox - Design System Unooria
+ * Estilos baseados em tokens oficiais
+ */
+
+.unooria-alertbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-xs, 12px);
+  padding: var(--unooria-spacing-s, 16px);
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  position: relative;
+}
+
+/* ==========================================================================
+   Bordas
+   ========================================================================== */
+.unooria-alertbox--bordered {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.unooria-alertbox--borderless {
+  border: none;
+}
+
+/* ==========================================================================
+   Variantes - Tema Claro (Light)
+   ========================================================================== */
+
+/* Info */
+.unooria-alertbox--info.unooria-alertbox--light {
+  background-color: var(--unooria-color-info-50, #EBF5FF);
+  border-color: var(--unooria-color-info-200, #B8DBFF);
+  color: var(--unooria-color-info-900, #002966);
+}
+.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__icon,
+.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__close-btn {
+  color: var(--unooria-color-info-600, #006BFF);
+}
+.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__title {
+  color: var(--unooria-color-info-900, #002966);
+}
+.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__description {
+  color: var(--unooria-color-neutral-800, #333333);
+}
+
+/* Success */
+.unooria-alertbox--success.unooria-alertbox--light {
+  background-color: var(--unooria-color-sucess-50, #EBFEF4);
+  border-color: var(--unooria-color-sucess-200, #A0FACE);
+  color: var(--unooria-color-sucess-900, #00543C);
+}
+.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__icon,
+.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__close-btn {
+  color: var(--unooria-color-sucess-600, #00A369);
+}
+.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__title {
+  color: var(--unooria-color-sucess-900, #00543C);
+}
+.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__description {
+  color: var(--unooria-color-neutral-800, #333333);
+}
+
+/* Warning */
+.unooria-alertbox--warning.unooria-alertbox--light {
+  background-color: var(--unooria-color-warning-50, #FFF7EB);
+  border-color: var(--unooria-color-warning-200, #FEE0B2);
+  color: var(--unooria-color-warning-900, #7A230D);
+}
+.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__icon,
+.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__close-btn {
+  color: var(--unooria-color-warning-600, #DD5202);
+}
+.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__title {
+  color: var(--unooria-color-warning-900, #7A230D);
+}
+.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__description {
+  color: var(--unooria-color-neutral-800, #333333);
+}
+
+/* Error */
+.unooria-alertbox--error.unooria-alertbox--light {
+  background-color: var(--unooria-color-danger-50, #FEF2F2);
+  border-color: var(--unooria-color-danger-200, #FECACA);
+  color: var(--unooria-color-danger-900, #7F1D1D);
+}
+.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__icon,
+.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__close-btn {
+  color: var(--unooria-color-danger-600, #DC2626);
+}
+.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__title {
+  color: var(--unooria-color-danger-900, #7F1D1D);
+}
+.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__description {
+  color: var(--unooria-color-neutral-800, #333333);
+}
+
+/* ==========================================================================
+   Variantes - Tema Escuro (Dark)
+   ========================================================================== */
+
+/* Info Dark */
+.unooria-alertbox--info.unooria-alertbox--dark {
+  background-color: var(--unooria-color-info-900, #002966);
+  border-color: var(--unooria-color-info-700, #0047B3);
+  color: var(--unooria-color-info-50, #EBF5FF);
+}
+.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__icon,
+.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__close-btn {
+  color: var(--unooria-color-info-300, #80BCFF);
+}
+.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__title {
+  color: var(--unooria-color-info-50, #EBF5FF);
+}
+.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__description {
+  color: var(--unooria-color-info-100, #D1E7FF);
+}
+
+/* Success Dark */
+.unooria-alertbox--success.unooria-alertbox--dark {
+  background-color: var(--unooria-color-sucess-900, #00543C);
+  border-color: var(--unooria-color-sucess-700, #008257);
+  color: var(--unooria-color-sucess-50, #EBFEF4);
+}
+.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__icon,
+.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__close-btn {
+  color: var(--unooria-color-sucess-300, #63F2B5);
+}
+.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__title {
+  color: var(--unooria-color-sucess-50, #EBFEF4);
+}
+.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__description {
+  color: var(--unooria-color-sucess-100, #CDFEE4);
+}
+
+/* Warning Dark */
+.unooria-alertbox--warning.unooria-alertbox--dark {
+  background-color: var(--unooria-color-warning-900, #7A230D);
+  border-color: var(--unooria-color-warning-700, #B43801);
+  color: var(--unooria-color-warning-50, #FFF7EB);
+}
+.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__icon,
+.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__close-btn {
+  color: var(--unooria-color-warning-300, #FDC577);
+}
+.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__title {
+  color: var(--unooria-color-warning-50, #FFF7EB);
+}
+.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__description {
+  color: var(--unooria-color-warning-100, #FEEDD6);
+}
+
+/* Error Dark */
+.unooria-alertbox--error.unooria-alertbox--dark {
+  background-color: var(--unooria-color-danger-900, #7F1D1D);
+  border-color: var(--unooria-color-danger-700, #B91C1C);
+  color: var(--unooria-color-danger-50, #FEF2F2);
+}
+.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__icon,
+.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__close-btn {
+  color: var(--unooria-color-danger-300, #FCA5A5);
+}
+.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__title {
+  color: var(--unooria-color-danger-50, #FEF2F2);
+}
+.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__description {
+  color: var(--unooria-color-danger-100, #FEE2E2);
+}
+
+/* ==========================================================================
+   Elementos Internos
+   ========================================================================== */
+
+.unooria-alertbox__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.unooria-alertbox__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  min-width: 0;
+}
+
+.unooria-alertbox__title {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  word-break: break-word;
+}
+
+.unooria-alertbox__description {
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  font-weight: var(--unooria-weight-regular, 400);
+  word-break: break-word;
+}
+
+.unooria-alertbox__actions {
+  margin-top: var(--unooria-spacing-xxs, 8px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+/* ==========================================================================
+   Botão de Fechar
+   ========================================================================== */
+
+.unooria-alertbox__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, opacity 0.15s ease, outline-color 0.15s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.unooria-alertbox--light .unooria-alertbox__close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.unooria-alertbox--dark .unooria-alertbox__close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.unooria-alertbox__close-btn:focus-visible {
+  outline: 2px solid currentColor;
+}

@@ -3,29 +3,17 @@
  * Plataforma Unooria - Extraído do Figma (Node 6188:6091)
  */
 
+export type ElevationCategory = 'Brand' | 'Semantic' | 'Neutral';
+
 export interface ElevationTokenDetail {
   name: string;
-  category: 'Brand' | 'Semantic' | 'Neutral';
+  category: ElevationCategory;
   boxShadow: string;
   cssVar: string;
   backdropFilter?: string;
 }
 
-export type UnooriaElevationKey =
-  | 'brandPrimary'
-  | 'brandSecondary'
-  | 'semanticDanger'
-  | 'semanticWarning'
-  | 'semanticSuccess'
-  | 'semanticInfo'
-  | 'neutral1'
-  | 'neutral2'
-  | 'neutral3'
-  | 'neutral4'
-  | 'neutral5'
-  | 'neutral6';
-
-export const unooriaElevation: Record<UnooriaElevationKey, ElevationTokenDetail> = {
+export const unooriaElevation: Record<string, ElevationTokenDetail> = {
   // Brand
   brandPrimary: {
     name: 'Shadow Primary',
@@ -104,5 +92,12 @@ export const unooriaElevation: Record<UnooriaElevationKey, ElevationTokenDetail>
     boxShadow: '0px 0px 8px 4px rgba(255, 255, 255, 0.5)',
     cssVar: '--unooria-elevation-neutral-6',
   },
-};
+} as const;
 
+export const elevation = unooriaElevation;
+
+export type UnooriaElevationKey = keyof typeof unooriaElevation;
+export type UnooriaElevationTokens = typeof unooriaElevation;
+export type UnooriaElevationValue = typeof unooriaElevation[UnooriaElevationKey];
+
+export default unooriaElevation;

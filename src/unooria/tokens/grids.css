@@ -159,4 +159,3 @@
 .unooria-widget-flex-center {
   flex: 1 1 calc(60% - (var(--unooria-grid-gutter) * 2 / 3));
 }
-

@@ -10,67 +10,44 @@ import {
   mobileLineHeights,
   typographyRules,
   TypographyTokenStyle,
-} from '../src/unooria/tokens/typography';
-import '../src/unooria/tokens/typography.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../src/unooria/docs';
+} from '../../../src/unooria/tokens/typography';
+import '../../../src/unooria/tokens/typography.css';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
 
-/**
- * Guia e Documentação Interativa dos Tokens de Tipografia da Plataforma Unooria.
- * Sincronizado estritamente com as especificações oficiais extraídas do Figma.
- */
-const meta = {
-  title: 'Plataforma Unooria/Fundamentos/Tipografia',
-  component: UnooriaTypographyGuide,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component:
-          'Sistema de Tipografia da **Plataforma Unooria** baseado na família tipográfica **Open Sans**. ' +
-          'Apresenta rigorosa hierarquia responsiva (Desktop x Mobile) e regras formais de pesos e contexto.',
-      },
-    },
-  },
-  argTypes: {
-    sampleText: {
-      control: 'text',
-      description: 'Texto de exemplo customizado para teste em todos os tokens',
-      defaultValue: '',
-    },
-    viewportMode: {
-      control: 'radio',
-      options: ['desktop', 'mobile'],
-      description: 'Modo de visualização da escala de tipografia (Desktop ou Mobile)',
-      defaultValue: 'desktop',
-    },
-    filterCategory: {
-      control: 'select',
-      options: ['all', 'heading', 'title', 'body', 'caption'],
-      description: 'Filtrar por categoria do token',
-      defaultValue: 'all',
-    },
-    selectedWeight: {
-      control: 'select',
-      options: ['default', '400', '500', '600', '700'],
-      description: 'Forçar peso específico para teste visual',
-      defaultValue: 'default',
-    },
-    showDetails: {
-      control: 'boolean',
-      description: 'Exibir detalhes técnicos de CSS e classes utilitárias',
-      defaultValue: true,
-    },
-    showRules: {
-      control: 'boolean',
-      description: 'Exibir o guia de Regras e Integridade do Sistema',
-      defaultValue: true,
-    },
-  },
-} satisfies Meta<typeof UnooriaTypographyGuide>;
+// Componente para notificação ao copiar
+const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {
+  const [copied, setCopied] = useState(false);
 
-export default meta;
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
-type Story = StoryObj<typeof UnooriaTypographyGuide>;
+  return (
+    <button
+      onClick={handleCopy}
+      title="Clique para copiar"
+      style={{
+        background: copied ? '#01B574' : 'rgba(0, 0, 0, 0.06)',
+        color: copied ? '#FFFFFF' : '#334155',
+        border: 'none',
+        borderRadius: '4px',
+        padding: '2px 6px',
+        fontSize: '11px',
+        fontFamily: 'monospace',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '4px',
+      }}
+    >
+      {copied ? '✓ Copiado!' : label || text}
+    </button>
+  );
+};
 
 interface TypographyCardProps {
   token: TypographyTokenStyle;
@@ -244,36 +221,40 @@ const TypographyTokenCard: React.FC<TypographyCardProps> = ({
               }}
               title={rw.context}
             >
-              {rw.weightName}
+              {rw.weightName} ({rw.weight})
             </span>
           ))}
         </div>
       </div>
 
-      {/* Detalhes Técnicos de CSS */}
+      {/* Detalhes Técnicos de CSS com Botões de Cópia */}
       {showDetails && (
         <div
           style={{
             backgroundColor: '#F8FAFC',
-            padding: '12px 14px',
-            borderRadius: '6px',
+            padding: '14px 16px',
+            borderRadius: '8px',
             border: '1px solid #E2E8F0',
             fontSize: '12px',
             fontFamily: 'monospace',
             color: '#2D3748',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '8px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '12px',
+            alignItems: 'center',
           }}
         >
-          <div>
-            <strong>CSS Class:</strong> <code>.unooria-text-{token.id}</code>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+            <span><strong>CSS Class:</strong> <code>.unooria-text-{token.id}</code></span>
+            <CopyBadge text={`.unooria-text-${token.id}`} label="Copiar" />
           </div>
-          <div>
-            <strong>Font Size Var:</strong> <code>var(--unooria-size-{token.id})</code>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+            <span><strong>Size Var:</strong> <code>var(--unooria-size-{token.id})</code></span>
+            <CopyBadge text={`var(--unooria-size-${token.id})`} label="Copiar" />
           </div>
-          <div>
-            <strong>Line Height Var:</strong> <code>var(--unooria-line-height-{token.id})</code>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+            <span><strong>Line-Height:</strong> <code>var(--unooria-line-height-{token.id})</code></span>
+            <CopyBadge text={`var(--unooria-line-height-${token.id})`} label="Copiar" />
           </div>
         </div>
       )}
@@ -448,7 +429,7 @@ function UnooriaTypographyGuide({
       {/* Seção de Regras e Diretrizes do Sistema */}
       {showRules && <RulesSection />}
 
-      {/* Tabela de Resumo dos Tokens Base */}
+      {/* Tabela de Resumo dos Tokens Base com Cópia Rápida */}
       <div
         style={{
           backgroundColor: '#FFFFFF',
@@ -477,7 +458,8 @@ function UnooriaTypographyGuide({
                 <th style={{ padding: '10px 12px', color: '#475569' }}>Desktop Line Height</th>
                 <th style={{ padding: '10px 12px', color: '#2563EB' }}>Mobile Size</th>
                 <th style={{ padding: '10px 12px', color: '#2563EB' }}>Mobile Line Height</th>
-                <th style={{ padding: '10px 12px', color: '#475569' }}>Pesos Padrão</th>
+                <th style={{ padding: '10px 12px', color: '#475569' }}>Classe CSS</th>
+                <th style={{ padding: '10px 12px', color: '#475569', textAlign: 'right' }}>Ação</th>
               </tr>
             </thead>
             <tbody>
@@ -504,8 +486,13 @@ function UnooriaTypographyGuide({
                   <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#2563EB' }}>
                     {token.mobile.lineHeight}
                   </td>
-                  <td style={{ padding: '10px 12px', fontSize: '11px', color: '#475569' }}>
-                    {token.recommendedWeights.map((w) => w.weight).join(' / ')}
+                  <td style={{ padding: '10px 12px' }}>
+                    <code style={{ fontSize: '11px', backgroundColor: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
+                      .unooria-text-{token.id}
+                    </code>
+                  </td>
+                  <td style={{ padding: '10px 12px', textAlign: 'right' }}>
+                    <CopyBadge text={`.unooria-text-${token.id}`} label="Copiar Class" />
                   </td>
                 </tr>
               ))}
@@ -580,6 +567,64 @@ function UnooriaTypographyGuide({
   );
 }
 
+/**
+ * Guia e Documentação Interativa dos Tokens de Tipografia da Plataforma Unooria.
+ * Sincronizado estritamente com as especificações oficiais extraídas do Figma.
+ */
+const meta = {
+  title: 'Plataforma Unooria/Fundamentos/Tipografia',
+  component: UnooriaTypographyGuide,
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Sistema de Tipografia da **Plataforma Unooria** baseado na família tipográfica **Open Sans**. ' +
+          'Apresenta rigorosa hierarquia responsiva (Desktop x Mobile) e regras formais de pesos e contexto.',
+      },
+    },
+  },
+  argTypes: {
+    sampleText: {
+      control: 'text',
+      description: 'Texto de exemplo customizado para teste em todos os tokens',
+      defaultValue: '',
+    },
+    viewportMode: {
+      control: 'radio',
+      options: ['desktop', 'mobile'],
+      description: 'Modo de visualização da escala de tipografia (Desktop ou Mobile)',
+      defaultValue: 'desktop',
+    },
+    filterCategory: {
+      control: 'select',
+      options: ['all', 'heading', 'title', 'body', 'caption'],
+      description: 'Filtrar por categoria do token',
+      defaultValue: 'all',
+    },
+    selectedWeight: {
+      control: 'select',
+      options: ['default', '400', '500', '600', '700'],
+      description: 'Forçar peso específico para teste visual',
+      defaultValue: 'default',
+    },
+    showDetails: {
+      control: 'boolean',
+      description: 'Exibir detalhes técnicos de CSS e classes utilitárias',
+      defaultValue: true,
+    },
+    showRules: {
+      control: 'boolean',
+      description: 'Exibir o guia de Regras e Integridade do Sistema',
+      defaultValue: true,
+    },
+  },
+} satisfies Meta<typeof UnooriaTypographyGuide>;
+
+export default meta;
+
+type Story = StoryObj<typeof UnooriaTypographyGuide>;
+
 // Story Principal com o Guia Completo
 export const GuiaCompleta: Story = {
   name: 'Visão Geral & Tokens',
@@ -607,6 +652,250 @@ export const GuiaCompleta: Story = {
 export const RegrasTipografia: Story = {
   name: 'Diretrizes & Regras do Sistema',
   render: () => <RulesSection />,
+};
+
+// Story com Type Tester Interativo
+export const SimuladorTipografiaInterativo: Story = {
+  name: 'Simulador Interativo (Type Tester)',
+  render: () => {
+    const [fontSize, setFontSize] = useState<number>(24);
+    const [lineHeight, setLineHeight] = useState<number>(34);
+    const [fontWeight, setFontWeight] = useState<number>(600);
+    const [letterSpacing, setLetterSpacing] = useState<number>(0);
+    const [textAlign, setTextAlign] = useState<'left' | 'center' | 'right' | 'justify'>('left');
+    const [textColor, setTextColor] = useState<string>('#22272A');
+    const [testText, setTestText] = useState<string>(
+      'A Plataforma Unooria unifica a experiência visual corporativa com alto contraste e elegância tipográfica.'
+    );
+
+    const generatedCss = `font-family: var(--unooria-font-sans, "Open Sans", sans-serif);
+font-size: ${fontSize}px;
+line-height: ${lineHeight}px;
+font-weight: ${fontWeight};
+letter-spacing: ${letterSpacing}px;
+text-align: ${textAlign};
+color: ${textColor};`;
+
+    return (
+      <div style={{ fontFamily: 'Open Sans, sans-serif', maxWidth: '1000px', margin: '0 auto', color: '#22272A' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '8px' }}>
+          Simulador Interativo de Tipografia (Type Tester)
+        </h2>
+        <p style={{ color: '#617379', marginBottom: '24px', fontSize: '14px' }}>
+          Ajuste dinamicamente tamanho, altura de linha, peso, alinhamento e espaçamento entre letras em tempo real.
+        </p>
+
+        {/* Controles */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '16px',
+            backgroundColor: '#F8FAFC',
+            padding: '24px',
+            borderRadius: '16px',
+            border: '1px solid #E2E8F0',
+            marginBottom: '24px',
+          }}
+        >
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+              Font Size: {fontSize}px
+            </label>
+            <input
+              type="range"
+              min="10"
+              max="72"
+              value={fontSize}
+              onChange={(e) => setFontSize(Number(e.target.value))}
+              style={{ width: '100%' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+              Line Height: {lineHeight}px
+            </label>
+            <input
+              type="range"
+              min="12"
+              max="90"
+              value={lineHeight}
+              onChange={(e) => setLineHeight(Number(e.target.value))}
+              style={{ width: '100%' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+              Font Weight: {fontWeight}
+            </label>
+            <select
+              value={fontWeight}
+              onChange={(e) => setFontWeight(Number(e.target.value))}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid #CBD5E1',
+                backgroundColor: '#FFFFFF',
+                fontSize: '13px',
+                fontWeight: 600,
+              }}
+            >
+              <option value="400">Regular (400)</option>
+              <option value="500">Medium (500)</option>
+              <option value="600">Semibold (600)</option>
+              <option value="700">Bold (700)</option>
+            </select>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+              Letter Spacing: {letterSpacing}px
+            </label>
+            <input
+              type="range"
+              min="-2"
+              max="6"
+              step="0.5"
+              value={letterSpacing}
+              onChange={(e) => setLetterSpacing(Number(e.target.value))}
+              style={{ width: '100%' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+              Alinhamento:
+            </label>
+            <div style={{ display: 'flex', gap: '6px' }}>
+              {(['left', 'center', 'right', 'justify'] as const).map((a) => (
+                <button
+                  key={a}
+                  onClick={() => setTextAlign(a)}
+                  style={{
+                    flex: 1,
+                    padding: '8px 4px',
+                    borderRadius: '6px',
+                    border: `1px solid ${textAlign === a ? '#1670FA' : '#CBD5E1'}`,
+                    backgroundColor: textAlign === a ? '#1670FA' : '#FFFFFF',
+                    color: textAlign === a ? '#FFFFFF' : '#334155',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {a}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+              Cor do Texto:
+            </label>
+            <select
+              value={textColor}
+              onChange={(e) => setTextColor(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid #CBD5E1',
+                backgroundColor: '#FFFFFF',
+                fontSize: '13px',
+                fontWeight: 600,
+              }}
+            >
+              <option value="#22272A">Neutral 950 (#22272A)</option>
+              <option value="#475157">Neutral 700 (#475157)</option>
+              <option value="#7FA5E2">Brand Navy 600 (#7FA5E2)</option>
+              <option value="#716C98">Brand Purple 600 (#716C98)</option>
+              <option value="#01B574">Success (#01B574)</option>
+              <option value="#E31A1A">Danger (#E31A1A)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Input de Texto */}
+        <div style={{ marginBottom: '24px' }}>
+          <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: '#334155', marginBottom: '6px' }}>
+            Texto de Teste:
+          </label>
+          <textarea
+            rows={2}
+            value={testText}
+            onChange={(e) => setTestText(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '12px 16px',
+              borderRadius: '10px',
+              border: '1px solid #CBD5E1',
+              fontSize: '14px',
+              outline: 'none',
+              fontFamily: '"Open Sans", sans-serif',
+              boxSizing: 'border-box',
+            }}
+          />
+        </div>
+
+        {/* Display do Teste */}
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: '16px',
+            border: '1px solid #E2E8F0',
+            padding: '36px',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            marginBottom: '24px',
+            minHeight: '140px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: '"Open Sans", sans-serif',
+              fontSize: `${fontSize}px`,
+              lineHeight: `${lineHeight}px`,
+              fontWeight: fontWeight,
+              letterSpacing: `${letterSpacing}px`,
+              textAlign: textAlign,
+              color: textColor,
+              width: '100%',
+              wordBreak: 'break-word',
+            }}
+          >
+            {testText}
+          </div>
+        </div>
+
+        {/* Snippet CSS Gerado */}
+        <div
+          style={{
+            backgroundColor: '#1E293B',
+            borderRadius: '12px',
+            padding: '20px',
+            color: '#FFFFFF',
+            position: 'relative',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase' }}>
+              Código CSS Gerado
+            </span>
+            <CopyBadge text={generatedCss} label="Copiar CSS" />
+          </div>
+          <pre style={{ margin: 0, fontSize: '13px', fontFamily: 'monospace', color: '#7FA5E2', lineHeight: '1.6' }}>
+            {generatedCss}
+          </pre>
+        </div>
+      </div>
+    );
+  },
 };
 
 // Stories Individuais para Testes Rápidos dos Tokens
