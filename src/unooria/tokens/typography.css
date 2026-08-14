@@ -1,0 +1,163 @@
+/**
+ * CSS Variables e Utilitários de Tipografia da Plataforma Unooria
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+  /* Font Family */
+  --unooria-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --unooria-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Font Weights */
+  --unooria-weight-regular: 400;
+  --unooria-weight-medium: 500;
+  --unooria-weight-semibold: 600;
+  --unooria-weight-bold: 700;
+
+  /* Desktop Font Sizes */
+  --unooria-size-heading-4xl: 60px;
+  --unooria-size-heading-xxxl: 48px;
+  --unooria-size-heading-xxl: 34px;
+  --unooria-size-title-xl: 24px;
+  --unooria-size-title-l: 20px;
+  --unooria-size-body-m: 18px;
+  --unooria-size-body-s: 16px;
+  --unooria-size-body-xs: 14px;
+  --unooria-size-body-xxs: 12px;
+  --unooria-size-caption-xxxs: 10px;
+
+  /* Desktop Line Heights */
+  --unooria-line-height-heading-4xl: 78px;
+  --unooria-line-height-heading-xxxl: 64px;
+  --unooria-line-height-heading-xxl: 48px;
+  --unooria-line-height-title-xl: 34px;
+  --unooria-line-height-title-l: 30px;
+  --unooria-line-height-body-m: 28px;
+  --unooria-line-height-body-s: 24px;
+  --unooria-line-height-body-xs: 20px;
+  --unooria-line-height-body-xxs: 18px;
+  --unooria-line-height-caption-xxxs: 14px;
+
+  /* Letter Spacings */
+  --unooria-letter-spacing-tight: -0.01em;
+  --unooria-letter-spacing-normal: 0px;
+  --unooria-letter-spacing-wide: 0.02em;
+}
+
+/* Responsividade Mobile (< 768px): Substituição Automática conforme Diretriz do Figma */
+@media (max-width: 768px) {
+  :root {
+    --unooria-size-heading-4xl: 34px;
+    --unooria-line-height-heading-4xl: 48px;
+
+    --unooria-size-heading-xxxl: 34px;
+    --unooria-line-height-heading-xxxl: 48px;
+
+    --unooria-size-heading-xxl: 24px;
+    --unooria-line-height-heading-xxl: 34px;
+
+    --unooria-size-title-xl: 20px;
+    --unooria-line-height-title-xl: 30px;
+
+    --unooria-size-title-l: 18px;
+    --unooria-line-height-title-l: 28px;
+
+    --unooria-size-body-m: 16px;
+    --unooria-line-height-body-m: 24px;
+
+    --unooria-size-body-s: 14px;
+    --unooria-line-height-body-s: 20px;
+
+    --unooria-size-body-xs: 14px;
+    --unooria-line-height-body-xs: 18px;
+
+    --unooria-size-body-xxs: 10px;
+    --unooria-line-height-body-xxs: 14px;
+
+    --unooria-size-caption-xxxs: 10px;
+    --unooria-line-height-caption-xxxs: 14px;
+  }
+}
+
+/* Classes Utilitárias do Design System Unooria */
+.unooria-typography-base {
+  font-family: var(--unooria-font-sans);
+  color: #22272a;
+}
+
+.unooria-text-heading-4xl {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-heading-4xl);
+  line-height: var(--unooria-line-height-heading-4xl);
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-text-heading-xxxl {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-heading-xxxl);
+  line-height: var(--unooria-line-height-heading-xxxl);
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-text-heading-xxl {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-heading-xxl);
+  line-height: var(--unooria-line-height-heading-xxl);
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-text-title-xl {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-title-xl);
+  line-height: var(--unooria-line-height-title-xl);
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-text-title-l {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-title-l);
+  line-height: var(--unooria-line-height-title-l);
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-text-body-m {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-body-m);
+  line-height: var(--unooria-line-height-body-m);
+  font-weight: var(--unooria-weight-regular);
+}
+
+.unooria-text-body-s {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-body-s);
+  line-height: var(--unooria-line-height-body-s);
+  font-weight: var(--unooria-weight-regular);
+}
+
+.unooria-text-body-xs {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-body-xs);
+  line-height: var(--unooria-line-height-body-xs);
+  font-weight: var(--unooria-weight-regular);
+}
+
+.unooria-text-body-xxs {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+  font-weight: var(--unooria-weight-regular);
+}
+
+.unooria-text-caption-xxxs {
+  font-family: var(--unooria-font-sans);
+  font-size: var(--unooria-size-caption-xxxs);
+  line-height: var(--unooria-line-height-caption-xxxs);
+  font-weight: var(--unooria-weight-regular);
+}
+
+/* Modificadores de Peso Utilitários */
+.unooria-weight-regular { font-weight: var(--unooria-weight-regular) !important; }
+.unooria-weight-medium { font-weight: var(--unooria-weight-medium) !important; }
+.unooria-weight-semibold { font-weight: var(--unooria-weight-semibold) !important; }
+.unooria-weight-bold { font-weight: var(--unooria-weight-bold) !important; }

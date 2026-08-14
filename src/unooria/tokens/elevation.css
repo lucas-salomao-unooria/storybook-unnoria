@@ -1,0 +1,24 @@
+/**
+ * Variáveis CSS de Elevação e Sombras - Plataforma Unooria
+ * Extraído do Figma (Node 6188:6091)
+ */
+
+:root {
+  /* Brand */
+  --unooria-elevation-brand-primary: 0px 0px 10px 0px rgba(127, 165, 226, 0.3);
+  --unooria-elevation-brand-secondary: 0px 0px 10px 0px rgba(14, 16, 57, 0.3);
+
+  /* Semantic */
+  --unooria-elevation-semantic-danger: 0px 0px 10px 0px rgba(227, 26, 26, 0.3);
+  --unooria-elevation-semantic-warning: 0px 0px 10px 0px rgba(127, 165, 226, 0.3);
+  --unooria-elevation-semantic-success: 0px 0px 10px 0px rgba(1, 181, 116, 0.3);
+  --unooria-elevation-semantic-info: 0px 0px 10px 0px rgba(0, 134, 255, 0.3);
+
+  /* Neutral */
+  --unooria-elevation-neutral-1: 0px 0px 5px 1px rgba(255, 255, 255, 0.1);
+  --unooria-elevation-neutral-2: 0px 0px 8px 4px rgba(255, 255, 255, 0.1);
+  --unooria-elevation-neutral-3: 0px 0px 8px 4px rgba(255, 255, 255, 0.2);
+  --unooria-elevation-neutral-4: 0px 0px 8px 4px rgba(255, 255, 255, 0.3);
+  --unooria-elevation-neutral-5: 0px 0px 8px 4px rgba(255, 255, 255, 0.4);
+  --unooria-elevation-neutral-6: 0px 0px 8px 4px rgba(255, 255, 255, 0.5);
+}

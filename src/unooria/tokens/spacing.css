@@ -1,0 +1,19 @@
+/**
+ * Variáveis CSS de Espaçamento - Plataforma Unooria
+ * Extraído do Figma (Node 6189:512)
+ */
+
+:root {
+  --unooria-spacing-none: 0px;
+  --unooria-spacing-4xs: 2px;
+  --unooria-spacing-xxxs: 4px;
+  --unooria-spacing-xxs: 8px;
+  --unooria-spacing-xs: 12px;
+  --unooria-spacing-s: 16px;
+  --unooria-spacing-m: 24px;
+  --unooria-spacing-l: 32px;
+  --unooria-spacing-xl: 48px;
+  --unooria-spacing-xxl: 64px;
+  --unooria-spacing-xxxl: 80px;
+  --unooria-spacing-4xl: 96px;
+}

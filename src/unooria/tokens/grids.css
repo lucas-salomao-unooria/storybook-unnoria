@@ -1,0 +1,162 @@
+/**
+ * Variáveis de CSS e Utilitários de Grid & Layout
+ * Design System 'Plataforma Unooria'
+ */
+
+:root {
+  /* Definição de Breakpoints */
+  --unooria-breakpoint-mobile: 0px;
+  --unooria-breakpoint-tablet: 768px;
+  --unooria-breakpoint-notebook: 1280px;
+  --unooria-breakpoint-desktop: 1920px;
+
+  /* Configurações Padrão (Mobile First - 0px+) */
+  --unooria-grid-columns: 4;
+  --unooria-grid-gutter: 12px;
+  --unooria-grid-margin: 12px;
+  --unooria-column-width: 75px;
+  --unooria-container-max-width: 351px;
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  :root {
+    --unooria-grid-columns: 8;
+    --unooria-grid-gutter: 24px;
+    --unooria-grid-margin: 24px;
+    --unooria-column-width: 133px;
+    --unooria-container-max-width: 1232px;
+  }
+}
+
+/* Notebook (1280px+) */
+@media (min-width: 1280px) {
+  :root {
+    --unooria-grid-columns: 12;
+    --unooria-grid-gutter: 24px;
+    --unooria-grid-margin: 48px;
+    --unooria-column-width: 90px;
+    --unooria-container-max-width: 1344px;
+  }
+}
+
+/* Desktop (1920px+) */
+@media (min-width: 1920px) {
+  :root {
+    --unooria-grid-columns: 12;
+    --unooria-grid-gutter: 24px;
+    --unooria-grid-margin: 48px;
+    --unooria-column-width: 130px;
+    --unooria-container-max-width: 1824px;
+  }
+}
+
+/* Container Centralizado com Margens Adaptativas */
+.unooria-container {
+  width: 100%;
+  max-width: var(--unooria-container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--unooria-grid-margin);
+  padding-right: var(--unooria-grid-margin);
+  box-sizing: border-box;
+}
+
+/* Container Fluid (Largura total com padding lateral do grid) */
+.unooria-container-fluid {
+  width: 100%;
+  padding-left: var(--unooria-grid-margin);
+  padding-right: var(--unooria-grid-margin);
+  box-sizing: border-box;
+}
+
+/* Grid Layout Principal Utilizando CSS Grid */
+.unooria-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--unooria-grid-columns), minmax(0, 1fr));
+  gap: var(--unooria-grid-gutter);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Utilitários para Ocupação de Colunas (Grid Spans) */
+.unooria-col-1  { grid-column: span 1 / span 1; }
+.unooria-col-2  { grid-column: span 2 / span 2; }
+.unooria-col-3  { grid-column: span 3 / span 3; }
+.unooria-col-4  { grid-column: span 4 / span 4; }
+.unooria-col-5  { grid-column: span 5 / span 5; }
+.unooria-col-6  { grid-column: span 6 / span 6; }
+.unooria-col-7  { grid-column: span 7 / span 7; }
+.unooria-col-8  { grid-column: span 8 / span 8; }
+.unooria-col-9  { grid-column: span 9 / span 9; }
+.unooria-col-10 { grid-column: span 10 / span 10; }
+.unooria-col-11 { grid-column: span 11 / span 11; }
+.unooria-col-12 { grid-column: span 12 / span 12; }
+.unooria-col-full { grid-column: 1 / -1; }
+
+/* Overlay de Inspeção Visual do Grid */
+.unooria-grid-overlay {
+  display: grid;
+  grid-template-columns: repeat(var(--unooria-grid-columns), minmax(0, 1fr));
+  gap: var(--unooria-grid-gutter);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.unooria-grid-overlay-col {
+  background-color: rgba(239, 68, 68, 0.12);
+  border-left: 1px dashed rgba(239, 68, 68, 0.35);
+  border-right: 1px dashed rgba(239, 68, 68, 0.35);
+  height: 100%;
+  min-height: 40px;
+}
+
+/* ==========================================================================
+   Utilitários de Layout para Grids Widgets (Plataforma Unooria)
+   ========================================================================== */
+
+.unooria-widget-grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: var(--unooria-grid-gutter);
+  box-sizing: border-box;
+}
+
+.unooria-widget-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.unooria-widget-card:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Classes para Widgets de Proporção Flexível */
+.unooria-widget-flex-full {
+  flex: 1 1 100%;
+  width: 100%;
+}
+
+.unooria-widget-flex-half {
+  flex: 1 1 calc(50% - (var(--unooria-grid-gutter) / 2));
+}
+
+.unooria-widget-flex-side {
+  flex: 0 0 calc(20% - (var(--unooria-grid-gutter) * 2 / 3));
+}
+
+.unooria-widget-flex-center {
+  flex: 1 1 calc(60% - (var(--unooria-grid-gutter) * 2 / 3));
+}
+

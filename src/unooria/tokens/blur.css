@@ -1,0 +1,51 @@
+/**
+ * Estilos e Variáveis CSS para Background Blur
+ * Plataforma Unooria - Extraído do Figma (Node 6217:97)
+ */
+
+:root {
+  /* Variáveis de Blur */
+  --unooria-blur-300: 8px;
+  --unooria-blur-400: 16px;
+  --unooria-blur-500: 32px;
+  --unooria-blur-700: 48px;
+  --unooria-blur-900: 64px;
+
+  /* Variáveis de Opacidade de Blur */
+  --unooria-opacity-blur-300: 0.3;
+  --unooria-opacity-blur-400: 0.4;
+  --unooria-opacity-blur-500: 0.5;
+  --unooria-opacity-blur-700: 0.7;
+  --unooria-opacity-blur-900: 0.9;
+}
+
+/* Classes utilitárias para aplicação direta com backdrop-filter */
+.unooria-blur-300 {
+  backdrop-filter: blur(var(--unooria-blur-300));
+  -webkit-backdrop-filter: blur(var(--unooria-blur-300));
+  opacity: var(--unooria-opacity-blur-300);
+}
+
+.unooria-blur-400 {
+  backdrop-filter: blur(var(--unooria-blur-400));
+  -webkit-backdrop-filter: blur(var(--unooria-blur-400));
+  opacity: var(--unooria-opacity-blur-400);
+}
+
+.unooria-blur-500 {
+  backdrop-filter: blur(var(--unooria-blur-500));
+  -webkit-backdrop-filter: blur(var(--unooria-blur-500));
+  opacity: var(--unooria-opacity-blur-500);
+}
+
+.unooria-blur-700 {
+  backdrop-filter: blur(var(--unooria-blur-700));
+  -webkit-backdrop-filter: blur(var(--unooria-blur-700));
+  opacity: var(--unooria-opacity-blur-700);
+}
+
+.unooria-blur-900 {
+  backdrop-filter: blur(var(--unooria-blur-900));
+  -webkit-backdrop-filter: blur(var(--unooria-blur-900));
+  opacity: var(--unooria-opacity-blur-900);
+}
