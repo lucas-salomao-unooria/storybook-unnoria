@@ -1,0 +1,416 @@
+/**
+ * Estilos do Componente Checkbox e CheckboxGroup - Design System Plataforma Unooria
+ * Especificação fiel baseada no nó Figma #25405:5873
+ */
+
+/* ==========================================================================
+   Contêiner Raiz do Checkbox
+   ========================================================================== */
+.unooria-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--unooria-font-family-base, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  line-height: 1.4;
+  vertical-align: top;
+  box-sizing: border-box;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.unooria-checkbox *,
+.unooria-checkbox *::before,
+.unooria-checkbox *::after {
+  box-sizing: border-box;
+}
+
+/* Inversão de posição do label (à esquerda) */
+.unooria-checkbox--label-left {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* Estado Desabilitado do Contêiner */
+.unooria-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* ==========================================================================
+   Input Nativo Escondido Acessível (Screen Reader Only)
+   ========================================================================== */
+.unooria-checkbox__sr-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  outline: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Caixa Visual de Controle (Control Box)
+   ========================================================================== */
+.unooria-checkbox__control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-style: solid;
+  border-width: 1.5px;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border-color: var(--unooria-color-neutral-200, #CBD4D6);
+  color: #FFFFFF;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Escala de Tamanhos (sm, md, lg)
+   -------------------------------------------------------------------------- */
+/* Pequeno (sm) */
+.unooria-checkbox--sm .unooria-checkbox__control {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+.unooria-checkbox--sm .unooria-checkbox__icon {
+  width: 10px;
+  height: 10px;
+}
+
+/* Médio - Padrão Figma #25405:5873 (md) */
+.unooria-checkbox--md .unooria-checkbox__control {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  margin-top: 1px;
+}
+
+.unooria-checkbox--md .unooria-checkbox__icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Grande (lg) */
+.unooria-checkbox--lg .unooria-checkbox__control {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  margin-top: 0;
+}
+
+.unooria-checkbox--lg .unooria-checkbox__icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   Estados de Interação - Hover
+   -------------------------------------------------------------------------- */
+.unooria-checkbox:not(.unooria-checkbox--disabled):hover .unooria-checkbox__control {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* --------------------------------------------------------------------------
+   Estados de Interação - Foco por Teclado
+   -------------------------------------------------------------------------- */
+.unooria-checkbox__sr-input:focus-visible + .unooria-checkbox__control,
+.unooria-checkbox--focused .unooria-checkbox__control {
+  outline: none;
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.35));
+}
+
+/* --------------------------------------------------------------------------
+   Estado Marcado (Checked) & Indeterminado (Indeterminate)
+   -------------------------------------------------------------------------- */
+.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: #FFFFFF;
+}
+
+.unooria-checkbox:not(.unooria-checkbox--disabled):hover.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox:not(.unooria-checkbox--disabled):hover.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
+  border-color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+/* --------------------------------------------------------------------------
+   Estado de Erro / Inválido
+   -------------------------------------------------------------------------- */
+.unooria-checkbox--error .unooria-checkbox__control {
+  border-color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+.unooria-checkbox--error:not(.unooria-checkbox--disabled):hover .unooria-checkbox__control {
+  background-color: var(--unooria-color-opacity-danger-50, rgba(227, 26, 26, 0.05));
+  border-color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+.unooria-checkbox--error .unooria-checkbox__sr-input:focus-visible + .unooria-checkbox__control,
+.unooria-checkbox--error.unooria-checkbox--focused .unooria-checkbox__control {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-danger-200, rgba(227, 26, 26, 0.25));
+}
+
+.unooria-checkbox--error.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox--error.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-danger-600, #E31A1A);
+  border-color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+/* --------------------------------------------------------------------------
+   Estado Desabilitado (Disabled)
+   -------------------------------------------------------------------------- */
+.unooria-checkbox--disabled .unooria-checkbox__control {
+  background-color: var(--unooria-color-neutral-150, #E4E8E9);
+  border-color: var(--unooria-color-neutral-200, #CBD4D6);
+  color: var(--unooria-color-neutral-300, #A7B5B9);
+  box-shadow: none;
+}
+
+.unooria-checkbox--disabled.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox--disabled.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-neutral-200, #CBD4D6);
+  border-color: var(--unooria-color-neutral-200, #CBD4D6);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Ícones Internos (Check e Indeterminate)
+   ========================================================================== */
+.unooria-checkbox__icon {
+  display: block;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+  pointer-events: none;
+  transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+/* Animação suave de entrada do ícone */
+.unooria-checkbox__icon--check path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 0;
+  animation: unooria-check-stroke 0.2s ease-in-out forwards;
+}
+
+@keyframes unooria-check-stroke {
+  from {
+    stroke-dashoffset: 20;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Rótulo e Mensagens de Apoio (Label & HelperText)
+   ========================================================================== */
+.unooria-checkbox__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 20px;
+}
+
+.unooria-checkbox__label-text {
+  font-weight: 500;
+  color: var(--unooria-color-neutral-800, #3D4448);
+  transition: color 0.2s ease;
+}
+
+.unooria-checkbox--sm .unooria-checkbox__label-text {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.unooria-checkbox--md .unooria-checkbox__label-text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.unooria-checkbox--lg .unooria-checkbox__label-text {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.unooria-checkbox__required-star {
+  color: var(--unooria-color-danger-600, #E31A1A);
+  margin-left: 3px;
+  font-weight: 600;
+}
+
+.unooria-checkbox__helper-text {
+  margin-top: 2px;
+  color: var(--unooria-color-neutral-500, #617379);
+  transition: color 0.2s ease;
+}
+
+.unooria-checkbox--sm .unooria-checkbox__helper-text {
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.unooria-checkbox--md .unooria-checkbox__helper-text {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.unooria-checkbox--lg .unooria-checkbox__helper-text {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.unooria-checkbox__helper-text--error {
+  color: var(--unooria-color-danger-600, #E31A1A);
+  font-weight: 500;
+}
+
+/* Label em estado desabilitado */
+.unooria-checkbox--disabled .unooria-checkbox__label-text {
+  color: var(--unooria-color-neutral-300, #A7B5B9);
+}
+
+.unooria-checkbox--disabled .unooria-checkbox__helper-text {
+  color: var(--unooria-color-neutral-300, #A7B5B9);
+}
+
+/* ==========================================================================
+   Modo Escuro (Dark Theme)
+   ========================================================================== */
+.unooria-checkbox--dark .unooria-checkbox__control {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-300, #475157);
+}
+
+.unooria-checkbox--dark:not(.unooria-checkbox--disabled):hover .unooria-checkbox__control {
+  background-color: rgba(127, 165, 226, 0.12);
+  border-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+}
+
+.unooria-checkbox--dark .unooria-checkbox__label-text {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-checkbox--dark .unooria-checkbox__helper-text {
+  color: var(--unooria-color-neutraldark-800, #A7B5B9);
+}
+
+.unooria-checkbox--dark.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox--dark.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: #0E1039;
+}
+
+.unooria-checkbox--dark:not(.unooria-checkbox--disabled):hover.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox--dark:not(.unooria-checkbox--disabled):hover.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+  border-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+}
+
+.unooria-checkbox--dark.unooria-checkbox--disabled .unooria-checkbox__control {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+  border-color: var(--unooria-color-neutraldark-300, #475157);
+  color: var(--unooria-color-neutraldark-600, #536167);
+}
+
+.unooria-checkbox--dark.unooria-checkbox--disabled.unooria-checkbox--checked .unooria-checkbox__control,
+.unooria-checkbox--dark.unooria-checkbox--disabled.unooria-checkbox--indeterminate .unooria-checkbox__control {
+  background-color: var(--unooria-color-neutraldark-400, #536167);
+  border-color: var(--unooria-color-neutraldark-400, #536167);
+  color: var(--unooria-color-neutraldark-150, #A7B5B9);
+}
+
+.unooria-checkbox--dark.unooria-checkbox--disabled .unooria-checkbox__label-text,
+.unooria-checkbox--dark.unooria-checkbox--disabled .unooria-checkbox__helper-text {
+  color: var(--unooria-color-neutraldark-600, #536167);
+}
+
+/* ==========================================================================
+   CheckboxGroup (Grupo de Seleção de Opções)
+   ========================================================================== */
+.unooria-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-family-base, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.unooria-checkbox-group__legend {
+  display: block;
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--unooria-color-neutral-800, #3D4448);
+  line-height: 1.4;
+}
+
+.unooria-checkbox-group__required-star {
+  color: var(--unooria-color-danger-600, #E31A1A);
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+.unooria-checkbox-group__options {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.unooria-checkbox-group__options--vertical {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.unooria-checkbox-group__options--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.unooria-checkbox-group__helper-text {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-checkbox-group__helper-text--error {
+  color: var(--unooria-color-danger-600, #E31A1A);
+  font-weight: 500;
+}
+
+/* CheckboxGroup - Modo Escuro */
+.unooria-checkbox-group--dark .unooria-checkbox-group__legend {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-checkbox-group--dark .unooria-checkbox-group__helper-text {
+  color: var(--unooria-color-neutraldark-800, #A7B5B9);
+}
+
+.unooria-checkbox-group--dark .unooria-checkbox-group__helper-text--error {
+  color: var(--unooria-color-danger-400, #FF6A6A);
+}

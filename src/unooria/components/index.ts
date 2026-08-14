@@ -1,5 +1,13 @@
 export * from './AlertBox';
+export * from './Avatar';
 export * from './Badge';
+export * from './BottomBar';
 export * from './Breadcrumb';
 export * from './Button';
+export * from './Calendar';
+export * from './Card';
+export * from './Checkbox';
+export * from './NumberButton';
+export * from './RadioButton';
+export * from './SideBar';
 export type { UnooriaTheme } from '../tokens';

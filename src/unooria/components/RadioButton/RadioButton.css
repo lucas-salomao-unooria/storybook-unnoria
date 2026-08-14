@@ -1,0 +1,510 @@
+/**
+ * Estilos do Componente RadioButton e RadioGroup - Design System Plataforma Unooria
+ * Especificação fiel ao nó Figma #25405:5873
+ * Utiliza exclusivamente os tokens CSS e variáveis oficiais da Unooria.
+ */
+
+/* ==========================================================================
+   Contêiner Base do RadioButton
+   ========================================================================== */
+
+.unooria-radio {
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  vertical-align: middle;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  padding: 4px;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unooria-radio * {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Posicionamento boxSide ('left' | 'right' | 'none')
+   ========================================================================== */
+
+/* boxSide: 'left' (Padrão Figma: Rádio à esquerda, texto à direita) */
+.unooria-radio--box-side-left {
+  flex-direction: row;
+}
+
+/* boxSide: 'right' (Texto à esquerda, rádio à direita) */
+.unooria-radio--box-side-right {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+/* boxSide: 'none' (Apenas controle, sem texto visível) */
+.unooria-radio--box-side-none {
+  gap: 0;
+  padding: 4px;
+}
+
+/* ==========================================================================
+   Input Nativo Oculto Acessivelmente
+   ========================================================================== */
+
+.unooria-radio__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: inherit;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+/* ==========================================================================
+   Controle Visual (Outer Circle & Inner Dot)
+   ========================================================================== */
+
+.unooria-radio__control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-200, #CBD4D6);
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.15s ease;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.unooria-radio__dot {
+  display: block;
+  border-radius: 9999px;
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.15s ease-in-out,
+              background-color 0.2s ease;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Tamanhos (sm, md, lg)
+   ========================================================================== */
+
+/* Tamanho Pequeno (sm) - Controle 16px, Dot 10px */
+.unooria-radio--size-sm {
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-radio--size-sm .unooria-radio__control {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.unooria-radio--size-sm .unooria-radio__dot {
+  width: 10px;
+  height: 10px;
+}
+
+.unooria-radio--size-sm .unooria-radio__label {
+  font-size: var(--unooria-size-caption-xxs, 12px);
+  line-height: 20px;
+}
+
+.unooria-radio--size-sm .unooria-radio__helper {
+  font-size: var(--unooria-size-caption-xxxs, 10px);
+  line-height: 14px;
+}
+
+/* Tamanho Médio (md) - Padrão Figma #25405:5873: Controle 20px, Dot 14px */
+.unooria-radio--size-md {
+  gap: var(--unooria-spacing-xs, 10px);
+}
+
+.unooria-radio--size-md .unooria-radio__control {
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.unooria-radio--size-md .unooria-radio__dot {
+  width: 14px;
+  height: 14px;
+}
+
+.unooria-radio--size-md .unooria-radio__label {
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: 22px;
+}
+
+.unooria-radio--size-md .unooria-radio__helper {
+  font-size: var(--unooria-size-caption-xxs, 12px);
+  line-height: 16px;
+}
+
+/* Tamanho Grande (lg) - Controle 24px, Dot 16px */
+.unooria-radio--size-lg {
+  gap: var(--unooria-spacing-s, 12px);
+}
+
+.unooria-radio--size-lg .unooria-radio__control {
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+}
+
+.unooria-radio--size-lg .unooria-radio__dot {
+  width: 16px;
+  height: 16px;
+}
+
+.unooria-radio--size-lg .unooria-radio__label {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: 26px;
+}
+
+.unooria-radio--size-lg .unooria-radio__helper {
+  font-size: var(--unooria-size-body-xxs, 13px);
+  line-height: 18px;
+}
+
+/* ==========================================================================
+   Rótulo e Textos Informativos
+   ========================================================================== */
+
+.unooria-radio__text-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.unooria-radio__label {
+  color: var(--unooria-color-neutral-900, #383E41);
+  font-weight: var(--unooria-weight-regular, 400);
+  transition: color 0.2s ease;
+  word-break: break-word;
+}
+
+.unooria-radio__helper {
+  color: var(--unooria-color-neutral-500, #617379);
+  font-weight: var(--unooria-weight-regular, 400);
+  margin-top: 2px;
+  transition: color 0.2s ease;
+}
+
+/* ==========================================================================
+   Estados Interativos e Seleção (Figma #25405:5873)
+   ========================================================================== */
+
+/* Estado Default + Selected (Imagem 4) */
+.unooria-radio--checked .unooria-radio__control,
+.unooria-radio__input:checked ~ .unooria-radio__control {
+  border: 1px solid var(--unooria-color-neutral-200, #CBD4D6);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+}
+
+.unooria-radio--checked .unooria-radio__dot,
+.unooria-radio__input:checked ~ .unooria-radio__control .unooria-radio__dot {
+  transform: scale(1);
+  opacity: 1;
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+/* Estado Hover (Imagem 1) */
+.unooria-radio:hover:not(.unooria-radio--disabled),
+.unooria-radio--hover:not(.unooria-radio--disabled) {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+  border-radius: 8px;
+}
+
+.unooria-radio:hover:not(.unooria-radio--disabled) .unooria-radio__control,
+.unooria-radio--hover:not(.unooria-radio--disabled) .unooria-radio__control {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  box-shadow: 0 0 0 4px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.15));
+}
+
+/* Hover quando Selecionado (Checked + Hover) */
+.unooria-radio--checked:hover:not(.unooria-radio--disabled) .unooria-radio__control,
+.unooria-radio--checked.unooria-radio--hover:not(.unooria-radio--disabled) .unooria-radio__control {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  box-shadow: 0 0 0 4px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.15));
+}
+
+/* Focus Visible (Anel de foco acessível de 3px) */
+.unooria-radio__input:focus-visible ~ .unooria-radio__control,
+.unooria-radio--focus:not(.unooria-radio--disabled) .unooria-radio__control {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  outline: none;
+}
+
+/* Active / Pressionado */
+.unooria-radio:active:not(.unooria-radio--disabled) .unooria-radio__control,
+.unooria-radio--active:not(.unooria-radio--disabled) .unooria-radio__control {
+  transform: scale(0.95);
+  border-color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+/* ==========================================================================
+   Estado de Erro (Validation Error)
+   ========================================================================== */
+
+.unooria-radio--error .unooria-radio__control {
+  border-color: var(--unooria-color-danger-500, #F83B3B);
+}
+
+.unooria-radio--error .unooria-radio__dot {
+  background-color: var(--unooria-color-danger-500, #F83B3B);
+}
+
+.unooria-radio--error:hover:not(.unooria-radio--disabled) .unooria-radio__control {
+  border-color: var(--unooria-color-danger-600, #E31A1A);
+  box-shadow: 0 0 0 4px var(--unooria-color-opacity-danger-100, rgba(227, 26, 26, 0.10));
+}
+
+.unooria-radio--error .unooria-radio__input:focus-visible ~ .unooria-radio__control,
+.unooria-radio--error.unooria-radio--focus .unooria-radio__control {
+  border-color: var(--unooria-color-danger-600, #E31A1A);
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-danger-300, rgba(227, 26, 26, 0.30));
+}
+
+.unooria-radio--error .unooria-radio__helper {
+  color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+/* ==========================================================================
+   Estado Desabilitado (Disabled)
+   ========================================================================== */
+
+.unooria-radio--disabled,
+.unooria-radio[aria-disabled="true"] {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: transparent !important;
+}
+
+.unooria-radio--disabled .unooria-radio__control {
+  border-color: var(--unooria-color-neutral-150, #E4E8E9);
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  box-shadow: none !important;
+}
+
+.unooria-radio--disabled .unooria-radio__dot {
+  background-color: var(--unooria-color-neutral-300, #A7B5B9);
+}
+
+.unooria-radio--disabled .unooria-radio__label {
+  color: var(--unooria-color-neutral-400, #7C8E94);
+}
+
+.unooria-radio--disabled .unooria-radio__helper {
+  color: var(--unooria-color-neutral-300, #A7B5B9);
+}
+
+/* ==========================================================================
+   Tema Dark (Modo Escuro)
+   ========================================================================== */
+
+.unooria-radio--dark .unooria-radio__control,
+[data-theme='dark'] .unooria-radio .unooria-radio__control,
+.unooria-theme-dark .unooria-radio .unooria-radio__control,
+.theme-dark .unooria-radio .unooria-radio__control {
+  background-color: var(--unooria-color-neutraldark-100, #22272A);
+  border-color: var(--unooria-color-neutraldark-300, #475157);
+}
+
+.unooria-radio--dark .unooria-radio__dot,
+[data-theme='dark'] .unooria-radio .unooria-radio__dot,
+.unooria-theme-dark .unooria-radio .unooria-radio__dot,
+.theme-dark .unooria-radio .unooria-radio__dot {
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-radio--dark .unooria-radio__label,
+[data-theme='dark'] .unooria-radio .unooria-radio__label,
+.unooria-theme-dark .unooria-radio .unooria-radio__label,
+.theme-dark .unooria-radio .unooria-radio__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-radio--dark .unooria-radio__helper,
+[data-theme='dark'] .unooria-radio .unooria-radio__helper,
+.unooria-theme-dark .unooria-radio .unooria-radio__helper,
+.theme-dark .unooria-radio .unooria-radio__helper {
+  color: var(--unooria-color-neutraldark-800, #A7B5B9);
+}
+
+/* Dark Checked */
+.unooria-radio--dark.unooria-radio--checked .unooria-radio__control,
+[data-theme='dark'] .unooria-radio--checked .unooria-radio__control,
+.unooria-theme-dark .unooria-radio--checked .unooria-radio__control,
+.theme-dark .unooria-radio--checked .unooria-radio__control {
+  border-color: var(--unooria-color-neutraldark-300, #475157);
+  background-color: var(--unooria-color-neutraldark-100, #22272A);
+}
+
+/* Dark Hover */
+.unooria-radio--dark:hover:not(.unooria-radio--disabled),
+.unooria-radio--dark.unooria-radio--hover:not(.unooria-radio--disabled),
+[data-theme='dark'] .unooria-radio:hover:not(.unooria-radio--disabled),
+[data-theme='dark'] .unooria-radio.unooria-radio--hover:not(.unooria-radio--disabled),
+.unooria-theme-dark .unooria-radio:hover:not(.unooria-radio--disabled),
+.theme-dark .unooria-radio:hover:not(.unooria-radio--disabled) {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+}
+
+.unooria-radio--dark:hover:not(.unooria-radio--disabled) .unooria-radio__control,
+.unooria-radio--dark.unooria-radio--hover:not(.unooria-radio--disabled) .unooria-radio__control,
+[data-theme='dark'] .unooria-radio:hover:not(.unooria-radio--disabled) .unooria-radio__control,
+[data-theme='dark'] .unooria-radio.unooria-radio--hover:not(.unooria-radio--disabled) .unooria-radio__control,
+.unooria-theme-dark .unooria-radio:hover:not(.unooria-radio--disabled) .unooria-radio__control,
+.theme-dark .unooria-radio:hover:not(.unooria-radio--disabled) .unooria-radio__control {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  box-shadow: 0 0 0 4px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.15));
+}
+
+/* Dark Focus Visible */
+.unooria-radio--dark .unooria-radio__input:focus-visible ~ .unooria-radio__control,
+.unooria-radio--dark.unooria-radio--focus:not(.unooria-radio--disabled) .unooria-radio__control,
+[data-theme='dark'] .unooria-radio .unooria-radio__input:focus-visible ~ .unooria-radio__control,
+[data-theme='dark'] .unooria-radio.unooria-radio--focus:not(.unooria-radio--disabled) .unooria-radio__control {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+}
+
+/* Dark Disabled */
+.unooria-radio--dark.unooria-radio--disabled .unooria-radio__control,
+[data-theme='dark'] .unooria-radio--disabled .unooria-radio__control,
+.unooria-theme-dark .unooria-radio--disabled .unooria-radio__control,
+.theme-dark .unooria-radio--disabled .unooria-radio__control {
+  border-color: var(--unooria-color-neutraldark-300, #475157);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  box-shadow: none !important;
+}
+
+.unooria-radio--dark.unooria-radio--disabled .unooria-radio__dot,
+[data-theme='dark'] .unooria-radio--disabled .unooria-radio__dot {
+  background-color: var(--unooria-color-neutraldark-300, #475157);
+}
+
+.unooria-radio--dark.unooria-radio--disabled .unooria-radio__label,
+[data-theme='dark'] .unooria-radio--disabled .unooria-radio__label {
+  color: var(--unooria-color-neutraldark-400, #536167);
+}
+
+.unooria-radio--dark.unooria-radio--disabled .unooria-radio__helper,
+[data-theme='dark'] .unooria-radio--disabled .unooria-radio__helper {
+  color: var(--unooria-color-neutraldark-500, #617379);
+}
+
+/* ==========================================================================
+   Componente RadioGroup
+   ========================================================================== */
+
+.unooria-radio-group {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.unooria-radio-group__legend {
+  padding: 0;
+  margin-bottom: var(--unooria-spacing-xxs, 8px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  color: var(--unooria-color-neutral-900, #383E41);
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.unooria-radio-group__required {
+  color: var(--unooria-color-danger-500, #F83B3B);
+  font-weight: var(--unooria-weight-bold, 700);
+}
+
+.unooria-radio-group__options {
+  display: flex;
+  box-sizing: border-box;
+}
+
+/* Direção Vertical */
+.unooria-radio-group--vertical .unooria-radio-group__options {
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+/* Direção Horizontal */
+.unooria-radio-group--horizontal .unooria-radio-group__options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--unooria-spacing-m, 16px);
+}
+
+/* Informações e Erros do Grupo */
+.unooria-radio-group__footer {
+  margin-top: var(--unooria-spacing-xxs, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.unooria-radio-group__helper {
+  font-size: var(--unooria-size-caption-xxs, 12px);
+  color: var(--unooria-color-neutral-500, #617379);
+  line-height: 16px;
+}
+
+.unooria-radio-group__error {
+  font-size: var(--unooria-size-caption-xxs, 12px);
+  color: var(--unooria-color-danger-600, #E31A1A);
+  font-weight: var(--unooria-weight-medium, 500);
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Dark Mode para RadioGroup */
+.unooria-radio-group--dark .unooria-radio-group__legend,
+[data-theme='dark'] .unooria-radio-group .unooria-radio-group__legend,
+.unooria-theme-dark .unooria-radio-group .unooria-radio-group__legend,
+.theme-dark .unooria-radio-group .unooria-radio-group__legend {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-radio-group--dark .unooria-radio-group__helper,
+[data-theme='dark'] .unooria-radio-group .unooria-radio-group__helper,
+.unooria-theme-dark .unooria-radio-group .unooria-radio-group__helper,
+.theme-dark .unooria-radio-group .unooria-radio-group__helper {
+  color: var(--unooria-color-neutraldark-800, #A7B5B9);
+}
+
+.unooria-radio-group--dark .unooria-radio-group__error,
+[data-theme='dark'] .unooria-radio-group .unooria-radio-group__error,
+.unooria-theme-dark .unooria-radio-group .unooria-radio-group__error,
+.theme-dark .unooria-radio-group .unooria-radio-group__error {
+  color: var(--unooria-color-danger-400, #FF6A6A);
+}

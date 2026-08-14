@@ -1,0 +1,539 @@
+/**
+ * Estilos do Componente Calendar - Design System Plataforma Unooria
+ * Especificação fiel ao Figma #12694:2508
+ */
+
+/* ==========================================================================
+   Container Principal
+   ========================================================================== */
+.unooria-calendar {
+  --cal-bg: var(--unooria-color-neutral-50, #ffffff);
+  --cal-border: var(--unooria-color-neutral-200, #cbd4d6);
+  --cal-text-main: var(--unooria-color-neutral-900, #383e41);
+  --cal-text-muted: var(--unooria-color-neutral-400, #7c8e94);
+  --cal-text-outside: #9c61aebc;
+  --cal-weekday-text: var(--unooria-color-neutral-500, #617379);
+  
+  --cal-primary: var(--unooria-color-brandnavy-700, #6487c2);
+  --cal-primary-hover: var(--unooria-color-brandnavy-600, #7fa5e2);
+  --cal-primary-text: #ffffff;
+  
+  --cal-hover-bg: rgba(127, 165, 226, 0.1);
+  --cal-range-bg: rgba(127, 165, 226, 0.15);
+  --cal-range-text: var(--unooria-color-brandnavy-900, #2f4f7f);
+  
+  --cal-today-border: var(--unooria-color-brandnavy-600, #7fa5e2);
+  --cal-today-text: var(--unooria-color-brandnavy-700, #6487c2);
+  
+  --cal-shadow: 0 4px 20px rgba(14, 16, 57, 0.08);
+  --cal-radius: 16px;
+  --cal-cell-radius: 8px;
+
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--cal-bg);
+  border: 1px solid var(--cal-border);
+  border-radius: var(--cal-radius);
+  box-shadow: var(--cal-shadow);
+  padding: 16px;
+  font-family: inherit;
+  color: var(--cal-text-main);
+  user-select: none;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ==========================================================================
+   Suporte ao Tema Escuro (Dark Mode)
+   ========================================================================== */
+.unooria-calendar--dark,
+[data-theme="dark"] .unooria-calendar,
+.unooria-calendar[data-theme="dark"] {
+  --cal-bg: var(--unooria-color-neutraldark-50, #22272a);
+  --cal-border: var(--unooria-color-neutraldark-200, #3d4448);
+  --cal-text-main: var(--unooria-color-neutraldark-950, #f5f5f5);
+  --cal-text-muted: var(--unooria-color-neutraldark-700, #7c8e94);
+  --cal-text-outside: rgba(156, 97, 174, 0.6);
+  --cal-weekday-text: var(--unooria-color-neutraldark-800, #a7b5b9);
+
+  --cal-primary: var(--unooria-color-brandnavy-600, #7fa5e2);
+  --cal-primary-hover: var(--unooria-color-brandnavy-500, #8fafe5);
+  --cal-primary-text: #ffffff;
+
+  --cal-hover-bg: rgba(127, 165, 226, 0.18);
+  --cal-range-bg: rgba(127, 165, 226, 0.25);
+  --cal-range-text: #ffffff;
+
+  --cal-today-border: var(--unooria-color-brandnavy-500, #8fafe5);
+  --cal-today-text: var(--unooria-color-brandnavy-400, #a4bde9);
+
+  --cal-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   Tamanhos (sm, md, lg)
+   ========================================================================== */
+.unooria-calendar--size-sm {
+  width: 260px;
+  padding: 12px;
+  --cal-cell-size: 32px;
+  --cal-font-size-day: 12px;
+  --cal-font-size-header: 13px;
+}
+
+.unooria-calendar--size-md {
+  width: 320px;
+  padding: 16px;
+  --cal-cell-size: 40px;
+  --cal-font-size-day: 14px;
+  --cal-font-size-header: 15px;
+}
+
+.unooria-calendar--size-lg {
+  width: 380px;
+  padding: 20px;
+  --cal-cell-size: 48px;
+  --cal-font-size-day: 16px;
+  --cal-font-size-header: 17px;
+}
+
+/* ==========================================================================
+   Cabeçalho do Calendário (Header)
+   ========================================================================== */
+.unooria-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.unooria-calendar__title-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.unooria-calendar__title-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: var(--cal-font-size-header);
+  font-weight: 600;
+  color: var(--cal-text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.unooria-calendar__title-btn:hover:not(:disabled) {
+  background-color: var(--cal-hover-bg);
+  color: var(--cal-primary);
+}
+
+.unooria-calendar__title-btn:focus-visible {
+  outline: 2px solid var(--cal-primary);
+  outline-offset: 2px;
+}
+
+.unooria-calendar__title-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.unooria-calendar__title-arrow--open {
+  transform: rotate(180deg);
+}
+
+.unooria-calendar__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.unooria-calendar__nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cal-text-main);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  padding: 0;
+}
+
+.unooria-calendar__nav-btn:hover:not(:disabled) {
+  background-color: var(--cal-hover-bg);
+  color: var(--cal-primary);
+}
+
+.unooria-calendar__nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.unooria-calendar__nav-btn:focus-visible {
+  outline: 2px solid var(--cal-primary);
+  outline-offset: 2px;
+}
+
+.unooria-calendar__nav-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.unooria-calendar__today-btn {
+  background: transparent;
+  border: 1px solid var(--cal-border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cal-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.unooria-calendar__today-btn:hover {
+  background-color: var(--cal-hover-bg);
+  border-color: var(--cal-primary);
+}
+
+.unooria-calendar__today-btn:focus-visible {
+  outline: 2px solid var(--cal-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Cabeçalho de Dias da Semana (Weekdays)
+   ========================================================================== */
+.unooria-calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.unooria-calendar__weekday {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cal-weekday-text);
+  padding: 6px 0;
+}
+
+/* ==========================================================================
+   Grade de Dias (Days Grid)
+   ========================================================================== */
+.unooria-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 2px;
+}
+
+.unooria-calendar__cell-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--cal-cell-size);
+}
+
+/* Conector de fundo para intervalo (Range highlight connector) */
+.unooria-calendar__cell-wrapper--in-range::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  background-color: var(--cal-range-bg);
+  z-index: 1;
+}
+
+.unooria-calendar__cell-wrapper--range-start::before {
+  left: 50%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.unooria-calendar__cell-wrapper--range-end::before {
+  right: 50%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.unooria-calendar__cell-wrapper--range-single::before {
+  display: none;
+}
+
+/* Botão da célula de data */
+.unooria-calendar__day {
+  position: relative;
+  z-index: 2;
+  width: calc(var(--cal-cell-size) - 4px);
+  height: calc(var(--cal-cell-size) - 4px);
+  border-radius: var(--cal-cell-radius);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--cal-text-main);
+  font-size: var(--cal-font-size-day);
+  font-weight: 500;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+/* Estados da Célula de Data */
+.unooria-calendar__day:hover:not(:disabled):not(.unooria-calendar__day--selected) {
+  background-color: var(--cal-hover-bg);
+  color: var(--cal-primary);
+}
+
+.unooria-calendar__day:focus-visible {
+  outline: 2px solid var(--cal-primary);
+  outline-offset: 2px;
+  z-index: 3;
+}
+
+/* Fora do mês corrente */
+.unooria-calendar__day--outside {
+  color: var(--cal-text-outside);
+  font-weight: 400;
+}
+
+.unooria-calendar__day--outside:hover:not(:disabled):not(.unooria-calendar__day--selected) {
+  color: var(--cal-text-outside);
+  background-color: var(--cal-hover-bg);
+}
+
+/* Dia de Hoje */
+.unooria-calendar__day--today {
+  border-color: var(--cal-today-border);
+  color: var(--cal-today-text);
+  font-weight: 700;
+}
+
+/* Selecionado */
+.unooria-calendar__day--selected {
+  background-color: var(--cal-primary) !important;
+  color: var(--cal-primary-text) !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(100, 135, 194, 0.4);
+}
+
+.unooria-calendar__day--selected:hover {
+  background-color: var(--cal-primary-hover) !important;
+}
+
+/* In Range (intermediário) */
+.unooria-calendar__day--in-range:not(.unooria-calendar__day--selected) {
+  color: var(--cal-range-text);
+  font-weight: 600;
+}
+
+/* Desabilitado */
+.unooria-calendar__day--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Número do dia */
+.unooria-calendar__day-number {
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Indicadores de Eventos (Event Dots)
+   ========================================================================== */
+.unooria-calendar__events-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 4px;
+  margin-top: 2px;
+}
+
+.unooria-calendar__event-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--cal-primary);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.unooria-calendar__day--selected .unooria-calendar__event-dot {
+  background-color: #ffffff !important;
+}
+
+.unooria-calendar__day:hover .unooria-calendar__event-dot {
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   Tooltip / Popover de Eventos
+   ========================================================================== */
+.unooria-calendar__tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--cal-bg);
+  border: 1px solid var(--cal-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(14, 16, 57, 0.15);
+  padding: 8px 12px;
+  min-width: 140px;
+  max-width: 220px;
+  z-index: 100;
+  pointer-events: auto;
+  animation: unooria-cal-fade-in 0.15s ease;
+}
+
+.unooria-calendar__tooltip-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cal-text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.unooria-calendar__tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--cal-text-main);
+  padding: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.unooria-calendar__tooltip-item:hover {
+  color: var(--cal-primary);
+}
+
+.unooria-calendar__tooltip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Visualização Rápida de Mês e Ano (Quick View Overlay)
+   ========================================================================== */
+.unooria-calendar__quick-nav {
+  position: absolute;
+  top: 56px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background-color: var(--cal-bg);
+  border-radius: 12px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  box-sizing: border-box;
+  animation: unooria-cal-fade-in 0.2s ease;
+  border: 1px solid var(--cal-border);
+}
+
+.unooria-calendar__quick-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.unooria-calendar__quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.unooria-calendar__quick-item {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--cal-text-main);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: all 0.15s ease;
+}
+
+.unooria-calendar__quick-item:hover {
+  background-color: var(--cal-hover-bg);
+  color: var(--cal-primary);
+}
+
+.unooria-calendar__quick-item--selected {
+  background-color: var(--cal-primary) !important;
+  color: var(--cal-primary-text) !important;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Rodapé (Footer)
+   ========================================================================== */
+.unooria-calendar__footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--cal-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--cal-text-muted);
+}
+
+.unooria-calendar__footer-summary {
+  font-weight: 500;
+  color: var(--cal-text-main);
+}
+
+/* ==========================================================================
+   Animações
+   ========================================================================== */
+@keyframes unooria-cal-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

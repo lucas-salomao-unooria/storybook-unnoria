@@ -1,0 +1,463 @@
+/**
+ * Estilos do Componente Avatar e AvatarGroup - Plataforma Unooria
+ * Design System de Alta Fidelidade Figma com Suporte a Temas Light e Dark
+ */
+
+/* ==========================================================================
+   Variáveis Base do Avatar
+   ========================================================================== */
+.unooria-avatar {
+  --unooria-avatar-size: 48px;
+  --unooria-avatar-font-size: 16px;
+  --unooria-avatar-radius: 9999px;
+  --unooria-avatar-status-size: 12px;
+  --unooria-avatar-status-border: 2px;
+  --unooria-avatar-badge-size: 18px;
+  --unooria-avatar-badge-font: 11px;
+  --unooria-avatar-remove-size: 18px;
+  --unooria-avatar-remove-icon: 10px;
+  --unooria-avatar-bg: var(--unooria-color-neutral-100, #F5F5F5);
+  --unooria-avatar-color: var(--unooria-color-neutral-700, #475157);
+  --unooria-avatar-border: var(--unooria-color-neutral-200, #CBD4D6);
+  --unooria-avatar-cutout: var(--unooria-color-neutral-50, #FFFFFF);
+  --unooria-avatar-selected-gradient: linear-gradient(
+    225deg,
+    #57547D 0%,
+    #716C98 5%,
+    #7FA5E2 54%,
+    #8FAFE5 72%,
+    #A4BDE9 89%,
+    #BDD0EF 100%
+  );
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unooria-avatar-size);
+  height: var(--unooria-avatar-size);
+  min-width: var(--unooria-avatar-size);
+  min-height: var(--unooria-avatar-size);
+  border-radius: var(--unooria-avatar-radius);
+  font-family: var(--unooria-font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif);
+  font-size: var(--unooria-avatar-font-size);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  user-select: none;
+  vertical-align: middle;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Suporte a Temas (Light e Dark)
+   ========================================================================== */
+.unooria-avatar--light,
+[data-theme='light'] .unooria-avatar,
+.unooria-avatar[data-theme='light'] {
+  --unooria-avatar-bg: #F5F5F5;
+  --unooria-avatar-color: #475157;
+  --unooria-avatar-border: #CBD4D6;
+  --unooria-avatar-cutout: #FFFFFF;
+  --unooria-avatar-remove-bg: #3D4448;
+  --unooria-avatar-remove-color: #FFFFFF;
+  --unooria-avatar-extra-bg: #E4E8E9;
+  --unooria-avatar-extra-color: #22272A;
+}
+
+.unooria-avatar--dark,
+[data-theme='dark'] .unooria-avatar,
+.unooria-avatar[data-theme='dark'] {
+  --unooria-avatar-bg: #3D4448;
+  --unooria-avatar-color: #F5F5F5;
+  --unooria-avatar-border: #536167;
+  --unooria-avatar-cutout: #22272A;
+  --unooria-avatar-remove-bg: #536167;
+  --unooria-avatar-remove-color: #FFFFFF;
+  --unooria-avatar-extra-bg: #475157;
+  --unooria-avatar-extra-color: #F5F5F5;
+}
+
+/* ==========================================================================
+   Tamanhos do Avatar
+   ========================================================================== */
+/* xs: 32px */
+.unooria-avatar--size-xs {
+  --unooria-avatar-size: 32px;
+  --unooria-avatar-font-size: 12px;
+  --unooria-avatar-status-size: 8px;
+  --unooria-avatar-status-border: 1.5px;
+  --unooria-avatar-badge-size: 14px;
+  --unooria-avatar-badge-font: 9px;
+  --unooria-avatar-remove-size: 14px;
+  --unooria-avatar-remove-icon: 8px;
+}
+
+/* sm: 40px */
+.unooria-avatar--size-sm {
+  --unooria-avatar-size: 40px;
+  --unooria-avatar-font-size: 14px;
+  --unooria-avatar-status-size: 10px;
+  --unooria-avatar-status-border: 2px;
+  --unooria-avatar-badge-size: 16px;
+  --unooria-avatar-badge-font: 10px;
+  --unooria-avatar-remove-size: 16px;
+  --unooria-avatar-remove-icon: 9px;
+}
+
+/* md: 48px (Padrão) */
+.unooria-avatar--size-md {
+  --unooria-avatar-size: 48px;
+  --unooria-avatar-font-size: 16px;
+  --unooria-avatar-status-size: 12px;
+  --unooria-avatar-status-border: 2px;
+  --unooria-avatar-badge-size: 18px;
+  --unooria-avatar-badge-font: 11px;
+  --unooria-avatar-remove-size: 18px;
+  --unooria-avatar-remove-icon: 10px;
+}
+
+/* lg: 72px */
+.unooria-avatar--size-lg {
+  --unooria-avatar-size: 72px;
+  --unooria-avatar-font-size: 22px;
+  --unooria-avatar-status-size: 16px;
+  --unooria-avatar-status-border: 2.5px;
+  --unooria-avatar-badge-size: 22px;
+  --unooria-avatar-badge-font: 12px;
+  --unooria-avatar-remove-size: 22px;
+  --unooria-avatar-remove-icon: 12px;
+}
+
+/* xl: 100px */
+.unooria-avatar--size-xl {
+  --unooria-avatar-size: 100px;
+  --unooria-avatar-font-size: 32px;
+  --unooria-avatar-status-size: 20px;
+  --unooria-avatar-status-border: 3px;
+  --unooria-avatar-badge-size: 26px;
+  --unooria-avatar-badge-font: 14px;
+  --unooria-avatar-remove-size: 26px;
+  --unooria-avatar-remove-icon: 14px;
+}
+
+/* ==========================================================================
+   Variantes de Formato Geométrico
+   ========================================================================== */
+.unooria-avatar--variant-circle {
+  --unooria-avatar-radius: 9999px;
+}
+
+.unooria-avatar--variant-rounded.unooria-avatar--size-xs {
+  --unooria-avatar-radius: 6px;
+}
+.unooria-avatar--variant-rounded.unooria-avatar--size-sm {
+  --unooria-avatar-radius: 8px;
+}
+.unooria-avatar--variant-rounded.unooria-avatar--size-md {
+  --unooria-avatar-radius: 12px;
+}
+.unooria-avatar--variant-rounded.unooria-avatar--size-lg {
+  --unooria-avatar-radius: 16px;
+}
+.unooria-avatar--variant-rounded.unooria-avatar--size-xl {
+  --unooria-avatar-radius: 22px;
+}
+
+.unooria-avatar--variant-square {
+  --unooria-avatar-radius: 4px;
+}
+
+/* ==========================================================================
+   Corpo Interno do Avatar
+   ========================================================================== */
+.unooria-avatar__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--unooria-avatar-radius);
+  background-color: var(--unooria-avatar-bg);
+  color: var(--unooria-avatar-color);
+  box-shadow: inset 0 0 0 1px var(--unooria-avatar-border);
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+/* Imagem */
+.unooria-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+/* Iniciais */
+.unooria-avatar__initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: inherit;
+}
+
+/* Ícone */
+.unooria-avatar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 60%;
+  color: inherit;
+}
+
+.unooria-avatar__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Borda Selecionada com Gradiente Unooria
+   ========================================================================== */
+.unooria-avatar--selected::before {
+  content: '';
+  position: absolute;
+  inset: -3.5px;
+  border-radius: calc(var(--unooria-avatar-radius) + 3.5px);
+  background: var(--unooria-avatar-selected-gradient);
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.unooria-avatar--selected .unooria-avatar__inner {
+  box-shadow: 0 0 0 2px var(--unooria-avatar-cutout), inset 0 0 0 1px var(--unooria-avatar-border);
+}
+
+/* ==========================================================================
+   Indicador de Status (Presença)
+   ========================================================================== */
+.unooria-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: var(--unooria-avatar-status-size);
+  height: var(--unooria-avatar-status-size);
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: var(--unooria-avatar-status-border) solid var(--unooria-avatar-cutout);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.unooria-avatar--variant-circle .unooria-avatar__status {
+  transform: translate(5%, 5%);
+}
+
+.unooria-avatar--variant-rounded .unooria-avatar__status,
+.unooria-avatar--variant-square .unooria-avatar__status {
+  transform: translate(25%, 25%);
+}
+
+.unooria-avatar__status--online {
+  background-color: var(--unooria-color-success-500, #01B574);
+}
+
+.unooria-avatar__status--offline {
+  background-color: var(--unooria-color-neutral-300, #A7B5B9);
+}
+
+.unooria-avatar__status--busy {
+  background-color: var(--unooria-color-danger-500, #F83B3B);
+}
+
+.unooria-avatar__status--away {
+  background-color: var(--unooria-color-warning-500, #F97607);
+}
+
+/* ==========================================================================
+   Badge de Notificação
+   ========================================================================== */
+.unooria-avatar__badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: var(--unooria-avatar-badge-size);
+  height: var(--unooria-avatar-badge-size);
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--unooria-color-danger-500, #F83B3B);
+  color: #FFFFFF;
+  font-size: var(--unooria-avatar-badge-font);
+  font-weight: 700;
+  line-height: 1;
+  box-sizing: border-box;
+  border: 2px solid var(--unooria-avatar-cutout);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translate(30%, -25%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.unooria-avatar__badge--dot {
+  min-width: 10px;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  transform: translate(15%, -15%);
+}
+
+/* ==========================================================================
+   Botão de Remoção (X / Lixeira)
+   ========================================================================== */
+.unooria-avatar__remove-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -25%);
+  width: var(--unooria-avatar-remove-size);
+  height: var(--unooria-avatar-remove-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--unooria-avatar-cutout);
+  background-color: var(--unooria-avatar-remove-bg);
+  color: var(--unooria-avatar-remove-color);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  z-index: 4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.15s ease, color 0.15s ease;
+}
+
+.unooria-avatar__remove-btn svg {
+  width: var(--unooria-avatar-remove-icon);
+  height: var(--unooria-avatar-remove-icon);
+  display: block;
+}
+
+.unooria-avatar__remove-btn:hover {
+  background-color: var(--unooria-color-danger-600, #E31A1A);
+  color: #FFFFFF;
+  transform: translate(30%, -25%) scale(1.1);
+}
+
+.unooria-avatar__remove-btn:active {
+  transform: translate(30%, -25%) scale(0.95);
+}
+
+.unooria-avatar__remove-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-avatar-cutout), 0 0 0 4px var(--unooria-color-brandNavy-500, #8FAFE5);
+}
+
+/* ==========================================================================
+   Estados de Interação e Acessibilidade
+   ========================================================================== */
+.unooria-avatar--interactive {
+  cursor: pointer;
+}
+
+.unooria-avatar--interactive:hover .unooria-avatar__inner {
+  filter: brightness(0.96);
+}
+
+.unooria-avatar--interactive:active .unooria-avatar__inner {
+  filter: brightness(0.92);
+}
+
+.unooria-avatar--interactive:focus-visible {
+  outline: none;
+}
+
+.unooria-avatar--interactive:focus-visible .unooria-avatar__inner {
+  box-shadow: 0 0 0 2px var(--unooria-avatar-cutout), 0 0 0 4px var(--unooria-color-brandNavy-600, #7FA5E2);
+}
+
+.unooria-avatar--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Avatar Excedente (+N)
+   ========================================================================== */
+.unooria-avatar--extra {
+  background-color: var(--unooria-avatar-extra-bg);
+  color: var(--unooria-avatar-extra-color);
+  font-weight: 700;
+}
+
+.unooria-avatar--extra .unooria-avatar__inner {
+  background-color: var(--unooria-avatar-extra-bg);
+  color: var(--unooria-avatar-extra-color);
+}
+
+/* ==========================================================================
+   Componente AvatarGroup
+   ========================================================================== */
+.unooria-avatar-group {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+/* Espaçamento / Sobreposição */
+.unooria-avatar-group > .unooria-avatar:not(:first-child) {
+  margin-left: var(--unooria-avatar-group-overlap, -12px);
+}
+
+.unooria-avatar-group--spacing-tight {
+  --unooria-avatar-group-overlap: -16px;
+}
+.unooria-avatar-group--spacing-normal {
+  --unooria-avatar-group-overlap: -12px;
+}
+.unooria-avatar-group--spacing-relaxed {
+  --unooria-avatar-group-overlap: -8px;
+}
+
+/* Ajustes de margem negativa para tamanhos do AvatarGroup quando não especificado spacing explícito */
+.unooria-avatar-group:not([class*="unooria-avatar-group--spacing-"]) .unooria-avatar--size-xs:not(:first-child) {
+  --unooria-avatar-group-overlap: -8px;
+}
+.unooria-avatar-group:not([class*="unooria-avatar-group--spacing-"]) .unooria-avatar--size-sm:not(:first-child) {
+  --unooria-avatar-group-overlap: -10px;
+}
+.unooria-avatar-group:not([class*="unooria-avatar-group--spacing-"]) .unooria-avatar--size-md:not(:first-child) {
+  --unooria-avatar-group-overlap: -12px;
+}
+.unooria-avatar-group:not([class*="unooria-avatar-group--spacing-"]) .unooria-avatar--size-lg:not(:first-child) {
+  --unooria-avatar-group-overlap: -18px;
+}
+.unooria-avatar-group:not([class*="unooria-avatar-group--spacing-"]) .unooria-avatar--size-xl:not(:first-child) {
+  --unooria-avatar-group-overlap: -24px;
+}
+
+/* Anel de recorte nos itens do grupo */
+.unooria-avatar-group > .unooria-avatar {
+  box-shadow: 0 0 0 2px var(--unooria-avatar-cutout);
+}
+
+.unooria-avatar-group > .unooria-avatar:hover {
+  z-index: 5;
+  transform: translateY(-2px);
+}
