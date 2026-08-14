@@ -331,10 +331,8 @@ O repositório possui o workflow `.github/workflows/publish-npm.yml` pronto para
    ```bash
    git push origin main --tags
    ```
-3. Crie uma **Release** no GitHub a partir da tag gerada.
-4. O GitHub Actions executará o build, validação de tipos e o `npm publish --access public` automaticamente.
-
-*Também é possível disparar a publicação manualmente pela aba **Actions > Publicar Pacote no NPM > Run workflow** no GitHub.*
+3. O GitHub Actions detectará a tag `v*` e executará o build, validação de tipos e o `npm publish --access public` automaticamente!
+4. *(Opcional)* Você também pode criar uma **Release** no GitHub a partir da tag ou disparar manualmente pela aba **Actions > Publicar Pacote no NPM > Run workflow**.
 
 ---
 
