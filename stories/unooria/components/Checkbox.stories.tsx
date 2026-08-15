@@ -8,7 +8,7 @@ import {
   CheckboxTheme,
   CheckboxOption,
 } from '../../../src/unooria/components/Checkbox/Checkbox.types';
-import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 /* ==========================================================================
    Ícones Utilitários SVG Inline (Zero Dependências Externas)

@@ -1,7 +1,7 @@
 /**
  * Estilos do Componente NumberButton (Stepper Numérico)
  * Design System Plataforma Unooria
- * Especificação Fiel ao Figma (Nó #14662:399)
+ * Especificação Fiel ao Figma (Nó #14662:399 / Component Set #14662:31020)
  */
 
 /* ==========================================================================
@@ -11,14 +11,14 @@
 .unooria-number-button {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
   box-sizing: border-box;
-  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
-  border-radius: 8px;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  gap: 8px;
   background-color: transparent;
   user-select: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: all 0.2s ease;
   vertical-align: middle;
 }
 
@@ -30,53 +30,49 @@
    - XS: Body-XS Bold (14px / 20px / 700)
    ========================================================================== */
 
-/* Tamanho LG (Grande - ~48px altura) */
+/* Tamanho LG (Grande - 20px) */
 .unooria-number-button--size-lg {
-  height: 48px;
-  min-width: 144px;
-  padding: 2px;
-  gap: var(--unooria-spacing-xxs, 8px);
+  height: 36px;
+  gap: 8px;
 }
 
 .unooria-number-button--size-lg .unooria-number-button__action-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
 }
 
 .unooria-number-button--size-lg .unooria-number-button__input,
 .unooria-number-button--size-lg .unooria-number-button__display {
-  font-size: var(--unooria-size-title-l, 20px);
-  line-height: var(--unooria-line-height-title-l, 30px);
-  font-weight: var(--unooria-weight-bold, 700);
-  min-width: 48px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  min-width: 42px;
 }
 
 .unooria-number-button--size-lg .unooria-number-button__icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
-/* Tamanho MD (Padrão - ~40px altura) */
+/* Tamanho MD (Médio - 18px) */
 .unooria-number-button--size-md {
-  height: 40px;
-  min-width: 120px;
-  padding: 2px;
-  gap: var(--unooria-spacing-xxxs, 4px);
+  height: 32px;
+  gap: 8px;
 }
 
 .unooria-number-button--size-md .unooria-number-button__action-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
 }
 
 .unooria-number-button--size-md .unooria-number-button__input,
 .unooria-number-button--size-md .unooria-number-button__display {
-  font-size: var(--unooria-size-body-m, 18px);
-  line-height: var(--unooria-line-height-body-m, 28px);
-  font-weight: var(--unooria-weight-bold, 700);
-  min-width: 40px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  min-width: 36px;
 }
 
 .unooria-number-button--size-md .unooria-number-button__icon {
@@ -84,273 +80,180 @@
   height: 18px;
 }
 
-/* Tamanho SM (Pequeno - ~32px altura) */
+/* Tamanho SM (Pequeno - 16px) */
 .unooria-number-button--size-sm {
-  height: 32px;
-  min-width: 100px;
-  padding: 2px;
-  gap: var(--unooria-spacing-xxxs, 4px);
+  height: 28px;
+  gap: 8px;
 }
 
 .unooria-number-button--size-sm .unooria-number-button__action-btn {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 4px;
 }
 
 .unooria-number-button--size-sm .unooria-number-button__input,
 .unooria-number-button--size-sm .unooria-number-button__display {
-  font-size: var(--unooria-size-body-s, 16px);
-  line-height: var(--unooria-line-height-body-s, 24px);
-  font-weight: var(--unooria-weight-bold, 700);
-  min-width: 34px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  min-width: 32px;
 }
 
 .unooria-number-button--size-sm .unooria-number-button__icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
 }
 
-/* Tamanho XS (Extra Compacto - ~28px altura) */
+/* Tamanho XS (Extra Pequeno - 14px) */
 .unooria-number-button--size-xs {
-  height: 28px;
-  min-width: 88px;
-  padding: 1px;
-  gap: 2px;
+  height: 24px;
+  gap: 8px;
 }
 
 .unooria-number-button--size-xs .unooria-number-button__action-btn {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 4px;
 }
 
 .unooria-number-button--size-xs .unooria-number-button__input,
 .unooria-number-button--size-xs .unooria-number-button__display {
-  font-size: var(--unooria-size-body-xs, 14px);
-  line-height: var(--unooria-line-height-body-xs, 20px);
-  font-weight: var(--unooria-weight-bold, 700);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
   min-width: 28px;
 }
 
 .unooria-number-button--size-xs .unooria-number-button__icon {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 /* ==========================================================================
-   Temas (Light e Dark)
-   - Texto Light: #383E41 (var(--unooria-color-neutral-900))
-   - Texto Dark: #E4E8E9 (var(--unooria-color-neutral-150))
-   - Hover Action: rgba(127, 165, 226, 0.10) (var(--unooria-color-opacity-brandnavy-100))
-   - Active Action: rgba(127, 165, 226, 0.20) (var(--unooria-color-opacity-brandnavy-200))
-   - Disabled: #617379 (var(--unooria-color-neutral-500))
-   ========================================================================== */
-
-/* Tema Claro (Light) */
-.unooria-number-button--light,
-[data-theme='light'] .unooria-number-button {
-  color: var(--unooria-color-neutral-900, #383E41);
-  border: 1px solid var(--unooria-color-neutral-200, #CBD4D6);
-  background-color: var(--unooria-color-neutral-50, #FFFFFF);
-}
-
-.unooria-number-button--light .unooria-number-button__action-btn,
-[data-theme='light'] .unooria-number-button .unooria-number-button__action-btn {
-  color: var(--unooria-color-neutral-900, #383E41);
-  background-color: transparent;
-}
-
-.unooria-number-button--light .unooria-number-button__action-btn:hover:not(:disabled),
-.unooria-number-button--light.unooria-number-button--state-hover .unooria-number-button__action-btn:not(:disabled),
-[data-theme='light'] .unooria-number-button .unooria-number-button__action-btn:hover:not(:disabled) {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-  color: var(--unooria-color-neutral-950, #22272A);
-}
-
-.unooria-number-button--light .unooria-number-button__action-btn:active:not(:disabled),
-.unooria-number-button--light.unooria-number-button--state-active .unooria-number-button__action-btn:not(:disabled),
-[data-theme='light'] .unooria-number-button .unooria-number-button__action-btn:active:not(:disabled) {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
-}
-
-.unooria-number-button--light .unooria-number-button__input,
-[data-theme='light'] .unooria-number-button .unooria-number-button__input {
-  color: var(--unooria-color-neutral-900, #383E41);
-}
-
-.unooria-number-button--light.unooria-number-button--focused,
-.unooria-number-button--light.unooria-number-button--state-focus,
-.unooria-number-button--light:focus-within,
-[data-theme='light'] .unooria-number-button:focus-within {
-  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  box-shadow: 0 0 0 2px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.25));
-}
-
-/* Tema Escuro (Dark) */
-.unooria-number-button--dark,
-[data-theme='dark'] .unooria-number-button {
-  color: var(--unooria-color-neutral-150, #E4E8E9);
-  border: 1px solid var(--unooria-color-neutraldark-300, #475157);
-  background-color: var(--unooria-color-neutraldark-100, #22272A);
-}
-
-.unooria-number-button--dark .unooria-number-button__action-btn,
-[data-theme='dark'] .unooria-number-button .unooria-number-button__action-btn {
-  color: var(--unooria-color-neutral-150, #E4E8E9);
-  background-color: transparent;
-}
-
-.unooria-number-button--dark .unooria-number-button__action-btn:hover:not(:disabled),
-.unooria-number-button--dark.unooria-number-button--state-hover .unooria-number-button__action-btn:not(:disabled),
-[data-theme='dark'] .unooria-number-button .unooria-number-button__action-btn:hover:not(:disabled) {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.15));
-  color: #FFFFFF;
-}
-
-.unooria-number-button--dark .unooria-number-button__action-btn:active:not(:disabled),
-.unooria-number-button--dark.unooria-number-button--state-active .unooria-number-button__action-btn:not(:disabled),
-[data-theme='dark'] .unooria-number-button .unooria-number-button__action-btn:active:not(:disabled) {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.25));
-}
-
-.unooria-number-button--dark .unooria-number-button__input,
-[data-theme='dark'] .unooria-number-button .unooria-number-button__input {
-  color: var(--unooria-color-neutral-150, #E4E8E9);
-}
-
-.unooria-number-button--dark.unooria-number-button--focused,
-.unooria-number-button--dark.unooria-number-button--state-focus,
-.unooria-number-button--dark:focus-within,
-[data-theme='dark'] .unooria-number-button:focus-within {
-  border-color: var(--unooria-color-brandnavy-500, #8FAFE5);
-  box-shadow: 0 0 0 2px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.35));
-}
-
-/* ==========================================================================
-   Botões de Ação (- e +)
+   Botões de Ação (Remove - e Add +)
    ========================================================================== */
 
 .unooria-number-button__action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
   border: none;
-  background: transparent;
   padding: 0;
   margin: 0;
   cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+  color: inherit;
   outline: none;
-  font-family: inherit;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
   flex-shrink: 0;
 }
 
-.unooria-number-button__action-btn:focus-visible {
-  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
-  z-index: 1;
+.unooria-number-button__action-btn:disabled,
+.unooria-number-button--disabled .unooria-number-button__action-btn {
+  cursor: not-allowed;
+  opacity: 0.35;
+  background-color: transparent !important;
 }
 
-.unooria-number-button__action-btn:disabled,
-.unooria-number-button__action-btn[aria-disabled='true'] {
-  color: var(--unooria-color-neutral-500, #617379) !important;
-  cursor: not-allowed;
-  opacity: 0.45;
-  background-color: transparent !important;
+/* Estado Hover nos Botões de Ação (Figma: rgba(127, 165, 226, 0.1)) */
+.unooria-number-button:not(.unooria-number-button--disabled) .unooria-number-button__action-btn:hover:not(:disabled),
+.unooria-number-button--state-hover .unooria-number-button__action-btn,
+.unooria-number-button--hovered .unooria-number-button__action-btn {
+  background-color: rgba(127, 165, 226, 0.15);
+  border-radius: 4px;
+}
+
+.unooria-number-button:not(.unooria-number-button--disabled) .unooria-number-button__action-btn:active:not(:disabled),
+.unooria-number-button--state-active .unooria-number-button__action-btn {
+  background-color: rgba(127, 165, 226, 0.25);
+  transform: scale(0.96);
+}
+
+.unooria-number-button__action-btn:focus-visible {
+  outline: 2px solid #6487C2;
+  outline-offset: 1px;
 }
 
 .unooria-number-button__icon {
   display: block;
-  pointer-events: none;
+  flex-shrink: 0;
+  stroke: currentColor;
 }
 
 /* ==========================================================================
-   Área Central: Display & Input Numérico
+   Display Numérico Central & Input
    ========================================================================== */
 
-.unooria-number-button__center {
-  display: inline-flex;
+.unooria-number-button__value-wrapper {
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
   position: relative;
-  box-sizing: border-box;
-  padding: 0 4px;
+  text-align: center;
 }
 
-.unooria-number-button__input,
 .unooria-number-button__display {
-  width: 100%;
+  display: inline-block;
   text-align: center;
-  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
-  font-weight: var(--unooria-weight-bold, 700);
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.unooria-number-button__input {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
   background: transparent;
   border: none;
   outline: none;
+  text-align: center;
+  font-family: inherit;
+  color: inherit;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  letter-spacing: var(--unooria-letter-spacing-tight, -0.01em);
+  width: auto;
+  box-sizing: content-box;
 }
 
-/* Remove botões de spin nativos dos navegadores */
 .unooria-number-button__input::-webkit-outer-spin-button,
 .unooria-number-button__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.unooria-number-button__input[type='number'] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-.unooria-number-button__input:disabled,
-.unooria-number-button__input[aria-disabled='true'] {
-  color: var(--unooria-color-neutral-500, #617379);
-  cursor: not-allowed;
-}
-
-/* Afixos: Prefixo e Sufixo */
-.unooria-number-button__affix {
-  font-size: 0.85em;
-  opacity: 0.75;
-  font-weight: var(--unooria-weight-medium, 500);
-  display: inline-flex;
-  align-items: center;
-}
-
-.unooria-number-button__affix--prefix {
-  margin-right: 4px;
-}
-
-.unooria-number-button__affix--suffix {
-  margin-left: 4px;
+.unooria-number-button__input:focus {
+  outline: none;
 }
 
 /* ==========================================================================
-   Estados Globais (Disabled, ReadOnly, Forçados)
+   Temas Visuais (Light vs Dark)
    ========================================================================== */
 
-/* Estado Disabled */
-.unooria-number-button--disabled,
-.unooria-number-button.unooria-number-button--state-disabled {
-  opacity: 0.55;
-  cursor: not-allowed !important;
-  color: var(--unooria-color-neutral-500, #617379) !important;
+/* Tema Claro (Light - Padrão Figma) */
+.unooria-number-button--theme-light {
+  color: #383E41;
 }
 
-.unooria-number-button--disabled *,
-.unooria-number-button.unooria-number-button--state-disabled * {
-  cursor: not-allowed !important;
+.unooria-number-button--theme-light.unooria-number-button--disabled,
+.unooria-number-button--theme-light.unooria-number-button--state-disable {
+  color: #617379;
 }
 
-/* Estado ReadOnly */
-.unooria-number-button--readonly .unooria-number-button__action-btn {
-  pointer-events: none;
-  opacity: 0.35;
+/* Tema Escuro (Dark) */
+.unooria-number-button--theme-dark {
+  color: #F5F5F5;
 }
 
-.unooria-number-button--readonly .unooria-number-button__input {
-  cursor: default;
+.unooria-number-button--theme-dark.unooria-number-button--disabled,
+.unooria-number-button--theme-dark.unooria-number-button--state-disable {
+  color: #617379;
+}
+
+.unooria-number-button--theme-dark:not(.unooria-number-button--disabled) .unooria-number-button__action-btn:hover:not(:disabled),
+.unooria-number-button--theme-dark.unooria-number-button--state-hover .unooria-number-button__action-btn {
+  background-color: rgba(127, 165, 226, 0.2);
+  color: #FFFFFF;
 }

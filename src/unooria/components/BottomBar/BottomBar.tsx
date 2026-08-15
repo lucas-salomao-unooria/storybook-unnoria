@@ -5,35 +5,49 @@ import {
   BottomBarItemData,
   BottomBarActionProps,
 } from './BottomBar.types';
-import '../../tokens/colors.css';
-import '../../tokens/spacing.css';
-import '../../tokens/typography.css';
-import '../../tokens/elevation.css';
-import '../../tokens/blur.css';
+import { Badge } from '../Badge/Badge';
 import './BottomBar.css';
 
 /**
- * Ícone padrão de Adição / Ação Rápida (+)
+ * Ícone padrão de Adição (+)
  */
 const DefaultPlusIcon: React.FC = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" width="18" height="18">
     <line x1="12" y1="5" x2="12" y2="19" />
     <line x1="5" y1="12" x2="19" y2="12" />
   </svg>
 );
 
 /**
+ * Ícone padrão de Apps (Grid 3x3)
+ */
+export const AppsIcon: React.FC = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18">
+    <circle cx="5" cy="5" r="2" />
+    <circle cx="12" cy="5" r="2" />
+    <circle cx="19" cy="5" r="2" />
+    <circle cx="5" cy="12" r="2" />
+    <circle cx="12" cy="12" r="2" />
+    <circle cx="19" cy="12" r="2" />
+    <circle cx="5" cy="19" r="2" />
+    <circle cx="12" cy="19" r="2" />
+    <circle cx="19" cy="19" r="2" />
+  </svg>
+);
+
+/**
+ * Ícone padrão de Menu (Hambúrguer)
+ */
+export const MenuIcon: React.FC = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" width="18" height="18">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
+/**
  * Subcomponente Botão Central de Ação (`BottomBarAction`)
- *
- * Utilizado para ações de alta relevância (ex: Criar Novo, Adicionar, FAB central).
  */
 export const BottomBarAction = React.forwardRef<HTMLButtonElement, BottomBarActionProps>(
   (
@@ -53,22 +67,12 @@ export const BottomBarAction = React.forwardRef<HTMLButtonElement, BottomBarActi
     },
     ref
   ) => {
-    const actionClasses = [
-      'unooria-bottom-bar-action',
-      `unooria-bottom-bar-action--${size}`,
-      `unooria-bottom-bar-action--variant-${variant}`,
-      `unooria-bottom-bar-action--${theme}`,
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
     return (
       <Component
         ref={ref}
         type={Component === 'button' ? 'button' : undefined}
         href={href}
-        className={actionClasses}
+        className={`unooria-bottom-bar-action unooria-bottom-bar-action--${size} ${className}`}
         style={style}
         onClick={disabled ? undefined : onClick}
         disabled={disabled}
@@ -87,7 +91,7 @@ export const BottomBarAction = React.forwardRef<HTMLButtonElement, BottomBarActi
 BottomBarAction.displayName = 'BottomBarAction';
 
 /**
- * Subcomponente Item Individual de Navegação (`BottomBarItem`)
+ * Subcomponente Item Individual de Navegação (`BottomBarItem`) com Tooltip a 4px
  */
 export const BottomBarItem = React.forwardRef<HTMLElement, BottomBarItemProps>(
   (
@@ -95,25 +99,20 @@ export const BottomBarItem = React.forwardRef<HTMLElement, BottomBarItemProps>(
       id,
       label,
       icon,
+      tooltip,
       badge,
       active = false,
       disabled = false,
       href,
-      showLabel = true,
-      theme = 'light',
       onClick,
-      as: Component,
-      ariaLabel,
+      as: Component = 'button',
+      theme = 'light',
       className = '',
       style,
-      children,
       ...restProps
     },
     ref
   ) => {
-    const isLink = Boolean(href);
-    const ElementComponent = Component || (isLink ? 'a' : 'button');
-
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
       if (disabled) {
         e.preventDefault();
@@ -124,70 +123,56 @@ export const BottomBarItem = React.forwardRef<HTMLElement, BottomBarItemProps>(
       }
     };
 
+    const tooltipText = tooltip || (typeof label === 'string' ? label : undefined);
+
     const itemClasses = [
-      'unooria-bottom-bar-item',
-      active ? 'unooria-bottom-bar-item--active' : '',
-      disabled ? 'unooria-bottom-bar-item--disabled' : '',
+      'unooria-bottom-bar__item',
+      active ? 'unooria-bottom-bar__item--active' : '',
+      disabled ? 'unooria-bottom-bar__item--disabled' : '',
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
-    const accessibleLabel =
-      ariaLabel || (typeof label === 'string' ? label : undefined) || id;
-
-    // Renderização inteligente de Badge
-    const renderBadge = () => {
-      if (badge === undefined || badge === null || badge === false) {
-        return null;
-      }
-
-      if (badge === true) {
-        return (
-          <span
-            className="unooria-bottom-bar-item__badge unooria-bottom-bar-item__badge--dot"
-            aria-hidden="true"
-          />
-        );
-      }
-
-      return (
-        <span className="unooria-bottom-bar-item__badge" aria-hidden="true">
-          {badge}
-        </span>
-      );
-    };
-
     return (
-      <ElementComponent
+      <Component
         ref={ref}
-        type={ElementComponent === 'button' ? 'button' : undefined}
+        type={Component === 'button' ? 'button' : undefined}
         href={href}
         className={itemClasses}
         style={style}
         onClick={handleClick}
         disabled={disabled}
         aria-selected={active}
-        aria-label={accessibleLabel}
-        aria-disabled={disabled ? true : undefined}
         role="tab"
-        tabIndex={disabled ? -1 : active ? 0 : -1}
+        tabIndex={active ? 0 : -1}
         {...restProps}
       >
-        {children ? (
-          children
-        ) : (
-          <>
-            <div className="unooria-bottom-bar-item__icon-wrapper">
-              {icon && <span className="unooria-bottom-bar-item__icon">{icon}</span>}
-              {renderBadge()}
-            </div>
-            {showLabel && label && (
-              <span className="unooria-bottom-bar-item__label">{label}</span>
-            )}
-          </>
+        {/* Tooltip Superior com 4px de distância conforme Figma */}
+        {tooltipText && (
+          <div className="unooria-bottom-bar__tooltip" role="tooltip" aria-hidden="true">
+            <div className="unooria-bottom-bar__tooltip-content">{tooltipText}</div>
+            <div className="unooria-bottom-bar__tooltip-arrow" />
+          </div>
         )}
-      </ElementComponent>
+
+        <div className="unooria-bottom-bar__icon-btn">
+          {icon}
+
+          {/* Badge Acoplado */}
+          {badge !== undefined && badge !== false && (
+            <span style={{ position: 'absolute', top: -4, right: -4 }}>
+              {typeof badge === 'boolean' ? (
+                <Badge variant="error" number="off" />
+              ) : (
+                <Badge variant="error" number="on">
+                  {badge}
+                </Badge>
+              )}
+            </span>
+          )}
+        </div>
+      </Component>
     );
   }
 );
@@ -195,27 +180,24 @@ export const BottomBarItem = React.forwardRef<HTMLElement, BottomBarItemProps>(
 BottomBarItem.displayName = 'BottomBarItem';
 
 /**
- * Componente BottomBar - Design System Plataforma Unooria
- *
- * Barra de navegação inferior essencial para aplicações web responsivas e mobile-first.
- * Suporta três variantes principais: `fixed` (ancorada), `floating` (dock flutuante) e `top-center` (com botão de ação central FAB).
+ * Componente Principal BottomBar - Design System Unooria
  */
 export const BottomBar = React.forwardRef<HTMLElement, BottomBarProps>(
   (
     {
-      variant = 'fixed',
-      theme = 'light',
-      items,
+      items = [],
       activeId: controlledActiveId,
       defaultActiveId,
       onChange,
-      onSelect,
-      centerAction,
-      fixedToBottom = false,
-      showLabels = true,
-      safeArea = true,
+      variant = 'fixed',
+      theme = 'light',
       maxWidth,
-      ariaLabel = 'Navegação inferior',
+      hasSafeArea = true,
+      action,
+      actionPosition = 'center',
+      menuMobItems = [],
+      isMenuMobOpen: controlledMenuOpen,
+      onMenuMobToggle,
       children,
       className = '',
       style,
@@ -223,161 +205,119 @@ export const BottomBar = React.forwardRef<HTMLElement, BottomBarProps>(
     },
     ref
   ) => {
-    // Gerenciamento de estado de seleção (controlado vs não-controlado)
-    const [internalActiveId, setInternalActiveId] = useState<string>(
-      defaultActiveId || (items && items.length > 0 ? items[0].id : '')
+    const [uncontrolledActiveId, setUncontrolledActiveId] = useState<string>(
+      defaultActiveId || (items[0]?.id ?? '')
     );
+    const [internalMenuOpen, setInternalMenuOpen] = useState(false);
 
     const isControlled = controlledActiveId !== undefined;
-    const currentActiveId = isControlled ? controlledActiveId : internalActiveId;
+    const currentActiveId = isControlled ? controlledActiveId : uncontrolledActiveId;
+    const isMenuOpen = controlledMenuOpen !== undefined ? controlledMenuOpen : internalMenuOpen;
 
-    const handleItemSelect = (id: string, e: React.MouseEvent<HTMLElement>) => {
+    const handleItemClick = (id: string, e: React.MouseEvent<HTMLElement>) => {
       if (!isControlled) {
-        setInternalActiveId(id);
+        setUncontrolledActiveId(id);
+      }
+      const clickedItem = items.find((it) => it.id === id);
+      if (clickedItem?.onClick) {
+        clickedItem.onClick(id, e);
       }
       if (onChange) {
-        onChange(id);
-      }
-      if (onSelect) {
-        onSelect(id);
+        onChange(id, clickedItem);
       }
     };
 
-    // Renderizador do botão central de ação
-    const renderCenterAction = () => {
-      if (!centerAction) {
-        if (variant === 'top-center') {
-          return <BottomBarAction theme={theme} />;
-        }
-        return null;
+    const toggleMenuMob = () => {
+      const next = !isMenuOpen;
+      if (onMenuMobToggle) {
+        onMenuMobToggle(next);
+      } else {
+        setInternalMenuOpen(next);
       }
-
-      if (React.isValidElement(centerAction)) {
-        return centerAction;
-      }
-
-      return (
-        <BottomBarAction
-          theme={theme}
-          {...(centerAction as BottomBarActionProps)}
-        />
-      );
     };
 
-    // Classes do componente
     const barClasses = [
       'unooria-bottom-bar',
       `unooria-bottom-bar--variant-${variant}`,
-      `unooria-bottom-bar--${theme}`,
-      safeArea ? 'unooria-bottom-bar--safe-area' : '',
-      variant === 'floating' ? 'unooria-bottom-bar--floating-shape' : '',
+      `unooria-bottom-bar--theme-${theme}`,
+      hasSafeArea ? 'unooria-bottom-bar--safe-area' : '',
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
-    const wrapperClasses = [
-      'unooria-bottom-bar-wrapper',
-      fixedToBottom ? 'unooria-bottom-bar-wrapper--fixed' : '',
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const containerStyle: React.CSSProperties = {
-      maxWidth: maxWidth ? (typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth) : undefined,
+    const wrapperStyle: React.CSSProperties = {
+      maxWidth: maxWidth || (variant === 'fixed' ? '100%' : 'fit-content'),
       ...style,
     };
 
-    // Divisão de itens quando há botão central na variante top-center
-    const renderItemsDeclarative = (itemList: BottomBarItemData[]) => {
-      const hasCenter = Boolean(centerAction || variant === 'top-center');
-
-      if (hasCenter && itemList.length >= 2) {
-        const midPoint = Math.ceil(itemList.length / 2);
-        const leftItems = itemList.slice(0, midPoint);
-        const rightItems = itemList.slice(midPoint);
-
-        return (
-          <div className="unooria-bottom-bar__items" role="tablist">
-            <div className="unooria-bottom-bar__items-group">
-              {leftItems.map((item) => (
-                <BottomBarItem
-                  key={item.id}
-                  {...item}
-                  theme={theme}
-                  showLabel={showLabels}
-                  active={item.active !== undefined ? item.active : currentActiveId === item.id}
-                  onClick={(id, e) => {
-                    if (item.onClick) item.onClick(id, e);
-                    handleItemSelect(id, e);
+    return (
+      <div className="unooria-bottom-bar-wrapper">
+        <nav
+          ref={ref}
+          role="tablist"
+          aria-label="Navegação inferior"
+          className={barClasses}
+          style={wrapperStyle}
+          data-theme={theme}
+          {...restProps}
+        >
+          {/* Menu-Mob Popover Flutuante */}
+          {variant === 'mobile-dock' && isMenuOpen && menuMobItems.length > 0 && (
+            <div className="unooria-bottom-bar__menumob-popover">
+              {menuMobItems.map((menuItem) => (
+                <button
+                  key={menuItem.id}
+                  type="button"
+                  className="unooria-bottom-bar__menumob-item"
+                  onClick={(e) => {
+                    if (menuItem.onClick) menuItem.onClick(menuItem.id, e);
+                    toggleMenuMob();
                   }}
-                />
+                >
+                  {menuItem.icon}
+                  <span>{menuItem.label}</span>
+                </button>
               ))}
             </div>
+          )}
 
-            <div className="unooria-bottom-bar__center-container">
-              {renderCenterAction()}
-            </div>
-
-            <div className="unooria-bottom-bar__items-group">
-              {rightItems.map((item) => (
-                <BottomBarItem
-                  key={item.id}
-                  {...item}
-                  theme={theme}
-                  showLabel={showLabels}
-                  active={item.active !== undefined ? item.active : currentActiveId === item.id}
-                  onClick={(id, e) => {
-                    if (item.onClick) item.onClick(id, e);
-                    handleItemSelect(id, e);
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        );
-      }
-
-      return (
-        <div className="unooria-bottom-bar__items" role="tablist">
-          {itemList.map((item) => (
+          {/* Renderização de itens fornecidos via prop items */}
+          {items.map((item) => (
             <BottomBarItem
               key={item.id}
               {...item}
               theme={theme}
-              showLabel={showLabels}
-              active={item.active !== undefined ? item.active : currentActiveId === item.id}
-              onClick={(id, e) => {
-                if (item.onClick) item.onClick(id, e);
-                handleItemSelect(id, e);
-              }}
+              active={item.active ?? item.id === currentActiveId}
+              onClick={handleItemClick}
             />
           ))}
-          {hasCenter && (
-            <div className="unooria-bottom-bar__center-container">
-              {renderCenterAction()}
-            </div>
-          )}
-        </div>
-      );
-    };
 
-    return (
-      <div className={wrapperClasses}>
-        <nav
-          ref={ref}
-          aria-label={ariaLabel}
-          className={barClasses}
-          style={containerStyle}
-          {...restProps}
-        >
-          {items && items.length > 0 ? (
-            renderItemsDeclarative(items)
-          ) : (
-            <div className="unooria-bottom-bar__items" role="tablist">
-              {children}
-            </div>
+          {/* Botão de expansão do Menu-Mob se aplicável */}
+          {variant === 'mobile-dock' && (
+            <>
+              <button
+                type="button"
+                className="unooria-bottom-bar__icon-btn"
+                onClick={toggleMenuMob}
+                aria-label="Abrir aplicativos"
+                style={{ cursor: 'pointer', border: 'none' }}
+              >
+                <AppsIcon />
+              </button>
+              <button
+                type="button"
+                className="unooria-bottom-bar__icon-btn"
+                onClick={toggleMenuMob}
+                aria-label="Abrir menu"
+                style={{ cursor: 'pointer', border: 'none' }}
+              >
+                <MenuIcon />
+              </button>
+            </>
           )}
+
+          {children}
         </nav>
       </div>
     );

@@ -1,0 +1,385 @@
+/**
+ * Estilos do Componente Modal - Design System Unooria
+ * Especificação baseada no Figma Nó #8909:60
+ */
+
+/* ==========================================================================
+   Variáveis e Tokens Locais do Modal
+   ========================================================================== */
+.unooria-modal-overlay {
+  --unooria-modal-overlay-bg: rgba(34, 39, 42, 0.4); /* Overlay/Dark 300 */
+  --unooria-modal-overlay-blur: 8px;
+  --unooria-modal-bg: #FFFFFF;
+  --unooria-modal-border: #E4E8E9;
+  --unooria-modal-text-primary: #22272A;
+  --unooria-modal-text-secondary: #617379;
+  --unooria-modal-radius: 16px;
+  --unooria-modal-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 24px rgba(14, 16, 57, 0.08);
+  --unooria-modal-close-hover: rgba(34, 39, 42, 0.08);
+  --unooria-modal-close-active: rgba(34, 39, 42, 0.14);
+  --unooria-modal-close-color: #617379;
+  --unooria-modal-focus-ring: rgba(127, 165, 226, 0.5);
+
+  /* Dimensões dos Tamanhos */
+  --unooria-modal-width-sm: 400px;
+  --unooria-modal-width-md: 617px; /* Dimensão exata do Figma #8909:60 */
+  --unooria-modal-width-lg: 800px;
+  --unooria-modal-width-full: calc(100vw - 32px);
+}
+
+/* Modo Escuro (Dark Mode) */
+.unooria-modal-overlay--dark,
+[data-theme='dark'] .unooria-modal-overlay,
+.unooria-modal-overlay[data-theme='dark'] {
+  --unooria-modal-overlay-bg: rgba(0, 0, 0, 0.65); /* Overlay/Dark Escurecido */
+  --unooria-modal-bg: #22272A;
+  --unooria-modal-border: #3D4448;
+  --unooria-modal-text-primary: #FFFFFF;
+  --unooria-modal-text-secondary: #A7B5B9;
+  --unooria-modal-shadow: 0px 20px 30px -5px rgba(0, 0, 0, 0.5), 0px 0px 20px rgba(0, 0, 0, 0.35);
+  --unooria-modal-close-hover: rgba(255, 255, 255, 0.1);
+  --unooria-modal-close-active: rgba(255, 255, 255, 0.18);
+  --unooria-modal-close-color: #A7B5B9;
+  --unooria-modal-focus-ring: rgba(127, 165, 226, 0.6);
+}
+
+/* ==========================================================================
+   Overlay (Backdrop)
+   ========================================================================== */
+.unooria-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: var(--unooria-modal-overlay-bg);
+  backdrop-filter: blur(var(--unooria-modal-overlay-blur));
+  -webkit-backdrop-filter: blur(var(--unooria-modal-overlay-blur));
+  animation: unooria-modal-fade-in 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Contêiner do Modal (Dialog Sheet)
+   ========================================================================== */
+.unooria-modal__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - 32px);
+  background-color: var(--unooria-modal-bg);
+  border: 1px solid var(--unooria-modal-border);
+  border-radius: var(--unooria-modal-radius);
+  box-shadow: var(--unooria-modal-shadow);
+  color: var(--unooria-modal-text-primary);
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  animation: unooria-modal-scale-up 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+  outline: none;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Variações de Tamanho (Sizes)
+   ========================================================================== */
+.unooria-modal__container--sm {
+  max-width: var(--unooria-modal-width-sm);
+}
+
+.unooria-modal__container--md {
+  max-width: var(--unooria-modal-width-md);
+}
+
+.unooria-modal__container--lg {
+  max-width: var(--unooria-modal-width-lg);
+}
+
+.unooria-modal__container--full {
+  max-width: var(--unooria-modal-width-full);
+  height: calc(100vh - 32px);
+}
+
+/* ==========================================================================
+   Cabeçalho (Header)
+   Espaçamento Figma: 24px entre título e o botão de fechar (X)
+   ========================================================================== */
+.unooria-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 24px 16px 24px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.unooria-modal__header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.unooria-modal__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Título do Modal */
+.unooria-modal__title {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  color: var(--unooria-modal-text-primary);
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+/* Descrição / Subtítulo */
+.unooria-modal__description {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--unooria-modal-text-secondary);
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   Botão Fechar (Close Button)
+   ========================================================================== */
+.unooria-modal__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--unooria-modal-close-color);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, transform 100ms ease;
+  flex-shrink: 0;
+}
+
+.unooria-modal__close-btn:hover {
+  background-color: var(--unooria-modal-close-hover);
+  color: var(--unooria-modal-text-primary);
+}
+
+.unooria-modal__close-btn:active {
+  background-color: var(--unooria-modal-close-active);
+  transform: scale(0.96);
+}
+
+.unooria-modal__close-btn:focus-visible {
+  outline: 2px solid var(--unooria-modal-focus-ring);
+  outline-offset: 2px;
+}
+
+.unooria-modal__close-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* ==========================================================================
+   Corpo de Conteúdo (Body)
+   Espaçamento Figma:
+   - 24px entre título e o conteúdo
+   - 16px entre os componentes do conteúdo
+   ========================================================================== */
+.unooria-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px 24px 24px;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--unooria-modal-text-primary);
+}
+
+.unooria-modal__body--padding-none {
+  padding: 0;
+}
+
+.unooria-modal__body--padding-sm {
+  padding: 0 16px 16px 16px;
+}
+
+.unooria-modal__body--padding-md {
+  padding: 0 24px 24px 24px;
+}
+
+.unooria-modal__body--padding-lg {
+  padding: 0 32px 32px 32px;
+}
+
+.unooria-modal__body--scrollable {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Scrollbar customizada e elegante */
+.unooria-modal__body--scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.unooria-modal__body--scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.unooria-modal__body--scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(97, 115, 121, 0.25);
+  border-radius: 999px;
+}
+
+.unooria-modal__body--scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(97, 115, 121, 0.45);
+}
+
+/* ==========================================================================
+   Rodapé (Footer)
+   Espaçamento Figma: 16px entre botões de ação
+   ========================================================================== */
+.unooria-modal__footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px 24px 24px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.unooria-modal__footer--align-start {
+  justify-content: flex-start;
+}
+
+.unooria-modal__footer--align-center {
+  justify-content: center;
+}
+
+.unooria-modal__footer--align-end {
+  justify-content: flex-end;
+}
+
+.unooria-modal__footer--align-space-between {
+  justify-content: space-between;
+}
+
+.unooria-modal__footer--divider {
+  border-top: 1px solid var(--unooria-modal-border);
+  padding-top: 20px;
+}
+
+/* Botões do Rodapé */
+.unooria-modal__footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   Animações de Entrada (Keyframes)
+   ========================================================================== */
+@keyframes unooria-modal-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes unooria-modal-scale-up {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsividade Mobile (Figma spec: adaptação em dispositivos móveis)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .unooria-modal-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .unooria-modal__container {
+    max-height: 90vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    animation-name: unooria-modal-slide-up;
+  }
+
+  .unooria-modal__header {
+    padding: 20px 16px 12px 16px;
+    gap: 16px;
+  }
+
+  .unooria-modal__title {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .unooria-modal__body {
+    padding: 0 16px 20px 16px;
+  }
+
+  .unooria-modal__body--padding-sm,
+  .unooria-modal__body--padding-md,
+  .unooria-modal__body--padding-lg {
+    padding: 0 16px 20px 16px;
+  }
+
+  .unooria-modal__footer {
+    padding: 12px 16px 20px 16px;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .unooria-modal__footer > * {
+    width: 100%;
+  }
+
+  .unooria-modal__footer-actions {
+    width: 100%;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .unooria-modal__footer-actions > * {
+    width: 100%;
+  }
+
+  @keyframes unooria-modal-slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

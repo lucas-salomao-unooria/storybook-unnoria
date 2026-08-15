@@ -2,11 +2,11 @@ import React from 'react';
 import type { UnooriaTheme } from '../../tokens';
 
 /**
- * Escala de tamanhos suportada pelo NumberButton
- * - xs: Compacto para densidade extrema de informação (~28px)
- * - sm: Pequeno para formulários compactos e tabelas (~32px)
- * - md: Padrão do Design System Unooria (~40px)
- * - lg: Proeminente para ações prioritárias ou touch interfaces (~48px)
+ * Escala de tamanhos suportada pelo NumberButton conforme o Figma (Node #14662:399)
+ * - 'lg': Title-L Bold (20px / 30px / 700)
+ * - 'md': Body-M Bold (18px / 28px / 700)
+ * - 'sm': Body-S Bold (16px / 24px / 700)
+ * - 'xs': Body-XS Bold (14px / 20px / 700)
  */
 export type NumberButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
@@ -16,13 +16,13 @@ export type NumberButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 export type NumberButtonTheme = UnooriaTheme;
 
 /**
- * Estados visuais suportados para homologação e inspeção
+ * Estados visuais suportados para homologação e inspeção (Figma: State)
  */
-export type NumberButtonState = 'default' | 'hover' | 'active' | 'focus' | 'disabled';
+export type NumberButtonState = 'default' | 'hover' | 'active' | 'focus' | 'disable' | 'disabled';
 
 /**
  * Propriedades públicas do componente NumberButton (Stepper Numérico)
- * Baseado nas especificações oficiais do Figma (nó #14662:399)
+ * Baseado nas especificações oficiais do Figma (nó #14662:399 / Component Set #14662:31020)
  */
 export interface NumberButtonProps {
   /**
@@ -60,7 +60,7 @@ export interface NumberButtonProps {
   onChange?: (value: number) => void;
 
   /**
-   * Desabilita a interação com o componente e aplica estilo visual desabilitado.
+   * Desabilita a interação com o componente e aplica estilo visual desabilitado (Figma: State=Disable).
    * @default false
    */
   disabled?: boolean;
@@ -72,8 +72,7 @@ export interface NumberButtonProps {
   isDisabled?: boolean;
 
   /**
-   * Define o componente como somente leitura. Os botões são desabilitados,
-   * mas a aparência permanece não esmaecida.
+   * Define o componente como somente leitura.
    * @default false
    */
   readOnly?: boolean;
@@ -89,15 +88,24 @@ export interface NumberButtonProps {
   size?: NumberButtonSize;
 
   /**
+   * Alias de compatibilidade para `size` (Figma: Tamanho).
+   */
+  tamanho?: NumberButtonSize;
+
+  /**
    * Tema de cor da interface (Light ou Dark).
    * @default 'light'
    */
   theme?: NumberButtonTheme;
 
   /**
+   * Quantidade de dígitos para preenchimento com zeros à esquerda (ex: padLength=3 exibe "000", "007").
+   * Ideal para reproduzir fielmente a tipografia "000" do Figma.
+   */
+  padLength?: number;
+
+  /**
    * Função customizada de formatação visual do número exibido.
-   * Útil para formatar zeros à esquerda (ex: `v => String(v).padStart(3, '0')`),
-   * moedas, unidades de medida, etc.
    */
   formatValue?: (value: number) => string | number;
 
@@ -113,12 +121,12 @@ export interface NumberButtonProps {
   allowInput?: boolean;
 
   /**
-   * Elemento ou texto exibido antes do valor central (ex: prefixo 'R$' ou ícone).
+   * Elemento ou texto exibido antes do valor central (ex: prefixo 'R$').
    */
   prefix?: React.ReactNode;
 
   /**
-   * Elemento ou texto exibido depois do valor central (ex: sufixo 'kg', 'itens', '%').
+   * Elemento ou texto exibido depois do valor central (ex: sufixo 'kg', 'un').
    */
   suffix?: React.ReactNode;
 

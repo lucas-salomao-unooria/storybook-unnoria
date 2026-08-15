@@ -1,6 +1,26 @@
-/**
- * Exportação pública do componente Card e seus subcomponentes - Plataforma Unooria
- */
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardMedia,
+  CardContent,
+  CardFooter,
+  CardProgress,
+} from './Card';
 
-export * from './Card';
-export * from './Card.types';
+export type {
+  CardProps,
+  CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
+  CardMediaProps,
+  CardContentProps,
+  CardFooterProps,
+  CardProgressProps,
+  CardMetadataItem,
+  CardActionItem,
+  CardVariant,
+  CardOrientation,
+  CardTheme,
+} from './Card.types';

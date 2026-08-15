@@ -1,4 +1,4 @@
-# Guia de Desenvolvimento do Gemini / Agentes - Design System Unooria
+# Guia de Desenvolvimento do Gemini / Agentes - Design System Unooria (Padrão Ouro)
 
 Este documento estabelece as regras e padrões arquiteturais obrigatórios para desenvolvimento, criação de componentes e documentação no Storybook para a Plataforma Unooria.
 
@@ -10,31 +10,38 @@ Este documento estabelece as regras e padrões arquiteturais obrigatórios para 
 - A pasta `src/` é estritamente destinada ao código de produção do pacote React/NPM.
 - **REGRA CRÍTICA / PROIBIDO**: **NUNCA** inclua arquivos `.stories.tsx` dentro da pasta `src/`.
 - Estrutura esperada por componente em `src/unooria/components/[NomeComponente]/`:
-  - `[NomeComponente].tsx`: Código do componente React.
+  - `[NomeComponente].tsx`: Código do componente React com hooks, forwardRef e acessibilidade.
   - `[NomeComponente].types.ts`: Tipos e interfaces TypeScript.
-  - `[NomeComponente].css` (opcional): Estilização utilizando os tokens CSS de `src/unooria/tokens/`.
+  - `[NomeComponente].css` (opcional): Estilização utilizando exclusivamente os tokens CSS de `src/unooria/tokens/`.
   - `index.ts`: Re-exportação do componente e dos tipos.
-- Todos os componentes criados devem ser registrados em `src/unooria/components/index.ts` e no index raiz do pacote em `src/index.ts`.
+- **Re-exportações Globais**: Todos os componentes criados devem ser registrados em `src/unooria/components/index.ts` e no index raiz do pacote em `src/index.ts`.
+- **Tokens**: Armazenados em `src/unooria/tokens/` (`colors.css`, `typography.css`, `spacing.css`, `elevation.css`, `blur.css`, `grids.css`, etc.).
 
 ### `stories/` (Ambiente de Testes, Exibição e Documentação Storybook)
 - A pasta `stories/` é o local exclusivo para todas as estórias e documentações do Storybook.
-- **Componentes Unooria**: `stories/unooria/components/[NomeComponente].stories.tsx`.
-- **Fundação & Tokens Unooria**: `stories/unooria/foundation/` (`Colors.stories.tsx`, `Typography.stories.tsx`, `Spacing.stories.tsx`, `Elevation.stories.tsx`, etc.).
-- **Clone WhatsApp**: `stories/whatsapp/` (para tokens e componentes do clone WhatsApp).
+- **Componentes da Plataforma Unooria**: `stories/unooria/components/[NomeComponente].stories.tsx`.
+- **Fundação & Tokens Unooria**: `stories/unooria/foundation/` (`Colors.stories.tsx`, `Typography.stories.tsx`, `Spacing.stories.tsx`, `Elevation.stories.tsx`, `Blur.stories.tsx`, `Grids.stories.tsx`, etc.).
+- **Clone WhatsApp**: `stories/whatsapp/` (para tokens, telas e componentes do clone WhatsApp).
+- **Componentes Utilitários de Documentação**: Em `.storybook/components/` (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`).
 
 ---
 
 ## 2. Convenção Oficial de Documentação em Componentes (Padrão Ouro)
 
-Para garantir máxima fidelidade visual do Figma, interatividade total (cópia de tokens, simuladores, matrizes) e uma sidebar limpa sem duplicações ou telas em branco do addon-docs:
+Para garantir máxima fidelidade visual do Figma, interatividade total (cópia de tokens, simuladores, matrizes) e uma sidebar limpa sem duplicações ou telas em branco do `addon-docs`:
 
-### 2.1. Estrutura da Página de Documentação Rica
-Todo componente **DEVE** declarar sua página de documentação rica usando os componentes utilitários de `src/unooria/docs`:
+### 2.1. Uso Obrigatório do Componente Real da Pasta `src/`
+- **REGRA MANDATÓRIA**: O Storybook deve **sempre importar e renderizar o componente real de produção da pasta `src/`**.
+- É terminantemente **proibido** criar mockups paralelos ou réplicas artificiais dentro de `stories/`. Toda funcionalidade, estado e estilo deve vir do componente oficial.
+
+### 2.2. Estrutura da Página de Documentação Rica
+Todo componente **DEVE** declarar sua página de documentação rica usando os componentes utilitários de `.storybook/components`:
 ```tsx
-import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 const [NomeComponente]DocumentationPage = () => (
   <UnooriaDocShell>
+    {/* 1. Cabeçalho Oficial */}
     <UnooriaDocHeader
       badgeBrand="Plataforma Unooria"
       category="Componentes • [Categoria]"
@@ -42,19 +49,19 @@ const [NomeComponente]DocumentationPage = () => (
       description="[Descrição extraída das especificações de design do Figma]"
     />
 
-    {/* Seções obrigatórias:
-        1. Visão Geral & Motivos de Uso
-        2. Figma & Especificações (Link e Node IDs)
-        3. Anatomia do Componente
-        4. Matriz de Variantes e Estados
-        5. Boas Práticas (Do's & Don'ts)
-        6. Suporte a Temas (Light e Dark)
-        7. Tabela de Props API */}
+    {/* Seções Obrigatórias:
+        1. Visão Geral & Casos de Uso (Cards explicativos com ícones e propósito funcional)
+        2. Figma & Especificações Técnicas (Link Dev Mode, Node ID Master e Component Sets)
+        3. Anatomia do Componente (Zonas de customização, subcomponentes e propriedades visuais)
+        4. Matriz de Variantes, Tamanhos e Estados (Exemplos renderizando o componente real)
+        5. Boas Práticas (Cards comparativos de DO e DON'T com cores verde/vermelho)
+        6. Suporte a Temas (Demonstração interativa com alternador em tempo real Light e Dark)
+        7. Referência Completa de Props da API (Tabelas individuais detalhadas por componente) */}
   </UnooriaDocShell>
 );
 ```
 
-### 2.2. Configuração do Objeto `meta`
+### 2.3. Configuração do Objeto `meta`
 O objeto `meta` **NÃO DEVE** usar `tags: ['autodocs']` (para evitar abas vazias ou redundâncias na sidebar):
 ```tsx
 const meta: Meta<typeof [NomeComponente]> = {
@@ -64,7 +71,7 @@ const meta: Meta<typeof [NomeComponente]> = {
     layout: 'padded',
   },
   argTypes: {
-    // Especificação de controles e tipos
+    // Especificação completa de tipos, controls e descrições das props
   },
   args: {
     // Valores padrão para o Playground
@@ -74,7 +81,7 @@ const meta: Meta<typeof [NomeComponente]> = {
 export default meta;
 ```
 
-### 2.3. Ordem Obrigatória de Exportação das Estórias
+### 2.4. Ordem Obrigatória de Exportação das Estórias
 1. **Primeira História (Mandatória - Bullet de Documentação Dedicado)**:
    ```tsx
    type Story = StoryObj<typeof [NomeComponente]>;
@@ -88,19 +95,41 @@ export default meta;
    };
    ```
 
-2. **Histórias Interativas Subsequentes**:
-   - `Playground` / `Default`: Estória interativa com controls e container que adapta o fundo conforme o tema (`light` / `dark`).
+2. **Playgrounds Individuais com 100% das Props Mapeadas**:
+   - Cada componente (ou subcomponente individual no caso de suítes como `DataViz`) deve possuir seu próprio **Playground Dedicado** (`🕹️ 1. ...`, `🕹️ 2. ...`) com **todas as propriedades da API expostas em `args` e `argTypes`** (controles de texto, números, sliders de escala, radios de temas, booleans e JSON de dados).
+
+3. **Histórias Interativas e Canônicas Subsequentes**:
+   - `🎨 Exemplo Oficial do Figma`: Réplica visual de 1:1 dos frames oficiais do Figma (ex: formulário de 5 campos no `Modal`, itens de slot no `Collapse`).
    - `TodasVariantes` / `AllSeverities`: Matrizes visuais completas de variantes.
-   - `Tamanhos` / `Sizes`: Comparação de tamanhos suportados.
+   - `Tamanhos` / `Sizes`: Comparação de tamanhos suportados (`sm`, `md`, `lg`, `full`).
    - `Estados` / `States`: Estados interativos (hover, active, focus, disabled, loading).
-   - Estórias adicionais de recursos específicos (ex: `ComIcones`, `Dismissible`, etc.).
+   - `ComposicaoModular`: Uso flexível com Compound Components (`[Componente].Header`, `[Componente].Body`, etc.).
 
 ---
 
-## 3. Validação e Qualidade de Código
+## 3. Diretrizes de Qualidade Visual, UX e Acessibilidade
+
+### 3.1. Visualização de Dados (DataViz)
+- **SVG Puro (Zero Dependências)**: Todos os gráficos devem ser renderizados nativamente em SVG com React, sem bibliotecas pesadas de terceiros (D3, Chart.js, Recharts).
+- **Balões Flutuantes Inteligentes (`DataVizTooltip`)**: Todos os gráficos pertinentes devem exibir balões estilizados no hover com categoria, indicador cromático e valores formatados.
+- **Gráfico Radar**: 100% customizável em quantidade de eixos ($\ge 3$), níveis de profundidade da grade (`gridLevels`), escala máxima (`maxValue`), rótulos de escala e múltiplas séries sobrepostas.
+- **Scrollbars Sutis**: Toda rolagem interna (legendas de gráficos, listas de ranking, corpo de modais) deve usar `scrollbar-width: thin` e trilhos transparentes, eliminando scrollbars cinzas do Windows com setas.
+
+### 3.2. Contraste e Suporte Nativo a Temas (Light & Dark)
+- No **Light Mode**: Fundo branco `#FFFFFF`, texto primário `#22272A`, texto secundário `#383E41` / `#617379`, bordas `#E4E8E9`.
+- No **Dark Mode**: Fundo escuro `#22272A` / `#181C1E`, texto primário `#FFFFFF` / `#F5F5F5`, texto secundário `#A7B5B9`, bordas `#383E41` / `#475157`.
+- **Prevenção de Camuflagem**: Garantir que títulos e valores numéricos em cards (ex: `MetricCard`) sobrescrevam cores para `#FFFFFF` no Dark Mode.
+
+### 3.3. Acessibilidade (a11y)
+- Semântica ARIA completa (`role="dialog"`, `role="progressbar"`, `role="button"`, `aria-expanded`, `aria-controls`, `aria-labelledby`, `aria-describedby`).
+- Navegação completa por teclado (ESC para fechar modais/menus, Tab/Shift+Tab com focus trapping, Enter/Espaço para acionamento).
+
+---
+
+## 4. Validação e Qualidade de Código
 
 Sempre que criar ou alterar um componente ou estória:
 1. Verifique se os tokens CSS de `src/unooria/tokens/` foram respeitados.
 2. Certifique-se de que os modos **Light** e **Dark** são suportados nativamente.
-3. Execute `npx tsc --noEmit` para garantir 0 erros de compilação.
-4. Execute `npm run build-storybook` para validar o build sem erros do Storybook.
+3. Execute `npx tsc --noEmit` para garantir **0 erros de compilação**.
+4. Execute `npm run build-storybook` para validar o **build sem erros do Storybook**.

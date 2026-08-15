@@ -9,7 +9,7 @@ import {
   AvatarStatus,
   AvatarState,
 } from '../../../src/unooria/components/Avatar/Avatar.types';
-import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // URLs de imagens de alta definição para demonstração
 const DEMO_AVATARS = {

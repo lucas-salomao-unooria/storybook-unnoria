@@ -1,102 +1,154 @@
 /**
  * Estilos do Componente Badge - Design System Plataforma Unooria
- * Utiliza exclusivamente as CSS variables de tokens de cores, tipografia e espaçamentos.
+ * Especificação Fiel ao Figma (Node #17265:3692 / Component Set #5920:3299)
  */
 
 .unooria-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--unooria-spacing-xxxs, 4px);
-  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  font-weight: var(--unooria-weight-semibold, 600);
-  line-height: 1;
-  white-space: nowrap;
   box-sizing: border-box;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  line-height: 1.4;
+  white-space: nowrap;
   user-select: none;
-  border-style: solid;
-  border-width: 1px;
   vertical-align: middle;
+  border-radius: 1000px;
+  transition: all 0.2s ease;
+  border: none;
 }
 
-/* Interatividade */
-.unooria-badge--interactive {
-  cursor: pointer;
-  outline: none;
-}
+/* ==========================================================================
+   Modo Dot / Number=Off (8x8px no Figma)
+   ========================================================================== */
 
-.unooria-badge--interactive:hover {
-  filter: brightness(0.94);
-  transform: translateY(-1px);
-}
-
-.unooria-badge--interactive:active {
-  transform: translateY(0);
-  filter: brightness(0.88);
-}
-
-.unooria-badge--interactive:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-.unooria-badge--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Tamanhos */
-.unooria-badge--size-sm {
-  padding: 2px var(--unooria-spacing-xxs, 8px);
-  font-size: var(--unooria-size-caption-xxxs, 10px);
-  height: 20px;
-}
-
-.unooria-badge--size-md {
-  padding: 4px var(--unooria-spacing-xs, 12px);
-  font-size: var(--unooria-size-body-xxs, 12px);
-  height: 24px;
-}
-
-.unooria-badge--size-lg {
-  padding: 6px var(--unooria-spacing-s, 16px);
-  font-size: var(--unooria-size-body-xs, 14px);
-  height: 30px;
-}
-
-/* Formato: Pill vs Rounded/Square */
-.unooria-badge--pill {
-  border-radius: 9999px;
-}
-
-.unooria-badge--square {
-  border-radius: var(--unooria-spacing-xxxs, 4px);
-}
-
-/* Dot de Status */
-.unooria-badge__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.unooria-badge--dot-only,
+.unooria-badge--size-dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  padding: 0 !important;
+  border-radius: 1000px;
   display: inline-block;
   flex-shrink: 0;
 }
 
-.unooria-badge--size-lg .unooria-badge__dot {
-  width: 8px;
-  height: 8px;
+/* ==========================================================================
+   Tamanhos & Tipografia
+   ========================================================================== */
+
+/* Tamanho SM (Padrão Figma: padding 4px 8px, 10px Bold) */
+.unooria-badge--size-sm {
+  padding: 4px 8px;
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+  min-height: 22px;
+  gap: 4px;
 }
 
-/* Conteúdo de Texto */
+/* Tamanho MD (Médio: padding 4px 10px, 12px SemiBold) */
+.unooria-badge--size-md {
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  min-height: 24px;
+  gap: 6px;
+}
+
+/* Tamanho LG (Grande: padding 6px 12px, 14px SemiBold) */
+.unooria-badge--size-lg {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  min-height: 30px;
+  gap: 6px;
+}
+
+/* Formato Quadrado / Rounded (4px) */
+.unooria-badge--square {
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Variantes Oficiais do Figma (Filled / Cores Sólidas)
+   ========================================================================== */
+
+/* Error (Figma: #E31A1A) */
+.unooria-badge--variant-error {
+  background-color: #E31A1A;
+  color: #FFFFFF;
+}
+
+/* Warning (Figma: #DD5202) */
+.unooria-badge--variant-warning {
+  background-color: #DD5202;
+  color: #FFFFFF;
+}
+
+/* Info (Figma: #006BFF) */
+.unooria-badge--variant-info {
+  background-color: #006BFF;
+  color: #FFFFFF;
+}
+
+/* Success / Sucess (Figma: #008257) */
+.unooria-badge--variant-success,
+.unooria-badge--variant-sucess {
+  background-color: #008257;
+  color: #FFFFFF;
+}
+
+/* Disable / Disabled (Figma: rgba(34, 39, 42, 0.3)) */
+.unooria-badge--variant-disable,
+.unooria-badge--variant-disabled,
+.unooria-badge--disabled {
+  background-color: rgba(34, 39, 42, 0.3);
+  color: #22272A;
+  cursor: not-allowed;
+}
+
+.unooria-badge--dark.unooria-badge--variant-disable,
+.unooria-badge--dark.unooria-badge--variant-disabled,
+.unooria-badge--dark.unooria-badge--disabled {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #F5F5F5;
+}
+
+/* Aliases Adicionais da Plataforma */
+.unooria-badge--variant-primary {
+  background-color: #6487C2;
+  color: #FFFFFF;
+}
+
+.unooria-badge--variant-neutral,
+.unooria-badge--variant-default {
+  background-color: #475157;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Elementos Internos (Dot Embutido, Ícones, Fechar)
+   ========================================================================== */
+
+.unooria-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1000px;
+  background-color: currentColor;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
 .unooria-badge__content {
   display: inline-flex;
   align-items: center;
   line-height: inherit;
 }
 
-/* Ícone */
 .unooria-badge__icon {
   display: inline-flex;
   align-items: center;
@@ -104,202 +156,50 @@
   flex-shrink: 0;
 }
 
-.unooria-badge--size-sm .unooria-badge__icon svg {
-  width: 12px;
-  height: 12px;
+.unooria-badge__icon svg {
+  width: 1em;
+  height: 1em;
 }
 
-.unooria-badge--size-md .unooria-badge__icon svg {
-  width: 14px;
-  height: 14px;
-}
-
-.unooria-badge--size-lg .unooria-badge__icon svg {
-  width: 16px;
-  height: 16px;
-}
-
-/* Botão de Fechamento (X) */
+/* Botão Fechar */
 .unooria-badge__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: none;
   padding: 0;
   margin: 0;
   margin-left: 2px;
-  color: inherit;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: inherit;
   opacity: 0.75;
-  transition: opacity 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
   border-radius: 50%;
-  line-height: 1;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
   width: 14px;
   height: 14px;
-  outline: none;
-  flex-shrink: 0;
+}
+
+.unooria-badge__close-btn:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .unooria-badge__close-btn svg {
   width: 10px;
   height: 10px;
-  display: block;
 }
 
-.unooria-badge--size-lg .unooria-badge__close-btn {
-  width: 16px;
-  height: 16px;
+/* Interatividade */
+.unooria-badge--interactive {
+  cursor: pointer;
 }
 
-.unooria-badge--size-lg .unooria-badge__close-btn svg {
-  width: 12px;
-  height: 12px;
+.unooria-badge--interactive:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
 }
 
-.unooria-badge__close-btn:hover {
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.unooria-badge__close-btn:focus-visible {
-  opacity: 1;
-  outline: 1.5px solid currentColor;
-  outline-offset: 1px;
-}
-
-.unooria-badge--dark .unooria-badge__close-btn:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-/* ==========================================================================
-   VARIAÇÕES LIGHT MODE
-   ========================================================================== */
-
-.unooria-badge--light.unooria-badge--variant-default,
-.unooria-badge--light.unooria-badge--variant-neutral {
-  background-color: var(--unooria-color-neutral-100, #F5F5F5);
-  color: var(--unooria-color-neutral-800, #3D4448);
-  border-color: var(--unooria-color-neutral-200, #CBD4D6);
-}
-
-.unooria-badge--light.unooria-badge--variant-default .unooria-badge__dot,
-.unooria-badge--light.unooria-badge--variant-neutral .unooria-badge__dot {
-  background-color: var(--unooria-color-neutral-600, #536167);
-}
-
-.unooria-badge--light.unooria-badge--variant-primary {
-  background-color: var(--unooria-color-brandnavy-100, #E8EFFA);
-  color: var(--unooria-color-brandnavy-900, #2F4F7F);
-  border-color: var(--unooria-color-brandnavy-300, #BDD0EF);
-}
-
-.unooria-badge--light.unooria-badge--variant-primary .unooria-badge__dot {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-}
-
-.unooria-badge--light.unooria-badge--variant-success {
-  background-color: var(--unooria-color-sucess-50, #EBFEF4);
-  color: var(--unooria-color-sucess-800, #006746);
-  border-color: var(--unooria-color-sucess-200, #A0FACE);
-}
-
-.unooria-badge--light.unooria-badge--variant-success .unooria-badge__dot {
-  background-color: var(--unooria-color-sucess-500, #01B574);
-}
-
-.unooria-badge--light.unooria-badge--variant-warning {
-  background-color: var(--unooria-color-warning-50, #FFF8EB);
-  color: var(--unooria-color-warning-800, #94280C);
-  border-color: var(--unooria-color-warning-200, #FFD388);
-}
-
-.unooria-badge--light.unooria-badge--variant-warning .unooria-badge__dot {
-  background-color: var(--unooria-color-warning-500, #F97607);
-}
-
-.unooria-badge--light.unooria-badge--variant-error {
-  background-color: var(--unooria-color-danger-50, #FFF1F1);
-  color: var(--unooria-color-danger-800, #9F1515);
-  border-color: var(--unooria-color-danger-200, #FFC7C7);
-}
-
-.unooria-badge--light.unooria-badge--variant-error .unooria-badge__dot {
-  background-color: var(--unooria-color-danger-600, #E31A1A);
-}
-
-.unooria-badge--light.unooria-badge--variant-info {
-  background-color: var(--unooria-color-info-50, #E9FAFF);
-  color: var(--unooria-color-info-800, #0052B3);
-  border-color: var(--unooria-color-info-200, #6BE7FF);
-}
-
-.unooria-badge--light.unooria-badge--variant-info .unooria-badge__dot {
-  background-color: var(--unooria-color-info-500, #0086FF);
-}
-
-/* ==========================================================================
-   VARIAÇÕES DARK MODE
-   ========================================================================== */
-
-.unooria-badge--dark.unooria-badge--variant-default,
-.unooria-badge--dark.unooria-badge--variant-neutral {
-  background-color: var(--unooria-color-neutraldark-200, #3D4448);
-  color: var(--unooria-color-neutraldark-950, #F5F5F5);
-  border-color: var(--unooria-color-neutraldark-300, #475157);
-}
-
-.unooria-badge--dark.unooria-badge--variant-default .unooria-badge__dot,
-.unooria-badge--dark.unooria-badge--variant-neutral .unooria-badge__dot {
-  background-color: var(--unooria-color-neutraldark-800, #A7B5B9);
-}
-
-.unooria-badge--dark.unooria-badge--variant-primary {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
-  color: var(--unooria-color-brandnavy-300, #BDD0EF);
-  border-color: var(--unooria-color-brandnavy-700, #6487C2);
-}
-
-.unooria-badge--dark.unooria-badge--variant-primary .unooria-badge__dot {
-  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
-}
-
-.unooria-badge--dark.unooria-badge--variant-success {
-  background-color: var(--unooria-color-opacity-sucess-200, rgba(1, 181, 116, 0.20));
-  color: var(--unooria-color-sucess-300, #63F2B5);
-  border-color: var(--unooria-color-sucess-700, #008257);
-}
-
-.unooria-badge--dark.unooria-badge--variant-success .unooria-badge__dot {
-  background-color: var(--unooria-color-sucess-400, #26E197);
-}
-
-.unooria-badge--dark.unooria-badge--variant-warning {
-  background-color: var(--unooria-color-opacity-warning-200, rgba(249, 118, 7, 0.20));
-  color: var(--unooria-color-warning-300, #FFB74A);
-  border-color: var(--unooria-color-warning-700, #B73506);
-}
-
-.unooria-badge--dark.unooria-badge--variant-warning .unooria-badge__dot {
-  background-color: var(--unooria-color-warning-400, #FF9C20);
-}
-
-.unooria-badge--dark.unooria-badge--variant-error {
-  background-color: var(--unooria-color-opacity-danger-200, rgba(227, 26, 26, 0.20));
-  color: var(--unooria-color-danger-300, #FFA1A1);
-  border-color: var(--unooria-color-danger-700, #C11414);
-}
-
-.unooria-badge--dark.unooria-badge--variant-error .unooria-badge__dot {
-  background-color: var(--unooria-color-danger-400, #FF6A6A);
-}
-
-.unooria-badge--dark.unooria-badge--variant-info {
-  background-color: var(--unooria-color-opacity-info-200, rgba(0, 134, 255, 0.20));
-  color: var(--unooria-color-info-200, #6BE7FF);
-  border-color: var(--unooria-color-info-700, #005CE6);
-}
-
-.unooria-badge--dark.unooria-badge--variant-info .unooria-badge__dot {
-  background-color: var(--unooria-color-info-300, #26D4FF);
+.unooria-badge--interactive:active {
+  transform: translateY(0);
 }

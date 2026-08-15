@@ -1,21 +1,24 @@
 import React from 'react';
-import { BadgeProps } from './Badge.types';
+import { BadgeProps, BadgeVariant } from './Badge.types';
 import './Badge.css';
 
 /**
  * Componente Badge - Design System Plataforma Unooria
- * 
- * Elemento compacto e semântico para exibição de status, contagens numéricas,
- * categorias e etiquetas. Totalmente acessível, com suporte a temas Claro e Escuro,
- * prop polimórfica `as`, variantes de cores do Figma e botão dispensável.
+ *
+ * Implementação fiel ao Figma (Node #17265:3692 / Component Set #5920:3299).
+ * Indicador de contagem numérica, status de notificação e rótulo semântico.
+ * Suporta modo Pílula (Number=On) e modo Dot circular de 8x8px (Number=Off).
  */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {
       as: Component = 'span',
-      variant,
+      variant = 'info',
       status,
-      size = 'md',
+      number,
+      count,
+      overflowCount = 99,
+      size = 'sm',
       theme = 'light',
       icon,
       iconPosition = 'left',
@@ -33,20 +36,34 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     },
     ref
   ) => {
-    // Resolução da variante ativa (variant tem precedência sobre status; default é fallback)
-    const activeVariant = variant || status || 'default';
+    // Resolução da variante ativa (variant ou status)
+    const rawVariant = (variant || status || 'info').toLowerCase() as BadgeVariant;
+    const activeVariant = rawVariant === 'sucess' ? 'success' : rawVariant === 'disabled' ? 'disable' : rawVariant;
 
-    // Determina se o badge é interativo (possui onClick e não está desabilitado)
-    const isInteractive = Boolean(onClick) && !disabled;
+    // Determina se o modo é estritamente Dot de 8x8px (Number=Off)
+    const isDotOnly = number === 'off' || size === 'dot' || (dot && !children && count === undefined);
+
+    // Determina se o badge é interativo
+    const isInteractive = Boolean(onClick) && !disabled && activeVariant !== 'disable';
+
+    // Formatação do conteúdo caso count seja informado
+    let displayContent = children;
+    if (count !== undefined) {
+      if (count > overflowCount) {
+        displayContent = `${overflowCount}+`;
+      } else {
+        displayContent = count;
+      }
+    }
 
     const badgeClasses = [
       'unooria-badge',
-      `unooria-badge--size-${size}`,
       `unooria-badge--variant-${activeVariant}`,
+      isDotOnly ? 'unooria-badge--dot-only' : `unooria-badge--size-${size}`,
       `unooria-badge--${theme}`,
       pill ? 'unooria-badge--pill' : 'unooria-badge--square',
       isInteractive ? 'unooria-badge--interactive' : '',
-      disabled ? 'unooria-badge--disabled' : '',
+      disabled || activeVariant === 'disable' ? 'unooria-badge--disabled' : '',
       className,
     ]
       .filter(Boolean)
@@ -54,13 +71,13 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
     const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
-      if (!disabled && onClose) {
+      if (!disabled && activeVariant !== 'disable' && onClose) {
         onClose(e);
       }
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
-      if (isInteractive && !disabled && (e.key === 'Enter' || e.key === ' ')) {
+      if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
         e.preventDefault();
         if (onClick) {
           onClick(e as unknown as React.MouseEvent<HTMLSpanElement>);
@@ -71,48 +88,64 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       }
     };
 
+    // Renderização do modo Dot Puro de 8x8px (Figma: Number=Off)
+    if (isDotOnly) {
+      return (
+        <Component
+          ref={ref}
+          data-theme={theme}
+          className={badgeClasses}
+          style={style}
+          aria-hidden="true"
+          {...restProps}
+        />
+      );
+    }
+
     return (
       <Component
         ref={ref}
         data-theme={theme}
         className={badgeClasses}
         style={style}
-        onClick={disabled ? undefined : onClick}
+        onClick={disabled || activeVariant === 'disable' ? undefined : onClick}
         onKeyDown={handleKeyDown}
-        aria-disabled={disabled ? true : undefined}
+        aria-disabled={disabled || activeVariant === 'disable' ? true : undefined}
         role={isInteractive ? (restProps.role || 'button') : restProps.role}
-        tabIndex={isInteractive && !disabled ? (restProps.tabIndex ?? 0) : restProps.tabIndex}
+        tabIndex={isInteractive ? (restProps.tabIndex ?? 0) : restProps.tabIndex}
         {...restProps}
       >
-        {/* Ponto indicador de status (dot) */}
+        {/* Ponto indicador de status embutido antecedendo o texto */}
         {dot && <span className="unooria-badge__dot" aria-hidden="true" />}
 
-        {/* Ícone posicionado à esquerda */}
+        {/* Ícone à esquerda */}
         {icon && iconPosition === 'left' && (
           <span className="unooria-badge__icon" aria-hidden="true">
             {icon}
           </span>
         )}
 
-        {/* Conteúdo principal / rótulo */}
-        {children && <span className="unooria-badge__content">{children}</span>}
+        {/* Conteúdo principal / rótulo / contagem */}
+        {displayContent !== undefined && (
+          <span className="unooria-badge__content">{displayContent}</span>
+        )}
 
-        {/* Ícone posicionado à direita */}
+        {/* Ícone à direita */}
         {icon && iconPosition === 'right' && (
           <span className="unooria-badge__icon" aria-hidden="true">
             {icon}
           </span>
         )}
 
-        {/* Botão de Fechamento / Remover (X) */}
+        {/* Botão de Fechar / Remover */}
         {dismissible && (
           <button
             type="button"
             className="unooria-badge__close-btn"
             onClick={handleClose}
             aria-label="Remover etiqueta"
-            tabIndex={disabled ? -1 : 0}
-            disabled={disabled}
+            tabIndex={disabled || activeVariant === 'disable' ? -1 : 0}
+            disabled={disabled || activeVariant === 'disable'}
           >
             <svg
               viewBox="0 0 16 16"

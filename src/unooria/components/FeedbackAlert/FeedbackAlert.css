@@ -1,0 +1,248 @@
+/**
+ * FeedbackAlert - Design System Unooria
+ * Fidelidade absoluta ao Figma Nó #24190:87
+ * 
+ * Especificações:
+ * - Cantos arredondados: 16px
+ * - Padding: 24px
+ * - Gap: 16px
+ * - Fundos translúcidos e cores semânticas oficiais
+ */
+
+.unooria-feedback-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-s, 16px);
+  padding: var(--unooria-spacing-m, 24px);
+  border-radius: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  position: relative;
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  border: 1px solid transparent;
+}
+
+/* ==========================================================================
+   Variantes de Severidade - Modo Claro (Light)
+   ========================================================================== */
+
+/* Error / Erro */
+.unooria-feedback-alert--error.unooria-feedback-alert--light,
+.unooria-feedback-alert--error:not(.unooria-feedback-alert--dark) {
+  background-color: var(--unooria-color-opacity-danger-100, rgba(227, 26, 26, 0.1));
+  color: var(--unooria-color-danger-700, #C11414);
+}
+
+.unooria-feedback-alert--error.unooria-feedback-alert--light .unooria-feedback-alert__icon,
+.unooria-feedback-alert--error.unooria-feedback-alert--light .unooria-feedback-alert__title,
+.unooria-feedback-alert--error:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__icon,
+.unooria-feedback-alert--error:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__title {
+  color: var(--unooria-color-danger-700, #C11414);
+}
+
+/* Warning / Aviso */
+.unooria-feedback-alert--warning.unooria-feedback-alert--light,
+.unooria-feedback-alert--warning:not(.unooria-feedback-alert--dark) {
+  background-color: var(--unooria-color-opacity-warning-100, rgba(249, 118, 7, 0.1));
+  color: var(--unooria-color-warning-700, #B73506);
+}
+
+.unooria-feedback-alert--warning.unooria-feedback-alert--light .unooria-feedback-alert__icon,
+.unooria-feedback-alert--warning.unooria-feedback-alert--light .unooria-feedback-alert__title,
+.unooria-feedback-alert--warning:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__icon,
+.unooria-feedback-alert--warning:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__title {
+  color: var(--unooria-color-warning-700, #B73506);
+}
+
+/* Success / Sucesso */
+.unooria-feedback-alert--success.unooria-feedback-alert--light,
+.unooria-feedback-alert--success:not(.unooria-feedback-alert--dark) {
+  background-color: var(--unooria-color-opacity-success-100, rgba(1, 181, 116, 0.1));
+  color: var(--unooria-color-success-700, #008257);
+}
+
+.unooria-feedback-alert--success.unooria-feedback-alert--light .unooria-feedback-alert__icon,
+.unooria-feedback-alert--success.unooria-feedback-alert--light .unooria-feedback-alert__title,
+.unooria-feedback-alert--success:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__icon,
+.unooria-feedback-alert--success:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__title {
+  color: var(--unooria-color-success-700, #008257);
+}
+
+/* Info / Informação */
+.unooria-feedback-alert--info.unooria-feedback-alert--light,
+.unooria-feedback-alert--info:not(.unooria-feedback-alert--dark) {
+  background-color: var(--unooria-color-opacity-info-100, rgba(0, 134, 255, 0.1));
+  color: var(--unooria-color-info-700, #005CE6);
+}
+
+.unooria-feedback-alert--info.unooria-feedback-alert--light .unooria-feedback-alert__icon,
+.unooria-feedback-alert--info.unooria-feedback-alert--light .unooria-feedback-alert__title,
+.unooria-feedback-alert--info:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__icon,
+.unooria-feedback-alert--info:not(.unooria-feedback-alert--dark) .unooria-feedback-alert__title {
+  color: var(--unooria-color-info-700, #005CE6);
+}
+
+/* ==========================================================================
+   Variantes de Severidade - Modo Escuro (Dark)
+   ========================================================================== */
+
+/* Error Dark */
+.unooria-feedback-alert--error.unooria-feedback-alert--dark,
+[data-theme='dark'] .unooria-feedback-alert--error {
+  background-color: rgba(227, 26, 26, 0.15);
+  color: var(--unooria-color-danger-400, #FF6A6A);
+}
+
+.unooria-feedback-alert--error.unooria-feedback-alert--dark .unooria-feedback-alert__icon,
+.unooria-feedback-alert--error.unooria-feedback-alert--dark .unooria-feedback-alert__title,
+[data-theme='dark'] .unooria-feedback-alert--error .unooria-feedback-alert__icon,
+[data-theme='dark'] .unooria-feedback-alert--error .unooria-feedback-alert__title {
+  color: var(--unooria-color-danger-400, #FF6A6A);
+}
+
+/* Warning Dark */
+.unooria-feedback-alert--warning.unooria-feedback-alert--dark,
+[data-theme='dark'] .unooria-feedback-alert--warning {
+  background-color: rgba(249, 118, 7, 0.15);
+  color: var(--unooria-color-warning-500, #F97607);
+}
+
+.unooria-feedback-alert--warning.unooria-feedback-alert--dark .unooria-feedback-alert__icon,
+.unooria-feedback-alert--warning.unooria-feedback-alert--dark .unooria-feedback-alert__title,
+[data-theme='dark'] .unooria-feedback-alert--warning .unooria-feedback-alert__icon,
+[data-theme='dark'] .unooria-feedback-alert--warning .unooria-feedback-alert__title {
+  color: var(--unooria-color-warning-500, #F97607);
+}
+
+/* Success Dark */
+.unooria-feedback-alert--success.unooria-feedback-alert--dark,
+[data-theme='dark'] .unooria-feedback-alert--success {
+  background-color: rgba(1, 181, 116, 0.15);
+  color: var(--unooria-color-success-500, #01B574);
+}
+
+.unooria-feedback-alert--success.unooria-feedback-alert--dark .unooria-feedback-alert__icon,
+.unooria-feedback-alert--success.unooria-feedback-alert--dark .unooria-feedback-alert__title,
+[data-theme='dark'] .unooria-feedback-alert--success .unooria-feedback-alert__icon,
+[data-theme='dark'] .unooria-feedback-alert--success .unooria-feedback-alert__title {
+  color: var(--unooria-color-success-500, #01B574);
+}
+
+/* Info Dark */
+.unooria-feedback-alert--info.unooria-feedback-alert--dark,
+[data-theme='dark'] .unooria-feedback-alert--info {
+  background-color: rgba(0, 134, 255, 0.15);
+  color: var(--unooria-color-info-500, #0086FF);
+}
+
+.unooria-feedback-alert--info.unooria-feedback-alert--dark .unooria-feedback-alert__icon,
+.unooria-feedback-alert--info.unooria-feedback-alert--dark .unooria-feedback-alert__title,
+[data-theme='dark'] .unooria-feedback-alert--info .unooria-feedback-alert__icon,
+[data-theme='dark'] .unooria-feedback-alert--info .unooria-feedback-alert__title {
+  color: var(--unooria-color-info-500, #0086FF);
+}
+
+/* ==========================================================================
+   Elementos Internos
+   ========================================================================== */
+
+/* Ícone */
+.unooria-feedback-alert__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+}
+
+.unooria-feedback-alert__icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Conteúdo */
+.unooria-feedback-alert__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  min-width: 0;
+}
+
+/* Título */
+.unooria-feedback-alert__title {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  word-break: break-word;
+}
+
+/* Descrição / Conteúdo Textual */
+.unooria-feedback-alert__description {
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  font-weight: var(--unooria-weight-regular, 400);
+  word-break: break-word;
+  opacity: 0.92;
+}
+
+/* Mensagem secundária / sutil */
+.unooria-feedback-alert__subtle {
+  font-size: var(--unooria-size-body-xxs, 12px);
+  line-height: var(--unooria-line-height-body-xxs, 18px);
+  font-weight: var(--unooria-weight-regular, 400);
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Ações */
+.unooria-feedback-alert__actions {
+  margin-top: var(--unooria-spacing-xs, 12px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+/* Botão de Fechar / Dismiss */
+.unooria-feedback-alert__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.unooria-feedback-alert__close-btn:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.unooria-feedback-alert--dark .unooria-feedback-alert__close-btn:hover,
+[data-theme='dark'] .unooria-feedback-alert__close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.unooria-feedback-alert__close-btn:focus-visible {
+  outline: 2px solid currentColor;
+  opacity: 1;
+}
+
+.unooria-feedback-alert__close-btn:active {
+  transform: scale(0.95);
+}

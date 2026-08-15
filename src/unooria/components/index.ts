@@ -7,7 +7,15 @@ export * from './Button';
 export * from './Calendar';
 export * from './Card';
 export * from './Checkbox';
+export * from './Collapse';
+export * from './Cropper';
+export * from './DataViz';
+export * from './DatePicker';
+export * from './EmptyState';
+export * from './FeedbackAlert';
+export * from './Modal';
 export * from './NumberButton';
 export * from './RadioButton';
 export * from './SideBar';
 export type { UnooriaTheme } from '../tokens';
+

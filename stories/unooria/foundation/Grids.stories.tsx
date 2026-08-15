@@ -10,7 +10,7 @@ import {
   breakpoints,
 } from '../../../src/unooria/tokens/grids';
 import '../../../src/unooria/tokens/grids.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
 
 // Componente para notificação ao copiar
 const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {

@@ -6,10 +6,10 @@ import '../../tokens/typography.css';
 import './NumberButton.css';
 
 /**
- * Ícone vetorial SVG do botão de Decremento (-)
+ * Ícone vetorial SVG do botão de Decremento / Remove (-)
  */
-const MinusIcon: React.FC<{ sizePx?: number; className?: string }> = ({
-  sizePx = 16,
+const RemoveIcon: React.FC<{ sizePx?: number; className?: string }> = ({
+  sizePx = 18,
   className = '',
 }) => (
   <svg
@@ -20,23 +20,24 @@ const MinusIcon: React.FC<{ sizePx?: number; className?: string }> = ({
     xmlns="http://www.w3.org/2000/svg"
     className={`unooria-number-button__icon ${className}`.trim()}
     aria-hidden="true"
-    role="presentation"
   >
-    <path
-      d="M5 12H19"
+    <line
+      x1="5"
+      y1="12"
+      x2="19"
+      y2="12"
       stroke="currentColor"
       strokeWidth="2.5"
       strokeLinecap="round"
-      strokeLinejoin="round"
     />
   </svg>
 );
 
 /**
- * Ícone vetorial SVG do botão de Incremento (+)
+ * Ícone vetorial SVG do botão de Incremento / Add (+)
  */
-const PlusIcon: React.FC<{ sizePx?: number; className?: string }> = ({
-  sizePx = 16,
+const AddIcon: React.FC<{ sizePx?: number; className?: string }> = ({
+  sizePx = 18,
   className = '',
 }) => (
   <svg
@@ -47,44 +48,55 @@ const PlusIcon: React.FC<{ sizePx?: number; className?: string }> = ({
     xmlns="http://www.w3.org/2000/svg"
     className={`unooria-number-button__icon ${className}`.trim()}
     aria-hidden="true"
-    role="presentation"
   >
-    <path
-      d="M12 5V19M5 12H19"
+    <line
+      x1="12"
+      y1="5"
+      x2="12"
+      y2="19"
       stroke="currentColor"
       strokeWidth="2.5"
       strokeLinecap="round"
-      strokeLinejoin="round"
+    />
+    <line
+      x1="5"
+      y1="12"
+      x2="19"
+      y2="12"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
     />
   </svg>
 );
 
 /**
- * Determina o tamanho do ícone em pixels com base no tamanho do componente
+ * Dimensão do ícone em pixels conforme o tamanho
  */
 const getIconDimension = (size: NumberButtonSize): number => {
   switch (size) {
     case 'lg':
-      return 20;
-    case 'sm':
-      return 14;
-    case 'xs':
-      return 12;
+      return 18;
     case 'md':
-    default:
+      return 18;
+    case 'sm':
       return 16;
+    case 'xs':
+      return 14;
+    default:
+      return 18;
   }
 };
 
 /**
- * Calcula a precisão decimal necessária com base no step fornecido
+ * Normaliza o tamanho aceitando maiúsculas e minúsculas
  */
-const getDecimalPrecision = (stepValue: number): number => {
-  const stepString = stepValue.toString();
-  if (stepString.indexOf('.') >= 0) {
-    return stepString.split('.')[1].length;
+const normalizeSize = (size?: string): NumberButtonSize => {
+  const lower = (size || 'md').toLowerCase();
+  if (lower === 'xs' || lower === 'sm' || lower === 'md' || lower === 'lg') {
+    return lower as NumberButtonSize;
   }
-  return 0;
+  return 'md';
 };
 
 /**
@@ -96,35 +108,27 @@ const roundToPrecision = (num: number, prec: number): number => {
 };
 
 /**
- * Limita o valor entre os limites mínimo e máximo
+ * Componente NumberButton - Design System Unooria
+ *
+ * Implementação fiel ao Figma (Node #14662:399 / Component Set #14662:31020).
+ * Stepper numérico com botões de incremento/decremento com raio de 4px e valor central.
  */
-const clampValue = (val: number, minVal: number, maxVal: number): number => {
-  if (Number.isNaN(val)) return minVal;
-  return Math.min(Math.max(val, minVal), maxVal);
-};
-
-/**
- * Componente NumberButton do Design System Plataforma Unooria (Padrão Ouro)
- * 
- * Stepper numérico de alta precisão com suporte a botões de incremento/decremento,
- * edição direta com máscara e validação, navegação acessível por teclado,
- * suporte a 4 tamanhos (LG, MD, SM, XS), 2 temas (Light e Dark) e conformidade
- * absoluta com as diretrizes do Figma (Nó #14662:399).
- */
-export const NumberButton = React.forwardRef<HTMLInputElement, NumberButtonProps>(
+export const NumberButton = React.forwardRef<HTMLDivElement, NumberButtonProps>(
   (
     {
-      value,
+      value: controlledValue,
       defaultValue = 0,
       min = -Infinity,
       max = Infinity,
       step = 1,
       onChange,
       disabled = false,
-      isDisabled = false,
+      isDisabled,
       readOnly = false,
-      size = 'md',
+      size,
+      tamanho,
       theme = 'light',
+      padLength,
       formatValue,
       parseValue,
       allowInput = true,
@@ -150,190 +154,133 @@ export const NumberButton = React.forwardRef<HTMLInputElement, NumberButtonProps
     },
     ref
   ) => {
-    // Resolução de desabilitação
-    const disabledResolved = Boolean(disabled || isDisabled || state === 'disabled');
-
-    // Modo controlado vs não controlado
-    const isControlled = value !== undefined;
-    const [innerValue, setInnerValue] = useState<number>(() => {
-      const initial = isControlled ? (value as number) : defaultValue;
-      return clampValue(initial, min, max);
-    });
-
-    const activePrecision = precision !== undefined ? precision : getDecimalPrecision(step);
-    const currentValue = isControlled ? (value as number) : innerValue;
-
-    // Estado interno do texto exibido no input
-    const formatDisplay = useCallback(
-      (val: number): string => {
-        if (formatValue) {
-          return String(formatValue(val));
-        }
-        return activePrecision > 0 ? val.toFixed(activePrecision) : String(val);
-      },
-      [formatValue, activePrecision]
+    const isControlled = controlledValue !== undefined;
+    const [internalValue, setInternalValue] = useState<number>(
+      isControlled ? controlledValue : defaultValue
     );
+    const [inputValue, setInputValue] = useState<string>('');
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const [inputText, setInputText] = useState<string>(() => formatDisplay(currentValue));
-    const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const isComponentDisabled = Boolean(disabled || isDisabled || state === 'disable' || state === 'disabled');
+    const effectiveSize = normalizeSize(tamanho || size);
 
-    // Sincroniza o texto do input quando o valor externo/interno muda (e não está focado)
+    // Sincroniza valor controlado
     useEffect(() => {
-      if (!isInputFocused) {
-        setInputText(formatDisplay(currentValue));
+      if (isControlled && controlledValue !== undefined) {
+        setInternalValue(controlledValue);
       }
-    }, [currentValue, isInputFocused, formatDisplay]);
+    }, [isControlled, controlledValue]);
 
-    // Aplicação segura de novo valor numérico
-    const handleValueChange = useCallback(
-      (nextRawValue: number) => {
-        if (disabledResolved || readOnly) return;
+    const calculatePrecision = useCallback(() => {
+      if (precision !== undefined) return precision;
+      const stepStr = step.toString();
+      return stepStr.indexOf('.') >= 0 ? stepStr.split('.')[1].length : 0;
+    }, [precision, step]);
 
-        const clamped = clampValue(nextRawValue, min, max);
-        const rounded = roundToPrecision(clamped, activePrecision);
+    const clamp = useCallback(
+      (val: number): number => {
+        let clamped = Math.max(min, Math.min(max, val));
+        const prec = calculatePrecision();
+        return roundToPrecision(clamped, prec);
+      },
+      [min, max, calculatePrecision]
+    );
 
+    const formatDisplay = useCallback(
+      (num: number): string => {
+        if (formatValue) {
+          return String(formatValue(num));
+        }
+        if (padLength !== undefined && padLength > 0) {
+          const isNegative = num < 0;
+          const absStr = Math.abs(num).toString();
+          const padded = absStr.padStart(padLength, '0');
+          return isNegative ? `-${padded}` : padded;
+        }
+        const prec = calculatePrecision();
+        return prec > 0 ? num.toFixed(prec) : num.toString();
+      },
+      [formatValue, padLength, calculatePrecision]
+    );
+
+    const updateValue = useCallback(
+      (newValue: number) => {
+        const clampedValue = clamp(newValue);
         if (!isControlled) {
-          setInnerValue(rounded);
+          setInternalValue(clampedValue);
         }
-
-        setInputText(formatDisplay(rounded));
-
-        if (rounded !== currentValue && onChange) {
-          onChange(rounded);
+        if (onChange && clampedValue !== internalValue) {
+          onChange(clampedValue);
         }
       },
-      [
-        disabledResolved,
-        readOnly,
-        min,
-        max,
-        activePrecision,
-        isControlled,
-        currentValue,
-        onChange,
-        formatDisplay,
-      ]
+      [clamp, isControlled, internalValue, onChange]
     );
 
-    // Manipulação de decremento (-)
-    const handleDecrement = (e?: React.MouseEvent) => {
-      if (e) e.preventDefault();
-      if (disabledResolved || readOnly || currentValue <= min) return;
-      handleValueChange(currentValue - step);
+    const handleDecrement = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      if (isComponentDisabled || readOnly) return;
+      updateValue(internalValue - step);
     };
 
-    // Manipulação de incremento (+)
-    const handleIncrement = (e?: React.MouseEvent) => {
-      if (e) e.preventDefault();
-      if (disabledResolved || readOnly || currentValue >= max) return;
-      handleValueChange(currentValue + step);
+    const handleIncrement = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      if (isComponentDisabled || readOnly) return;
+      updateValue(internalValue + step);
     };
 
-    // Parser seguro de string para número
-    const parseNumber = useCallback(
-      (text: string): number => {
-        if (parseValue) {
-          return parseValue(text);
-        }
-        // Trata vírgulas decimais e caracteres monetários
-        const cleaned = text.replace(',', '.').replace(/[^0-9.-]/g, '');
-        const parsed = parseFloat(cleaned);
-        return Number.isNaN(parsed) ? currentValue : parsed;
-      },
-      [parseValue, currentValue]
-    );
-
-    // Eventos do input
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (disabledResolved || readOnly || !allowInput) return;
-      setInputText(e.target.value);
+      setInputValue(e.target.value);
     };
 
     const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-      setIsInputFocused(true);
+      setIsEditing(true);
+      setInputValue(internalValue.toString());
       if (onFocus) onFocus(e);
     };
 
     const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      setIsInputFocused(false);
-      const parsed = parseNumber(inputText);
-      handleValueChange(parsed);
+      setIsEditing(false);
+      let parsed: number;
+      if (parseValue) {
+        parsed = parseValue(inputValue);
+      } else {
+        parsed = parseFloat(inputValue.replace(',', '.'));
+      }
+      if (isNaN(parsed)) {
+        updateValue(internalValue);
+      } else {
+        updateValue(parsed);
+      }
       if (onBlur) onBlur(e);
     };
 
-    // Acessibilidade por Teclado (SpinButton / WAI-ARIA)
     const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (disabledResolved || readOnly) return;
-
-      if (onKeyDown) onKeyDown(e);
-
-      switch (e.key) {
-        case 'ArrowUp':
-          e.preventDefault();
-          handleIncrement();
-          break;
-        case 'ArrowDown':
-          e.preventDefault();
-          handleDecrement();
-          break;
-        case 'PageUp':
-          e.preventDefault();
-          handleValueChange(currentValue + step * 10);
-          break;
-        case 'PageDown':
-          e.preventDefault();
-          handleValueChange(currentValue - step * 10);
-          break;
-        case 'Home':
-          if (min !== -Infinity && !Number.isNaN(min)) {
-            e.preventDefault();
-            handleValueChange(min);
-          }
-          break;
-        case 'End':
-          if (max !== Infinity && !Number.isNaN(max)) {
-            e.preventDefault();
-            handleValueChange(max);
-          }
-          break;
-        case 'Enter':
-          e.preventDefault();
-          handleValueChange(parseNumber(inputText));
-          if (inputRef.current) {
-            inputRef.current.blur();
-          }
-          break;
-        case 'Escape':
-          e.preventDefault();
-          setInputText(formatDisplay(currentValue));
-          if (inputRef.current) {
-            inputRef.current.blur();
-          }
-          break;
-        default:
-          break;
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        updateValue(internalValue + step);
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        updateValue(internalValue - step);
+      } else if (e.key === 'Enter') {
+        inputRef.current?.blur();
       }
+      if (onKeyDown) onKeyDown(e);
     };
 
-    const isDecrementDisabled = disabledResolved || readOnly || currentValue <= min;
-    const isIncrementDisabled = disabledResolved || readOnly || currentValue >= max;
-    const iconDimension = getIconDimension(size);
+    const isMinReached = internalValue <= min;
+    const isMaxReached = internalValue >= max;
+    const iconDimension = getIconDimension(effectiveSize);
 
-    const isFocusedResolved = isInputFocused || isFocused || state === 'focus';
-    const isHoveredResolved = isHovered || state === 'hover';
-    const isActiveResolved = isActive || state === 'active';
-
-    const containerClasses = [
+    const rootClasses = [
       'unooria-number-button',
-      `unooria-number-button--size-${size}`,
-      `unooria-number-button--${theme}`,
-      disabledResolved ? 'unooria-number-button--disabled' : '',
-      readOnly ? 'unooria-number-button--readonly' : '',
-      isFocusedResolved ? 'unooria-number-button--focused' : '',
-      isHoveredResolved ? 'unooria-number-button--state-hover' : '',
-      isActiveResolved ? 'unooria-number-button--state-active' : '',
-      state !== 'default' ? `unooria-number-button--state-${state}` : '',
+      `unooria-number-button--size-${effectiveSize}`,
+      `unooria-number-button--theme-${theme}`,
+      `unooria-number-button--state-${state}`,
+      isComponentDisabled ? 'unooria-number-button--disabled' : '',
+      isHovered || state === 'hover' ? 'unooria-number-button--hovered' : '',
+      isActive || state === 'active' ? 'unooria-number-button--active' : '',
+      isFocused || state === 'focus' ? 'unooria-number-button--focused' : '',
       className,
     ]
       .filter(Boolean)
@@ -341,85 +288,79 @@ export const NumberButton = React.forwardRef<HTMLInputElement, NumberButtonProps
 
     return (
       <div
-        className={containerClasses}
-        data-theme={theme}
-        data-size={size}
-        data-state={state}
+        ref={ref}
+        className={rootClasses}
         style={style}
-        aria-disabled={disabledResolved}
-        aria-readonly={readOnly}
+        role="group"
+        aria-label={ariaLabel}
+        data-theme={theme}
+        {...restProps}
       >
-        {/* Botão de Decremento (-) */}
+        {/* Botão de Decremento / Remove (-) */}
         <button
           type="button"
           tabIndex={-1}
-          disabled={isDecrementDisabled}
-          aria-disabled={isDecrementDisabled}
-          aria-label={ariaLabelDecrement}
-          className="unooria-number-button__action-btn unooria-number-button__action-btn--decrement"
+          className="unooria-number-button__action-btn unooria-number-button__action-btn--remove"
           onClick={handleDecrement}
+          disabled={isComponentDisabled || readOnly || isMinReached}
+          aria-label={ariaLabelDecrement}
         >
-          <MinusIcon sizePx={iconDimension} />
+          <RemoveIcon sizePx={iconDimension} />
         </button>
 
-        {/* Área Central: Afixo Prefixo + Input / Display + Afixo Sufixo */}
-        <div className="unooria-number-button__center">
-          {prefix && (
-            <span className="unooria-number-button__affix unooria-number-button__affix--prefix">
-              {prefix}
+        {/* Display Numérico Central / Campo Editável */}
+        <div className="unooria-number-button__value-wrapper">
+          {prefix && <span className="unooria-number-button__prefix">{prefix}</span>}
+
+          {allowInput && !readOnly && !isComponentDisabled ? (
+            <input
+              ref={inputRef}
+              id={id}
+              name={name}
+              type="text"
+              inputMode="numeric"
+              autoFocus={autoFocus}
+              disabled={isComponentDisabled}
+              readOnly={readOnly}
+              className="unooria-number-button__input"
+              value={isEditing ? inputValue : formatDisplay(internalValue)}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              onKeyDown={handleInputKeyDown}
+              role="spinbutton"
+              aria-valuenow={internalValue}
+              aria-valuemin={min !== -Infinity ? min : undefined}
+              aria-valuemax={max !== Infinity ? max : undefined}
+              aria-label={ariaLabel}
+              size={Math.max(2, formatDisplay(internalValue).length)}
+            />
+          ) : (
+            <span
+              className="unooria-number-button__display"
+              role="spinbutton"
+              aria-valuenow={internalValue}
+              aria-valuemin={min !== -Infinity ? min : undefined}
+              aria-valuemax={max !== Infinity ? max : undefined}
+              aria-label={ariaLabel}
+            >
+              {formatDisplay(internalValue)}
             </span>
           )}
 
-          <input
-            ref={(node) => {
-              inputRef.current = node;
-              if (typeof ref === 'function') {
-                ref(node);
-              } else if (ref) {
-                (ref as React.MutableRefObject<HTMLInputElement | null>).current = node;
-              }
-            }}
-            id={id}
-            name={name}
-            type="text"
-            inputMode="decimal"
-            role="spinbutton"
-            aria-valuenow={currentValue}
-            aria-valuemin={min !== -Infinity ? min : undefined}
-            aria-valuemax={max !== Infinity ? max : undefined}
-            aria-label={ariaLabel}
-            aria-disabled={disabledResolved}
-            aria-readonly={readOnly || !allowInput}
-            readOnly={readOnly || !allowInput}
-            disabled={disabledResolved}
-            autoFocus={autoFocus}
-            value={inputText}
-            onChange={handleInputChange}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
-            onKeyDown={handleInputKeyDown}
-            className="unooria-number-button__input"
-            {...restProps}
-          />
-
-          {suffix && (
-            <span className="unooria-number-button__affix unooria-number-button__affix--suffix">
-              {suffix}
-            </span>
-          )}
+          {suffix && <span className="unooria-number-button__suffix">{suffix}</span>}
         </div>
 
-        {/* Botão de Incremento (+) */}
+        {/* Botão de Incremento / Add (+) */}
         <button
           type="button"
           tabIndex={-1}
-          disabled={isIncrementDisabled}
-          aria-disabled={isIncrementDisabled}
-          aria-label={ariaLabelIncrement}
-          className="unooria-number-button__action-btn unooria-number-button__action-btn--increment"
+          className="unooria-number-button__action-btn unooria-number-button__action-btn--add"
           onClick={handleIncrement}
+          disabled={isComponentDisabled || readOnly || isMaxReached}
+          aria-label={ariaLabelIncrement}
         >
-          <PlusIcon sizePx={iconDimension} />
+          <AddIcon sizePx={iconDimension} />
         </button>
       </div>
     );

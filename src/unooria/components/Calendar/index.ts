@@ -1,11 +1,12 @@
 export { Calendar } from './Calendar';
 export type {
   CalendarProps,
+  CalendarEvent,
+  CalendarEventType,
+  CalendarDayRenderProps,
+  DateRange,
   CalendarMode,
   CalendarView,
-  CalendarTheme,
   CalendarSize,
-  DateRange,
-  CalendarEvent,
-  CalendarDayRenderProps,
+  CalendarTheme,
 } from './Calendar.types';

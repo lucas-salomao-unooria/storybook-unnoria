@@ -1,0 +1,423 @@
+/**
+ * DatePicker Component Styles - Design System Unooria
+ * Baseado no Figma Nó #18919:25934
+ */
+
+:root {
+  --unooria-dp-bg: #FFFFFF;
+  --unooria-dp-border: #E4E8E9;
+  --unooria-dp-border-hover: #A4BDE9;
+  --unooria-dp-border-focus: #7FA5E2;
+  --unooria-dp-focus-ring: rgba(127, 165, 226, 0.25);
+  --unooria-dp-text: #22272A;
+  --unooria-dp-placeholder: #617379;
+  --unooria-dp-label: #22272A;
+  --unooria-dp-helper: #617379;
+  --unooria-dp-icon: #475157;
+  --unooria-dp-icon-hover: #7FA5E2;
+  --unooria-dp-bg-disabled: #F5F8FC;
+  --unooria-dp-popover-bg: rgba(255, 255, 255, 0.98);
+  --unooria-dp-popover-border: #E4E8E9;
+  --unooria-dp-popover-shadow: 0px 0px 5px 1px rgba(34, 39, 42, 0.1);
+  --unooria-dp-shortcut-bg: #F5F8FC;
+  --unooria-dp-shortcut-border: #E4E8E9;
+  --unooria-dp-shortcut-text: #475157;
+  --unooria-dp-shortcut-bg-hover: #E8EFFA;
+  --unooria-dp-shortcut-border-hover: #BDD0EF;
+  --unooria-dp-shortcut-text-hover: #2F4F7F;
+  --unooria-dp-error: #C11414;
+  --unooria-dp-error-ring: rgba(193, 20, 20, 0.15);
+}
+
+/* Modo Escuro (Dark Theme) */
+[data-theme="dark"] .unooria-datepicker,
+.unooria-theme-dark .unooria-datepicker,
+.unooria-datepicker--dark {
+  --unooria-dp-bg: #22272A;
+  --unooria-dp-border: #383E41;
+  --unooria-dp-border-hover: #6487C2;
+  --unooria-dp-border-focus: #7FA5E2;
+  --unooria-dp-focus-ring: rgba(127, 165, 226, 0.35);
+  --unooria-dp-text: #F5F8FC;
+  --unooria-dp-placeholder: #8A989F;
+  --unooria-dp-label: #F5F8FC;
+  --unooria-dp-helper: #A4BDE9;
+  --unooria-dp-icon: #BDD0EF;
+  --unooria-dp-icon-hover: #FFFFFF;
+  --unooria-dp-bg-disabled: #181C1E;
+  --unooria-dp-popover-bg: rgba(34, 39, 42, 0.98);
+  --unooria-dp-popover-border: #383E41;
+  --unooria-dp-popover-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.45);
+  --unooria-dp-shortcut-bg: #2B3237;
+  --unooria-dp-shortcut-border: #383E41;
+  --unooria-dp-shortcut-text: #D3E0F5;
+  --unooria-dp-shortcut-bg-hover: #34375C;
+  --unooria-dp-shortcut-border-hover: #7FA5E2;
+  --unooria-dp-shortcut-text-hover: #FFFFFF;
+  --unooria-dp-error: #E5484D;
+  --unooria-dp-error-ring: rgba(229, 72, 77, 0.25);
+}
+
+/* ==========================================================================
+   Container Principal do DatePicker
+   ========================================================================== */
+
+.unooria-datepicker {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  text-align: left;
+}
+
+/* ==========================================================================
+   Label Superior e Indicador Obrigatório
+   ========================================================================== */
+
+.unooria-datepicker__label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.unooria-datepicker__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-dp-label);
+  user-select: none;
+  cursor: pointer;
+}
+
+.unooria-datepicker__required {
+  color: var(--unooria-dp-error);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* ==========================================================================
+   Container do Input
+   ========================================================================== */
+
+.unooria-datepicker__input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--unooria-dp-bg);
+  border: 1px solid var(--unooria-dp-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: text;
+}
+
+.unooria-datepicker__input-container:hover:not(.unooria-datepicker__input-container--disabled) {
+  border-color: var(--unooria-dp-border-hover);
+}
+
+.unooria-datepicker__input-container:focus-within:not(.unooria-datepicker__input-container--disabled),
+.unooria-datepicker__input-container--open:not(.unooria-datepicker__input-container--disabled) {
+  border-color: var(--unooria-dp-border-focus);
+  box-shadow: 0 0 0 3px var(--unooria-dp-focus-ring);
+}
+
+.unooria-datepicker__input-container--error:not(.unooria-datepicker__input-container--disabled) {
+  border-color: var(--unooria-dp-error) !important;
+}
+
+.unooria-datepicker__input-container--error:focus-within:not(.unooria-datepicker__input-container--disabled),
+.unooria-datepicker__input-container--error.unooria-datepicker__input-container--open {
+  box-shadow: 0 0 0 3px var(--unooria-dp-error-ring) !important;
+}
+
+.unooria-datepicker__input-container--disabled {
+  background-color: var(--unooria-dp-bg-disabled);
+  border-color: var(--unooria-dp-border);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Variações de Tamanho do Input (SM, MD, LG)
+   ========================================================================== */
+
+/* SM: Altura 32px, Raio 8px */
+.unooria-datepicker--sm .unooria-datepicker__input-container {
+  height: 32px;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.unooria-datepicker--sm .unooria-datepicker__input {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.unooria-datepicker--sm .unooria-datepicker__calendar-icon,
+.unooria-datepicker--sm .unooria-datepicker__clear-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* MD: Altura 48px, Raio 12px (Padrão) */
+.unooria-datepicker--md .unooria-datepicker__input-container {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 12px;
+}
+
+.unooria-datepicker--md .unooria-datepicker__input {
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.unooria-datepicker--md .unooria-datepicker__calendar-icon,
+.unooria-datepicker--md .unooria-datepicker__clear-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* LG: Altura 56px, Raio 16px */
+.unooria-datepicker--lg .unooria-datepicker__input-container {
+  height: 56px;
+  min-height: 56px;
+  padding: 0 14px;
+  border-radius: 16px;
+}
+
+.unooria-datepicker--lg .unooria-datepicker__input {
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.unooria-datepicker--lg .unooria-datepicker__calendar-icon,
+.unooria-datepicker--lg .unooria-datepicker__clear-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================================================================
+   Elemento <input>
+   ========================================================================== */
+
+.unooria-datepicker__input {
+  flex: 1 1 auto;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--unooria-dp-text);
+  font-family: inherit;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.unooria-datepicker__input::placeholder {
+  color: var(--unooria-dp-placeholder);
+  opacity: 1;
+}
+
+.unooria-datepicker__input:disabled {
+  cursor: not-allowed;
+  color: var(--unooria-dp-placeholder);
+}
+
+/* ==========================================================================
+   Ações à Direita (Botão Limpar e Ícone Calendário)
+   ========================================================================== */
+
+.unooria-datepicker__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.unooria-datepicker__clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  margin: 0;
+  border-radius: 50%;
+  color: var(--unooria-dp-icon);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 0;
+}
+
+.unooria-datepicker__clear-btn:hover {
+  color: var(--unooria-dp-text);
+  background-color: rgba(127, 165, 226, 0.15);
+}
+
+.unooria-datepicker__clear-btn:focus-visible {
+  outline: 2px solid var(--unooria-dp-border-focus);
+  outline-offset: 1px;
+}
+
+.unooria-datepicker__calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  margin: 0;
+  border-radius: 6px;
+  color: var(--unooria-dp-icon);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 0;
+}
+
+.unooria-datepicker__calendar-btn:hover:not(:disabled) {
+  color: var(--unooria-dp-icon-hover);
+}
+
+.unooria-datepicker__calendar-btn:focus-visible {
+  outline: 2px solid var(--unooria-dp-border-focus);
+  outline-offset: 1px;
+}
+
+.unooria-datepicker__calendar-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   Popover Flutuante Acoplado
+   Elevação 1 Figma: boxShadow 0px 0px 5px 1px rgba(34, 39, 42, 0.1), backdropFilter blur(4px)
+   ========================================================================== */
+
+.unooria-datepicker__popover {
+  position: absolute;
+  z-index: 1050;
+  background-color: var(--unooria-dp-popover-bg);
+  border: 1px solid var(--unooria-dp-popover-border);
+  box-shadow: var(--unooria-dp-popover-shadow);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 12px;
+  box-sizing: border-box;
+  animation: unooria-dp-fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.unooria-datepicker--sm .unooria-datepicker__popover {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.unooria-datepicker--md .unooria-datepicker__popover {
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.unooria-datepicker--lg .unooria-datepicker__popover {
+  border-radius: 16px;
+  padding: 14px;
+}
+
+/* Posicionamentos do Popover */
+.unooria-datepicker__popover--bottom-start {
+  top: calc(100% + 6px);
+  left: 0;
+}
+
+.unooria-datepicker__popover--bottom-end {
+  top: calc(100% + 6px);
+  right: 0;
+}
+
+.unooria-datepicker__popover--top-start {
+  bottom: calc(100% + 6px);
+  left: 0;
+}
+
+.unooria-datepicker__popover--top-end {
+  bottom: calc(100% + 6px);
+  right: 0;
+}
+
+@keyframes unooria-dp-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Barra de Atalhos Rápidos (Shortcuts)
+   ========================================================================== */
+
+.unooria-datepicker__shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--unooria-dp-border);
+}
+
+.unooria-datepicker__shortcut-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  font-family: inherit;
+  border-radius: 6px;
+  border: 1px solid var(--unooria-dp-shortcut-border);
+  background-color: var(--unooria-dp-shortcut-bg);
+  color: var(--unooria-dp-shortcut-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.unooria-datepicker__shortcut-chip:hover {
+  background-color: var(--unooria-dp-shortcut-bg-hover);
+  border-color: var(--unooria-dp-shortcut-border-hover);
+  color: var(--unooria-dp-shortcut-text-hover);
+}
+
+.unooria-datepicker__shortcut-chip:focus-visible {
+  outline: 2px solid var(--unooria-dp-border-focus);
+  outline-offset: 1px;
+}
+
+/* ==========================================================================
+   HelperText e Mensagem de Erro Inferior
+   ========================================================================== */
+
+.unooria-datepicker__helper {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--unooria-dp-helper);
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.unooria-datepicker__helper--error {
+  color: var(--unooria-dp-error);
+  font-weight: 500;
+}

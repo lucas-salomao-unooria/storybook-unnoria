@@ -11,7 +11,7 @@ import {
   RadioButtonBoxSide,
   RadioGroupDirection,
 } from '../../../src/unooria/components/RadioButton/RadioButton.types';
-import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // ============================================================================
 // ÍCONES SVG INLINE AUXILIARES

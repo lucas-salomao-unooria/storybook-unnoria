@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../../src/unooria/components/Button/Button';
 import { ButtonProps, ButtonVariant, ButtonState, ButtonSize } from '../../../src/unooria/components/Button/Button.types';
-import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones SVG inline para independência total e zero dependências externas
 const ArrowRightIcon = () => (

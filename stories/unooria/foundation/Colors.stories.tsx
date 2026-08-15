@@ -24,7 +24,7 @@ import {
   gradients,
 } from '../../../src/unooria/tokens/colors';
 import '../../../src/unooria/tokens/colors.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
 
 /**
  * Storybook da Plataforma Unooria - Tokens de Cores

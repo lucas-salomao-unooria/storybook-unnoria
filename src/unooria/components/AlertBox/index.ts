@@ -1,2 +1,8 @@
 export { AlertBox } from './AlertBox';
-export type { AlertBoxProps, AlertBoxVariant, AlertBoxTheme } from './AlertBox.types';
+export type {
+  AlertBoxProps,
+  AlertBoxVariant,
+  AlertBoxDevice,
+  AlertBoxTheme,
+  AlertBoxActionConfig,
+} from './AlertBox.types';

@@ -7,7 +7,7 @@ import {
   UnooriaSpacingKey,
 } from '../../../src/unooria/tokens/spacing';
 import '../../../src/unooria/tokens/spacing.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
 
 // Componente para notificação ao copiar
 const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {

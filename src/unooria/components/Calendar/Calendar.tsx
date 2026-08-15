@@ -3,41 +3,25 @@ import {
   CalendarProps,
   CalendarEvent,
   CalendarDayRenderProps,
+  CalendarView,
   DateRange,
 } from './Calendar.types';
 import './Calendar.css';
 
-// Nomes dos meses em Português Brasileiro (PT-BR)
+// Nomes dos meses em PT-BR
 const MONTH_NAMES_PT = [
-  'Janeiro',
-  'Fevereiro',
-  'Março',
-  'Abril',
-  'Maio',
-  'Junho',
-  'Julho',
-  'Agosto',
-  'Setembro',
-  'Outubro',
-  'Novembro',
-  'Dezembro',
+  'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ];
 
-// Nomes dos dias da semana (abreviados e completos para a11y)
+const MONTH_NAMES_SHORT_PT = [
+  'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+  'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+];
+
+// Dias da semana (D, S, T, Q, Q, S, S) e Nomes Expandidos (Dom, Seg, Ter, Qua, Qui, Sex, Sáb)
 const WEEKDAYS_SHORT_PT = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-const WEEKDAYS_FULL_PT = [
-  'Domingo',
-  'Segunda-feira',
-  'Terça-feira',
-  'Quarta-feira',
-  'Quinta-feira',
-  'Sexta-feira',
-  'Sábado',
-];
-
-/* ==========================================================================
-   Funções Utilitárias de Manipulação de Datas
-   ========================================================================== */
+const WEEKDAYS_EXPANDED_PT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
 function startOfDay(d: Date): Date {
   const newDate = new Date(d);
@@ -59,14 +43,6 @@ function isSameMonth(a?: Date | null, b?: Date | null): boolean {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
 }
 
-function isBeforeDay(a: Date, b: Date): boolean {
-  return startOfDay(a).getTime() < startOfDay(b).getTime();
-}
-
-function isAfterDay(a: Date, b: Date): boolean {
-  return startOfDay(a).getTime() > startOfDay(b).getTime();
-}
-
 function isBetweenDays(target: Date, start: Date, end: Date): boolean {
   const t = startOfDay(target).getTime();
   const s = startOfDay(start).getTime();
@@ -77,7 +53,6 @@ function isBetweenDays(target: Date, start: Date, end: Date): boolean {
 function parseEventDate(dateValue: Date | string): Date {
   if (dateValue instanceof Date) return dateValue;
   if (typeof dateValue === 'string') {
-    // Trata formato YYYY-MM-DD para evitar shifts de timezone
     if (/^\d{4}-\d{2}-\d{2}$/.test(dateValue)) {
       const [y, m, d] = dateValue.split('-').map(Number);
       return new Date(y, m - 1, d);
@@ -89,16 +64,13 @@ function parseEventDate(dateValue: Date | string): Date {
 
 /**
  * Componente Calendar - Design System Plataforma Unooria
- *
- * Componente avançado para navegação temporal, seleção de datas únicas,
- * intervalos (range) e múltiplas datas. Inclui suporte nativo a eventos
- * com pontos indicadores e tooltips informativos, navegação rápida por meses/anos,
- * internacionalização PT-BR e suporte completo a temas Claro e Escuro.
+ * Especificação Fiel ao Figma #12694:2509 & #12694:2547 (Mês Completo)
  */
 export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
       mode = 'single',
+      view: controlledView,
       value,
       onSelectDate,
       rangeValue,
@@ -119,91 +91,98 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       firstDayOfWeek = 0,
       theme = 'light',
       size = 'md',
-      locale = 'pt-BR',
-      showTodayButton = true,
       showHeader = true,
       showQuickNav = true,
-      showFooter = false,
       className = '',
       style,
-      ariaLabel = 'Calendário de seleção de datas',
+      ariaLabel = 'Calendário interativo',
+      ...restProps
     },
     ref
   ) => {
-    // Data de referência de Hoje
     const today = useMemo(() => startOfDay(new Date()), []);
 
-    // Estado do mês exibido (controlado ou não-controlado)
-    const [internalMonth, setInternalMonth] = useState<Date>(() => {
-      if (defaultMonth) return startOfDay(defaultMonth);
-      if (value) return startOfDay(value);
-      if (rangeValue?.startDate) return startOfDay(rangeValue.startDate);
-      return today;
-    });
-
-    const activeMonth = controlledMonth ? startOfDay(controlledMonth) : internalMonth;
-
-    // Estado para modo de navegação rápida ('none' | 'month' | 'year')
-    const [quickNavMode, setQuickNavMode] = useState<'none' | 'month' | 'year'>('none');
-    const [yearRangeStart, setYearRangeStart] = useState<number>(() => {
-      return Math.floor(activeMonth.getFullYear() / 12) * 12;
-    });
-
-    // Estado para hover dinâmico em seleção de intervalo (range)
-    const [hoverDate, setHoverDate] = useState<Date | null>(null);
-
-    // Estado para tooltip de eventos no hover
-    const [activeTooltipDate, setActiveTooltipDate] = useState<Date | null>(null);
-
-    // Atualiza o mês exibido
-    const changeMonth = useCallback(
-      (newMonth: Date) => {
-        if (!controlledMonth) {
-          setInternalMonth(newMonth);
-        }
-        onMonthChange?.(newMonth);
-      },
-      [controlledMonth, onMonthChange]
+    // Estado interno de mês navegado
+    const [internalMonth, setInternalMonth] = useState<Date>(
+      () => defaultMonth || value || (rangeValue?.startDate ? rangeValue.startDate : new Date())
     );
 
-    // Navegação: Mês Anterior
-    const handlePrevMonth = () => {
-      if (quickNavMode === 'year') {
-        setYearRangeStart((prev) => prev - 12);
-        return;
-      }
-      const newDate = new Date(activeMonth.getFullYear(), activeMonth.getMonth() - 1, 1);
-      changeMonth(newDate);
-    };
+    // Estado interno de visualização
+    const [internalView, setInternalView] = useState<CalendarView>('month');
 
-    // Navegação: Próximo Mês
-    const handleNextMonth = () => {
-      if (quickNavMode === 'year') {
-        setYearRangeStart((prev) => prev + 12);
-        return;
-      }
-      const newDate = new Date(activeMonth.getFullYear(), activeMonth.getMonth() + 1, 1);
-      changeMonth(newDate);
-    };
+    // Estado interno para seleção de Range temporário
+    const [rangeStart, setRangeStart] = useState<Date | null>(rangeValue?.startDate || null);
 
-    // Atalho: Ir para Hoje
-    const handleGoToToday = () => {
-      const newDate = new Date(today.getFullYear(), today.getMonth(), 1);
-      changeMonth(newDate);
-      if (mode === 'single') {
-        onSelectDate?.(today);
-      }
-      setQuickNavMode('none');
-    };
+    const activeMonth = controlledMonth || internalMonth;
+    const currentView = controlledView || internalView;
 
-    // Verifica se uma data específica está desabilitada
-    const isDateDisabled = useCallback(
-      (date: Date): boolean => {
-        if (minDate && isBeforeDay(date, minDate)) return true;
-        if (maxDate && isAfterDay(date, maxDate)) return true;
-        if (typeof disabledDates === 'function') {
-          return disabledDates(date);
+    const isExpanded = currentView === 'week-expanded' || currentView === 'month-expanded' || currentView === 'full-month';
+
+    const navigateMonth = useCallback(
+      (offset: number) => {
+        const next = new Date(activeMonth.getFullYear(), activeMonth.getMonth() + offset, 1);
+        if (!controlledMonth) {
+          setInternalMonth(next);
         }
+        if (onMonthChange) {
+          onMonthChange(next);
+        }
+      },
+      [activeMonth, controlledMonth, onMonthChange]
+    );
+
+    const navigateYear = useCallback(
+      (offset: number) => {
+        const next = new Date(activeMonth.getFullYear() + offset, activeMonth.getMonth(), 1);
+        if (!controlledMonth) {
+          setInternalMonth(next);
+        }
+        if (onMonthChange) {
+          onMonthChange(next);
+        }
+      },
+      [activeMonth, controlledMonth, onMonthChange]
+    );
+
+    const navigateDecade = useCallback(
+      (offset: number) => {
+        const next = new Date(activeMonth.getFullYear() + offset * 10, activeMonth.getMonth(), 1);
+        if (!controlledMonth) {
+          setInternalMonth(next);
+        }
+        if (onMonthChange) {
+          onMonthChange(next);
+        }
+      },
+      [activeMonth, controlledMonth, onMonthChange]
+    );
+
+    // Grid de dias do mês atual
+    const calendarDays = useMemo(() => {
+      const year = activeMonth.getFullYear();
+      const month = activeMonth.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+
+      const daysInMonth = lastDay.getDate();
+      const startDayIndex = (firstDay.getDay() - firstDayOfWeek + 7) % 7;
+
+      const totalSlots = Math.ceil((startDayIndex + daysInMonth) / 7) * 7;
+      const days: Date[] = [];
+
+      for (let i = 0; i < totalSlots; i++) {
+        const dayOffset = i - startDayIndex + 1;
+        days.push(new Date(year, month, dayOffset));
+      }
+
+      return days;
+    }, [activeMonth, firstDayOfWeek]);
+
+    const isDayDisabled = useCallback(
+      (date: Date) => {
+        if (minDate && startOfDay(date) < startOfDay(minDate)) return true;
+        if (maxDate && startOfDay(date) > startOfDay(maxDate)) return true;
+        if (typeof disabledDates === 'function') return disabledDates(date);
         if (Array.isArray(disabledDates)) {
           return disabledDates.some((d) => isSameDay(d, date));
         }
@@ -212,154 +191,54 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       [minDate, maxDate, disabledDates]
     );
 
-    // Mapeamento de eventos por data
-    const eventsByDate = useMemo(() => {
-      const map = new Map<string, CalendarEvent[]>();
-      events.forEach((evt) => {
-        const d = parseEventDate(evt.date);
-        const key = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-        const existing = map.get(key) || [];
-        existing.push(evt);
-        map.set(key, existing);
-      });
-      return map;
-    }, [events]);
-
-    const getEventsForDate = useCallback(
+    const getDayEvents = useCallback(
       (date: Date): CalendarEvent[] => {
-        const key = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-        return eventsByDate.get(key) || [];
+        return events.filter((e) => isSameDay(parseEventDate(e.date), date));
       },
-      [eventsByDate]
+      [events]
     );
 
-    // Lógica de seleção ao clicar no dia
     const handleDayClick = (date: Date) => {
-      if (isDateDisabled(date)) return;
+      if (isDayDisabled(date)) return;
 
       if (mode === 'single') {
-        onSelectDate?.(date);
+        if (onSelectDate) onSelectDate(date);
       } else if (mode === 'range') {
-        const { startDate, endDate } = rangeValue || {};
-        if (!startDate || (startDate && endDate)) {
-          // Inicia novo intervalo
-          onSelectRange?.({ startDate: date, endDate: null });
+        if (!rangeStart || (rangeStart && rangeValue?.endDate)) {
+          setRangeStart(date);
+          if (onSelectRange) onSelectRange({ startDate: date, endDate: null });
         } else {
-          // Finaliza intervalo
-          if (isBeforeDay(date, startDate)) {
-            onSelectRange?.({ startDate: date, endDate: startDate });
+          if (date < rangeStart) {
+            setRangeStart(date);
+            if (onSelectRange) onSelectRange({ startDate: date, endDate: rangeStart });
           } else {
-            onSelectRange?.({ startDate, endDate: date });
+            if (onSelectRange) onSelectRange({ startDate: rangeStart, endDate: date });
+            setRangeStart(null);
           }
         }
       } else if (mode === 'multiple') {
-        const isSelected = multipleValues.some((d) => isSameDay(d, date));
-        const newSelection = isSelected
-          ? multipleValues.filter((d) => !isSameDay(d, date))
-          : [...multipleValues, date];
-        onSelectMultiple?.(newSelection);
+        if (onSelectMultiple) {
+          const exists = multipleValues.some((d) => isSameDay(d, date));
+          if (exists) {
+            onSelectMultiple(multipleValues.filter((d) => !isSameDay(d, date)));
+          } else {
+            onSelectMultiple([...multipleValues, date]);
+          }
+        }
       }
     };
 
-    // Construção da Matriz de Dias (6 semanas x 7 dias = 42 células)
-    const daysGrid = useMemo(() => {
-      const year = activeMonth.getFullYear();
-      const month = activeMonth.getMonth();
+    const decadeStart = Math.floor(activeMonth.getFullYear() / 10) * 10;
+    const decadeYears = Array.from({ length: 12 }, (_, i) => decadeStart - 1 + i);
 
-      // Primeiro dia do mês
-      const firstDay = new Date(year, month, 1);
-      let startingDayOfWeek = firstDay.getDay() - firstDayOfWeek;
-      if (startingDayOfWeek < 0) startingDayOfWeek += 7;
-
-      // Dias no mês anterior
-      const prevMonthLastDate = new Date(year, month, 0).getDate();
-      // Dias no mês atual
-      const currentMonthLastDate = new Date(year, month + 1, 0).getDate();
-
-      const days: Array<{
-        date: Date;
-        dayNumber: number;
-        isCurrentMonth: boolean;
-      }> = [];
-
-      // Preenchimento com dias do mês anterior
-      for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-        const d = new Date(year, month - 1, prevMonthLastDate - i);
-        days.push({
-          date: d,
-          dayNumber: prevMonthLastDate - i,
-          isCurrentMonth: false,
-        });
-      }
-
-      // Dias do mês atual
-      for (let i = 1; i <= currentMonthLastDate; i++) {
-        const d = new Date(year, month, i);
-        days.push({
-          date: d,
-          dayNumber: i,
-          isCurrentMonth: true,
-        });
-      }
-
-      // Preenchimento com dias do próximo mês para completar 42 células (6 linhas)
-      const remainingDays = 42 - days.length;
-      for (let i = 1; i <= remainingDays; i++) {
-        const d = new Date(year, month + 1, i);
-        days.push({
-          date: d,
-          dayNumber: i,
-          isCurrentMonth: false,
-        });
-      }
-
-      return days;
-    }, [activeMonth, firstDayOfWeek]);
-
-    // Reordenação do cabeçalho de dias da semana
-    const orderedWeekdays = useMemo(() => {
-      if (firstDayOfWeek === 1) {
-        return [
-          { short: WEEKDAYS_SHORT_PT[1], full: WEEKDAYS_FULL_PT[1] },
-          { short: WEEKDAYS_SHORT_PT[2], full: WEEKDAYS_FULL_PT[2] },
-          { short: WEEKDAYS_SHORT_PT[3], full: WEEKDAYS_FULL_PT[3] },
-          { short: WEEKDAYS_SHORT_PT[4], full: WEEKDAYS_FULL_PT[4] },
-          { short: WEEKDAYS_SHORT_PT[5], full: WEEKDAYS_FULL_PT[5] },
-          { short: WEEKDAYS_SHORT_PT[6], full: WEEKDAYS_FULL_PT[6] },
-          { short: WEEKDAYS_SHORT_PT[0], full: WEEKDAYS_FULL_PT[0] },
-        ];
-      }
-      return WEEKDAYS_SHORT_PT.map((short, idx) => ({
-        short,
-        full: WEEKDAYS_FULL_PT[idx],
-      }));
-    }, [firstDayOfWeek]);
-
-    // Resumo de seleção para o rodapé
-    const selectionSummary = useMemo(() => {
-      if (mode === 'single' && value) {
-        return `${value.getDate()} de ${MONTH_NAMES_PT[value.getMonth()]} de ${value.getFullYear()}`;
-      }
-      if (mode === 'range') {
-        const start = rangeValue?.startDate;
-        const end = rangeValue?.endDate;
-        if (start && end) {
-          return `${start.getDate()}/${start.getMonth() + 1} até ${end.getDate()}/${end.getMonth() + 1}/${end.getFullYear()}`;
-        }
-        if (start) {
-          return `Início: ${start.getDate()}/${start.getMonth() + 1}/${start.getFullYear()}`;
-        }
-      }
-      if (mode === 'multiple' && multipleValues.length > 0) {
-        return `${multipleValues.length} data(s) selecionada(s)`;
-      }
-      return 'Nenhuma data selecionada';
-    }, [mode, value, rangeValue, multipleValues]);
-
-    const calendarClasses = [
+    const containerClasses = [
       'unooria-calendar',
-      `unooria-calendar--size-${size}`,
       `unooria-calendar--${theme}`,
+      `unooria-calendar--size-${size}`,
+      currentView === 'week-expanded' ? 'unooria-calendar--week-expanded' : '',
+      currentView === 'month-expanded' || currentView === 'full-month'
+        ? 'unooria-calendar--month-expanded'
+        : '',
       className,
     ]
       .filter(Boolean)
@@ -368,376 +247,266 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     return (
       <div
         ref={ref}
-        className={calendarClasses}
-        data-theme={theme}
-        style={style}
         role="region"
         aria-label={ariaLabel}
+        className={containerClasses}
+        style={style}
+        data-theme={theme}
+        {...restProps}
       >
-        {/* ====================================================================
-            Cabeçalho com Navegação de Mês/Ano
-            ==================================================================== */}
+        {/* Cabeçalho */}
         {showHeader && (
-          <div className="unooria-calendar__header">
-            <div className="unooria-calendar__title-container">
-              {showQuickNav ? (
-                <button
-                  type="button"
-                  className="unooria-calendar__title-btn"
-                  onClick={() =>
-                    setQuickNavMode((prev) => (prev === 'none' ? 'month' : 'none'))
-                  }
-                  aria-label={`Mudar visualização: ${MONTH_NAMES_PT[activeMonth.getMonth()]} ${activeMonth.getFullYear()}`}
-                >
-                  <span>
-                    {quickNavMode === 'year'
-                      ? `${yearRangeStart} - ${yearRangeStart + 11}`
-                      : `${MONTH_NAMES_PT[activeMonth.getMonth()]} ${activeMonth.getFullYear()}`}
-                  </span>
-                  <svg
-                    className={`unooria-calendar__title-arrow ${
-                      quickNavMode !== 'none' ? 'unooria-calendar__title-arrow--open' : ''
-                    }`}
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M4 6l4 4 4-4" />
-                  </svg>
-                </button>
-              ) : (
-                <span className="unooria-calendar__title-btn" style={{ cursor: 'default' }}>
-                  {MONTH_NAMES_PT[activeMonth.getMonth()]} {activeMonth.getFullYear()}
-                </span>
-              )}
-            </div>
-
-            <div className="unooria-calendar__nav">
-              {showTodayButton && (
-                <button
-                  type="button"
-                  className="unooria-calendar__today-btn"
-                  onClick={handleGoToToday}
-                  title="Ir para o mês e dia atual"
-                >
-                  Hoje
-                </button>
-              )}
-
-              {/* Botão Mês Anterior */}
-              <button
-                type="button"
-                className="unooria-calendar__nav-btn"
-                onClick={handlePrevMonth}
-                aria-label={quickNavMode === 'year' ? 'Anos anteriores' : 'Mês anterior'}
-              >
-                <svg
-                  className="unooria-calendar__nav-icon"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12 15l-5-5 5-5" />
-                </svg>
-              </button>
-
-              {/* Botão Próximo Mês */}
-              <button
-                type="button"
-                className="unooria-calendar__nav-btn"
-                onClick={handleNextMonth}
-                aria-label={quickNavMode === 'year' ? 'Próximos anos' : 'Próximo mês'}
-              >
-                <svg
-                  className="unooria-calendar__nav-icon"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M8 5l5 5-5 5" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ====================================================================
-            Overlay de Seleção Rápida (Mês ou Ano)
-            ==================================================================== */}
-        {quickNavMode !== 'none' && (
-          <div className="unooria-calendar__quick-nav">
-            <div className="unooria-calendar__quick-nav-header">
-              <span>{quickNavMode === 'month' ? 'Selecionar Mês' : 'Selecionar Ano'}</span>
-              <button
-                type="button"
-                className="unooria-calendar__today-btn"
-                onClick={() =>
-                  setQuickNavMode((prev) => (prev === 'month' ? 'year' : 'month'))
-                }
-              >
-                {quickNavMode === 'month'
-                  ? `${activeMonth.getFullYear()}`
-                  : 'Voltar p/ Meses'}
-              </button>
-            </div>
-
-            <div className="unooria-calendar__quick-grid">
-              {quickNavMode === 'month' &&
-                MONTH_NAMES_PT.map((monthName, idx) => {
-                  const isSelected = activeMonth.getMonth() === idx;
-                  return (
-                    <button
-                      key={monthName}
-                      type="button"
-                      className={`unooria-calendar__quick-item ${
-                        isSelected ? 'unooria-calendar__quick-item--selected' : ''
-                      }`}
-                      onClick={() => {
-                        const newDate = new Date(activeMonth.getFullYear(), idx, 1);
-                        changeMonth(newDate);
-                        setQuickNavMode('none');
-                      }}
-                    >
-                      {monthName.slice(0, 3)}
-                    </button>
-                  );
-                })}
-
-              {quickNavMode === 'year' &&
-                Array.from({ length: 12 }, (_, i) => yearRangeStart + i).map((yr) => {
-                  const isSelected = activeMonth.getFullYear() === yr;
-                  return (
-                    <button
-                      key={yr}
-                      type="button"
-                      className={`unooria-calendar__quick-item ${
-                        isSelected ? 'unooria-calendar__quick-item--selected' : ''
-                      }`}
-                      onClick={() => {
-                        const newDate = new Date(yr, activeMonth.getMonth(), 1);
-                        changeMonth(newDate);
-                        setQuickNavMode('month');
-                      }}
-                    >
-                      {yr}
-                    </button>
-                  );
-                })}
-            </div>
-          </div>
-        )}
-
-        {/* ====================================================================
-            Cabeçalho de Dias da Semana (D, S, T, Q, Q, S, S)
-            ==================================================================== */}
-        <div className="unooria-calendar__weekdays" role="row">
-          {orderedWeekdays.map((wd, index) => (
-            <div
-              key={index}
-              className="unooria-calendar__weekday"
-              role="columnheader"
-              aria-label={wd.full}
+          <header className="unooria-calendar__header">
+            <button
+              type="button"
+              className="unooria-calendar__nav-btn"
+              onClick={() => {
+                if (currentView === 'years-picker') navigateDecade(-1);
+                else if (currentView === 'months-picker') navigateYear(-1);
+                else navigateMonth(-1);
+              }}
+              aria-label="Anterior"
             >
-              {wd.short}
-            </div>
-          ))}
-        </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
 
-        {/* ====================================================================
-            Grade de Dias (7 colunas x 6 linhas)
-            ==================================================================== */}
-        <div className="unooria-calendar__grid" role="grid">
-          {daysGrid.map(({ date, dayNumber, isCurrentMonth }, index) => {
-            const isToday = isSameDay(date, today);
-            const disabled = isDateDisabled(date);
-            const dayEvents = getEventsForDate(date);
+            {/* Botão de Título Interativo para alternar visualizações */}
+            <button
+              type="button"
+              className="unooria-calendar__title-btn"
+              onClick={() => {
+                if (!showQuickNav) return;
+                if (currentView === 'month' || isExpanded) setInternalView('months-picker');
+                else if (currentView === 'months-picker') setInternalView('years-picker');
+                else setInternalView('month');
+              }}
+            >
+              {currentView === 'years-picker' && `${decadeStart} - ${decadeStart + 9}`}
+              {currentView === 'months-picker' && `${activeMonth.getFullYear()}`}
+              {(currentView === 'month' || isExpanded) &&
+                `${MONTH_NAMES_PT[activeMonth.getMonth()]} ${activeMonth.getFullYear()}`}
+            </button>
 
-            // Resolução de Seleção
-            let isSelected = false;
-            let isInRange = false;
-            let isRangeStart = false;
-            let isRangeEnd = false;
+            <button
+              type="button"
+              className="unooria-calendar__nav-btn"
+              onClick={() => {
+                if (currentView === 'years-picker') navigateDecade(1);
+                else if (currentView === 'months-picker') navigateYear(1);
+                else navigateMonth(1);
+              }}
+              aria-label="Próximo"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </header>
+        )}
 
-            if (mode === 'single') {
-              isSelected = isSameDay(date, value);
-            } else if (mode === 'range') {
-              const { startDate, endDate } = rangeValue || {};
-              isRangeStart = Boolean(startDate && isSameDay(date, startDate));
-              isRangeEnd = Boolean(endDate && isSameDay(date, endDate));
-              isSelected = isRangeStart || isRangeEnd;
-
-              // Em progresso de seleção (hover)
-              const effectiveEnd = endDate || (startDate ? hoverDate : null);
-              if (startDate && effectiveEnd) {
-                const s = isBeforeDay(startDate, effectiveEnd) ? startDate : effectiveEnd;
-                const e = isAfterDay(effectiveEnd, startDate) ? effectiveEnd : startDate;
-                isInRange = isBetweenDays(date, s, e);
-              }
-            } else if (mode === 'multiple') {
-              isSelected = multipleValues.some((d) => isSameDay(d, date));
-            }
-
-            // Wrapper classes para conectores de intervalo contínuo
-            const wrapperClasses = [
-              'unooria-calendar__cell-wrapper',
-              isInRange ? 'unooria-calendar__cell-wrapper--in-range' : '',
-              isRangeStart ? 'unooria-calendar__cell-wrapper--range-start' : '',
-              isRangeEnd ? 'unooria-calendar__cell-wrapper--range-end' : '',
-              isRangeStart && isRangeEnd
-                ? 'unooria-calendar__cell-wrapper--range-single'
-                : '',
-            ]
-              .filter(Boolean)
-              .join(' ');
-
-            // Botão classes do dia
-            const dayClasses = [
-              'unooria-calendar__day',
-              !isCurrentMonth ? 'unooria-calendar__day--outside' : '',
-              isToday ? 'unooria-calendar__day--today' : '',
-              isSelected ? 'unooria-calendar__day--selected' : '',
-              isInRange && !isSelected ? 'unooria-calendar__day--in-range' : '',
-              disabled ? 'unooria-calendar__day--disabled' : '',
-            ]
-              .filter(Boolean)
-              .join(' ');
-
-            // Se for dia fora do mês e showOutsideDays for false, renderiza vazio
-            if (!isCurrentMonth && !showOutsideDays) {
-              return <div key={index} className="unooria-calendar__cell-wrapper" />;
-            }
-
-            // Formatação acessível de aria-label
-            const formattedAriaDate = `${date.getDate()} de ${
-              MONTH_NAMES_PT[date.getMonth()]
-            } de ${date.getFullYear()}${isToday ? ', Hoje' : ''}${
-              isSelected ? ', Selecionado' : ''
-            }${dayEvents.length > 0 ? `, ${dayEvents.length} evento(s)` : ''}`;
-
-            const dayRenderProps: CalendarDayRenderProps = {
-              date,
-              dayNumber,
-              isCurrentMonth,
-              isToday,
-              isSelected,
-              isInRange,
-              isRangeStart,
-              isRangeEnd,
-              isDisabled: disabled,
-              events: dayEvents,
-            };
-
-            return (
-              <div
-                key={index}
-                className={wrapperClasses}
-                onMouseEnter={() => {
-                  if (mode === 'range' && rangeValue?.startDate && !rangeValue.endDate) {
-                    setHoverDate(date);
-                  }
-                  if (dayEvents.length > 0 && showEventTooltip) {
-                    setActiveTooltipDate(date);
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (activeTooltipDate && isSameDay(activeTooltipDate, date)) {
-                    setActiveTooltipDate(null);
-                  }
-                }}
-              >
+        {/* 1. Visão de Seletor de 12 Meses (#12694:2634) */}
+        {currentView === 'months-picker' && (
+          <div className="unooria-calendar__picker-grid">
+            {MONTH_NAMES_SHORT_PT.map((mName, idx) => {
+              const isSelected = activeMonth.getMonth() === idx;
+              return (
                 <button
+                  key={mName}
                   type="button"
-                  className={dayClasses}
-                  onClick={() => handleDayClick(date)}
-                  disabled={disabled}
-                  aria-label={formattedAriaDate}
-                  aria-selected={isSelected}
-                  aria-disabled={disabled}
-                  aria-current={isToday ? 'date' : undefined}
-                  tabIndex={disabled ? -1 : 0}
+                  className={`unooria-calendar__picker-btn ${isSelected ? 'unooria-calendar__picker-btn--active' : ''}`}
+                  onClick={() => {
+                    const next = new Date(activeMonth.getFullYear(), idx, 1);
+                    if (!controlledMonth) setInternalMonth(next);
+                    if (onMonthChange) onMonthChange(next);
+                    setInternalView('month');
+                  }}
                 >
-                  {renderDay ? (
-                    renderDay(dayRenderProps)
-                  ) : (
-                    <>
-                      <span className="unooria-calendar__day-number">{dayNumber}</span>
-
-                      {/* Pontos de Eventos (Event Dots) */}
-                      {dayEvents.length > 0 && (
-                        <span
-                          className="unooria-calendar__events-container"
-                          aria-hidden="true"
-                        >
-                          {dayEvents.slice(0, 3).map((evt, evtIdx) => (
-                            <span
-                              key={evt.id || evtIdx}
-                              className="unooria-calendar__event-dot"
-                              style={{
-                                backgroundColor:
-                                  evt.dotColor || evt.color || 'var(--cal-primary)',
-                              }}
-                            />
-                          ))}
-                        </span>
-                      )}
-                    </>
-                  )}
+                  {mName}
                 </button>
+              );
+            })}
+          </div>
+        )}
 
-                {/* Tooltip de Eventos ao passar o mouse */}
-                {showEventTooltip &&
-                  activeTooltipDate &&
-                  isSameDay(activeTooltipDate, date) &&
-                  dayEvents.length > 0 && (
-                    <div className="unooria-calendar__tooltip" role="tooltip">
-                      <div className="unooria-calendar__tooltip-title">
-                        {date.getDate()} de {MONTH_NAMES_PT[date.getMonth()]}
+        {/* 2. Visão de Seletor de Década de Anos (#18813:1441) */}
+        {currentView === 'years-picker' && (
+          <div className="unooria-calendar__picker-grid">
+            {decadeYears.map((yr) => {
+              const isSelected = activeMonth.getFullYear() === yr;
+              return (
+                <button
+                  key={yr}
+                  type="button"
+                  className={`unooria-calendar__picker-btn ${isSelected ? 'unooria-calendar__picker-btn--active' : ''}`}
+                  onClick={() => {
+                    const next = new Date(yr, activeMonth.getMonth(), 1);
+                    if (!controlledMonth) setInternalMonth(next);
+                    if (onMonthChange) onMonthChange(next);
+                    setInternalView('months-picker');
+                  }}
+                >
+                  {yr}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* 3. Visão Mensal Padrão com Grid Compacto */}
+        {currentView === 'month' && (
+          <>
+            <div className="unooria-calendar__weekdays">
+              {WEEKDAYS_SHORT_PT.map((wd, i) => (
+                <div key={i} className="unooria-calendar__weekday">
+                  {wd}
+                </div>
+              ))}
+            </div>
+
+            <div className="unooria-calendar__days-grid" role="grid">
+              {calendarDays.map((date) => {
+                const isCurrentMonth = isSameMonth(date, activeMonth);
+                const isToday = isSameDay(date, today);
+                const isSelected =
+                  mode === 'single'
+                    ? isSameDay(date, value)
+                    : mode === 'multiple'
+                    ? multipleValues.some((d) => isSameDay(d, date))
+                    : false;
+
+                const isRangeStart = !!rangeValue?.startDate && isSameDay(date, rangeValue.startDate);
+                const isRangeEnd = !!rangeValue?.endDate && isSameDay(date, rangeValue.endDate);
+                const isInRange =
+                  mode === 'range' &&
+                  !!rangeValue?.startDate &&
+                  !!rangeValue?.endDate &&
+                  isBetweenDays(date, rangeValue.startDate, rangeValue.endDate);
+
+                const isDisabled = isDayDisabled(date);
+                const dayEvents = getDayEvents(date);
+
+                if (!isCurrentMonth && !showOutsideDays) {
+                  return <div key={date.toISOString()} className="unooria-calendar__day-cell--empty" />;
+                }
+
+                if (renderDay) {
+                  return (
+                    <React.Fragment key={date.toISOString()}>
+                      {renderDay({
+                        date,
+                        dayNumber: date.getDate(),
+                        isCurrentMonth,
+                        isToday,
+                        isSelected,
+                        isInRange,
+                        isRangeStart,
+                        isRangeEnd,
+                        isDisabled,
+                        events: dayEvents,
+                      })}
+                    </React.Fragment>
+                  );
+                }
+
+                const cellClasses = [
+                  'unooria-calendar__day-cell',
+                  !isCurrentMonth ? 'unooria-calendar__day-cell--outside' : '',
+                  isToday ? 'unooria-calendar__day-cell--today' : '',
+                  isSelected || isRangeStart || isRangeEnd ? 'unooria-calendar__day-cell--selected' : '',
+                  isInRange ? 'unooria-calendar__day-cell--in-range' : '',
+                  isRangeStart ? 'unooria-calendar__day-cell--range-start' : '',
+                  isRangeEnd ? 'unooria-calendar__day-cell--range-end' : '',
+                  isDisabled ? 'unooria-calendar__day-cell--disabled' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ');
+
+                return (
+                  <button
+                    key={date.toISOString()}
+                    type="button"
+                    className={cellClasses}
+                    onClick={() => handleDayClick(date)}
+                    disabled={isDisabled}
+                  >
+                    <span>{String(date.getDate()).padStart(2, '0')}</span>
+
+                    {/* Pontinhos de Eventos Coloridos */}
+                    {dayEvents.length > 0 && (
+                      <div className="unooria-calendar__event-dots">
+                        {dayEvents.slice(0, 3).map((ev, i) => (
+                          <span
+                            key={i}
+                            className={`unooria-calendar__event-dot unooria-calendar__event-dot--${ev.eventType || 'evento'}`}
+                            style={ev.dotColor ? { backgroundColor: ev.dotColor } : undefined}
+                          />
+                        ))}
                       </div>
-                      {dayEvents.map((evt, eIdx) => (
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        )}
+
+        {/* 4. Visão Expandida de Mês Completo (Figma #12694:2547) e Semana */}
+        {isExpanded && (
+          <>
+            <div className="unooria-calendar__weekdays unooria-calendar__weekdays--full">
+              {WEEKDAYS_EXPANDED_PT.map((wd, i) => (
+                <div key={i} className="unooria-calendar__weekday unooria-calendar__weekday--full">
+                  {wd}
+                </div>
+              ))}
+            </div>
+
+            <div className="unooria-calendar__expanded-grid">
+              {(currentView === 'week-expanded' ? calendarDays.slice(0, 7) : calendarDays).map((date) => {
+                const isCurrentMonth = isSameMonth(date, activeMonth);
+                const isSelected = isSameDay(date, value);
+                const dayEvents = getDayEvents(date);
+
+                return (
+                  <div
+                    key={date.toISOString()}
+                    className={`unooria-calendar__expanded-day ${!isCurrentMonth ? 'unooria-calendar__expanded-day--outside' : ''} ${isSelected ? 'unooria-calendar__expanded-day--selected' : ''}`}
+                    onClick={() => handleDayClick(date)}
+                  >
+                    <div className="unooria-calendar__expanded-day-header">
+                      {isSelected ? (
+                        <span className="unooria-calendar__expanded-day-badge">
+                          {String(date.getDate()).padStart(2, '0')}
+                        </span>
+                      ) : (
+                        <span>{String(date.getDate()).padStart(2, '0')}</span>
+                      )}
+                    </div>
+                    <div className="unooria-calendar__expanded-events-list">
+                      {dayEvents.map((ev, idx) => (
                         <div
-                          key={evt.id || eIdx}
-                          className="unooria-calendar__tooltip-item"
+                          key={idx}
+                          className="unooria-calendar__event-card"
                           onClick={(e) => {
                             e.stopPropagation();
-                            onEventClick?.(evt, date);
+                            onEventClick?.(ev, date);
                           }}
                         >
-                          <span
-                            className="unooria-calendar__tooltip-dot"
-                            style={{
-                              backgroundColor:
-                                evt.dotColor || evt.color || 'var(--cal-primary)',
-                            }}
-                          />
-                          <span title={evt.title}>{evt.title}</span>
+                          <div className={`unooria-calendar__event-card-bar unooria-calendar__event-card-bar--${ev.eventType || 'evento'}`} />
+                          <div className="unooria-calendar__event-card-content">
+                            <div className="unooria-calendar__event-card-title">{ev.title}</div>
+                            <div className="unooria-calendar__event-card-time">{ev.time || '00:00 - 00:00'}</div>
+                          </div>
                         </div>
                       ))}
                     </div>
-                  )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ====================================================================
-            Rodapé Opcional com Resumo da Seleção
-            ==================================================================== */}
-        {showFooter && (
-          <div className="unooria-calendar__footer">
-            <span className="unooria-calendar__footer-summary">{selectionSummary}</span>
-          </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
     );

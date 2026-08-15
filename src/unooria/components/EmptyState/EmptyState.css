@@ -1,0 +1,278 @@
+/**
+ * EmptyState - Design System Plataforma Unooria
+ * Especificações Figma Nó #7965:5382
+ */
+
+.unooria-empty-state {
+  --unooria-empty-bg-inner: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.unooria-empty-state--full-width {
+  width: 100%;
+}
+
+.unooria-empty-state__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Alinhamentos
+   ========================================================================== */
+
+.unooria-empty-state--align-center {
+  text-align: center;
+}
+.unooria-empty-state--align-center .unooria-empty-state__container {
+  align-items: center;
+}
+.unooria-empty-state--align-center .unooria-empty-state__text-group {
+  align-items: center;
+  text-align: center;
+}
+.unooria-empty-state--align-center .unooria-empty-state__actions {
+  justify-content: center;
+}
+
+.unooria-empty-state--align-left {
+  text-align: left;
+}
+.unooria-empty-state--align-left .unooria-empty-state__container {
+  align-items: flex-start;
+}
+.unooria-empty-state--align-left .unooria-empty-state__text-group {
+  align-items: flex-start;
+  text-align: left;
+}
+.unooria-empty-state--align-left .unooria-empty-state__actions {
+  justify-content: flex-start;
+}
+
+/* ==========================================================================
+   Tamanhos (Paddings, Gaps, Escalas Tipográficas)
+   ========================================================================== */
+
+/* Tamanho SM (Compacto) */
+.unooria-empty-state--size-sm {
+  padding: var(--unooria-spacing-s, 16px) var(--unooria-spacing-xs, 12px);
+}
+.unooria-empty-state--size-sm .unooria-empty-state__container {
+  gap: var(--unooria-spacing-xs, 12px);
+}
+.unooria-empty-state--size-sm .unooria-empty-state__illustration {
+  width: 48px;
+  height: 48px;
+}
+.unooria-empty-state--size-sm .unooria-empty-state__title {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+}
+.unooria-empty-state--size-sm .unooria-empty-state__description {
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+}
+
+/* Tamanho MD (Padrão Figma) */
+.unooria-empty-state--size-md {
+  padding: var(--unooria-spacing-l, 32px) var(--unooria-spacing-m, 24px);
+}
+.unooria-empty-state--size-md .unooria-empty-state__container {
+  gap: var(--unooria-spacing-s, 16px);
+}
+.unooria-empty-state--size-md .unooria-empty-state__illustration {
+  width: 64px;
+  height: 64px;
+}
+.unooria-empty-state--size-md .unooria-empty-state__title {
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+}
+.unooria-empty-state--size-md .unooria-empty-state__description {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+}
+
+/* Tamanho LG (Destaque em página inteira) */
+.unooria-empty-state--size-lg {
+  padding: var(--unooria-spacing-xl, 48px) var(--unooria-spacing-l, 32px);
+}
+.unooria-empty-state--size-lg .unooria-empty-state__container {
+  gap: var(--unooria-spacing-m, 24px);
+}
+.unooria-empty-state--size-lg .unooria-empty-state__illustration {
+  width: 80px;
+  height: 80px;
+}
+.unooria-empty-state--size-lg .unooria-empty-state__title {
+  font-size: var(--unooria-size-heading-xs, 20px);
+  line-height: var(--unooria-line-height-heading-xs, 30px);
+}
+.unooria-empty-state--size-lg .unooria-empty-state__description {
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+}
+
+/* Variante Compacta (Sem padding externo) */
+.unooria-empty-state--compact {
+  padding: 0 !important;
+}
+
+/* ==========================================================================
+   Elementos Internos
+   ========================================================================== */
+
+.unooria-empty-state__illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.unooria-empty-state__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.unooria-empty-state__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.unooria-empty-state__title {
+  margin: 0;
+  font-weight: var(--unooria-weight-bold, 700);
+  word-break: break-word;
+}
+
+.unooria-empty-state__description {
+  margin: 0;
+  font-weight: var(--unooria-weight-regular, 400);
+  word-break: break-word;
+}
+
+.unooria-empty-state__custom-content {
+  width: 100%;
+  margin-top: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-empty-state__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--unooria-spacing-xxs, 8px);
+  margin-top: var(--unooria-spacing-xxs, 8px);
+  width: 100%;
+}
+
+/* ==========================================================================
+   Cores por Variante Semântica
+   ========================================================================== */
+
+/* no-data (Brand Navy / Blue) */
+.unooria-empty-state--no-data .unooria-empty-state__illustration {
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* no-results (Brand Navy / Neutral) */
+.unooria-empty-state--no-results .unooria-empty-state__illustration {
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+/* error (Danger) */
+.unooria-empty-state--error .unooria-empty-state__illustration {
+  color: var(--unooria-color-danger-500, #F83B3B);
+}
+
+/* permission (Brand Purple) */
+.unooria-empty-state--permission .unooria-empty-state__illustration {
+  color: var(--unooria-color-brandpurple-600, #716C98);
+}
+
+/* success (Success) */
+.unooria-empty-state--success .unooria-empty-state__illustration {
+  color: var(--unooria-color-success-500, #01B574);
+}
+
+/* ==========================================================================
+   Temas (Light e Dark)
+   ========================================================================== */
+
+/* Tema Claro (Light) */
+.unooria-empty-state--light {
+  --unooria-empty-bg-inner: #FFFFFF;
+}
+
+.unooria-empty-state--light .unooria-empty-state__title {
+  color: var(--unooria-color-neutral-900, #22272A);
+}
+
+.unooria-empty-state--light .unooria-empty-state__description {
+  color: var(--unooria-color-neutral-700, #617379);
+}
+
+.unooria-empty-state--light.unooria-empty-state--bordered {
+  background-color: var(--unooria-color-neutral-50, #F9FAFB);
+  border: 1px solid var(--unooria-color-neutral-200, #E5E7EB);
+  border-radius: 16px;
+}
+
+/* Tema Escuro (Dark) */
+.unooria-empty-state--dark {
+  --unooria-empty-bg-inner: #0E1039;
+}
+
+.unooria-empty-state--dark .unooria-empty-state__title {
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+}
+
+.unooria-empty-state--dark .unooria-empty-state__description {
+  color: var(--unooria-color-brandpurple-300, #CCC9DE);
+}
+
+.unooria-empty-state--dark.unooria-empty-state--bordered {
+  background-color: var(--unooria-color-brandpurple-900, #0E1039);
+  border: 1px solid var(--unooria-color-brandpurple-700, #57547D);
+  border-radius: 16px;
+}
+
+/* Ajuste de cores das ilustrações no Tema Escuro */
+.unooria-empty-state--dark.unooria-empty-state--no-data .unooria-empty-state__illustration {
+  color: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-empty-state--dark.unooria-empty-state--no-results .unooria-empty-state__illustration {
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+}
+
+.unooria-empty-state--dark.unooria-empty-state--error .unooria-empty-state__illustration {
+  color: var(--unooria-color-danger-400, #FF6A6A);
+}
+
+.unooria-empty-state--dark.unooria-empty-state--permission .unooria-empty-state__illustration {
+  color: var(--unooria-color-brandpurple-400, #AAA5C2);
+}
+
+.unooria-empty-state--dark.unooria-empty-state--success .unooria-empty-state__illustration {
+  color: var(--unooria-color-success-400, #26E197);
+}

@@ -1,11 +1,10 @@
-export { BottomBar, BottomBarItem, BottomBarAction } from './BottomBar';
+export { BottomBar, BottomBarItem, BottomBarAction, AppsIcon, MenuIcon } from './BottomBar';
 export type {
+  BottomBarProps,
+  BottomBarItemProps,
+  BottomBarItemData,
+  BottomBarActionProps,
   BottomBarVariant,
   BottomBarTheme,
-  BottomBarItemData,
-  BottomBarItem as BottomBarItemDataAlias,
-  BottomBarItemProps,
-  BottomBarActionVariant,
-  BottomBarActionProps,
-  BottomBarProps,
+  BottomBarMenuItem,
 } from './BottomBar.types';

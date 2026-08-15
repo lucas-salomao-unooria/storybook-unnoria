@@ -1,702 +1,257 @@
 /**
  * Estilos do Componente SideBar - Design System Plataforma Unooria
- * Baseado rigorosamente nos tokens de cores, tipografia, espaçamento e elevação.
+ * Especificação Fiel ao Figma (Node #3340:11320 / Component Sets #21592:599, #21592:856, #6535:5305)
  */
 
-:root {
-  --unooria-sidebar-width-expanded: 232px;
-  --unooria-sidebar-width-collapsed: 44px;
-  --unooria-sidebar-header-height: 56px;
-  --unooria-sidebar-footer-height: 60px;
-  --unooria-sidebar-item-height: 38px;
-  --unooria-sidebar-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-  --unooria-sidebar-transition-duration: 0.25s;
-}
+@import '../../tokens/colors.css';
+@import '../../tokens/spacing.css';
+@import '../../tokens/typography.css';
+@import '../../tokens/elevation.css';
+@import '../../tokens/blur.css';
 
 /* ==========================================================================
-   Container Principal da SideBar
+   Contêiner Principal da Barra Lateral
    ========================================================================== */
+
+.unooria-sidebar-wrapper {
+  display: flex;
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+  box-sizing: border-box;
+}
+
 .unooria-sidebar {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  min-height: 100vh;
-  box-sizing: border-box;
-  position: relative;
-  user-select: none;
-  font-family: var(--unooria-font-family-base, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  transition: width var(--unooria-sidebar-transition-duration) var(--unooria-sidebar-transition-timing),
-              background-color var(--unooria-sidebar-transition-duration) ease,
-              border-color var(--unooria-sidebar-transition-duration) ease,
-              box-shadow var(--unooria-sidebar-transition-duration) ease;
-  z-index: 100;
-  overflow: hidden;
-}
-
-/* Modo Expandido */
-.unooria-sidebar--expanded {
-  width: var(--unooria-sidebar-width-expanded);
-  min-width: var(--unooria-sidebar-width-expanded);
-}
-
-/* Modo Colapsado (Compacto: 44px) */
-.unooria-sidebar--collapsed {
-  width: var(--unooria-sidebar-width-collapsed);
-  min-width: var(--unooria-sidebar-width-collapsed);
-}
-
-/* ==========================================================================
-   Suporte a Temas (Light e Dark)
-   ========================================================================== */
-
-/* Tema Claro (Light) */
-.unooria-sidebar--light,
-.unooria-sidebar[data-theme="light"] {
-  background-color: #FFFFFF;
-  border-right: 1px solid var(--unooria-color-brandpurple-200, #DFDDEB);
-  color: var(--unooria-color-brandpurple-900, #0E1039);
-  box-shadow: 1px 0 3px rgba(14, 16, 57, 0.04);
-}
-
-/* Tema Escuro (Dark) */
-.unooria-sidebar--dark,
-.unooria-sidebar[data-theme="dark"] {
-  background-color: var(--unooria-color-brandpurple-950, #080922);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  color: #F7F6FA;
-  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.35);
-}
-
-/* ==========================================================================
-   Cabeçalho da SideBar (SideBarHeader)
-   ========================================================================== */
-.unooria-sidebar__header {
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--unooria-sidebar-header-height);
-  min-height: var(--unooria-sidebar-header-height);
-  padding: 0 12px;
+  width: 44px;
+  min-width: 44px;
   box-sizing: border-box;
-  border-bottom: 1px solid transparent;
-  gap: 8px;
-  overflow: hidden;
-  transition: padding var(--unooria-sidebar-transition-duration) ease,
-              border-color var(--unooria-sidebar-transition-duration) ease;
-}
-
-.unooria-sidebar--light .unooria-sidebar__header {
-  border-bottom-color: var(--unooria-color-opacity-brandpurple-50, rgba(14, 16, 57, 0.05));
-}
-
-.unooria-sidebar--dark .unooria-sidebar__header {
-  border-bottom-color: rgba(255, 255, 255, 0.06);
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__header {
-  padding: 0 4px;
-  justify-content: center;
-}
-
-.unooria-sidebar__brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-  flex: 1;
-  text-decoration: none;
-  color: inherit;
-}
-
-.unooria-sidebar__logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  border-radius: var(--unooria-radius-md, 8px);
-  font-weight: 700;
-  color: #FFFFFF;
-  background: var(--unooria-color-brandnavy-600, #7FA5E2);
-}
-
-.unooria-sidebar__brand-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: opacity var(--unooria-sidebar-transition-duration) ease,
-              transform var(--unooria-sidebar-transition-duration) ease;
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__brand-text {
-  opacity: 0;
-  pointer-events: none;
-  width: 0;
-  display: none;
-}
-
-.unooria-sidebar__brand-title {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.unooria-sidebar__brand-subtitle {
-  font-size: 11px;
-  opacity: 0.65;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   Botão de Alternância de Expansão (Toggle Button)
-   ========================================================================== */
-.unooria-sidebar__toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  color: inherit;
-  opacity: 0.75;
-  transition: background-color 0.15s ease, opacity 0.15s ease, transform 0.2s ease;
-  flex-shrink: 0;
-}
-
-.unooria-sidebar__toggle-btn:hover {
-  opacity: 1;
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-}
-
-.unooria-sidebar__toggle-btn:focus-visible {
-  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
-  outline-offset: 1px;
-}
-
-.unooria-sidebar__toggle-icon {
-  width: 16px;
-  height: 16px;
-  transition: transform var(--unooria-sidebar-transition-duration) var(--unooria-sidebar-transition-timing);
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__toggle-icon {
-  transform: rotate(180deg);
-}
-
-/* ==========================================================================
-   Corpo e Navegação (Navegação com Scroll)
-   ========================================================================== */
-.unooria-sidebar__nav {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 10px 8px;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  user-select: none;
   gap: 16px;
-  box-sizing: border-box;
+  padding: 8px 0;
+  position: relative;
+  z-index: 100;
+  transition: all 0.25s ease;
 }
 
-.unooria-sidebar--collapsed .unooria-sidebar__nav {
-  padding: 10px 4px;
-  gap: 8px;
-}
-
-/* Customização moderna da scrollbar */
-.unooria-sidebar__nav::-webkit-scrollbar {
-  width: 4px;
-}
-
-.unooria-sidebar__nav::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.unooria-sidebar__nav::-webkit-scrollbar-thumb {
-  background: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
-  border-radius: 4px;
-}
-
-.unooria-sidebar__nav::-webkit-scrollbar-thumb:hover {
-  background: var(--unooria-color-opacity-brandnavy-400, rgba(127, 165, 226, 0.40));
-}
-
-/* ==========================================================================
-   Seção de Itens (SideBarSection)
-   ========================================================================== */
 .unooria-sidebar__section {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  width: 100%;
-}
-
-.unooria-sidebar__section-header {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 6px 8px 4px 8px;
-  min-height: 22px;
-  box-sizing: border-box;
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__section-header {
-  padding: 4px 0;
-  justify-content: center;
-}
-
-.unooria-sidebar__section-title {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--unooria-color-brandpurple-600, #716C98);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: opacity var(--unooria-sidebar-transition-duration) ease;
-}
-
-.unooria-sidebar--dark .unooria-sidebar__section-title {
-  color: var(--unooria-color-brandnavy-400, #A4BDE9);
-  opacity: 0.7;
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__section-title {
-  display: none;
-}
-
-.unooria-sidebar__section-divider {
-  display: none;
-  width: 24px;
-  height: 1px;
-  background-color: var(--unooria-color-opacity-brandpurple-100, rgba(14, 16, 57, 0.10));
-  margin: 4px auto;
-}
-
-.unooria-sidebar--dark .unooria-sidebar__section-divider {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__section-divider {
-  display: block;
-}
-
-.unooria-sidebar__section-items {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  background-color: rgba(34, 39, 42, 0.05);
+  border-radius: 12px;
 }
 
 /* ==========================================================================
-   Item de Navegação (SideBarItem)
+   Temas Visuais (Light vs Dark)
    ========================================================================== */
-.unooria-sidebar__item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: var(--unooria-sidebar-item-height);
-  min-height: var(--unooria-sidebar-item-height);
-  padding: 0 10px;
-  box-sizing: border-box;
-  border-radius: var(--unooria-radius-md, 8px);
-  text-decoration: none;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--unooria-color-brandpurple-800, #34375C);
-  cursor: pointer;
+
+.unooria-sidebar--theme-light {
+  color: #22272A;
+}
+
+.unooria-sidebar--theme-dark {
+  color: #F5F5F5;
+}
+
+.unooria-sidebar--theme-dark .unooria-sidebar__section {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   Botões da Barra Lateral (Button Sidebar #21592:599)
+   ========================================================================== */
+
+.unooria-sidebar-item {
   position: relative;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  gap: 10px;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
-  outline: none;
-  text-align: left;
-}
-
-.unooria-sidebar--dark .unooria-sidebar__item {
-  color: var(--unooria-color-brandpurple-200, #DFDDEB);
-}
-
-/* Alinhamento no modo colapsado (44px) */
-.unooria-sidebar--collapsed .unooria-sidebar__item {
-  padding: 0;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  min-height: 36px;
-  margin: 0 auto;
-}
-
-/* Ícone do Item */
-.unooria-sidebar__item-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--unooria-color-brandpurple-600, #716C98);
-  transition: color 0.15s ease, transform 0.15s ease;
-}
-
-.unooria-sidebar--dark .unooria-sidebar__item-icon {
-  color: var(--unooria-color-brandnavy-400, #A4BDE9);
-}
-
-.unooria-sidebar__item-icon svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* Rótulo do Item */
-.unooria-sidebar__item-label {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: opacity var(--unooria-sidebar-transition-duration) ease;
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__item-label {
-  display: none;
-}
-
-/* Badge do Item */
-.unooria-sidebar__item-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 2px 6px;
-  font-size: 10.5px;
-  font-weight: 600;
-  line-height: 1;
-  border-radius: 9999px;
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  color: #FFFFFF;
-  flex-shrink: 0;
-  transition: opacity var(--unooria-sidebar-transition-duration) ease,
-              transform var(--unooria-sidebar-transition-duration) ease;
-}
-
-/* Variantes visuais do badge dentro da sidebar */
-.unooria-sidebar__item-badge--default,
-.unooria-sidebar__item-badge--primary {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  color: #FFFFFF;
-}
-
-.unooria-sidebar__item-badge--success {
-  background-color: var(--unooria-color-success-500, #01B574);
-  color: #FFFFFF;
-}
-
-.unooria-sidebar__item-badge--warning {
-  background-color: var(--unooria-color-warning-500, #F97607);
-  color: #FFFFFF;
-}
-
-.unooria-sidebar__item-badge--error {
-  background-color: var(--unooria-color-danger-500, #F83B3B);
-  color: #FFFFFF;
-}
-
-.unooria-sidebar__item-badge--info {
-  background-color: var(--unooria-color-info-500, #0086FF);
-  color: #FFFFFF;
-}
-
-.unooria-sidebar__item-badge--neutral {
-  background-color: var(--unooria-color-brandpurple-600, #716C98);
-  color: #FFFFFF;
-}
-
-/* Badge no modo colapsado: ponto/dot indicador sobre o ícone */
-.unooria-sidebar--collapsed .unooria-sidebar__item-badge {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 7px;
-  height: 7px;
-  min-width: 7px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   padding: 0;
-  border-radius: 50%;
-  border: 1.5px solid #FFFFFF;
-  text-indent: -9999px;
-  overflow: hidden;
+  margin: 0;
+  color: inherit;
+  outline: none;
+  transition: all 0.2s ease;
 }
 
-.unooria-sidebar--dark.unooria-sidebar--collapsed .unooria-sidebar__item-badge {
-  border-color: var(--unooria-color-brandpurple-950, #080922);
+.unooria-sidebar-item__icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all 0.18s ease;
+  position: relative;
+  color: #475157;
 }
 
-/* ==========================================================================
-   Estados do Item: Hover, Active/Selected, Focus, Disabled
-   ========================================================================== */
-
-/* Estado Hover (Fiel ao Figma: rgba(127,165,226,0.1)) */
-.unooria-sidebar__item:hover:not(.unooria-sidebar__item--disabled) {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-  color: var(--unooria-color-brandnavy-900, #2F4F7F);
+.unooria-sidebar--theme-dark .unooria-sidebar-item__icon-wrapper {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #F5F5F5;
 }
 
-.unooria-sidebar__item:hover:not(.unooria-sidebar__item--disabled) .unooria-sidebar__item-icon {
-  color: var(--unooria-color-brandnavy-700, #6487C2);
-}
-
-.unooria-sidebar--dark .unooria-sidebar__item:hover:not(.unooria-sidebar__item--disabled) {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.12));
+/* Estado Hover (Fundo #7FA5E2) */
+.unooria-sidebar-item:hover .unooria-sidebar-item__icon-wrapper {
+  background-color: #7FA5E2;
   color: #FFFFFF;
+  border-radius: 8px;
 }
 
-.unooria-sidebar--dark .unooria-sidebar__item:hover:not(.unooria-sidebar__item--disabled) .unooria-sidebar__item-icon {
-  color: var(--unooria-color-brandnavy-300, #BDD0EF);
-}
-
-/* Estado Ativo / Selecionado (Active / Pressed) */
-.unooria-sidebar__item--active {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20)) !important;
-  color: var(--unooria-color-brandnavy-950, #0E1039) !important;
-  font-weight: 600;
-}
-
-.unooria-sidebar__item--active .unooria-sidebar__item-icon {
-  color: var(--unooria-color-brandnavy-800, #49699F) !important;
-}
-
-/* Indicador lateral de item ativo */
-.unooria-sidebar__item--active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 6px;
-  bottom: 6px;
-  width: 3px;
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  border-radius: 0 3px 3px 0;
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__item--active::before {
-  left: -4px;
-}
-
-/* Estado Ativo no Dark Mode */
-.unooria-sidebar--dark .unooria-sidebar__item--active {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20)) !important;
-  color: #FFFFFF !important;
-}
-
-.unooria-sidebar--dark .unooria-sidebar__item--active .unooria-sidebar__item-icon {
-  color: var(--unooria-color-brandnavy-400, #A4BDE9) !important;
-}
-
-.unooria-sidebar--dark .unooria-sidebar__item--active::before {
-  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
-}
-
-/* Estado Foco Acessível */
-.unooria-sidebar__item:focus-visible {
-  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
-  outline-offset: 1px;
-}
-
-/* Estado Desabilitado */
-.unooria-sidebar__item--disabled {
-  opacity: 0.42;
-  cursor: not-allowed;
-  pointer-events: none;
+/* Estado Click / Active (Fundo #49699F) */
+.unooria-sidebar-item--active .unooria-sidebar-item__icon-wrapper {
+  background-color: #49699F;
+  color: #FFFFFF;
+  border-radius: 8px;
 }
 
 /* ==========================================================================
-   Tooltip Flutuante para Modo Colapsado
+   Tooltip Lateral a 4px de Distância (Figma Specs)
    ========================================================================== */
-.unooria-sidebar__tooltip {
+
+.unooria-sidebar-item__tooltip {
   position: absolute;
-  left: calc(100% + 10px);
   top: 50%;
+  left: calc(100% + 4px);
   transform: translateY(-50%);
-  background-color: var(--unooria-color-brandpurple-950, #080922);
-  color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 5px 10px;
-  border-radius: 4px;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 999;
-  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 1010;
+  white-space: nowrap;
 }
 
-.unooria-sidebar--dark .unooria-sidebar__tooltip {
-  background-color: #2F4F7F;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__item:hover .unooria-sidebar__tooltip,
-.unooria-sidebar--collapsed .unooria-sidebar__item:focus-visible .unooria-sidebar__tooltip {
+.unooria-sidebar-item:hover .unooria-sidebar-item__tooltip,
+.unooria-sidebar-item:focus-visible .unooria-sidebar-item__tooltip {
   opacity: 1;
   visibility: visible;
   transform: translateY(-50%) translateX(2px);
 }
 
-/* ==========================================================================
-   Rodapé da SideBar (SideBarFooter)
-   ========================================================================== */
-.unooria-sidebar__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: var(--unooria-sidebar-footer-height);
-  padding: 10px 12px;
-  box-sizing: border-box;
-  border-top: 1px solid transparent;
-  gap: 8px;
-  overflow: hidden;
-  margin-top: auto;
-  transition: padding var(--unooria-sidebar-transition-duration) ease,
-              border-color var(--unooria-sidebar-transition-duration) ease;
+.unooria-sidebar-item__tooltip-arrow {
+  width: 4px;
+  height: 8px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 4px solid rgba(255, 255, 255, 0.95);
+  margin-right: -1px;
 }
 
-.unooria-sidebar--light .unooria-sidebar__footer {
-  border-top-color: var(--unooria-color-opacity-brandpurple-50, rgba(14, 16, 57, 0.05));
+.unooria-sidebar--theme-dark .unooria-sidebar-item__tooltip-arrow {
+  border-right-color: rgba(34, 39, 42, 0.95);
 }
 
-.unooria-sidebar--dark .unooria-sidebar__footer {
-  border-top-color: rgba(255, 255, 255, 0.06);
+.unooria-sidebar-item__tooltip-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #22272A;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px 1px rgba(34, 39, 42, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.unooria-sidebar--collapsed .unooria-sidebar__footer {
-  padding: 8px 4px;
-  justify-content: center;
-}
-
-/* Perfil de Usuário */
-.unooria-sidebar__user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-  flex: 1;
-  cursor: pointer;
-  border-radius: var(--unooria-radius-md, 8px);
-  padding: 4px;
-  transition: background-color 0.15s ease;
-  text-decoration: none;
-  color: inherit;
-}
-
-.unooria-sidebar__user:hover {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-}
-
-.unooria-sidebar--collapsed .unooria-sidebar__user {
-  justify-content: center;
-  padding: 2px;
-}
-
-.unooria-sidebar__user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--unooria-color-gradient-1, linear-gradient(135deg, #7FA5E2 0%, #0E1039 100%));
+.unooria-sidebar--theme-dark .unooria-sidebar-item__tooltip-content {
+  background-color: rgba(34, 39, 42, 0.95);
   color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-  flex-shrink: 0;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.unooria-sidebar__user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+/* ==========================================================================
+   Painel de Apps Lateral (Side Bar Apps / Variant2 #21592:858)
+   ========================================================================== */
 
-.unooria-sidebar__user-info {
+.unooria-sidebar__apps-panel {
+  position: absolute;
+  top: 8px;
+  left: calc(100% + 8px);
+  width: 240px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0px 12px 32px rgba(34, 39, 42, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
+  gap: 4px;
+  z-index: 1020;
 }
 
-.unooria-sidebar--collapsed .unooria-sidebar__user-info {
-  display: none;
+.unooria-sidebar--theme-dark .unooria-sidebar__apps-panel {
+  background-color: rgba(34, 39, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.4);
 }
 
-.unooria-sidebar__user-name {
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.unooria-sidebar__user-role {
-  font-size: 11px;
-  opacity: 0.65;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-/* ==========================================================================
-   Botão de Alternância Flutuante (Floating Toggle)
-   ========================================================================== */
-.unooria-sidebar__floating-toggle {
-  position: absolute;
-  top: 14px;
-  right: -14px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: #FFFFFF;
-  border: 1px solid var(--unooria-color-brandpurple-200, #DFDDEB);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+.unooria-sidebar__app-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #6487C2;
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
-  z-index: 105;
-  color: var(--unooria-color-brandpurple-800, #34375C);
-  transition: background-color 0.15s ease, transform 0.2s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
 }
 
-.unooria-sidebar__floating-toggle:hover {
-  background-color: var(--unooria-color-brandnavy-50, #F5F8FC);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-.unooria-sidebar--dark .unooria-sidebar__floating-toggle {
-  background-color: var(--unooria-color-brandpurple-900, #0E1039);
-  border-color: rgba(255, 255, 255, 0.15);
+.unooria-sidebar__app-btn:hover {
+  background-color: #6487C2;
   color: #FFFFFF;
 }
 
-.unooria-sidebar--collapsed .unooria-sidebar__floating-toggle svg {
-  transform: rotate(180deg);
+/* ==========================================================================
+   Widget Assistente NAI (Avatar Chat Nai #6535:5305)
+   ========================================================================== */
+
+.unooria-sidebar__nai-widget {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 16px;
+  height: 39px;
+  background-color: #6487C2;
+  border-radius: 12px 0px 0px 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+}
+
+.unooria-sidebar__nai-widget:hover {
+  background-color: #49699F;
 }

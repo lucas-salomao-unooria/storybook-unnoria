@@ -1,101 +1,96 @@
-import React, { useState } from 'react';
-import { AlertBoxProps, AlertBoxVariant } from './AlertBox.types';
+import React, { useId, useState } from 'react';
+import { AlertBoxProps, AlertBoxVariant, AlertBoxActionConfig } from './AlertBox.types';
+import { Button } from '../Button/Button';
 import './AlertBox.css';
 
 /**
- * Ícone SVG para a variante 'info'
+ * Ícone Info oficial do Figma (36x36)
  */
-const InfoIcon: React.FC<{ className?: string }> = ({ className }) => (
+const InfoIcon: React.FC<{ size?: number; className?: string }> = ({ size = 36, className = '' }) => (
   <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    viewBox="0 0 36 36"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
     className={className}
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="10" />
-    <line x1="12" y1="16" x2="12" y2="12" />
-    <line x1="12" y1="8" x2="12.01" y2="8" />
+    <circle cx="18" cy="18" r="14" stroke="currentColor" strokeWidth="2.5" />
+    <line x1="18" y1="16" x2="18" y2="24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <circle cx="18" cy="11.5" r="1.5" fill="currentColor" />
   </svg>
 );
 
 /**
- * Ícone SVG para a variante 'success'
+ * Ícone Success oficial do Figma (36x36)
  */
-const SuccessIcon: React.FC<{ className?: string }> = ({ className }) => (
+const SuccessIcon: React.FC<{ size?: number; className?: string }> = ({ size = 36, className = '' }) => (
   <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    viewBox="0 0 36 36"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
     className={className}
     aria-hidden="true"
   >
-    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-    <polyline points="22 4 12 14.01 9 11.01" />
+    <circle cx="18" cy="18" r="14" stroke="currentColor" strokeWidth="2.5" />
+    <path
+      d="M12 18.5L16 22.5L24 14"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 /**
- * Ícone SVG para a variante 'warning'
+ * Ícone Danger / Cancel oficial do Figma (36x36)
  */
-const WarningIcon: React.FC<{ className?: string }> = ({ className }) => (
+const DangerIcon: React.FC<{ size?: number; className?: string }> = ({ size = 36, className = '' }) => (
   <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    viewBox="0 0 36 36"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
     className={className}
     aria-hidden="true"
   >
-    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-    <line x1="12" y1="9" x2="12" y2="13" />
-    <line x1="12" y1="17" x2="12.01" y2="17" />
+    <circle cx="18" cy="18" r="14" stroke="currentColor" strokeWidth="2.5" />
+    <line x1="13.5" y1="13.5" x2="22.5" y2="22.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="22.5" y1="13.5" x2="13.5" y2="22.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
   </svg>
 );
 
 /**
- * Ícone SVG para a variante 'error'
+ * Ícone Warning oficial do Figma (36x36)
  */
-const ErrorIcon: React.FC<{ className?: string }> = ({ className }) => (
+const WarningIcon: React.FC<{ size?: number; className?: string }> = ({ size = 36, className = '' }) => (
   <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    viewBox="0 0 36 36"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
     className={className}
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="10" />
-    <line x1="15" y1="9" x2="9" y2="15" />
-    <line x1="9" y1="9" x2="15" y2="15" />
+    <circle cx="18" cy="18" r="14" stroke="currentColor" strokeWidth="2.5" />
+    <line x1="18" y1="12" x2="18" y2="19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <circle cx="18" cy="23.5" r="1.5" fill="currentColor" />
   </svg>
 );
 
 /**
- * Ícone SVG para o botão de fechar (CloseIcon)
+ * Ícone de Fechar (Close)
  */
-const CloseIcon: React.FC<{ className?: string }> = ({ className }) => (
+const CloseIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18, className = '' }) => (
   <svg
-    width="16"
-    height="16"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -111,16 +106,17 @@ const CloseIcon: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 /**
- * Retorna o ícone padrão para cada variante de severidade
+ * Retorna o ícone SVG correspondente à severidade
  */
-function getDefaultIcon(variant: AlertBoxVariant) {
+function getIconForVariant(variant: AlertBoxVariant) {
   switch (variant) {
     case 'success':
       return <SuccessIcon />;
+    case 'danger':
+    case 'error':
+      return <DangerIcon />;
     case 'warning':
       return <WarningIcon />;
-    case 'error':
-      return <ErrorIcon />;
     case 'info':
     default:
       return <InfoIcon />;
@@ -130,66 +126,137 @@ function getDefaultIcon(variant: AlertBoxVariant) {
 /**
  * Componente AlertBox - Design System Unooria
  *
- * Exibe mensagens informativas, de confirmação/sucesso, aviso preventivo ou falhas críticas
- * de forma acessível, responsiva e alinhada às diretrizes de design do Figma.
+ * Implementação fiel ao Figma (Node 17025:277 / Component Set #1349:4736).
+ * Diálogo/Card de alerta de decisão com ícone em badge circular centralizado,
+ * textos e botões de ação estruturados para Desktop e Mobile.
  */
 export const AlertBox = React.forwardRef<HTMLDivElement, AlertBoxProps>(
   (
     {
       variant = 'info',
+      state,
+      device = 'desktop',
       title,
       description,
       children,
       icon = true,
+      primaryAction,
+      secondaryAction,
+      actions,
+      theme = 'dark',
       isDismissible = false,
       onClose,
-      action,
-      actions,
-      actionButton,
-      bordered = true,
-      theme = 'light',
       className = '',
       style,
-      role,
-      'aria-label': ariaLabel,
-      'aria-live': ariaLive = 'polite',
+      role = 'alertdialog',
       ...restProps
     },
     ref
   ) => {
-    const [visible, setVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(true);
+    const idPrefix = useId();
+    const titleId = title ? `unooria-alertbox-title-${idPrefix}` : undefined;
+    const descId = description || children ? `unooria-alertbox-desc-${idPrefix}` : undefined;
 
-    if (!visible) {
+    if (!isVisible) {
       return null;
     }
 
+    // Normalização da severidade (compatibilidade com state e error -> danger)
+    const effectiveVariant: AlertBoxVariant = state || variant;
+    const normalizedVariant = effectiveVariant === 'error' ? 'danger' : effectiveVariant;
+
     const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-      setVisible(false);
+      setIsVisible(false);
       if (onClose) {
         onClose(e);
       }
     };
 
-    // Determina o ícone a ser renderizado
+    // Resolução do Ícone
     let renderedIcon: React.ReactNode = null;
     if (icon === true) {
-      renderedIcon = getDefaultIcon(variant);
+      renderedIcon = getIconForVariant(normalizedVariant);
     } else if (icon !== false && icon !== null && icon !== undefined) {
       renderedIcon = icon;
     }
 
-    const hasBody = description || children;
-    const actionContent = action || actions || actionButton;
+    // Renderizador de Ação (Primary / Secondary)
+    const renderAction = (action: AlertBoxActionConfig | React.ReactNode, isPrimary: boolean) => {
+      if (!action) return null;
 
-    // Acessibilidade semântica: erros e avisos recebem role 'alert', informativos e sucessos 'status'
-    const computedRole = role || (variant === 'error' || variant === 'warning' ? 'alert' : 'status');
-    const computedAriaLabel = ariaLabel || (typeof title === 'string' ? title : `Alerta ${variant}`);
+      // Se for um elemento React direto (ex: <Button />)
+      if (React.isValidElement(action)) {
+        return action;
+      }
 
-    const alertClasses = [
+      // Se for um objeto de configuração AlertBoxActionConfig
+      if (typeof action === 'object' && 'label' in action) {
+        const config = action as AlertBoxActionConfig;
+        const defaultVariant = isPrimary
+          ? normalizedVariant === 'danger'
+            ? 'danger'
+            : 'primary'
+          : 'ghost';
+
+        const buttonSize = device === 'mobile' ? 'md' : 'sm';
+
+        return (
+          <Button
+            variant={config.variant || defaultVariant}
+            size={buttonSize}
+            theme={theme}
+            disabled={config.disabled}
+            isLoading={config.loading}
+            onClick={config.onClick}
+            fullWidth={device === 'mobile'}
+            className={
+              isPrimary
+                ? 'unooria-alertbox__btn unooria-alertbox__btn--filled'
+                : 'unooria-alertbox__btn unooria-alertbox__btn--subtle'
+            }
+            {...config.buttonProps}
+          >
+            {config.label}
+          </Button>
+        );
+      }
+
+      return null;
+    };
+
+    // Montagem dos Botões de Ação
+    let actionElements: React.ReactNode = null;
+    if (actions) {
+      actionElements = actions;
+    } else if (primaryAction || secondaryAction) {
+      const primaryBtn = renderAction(primaryAction, true);
+      const secondaryBtn = renderAction(secondaryAction, false);
+
+      if (device === 'mobile') {
+        // No Mobile: Primário acima, Secundário abaixo
+        actionElements = (
+          <>
+            {primaryBtn}
+            {secondaryBtn}
+          </>
+        );
+      } else {
+        // No Desktop: Secundário à esquerda, Primário à direita
+        actionElements = (
+          <>
+            {secondaryBtn}
+            {primaryBtn}
+          </>
+        );
+      }
+    }
+
+    const rootClasses = [
       'unooria-alertbox',
-      `unooria-alertbox--${variant}`,
+      `unooria-alertbox--${normalizedVariant}`,
+      `unooria-alertbox--${device}`,
       `unooria-alertbox--${theme}`,
-      bordered ? 'unooria-alertbox--bordered' : 'unooria-alertbox--borderless',
       className,
     ]
       .filter(Boolean)
@@ -198,41 +265,16 @@ export const AlertBox = React.forwardRef<HTMLDivElement, AlertBoxProps>(
     return (
       <div
         ref={ref}
-        role={computedRole}
-        aria-live={ariaLive}
-        aria-atomic="true"
-        aria-label={computedAriaLabel}
+        role={role}
+        aria-modal={role === 'alertdialog' ? 'true' : undefined}
+        aria-labelledby={titleId}
+        aria-describedby={descId}
         data-theme={theme}
-        className={alertClasses}
+        className={rootClasses}
         style={style}
         {...restProps}
       >
-        {/* Ícone de Severidade */}
-        {renderedIcon && (
-          <div className="unooria-alertbox__icon" aria-hidden="true">
-            {renderedIcon}
-          </div>
-        )}
-
-        {/* Conteúdo Principal (Título, Descrição / Children, Ações) */}
-        <div className="unooria-alertbox__body">
-          {title && <div className="unooria-alertbox__title">{title}</div>}
-
-          {hasBody && (
-            <div className="unooria-alertbox__description">
-              {description}
-              {children}
-            </div>
-          )}
-
-          {actionContent && (
-            <div className="unooria-alertbox__actions">
-              {actionContent}
-            </div>
-          )}
-        </div>
-
-        {/* Botão Dispensável / Fechar */}
+        {/* Botão de Fechar no Canto Superior */}
         {isDismissible && (
           <button
             type="button"
@@ -242,6 +284,37 @@ export const AlertBox = React.forwardRef<HTMLDivElement, AlertBoxProps>(
           >
             <CloseIcon />
           </button>
+        )}
+
+        {/* Cabeçalho com Badge Circular de Ícone e Textos */}
+        <div className="unooria-alertbox__header">
+          {renderedIcon && (
+            <div className="unooria-alertbox__icon-wrapper" aria-hidden="true">
+              {renderedIcon}
+            </div>
+          )}
+
+          <div className="unooria-alertbox__content">
+            {title && (
+              <div id={titleId} className="unooria-alertbox__title">
+                {title}
+              </div>
+            )}
+
+            {(description || children) && (
+              <div id={descId} className="unooria-alertbox__description">
+                {description}
+                {children}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Seção de Botões de Ação */}
+        {actionElements && (
+          <div className="unooria-alertbox__actions">
+            {actionElements}
+          </div>
         )}
       </div>
     );

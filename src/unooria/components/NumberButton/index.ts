@@ -1,2 +1,7 @@
-export * from './NumberButton';
-export * from './NumberButton.types';
+export { NumberButton } from './NumberButton';
+export type {
+  NumberButtonProps,
+  NumberButtonSize,
+  NumberButtonTheme,
+  NumberButtonState,
+} from './NumberButton.types';

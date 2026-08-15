@@ -1,9 +1,28 @@
 import React from 'react';
 
 export type CalendarMode = 'single' | 'range' | 'multiple';
-export type CalendarView = 'month' | 'year' | 'decade' | 'week';
+export type CalendarView =
+  | 'month'
+  | 'months-picker'
+  | 'years-picker'
+  | 'week-expanded'
+  | 'month-expanded'
+  | 'full-month'
+  | 'year'
+  | 'decade'
+  | 'week';
+
 export type CalendarTheme = 'light' | 'dark';
 export type CalendarSize = 'sm' | 'md' | 'lg';
+
+/**
+ * Categorias oficiais de eventos e feriados conforme o Figma (#18819:2876 / #12694:508).
+ * - `nacional`: Feriado nacional (#E31A1A)
+ * - `estadual`: Feriado estadual (#008257)
+ * - `municipal`: Feriado municipal (#DD5202)
+ * - `evento`: Evento, aula, mentoria ou live (#006BFF)
+ */
+export type CalendarEventType = 'nacional' | 'estadual' | 'municipal' | 'evento' | 'custom';
 
 /**
  * Representação de um intervalo de datas para o modo 'range'.
@@ -25,39 +44,35 @@ export interface CalendarEvent {
   title: string;
   /** Descrição opcional */
   description?: string;
-  /** Cor do evento (hex ou classe CSS) */
+  /** Categoria / Tipo de evento conforme Figma */
+  eventType?: CalendarEventType;
+  /** Cor customizada (se eventType não for suficiente) */
   color?: string;
-  /** Cor específica para o ponto (dot) sob o dia (padrão #7FA5E2) */
+  /** Cor específica para o ponto (dot) sob o dia */
   dotColor?: string;
-  /** Categoria opcional para filtro ou estilização */
-  category?: string;
-  /** Horário opcional (ex: "14:30" ou "Dia todo") */
+  /** Horário de início e fim ou formatado (ex: "09:30 - 11:00" ou "Dia todo") */
   time?: string;
+  /** Horário de início estruturado (ex: "09:00") */
+  startTime?: string;
+  /** Horário de término estruturado (ex: "10:30") */
+  endTime?: string;
+  /** Categoria adicional de contexto */
+  category?: string;
 }
 
 /**
  * Propriedades injetadas no callback customizado de renderização de dia.
  */
 export interface CalendarDayRenderProps {
-  /** Objeto Date correspondente ao dia */
   date: Date;
-  /** Número do dia no mês (1-31) */
   dayNumber: number;
-  /** Se o dia pertence ao mês atualmente visualizado */
   isCurrentMonth: boolean;
-  /** Se o dia é hoje */
   isToday: boolean;
-  /** Se o dia está selecionado */
   isSelected: boolean;
-  /** Se o dia está dentro do intervalo selecionado (modo range) */
   isInRange: boolean;
-  /** Se o dia é o início do intervalo selecionado */
   isRangeStart: boolean;
-  /** Se o dia é o fim do intervalo selecionado */
   isRangeEnd: boolean;
-  /** Se o dia está desabilitado */
   isDisabled: boolean;
-  /** Lista de eventos agendados para este dia */
   events: CalendarEvent[];
 }
 
@@ -67,6 +82,8 @@ export interface CalendarDayRenderProps {
 export interface CalendarProps {
   /** Modo de seleção de datas */
   mode?: CalendarMode;
+  /** Visualização atual do calendário ('month', 'month-expanded', 'week-expanded', 'months-picker', 'years-picker') */
+  view?: CalendarView;
   /** Data selecionada para o modo 'single' */
   value?: Date | null;
   /** Callback acionado ao selecionar uma data (modo 'single') */

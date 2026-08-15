@@ -6,7 +6,7 @@ import {
   ElevationTokenDetail,
 } from '../../../src/unooria/tokens/elevation';
 import '../../../src/unooria/tokens/elevation.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
 
 // Componente para notificação ao copiar
 const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {

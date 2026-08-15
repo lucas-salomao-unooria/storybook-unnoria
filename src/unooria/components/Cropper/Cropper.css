@@ -1,0 +1,337 @@
+/**
+ * Estilos do Componente Cropper - Design System Plataforma Unooria
+ * Especificação Fiel ao Figma (Node #12694:9694 / Component Set #12694:9703)
+ */
+
+@import '../../tokens/colors.css';
+@import '../../tokens/spacing.css';
+@import '../../tokens/typography.css';
+@import '../../tokens/elevation.css';
+
+/* ==========================================================================
+   Overlay e Backdrop para Modo Modal
+   ========================================================================== */
+
+.unooria-cropper-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(34, 39, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+/* ==========================================================================
+   Contêiner Principal do Cropper (#12694:9704 / EL-a5f8d143)
+   ========================================================================== */
+
+.unooria-cropper {
+  --cropper-bg: #ffffff;
+  --cropper-border: #e4e8e9;
+  --cropper-title: #383e41;
+  --cropper-subtitle: #617379;
+  --cropper-slider-track: rgba(34, 39, 42, 0.1);
+  --cropper-slider-thumb: #6487c2;
+  --cropper-primary: #6487c2;
+  --cropper-primary-hover: #7fa5e2;
+  --cropper-danger: #bf340f;
+  --cropper-danger-hover: #dd5202;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 435px;
+  padding: 24px;
+  gap: 24px;
+  background-color: var(--cropper-bg);
+  border: 1px solid var(--cropper-border);
+  border-radius: 12px;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: var(--cropper-title);
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Suporte a Tema Escuro (Dark Mode)
+   ========================================================================== */
+
+.unooria-cropper--theme-dark,
+[data-theme="dark"] .unooria-cropper,
+.unooria-cropper[data-theme="dark"] {
+  --cropper-bg: #22272a;
+  --cropper-border: rgba(255, 255, 255, 0.1);
+  --cropper-title: #f5f5f5;
+  --cropper-subtitle: #a7b5b9;
+  --cropper-slider-track: rgba(255, 255, 255, 0.15);
+  --cropper-slider-thumb: #7fa5e2;
+  --cropper-primary: #7fa5e2;
+  --cropper-primary-hover: #8fafe5;
+  --cropper-danger: #e31a1a;
+  --cropper-danger-hover: #ff4d4d;
+}
+
+/* ==========================================================================
+   Cabeçalho (#12694:9706)
+   ========================================================================== */
+
+.unooria-cropper__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.unooria-cropper__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.unooria-cropper__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: var(--cropper-title);
+}
+
+.unooria-cropper__subtitle {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--cropper-subtitle);
+}
+
+.unooria-cropper__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--cropper-subtitle);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.unooria-cropper__close-btn:hover {
+  color: var(--cropper-title);
+  background-color: rgba(34, 39, 42, 0.05);
+}
+
+/* ==========================================================================
+   Área Central / Canvas de Visualização (387x387px fixos / responsivo)
+   ========================================================================== */
+
+.unooria-cropper__canvas-container {
+  width: 100%;
+  max-width: 387px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(34, 39, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  touch-action: none;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.unooria-cropper__canvas-container--circle {
+  border-radius: 50%;
+}
+
+.unooria-cropper__canvas-container--square {
+  border-radius: 12px;
+}
+
+.unooria-cropper__image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: grab;
+  transform-origin: center center;
+  transition: transform 0.05s ease-out;
+  pointer-events: auto;
+}
+
+.unooria-cropper__image:active {
+  cursor: grabbing;
+}
+
+.unooria-cropper__placeholder-avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(127, 165, 226, 0.1);
+  color: var(--cropper-primary);
+  border-radius: inherit;
+}
+
+/* ==========================================================================
+   Controle de Zoom / Slider Horizontal (#12694:9743)
+   ========================================================================== */
+
+.unooria-cropper__zoom-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 387px;
+  gap: 12px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.unooria-cropper__zoom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--cropper-subtitle);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.unooria-cropper__zoom-btn:hover {
+  color: var(--cropper-title);
+}
+
+.unooria-cropper__slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 100px;
+  background: var(--cropper-slider-track);
+  outline: none;
+  margin: 0;
+}
+
+.unooria-cropper__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cropper-slider-thumb);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+.unooria-cropper__slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.unooria-cropper__slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 50%;
+  background: var(--cropper-slider-thumb);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Rodapé e Botões de Ação (#12694:9748 / 36px de altura)
+   ========================================================================== */
+
+.unooria-cropper__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 387px;
+  gap: 8px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.unooria-cropper__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  height: 36px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.unooria-cropper__btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Botão Subtle Primário (Cancelar / Editar / Upload) */
+.unooria-cropper__btn--subtle {
+  background-color: transparent;
+  color: var(--cropper-primary);
+  border: 1px solid var(--cropper-primary);
+}
+
+.unooria-cropper__btn--subtle:hover {
+  background-color: rgba(127, 165, 226, 0.1);
+}
+
+/* Botão Filled Primário (Salvar) */
+.unooria-cropper__btn--filled {
+  background-color: var(--cropper-primary);
+  color: #ffffff;
+}
+
+.unooria-cropper__btn--filled:hover {
+  background-color: var(--cropper-primary-hover);
+}
+
+/* Botão Danger (Remover) */
+.unooria-cropper__btn--danger {
+  background-color: transparent;
+  color: var(--cropper-danger);
+  border: 1px solid var(--cropper-danger);
+}
+
+.unooria-cropper__btn--danger:hover {
+  background-color: rgba(191, 52, 15, 0.1);
+}

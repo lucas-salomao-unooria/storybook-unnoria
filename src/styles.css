@@ -19,6 +19,22 @@
  * Estilos dos Componentes
  * ---------------------------------------------------- */
 @import './unooria/components/AlertBox/AlertBox.css';
+@import './unooria/components/Avatar/Avatar.css';
 @import './unooria/components/Badge/Badge.css';
+@import './unooria/components/BottomBar/BottomBar.css';
 @import './unooria/components/Breadcrumb/Breadcrumb.css';
 @import './unooria/components/Button/Button.css';
+@import './unooria/components/Calendar/Calendar.css';
+@import './unooria/components/Card/Card.css';
+@import './unooria/components/Checkbox/Checkbox.css';
+@import './unooria/components/Collapse/Collapse.css';
+@import './unooria/components/Cropper/Cropper.css';
+@import './unooria/components/DataViz/DataViz.css';
+@import './unooria/components/DatePicker/DatePicker.css';
+@import './unooria/components/EmptyState/EmptyState.css';
+@import './unooria/components/FeedbackAlert/FeedbackAlert.css';
+@import './unooria/components/Modal/Modal.css';
+@import './unooria/components/NumberButton/NumberButton.css';
+@import './unooria/components/RadioButton/RadioButton.css';
+@import './unooria/components/SideBar/SideBar.css';
+

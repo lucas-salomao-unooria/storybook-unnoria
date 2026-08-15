@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { backgroundBlur, BackgroundBlurLevel } from '../../../src/unooria/tokens/blur';
 import '../../../src/unooria/tokens/blur.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
 
 // Componente para notificação ao copiar
 const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {

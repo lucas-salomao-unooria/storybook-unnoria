@@ -1,246 +1,403 @@
 /**
  * AlertBox - Design System Unooria
- * Estilos baseados em tokens oficiais
+ * Especificação Pixel-Perfect baseada no Figma (Node 17025:277 / ComponentSet 1349:4736)
  */
 
 .unooria-alertbox {
   display: flex;
-  align-items: flex-start;
-  gap: var(--unooria-spacing-xs, 12px);
-  padding: var(--unooria-spacing-s, 16px);
-  border-radius: 8px;
+  flex-direction: column;
   box-sizing: border-box;
-  width: 100%;
   font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  border-radius: 12px;
   position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* ==========================================================================
-   Bordas
+   Temas Visuais (Dark - padrão Figma vs Light)
    ========================================================================== */
-.unooria-alertbox--bordered {
-  border-width: 1px;
-  border-style: solid;
+
+/* Tema Dark (Figma Padrão) */
+.unooria-alertbox--dark {
+  background-color: rgba(34, 39, 42, 0.95);
+  backdrop-filter: blur(45px);
+  -webkit-backdrop-filter: blur(45px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.unooria-alertbox--borderless {
-  border: none;
+.unooria-alertbox--dark .unooria-alertbox__title {
+  color: #FFFFFF;
+}
+
+.unooria-alertbox--dark .unooria-alertbox__description {
+  color: #F5F5F5;
+}
+
+/* Tema Light */
+.unooria-alertbox--light {
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.unooria-alertbox--light .unooria-alertbox__title {
+  color: #22272A;
+}
+
+.unooria-alertbox--light .unooria-alertbox__description {
+  color: #475157;
 }
 
 /* ==========================================================================
-   Variantes - Tema Claro (Light)
+   Modos de Dispositivo / Dimensões
    ========================================================================== */
 
-/* Info */
-.unooria-alertbox--info.unooria-alertbox--light {
-  background-color: var(--unooria-color-info-50, #EBF5FF);
-  border-color: var(--unooria-color-info-200, #B8DBFF);
-  color: var(--unooria-color-info-900, #002966);
-}
-.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__icon,
-.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__close-btn {
-  color: var(--unooria-color-info-600, #006BFF);
-}
-.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__title {
-  color: var(--unooria-color-info-900, #002966);
-}
-.unooria-alertbox--info.unooria-alertbox--light .unooria-alertbox__description {
-  color: var(--unooria-color-neutral-800, #333333);
+/* Desktop (Figma: width 436px, padding 24px, gap 16px) */
+.unooria-alertbox--desktop {
+  width: 100%;
+  max-width: 436px;
+  padding: 24px;
+  gap: 16px;
 }
 
-/* Success */
-.unooria-alertbox--success.unooria-alertbox--light {
-  background-color: var(--unooria-color-sucess-50, #EBFEF4);
-  border-color: var(--unooria-color-sucess-200, #A0FACE);
-  color: var(--unooria-color-sucess-900, #00543C);
-}
-.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__icon,
-.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__close-btn {
-  color: var(--unooria-color-sucess-600, #00A369);
-}
-.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__title {
-  color: var(--unooria-color-sucess-900, #00543C);
-}
-.unooria-alertbox--success.unooria-alertbox--light .unooria-alertbox__description {
-  color: var(--unooria-color-neutral-800, #333333);
+.unooria-alertbox--desktop .unooria-alertbox__title {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
 }
 
-/* Warning */
-.unooria-alertbox--warning.unooria-alertbox--light {
-  background-color: var(--unooria-color-warning-50, #FFF7EB);
-  border-color: var(--unooria-color-warning-200, #FEE0B2);
-  color: var(--unooria-color-warning-900, #7A230D);
-}
-.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__icon,
-.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__close-btn {
-  color: var(--unooria-color-warning-600, #DD5202);
-}
-.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__title {
-  color: var(--unooria-color-warning-900, #7A230D);
-}
-.unooria-alertbox--warning.unooria-alertbox--light .unooria-alertbox__description {
-  color: var(--unooria-color-neutral-800, #333333);
+.unooria-alertbox--desktop .unooria-alertbox__description {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 }
 
-/* Error */
-.unooria-alertbox--error.unooria-alertbox--light {
-  background-color: var(--unooria-color-danger-50, #FEF2F2);
-  border-color: var(--unooria-color-danger-200, #FECACA);
-  color: var(--unooria-color-danger-900, #7F1D1D);
+.unooria-alertbox--desktop .unooria-alertbox__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
-.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__icon,
-.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__close-btn {
-  color: var(--unooria-color-danger-600, #DC2626);
+
+.unooria-alertbox--desktop .unooria-alertbox__btn {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
 }
-.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__title {
-  color: var(--unooria-color-danger-900, #7F1D1D);
+
+/* Mobile (Figma: width 355px, padding 16px, gap 12px) */
+.unooria-alertbox--mobile {
+  width: 100%;
+  max-width: 355px;
+  padding: 16px;
+  gap: 12px;
 }
-.unooria-alertbox--error.unooria-alertbox--light .unooria-alertbox__description {
-  color: var(--unooria-color-neutral-800, #333333);
+
+.unooria-alertbox--mobile .unooria-alertbox__title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.unooria-alertbox--mobile .unooria-alertbox__description {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.unooria-alertbox--mobile .unooria-alertbox__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+}
+
+.unooria-alertbox--mobile .unooria-alertbox__btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+}
+
+/* Responsivo Auto */
+.unooria-alertbox--auto {
+  width: 100%;
+  max-width: 436px;
+  padding: 24px;
+  gap: 16px;
+}
+
+.unooria-alertbox--auto .unooria-alertbox__title {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.unooria-alertbox--auto .unooria-alertbox__description {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.unooria-alertbox--auto .unooria-alertbox__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.unooria-alertbox--auto .unooria-alertbox__btn {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+}
+
+@media (max-width: 480px) {
+  .unooria-alertbox--auto {
+    max-width: 355px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .unooria-alertbox--auto .unooria-alertbox__title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .unooria-alertbox--auto .unooria-alertbox__description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .unooria-alertbox--auto .unooria-alertbox__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .unooria-alertbox--auto .unooria-alertbox__btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+    padding: 12px 24px;
+  }
 }
 
 /* ==========================================================================
-   Variantes - Tema Escuro (Dark)
+   Seção Superior: Ícone + Textos
    ========================================================================== */
 
-/* Info Dark */
-.unooria-alertbox--info.unooria-alertbox--dark {
-  background-color: var(--unooria-color-info-900, #002966);
-  border-color: var(--unooria-color-info-700, #0047B3);
-  color: var(--unooria-color-info-50, #EBF5FF);
-}
-.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__icon,
-.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__close-btn {
-  color: var(--unooria-color-info-300, #80BCFF);
-}
-.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__title {
-  color: var(--unooria-color-info-50, #EBF5FF);
-}
-.unooria-alertbox--info.unooria-alertbox--dark .unooria-alertbox__description {
-  color: var(--unooria-color-info-100, #D1E7FF);
+.unooria-alertbox__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
 }
 
-/* Success Dark */
-.unooria-alertbox--success.unooria-alertbox--dark {
-  background-color: var(--unooria-color-sucess-900, #00543C);
-  border-color: var(--unooria-color-sucess-700, #008257);
-  color: var(--unooria-color-sucess-50, #EBFEF4);
-}
-.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__icon,
-.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__close-btn {
-  color: var(--unooria-color-sucess-300, #63F2B5);
-}
-.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__title {
-  color: var(--unooria-color-sucess-50, #EBFEF4);
-}
-.unooria-alertbox--success.unooria-alertbox--dark .unooria-alertbox__description {
-  color: var(--unooria-color-sucess-100, #CDFEE4);
-}
-
-/* Warning Dark */
-.unooria-alertbox--warning.unooria-alertbox--dark {
-  background-color: var(--unooria-color-warning-900, #7A230D);
-  border-color: var(--unooria-color-warning-700, #B43801);
-  color: var(--unooria-color-warning-50, #FFF7EB);
-}
-.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__icon,
-.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__close-btn {
-  color: var(--unooria-color-warning-300, #FDC577);
-}
-.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__title {
-  color: var(--unooria-color-warning-50, #FFF7EB);
-}
-.unooria-alertbox--warning.unooria-alertbox--dark .unooria-alertbox__description {
-  color: var(--unooria-color-warning-100, #FEEDD6);
-}
-
-/* Error Dark */
-.unooria-alertbox--error.unooria-alertbox--dark {
-  background-color: var(--unooria-color-danger-900, #7F1D1D);
-  border-color: var(--unooria-color-danger-700, #B91C1C);
-  color: var(--unooria-color-danger-50, #FEF2F2);
-}
-.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__icon,
-.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__close-btn {
-  color: var(--unooria-color-danger-300, #FCA5A5);
-}
-.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__title {
-  color: var(--unooria-color-danger-50, #FEF2F2);
-}
-.unooria-alertbox--error.unooria-alertbox--dark .unooria-alertbox__description {
-  color: var(--unooria-color-danger-100, #FEE2E2);
-}
-
-/* ==========================================================================
-   Elementos Internos
-   ========================================================================== */
-
-.unooria-alertbox__icon {
+/* Badge Circular de Ícone (48x48px) */
+.unooria-alertbox__icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.unooria-alertbox__body {
+.unooria-alertbox__icon-wrapper svg {
+  display: block;
+}
+
+/* Severidades dos Badges */
+
+/* Info */
+.unooria-alertbox--info .unooria-alertbox__icon-wrapper {
+  background-color: rgba(0, 134, 255, 0.1);
+  color: #0086FF;
+}
+
+/* Success */
+.unooria-alertbox--success .unooria-alertbox__icon-wrapper {
+  background-color: rgba(0, 163, 105, 0.1);
+  color: #00A369;
+}
+
+/* Danger / Error */
+.unooria-alertbox--danger .unooria-alertbox__icon-wrapper,
+.unooria-alertbox--error .unooria-alertbox__icon-wrapper {
+  background-color: rgba(227, 26, 26, 0.1);
+  color: #E31A1A;
+}
+
+/* Warning */
+.unooria-alertbox--warning .unooria-alertbox__icon-wrapper {
+  background-color: rgba(249, 118, 7, 0.1);
+  color: #F97607;
+}
+
+/* Área de Texto Centralizada */
+.unooria-alertbox__content {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  gap: var(--unooria-spacing-xxxs, 4px);
-  min-width: 0;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+  text-align: center;
 }
 
 .unooria-alertbox__title {
-  font-size: var(--unooria-size-body-s, 16px);
-  line-height: var(--unooria-line-height-body-s, 24px);
-  font-weight: var(--unooria-weight-semibold, 600);
+  margin: 0;
+  letter-spacing: -0.01em;
   word-break: break-word;
 }
 
 .unooria-alertbox__description {
-  font-size: var(--unooria-size-body-xs, 14px);
-  line-height: var(--unooria-line-height-body-xs, 20px);
-  font-weight: var(--unooria-weight-regular, 400);
+  margin: 0;
+  letter-spacing: 0;
   word-break: break-word;
-}
-
-.unooria-alertbox__actions {
-  margin-top: var(--unooria-spacing-xxs, 8px);
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--unooria-spacing-xs, 12px);
+  opacity: 0.95;
 }
 
 /* ==========================================================================
-   Botão de Fechar
+   Botões de Ação do AlertBox
    ========================================================================== */
 
-.unooria-alertbox__close-btn {
+.unooria-alertbox__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  border: none;
-  border-radius: 4px;
-  background: transparent;
+  border: 1px solid transparent;
   cursor: pointer;
-  flex-shrink: 0;
-  transition: background-color 0.15s ease, opacity 0.15s ease, outline-color 0.15s ease;
-  outline: 2px solid transparent;
+  box-sizing: border-box;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  outline: none;
+}
+
+.unooria-alertbox__btn:focus-visible {
+  outline: 2px solid #6487C2;
   outline-offset: 2px;
 }
 
-.unooria-alertbox--light .unooria-alertbox__close-btn:hover {
-  background-color: rgba(0, 0, 0, 0.06);
+.unooria-alertbox__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Botão Preenchido (Filled / Primário) */
+.unooria-alertbox__btn--filled {
+  background-color: #6487C2;
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.unooria-alertbox__btn--filled:hover:not(:disabled) {
+  background-color: #49699F;
+}
+
+.unooria-alertbox__btn--filled:active:not(:disabled) {
+  background-color: #2F4F7F;
+}
+
+/* Botão Preenchido com Variação de Severidade Danger */
+.unooria-alertbox--danger .unooria-alertbox__btn--filled,
+.unooria-alertbox--error .unooria-alertbox__btn--filled {
+  background-color: #E31A1A;
+}
+
+.unooria-alertbox--danger .unooria-alertbox__btn--filled:hover:not(:disabled),
+.unooria-alertbox--error .unooria-alertbox__btn--filled:hover:not(:disabled) {
+  background-color: #C01515;
+}
+
+/* Botão Sutil (Subtle / Secundário) no Tema Dark */
+.unooria-alertbox--dark .unooria-alertbox__btn--subtle {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.unooria-alertbox--dark .unooria-alertbox__btn--subtle:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.unooria-alertbox--dark .unooria-alertbox__btn--subtle:active:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* Botão Sutil (Subtle / Secundário) no Tema Light */
+.unooria-alertbox--light .unooria-alertbox__btn--subtle {
+  background-color: #F5F5F5;
+  color: #22272A;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.unooria-alertbox--light .unooria-alertbox__btn--subtle:hover:not(:disabled) {
+  background-color: #EAEAEA;
+}
+
+.unooria-alertbox--light .unooria-alertbox__btn--subtle:active:not(:disabled) {
+  background-color: #DFDFDF;
+}
+
+/* ==========================================================================
+   Botão Fechar (Dispensável)
+   ========================================================================== */
+
+.unooria-alertbox__close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.unooria-alertbox--dark .unooria-alertbox__close-btn {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .unooria-alertbox--dark .unooria-alertbox__close-btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.unooria-alertbox__close-btn:focus-visible {
-  outline: 2px solid currentColor;
+.unooria-alertbox--light .unooria-alertbox__close-btn {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.unooria-alertbox--light .unooria-alertbox__close-btn:hover {
+  color: #22272A;
+  background-color: rgba(0, 0, 0, 0.06);
 }

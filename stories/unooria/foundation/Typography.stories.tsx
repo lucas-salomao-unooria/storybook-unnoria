@@ -12,7 +12,7 @@ import {
   TypographyTokenStyle,
 } from '../../../src/unooria/tokens/typography';
 import '../../../src/unooria/tokens/typography.css';
-import { UnooriaDocShell, UnooriaDocHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
 
 // Componente para notificação ao copiar
 const CopyBadge: React.FC<{ text: string; label?: string }> = ({ text, label }) => {

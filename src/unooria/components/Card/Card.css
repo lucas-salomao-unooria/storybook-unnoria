@@ -1,654 +1,349 @@
 /**
- * Estilos do Componente Card - Plataforma Unooria
- * Baseado nas especificações de Design do Figma (Nó #7740:1778)
+ * Estilos do Componente Card - Design System Plataforma Unooria
+ * Especificação Fiel ao Figma (Node #7740:1778 / Component Set #7731:291)
  */
 
-/* ==========================================================================
-   Variáveis e Tokens Locais do Card
-   ========================================================================== */
-:root {
-  --unooria-card-radius-none: 0px;
-  --unooria-card-radius-sm: 12px;
-  --unooria-card-radius-md: 16px;
-  --unooria-card-radius-lg: 24px;
-  --unooria-card-radius-xl: 32px;
-  --unooria-card-radius-2xl: 40px;
-  --unooria-card-radius-full: 9999px;
-
-  /* Tema Claro (Light Mode) */
-  --unooria-card-bg-light: #FFFFFF;
-  --unooria-card-bg-subtle-light: #F5F8FC;
-  --unooria-card-border-light: rgba(127, 165, 226, 0.25);
-  --unooria-card-border-subtle-light: #E8EFFA;
-  --unooria-card-title-color-light: #0E1039;
-  --unooria-card-subtitle-color-light: #49699F;
-  --unooria-card-desc-color-light: #57547D;
-  --unooria-card-divider-light: #E8EFFA;
-  --unooria-card-shadow-default-light: 0 2px 8px -2px rgba(14, 16, 57, 0.05);
-  --unooria-card-shadow-elevated-light: 0 8px 24px -4px rgba(14, 16, 57, 0.1), 0 2px 6px -1px rgba(14, 16, 57, 0.04);
-  --unooria-card-shadow-interactive-hover-light: 0 16px 36px -6px rgba(14, 16, 57, 0.16), 0 4px 12px -2px rgba(14, 16, 57, 0.08);
-
-  /* Tema Escuro (Dark Mode) */
-  --unooria-card-bg-dark: #0E1039;
-  --unooria-card-bg-elevated-dark: #141747;
-  --unooria-card-border-dark: rgba(127, 165, 226, 0.18);
-  --unooria-card-border-subtle-dark: rgba(255, 255, 255, 0.08);
-  --unooria-card-title-color-dark: #F5F8FC;
-  --unooria-card-subtitle-color-dark: #A4BDE9;
-  --unooria-card-desc-color-dark: #BDD0EF;
-  --unooria-card-divider-dark: rgba(127, 165, 226, 0.15);
-  --unooria-card-shadow-default-dark: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --unooria-card-shadow-elevated-dark: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 16px 2px rgba(127, 165, 226, 0.08);
-  --unooria-card-shadow-interactive-hover-dark: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 20px 4px rgba(127, 165, 226, 0.18);
-
-  /* Progresso Circular */
-  --unooria-card-progress-track-light: #E8EFFA;
-  --unooria-card-progress-track-dark: rgba(127, 165, 226, 0.2);
-  --unooria-card-progress-bar: #7FA5E2;
-}
+@import '../../tokens/colors.css';
+@import '../../tokens/spacing.css';
+@import '../../tokens/typography.css';
+@import '../../tokens/elevation.css';
+@import '../../tokens/blur.css';
 
 /* ==========================================================================
-   Container Principal do Card
+   Contêiner Principal do Card
    ========================================================================== */
+
 .unooria-card {
-  position: relative;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: #e4e8e9;
+  --card-text-title: #383e41;
+  --card-text-subtitle: #475157;
+  --card-text-desc: #383e41;
+  --card-text-meta: #617379;
+  --card-icon-bg: rgba(127, 165, 226, 0.1);
+  --card-tag-bg: rgba(34, 39, 42, 0.05);
+
+  --card-primary: #6487c2;
+  --card-primary-hover: #7fa5e2;
+
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  max-width: 398px;
+  padding: 16px;
+  gap: 24px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
   font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  text-decoration: none;
-  background-clip: padding-box;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.unooria-card *,
-.unooria-card *::before,
-.unooria-card *::after {
-  box-sizing: border-box;
-}
-
-/* ==========================================================================
-   Temas (Light e Dark)
-   ========================================================================== */
-
-/* Light Theme (Padrão) */
-.unooria-card--theme-light,
-:root:not([data-theme="dark"]) .unooria-card:not(.unooria-card--theme-dark) {
-  background-color: var(--unooria-card-bg-light);
-  color: var(--unooria-card-desc-color-light);
-  border: 1px solid var(--unooria-card-border-subtle-light);
-  box-shadow: var(--unooria-card-shadow-default-light);
-}
-
-/* Dark Theme */
-.unooria-card--theme-dark,
-[data-theme="dark"] .unooria-card:not(.unooria-card--theme-light) {
-  background-color: var(--unooria-card-bg-dark);
-  color: var(--unooria-card-desc-color-dark);
-  border: 1px solid var(--unooria-card-border-dark);
-  box-shadow: var(--unooria-card-shadow-default-dark);
-}
-
-/* ==========================================================================
-   Variantes Visuais
-   ========================================================================== */
-
-/* Variante: Default */
-.unooria-card--variant-default.unooria-card--theme-light {
-  background-color: var(--unooria-card-bg-light);
-  border-color: var(--unooria-card-border-subtle-light);
-  box-shadow: var(--unooria-card-shadow-default-light);
-}
-.unooria-card--variant-default.unooria-card--theme-dark {
-  background-color: var(--unooria-card-bg-dark);
-  border-color: var(--unooria-card-border-dark);
-  box-shadow: var(--unooria-card-shadow-default-dark);
-}
-
-/* Variante: Elevated (Elevação 1 e Elevação 3 com blur e sombra suave) */
-.unooria-card--variant-elevated.unooria-card--theme-light {
-  background-color: var(--unooria-card-bg-light);
-  border-color: var(--unooria-card-border-light);
-  box-shadow: var(--unooria-card-shadow-elevated-light);
-}
-.unooria-card--variant-elevated.unooria-card--theme-dark {
-  background-color: var(--unooria-card-bg-elevated-dark);
-  border-color: rgba(127, 165, 226, 0.25);
-  box-shadow: var(--unooria-card-shadow-elevated-dark);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Variante: Outlined */
-.unooria-card--variant-outlined.unooria-card--theme-light {
-  background-color: #FFFFFF;
-  border: 1.5px solid var(--unooria-color-brandnavy-200, #D3E0F5);
-  box-shadow: none;
-}
-.unooria-card--variant-outlined.unooria-card--theme-dark {
-  background-color: transparent;
-  border: 1.5px solid rgba(127, 165, 226, 0.35);
-  box-shadow: none;
-}
-
-/* Variante: Interactive & Hover Estados */
-.unooria-card--interactive,
-.unooria-card--variant-interactive {
-  cursor: pointer;
+  color: var(--card-text-desc);
+  position: relative;
+  transition: all 0.25s ease;
   user-select: none;
 }
 
-.unooria-card--interactive:hover,
-.unooria-card--variant-interactive:hover {
-  transform: translateY(-4px);
+/* ==========================================================================
+   Suporte ao Tema Escuro (Dark Mode)
+   ========================================================================== */
+
+.unooria-card--theme-dark,
+[data-theme="dark"] .unooria-card,
+.unooria-card[data-theme="dark"] {
+  --card-bg: rgba(34, 39, 42, 0.95);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-text-title: #f5f5f5;
+  --card-text-subtitle: #a7b5b9;
+  --card-text-desc: #e4e8e9;
+  --card-text-meta: #a7b5b9;
+  --card-icon-bg: rgba(127, 165, 226, 0.2);
+  --card-tag-bg: rgba(255, 255, 255, 0.08);
+
+  --card-primary: #7fa5e2;
+  --card-primary-hover: #8fafe5;
 }
 
-.unooria-card--interactive.unooria-card--theme-light:hover,
-.unooria-card--variant-interactive.unooria-card--theme-light:hover {
-  border-color: var(--unooria-color-brandnavy-400, #A4BDE9);
-  box-shadow: var(--unooria-card-shadow-interactive-hover-light);
+/* ==========================================================================
+   Variantes e Estados (Hover Elevation Neutral 3)
+   ========================================================================== */
+
+.unooria-card:hover,
+.unooria-card--hover {
+  box-shadow: 0px 0px 8px 4px rgba(34, 39, 42, 0.2);
+  border-color: rgba(127, 165, 226, 0.4);
 }
 
-.unooria-card--interactive.unooria-card--theme-dark:hover,
-.unooria-card--variant-interactive.unooria-card--theme-dark:hover {
-  border-color: var(--unooria-color-brandnavy-500, #8FAFE5);
-  box-shadow: var(--unooria-card-shadow-interactive-hover-dark);
+.unooria-card--theme-dark:hover,
+.unooria-card--theme-dark.unooria-card--hover {
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.5);
+  border-color: rgba(127, 165, 226, 0.4);
 }
 
-.unooria-card--interactive:active,
-.unooria-card--variant-interactive:active {
-  transform: translateY(-1px);
-}
-
-.unooria-card--interactive:focus-visible,
-.unooria-card--variant-interactive:focus-visible {
-  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
-  outline-offset: 2px;
-}
-
-/* Efeito suave de zoom na imagem ao passar o mouse em Card Interativo */
-.unooria-card--interactive:hover .unooria-card__media-img,
-.unooria-card--variant-interactive:hover .unooria-card__media-img {
-  transform: scale(1.04);
-}
-
-/* Estado Desabilitado */
 .unooria-card--disabled {
-  opacity: 0.55;
+  opacity: 0.6;
   cursor: not-allowed;
   pointer-events: none;
-  filter: grayscale(20%);
-}
-
-/* Largura Total */
-.unooria-card--full-width {
-  width: 100%;
 }
 
 /* ==========================================================================
-   Border Radius
+   Header do Card (Ícone Superior, Tags e Opções)
    ========================================================================== */
-.unooria-card--radius-none { border-radius: var(--unooria-card-radius-none); }
-.unooria-card--radius-sm   { border-radius: var(--unooria-card-radius-sm); }
-.unooria-card--radius-md   { border-radius: var(--unooria-card-radius-md); }   /* 16px */
-.unooria-card--radius-lg   { border-radius: var(--unooria-card-radius-lg); }   /* 24px (Padrão Figma #7740:1778) */
-.unooria-card--radius-xl   { border-radius: var(--unooria-card-radius-xl); }   /* 32px */
-.unooria-card--radius-2xl  { border-radius: var(--unooria-card-radius-2xl); }
-.unooria-card--radius-full { border-radius: var(--unooria-card-radius-full); }
 
-/* ==========================================================================
-   Padding Raiz (Opcional)
-   ========================================================================== */
-.unooria-card--padding-none { padding: 0; }
-.unooria-card--padding-xs   { padding: var(--unooria-spacing-xs, 12px); }
-.unooria-card--padding-sm   { padding: var(--unooria-spacing-s, 16px); }
-.unooria-card--padding-md   { padding: var(--unooria-spacing-m, 24px); }
-.unooria-card--padding-lg   { padding: var(--unooria-spacing-l, 32px); }
-
-/* ==========================================================================
-   Orientação Horizontal
-   ========================================================================== */
-.unooria-card--orientation-horizontal {
-  flex-direction: row;
-}
-
-.unooria-card--orientation-horizontal .unooria-card__media {
-  width: 40%;
-  min-width: 200px;
-  max-width: 340px;
-  height: auto;
-  min-height: 100%;
-}
-
-.unooria-card--orientation-horizontal .unooria-card__body-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-@media (max-width: 640px) {
-  .unooria-card--orientation-horizontal {
-    flex-direction: column;
-  }
-  .unooria-card--orientation-horizontal .unooria-card__media {
-    width: 100%;
-    max-width: 100%;
-    height: 200px;
-  }
-}
-
-/* ==========================================================================
-   Subcomponente: CardHeader
-   ========================================================================== */
-.unooria-card__header {
+.unooria-card__header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   gap: 12px;
-  padding: 20px 24px 12px 24px;
 }
 
-.unooria-card__header-main {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  min-width: 0;
-}
-
-.unooria-card__avatar {
+.unooria-card__header-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: var(--card-icon-bg);
+  color: var(--card-primary);
   flex-shrink: 0;
 }
 
-.unooria-card__header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex: 1;
-  min-width: 0;
-}
-
-.unooria-card__header-action {
+.unooria-card__header-tags-container {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  gap: 8px;
+  margin-left: auto;
 }
 
-/* ==========================================================================
-   Subcomponente: CardTitle & CardSubtitle
-   ========================================================================== */
-.unooria-card__title {
-  margin: 0;
-  padding: 0;
-  font-family: inherit;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  transition: color 0.2s ease;
+.unooria-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background-color: var(--card-tag-bg);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--card-text-title);
 }
 
-.unooria-card--theme-light .unooria-card__title {
-  color: var(--unooria-card-title-color-light);
-}
-
-.unooria-card--theme-dark .unooria-card__title {
-  color: var(--unooria-card-title-color-dark);
-}
-
-.unooria-card__title--sm { font-size: 16px; line-height: 22px; }
-.unooria-card__title--md { font-size: 18px; line-height: 26px; }
-.unooria-card__title--lg { font-size: 22px; line-height: 30px; }
-.unooria-card__title--xl { font-size: 26px; line-height: 34px; }
-
-.unooria-card__subtitle {
-  margin: 0;
-  padding: 0;
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.unooria-card--theme-light .unooria-card__subtitle {
-  color: var(--unooria-card-subtitle-color-light);
-}
-
-.unooria-card--theme-dark .unooria-card__subtitle {
-  color: var(--unooria-card-subtitle-color-dark);
-}
-
-/* Utilitário Truncate */
-.unooria-card__truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.unooria-card__line-clamp {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* ==========================================================================
-   Subcomponente: CardMedia (Capa / Imagem / Vídeo)
-   ========================================================================== */
-.unooria-card__media {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background-color: rgba(127, 165, 226, 0.08);
-  display: flex;
+.unooria-card__options-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--card-text-meta);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.unooria-card__options-btn:hover {
+  background-color: var(--card-tag-bg);
+  color: var(--card-text-title);
+}
+
+/* ==========================================================================
+   Mídia / Imagem de Capa (Figma #7715:426: Altura 244px, radius 12px)
+   ========================================================================== */
+
+.unooria-card__media {
+  width: 100%;
+  height: 244px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--card-tag-bg);
 }
 
 .unooria-card__media-img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   display: block;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.unooria-card__media-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.unooria-card__media-badge-container {
-  position: absolute;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-.unooria-card__media-badge--top-left {
-  top: 14px;
-  left: 14px;
-}
-
-.unooria-card__media-badge--top-right {
-  top: 14px;
-  right: 14px;
-}
-
-.unooria-card__media-badge--bottom-left {
-  bottom: 14px;
-  left: 14px;
-}
-
-.unooria-card__media-badge--bottom-right {
-  bottom: 14px;
-  right: 14px;
 }
 
 /* ==========================================================================
-   Subcomponente: CardContent
+   Bloco de Título & Progresso Circular
    ========================================================================== */
-.unooria-card__content {
+
+.unooria-card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.unooria-card__title-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   flex: 1;
-  min-width: 0;
 }
 
-.unooria-card__content--padding-none { padding: 0; }
-.unooria-card__content--padding-xs   { padding: 12px 16px; }
-.unooria-card__content--padding-sm   { padding: 16px 20px; }
-.unooria-card__content--padding-md   { padding: 20px 24px; }
-.unooria-card__content--padding-lg   { padding: 28px 32px; }
-
-/* ==========================================================================
-   Subcomponente: CardDescription
-   ========================================================================== */
-.unooria-card__description {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+.unooria-card__title {
   margin: 0;
-  padding: 0;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  color: var(--card-text-title);
+}
+
+.unooria-card__subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
-  transition: color 0.2s ease;
+  color: var(--card-text-subtitle);
 }
 
-.unooria-card--theme-light .unooria-card__description {
-  color: var(--unooria-card-desc-color-light);
-}
-
-.unooria-card--theme-dark .unooria-card__description {
-  color: var(--unooria-card-desc-color-dark);
-}
-
-.unooria-card__description-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-  color: var(--unooria-color-brandnavy-600, #7FA5E2);
-}
-
-.unooria-card__description-text {
-  flex: 1;
-  min-width: 0;
-}
-
-/* ==========================================================================
-   Subcomponente: CardBadgeGroup
-   ========================================================================== */
-.unooria-card__badge-group {
-  display: flex;
-  align-items: center;
-}
-
-.unooria-card__badge-group--wrap {
-  flex-wrap: wrap;
-}
-
-.unooria-card__badge-group--gap-xs { gap: 6px; }
-.unooria-card__badge-group--gap-sm { gap: 8px; }
-.unooria-card__badge-group--gap-md { gap: 12px; }
-
-.unooria-card__badge-group--align-start  { justify-content: flex-start; }
-.unooria-card__badge-group--align-center { justify-content: center; }
-.unooria-card__badge-group--align-end    { justify-content: flex-end; }
-
-/* ==========================================================================
-   Subcomponente: CardProgress (Indicador Circular 0..100%)
-   ========================================================================== */
+/* Progresso Circular 56x56px (#7262:499) */
 .unooria-card__progress-container {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-}
-
-.unooria-card__progress-circle-wrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
+  width: 56px;
+  height: 56px;
+  position: relative;
   flex-shrink: 0;
 }
 
 .unooria-card__progress-svg {
+  width: 56px;
+  height: 56px;
   transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  display: block;
 }
 
-.unooria-card__progress-track {
-  fill: transparent;
-  transition: stroke 0.2s ease;
-}
-
-.unooria-card--theme-light .unooria-card__progress-track {
-  stroke: var(--unooria-card-progress-track-light);
-}
-
-.unooria-card--theme-dark .unooria-card__progress-track {
-  stroke: var(--unooria-card-progress-track-dark);
+.unooria-card__progress-bg {
+  stroke: var(--card-tag-bg);
 }
 
 .unooria-card__progress-bar {
-  fill: transparent;
-  stroke: var(--unooria-card-progress-bar);
+  stroke: var(--card-primary);
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.2s ease;
+  transition: stroke-dashoffset 0.4s ease;
 }
 
-.unooria-card__progress-inside-text {
+.unooria-card__progress-label {
   position: absolute;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  user-select: none;
-}
-
-.unooria-card--theme-light .unooria-card__progress-inside-text {
-  color: var(--unooria-card-title-color-light);
-}
-
-.unooria-card--theme-dark .unooria-card__progress-inside-text {
-  color: var(--unooria-card-title-color-dark);
-}
-
-.unooria-card__progress-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.unooria-card__progress-meta-label {
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.unooria-card--theme-light .unooria-card__progress-meta-label {
-  color: var(--unooria-card-title-color-light);
-}
-
-.unooria-card--theme-dark .unooria-card__progress-meta-label {
-  color: var(--unooria-card-title-color-dark);
-}
-
-.unooria-card__progress-meta-helper {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.unooria-card--theme-light .unooria-card__progress-meta-helper {
-  color: var(--unooria-card-subtitle-color-light);
-}
-
-.unooria-card--theme-dark .unooria-card__progress-meta-helper {
-  color: var(--unooria-card-subtitle-color-dark);
+  color: var(--card-text-title);
 }
 
 /* ==========================================================================
-   Subcomponente: CardFooter
+   Descrição e Metadados
    ========================================================================== */
-.unooria-card__footer {
+
+.unooria-card__description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--card-text-desc);
+}
+
+.unooria-card__metadata-list {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 24px 20px 24px;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
-.unooria-card__footer--direction-row    { flex-direction: row; }
-.unooria-card__footer--direction-column { flex-direction: column; align-items: stretch; }
-
-.unooria-card__footer--align-start         { justify-content: flex-start; }
-.unooria-card__footer--align-center        { justify-content: center; }
-.unooria-card__footer--align-end           { justify-content: flex-end; }
-.unooria-card__footer--align-space-between { justify-content: space-between; }
-.unooria-card__footer--align-space-around  { justify-content: space-around; }
-
-.unooria-card__footer--divider {
-  border-top: 1px solid var(--unooria-card-divider-light);
-  padding-top: 16px;
-}
-
-.unooria-card--theme-dark .unooria-card__footer--divider {
-  border-top-color: var(--unooria-card-divider-dark);
-}
-
-.unooria-card__actions-group {
+.unooria-card__metadata-item {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--card-text-meta);
 }
 
-/* Botões utilitários inline caso usados via shorthands */
-.unooria-card__action-btn {
+.unooria-card__metadata-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 600;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--card-primary);
+}
+
+/* ==========================================================================
+   Subtags
+   ========================================================================== */
+
+.unooria-card__subtags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Ações / Botões Inferiores (Figma #7715:443: 34px de altura, radius 8px)
+   ========================================================================== */
+
+.unooria-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.unooria-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 8px 12px;
   border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
+  border: none;
   text-decoration: none;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
 }
 
-.unooria-card__action-btn--primary {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  color: #FFFFFF;
-}
-.unooria-card__action-btn--primary:hover {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
-}
-
-.unooria-card__action-btn--secondary {
-  background-color: var(--unooria-color-brandnavy-100, #E8EFFA);
-  color: var(--unooria-color-brandnavy-900, #2F4F7F);
-}
-.unooria-card--theme-dark .unooria-card__action-btn--secondary {
-  background-color: rgba(127, 165, 226, 0.15);
-  color: #F5F8FC;
-}
-.unooria-card__action-btn--secondary:hover {
-  background-color: var(--unooria-color-brandnavy-200, #D3E0F5);
-}
-
-.unooria-card__action-btn--outlined {
+/* 1 Botão = 100% Subtle */
+.unooria-card__actions--single .unooria-card__btn {
+  width: 100%;
   background-color: transparent;
-  border-color: var(--unooria-color-brandnavy-400, #A4BDE9);
-  color: var(--unooria-color-brandnavy-700, #6487C2);
-}
-.unooria-card--theme-dark .unooria-card__action-btn--outlined {
-  border-color: rgba(127, 165, 226, 0.4);
-  color: #F5F8FC;
+  color: var(--card-primary);
+  border: 1px solid var(--card-primary);
 }
 
-.unooria-card__action-btn--text {
+.unooria-card__actions--single .unooria-card__btn:hover {
+  background-color: var(--card-icon-bg);
+}
+
+/* 2 Botões = 1 Subtle + 1 Filled */
+.unooria-card__btn--subtle {
+  flex: 1;
   background-color: transparent;
-  color: var(--unooria-color-brandnavy-700, #6487C2);
-  padding-left: 8px;
-  padding-right: 8px;
+  color: var(--card-primary);
+  border: 1px solid var(--card-primary);
 }
-.unooria-card--theme-dark .unooria-card__action-btn--text {
-  color: #A4BDE9;
+
+.unooria-card__btn--subtle:hover {
+  background-color: var(--card-icon-bg);
 }
-.unooria-card__action-btn--text:hover {
-  background-color: rgba(127, 165, 226, 0.1);
+
+.unooria-card__btn--filled {
+  flex: 1;
+  background-color: var(--card-primary);
+  color: #ffffff;
+}
+
+.unooria-card__btn--filled:hover {
+  background-color: var(--card-primary-hover);
 }

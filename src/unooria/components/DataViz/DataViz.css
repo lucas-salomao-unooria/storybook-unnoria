@@ -1,0 +1,576 @@
+/**
+ * Estilos do Componente DataViz - Design System Plataforma Unooria
+ * Especificação Fiel ao Figma (Node #5847:2154)
+ */
+
+@import '../../tokens/colors.css';
+@import '../../tokens/spacing.css';
+@import '../../tokens/typography.css';
+@import '../../tokens/elevation.css';
+
+/* ==========================================================================
+   Contêiner Base dos Cards de Gráficos (Figma #5847:1207 / EL-67045e31)
+   ========================================================================== */
+
+.unooria-dataviz-card {
+  --chart-bg: #ffffff;
+  --chart-border: #e4e8e9;
+  --chart-title: #22272a;
+  --chart-subtitle: #617379;
+  --chart-text: #383e41;
+  --chart-grid: rgba(34, 39, 42, 0.1);
+  --chart-zero-line: #22272a;
+  --chart-primary: #7fa5e2;
+  --tooltip-bg: #22272a;
+  --tooltip-text: #ffffff;
+  --scrollbar-thumb: rgba(34, 39, 42, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px 24px;
+  gap: 24px;
+  background-color: var(--chart-bg);
+  border: 1px solid var(--chart-border);
+  border-radius: 16px;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: var(--chart-text);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   Tema Escuro (Dark Mode) - Cards Gerais
+   ========================================================================== */
+
+.unooria-dataviz-card--theme-dark,
+[data-theme="dark"] .unooria-dataviz-card,
+.unooria-dataviz-card[data-theme="dark"] {
+  --chart-bg: #22272a;
+  --chart-border: rgba(255, 255, 255, 0.1);
+  --chart-title: #f5f5f5;
+  --chart-subtitle: #a7b5b9;
+  --chart-text: #e4e8e9;
+  --chart-grid: rgba(255, 255, 255, 0.1);
+  --chart-zero-line: #ffffff;
+  --chart-primary: #8fafe5;
+  --tooltip-bg: #ffffff;
+  --tooltip-text: #22272a;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   Balão / Tooltip Flutuante Inteligente (Padrão Ouro)
+   ========================================================================== */
+
+.unooria-dataviz__tooltip {
+  position: absolute;
+  pointer-events: none;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.unooria-dataviz__tooltip-header {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.unooria-dataviz__tooltip-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.unooria-dataviz__tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.unooria-dataviz__tooltip-value {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Cabeçalho do Gráfico (Título, Subtítulo e Indicadores)
+   ========================================================================== */
+
+.unooria-dataviz__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.unooria-dataviz__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.unooria-dataviz__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  color: var(--chart-title);
+}
+
+.unooria-dataviz__subtitle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.unooria-dataviz__subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--chart-subtitle);
+}
+
+.unooria-dataviz__indicators {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.unooria-dataviz__indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--chart-text);
+}
+
+.unooria-dataviz__indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Área Principal do Gráfico (Canvas SVG + Eixos)
+   ========================================================================== */
+
+.unooria-dataviz__chart-area {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+}
+
+.unooria-dataviz__y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--chart-subtitle);
+  padding-bottom: 24px;
+  flex-shrink: 0;
+  min-width: 45px;
+}
+
+.unooria-dataviz__plot-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  min-width: 400px;
+}
+
+.unooria-dataviz__svg-plot {
+  width: 100%;
+  height: 260px;
+  overflow: visible;
+}
+
+.unooria-dataviz__x-axis {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--chart-subtitle);
+}
+
+/* Barras com radius 5px topo */
+.unooria-dataviz__bar {
+  rx: 5px;
+  ry: 5px;
+  transition: all 0.2s ease;
+}
+
+.unooria-dataviz__bar:hover {
+  filter: brightness(1.15);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Gráfico de Pizza / Donut / Semi-Donut (Card 301px #5847:2374)
+   ========================================================================== */
+
+.unooria-dataviz-card--compact {
+  max-width: 301px;
+}
+
+.unooria-dataviz__donut-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.unooria-dataviz__donut-svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.unooria-dataviz__semi-donut-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 204px;
+  height: 102px;
+  position: relative;
+}
+
+/* Legenda com Scroll Suave Estilizado */
+.unooria-dataviz__donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-height: 105px;
+  overflow-y: auto;
+  border-top: 1px solid var(--chart-border);
+  padding-top: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.unooria-dataviz__donut-legend::-webkit-scrollbar {
+  width: 4px;
+}
+
+.unooria-dataviz__donut-legend::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.unooria-dataviz__donut-legend::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+.unooria-dataviz__donut-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.unooria-dataviz__donut-legend-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--chart-subtitle);
+}
+
+.unooria-dataviz__donut-legend-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--chart-title);
+}
+
+/* ==========================================================================
+   Painel de Métricas / KPI Card (301x128px #5803:470 / #5812:716)
+   ========================================================================== */
+
+.unooria-metric-card {
+  --metric-bg: #ffffff;
+  --metric-border: #e4e8e9;
+  --metric-title: #22272a;
+  --metric-value: #22272a;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 301px;
+  height: 128px;
+  padding: 16px;
+  background-color: var(--metric-bg);
+  border: 1px solid var(--metric-border);
+  border-radius: 12px;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+/* Dark Mode Calibrado para o MetricCard */
+.unooria-metric-card--theme-dark,
+[data-theme="dark"] .unooria-metric-card,
+.unooria-metric-card[data-theme="dark"] {
+  --metric-bg: #22272a;
+  --metric-border: rgba(255, 255, 255, 0.1);
+  --metric-title: #f5f5f5;
+  --metric-value: #ffffff;
+}
+
+.unooria-metric-card__title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--metric-title);
+}
+
+.unooria-metric-card__bottom-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.unooria-metric-card__value {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--metric-value);
+  white-space: nowrap;
+}
+
+.unooria-metric-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  flex-shrink: 0;
+}
+
+.unooria-metric-card__tag--up {
+  background-color: rgba(1, 181, 116, 0.1);
+  color: #01b574;
+}
+
+.unooria-metric-card__tag--down {
+  background-color: rgba(227, 26, 26, 0.1);
+  color: #e31a1a;
+}
+
+/* ==========================================================================
+   Stacked Progress Bar (Figma #21982:2324)
+   ========================================================================== */
+
+.unooria-stacked-progress-card {
+  max-width: 606px;
+}
+
+.unooria-stacked-progress__bar {
+  display: flex;
+  width: 100%;
+  height: 16px;
+  border-radius: 100px;
+  overflow: hidden;
+  background-color: rgba(34, 39, 42, 0.05);
+}
+
+.unooria-stacked-progress__segment {
+  height: 100%;
+  transition: width 0.3s ease;
+  cursor: pointer;
+}
+
+.unooria-stacked-progress__segment:hover {
+  filter: brightness(1.1);
+}
+
+.unooria-stacked-progress__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.unooria-stacked-progress__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.unooria-stacked-progress__amount {
+  font-weight: 700;
+  color: var(--chart-title);
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   Circular Progress Bar (Figma #8806:208)
+   ========================================================================== */
+
+.unooria-circular-progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.unooria-circular-progress__svg {
+  transform: rotate(-90deg);
+}
+
+.unooria-circular-progress__bg {
+  stroke: rgba(34, 39, 42, 0.08);
+}
+
+.unooria-circular-progress__bar {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s ease;
+}
+
+.unooria-circular-progress__label {
+  position: absolute;
+  font-weight: 700;
+  color: var(--chart-title, #22272a);
+}
+
+/* ==========================================================================
+   Top Courses / Ranking Card (Figma #26096:16701)
+   ========================================================================== */
+
+.unooria-ranking-card {
+  max-width: 380px;
+  padding: 16px 20px;
+  gap: 16px;
+}
+
+.unooria-ranking__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--chart-border);
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.unooria-ranking__search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  color: var(--chart-title);
+}
+
+.unooria-ranking__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.unooria-ranking__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(34, 39, 42, 0.05);
+}
+
+.unooria-ranking__item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.unooria-ranking__position {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--chart-subtitle);
+  min-width: 20px;
+}
+
+.unooria-ranking__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: rgba(100, 135, 194, 0.1);
+  color: #6487C2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.unooria-ranking__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.unooria-ranking__item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--chart-title);
+}
+
+.unooria-ranking__item-desc {
+  font-size: 12px;
+  color: var(--chart-subtitle);
+}
+
+.unooria-ranking__tag {
+  padding: 2px 8px;
+  background-color: rgba(100, 135, 194, 0.1);
+  color: #6487C2;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}

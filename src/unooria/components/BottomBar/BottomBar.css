@@ -1,9 +1,8 @@
 /**
  * Estilos do Componente BottomBar - Design System Plataforma Unooria
- * Fieis às especificações visuais do Figma e tokens de design.
+ * Especificação Fiel ao Figma (Node #3340:11320 / Component Sets #21641:1072, #991:7131, #22274:17632)
  */
 
-/* Importação de tokens de apoio caso não estejam importados globalmente */
 @import '../../tokens/colors.css';
 @import '../../tokens/spacing.css';
 @import '../../tokens/typography.css';
@@ -11,7 +10,7 @@
 @import '../../tokens/blur.css';
 
 /* ==========================================================================
-   Container Principal da BottomBar
+   Contêiner Wrapper e Barra
    ========================================================================== */
 
 .unooria-bottom-bar-wrapper {
@@ -19,8 +18,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  pointer-events: none;
   box-sizing: border-box;
+  position: relative;
 }
 
 .unooria-bottom-bar-wrapper--fixed {
@@ -34,13 +33,11 @@
 .unooria-bottom-bar {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  pointer-events: auto;
+  justify-content: center;
   box-sizing: border-box;
-  font-family: inherit;
+  font-family: var(--unooria-font-sans, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   user-select: none;
-  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.25s ease;
   position: relative;
 }
 
@@ -48,420 +45,220 @@
    Variantes de Layout
    ========================================================================== */
 
-/* 1. Variante Fixa (Ancorada com 100% de largura) */
+/* 1. Desktop Horizontal (Figma #991:7131: 564px, height 36px/48px, gap equilibrado) */
 .unooria-bottom-bar--variant-fixed {
-  min-height: 64px;
-  padding: 8px 16px;
-  border-top-width: 1px;
-  border-top-style: solid;
-}
-
-/* 2. Variante Flutuante (Floating Dock / Pílula) */
-.unooria-bottom-bar--variant-floating {
-  min-height: 60px;
-  margin: 12px auto 16px auto;
-  padding: 6px 12px;
-  border-radius: 28px;
-  border-width: 1px;
-  border-style: solid;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* 3. Variante Top-Center (Com botão de ação central proeminente) */
-.unooria-bottom-bar--variant-top-center {
-  min-height: 64px;
-  padding: 8px 16px;
-  border-top-width: 1px;
-  border-top-style: solid;
-  position: relative;
-}
-
-.unooria-bottom-bar--variant-top-center.unooria-bottom-bar--floating-shape {
-  margin: 16px auto 16px auto;
-  border-radius: 28px;
-  border-width: 1px;
-  border-style: solid;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* ==========================================================================
-   Safe Area Inset (Suporte a telas com Home Bar / Notch)
-   ========================================================================== */
-
-.unooria-bottom-bar--safe-area {
-  padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
-}
-
-.unooria-bottom-bar--variant-floating.unooria-bottom-bar--safe-area {
-  margin-bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 8px));
-}
-
-/* ==========================================================================
-   Temas: Light e Dark
-   ========================================================================== */
-
-/* Tema Claro (Light) */
-.unooria-bottom-bar--light {
-  background-color: rgba(255, 255, 255, 0.94);
-  border-color: var(--unooria-color-neutral-150, #E4E8E9);
-  color: var(--unooria-color-neutral-900, #383E41);
-}
-
-.unooria-bottom-bar--light.unooria-bottom-bar--variant-floating {
-  background-color: rgba(255, 255, 255, 0.88);
-  border-color: rgba(203, 212, 214, 0.6);
-  box-shadow: 0 10px 25px -4px rgba(14, 16, 57, 0.10), 0 4px 12px -2px rgba(14, 16, 57, 0.06);
-}
-
-/* Tema Escuro (Dark) */
-.unooria-bottom-bar--dark {
-  background-color: rgba(34, 39, 42, 0.94);
-  border-color: var(--unooria-color-neutraldark-300, #475157);
-  color: var(--unooria-color-neutraldark-950, #F5F5F5);
-}
-
-.unooria-bottom-bar--dark.unooria-bottom-bar--variant-floating {
-  background-color: rgba(34, 39, 42, 0.88);
-  border-color: rgba(71, 81, 87, 0.6);
-  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.35);
-}
-
-/* ==========================================================================
-   Lista e Seção de Itens da BottomBar
-   ========================================================================== */
-
-.unooria-bottom-bar__items {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   width: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 4px;
-}
-
-.unooria-bottom-bar__items-group {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex: 1;
-  gap: 4px;
-}
-
-.unooria-bottom-bar__center-container {
-  display: flex;
-  align-items: center;
+  min-height: 56px;
+  padding: 8px 24px;
+  gap: 12px;
   justify-content: center;
-  position: relative;
-  width: 64px;
-  flex-shrink: 0;
+}
+
+/* 2. Floating Dock (Pílula com blur) */
+.unooria-bottom-bar--variant-floating {
+  min-height: 52px;
+  padding: 6px 16px;
+  border-radius: 28px;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0px 8px 24px rgba(34, 39, 42, 0.12);
+}
+
+/* 3. Mobile Dock (Figma #22274:17632 Menu-Mob) */
+.unooria-bottom-bar--variant-mobile-dock {
+  padding: 4px;
+  border-radius: 16px;
+  gap: 4px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ==========================================================================
-   Item Individual (BottomBarItem)
+   Temas Visuais (Light vs Dark)
    ========================================================================== */
 
-.unooria-bottom-bar-item {
-  display: flex;
+/* Light Theme */
+.unooria-bottom-bar--theme-light {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #22272A;
+}
+
+/* Dark Theme */
+.unooria-bottom-bar--theme-dark {
+  background-color: rgba(34, 39, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F5F5F5;
+}
+
+/* ==========================================================================
+   Itens de Ação / Action Icons (#21641:1072)
+   ========================================================================== */
+
+.unooria-bottom-bar__item {
+  position: relative;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  min-width: 48px;
-  max-width: 96px;
-  min-height: 48px;
-  padding: 4px 6px;
   background: transparent;
   border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.unooria-bottom-bar__icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease;
+  position: relative;
+  color: inherit;
+}
+
+.unooria-bottom-bar--theme-dark .unooria-bottom-bar__icon-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.unooria-bottom-bar__item:hover .unooria-bottom-bar__icon-btn,
+.unooria-bottom-bar__item--active .unooria-bottom-bar__icon-btn {
+  background-color: #7FA5E2;
+  color: #FFFFFF;
   border-radius: 12px;
+}
+
+.unooria-bottom-bar__item--active .unooria-bottom-bar__icon-btn {
+  background-color: #49699F;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Tooltip Superior a 4px de Distância (Figma Specs)
+   ========================================================================== */
+
+.unooria-bottom-bar__tooltip {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 1010;
+  white-space: nowrap;
+}
+
+.unooria-bottom-bar__item:hover .unooria-bottom-bar__tooltip,
+.unooria-bottom-bar__item:focus-visible .unooria-bottom-bar__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.unooria-bottom-bar__tooltip-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #22272A;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px 1px rgba(34, 39, 42, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.unooria-bottom-bar--theme-dark .unooria-bottom-bar__tooltip-content {
+  background-color: rgba(34, 39, 42, 0.95);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.unooria-bottom-bar__tooltip-arrow {
+  width: 8px;
+  height: 4px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid rgba(255, 255, 255, 0.95);
+  margin-top: -1px;
+}
+
+.unooria-bottom-bar--theme-dark .unooria-bottom-bar__tooltip-arrow {
+  border-top-color: rgba(34, 39, 42, 0.95);
+}
+
+/* ==========================================================================
+   Menu Mobile Flutuante (Menu-Mob / Popover Vertical)
+   ========================================================================== */
+
+.unooria-bottom-bar__menumob-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0px 12px 32px rgba(34, 39, 42, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1020;
+}
+
+.unooria-bottom-bar--theme-dark .unooria-bottom-bar__menumob-popover {
+  background-color: rgba(34, 39, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.unooria-bottom-bar__menumob-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background-color: transparent;
+  border: none;
+  color: #6487C2;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  position: relative;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  color: inherit;
-  font-family: inherit;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.unooria-bottom-bar-item:focus-visible {
-  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
-  outline-offset: 2px;
-}
-
-/* Estados de Hover e Active do Item (Light) */
-.unooria-bottom-bar--light .unooria-bottom-bar-item {
-  color: var(--unooria-color-neutral-500, #617379);
-}
-
-.unooria-bottom-bar--light .unooria-bottom-bar-item:hover:not(.unooria-bottom-bar-item--disabled) {
-  color: var(--unooria-color-neutral-900, #383E41);
-  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.06));
-}
-
-.unooria-bottom-bar--light .unooria-bottom-bar-item--active {
-  color: var(--unooria-color-brandnavy-900, #2F4F7F);
-  font-weight: 600;
-}
-
-.unooria-bottom-bar--light .unooria-bottom-bar-item--active .unooria-bottom-bar-item__icon-wrapper {
-  color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.12));
-}
-
-/* Estados de Hover e Active do Item (Dark) */
-.unooria-bottom-bar--dark .unooria-bottom-bar-item {
-  color: var(--unooria-color-neutraldark-700, #7C8E94);
-}
-
-.unooria-bottom-bar--dark .unooria-bottom-bar-item:hover:not(.unooria-bottom-bar-item--disabled) {
-  color: var(--unooria-color-neutraldark-950, #F5F5F5);
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-}
-
-.unooria-bottom-bar--dark .unooria-bottom-bar-item--active {
-  color: var(--unooria-color-brandnavy-400, #A4BDE9);
-  font-weight: 600;
-}
-
-.unooria-bottom-bar--dark .unooria-bottom-bar-item--active .unooria-bottom-bar-item__icon-wrapper {
-  color: var(--unooria-color-brandnavy-500, #8FAFE5);
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
-}
-
-/* Estado Desabilitado */
-.unooria-bottom-bar-item--disabled {
-  opacity: 0.38;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   Ícone e Badge do Item
-   ========================================================================== */
-
-.unooria-bottom-bar-item__icon-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 28px;
-  border-radius: 14px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.unooria-bottom-bar-item__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-
-.unooria-bottom-bar-item__icon svg {
+  transition: all 0.15s ease;
   width: 100%;
-  height: 100%;
-  fill: currentColor;
-}
-
-/* Rótulo de Texto */
-.unooria-bottom-bar-item__label {
-  font-size: 11px;
-  line-height: 14px;
-  font-weight: 500;
-  text-align: center;
-  margin-top: 2px;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
-  transition: color 0.2s ease, font-weight 0.2s ease;
-}
-
-/* Badge de Notificação */
-.unooria-bottom-bar-item__badge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
-  border-radius: 8px;
-  background-color: var(--unooria-color-danger-600, #E31A1A);
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 16px;
-  text-align: center;
   box-sizing: border-box;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
-  pointer-events: none;
-  animation: unooria-badge-pop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: left;
 }
 
-.unooria-bottom-bar--dark .unooria-bottom-bar-item__badge {
-  box-shadow: 0 0 0 2px rgba(34, 39, 42, 0.9);
+.unooria-bottom-bar__menumob-item:hover {
+  background-color: rgba(127, 165, 226, 0.15);
+  color: #2F4F7F;
 }
 
-/* Badge em formato de ponto (Dot) */
-.unooria-bottom-bar-item__badge--dot {
-  min-width: 8px;
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  top: 0px;
-  right: 2px;
-  border-radius: 50%;
+.unooria-bottom-bar--theme-dark .unooria-bottom-bar__menumob-item {
+  color: #8FAFE5;
 }
 
-@keyframes unooria-badge-pop {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* ==========================================================================
-   Botão Central de Ação (BottomBarAction / FAB Central)
-   ========================================================================== */
-
-.unooria-bottom-bar-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  z-index: 10;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  box-sizing: border-box;
-}
-
-/* Posicionamento elevado do botão central na variante top-center */
-.unooria-bottom-bar--variant-top-center .unooria-bottom-bar-action,
-.unooria-bottom-bar-action--elevated {
-  transform: translateY(-18px);
-}
-
-.unooria-bottom-bar--variant-top-center .unooria-bottom-bar-action:hover:not(:disabled),
-.unooria-bottom-bar-action--elevated:hover:not(:disabled) {
-  transform: translateY(-22px) scale(1.06);
-}
-
-.unooria-bottom-bar--variant-top-center .unooria-bottom-bar-action:active:not(:disabled),
-.unooria-bottom-bar-action--elevated:active:not(:disabled) {
-  transform: translateY(-17px) scale(0.96);
-}
-
-.unooria-bottom-bar-action:focus-visible {
-  outline: 3px solid var(--unooria-color-brandnavy-400, #A4BDE9);
-  outline-offset: 3px;
-}
-
-/* Tamanhos do Botão Central */
-.unooria-bottom-bar-action--sm {
-  width: 42px;
-  height: 42px;
-}
-
-.unooria-bottom-bar-action--sm svg {
-  width: 20px;
-  height: 20px;
-}
-
-.unooria-bottom-bar-action--md {
-  width: 50px;
-  height: 50px;
-}
-
-.unooria-bottom-bar-action--md svg {
-  width: 24px;
-  height: 24px;
-}
-
-.unooria-bottom-bar-action--lg {
-  width: 58px;
-  height: 58px;
-}
-
-.unooria-bottom-bar-action--lg svg {
-  width: 28px;
-  height: 28px;
-}
-
-/* Variantes Visuais de Cor do Botão Central */
-.unooria-bottom-bar-action--variant-primary {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+.unooria-bottom-bar--theme-dark .unooria-bottom-bar__menumob-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
   color: #FFFFFF;
-  box-shadow: 0 6px 16px 0 rgba(127, 165, 226, 0.45), 0 2px 6px 0 rgba(14, 16, 57, 0.15);
-}
-
-.unooria-bottom-bar-action--variant-primary:hover:not(:disabled) {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
-  box-shadow: 0 8px 20px 0 rgba(127, 165, 226, 0.6), 0 3px 8px 0 rgba(14, 16, 57, 0.2);
-}
-
-.unooria-bottom-bar-action--variant-secondary {
-  background-color: var(--unooria-color-brandpurple-900, #0E1039);
-  color: #FFFFFF;
-  box-shadow: 0 6px 16px 0 rgba(14, 16, 57, 0.35), 0 2px 6px 0 rgba(14, 16, 57, 0.2);
-}
-
-.unooria-bottom-bar-action--variant-secondary:hover:not(:disabled) {
-  background-color: var(--unooria-color-brandpurple-800, #34375C);
-  box-shadow: 0 8px 20px 0 rgba(14, 16, 57, 0.5);
-}
-
-.unooria-bottom-bar-action--variant-gradient {
-  background: var(--unooria-color-gradient-1, linear-gradient(225deg, #57547D 0%, #716C98 5%, #7FA5E2 54%, #8FAFE5 72%, #A4BDE9 89%, #BDD0EF 100%));
-  color: #FFFFFF;
-  box-shadow: 0 6px 18px 0 rgba(127, 165, 226, 0.45), 0 2px 8px 0 rgba(14, 16, 57, 0.2);
-}
-
-.unooria-bottom-bar-action--variant-gradient:hover:not(:disabled) {
-  filter: brightness(1.08);
-  box-shadow: 0 8px 22px 0 rgba(127, 165, 226, 0.6);
-}
-
-.unooria-bottom-bar-action--variant-danger {
-  background-color: var(--unooria-color-danger-600, #E31A1A);
-  color: #FFFFFF;
-  box-shadow: 0 6px 16px 0 rgba(227, 26, 26, 0.4);
-}
-
-.unooria-bottom-bar-action--variant-danger:hover:not(:disabled) {
-  background-color: var(--unooria-color-danger-700, #C11414);
-  box-shadow: 0 8px 20px 0 rgba(227, 26, 26, 0.55);
-}
-
-.unooria-bottom-bar-action:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: none !important;
-}
-
-/* Animação suave para o ícone */
-.unooria-bottom-bar-action__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease;
-}
-
-.unooria-bottom-bar-action:hover:not(:disabled) .unooria-bottom-bar-action__icon {
-  transform: rotate(90deg);
 }

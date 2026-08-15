@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Breadcrumb } from '../../../src/unooria/components/Breadcrumb/Breadcrumb';
 import { BreadcrumbProps, BreadcrumbItem, BreadcrumbSize } from '../../../src/unooria/components/Breadcrumb/Breadcrumb.types';
-import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../src/unooria/docs';
+import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones SVG inline para ilustrar navegação hierárquica
 const HomeIcon = () => (
