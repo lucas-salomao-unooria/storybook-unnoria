@@ -181,6 +181,195 @@ const CardDocumentationPage = () => {
           />
         </div>
       </div>
+
+      {/* 5. Referência Completa de Props da API */}
+      <UnooriaDocSectionHeader
+        title="4. Referência Completa de Props da API"
+        description="Propriedades disponíveis para o Card e seus subcomponentes."
+      />
+      <div style={{ overflowX: 'auto', marginBottom: 32 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 14, backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 8, overflow: 'hidden' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Propriedade</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Tipo</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Padrão</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td colSpan={4} style={{ padding: '12px 16px', backgroundColor: '#F1F5F9', fontWeight: 600, color: '#475157' }}>Card</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>variant</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>'default' | 'elevated' | 'outlined' | 'interactive'</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Variante visual do Card.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>orientation</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>'vertical' | 'horizontal'</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Orientação do conteúdo do Card.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>theme</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>CardTheme</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tema visual (light/dark).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>interactive</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>boolean</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Se true, aplica estilos de hover/focus.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>icon</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>React.ReactNode</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Ícone exibido no cabeçalho.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>tag / tags</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>React.ReactNode | React.ReactNode[]</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tag(s) no cabeçalho.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>image</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>string</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>URL da imagem de destaque.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>title / subtitle</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>React.ReactNode</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Textos principais do Card.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>progress</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>number</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Valor do progresso circular (0-100).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>metadata</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>CardMetadataItem[]</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Lista de metadados com ícone e texto.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>primaryAction / secondaryAction</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>CardActionItem</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Ações principais e secundárias (botões).</td>
+            </tr>
+
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td colSpan={4} style={{ padding: '12px 16px', backgroundColor: '#F1F5F9', fontWeight: 600, color: '#475157' }}>CardHeader</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>avatar / icon</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>React.ReactNode</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Avatar ou ícone do cabeçalho.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>action</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>React.ReactNode</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Ação customizada à direita.</td>
+            </tr>
+
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td colSpan={4} style={{ padding: '12px 16px', backgroundColor: '#F1F5F9', fontWeight: 600, color: '#475157' }}>CardTitle</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>as</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>CardTitleAs</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tag HTML a ser renderizada.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>size</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>CardTitleSize</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tamanho do título.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>truncate</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>boolean | number</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Limita linhas do texto.</td>
+            </tr>
+
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td colSpan={4} style={{ padding: '12px 16px', backgroundColor: '#F1F5F9', fontWeight: 600, color: '#475157' }}>CardMedia</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>src</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>string</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>URL da imagem.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>fit</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>'cover' | 'contain' | 'fill' | 'none'</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Comportamento de object-fit.</td>
+            </tr>
+
+            <tr>
+              <td colSpan={4} style={{ padding: '12px 16px', backgroundColor: '#F1F5F9', fontWeight: 600, color: '#475157' }}>CardProgress</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>value</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>number</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Valor do progresso (obrigatório).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A' }}>showLabel</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>boolean</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Exibe a porcentagem em texto.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* 6. Boas Práticas (Do's & Don'ts) */}
+      <UnooriaDocSectionHeader
+        title="5. Boas Práticas (Do's & Don'ts)"
+        description="Orientações sobre o uso correto e incorreto do componente."
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 24, marginBottom: 32 }}>
+        <div style={{ backgroundColor: '#ECFDF5', border: '1px solid #A7F3D0', padding: 24, borderRadius: 12 }}>
+          <h4 style={{ margin: '0 0 12px 0', color: '#065F46', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span>✅</span> FAÇA (DO)
+          </h4>
+          <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#047857' }}>
+            <li>Mantenha títulos curtos e descritivos.</li>
+            <li>Use <strong>uma</strong> ação principal clara por Card.</li>
+            <li>Utilize ícones coerentes com o contexto da informação.</li>
+            <li>Aproveite o espaço em branco interno para melhor legibilidade.</li>
+          </ul>
+        </div>
+        <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', padding: 24, borderRadius: 12 }}>
+          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span>❌</span> NÃO FAÇA (DON'T)
+          </h4>
+          <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#B91C1C' }}>
+            <li>Não sobrecarregue o Card com muitos textos ou metadados desnecessários.</li>
+            <li>Evite usar mais de dois botões no rodapé.</li>
+            <li>Não misture estilos de botões incompatíveis com a hierarquia visual.</li>
+            <li>Não remova os espaçamentos padrão, eles garantem o respiro visual.</li>
+          </ul>
+        </div>
+      </div>
     </UnooriaDocShell>
   );
 };

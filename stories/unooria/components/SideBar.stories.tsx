@@ -191,6 +191,69 @@ const SideBarDocumentationPage = () => {
           />
         </div>
       </div>
+      {/* 5. Tabela de Props */}
+      <UnooriaDocSectionHeader
+        title="4. Referência Completa de Props da API"
+        description="Propriedades disponíveis para o componente SideBar."
+      />
+      <div style={{ overflowX: 'auto', marginBottom: 32 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 8, overflow: 'hidden' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+              <th style={{ padding: '12px 16px', textAlign: 'left', fontSize: 14, color: '#22272A', borderRight: '1px solid #E2E8F0' }}>Propriedade</th>
+              <th style={{ padding: '12px 16px', textAlign: 'left', fontSize: 14, color: '#22272A', borderRight: '1px solid #E2E8F0' }}>Tipo</th>
+              <th style={{ padding: '12px 16px', textAlign: 'left', fontSize: 14, color: '#22272A', borderRight: '1px solid #E2E8F0' }}>Padrão</th>
+              <th style={{ padding: '12px 16px', textAlign: 'left', fontSize: 14, color: '#22272A' }}>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { prop: 'items', type: 'SideBarItemData[]', default: '-', desc: 'Lista de itens da área principal.' },
+              { prop: 'topItems', type: 'SideBarItemData[]', default: '-', desc: 'Lista de itens da parte superior.' },
+              { prop: 'bottomItems', type: 'SideBarItemData[]', default: '-', desc: 'Lista de itens da parte inferior.' },
+              { prop: 'appsItems', type: 'SideBarAppItem[]', default: '-', desc: 'Lista de itens para o painel de aplicativos.' },
+              { prop: 'isAppsOpen', type: 'boolean', default: 'false', desc: 'Define se o painel de aplicativos está aberto.' },
+              { prop: 'onAppsToggle', type: '(isOpen: boolean) => void', default: '-', desc: 'Evento disparado ao alternar o painel de apps.' },
+              { prop: 'showNaiAssistant', type: 'boolean', default: 'false', desc: 'Exibe o widget do assistente NAI.' },
+              { prop: 'onNaiClick', type: '() => void', default: '-', desc: 'Evento disparado ao clicar no assistente NAI.' },
+              { prop: 'activeId', type: 'string', default: '-', desc: 'ID do item ativo (controlado).' },
+              { prop: 'defaultActiveId', type: 'string', default: '-', desc: 'ID do item ativo por padrão (não controlado).' },
+              { prop: 'onItemClick', type: '(id: string, item?: SideBarItemData) => void', default: '-', desc: 'Evento de clique no item.' },
+              { prop: 'theme', type: 'SideBarTheme', default: '-', desc: 'Tema visual do componente.' },
+              { prop: 'children', type: 'React.ReactNode', default: '-', desc: 'Conteúdo interno opcional.' },
+              { prop: 'className', type: 'string', default: '-', desc: 'Classe CSS customizada.' },
+              { prop: 'style', type: 'React.CSSProperties', default: '-', desc: 'Estilo CSS customizado.' },
+            ].map((row, idx) => (
+              <tr key={idx} style={{ borderBottom: '1px solid #E2E8F0' }}>
+                <td style={{ padding: '12px 16px', fontSize: 14, color: '#22272A', borderRight: '1px solid #E2E8F0', fontFamily: 'monospace' }}>{row.prop}</td>
+                <td style={{ padding: '12px 16px', fontSize: 14, color: '#475157', borderRight: '1px solid #E2E8F0', fontFamily: 'monospace' }}>{row.type}</td>
+                <td style={{ padding: '12px 16px', fontSize: 14, color: '#475157', borderRight: '1px solid #E2E8F0', fontFamily: 'monospace' }}>{row.default}</td>
+                <td style={{ padding: '12px 16px', fontSize: 14, color: '#475157' }}>{row.desc}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* 6. Boas Práticas */}
+      <UnooriaDocSectionHeader
+        title="5. Boas Práticas (Do's & Don'ts)"
+        description="Recomendações de uso do componente SideBar."
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 24, marginBottom: 32 }}>
+        <div style={{ backgroundColor: '#ECFDF5', border: '1px solid #A7F3D0', padding: 24, borderRadius: 12 }}>
+          <h4 style={{ margin: '0 0 12px 0', color: '#065F46', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>✅ Do</h4>
+          <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: '#064E3B' }}>
+            Use a barra lateral para a navegação principal, mantendo ícones consistentes e tooltips claros que auxiliem na compreensão de cada módulo.
+          </p>
+        </div>
+        <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', padding: 24, borderRadius: 12 }}>
+          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>❌ Don't</h4>
+          <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: '#7F1D1D' }}>
+            Evite sobrecarregar a barra lateral com muitos itens. O excesso prejudica a acessibilidade e a eficiência da navegação rápida.
+          </p>
+        </div>
+      </div>
     </UnooriaDocShell>
   );
 };

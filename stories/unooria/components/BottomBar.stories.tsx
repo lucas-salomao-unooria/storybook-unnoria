@@ -194,6 +194,137 @@ const BottomBarDocumentationPage = () => {
           />
         </div>
       </div>
+
+      {/* 5. API Props */}
+      <UnooriaDocSectionHeader
+        title="4. Referência Completa de Props da API"
+        description="Todas as propriedades disponíveis para configuração do componente BottomBar."
+      />
+      <div style={{ overflowX: 'auto', marginBottom: 32 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 8, overflow: 'hidden' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600, fontSize: 14 }}>Propriedade</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600, fontSize: 14 }}>Tipo</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600, fontSize: 14 }}>Padrão</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600, fontSize: 14 }}>Descrição</th>
+            </tr>
+          </thead>
+          <tbody style={{ fontSize: 14, color: '#475157' }}>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>items</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>BottomBarItemData[]</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Array de itens de navegação a serem exibidos.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>variant</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'fixed' | 'floating' | 'mobile-dock' | 'top-center'</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'floating'</td>
+              <td style={{ padding: '12px 16px' }}>Variante visual e de layout da barra.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>theme</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>BottomBarTheme</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'light'</td>
+              <td style={{ padding: '12px 16px' }}>Tema de cor da barra (light ou dark).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>activeId</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>string</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>ID do item atualmente ativo (controlado).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>defaultActiveId</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>string</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>ID do item inicialmente ativo (não controlado).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>onChange</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>{`(id: string, item?: BottomBarItemData) => void`}</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Callback acionado ao alterar o item ativo.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>maxWidth</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>string | number</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Largura máxima da barra.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>hasSafeArea</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>boolean</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>false</td>
+              <td style={{ padding: '12px 16px' }}>Adiciona espaçamento inferior para safe area.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>action</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>BottomBarActionProps | ReactNode</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Botão de ação principal (ex: FAB) injetado na barra.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>actionPosition</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'center' | 'end'</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'center'</td>
+              <td style={{ padding: '12px 16px' }}>Posição do botão de ação.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>menuMobItems</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>BottomBarMenuItem[]</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Itens para renderizar no menu expansível (mobile-dock).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>isMenuMobOpen</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>boolean</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Estado controlado de abertura do menu expansível.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>onMenuMobToggle</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>{`(isOpen: boolean) => void`}</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Callback disparado ao alternar a visibilidade do menu.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>className / style</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>string / CSSProperties</td>
+              <td style={{ padding: '12px 16px' }}>-</td>
+              <td style={{ padding: '12px 16px' }}>Customizações de estilo adicionais.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* 6. Boas Práticas */}
+      <UnooriaDocSectionHeader
+        title="5. Boas Práticas (Do's & Don'ts)"
+        description="Diretrizes de uso para garantir consistência e acessibilidade."
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24, marginBottom: 32 }}>
+        <div style={{ backgroundColor: '#ECFDF5', border: '1px solid #A7F3D0', padding: 24, borderRadius: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+            <span style={{ fontSize: 20 }}>✅</span>
+            <h4 style={{ margin: 0, color: '#065F46', fontSize: 16 }}>Do (Faça)</h4>
+          </div>
+          <p style={{ margin: 0, fontSize: 14, color: '#064E3B', lineHeight: 1.6 }}>
+            Use a variante <strong>mobile-dock</strong> em dispositivos com telas pequenas para economizar espaço e agrupar múltiplos itens de navegação dentro do menu expansível de forma eficiente.
+          </p>
+        </div>
+
+        <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', padding: 24, borderRadius: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+            <span style={{ fontSize: 20 }}>❌</span>
+            <h4 style={{ margin: 0, color: '#991B1B', fontSize: 16 }}>Don't (Evite)</h4>
+          </div>
+          <p style={{ margin: 0, fontSize: 14, color: '#7F1D1D', lineHeight: 1.6 }}>
+            Não inclua muitos botões de ação primária ou coloque botões extras flutuando isolados. A variante <strong>top-center</strong> deve apresentar apenas <strong>uma única</strong> ação principal proeminente.
+          </p>
+        </div>
+      </div>
     </UnooriaDocShell>
   );
 };

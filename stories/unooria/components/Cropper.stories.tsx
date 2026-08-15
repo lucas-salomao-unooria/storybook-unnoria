@@ -173,6 +173,156 @@ const CropperDocumentationPage = () => {
           />
         </div>
       </div>
+
+      {/* 4. Referência Completa de Props da API */}
+      <UnooriaDocSectionHeader
+        title="4. Referência Completa de Props da API"
+        description="Todas as propriedades disponíveis para o componente Cropper."
+      />
+      <div style={{ overflowX: 'auto', marginBottom: 32 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 14 }}>
+          <thead>
+            <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '2px solid #E2E8F0' }}>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Propriedade</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Tipo</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Padrão</th>
+              <th style={{ padding: '12px 16px', color: '#22272A', fontWeight: 600 }}>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>currentImage</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>string</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>URL ou Base64 da foto de perfil atualmente salva (se houver).</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>initialImage</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>string</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Imagem inicial a ser aberta no editor para corte imediato.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>initialStep</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperStep</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Passo inicial do componente ('change-photo' | 'upload' | 'crop-preview').</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>shape</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperShape</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>'circle'</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Formato da máscara de corte ('circle' | 'square').</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>viewMode</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperViewMode</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>'inline'</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Modo de exibição do componente ('modal' | 'inline').</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>theme</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperTheme</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>'light'</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tema visual de cor ('light' | 'dark').</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>onClose</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>{'() => void'}</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Callback disparado quando o usuário clica no botão de fechar ou cancelar.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>onSave</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>{'(result: CropResult) => void'}</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Callback disparado quando o usuário confirma o corte da imagem.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>onDelete</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>{'() => void'}</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Callback disparado quando o usuário clica em remover a foto atual.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>onStepChange</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>{'(step: CropperStep) => void'}</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Callback disparado quando o passo atual é alterado.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>customTexts</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperCustomTexts</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Textos customizados para internacionalização.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>maxFileSizeMB</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>number</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>10</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tamanho máximo permitido para o arquivo em MB.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>className</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>string</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Classes CSS adicionais.</td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+              <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>style</td>
+              <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>React.CSSProperties</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Estilos CSS inline customizados.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* 5. Boas Práticas (Do's & Don'ts) */}
+      <UnooriaDocSectionHeader
+        title="5. Boas Práticas (Do's & Don'ts)"
+        description="Diretrizes de uso do Cropper para manter a consistência do design system."
+      />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 24,
+          marginBottom: 32,
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: '#ECFDF5',
+            border: '1px solid #A7F3D0',
+            padding: 24,
+            borderRadius: 12,
+          }}
+        >
+          <h4 style={{ margin: '0 0 12px 0', color: '#065F46', fontSize: 16 }}>✅ Faça (Do)</h4>
+          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6, color: '#065F46' }}>
+            <li>Permita que o usuário centralize visualmente o rosto ou o objeto principal.</li>
+            <li>Forneça resoluções adequadas para evitar distorções no corte.</li>
+            <li>Use o shape "circle" para fotos de perfil ou avatares.</li>
+          </ul>
+        </div>
+
+        <div
+          style={{
+            backgroundColor: '#FEF2F2',
+            border: '1px solid #FECACA',
+            padding: 24,
+            borderRadius: 12,
+          }}
+        >
+          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16 }}>❌ Não Faça (Don't)</h4>
+          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6, color: '#991B1B' }}>
+            <li>Não use o Cropper para imagens de dimensões complexas ou muito longas.</li>
+            <li>Evite pular a etapa de preview sem dar ao usuário a chance de ajustar a imagem.</li>
+            <li>Não mude o shape para quadrados se o contexto for apenas a foto de perfil.</li>
+          </ul>
+        </div>
+      </div>
     </UnooriaDocShell>
   );
 };
