@@ -1,0 +1,208 @@
+/* ==========================================================================
+   ProgressBar (Barra de Progresso) - Component Styles (Figma Node: 18644:1049)
+   ========================================================================== */
+
+.unooria-progressbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* Linha Superior (Top Labels - Variante 1 Figma) */
+.unooria-progressbar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unooria-spacing-xxs, 8px);
+  width: 100%;
+}
+
+/* Rótulo / Título */
+.unooria-progressbar__label {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+/* Texto de Valor / Porcentagem */
+.unooria-progressbar__value {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-weight: 700;
+  color: var(--unooria-color-neutral-700, #475157);
+  white-space: nowrap;
+}
+
+.unooria-progressbar__value--top {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.unooria-progressbar__value--inline {
+  font-size: 12px;
+  line-height: 18px;
+  min-width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.unooria-progressbar__value--bottom {
+  font-size: 12px;
+  line-height: 18px;
+  align-self: flex-end;
+}
+
+/* Linha Inline (Variante 2 Figma) */
+.unooria-progressbar__inline-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  width: 100%;
+}
+
+/* Trilho (Track) */
+.unooria-progressbar__track {
+  width: 100%;
+  background-color: var(--unooria-color-opacity-neutraldark-100, rgba(34, 39, 42, 0.10));
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Preenchimento (Fill) */
+.unooria-progressbar__fill {
+  height: 100%;
+  border-radius: 100px;
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Variantes Cromáticas / Severidades
+   ========================================================================== */
+
+/* Brand Navy Unooria (#7FA5E2 - Padrão Figma) */
+.unooria-progressbar--variant-brand .unooria-progressbar__fill {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Primary (#0086FF) */
+.unooria-progressbar--variant-primary .unooria-progressbar__fill {
+  background-color: var(--unooria-color-info-500, #0086FF);
+}
+
+/* Success (#01B574) */
+.unooria-progressbar--variant-success .unooria-progressbar__fill {
+  background-color: var(--unooria-color-success-500, #01B574);
+}
+
+/* Warning (#F97607) */
+.unooria-progressbar--variant-warning .unooria-progressbar__fill {
+  background-color: var(--unooria-color-warning-500, #F97607);
+}
+
+/* Danger (#E31A1A) */
+.unooria-progressbar--variant-danger .unooria-progressbar__fill {
+  background-color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+/* ==========================================================================
+   Tamanhos de Altura (XS, SM, MD, LG)
+   ========================================================================== */
+
+/* XS (4px) */
+.unooria-progressbar--size-xs .unooria-progressbar__track {
+  height: 4px;
+}
+
+/* SM (8px - Padrão Oficial Figma) */
+.unooria-progressbar--size-sm .unooria-progressbar__track {
+  height: 8px;
+}
+
+/* MD (12px) */
+.unooria-progressbar--size-md .unooria-progressbar__track {
+  height: 12px;
+}
+
+/* LG (16px) */
+.unooria-progressbar--size-lg .unooria-progressbar__track {
+  height: 16px;
+}
+
+/* ==========================================================================
+   Efeitos Visuais: Listrado (Striped) & Indeterminado (Indeterminate)
+   ========================================================================== */
+
+/* Padrão Listrado */
+.unooria-progressbar--striped .unooria-progressbar__fill {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+/* Listrado Animado */
+.unooria-progressbar--animated .unooria-progressbar__fill {
+  animation: unooria-progress-stripes 1s linear infinite;
+}
+
+@keyframes unooria-progress-stripes {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* Modo Indeterminado */
+.unooria-progressbar--indeterminate .unooria-progressbar__fill {
+  width: 40% !important;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  animation: unooria-progress-indeterminate 1.5s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+@keyframes unooria-progress-indeterminate {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ==========================================================================
+   Suporte a Temas (Light & Dark Mode)
+   ========================================================================== */
+
+/* Tema Dark (Figma Node 18644:1049) */
+.unooria-progressbar--theme-dark .unooria-progressbar__label,
+[data-theme="dark"] .unooria-progressbar .unooria-progressbar__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-progressbar--theme-dark .unooria-progressbar__value,
+[data-theme="dark"] .unooria-progressbar .unooria-progressbar__value {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-progressbar--theme-dark .unooria-progressbar__track,
+[data-theme="dark"] .unooria-progressbar .unooria-progressbar__track {
+  background-color: var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.10));
+}

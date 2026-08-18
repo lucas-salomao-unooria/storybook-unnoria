@@ -1,0 +1,275 @@
+/* ==========================================================================
+   Outline / Outline Item - Component Styles (Figma Node: 24199:85)
+   ========================================================================== */
+
+.unooria-outline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-4xs, 2px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* Item Individual (40px Height, 8px padding, 8px radius) */
+.unooria-outline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  height: 40px;
+  padding: var(--unooria-spacing-xxs, 8px);
+  border-radius: 8px;
+  background-color: transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  width: 100%;
+  outline: none;
+}
+
+.unooria-outline-item:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+}
+
+.unooria-outline-item--selected,
+.unooria-outline-item:active {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+}
+
+.unooria-outline-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-outline-item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Botão de Expandir / Recolher */
+.unooria-outline-item__collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.15s ease;
+}
+
+.unooria-outline-item__collapse-btn--collapsed {
+  transform: rotate(-90deg);
+}
+
+.unooria-outline-item__collapse-btn:hover {
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Área de Prefixo */
+.unooria-outline-item__prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* Área de Sufixo */
+.unooria-outline-item__suffix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+/* Área de Conteúdo (Número + Título) */
+.unooria-outline-item__content {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.unooria-outline-item__number {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.unooria-outline-item__title {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Input Inline para Edição de Título */
+.unooria-outline-item__title-input {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-brandnavy-600, #7FA5E2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 2px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+}
+
+/* Barra de Ações Contextuais */
+.unooria-outline-item__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-4xs, 2px);
+  margin-left: var(--unooria-spacing-xs, 12px);
+  flex-shrink: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.unooria-outline-item:hover .unooria-outline-item__actions,
+.unooria-outline-item--selected .unooria-outline-item__actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Botões Individuais de Ação (24x24px, 8px radius) */
+.unooria-outline-item__action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.unooria-outline-item__action-btn:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-outline-item__action-btn:active {
+  transform: scale(0.92);
+}
+
+.unooria-outline-item__action-btn--delete:hover {
+  background-color: var(--unooria-color-opacity-brandorange-100, rgba(232, 73, 16, 0.10));
+  color: var(--unooria-color-brandorange-700, #BF340F);
+}
+
+.unooria-outline-item__action-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Tooltip Contextual de Ação */
+.unooria-outline-item__tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--unooria-color-neutral-950, #22272A);
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.unooria-outline-item__action-btn:hover .unooria-outline-item__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Light & Dark)
+   ========================================================================== */
+
+/* Tema Dark */
+.unooria-outline--theme-dark .unooria-outline-item__number,
+.unooria-outline--theme-dark .unooria-outline-item__title,
+.unooria-outline-item--theme-dark .unooria-outline-item__number,
+.unooria-outline-item--theme-dark .unooria-outline-item__title {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-outline--theme-dark .unooria-outline-item__collapse-btn,
+.unooria-outline-item--theme-dark .unooria-outline-item__collapse-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-outline--theme-dark .unooria-outline-item__title-input,
+.unooria-outline-item--theme-dark .unooria-outline-item__title-input {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-outline--theme-dark .unooria-outline-item:hover,
+.unooria-outline--theme-dark .unooria-outline-item--selected,
+.unooria-outline-item--theme-dark:hover,
+.unooria-outline-item--theme-dark.unooria-outline-item--selected {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+}
+
+.unooria-outline--theme-dark .unooria-outline-item__action-btn,
+.unooria-outline-item--theme-dark .unooria-outline-item__action-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-outline--theme-dark .unooria-outline-item__action-btn:hover,
+.unooria-outline-item--theme-dark .unooria-outline-item__action-btn:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-outline--theme-dark .unooria-outline-item__tooltip,
+.unooria-outline-item--theme-dark .unooria-outline-item__tooltip {
+  background-color: var(--unooria-color-brandnavy-950, #0E1039);
+  border: 1px solid var(--unooria-color-opacity-neutrallight-200, rgba(255, 255, 255, 0.20));
+}

@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+:root {
+  /* ==========================================================================
+     Unooria Icon Design Tokens (Figma Node: 6024:2923)
+     Base Library: Google Material Symbols and Icons (Rounded, Weight 300)
+     ========================================================================== */
+
+  /* Especificações Oficiais da Biblioteca */
+  --unooria-icon-font-family: 'Material Symbols Rounded', sans-serif;
+  --unooria-icon-weight-default: 300;
+  --unooria-icon-fill-default: 0;
+  --unooria-icon-grade-default: 0;
+  --unooria-icon-optical-size-default: 24;
+
+  /* Escala de Tamanhos de Ícones (Dimensão / Bounding Box) */
+  --unooria-icon-size-4xs: 12px;
+  --unooria-icon-size-3xs: 16px;
+  --unooria-icon-size-xxs: 18px;
+  --unooria-icon-size-xs: 20px;
+  --unooria-icon-size-s: 24px;   /* Padrão Master do Figma */
+  --unooria-icon-size-m: 32px;
+  --unooria-icon-size-l: 40px;
+  --unooria-icon-size-xl: 48px;
+
+  /* Equivalentes em REM */
+  --unooria-icon-size-4xs-rem: 0.75rem;
+  --unooria-icon-size-3xs-rem: 1rem;
+  --unooria-icon-size-xxs-rem: 1.125rem;
+  --unooria-icon-size-xs-rem: 1.25rem;
+  --unooria-icon-size-s-rem: 1.5rem;
+  --unooria-icon-size-m-rem: 2rem;
+  --unooria-icon-size-l-rem: 2.5rem;
+  --unooria-icon-size-xl-rem: 3rem;
+
+  /* Espessuras de Traço / Stroke */
+  --unooria-icon-stroke-thin: 1px;
+  --unooria-icon-stroke-regular: 1.5px;
+  --unooria-icon-stroke-medium: 2px;
+  --unooria-icon-stroke-bold: 2.5px;
+
+  /* Cores Padrão de Ícones (alinhadas aos tokens oficiais de colors.css) */
+  --unooria-icon-color-default: var(--unooria-color-neutral-950, #22272A);
+  --unooria-icon-color-muted: var(--unooria-color-neutral-700, #475157);
+  --unooria-icon-color-brand: var(--unooria-color-brandnavy-600, #7FA5E2);
+  --unooria-icon-color-title: var(--unooria-color-brandnavy-600, #7FA5E2);
+  --unooria-icon-color-dark: var(--unooria-color-neutral-950, #22272A);
+  --unooria-icon-color-white: var(--unooria-color-neutral-50, #FFFFFF);
+  --unooria-icon-color-navy: var(--unooria-color-brandnavy-950, #0E1039);
+  --unooria-icon-color-danger: var(--unooria-color-danger-600, #E31A1A);
+  --unooria-icon-color-success: var(--unooria-color-success-600, #00A369);
+  --unooria-icon-color-warning: var(--unooria-color-warning-600, #DD5202);
+  --unooria-icon-color-info: var(--unooria-color-info-500, #0086FF);
+}
+
+/* ==========================================================================
+   Classes Utilitárias de Material Symbols Rounded
+   ========================================================================== */
+
+.material-symbols-rounded,
+.unooria-icon {
+  font-family: var(--unooria-icon-font-family);
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--unooria-icon-size-s, 24px);
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+  user-select: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variation-settings:
+    'FILL' var(--unooria-icon-fill, var(--unooria-icon-fill-default, 0)),
+    'wght' var(--unooria-icon-weight, var(--unooria-icon-weight-default, 300)),
+    'GRAD' var(--unooria-icon-grade, var(--unooria-icon-grade-default, 0)),
+    'opsz' var(--unooria-icon-optical-size, var(--unooria-icon-optical-size-default, 24));
+  color: currentColor;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+/* Modificadores de Tamanho */
+.unooria-icon--size-4xs { font-size: var(--unooria-icon-size-4xs); width: var(--unooria-icon-size-4xs); height: var(--unooria-icon-size-4xs); }
+.unooria-icon--size-3xs { font-size: var(--unooria-icon-size-3xs); width: var(--unooria-icon-size-3xs); height: var(--unooria-icon-size-3xs); }
+.unooria-icon--size-xxs { font-size: var(--unooria-icon-size-xxs); width: var(--unooria-icon-size-xxs); height: var(--unooria-icon-size-xxs); }
+.unooria-icon--size-xs  { font-size: var(--unooria-icon-size-xs);  width: var(--unooria-icon-size-xs);  height: var(--unooria-icon-size-xs);  }
+.unooria-icon--size-s   { font-size: var(--unooria-icon-size-s);   width: var(--unooria-icon-size-s);   height: var(--unooria-icon-size-s);   }
+.unooria-icon--size-m   { font-size: var(--unooria-icon-size-m);   width: var(--unooria-icon-size-m);   height: var(--unooria-icon-size-m);   }
+.unooria-icon--size-l   { font-size: var(--unooria-icon-size-l);   width: var(--unooria-icon-size-l);   height: var(--unooria-icon-size-l);   }
+.unooria-icon--size-xl  { font-size: var(--unooria-icon-size-xl);  width: var(--unooria-icon-size-xl);  height: var(--unooria-icon-size-xl);  }
+
+/* Modificadores de Fill */
+.unooria-icon--filled {
+  --unooria-icon-fill: 1;
+}
+
+/* Modificadores de Peso / Weight */
+.unooria-icon--weight-100 { --unooria-icon-weight: 100; }
+.unooria-icon--weight-200 { --unooria-icon-weight: 200; }
+.unooria-icon--weight-300 { --unooria-icon-weight: 300; }
+.unooria-icon--weight-400 { --unooria-icon-weight: 400; }
+.unooria-icon--weight-500 { --unooria-icon-weight: 500; }
+.unooria-icon--weight-600 { --unooria-icon-weight: 600; }
+.unooria-icon--weight-700 { --unooria-icon-weight: 700; }
+
+/* Modificador de Animação (Spin / Loading) */
+@keyframes unooria-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.unooria-icon--spin {
+  animation: unooria-icon-spin 1s linear infinite;
+}
+
+/* Modificadores de Cores Semânticas */
+.unooria-icon--color-default { color: var(--unooria-icon-color-default); }
+.unooria-icon--color-muted   { color: var(--unooria-icon-color-muted); }
+.unooria-icon--color-brand   { color: var(--unooria-icon-color-brand); }
+.unooria-icon--color-navy    { color: var(--unooria-icon-color-navy); }
+.unooria-icon--color-white   { color: var(--unooria-icon-color-white); }
+.unooria-icon--color-danger  { color: var(--unooria-icon-color-danger); }
+.unooria-icon--color-success { color: var(--unooria-icon-color-success); }
+.unooria-icon--color-warning { color: var(--unooria-icon-color-warning); }
+.unooria-icon--color-info    { color: var(--unooria-icon-color-info); }
+

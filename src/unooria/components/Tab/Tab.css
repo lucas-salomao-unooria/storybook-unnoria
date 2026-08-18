@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Tab / Tabs (Abas de Navegação de Conteúdo) - Component Styles
+   Design System Plataforma Unooria (Figma Node: 12694:10183 / Set: 12694:10195)
+   ========================================================================== */
+
+/* Container Principal do Tabs */
+.unooria-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Barra de Abas (TabList)
+   ========================================================================== */
+
+.unooria-tab-list {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid var(--unooria-color-neutral-150, #E4E8E9);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+}
+
+.unooria-tab-list::-webkit-scrollbar {
+  display: none;
+}
+
+.unooria-tab-list--full-width {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+/* ==========================================================================
+   Componente Individual: Tab (Aba)
+   ========================================================================== */
+
+.unooria-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  height: var(--unooria-spacing-xl, 48px);
+  min-height: var(--unooria-spacing-xl, 48px);
+  padding: 0 var(--unooria-spacing-m, 24px);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  user-select: none;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.unooria-tab--full-width {
+  flex: 1;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Estados do Tab (Figma: Default, Selected, Hover, Hover-Active)
+   ========================================================================== */
+
+/* 1. Default (Inativo / Padrão) */
+.unooria-tab--default {
+  font-weight: 400;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-tab--default .unooria-tab__icon {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* 2. Selected (Ativo / Selecionado) */
+.unooria-tab--selected {
+  font-weight: 600;
+  color: var(--unooria-color-neutral-900, #383E41);
+  border-bottom-color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-tab--selected .unooria-tab__icon {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* 3. Hover (Hover em Inativo ou Ativo) */
+.unooria-tab:hover:not(.unooria-tab--disabled) {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+  border-radius: 12px 12px 0 0;
+}
+
+.unooria-tab--default:hover:not(.unooria-tab--disabled) {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* 4. Focus Visible */
+.unooria-tab:focus-visible {
+  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
+  outline-offset: -2px;
+}
+
+/* 5. Disabled */
+.unooria-tab--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Anatomia: Ícone & Badge (Contador)
+   ========================================================================== */
+
+.unooria-tab__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unooria-icon-size-s, 24px);
+  height: var(--unooria-icon-size-s, 24px);
+  flex-shrink: 0;
+}
+
+/* Badge Contador (22x22px em Brand Navy #6487C2 com texto 10px Bold) */
+.unooria-tab__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 1000px;
+  padding: 0 6px;
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: #FFFFFF;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Variante Pill (Pílula moderna opcional)
+   ========================================================================== */
+
+.unooria-tabs--variant-pill .unooria-tab-list {
+  border-bottom: none;
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
+}
+
+.unooria-tabs--variant-pill .unooria-tab {
+  border-bottom: none;
+  margin-bottom: 0;
+  border-radius: 8px;
+  height: 40px;
+  min-height: 40px;
+}
+
+.unooria-tabs--variant-pill .unooria-tab--selected {
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Painel de Conteúdo (TabPanel)
+   ========================================================================== */
+
+.unooria-tab-panel {
+  padding: var(--unooria-spacing-s, 16px) 0;
+  outline: none;
+  animation: unooria-tab-fade-in 0.2s ease forwards;
+}
+
+@keyframes unooria-tab-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Tamanhos (sm, md, lg)
+   ========================================================================== */
+
+.unooria-tabs--size-sm .unooria-tab {
+  height: 36px;
+  min-height: 36px;
+  padding: 0 16px;
+  font-size: 12px;
+  gap: 8px;
+}
+
+.unooria-tabs--size-sm .unooria-tab__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.unooria-tabs--size-sm .unooria-tab__badge {
+  min-width: 18px;
+  height: 18px;
+  font-size: 9px;
+}
+
+.unooria-tabs--size-lg .unooria-tab {
+  height: 56px;
+  min-height: 56px;
+  padding: 0 32px;
+  font-size: 16px;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-tabs--theme-dark .unooria-tab-list,
+[data-theme="dark"] .unooria-tab-list {
+  border-bottom-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-tabs--theme-dark .unooria-tab--default,
+[data-theme="dark"] .unooria-tab--default {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-tabs--theme-dark .unooria-tab--default .unooria-tab__icon,
+[data-theme="dark"] .unooria-tab--default .unooria-tab__icon {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-tabs--theme-dark .unooria-tab--selected,
+[data-theme="dark"] .unooria-tab--selected {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  border-bottom-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-tabs--theme-dark .unooria-tab--selected .unooria-tab__icon,
+[data-theme="dark"] .unooria-tab--selected .unooria-tab__icon {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-tabs--theme-dark .unooria-tab:hover:not(.unooria-tab--disabled),
+[data-theme="dark"] .unooria-tab:hover:not(.unooria-tab--disabled) {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+}
+
+.unooria-tabs--theme-dark.unooria-tabs--variant-pill .unooria-tab-list,
+[data-theme="dark"] .unooria-tabs--variant-pill .unooria-tab-list {
+  background-color: var(--unooria-color-neutraldark-100, #2B3135);
+}
+
+.unooria-tabs--theme-dark.unooria-tabs--variant-pill .unooria-tab--selected,
+[data-theme="dark"] .unooria-tabs--variant-pill .unooria-tab--selected {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+}

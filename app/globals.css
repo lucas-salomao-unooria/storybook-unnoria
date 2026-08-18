@@ -13,6 +13,7 @@
 @import "../src/unooria/tokens/spacing.css";
 @import "../src/unooria/tokens/blur.css";
 @import "../src/unooria/tokens/elevation.css";
+@import "../src/unooria/tokens/icons.css";
 
 :root {
   --background: #ffffff;

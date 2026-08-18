@@ -1,0 +1,227 @@
+/* ==========================================================================
+   ListSectionItem - Component Styles
+   Design System Plataforma Unooria (Figma Node: 6101:5691 / Set: 1537:4807)
+   ========================================================================== */
+
+/* Container Principal do Item */
+.unooria-list-section-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unooria-spacing-xs, 12px);
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--unooria-spacing-xs, 12px);
+  border-radius: var(--unooria-radius-lg, 16px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+/* Item Clicável */
+.unooria-list-section-item--clickable {
+  cursor: pointer;
+}
+
+.unooria-list-section-item--clickable:hover:not(.unooria-list-section-item--disabled) {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.04));
+}
+
+/* Item Selecionado */
+.unooria-list-section-item--selected {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.08));
+}
+
+/* Item Desabilitado */
+.unooria-list-section-item--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Lado Esquerdo (Leading Elements)
+   ========================================================================== */
+
+.unooria-list-section-item__left {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  min-width: 0;
+  flex: 1;
+}
+
+.unooria-list-section-item__checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Ícone Visual Redondo */
+.unooria-list-section-item__visual-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.12));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+  flex-shrink: 0;
+}
+
+/* Avatar Visual */
+.unooria-list-section-item__visual-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Corpo Central (Content Stack)
+   ========================================================================== */
+
+.unooria-list-section-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-4xs, 2px);
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.unooria-list-section-item__category {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-500, #617379);
+  margin: 0;
+}
+
+.unooria-list-section-item__title {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  margin: 0;
+}
+
+.unooria-list-section-item__description {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-700, #475157);
+  margin: 0;
+}
+
+.unooria-list-section-item__metadata {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-500, #617379);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Lado Direito (Trailing Elements & Ações)
+   ========================================================================== */
+
+.unooria-list-section-item__right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  flex-shrink: 0;
+}
+
+/* Botão de Mais Opções (more_vert) */
+.unooria-list-section-item__more-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--unooria-color-neutral-700, #475157);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  outline: none;
+}
+
+.unooria-list-section-item__more-btn:hover {
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-list-section-item__more-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Chevron */
+.unooria-list-section-item__chevron {
+  color: var(--unooria-color-neutral-500, #617379);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-list-section-item--theme-dark,
+[data-theme="dark"] .unooria-list-section-item {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__title,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__title {
+  color: #FFFFFF;
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__description,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__description {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__metadata,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__metadata {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__category,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__category {
+  color: #A7B5BA;
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__more-btn,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__more-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__more-btn:hover,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__more-btn:hover {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: #FFFFFF;
+}
+
+.unooria-list-section-item--theme-dark .unooria-list-section-item__chevron,
+[data-theme="dark"] .unooria-list-section-item .unooria-list-section-item__chevron {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}

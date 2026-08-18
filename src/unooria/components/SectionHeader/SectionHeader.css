@@ -1,0 +1,200 @@
+/* ==========================================================================
+   SectionHeader - Component Styles
+   Design System Plataforma Unooria (Figma Node: 22677:2549 / Set: 24591:12975)
+   ========================================================================== */
+
+/* Container Principal */
+.unooria-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unooria-spacing-m, 16px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* Divisor Inferior Opcional */
+.unooria-section-header--divider {
+  border-bottom: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  padding-bottom: var(--unooria-spacing-m, 16px);
+}
+
+/* ==========================================================================
+   Coluna Esquerda (Navegação & Título)
+   ========================================================================== */
+
+.unooria-section-header__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-4xs, 2px);
+  min-width: 0;
+  flex: 1;
+}
+
+.unooria-section-header__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  flex-wrap: wrap;
+}
+
+/* Botão Voltar */
+.unooria-section-header__back-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--unooria-color-neutral-500, #617379);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--unooria-radius-s, 8px);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.unooria-section-header__back-btn:hover {
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-section-header__back-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Título */
+.unooria-section-header__title {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 34px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  margin: 0;
+}
+
+/* Descrição */
+.unooria-section-header__description {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-900, #383E41);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Coluna Direita (Ações e Controles)
+   ========================================================================== */
+
+.unooria-section-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-3xs, 4px);
+  flex-shrink: 0;
+}
+
+.unooria-section-header__search-wrapper {
+  width: 300px;
+}
+
+/* Botão de Filtro Oficial */
+.unooria-section-header__filter-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--unooria-radius-s, 8px);
+  border: none;
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.unooria-section-header__filter-btn:hover {
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-section-header__filter-btn--active {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-section-header__filter-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-section-header__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+/* ==========================================================================
+   Variantes (Mobile & Compact)
+   ========================================================================== */
+
+/* Mobile */
+.unooria-section-header--variant-mobile {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+.unooria-section-header--variant-mobile .unooria-section-header__title {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.unooria-section-header--variant-mobile .unooria-section-header__right {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.unooria-section-header--variant-mobile .unooria-section-header__search-wrapper {
+  flex: 1;
+  min-width: 180px;
+  width: auto;
+}
+
+/* Compact */
+.unooria-section-header--variant-compact .unooria-section-header__title {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-section-header--theme-dark .unooria-section-header__title,
+[data-theme="dark"] .unooria-section-header .unooria-section-header__title {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-section-header--theme-dark .unooria-section-header__description,
+[data-theme="dark"] .unooria-section-header .unooria-section-header__description {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-section-header--theme-dark .unooria-section-header__back-btn,
+[data-theme="dark"] .unooria-section-header .unooria-section-header__back-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-section-header--theme-dark .unooria-section-header__back-btn:hover,
+[data-theme="dark"] .unooria-section-header .unooria-section-header__back-btn:hover {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: #FFFFFF;
+}
+
+.unooria-section-header--theme-dark.unooria-section-header--divider,
+[data-theme="dark"] .unooria-section-header.unooria-section-header--divider {
+  border-bottom-color: var(--unooria-color-neutraldark-200, #3D4448);
+}

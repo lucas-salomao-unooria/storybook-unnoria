@@ -1,0 +1,428 @@
+/* ==========================================================================
+   UploadFileModal / FileUpload - Component Styles
+   Design System Plataforma Unooria (Figma Node: 18661:2161 / Set: 18647:26131)
+   ========================================================================== */
+
+/* Container Principal do FileUpload */
+.unooria-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-3xs, 4px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* Rótulo Superior (Label Row) */
+.unooria-file-upload__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-3xs, 4px);
+  margin-bottom: 2px;
+}
+
+.unooria-file-upload__label {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  user-select: none;
+}
+
+.unooria-file-upload__required {
+  color: var(--unooria-color-danger-700, #C11414);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Input Nativo Oculto */
+.unooria-file-upload__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Área de Dropzone (Drag-and-Drop)
+   ========================================================================== */
+
+.unooria-file-upload__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 108px;
+  border: 1px dashed var(--unooria-color-neutral-200, #CBD4D6);
+  border-radius: var(--unooria-radius-lg, 16px);
+  padding: var(--unooria-spacing-xs, 12px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  text-align: center;
+  user-select: none;
+  outline: none;
+}
+
+.unooria-file-upload__dropzone:hover:not(.unooria-file-upload__dropzone--disabled) {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+}
+
+.unooria-file-upload__dropzone--dragover {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2) !important;
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10)) !important;
+  border-style: solid !important;
+}
+
+.unooria-file-upload__dropzone:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-file-upload__dropzone--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+}
+
+/* Ícone de Upload */
+.unooria-file-upload__icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(34, 39, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+/* Textos da Dropzone */
+.unooria-file-upload__title {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  margin: 0 0 2px 0;
+}
+
+.unooria-file-upload__subtitle {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-500, #617379);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Lista e Cards de Arquivos Enviados (File Item Card)
+   ========================================================================== */
+
+.unooria-file-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-3xs, 4px);
+  margin-top: 4px;
+  width: 100%;
+}
+
+.unooria-file-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-3xs, 4px);
+  padding: var(--unooria-spacing-xs, 12px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: var(--unooria-radius-lg, 16px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+.unooria-file-card--error {
+  border-color: var(--unooria-color-danger-700, #C11414);
+}
+
+.unooria-file-card__info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+}
+
+.unooria-file-card__text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  flex: 1;
+  text-align: left;
+}
+
+.unooria-file-card__name {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unooria-file-card__size {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-file-card__remove-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--unooria-color-neutral-800, #475157);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  outline: none;
+}
+
+.unooria-file-card__remove-btn:hover {
+  color: var(--unooria-color-danger-700, #C11414);
+  background-color: rgba(193, 20, 20, 0.08);
+}
+
+/* Barra de Progresso do Card */
+.unooria-file-card__progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  width: 100%;
+}
+
+.unooria-file-card__progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 100px;
+  background-color: rgba(34, 39, 42, 0.10);
+  overflow: hidden;
+}
+
+.unooria-file-card__progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unooria-file-card__progress-fill--error {
+  background-color: var(--unooria-color-danger-700, #C11414);
+}
+
+.unooria-file-card__percentage {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-800, #475157);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ==========================================================================
+   Modal Flutuante de Upload (UploadFileModal)
+   ========================================================================== */
+
+.unooria-upload-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(34, 39, 42, 0.60);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.unooria-upload-modal {
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border-radius: var(--unooria-radius-2xl, 24px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+  animation: unooria-modal-scale 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes unooria-modal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.unooria-upload-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.unooria-upload-modal__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.unooria-upload-modal__title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  margin: 0;
+}
+
+.unooria-upload-modal__description {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-500, #617379);
+  margin: 0;
+}
+
+.unooria-upload-modal__close-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--unooria-color-neutral-800, #475157);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+
+.unooria-upload-modal__close-btn:hover {
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+}
+
+.unooria-upload-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-file-upload--theme-dark .unooria-file-upload__label,
+[data-theme="dark"] .unooria-file-upload .unooria-file-upload__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-upload__dropzone,
+[data-theme="dark"] .unooria-file-upload .unooria-file-upload__dropzone {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-upload__title,
+[data-theme="dark"] .unooria-file-upload .unooria-file-upload__title {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-upload__subtitle,
+[data-theme="dark"] .unooria-file-upload .unooria-file-upload__subtitle {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-upload__icon-circle,
+[data-theme="dark"] .unooria-file-upload .unooria-file-upload__icon-circle {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-card,
+[data-theme="dark"] .unooria-file-upload .unooria-file-card {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-card__name,
+[data-theme="dark"] .unooria-file-upload .unooria-file-card__name {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-card__size,
+[data-theme="dark"] .unooria-file-upload .unooria-file-card__size {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-card__remove-btn,
+[data-theme="dark"] .unooria-file-upload .unooria-file-card__remove-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-card__percentage,
+[data-theme="dark"] .unooria-file-upload .unooria-file-card__percentage {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-file-upload--theme-dark .unooria-file-card__progress-track,
+[data-theme="dark"] .unooria-file-upload .unooria-file-card__progress-track {
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+.unooria-upload-modal--theme-dark,
+[data-theme="dark"] .unooria-upload-modal {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-upload-modal--theme-dark .unooria-upload-modal__title,
+[data-theme="dark"] .unooria-upload-modal__title {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-upload-modal--theme-dark .unooria-upload-modal__close-btn,
+[data-theme="dark"] .unooria-upload-modal__close-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}

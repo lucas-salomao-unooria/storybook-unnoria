@@ -1,0 +1,304 @@
+/* ==========================================================================
+   Stepper (Indicador de Etapas / Passos) - Component Styles
+   Design System Plataforma Unooria (Figma Node: 12694:10079 / Set: 12694:10091)
+   ========================================================================== */
+
+/* Container Principal do Stepper */
+.unooria-stepper {
+  display: flex;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  width: 100%;
+}
+
+/* ==========================================================================
+   Orientações: Horizontal (Padrão Figma) e Vertical
+   ========================================================================== */
+
+/* Horizontal (Linha única, flexível, conectores horizontais) */
+.unooria-stepper--horizontal {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+/* Vertical (Coluna única, conectores verticais) */
+.unooria-stepper--vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--unooria-spacing-2xs, 8px);
+}
+
+/* ==========================================================================
+   Componente Individual: Step (Etapa)
+   ========================================================================== */
+
+.unooria-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  height: var(--unooria-spacing-xl, 48px);
+  min-height: var(--unooria-spacing-xl, 48px);
+  padding: var(--unooria-spacing-xs, 12px) var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-xs, 12px) var(--unooria-spacing-xxxs, 4px);
+  background: transparent;
+  border: none;
+  cursor: default;
+  outline: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: var(--unooria-radius-s, 4px);
+}
+
+.unooria-step--clickable {
+  cursor: pointer;
+}
+
+.unooria-step--clickable:hover:not(.unooria-step--disabled) {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+}
+
+.unooria-step--clickable:focus-visible {
+  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
+  outline-offset: 2px;
+}
+
+.unooria-step--disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Anatomia do Step: Ícone e Bloco de Textos
+   ========================================================================== */
+
+/* Ícone Bounding Box (24x24px) */
+.unooria-step__icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unooria-icon-size-s, 24px);
+  height: var(--unooria-icon-size-s, 24px);
+  min-width: var(--unooria-icon-size-s, 24px);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Textos (Rótulo + Descrição Opcional) */
+.unooria-step__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.unooria-step__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-3xs, 6px);
+}
+
+.unooria-step__label {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  margin: 0;
+  white-space: nowrap;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.unooria-step__description {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--unooria-color-neutral-700, #475157);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.unooria-step__optional-badge {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  color: var(--unooria-color-neutral-500, #617379);
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Estados do Step (Figma: Default vs Selected + Completed, Error)
+   ========================================================================== */
+
+/* 1. Default (Pendente / Incompleto) */
+.unooria-step--default .unooria-step__icon-wrapper {
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-step--default .unooria-step__label {
+  font-weight: 400;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+/* 2. Selected (Ativo / Etapa Atual) */
+.unooria-step--selected .unooria-step__icon-wrapper {
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-step--selected .unooria-step__label {
+  font-weight: 600;
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+/* 3. Completed (Concluído) */
+.unooria-step--completed .unooria-step__icon-wrapper {
+  color: var(--unooria-color-success-500, #01B574);
+}
+
+.unooria-step--completed .unooria-step__label {
+  font-weight: 600;
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+/* 4. Error (Validação Falha) */
+.unooria-step--error .unooria-step__icon-wrapper {
+  color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+.unooria-step--error .unooria-step__label {
+  font-weight: 600;
+  color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+/* ==========================================================================
+   Linhas Conectoras (Line)
+   ========================================================================== */
+
+/* Conector Horizontal */
+.unooria-stepper__connector-horizontal {
+  flex: 1;
+  height: var(--unooria-spacing-4xs, 2px);
+  min-width: 24px;
+  background-color: var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 1px;
+  transition: background-color 0.25s ease;
+}
+
+.unooria-stepper__connector-horizontal--filled {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Conector Vertical */
+.unooria-stepper__vertical-step-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.unooria-stepper__connector-vertical {
+  width: var(--unooria-spacing-4xs, 2px);
+  height: 24px;
+  margin-left: 15px;
+  background-color: var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 1px;
+  transition: background-color 0.25s ease;
+}
+
+.unooria-stepper__connector-vertical--filled {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* ==========================================================================
+   Tamanhos (sm, md, lg)
+   ========================================================================== */
+
+.unooria-stepper--size-sm .unooria-step {
+  height: 36px;
+  min-height: 36px;
+  padding: 8px 6px 8px 2px;
+  gap: 8px;
+}
+
+.unooria-stepper--size-sm .unooria-step__icon-wrapper {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+}
+
+.unooria-stepper--size-sm .unooria-step__label {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.unooria-stepper--size-lg .unooria-step {
+  height: 56px;
+  min-height: 56px;
+  padding: 16px 12px 16px 6px;
+  gap: 16px;
+}
+
+.unooria-stepper--size-lg .unooria-step__icon-wrapper {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+}
+
+.unooria-stepper--size-lg .unooria-step__label {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-stepper--theme-dark .unooria-step--default .unooria-step__icon-wrapper,
+[data-theme="dark"] .unooria-step--default .unooria-step__icon-wrapper {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-stepper--theme-dark .unooria-step--default .unooria-step__label,
+[data-theme="dark"] .unooria-step--default .unooria-step__label {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-stepper--theme-dark .unooria-step--selected .unooria-step__label,
+[data-theme="dark"] .unooria-step--selected .unooria-step__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-stepper--theme-dark .unooria-step--completed .unooria-step__label,
+[data-theme="dark"] .unooria-step--completed .unooria-step__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-stepper--theme-dark .unooria-step__description,
+[data-theme="dark"] .unooria-step__description {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-stepper--theme-dark .unooria-stepper__connector-horizontal,
+.unooria-stepper--theme-dark .unooria-stepper__connector-vertical,
+[data-theme="dark"] .unooria-stepper__connector-horizontal,
+[data-theme="dark"] .unooria-stepper__connector-vertical {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-stepper--theme-dark .unooria-stepper__connector-horizontal--filled,
+.unooria-stepper--theme-dark .unooria-stepper__connector-vertical--filled,
+[data-theme="dark"] .unooria-stepper__connector-horizontal--filled,
+[data-theme="dark"] .unooria-stepper__connector-vertical--filled {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-stepper--theme-dark .unooria-step__optional-badge,
+[data-theme="dark"] .unooria-step__optional-badge {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}

@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Logo & LogoSymbol - Component Styles
+   Design System Plataforma Unooria (Figma Nodes: 1112:10847, 23998:6638, 30049:19352)
+   ========================================================================== */
+
+/* Container Principal do Logo */
+.unooria-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.unooria-logo--clickable {
+  cursor: pointer;
+}
+
+.unooria-logo--clickable:hover {
+  opacity: 0.85;
+}
+
+.unooria-logo--clickable:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Isótipo / Símbolo Isolado (LogoSymbol)
+   ========================================================================== */
+
+.unooria-logo-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.unooria-logo-symbol--clickable {
+  cursor: pointer;
+}
+
+.unooria-logo-symbol--clickable:hover {
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Lockup com Parceiro (Co-branding)
+   ========================================================================== */
+
+.unooria-logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  user-select: none;
+}
+
+.unooria-logo-lockup__divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--unooria-color-neutral-200, #CBD4D6);
+  flex-shrink: 0;
+}
+
+.unooria-logo-lockup__partner-name {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-800, #475157);
+}
+
+/* Suporte a Dark Mode no Lockup */
+.unooria-logo-lockup--theme-dark .unooria-logo-lockup__divider,
+[data-theme="dark"] .unooria-logo-lockup .unooria-logo-lockup__divider {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-logo-lockup--theme-dark .unooria-logo-lockup__partner-name,
+[data-theme="dark"] .unooria-logo-lockup .unooria-logo-lockup__partner-name {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}

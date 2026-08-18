@@ -1,0 +1,392 @@
+/* ==========================================================================
+   TextField & Inputs Family - Component Styles
+   Design System Plataforma Unooria (Figma Node: 6107:729)
+   ========================================================================== */
+
+/* Container Principal do Campo */
+.unooria-textfield {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* ==========================================================================
+   Top Label Bar
+   ========================================================================== */
+
+.unooria-textfield__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.unooria-textfield__label {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  user-select: none;
+}
+
+.unooria-textfield__required {
+  color: var(--unooria-color-danger-700, #C11414);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.unooria-textfield__helper-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: help;
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+.unooria-textfield__helper-icon:hover {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Input Box Container
+   ========================================================================== */
+
+.unooria-textfield__input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  position: relative;
+}
+
+/* Hover / Active */
+.unooria-textfield__input-container:hover {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Focus Within */
+.unooria-textfield__input-container:focus-within {
+  border-color: var(--unooria-color-brandnavy-800, #49699F);
+  box-shadow: 0 0 0 1px var(--unooria-color-brandnavy-800, #49699F);
+}
+
+/* Elemento <input> Interno */
+.unooria-textfield__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  color: var(--unooria-color-neutral-900, #383E41);
+  padding: 0;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.unooria-textfield__input::placeholder {
+  color: var(--unooria-color-neutral-900, #383E41);
+  opacity: 0.6;
+}
+
+/* Ícones Prefix / Suffix */
+.unooria-textfield__prefix-icon,
+.unooria-textfield__suffix-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--unooria-color-neutral-700, #475157);
+  flex-shrink: 0;
+}
+
+.unooria-textfield__prefix-icon {
+  margin-right: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-textfield__suffix-icon {
+  margin-left: var(--unooria-spacing-xxs, 8px);
+}
+
+/* Botões de Ação (Olho / Limpar) */
+.unooria-textfield__action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--unooria-color-neutral-700, #475157);
+  opacity: 0.75;
+  outline: none;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+  margin-left: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-textfield__action-btn:hover {
+  opacity: 1;
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* ==========================================================================
+   Tamanhos Oficiais do Figma (XS, SM, MD, LG)
+   ========================================================================== */
+
+/* XS (32px) */
+.unooria-textfield--size-xs .unooria-textfield__input-container {
+  height: 32px;
+  border-radius: var(--unooria-radius-s, 8px);
+  padding: 6px var(--unooria-spacing-xs, 12px);
+}
+.unooria-textfield--size-xs .unooria-textfield__input {
+  font-size: 12px;
+  line-height: 18px;
+}
+.unooria-textfield--size-xs .unooria-textfield__label {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* SM (40px) */
+.unooria-textfield--size-sm .unooria-textfield__input-container {
+  height: 40px;
+  border-radius: var(--unooria-radius-s, 8px);
+  padding: 6px var(--unooria-spacing-xs, 12px);
+}
+.unooria-textfield--size-sm .unooria-textfield__input {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* MD (48px - Padrão Oficial do Figma) */
+.unooria-textfield--size-md .unooria-textfield__input-container {
+  height: 48px;
+  border-radius: var(--unooria-radius-m, 12px);
+  padding: 10px var(--unooria-spacing-xs, 12px);
+}
+.unooria-textfield--size-md .unooria-textfield__input {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* LG (56px) */
+.unooria-textfield--size-lg .unooria-textfield__input-container {
+  height: 56px;
+  border-radius: 16px;
+  padding: 10px var(--unooria-spacing-xs, 12px);
+}
+.unooria-textfield--size-lg .unooria-textfield__input {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* ==========================================================================
+   Estados de Validação (Error, Success, Disabled)
+   ========================================================================== */
+
+/* Estado Error */
+.unooria-textfield--error .unooria-textfield__input-container {
+  border-color: var(--unooria-color-danger-700, #C11414) !important;
+}
+
+.unooria-textfield--error .unooria-textfield__input-container:focus-within {
+  box-shadow: 0 0 0 1px var(--unooria-color-danger-700, #C11414);
+}
+
+.unooria-textfield__error-text {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--unooria-color-danger-700, #C11414);
+  margin: 0;
+}
+
+/* Estado Success */
+.unooria-textfield--success .unooria-textfield__input-container {
+  border-color: var(--unooria-color-success-700, #008257) !important;
+}
+
+.unooria-textfield--success .unooria-textfield__input-container:focus-within {
+  box-shadow: 0 0 0 1px var(--unooria-color-success-700, #008257);
+}
+
+.unooria-textfield__success-text {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--unooria-color-success-700, #008257);
+  margin: 0;
+}
+
+/* Helper Text */
+.unooria-textfield__helper-text {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--unooria-color-neutral-700, #475157);
+  margin: 0;
+}
+
+/* Estado Disabled */
+.unooria-textfield--disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.unooria-textfield--disabled .unooria-textfield__input-container {
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  border-color: var(--unooria-color-neutral-150, #E4E8E9) !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+.unooria-textfield--disabled .unooria-textfield__input {
+  color: var(--unooria-color-neutral-400, #7C8E94);
+  cursor: not-allowed;
+}
+
+.unooria-textfield--disabled .unooria-textfield__prefix-icon,
+.unooria-textfield--disabled .unooria-textfield__suffix-icon {
+  color: var(--unooria-color-neutral-400, #7C8E94);
+}
+
+/* ==========================================================================
+   Text Area (Área Multilinha)
+   ========================================================================= */
+
+.unooria-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+.unooria-textarea__input {
+  width: 100%;
+  min-height: 78px;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: var(--unooria-radius-m, 12px);
+  padding: 10px var(--unooria-spacing-xs, 12px);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--unooria-color-neutral-900, #383E41);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  resize: vertical;
+}
+
+.unooria-textarea__input:hover {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-textarea__input:focus {
+  border-color: var(--unooria-color-brandnavy-800, #49699F);
+  box-shadow: 0 0 0 1px var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-textarea--error .unooria-textarea__input {
+  border-color: var(--unooria-color-danger-700, #C11414) !important;
+}
+
+.unooria-textarea--error .unooria-textarea__input:focus {
+  box-shadow: 0 0 0 1px var(--unooria-color-danger-700, #C11414);
+}
+
+.unooria-textarea--disabled .unooria-textarea__input {
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-neutral-400, #7C8E94);
+  cursor: not-allowed;
+}
+
+.unooria-textarea__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.unooria-textarea__counter {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--unooria-color-neutral-700, #475157);
+  text-align: right;
+  margin-left: auto;
+}
+
+.unooria-textarea__counter--limit {
+  color: var(--unooria-color-danger-700, #C11414);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================= */
+
+.unooria-textfield--theme-dark .unooria-textfield__label,
+.unooria-textarea--theme-dark .unooria-textfield__label,
+[data-theme="dark"] .unooria-textfield__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-textfield--theme-dark .unooria-textfield__input-container,
+[data-theme="dark"] .unooria-textfield__input-container {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-textfield--theme-dark .unooria-textfield__input,
+[data-theme="dark"] .unooria-textfield__input {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-textfield--theme-dark .unooria-textfield__input::placeholder,
+[data-theme="dark"] .unooria-textfield__input::placeholder {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-textfield--theme-dark .unooria-textfield__prefix-icon,
+.unooria-textfield--theme-dark .unooria-textfield__suffix-icon,
+.unooria-textfield--theme-dark .unooria-textfield__action-btn,
+[data-theme="dark"] .unooria-textfield__prefix-icon,
+[data-theme="dark"] .unooria-textfield__suffix-icon,
+[data-theme="dark"] .unooria-textfield__action-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-textarea--theme-dark .unooria-textarea__input,
+[data-theme="dark"] .unooria-textarea__input {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-textarea--theme-dark .unooria-textarea__input::placeholder,
+[data-theme="dark"] .unooria-textarea__input::placeholder {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-textarea--theme-dark .unooria-textarea__counter,
+[data-theme="dark"] .unooria-textarea__counter {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}

@@ -1,0 +1,414 @@
+/* ==========================================================================
+   Table (Tabela de Dados) - Component Styles
+   Design System Plataforma Unooria (Figma Node: 19493:47329 & 19689:3273)
+   ========================================================================== */
+
+/* Container Principal com bordas arredondadas e scroll sutil */
+.unooria-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  position: relative;
+}
+
+/* ==========================================================================
+   Tabela & Linhas
+   ========================================================================== */
+
+.unooria-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* Linha de Cabeçalho (Header) */
+.unooria-table__header {
+  background-color: transparent;
+}
+
+.unooria-table__head-cell {
+  height: 48px;
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-s, 16px);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  border-bottom: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.unooria-table__head-cell--sortable {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.unooria-table__head-cell--sortable:hover {
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-table__head-cell-content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-3xs, 6px);
+}
+
+/* ==========================================================================
+   Linhas de Conteúdo (Body Rows & Zebra Striping)
+   ========================================================================== */
+
+.unooria-table__body {
+  background-color: transparent;
+}
+
+.unooria-table__row {
+  height: 50px;
+  transition: background-color 0.15s ease;
+  cursor: default;
+}
+
+.unooria-table__row--clickable {
+  cursor: pointer;
+}
+
+/* Borda inferior de cada linha */
+.unooria-table__row .unooria-table__cell {
+  border-bottom: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+}
+
+/* Última linha sem borda duplicada */
+.unooria-table__row:last-child .unooria-table__cell {
+  border-bottom: none;
+}
+
+/* Estado 1: Default (Fundo transparente) */
+.unooria-table__row--default {
+  background-color: transparent;
+}
+
+/* Estado 2: Secondary / Zebra (Intercalação sutil) */
+.unooria-table__row--secondary {
+  background-color: var(--unooria-color-opacity-neutraldark-50, rgba(34, 39, 42, 0.02));
+}
+
+/* Estado 3: Hover */
+.unooria-table__row:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05)) !important;
+}
+
+/* Estado 4: Selected */
+.unooria-table__row--selected {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10)) !important;
+}
+
+/* ==========================================================================
+   Células (Table Cells)
+   ========================================================================== */
+
+.unooria-table__cell {
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-s, 16px);
+  vertical-align: middle;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  box-sizing: border-box;
+}
+
+/* Alinhamentos */
+.unooria-table__cell--align-left {
+  text-align: left;
+}
+
+.unooria-table__cell--align-center {
+  text-align: center;
+}
+
+.unooria-table__cell--align-right {
+  text-align: right;
+}
+
+/* ==========================================================================
+   Variantes de Células do Figma (11 Tipos)
+   ========================================================================== */
+
+/* 1. Text Primary & Secondary */
+.unooria-table-cell__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.unooria-table-cell__text-primary {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-table-cell__text-secondary {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* 2. Tag / Badge Status Pill */
+.unooria-table-cell__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.unooria-table-cell__tag--success {
+  background-color: var(--unooria-color-opacity-success-100, rgba(1, 181, 116, 0.10));
+  color: var(--unooria-color-success-500, #01B574);
+}
+
+.unooria-table-cell__tag--warning {
+  background-color: var(--unooria-color-opacity-warning-100, rgba(249, 118, 7, 0.10));
+  color: var(--unooria-color-warning-500, #F97607);
+}
+
+.unooria-table-cell__tag--danger {
+  background-color: var(--unooria-color-opacity-danger-100, rgba(227, 26, 26, 0.10));
+  color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+.unooria-table-cell__tag--brand {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.15));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+/* 3. Avatar */
+.unooria-table-cell__avatar-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.unooria-table-cell__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.20));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* 4. Progress Bar Linear */
+.unooria-table-cell__progress-linear {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 140px;
+}
+
+.unooria-table-cell__progress-track {
+  flex: 1;
+  height: 6px;
+  background-color: var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.unooria-table-cell__progress-fill {
+  height: 100%;
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  border-radius: 100px;
+  transition: width 0.3s ease;
+}
+
+.unooria-table-cell__progress-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--unooria-color-neutral-700, #475157);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* 5. Progress Circle (DataViz Mini Ring) */
+.unooria-table-cell__progress-circle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Menu Dropdown de Ações Contextuais (more_vert)
+   ========================================================================= */
+
+.unooria-table-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.unooria-table-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.15s ease;
+}
+
+.unooria-table-dropdown__trigger:hover {
+  background-color: var(--unooria-color-opacity-neutraldark-100, rgba(34, 39, 42, 0.08));
+}
+
+.unooria-table-dropdown__menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 100;
+  min-width: 140px;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.unooria-table-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.unooria-table-dropdown__item:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.08));
+}
+
+.unooria-table-dropdown__item--danger {
+  color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+.unooria-table-dropdown__item--danger:hover {
+  background-color: var(--unooria-color-opacity-danger-100, rgba(227, 26, 26, 0.10));
+}
+
+/* ==========================================================================
+   Tamanhos (sm, md, lg)
+   ========================================================================= */
+
+.unooria-table-container--size-sm .unooria-table__row {
+  height: 40px;
+}
+
+.unooria-table-container--size-sm .unooria-table__cell,
+.unooria-table-container--size-sm .unooria-table__head-cell {
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+.unooria-table-container--size-lg .unooria-table__row {
+  height: 60px;
+}
+
+.unooria-table-container--size-lg .unooria-table__cell,
+.unooria-table-container--size-lg .unooria-table__head-cell {
+  padding: 12px 20px;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================= */
+
+.unooria-table-container--theme-dark,
+[data-theme="dark"] .unooria-table-container {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-table-container--theme-dark .unooria-table__head-cell,
+[data-theme="dark"] .unooria-table-container .unooria-table__head-cell {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  border-bottom-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-table-container--theme-dark .unooria-table__cell,
+[data-theme="dark"] .unooria-table-container .unooria-table__cell {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  border-bottom-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-table-container--theme-dark .unooria-table__row--secondary,
+[data-theme="dark"] .unooria-table-container .unooria-table__row--secondary {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.unooria-table-container--theme-dark .unooria-table-cell__text-primary,
+[data-theme="dark"] .unooria-table-container .unooria-table-cell__text-primary {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-table-container--theme-dark .unooria-table-cell__text-secondary,
+[data-theme="dark"] .unooria-table-container .unooria-table-cell__text-secondary {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-table-container--theme-dark .unooria-table-dropdown__menu,
+[data-theme="dark"] .unooria-table-container .unooria-table-dropdown__menu {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-table-container--theme-dark .unooria-table-dropdown__item,
+[data-theme="dark"] .unooria-table-container .unooria-table-dropdown__item {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-table-container--theme-dark .unooria-table-dropdown__trigger,
+[data-theme="dark"] .unooria-table-container .unooria-table-dropdown__trigger {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-table-container--theme-dark .unooria-table-dropdown__trigger:hover,
+[data-theme="dark"] .unooria-table-container .unooria-table-dropdown__trigger:hover {
+  background-color: var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.10));
+}

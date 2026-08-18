@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Toggle (Switch / Interruptor) - Component Styles
+   Design System Plataforma Unooria (Figma Node: 6034:914 / Component Set: 6034:960)
+   ========================================================================== */
+
+/* Container Principal */
+.unooria-toggle {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-xxs, 8px);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.unooria-toggle--label-left {
+  flex-direction: row-reverse;
+}
+
+.unooria-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Input Nativo Acessível e Invisível */
+.unooria-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Trilho (Track) */
+.unooria-toggle__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 16px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  background-color: rgba(34, 39, 42, 0.06);
+  border: 1px solid var(--unooria-color-neutral-700, #475157);
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Botão Deslizante (Knob / Thumb) */
+.unooria-toggle__knob {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover no estado OFF */
+.unooria-toggle:hover:not(.unooria-toggle--disabled) .unooria-toggle__knob {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Foco Visível via Teclado */
+.unooria-toggle__input:focus-visible + .unooria-toggle__track {
+  box-shadow: 0 0 0 2px var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* ==========================================================================
+   Tamanhos Oficiais (XS, MD, LG)
+   ========================================================================== */
+
+/* XS (38x20px, Knob 16px, Deslocamento 18px) - Padrão do Figma */
+.unooria-toggle--size-xs .unooria-toggle__track {
+  width: 38px;
+  height: 20px;
+}
+.unooria-toggle--size-xs .unooria-toggle__knob {
+  width: 16px;
+  height: 16px;
+}
+.unooria-toggle--size-xs.unooria-toggle--checked .unooria-toggle__knob {
+  transform: translateX(18px);
+}
+
+/* MD (46x24px, Knob 20px, Deslocamento 22px) - Intermediário */
+.unooria-toggle--size-md .unooria-toggle__track {
+  width: 46px;
+  height: 24px;
+}
+.unooria-toggle--size-md .unooria-toggle__knob {
+  width: 20px;
+  height: 20px;
+}
+.unooria-toggle--size-md.unooria-toggle--checked .unooria-toggle__knob {
+  transform: translateX(22px);
+}
+
+/* LG (54x28px, Knob 24px, Deslocamento 26px) - Expandido do Figma */
+.unooria-toggle--size-lg .unooria-toggle__track {
+  width: 54px;
+  height: 28px;
+}
+.unooria-toggle--size-lg .unooria-toggle__knob {
+  width: 24px;
+  height: 24px;
+}
+.unooria-toggle--size-lg.unooria-toggle--checked .unooria-toggle__knob {
+  transform: translateX(26px);
+}
+
+/* ==========================================================================
+   Estado Ativado (Checked / ON)
+   ========================================================================== */
+
+.unooria-toggle--checked .unooria-toggle__track {
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  border-color: transparent;
+}
+
+.unooria-toggle--checked .unooria-toggle__knob {
+  background-color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-toggle--checked:hover:not(.unooria-toggle--disabled) .unooria-toggle__knob {
+  background-color: var(--unooria-color-opacity-neutraldark-700, rgba(34, 39, 42, 0.70));
+}
+
+/* ==========================================================================
+   Estado Desabilitado (Disabled)
+   ========================================================================== */
+
+.unooria-toggle--disabled.unooria-toggle--checked .unooria-toggle__knob {
+  background-color: var(--unooria-color-opacity-neutraldark-400, rgba(34, 39, 42, 0.40));
+}
+
+.unooria-toggle--disabled:not(.unooria-toggle--checked) .unooria-toggle__knob {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+}
+
+/* ==========================================================================
+   Rótulos e Textos (Label & Description)
+   ========================================================================== */
+
+.unooria-toggle__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.unooria-toggle__label {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-toggle__description {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-toggle--theme-dark .unooria-toggle__track:not(.unooria-toggle--checked),
+[data-theme="dark"] .unooria-toggle .unooria-toggle__track:not(.unooria-toggle--checked) {
+  background-color: var(--unooria-color-opacity-neutrallight-50, rgba(255, 255, 255, 0.05));
+  border-color: var(--unooria-color-neutral-700, #475157);
+}
+
+.unooria-toggle--theme-dark .unooria-toggle__label,
+[data-theme="dark"] .unooria-toggle .unooria-toggle__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-toggle--theme-dark .unooria-toggle__description,
+[data-theme="dark"] .unooria-toggle .unooria-toggle__description {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}

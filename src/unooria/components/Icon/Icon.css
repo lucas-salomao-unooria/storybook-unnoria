@@ -1,0 +1,27 @@
+.unooria-icon-component {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1;
+  flex-shrink: 0;
+  user-select: none;
+  font-family: var(--unooria-icon-font-family, 'Material Symbols Rounded', sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.unooria-icon-component--spin {
+  animation: unooria-icon-spin 1s linear infinite;
+}
+
+@keyframes unooria-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

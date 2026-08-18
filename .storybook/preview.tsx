@@ -13,6 +13,8 @@ import '../src/unooria/tokens/grids.css';
 import '../src/unooria/tokens/spacing.css';
 import '../src/unooria/tokens/blur.css';
 import '../src/unooria/tokens/elevation.css';
+import '../src/unooria/tokens/icons.css';
+import '../src/unooria/tokens/scrollbar.css';
 
 const preview: Preview = {
   parameters: {

@@ -1,0 +1,525 @@
+/* ==========================================================================
+   RichTextEditor (Editor de Texto) - Component Styles (Figma Node: 18577:27000)
+   ========================================================================== */
+
+.unooria-rte-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+.unooria-rte-label {
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+/* Caixa Principal do Editor (12px padding, 16px gap, 12px radius) */
+.unooria-rte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-s, 16px);
+  padding: var(--unooria-spacing-xs, 12px);
+  border-radius: var(--unooria-radius-m, 12px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  box-sizing: border-box;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unooria-rte--focused {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+}
+
+.unooria-rte--error {
+  border-color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+.unooria-rte--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Barra de Ferramentas (Toolbar)
+   ========================================================================== */
+
+.unooria-rte__toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  box-sizing: border-box;
+}
+
+.unooria-rte__toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  position: relative;
+}
+
+/* Divisor Vertical */
+.unooria-rte__divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--unooria-color-neutral-150, #E4E8E9);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* Botões da Toolbar */
+.unooria-rte__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 28px;
+  min-width: 28px;
+  padding: 0 6px;
+  border-radius: 6px;
+  border: none;
+  background-color: transparent;
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.unooria-rte__btn:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-rte__btn:active {
+  transform: scale(0.95);
+}
+
+.unooria-rte__btn--active {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-rte__btn-icon-label {
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* Controle de Tamanho de Fonte */
+.unooria-rte__font-size-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 26px;
+  padding: 0 2px;
+  border-radius: 6px;
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.unooria-rte__font-size-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.unooria-rte__font-size-btn:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-rte__font-size-display {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+/* Indicador de Cor (Barra sob a letra) */
+.unooria-rte__color-indicator {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: -2px;
+}
+
+/* ==========================================================================
+   Dropdowns & Popovers Flutuantes
+   ========================================================================== */
+
+.unooria-rte__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 1000;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: unooria-rte-fade-in 0.15s ease-out;
+}
+
+@keyframes unooria-rte-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.unooria-rte__dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  user-select: none;
+}
+
+.unooria-rte__dropdown-item:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-rte__dropdown-item-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Popover de Seleção de Cor */
+.unooria-rte__color-picker-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 1000;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: unooria-rte-fade-in 0.15s ease-out;
+}
+
+.unooria-rte__color-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.unooria-rte__color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  outline: none;
+  padding: 0;
+}
+
+.unooria-rte__color-swatch:hover {
+  transform: scale(1.18);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.unooria-rte__color-custom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.unooria-rte__color-hex-input {
+  flex: 1;
+  height: 28px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  font-size: 12px;
+  outline: none;
+  font-family: monospace;
+}
+
+.unooria-rte__color-hex-input:focus {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* ==========================================================================
+   Área de Edição (Editor Content Body)
+   ========================================================================== */
+
+.unooria-rte__body {
+  width: 100%;
+  min-height: 240px;
+  outline: none;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--unooria-color-neutral-950, #22272A);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Placeholder */
+.unooria-rte__body:empty::before {
+  content: attr(data-placeholder);
+  color: var(--unooria-color-neutral-400, #7C8E94);
+  cursor: text;
+  pointer-events: none;
+  display: block;
+}
+
+/* Formatações dentro da área de digitação */
+.unooria-rte__body h1 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+  margin: 16px 0 8px 0;
+}
+
+.unooria-rte__body h2 {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+  margin: 14px 0 6px 0;
+}
+
+.unooria-rte__body h3 {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+}
+
+.unooria-rte__body p {
+  margin: 0 0 10px 0;
+}
+
+.unooria-rte__body blockquote {
+  border-left: 4px solid var(--unooria-color-brandnavy-600, #7FA5E2);
+  margin: 12px 0;
+  padding: 8px 16px;
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+.unooria-rte__body pre {
+  background-color: var(--unooria-color-neutral-950, #22272A);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.unooria-rte__body code {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+}
+
+.unooria-rte__body ul,
+.unooria-rte__body ol {
+  padding-left: 24px;
+  margin: 8px 0 12px 0;
+}
+
+.unooria-rte__body li {
+  margin-bottom: 4px;
+}
+
+.unooria-rte__body a {
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.unooria-rte__body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 12px 0;
+  display: block;
+}
+
+/* ==========================================================================
+   Rodapé & Contadores (Footer)
+   ========================================================================== */
+
+.unooria-rte__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  font-size: 12px;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-rte__counters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.unooria-rte-helper {
+  font-size: 12px;
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-rte-error-msg {
+  font-size: 12px;
+  color: var(--unooria-color-danger-600, #E31A1A);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode - Figma Node 18577:27000)
+   ========================================================================== */
+
+.unooria-rte--theme-dark,
+[data-theme="dark"] .unooria-rte {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-rte--theme-dark .unooria-rte__toolbar,
+.unooria-rte--theme-dark .unooria-rte__footer,
+[data-theme="dark"] .unooria-rte .unooria-rte__toolbar,
+[data-theme="dark"] .unooria-rte .unooria-rte__footer {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-rte--theme-dark .unooria-rte__divider,
+[data-theme="dark"] .unooria-rte .unooria-rte__divider {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-rte--theme-dark .unooria-rte__btn,
+[data-theme="dark"] .unooria-rte .unooria-rte__btn {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-rte--theme-dark .unooria-rte__btn:hover,
+[data-theme="dark"] .unooria-rte .unooria-rte__btn:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-rte--theme-dark .unooria-rte__btn--active,
+[data-theme="dark"] .unooria-rte .unooria-rte__btn--active {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-rte--theme-dark .unooria-rte__font-size-control,
+[data-theme="dark"] .unooria-rte .unooria-rte__font-size-control {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-rte--theme-dark .unooria-rte__font-size-btn,
+[data-theme="dark"] .unooria-rte .unooria-rte__font-size-btn {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-rte--theme-dark .unooria-rte__font-size-display,
+[data-theme="dark"] .unooria-rte .unooria-rte__font-size-display {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-rte--theme-dark .unooria-rte__dropdown,
+.unooria-rte--theme-dark .unooria-rte__color-picker-popover,
+[data-theme="dark"] .unooria-rte .unooria-rte__dropdown,
+[data-theme="dark"] .unooria-rte .unooria-rte__color-picker-popover {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.unooria-rte--theme-dark .unooria-rte__dropdown-item,
+[data-theme="dark"] .unooria-rte .unooria-rte__dropdown-item {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-rte--theme-dark .unooria-rte__dropdown-item:hover,
+[data-theme="dark"] .unooria-rte .unooria-rte__dropdown-item:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-rte--theme-dark .unooria-rte__color-hex-input,
+[data-theme="dark"] .unooria-rte .unooria-rte__color-hex-input {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-rte--theme-dark .unooria-rte__body,
+[data-theme="dark"] .unooria-rte .unooria-rte__body {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-rte--theme-dark .unooria-rte__body code,
+[data-theme="dark"] .unooria-rte .unooria-rte__body code {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+.unooria-rte--theme-dark .unooria-rte__body blockquote,
+[data-theme="dark"] .unooria-rte .unooria-rte__body blockquote {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-rte-wrapper--theme-dark .unooria-rte-label,
+[data-theme="dark"] .unooria-rte-wrapper .unooria-rte-label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}

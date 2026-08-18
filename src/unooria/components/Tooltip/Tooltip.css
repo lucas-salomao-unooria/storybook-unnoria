@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Tooltip (Balão de Dica Contextual) - Component Styles
+   Design System Plataforma Unooria (Figma Node: 6034:1092 / Set: 6034:1213)
+   ========================================================================== */
+
+/* Wrapper do Tooltip */
+.unooria-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* Balão Flutuante (Container) */
+.unooria-tooltip {
+  position: absolute;
+  z-index: 1000;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  box-sizing: border-box;
+  transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unooria-tooltip--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Corpo / Conteúdo do Balão (Glassmorphism) */
+.unooria-tooltip__content {
+  background-color: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0px 0px 5px 1px rgba(34, 39, 42, 0.10);
+  border-radius: var(--unooria-radius-s, 8px);
+  padding: 8px var(--unooria-spacing-xs, 12px);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-950, #22272A);
+  white-space: normal;
+  text-align: left;
+  box-sizing: border-box;
+  width: max-content;
+}
+
+/* Seta Direcional (Arrow) */
+.unooria-tooltip__arrow {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.unooria-tooltip__arrow-svg {
+  display: block;
+  fill: rgba(255, 255, 255, 0.90);
+  filter: drop-shadow(0px 0px 2px rgba(34, 39, 42, 0.08));
+}
+
+/* ==========================================================================
+   Posicionamentos Oficiais (13 Variantes do Figma)
+   ========================================================================== */
+
+/* 1. TOP CENTER */
+.unooria-tooltip--placement-top {
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.unooria-tooltip--placement-top.unooria-tooltip--open {
+  transform: translateX(-50%) translateY(0);
+}
+.unooria-tooltip--placement-top .unooria-tooltip__arrow {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 2. TOP START (Top Left) - Canto inferior esquerdo com raio 0px */
+.unooria-tooltip--placement-top-start {
+  bottom: calc(100% + 6px);
+  left: 0;
+  transform: translateY(4px);
+}
+.unooria-tooltip--placement-top-start.unooria-tooltip--open {
+  transform: translateY(0);
+}
+.unooria-tooltip--placement-top-start .unooria-tooltip__content {
+  border-bottom-left-radius: 0px;
+}
+.unooria-tooltip--placement-top-start .unooria-tooltip__arrow {
+  bottom: -4px;
+  left: 6px;
+}
+
+/* 3. TOP END (Top Right) - Canto inferior direito com raio 0px */
+.unooria-tooltip--placement-top-end {
+  bottom: calc(100% + 6px);
+  right: 0;
+  transform: translateY(4px);
+}
+.unooria-tooltip--placement-top-end.unooria-tooltip--open {
+  transform: translateY(0);
+}
+.unooria-tooltip--placement-top-end .unooria-tooltip__content {
+  border-bottom-right-radius: 0px;
+}
+.unooria-tooltip--placement-top-end .unooria-tooltip__arrow {
+  bottom: -4px;
+  right: 6px;
+}
+
+/* 4. BOTTOM CENTER */
+.unooria-tooltip--placement-bottom {
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+.unooria-tooltip--placement-bottom.unooria-tooltip--open {
+  transform: translateX(-50%) translateY(0);
+}
+.unooria-tooltip--placement-bottom .unooria-tooltip__arrow {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 5. BOTTOM START (Bottom Left) - Canto superior esquerdo com raio 0px */
+.unooria-tooltip--placement-bottom-start {
+  top: calc(100% + 6px);
+  left: 0;
+  transform: translateY(-4px);
+}
+.unooria-tooltip--placement-bottom-start.unooria-tooltip--open {
+  transform: translateY(0);
+}
+.unooria-tooltip--placement-bottom-start .unooria-tooltip__content {
+  border-top-left-radius: 0px;
+}
+.unooria-tooltip--placement-bottom-start .unooria-tooltip__arrow {
+  top: -4px;
+  left: 6px;
+}
+
+/* 6. BOTTOM END (Bottom Right) - Canto superior direito com raio 0px */
+.unooria-tooltip--placement-bottom-end {
+  top: calc(100% + 6px);
+  right: 0;
+  transform: translateY(-4px);
+}
+.unooria-tooltip--placement-bottom-end.unooria-tooltip--open {
+  transform: translateY(0);
+}
+.unooria-tooltip--placement-bottom-end .unooria-tooltip__content {
+  border-top-right-radius: 0px;
+}
+.unooria-tooltip--placement-bottom-end .unooria-tooltip__arrow {
+  top: -4px;
+  right: 6px;
+}
+
+/* 7. LEFT CENTER */
+.unooria-tooltip--placement-left {
+  right: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+}
+.unooria-tooltip--placement-left.unooria-tooltip--open {
+  transform: translateY(-50%) translateX(0);
+}
+.unooria-tooltip--placement-left .unooria-tooltip__arrow {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 8. LEFT START (Left Top) - Canto superior direito com raio 0px */
+.unooria-tooltip--placement-left-start {
+  right: calc(100% + 6px);
+  top: 0;
+  transform: translateX(4px);
+}
+.unooria-tooltip--placement-left-start.unooria-tooltip--open {
+  transform: translateX(0);
+}
+.unooria-tooltip--placement-left-start .unooria-tooltip__content {
+  border-top-right-radius: 0px;
+}
+.unooria-tooltip--placement-left-start .unooria-tooltip__arrow {
+  right: -4px;
+  top: 6px;
+}
+
+/* 9. LEFT END (Left Bottom) - Canto inferior direito com raio 0px */
+.unooria-tooltip--placement-left-end {
+  right: calc(100% + 6px);
+  bottom: 0;
+  transform: translateX(4px);
+}
+.unooria-tooltip--placement-left-end.unooria-tooltip--open {
+  transform: translateX(0);
+}
+.unooria-tooltip--placement-left-end .unooria-tooltip__content {
+  border-bottom-right-radius: 0px;
+}
+.unooria-tooltip--placement-left-end .unooria-tooltip__arrow {
+  right: -4px;
+  bottom: 6px;
+}
+
+/* 10. RIGHT CENTER */
+.unooria-tooltip--placement-right {
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+}
+.unooria-tooltip--placement-right.unooria-tooltip--open {
+  transform: translateY(-50%) translateX(0);
+}
+.unooria-tooltip--placement-right .unooria-tooltip__arrow {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 11. RIGHT START (Right Top) - Canto superior esquerdo com raio 0px */
+.unooria-tooltip--placement-right-start {
+  left: calc(100% + 6px);
+  top: 0;
+  transform: translateX(-4px);
+}
+.unooria-tooltip--placement-right-start.unooria-tooltip--open {
+  transform: translateX(0);
+}
+.unooria-tooltip--placement-right-start .unooria-tooltip__content {
+  border-top-left-radius: 0px;
+}
+.unooria-tooltip--placement-right-start .unooria-tooltip__arrow {
+  left: -4px;
+  top: 6px;
+}
+
+/* 12. RIGHT END (Right Bottom) - Canto inferior esquerdo com raio 0px */
+.unooria-tooltip--placement-right-end {
+  left: calc(100% + 6px);
+  bottom: 0;
+  transform: translateX(-4px);
+}
+.unooria-tooltip--placement-right-end.unooria-tooltip--open {
+  transform: translateX(0);
+}
+.unooria-tooltip--placement-right-end .unooria-tooltip__content {
+  border-bottom-left-radius: 0px;
+}
+.unooria-tooltip--placement-right-end .unooria-tooltip__arrow {
+  left: -4px;
+  bottom: 6px;
+}
+
+/* 13. NONE / DEFAULT (Sem seta) */
+.unooria-tooltip--placement-none {
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.unooria-tooltip--placement-none.unooria-tooltip--open {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================== */
+
+.unooria-tooltip--theme-dark .unooria-tooltip__content,
+[data-theme="dark"] .unooria-tooltip__content {
+  background-color: rgba(34, 39, 42, 0.92);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.40);
+}
+
+.unooria-tooltip--theme-dark .unooria-tooltip__arrow-svg,
+[data-theme="dark"] .unooria-tooltip__arrow-svg {
+  fill: rgba(34, 39, 42, 0.92);
+}

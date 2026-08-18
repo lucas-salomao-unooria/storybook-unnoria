@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Tag (Etiquetas & Chips de Status) - Component Styles
+   Design System Plataforma Unooria (Figma Node: 6029:1817 / Set: 6029:1994)
+   ========================================================================== */
+
+.unooria-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-xxs, 8px);
+  gap: var(--unooria-spacing-xxxs, 4px);
+  border-radius: var(--unooria-radius-s, 8px);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  box-sizing: border-box;
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+/* Formato Pílula (Pill) */
+.unooria-tag--pill {
+  border-radius: var(--unooria-radius-full, 1000px);
+  padding-left: var(--unooria-spacing-xs, 12px);
+  padding-right: var(--unooria-spacing-xs, 12px);
+}
+
+/* ==========================================================================
+   Variantes Cromáticas / Severidades (Component Set 6029:1994)
+   ========================================================================== */
+
+/* 1. Success */
+.unooria-tag--success {
+  background-color: var(--unooria-color-opacity-success-100, rgba(1, 181, 116, 0.10));
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+.unooria-tag--success:hover,
+.unooria-tag--success.unooria-tag--hover {
+  background-color: var(--unooria-color-opacity-success-200, rgba(1, 181, 116, 0.20));
+}
+
+.unooria-tag--success .unooria-tag__icon {
+  color: var(--unooria-color-success-500, #01B574);
+}
+
+/* 2. Info */
+.unooria-tag--info {
+  background-color: var(--unooria-color-opacity-info-100, rgba(0, 134, 255, 0.10));
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+.unooria-tag--info:hover,
+.unooria-tag--info.unooria-tag--hover {
+  background-color: var(--unooria-color-opacity-info-200, rgba(0, 134, 255, 0.20));
+}
+
+.unooria-tag--info .unooria-tag__icon {
+  color: var(--unooria-color-info-500, #0086FF);
+}
+
+/* 3. Warning */
+.unooria-tag--warning {
+  background-color: var(--unooria-color-opacity-warning-100, rgba(249, 118, 7, 0.10));
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+.unooria-tag--warning:hover,
+.unooria-tag--warning.unooria-tag--hover {
+  background-color: var(--unooria-color-opacity-warning-200, rgba(249, 118, 7, 0.20));
+}
+
+.unooria-tag--warning .unooria-tag__icon {
+  color: var(--unooria-color-warning-500, #F97607);
+}
+
+/* 4. Danger */
+.unooria-tag--danger {
+  background-color: var(--unooria-color-opacity-danger-100, rgba(227, 26, 26, 0.10));
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+.unooria-tag--danger:hover,
+.unooria-tag--danger.unooria-tag--hover {
+  background-color: var(--unooria-color-opacity-danger-200, rgba(227, 26, 26, 0.20));
+}
+
+.unooria-tag--danger .unooria-tag__icon {
+  color: var(--unooria-color-danger-600, #E31A1A);
+}
+
+/* 5. Neutral */
+.unooria-tag--neutral {
+  background-color: var(--unooria-color-opacity-neutraldark-50, rgba(34, 39, 42, 0.05));
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+.unooria-tag--neutral:hover,
+.unooria-tag--neutral.unooria-tag--hover {
+  background-color: var(--unooria-color-opacity-neutraldark-100, rgba(34, 39, 42, 0.10));
+}
+
+.unooria-tag--neutral .unooria-tag__icon {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* 6. Brand */
+.unooria-tag--brand {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.15));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-tag--brand:hover,
+.unooria-tag--brand.unooria-tag--hover {
+  background-color: rgba(127, 165, 226, 0.25);
+}
+
+.unooria-tag--brand .unooria-tag__icon {
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+/* 7. Outline */
+.unooria-tag--outline {
+  background-color: transparent;
+  border-color: var(--unooria-color-neutral-700, #475157);
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+.unooria-tag--outline:hover,
+.unooria-tag--outline.unooria-tag--hover {
+  background-color: var(--unooria-color-opacity-neutraldark-50, rgba(34, 39, 42, 0.05));
+}
+
+.unooria-tag--outline .unooria-tag__icon {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* ==========================================================================
+   Tamanhos (sm, md, lg)
+   ========================================================================= */
+
+.unooria-tag--sm {
+  height: 24px;
+  padding: 2px 6px;
+  font-size: 12px;
+  line-height: 16px;
+  gap: 3px;
+}
+
+.unooria-tag--sm.unooria-tag--pill {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.unooria-tag--md {
+  height: 28px;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 4px;
+}
+
+.unooria-tag--lg {
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 15px;
+  line-height: 22px;
+  gap: 6px;
+}
+
+.unooria-tag--lg.unooria-tag--pill {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ==========================================================================
+   Ícones e Botão de Dismiss
+   ========================================================================= */
+
+.unooria-tag__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.unooria-tag__label {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unooria-tag__dismiss-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  color: inherit;
+  opacity: 0.65;
+  outline: none;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.unooria-tag__dismiss-btn:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.10);
+}
+
+/* ==========================================================================
+   Estados Interativos (Clickable, Selected, Disabled)
+   ========================================================================= */
+
+.unooria-tag--clickable {
+  cursor: pointer;
+}
+
+.unooria-tag--selected {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  font-weight: 600;
+}
+
+.unooria-tag--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Suporte a Temas (Dark Mode)
+   ========================================================================= */
+
+.unooria-tag--theme-dark,
+[data-theme="dark"] .unooria-tag {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-tag--theme-dark.unooria-tag--neutral,
+[data-theme="dark"] .unooria-tag--neutral {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.unooria-tag--theme-dark.unooria-tag--neutral:hover,
+[data-theme="dark"] .unooria-tag--neutral:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.unooria-tag--theme-dark.unooria-tag--outline,
+[data-theme="dark"] .unooria-tag--outline {
+  border-color: var(--unooria-color-neutraldark-900, #CBD4D6);
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-tag--theme-dark.unooria-tag--outline:hover,
+[data-theme="dark"] .unooria-tag--outline:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.unooria-tag--theme-dark .unooria-tag__dismiss-btn:hover,
+[data-theme="dark"] .unooria-tag .unooria-tag__dismiss-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
