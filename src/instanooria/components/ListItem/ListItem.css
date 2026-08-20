@@ -1,0 +1,116 @@
+/**
+ * Estilos do Componente ListItem — Design System Instanooria
+ * Linha de 72px das conversas diretas e linha de 48px do menu lateral.
+ */
+
+.insta-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 var(--insta-spacing-l);
+  background-color: var(--insta-color-background-primary);
+  font-family: var(--insta-font-sans);
+  text-align: left;
+  list-style: none;
+}
+
+.insta-list-item--size-sm {
+  min-height: 48px;
+  padding: 0 var(--insta-spacing-l);
+  gap: var(--insta-spacing-l);
+}
+
+.insta-list-item--size-md {
+  min-height: 72px;
+}
+
+.insta-list-item--bordered {
+  box-shadow: var(--insta-elevation-hairline-bottom);
+}
+
+.insta-list-item--interactive {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-list-item--interactive:hover {
+  background-color: var(--insta-color-background-secondary);
+}
+
+.insta-list-item--interactive:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -2px;
+}
+
+.insta-list-item__leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--insta-color-icon-primary);
+}
+
+.insta-list-item__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--insta-spacing-3xs);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.insta-list-item__title {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1.15;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insta-list-item--size-sm .insta-list-item__title {
+  font-size: var(--insta-font-body-md-size);
+  font-weight: var(--insta-font-body-md-weight);
+  letter-spacing: var(--insta-font-body-md-tracking);
+}
+
+.insta-list-item__subtitle-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--insta-spacing-3xs);
+  min-width: 0;
+}
+
+.insta-list-item__subtitle {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insta-list-item__meta {
+  flex-shrink: 0;
+  color: var(--insta-color-text-secondary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+}
+
+.insta-list-item__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-xs);
+  flex-shrink: 0;
+  color: var(--insta-color-icon-primary);
+}

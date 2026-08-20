@@ -1,0 +1,31 @@
+/**
+ * Estilos do Componente StoriesTray — Design System Instanooria
+ * Faixa de 98px de altura com rolagem horizontal e divisor hairline na base.
+ */
+
+.insta-stories-tray {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--insta-spacing-xl);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 98px;
+  padding: var(--insta-spacing-s) var(--insta-spacing-s) var(--insta-spacing-m);
+  background-color: var(--insta-color-background-primary);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.insta-stories-tray::-webkit-scrollbar {
+  display: none;
+}
+
+.insta-stories-tray--bordered {
+  box-shadow: var(--insta-elevation-hairline-bottom);
+}
+
+.insta-stories-tray > * {
+  flex-shrink: 0;
+}

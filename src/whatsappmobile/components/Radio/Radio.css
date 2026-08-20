@@ -1,0 +1,60 @@
+/**
+ * Estilos do Componente Radio — Design System WhatsApp Mobile
+ * Controle de 20px do diálogo "Mute notifications for..." (nodes 1:3510 e
+ * 1:3519): selecionado em `--wa-color-accent-control`, não selecionado com
+ * traço de 2px em `--wa-color-border-status-ring`.
+ */
+
+.wa-radio {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  box-sizing: border-box;
+  min-height: 44px;
+  cursor: pointer;
+  font-family: var(--wa-font-sans);
+  color: var(--wa-color-text-dialog-option);
+  font-size: var(--wa-font-body-lg-size);
+  line-height: 1;
+}
+
+.wa-radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px
+  ;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wa-radio__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.wa-radio__control--on {
+  color: var(--wa-color-accent-control);
+}
+
+.wa-radio__control--off {
+  color: var(--wa-color-border-status-ring);
+}
+
+.wa-radio__input:focus-visible + .wa-radio__control {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+  border-radius: var(--wa-radius-full);
+}
+
+.wa-radio--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

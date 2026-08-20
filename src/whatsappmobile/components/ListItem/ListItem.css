@@ -1,0 +1,119 @@
+/**
+ * Estilos do Componente ListItem — Design System WhatsApp Mobile
+ * Estrutura comum às listas de conversas, status, chamadas e contatos:
+ * calha de 19px, avatar, coluna de texto com recuo de 21px e coluna direita.
+ */
+
+.wa-listitem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--wa-gutter);
+  margin: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--wa-font-sans);
+  list-style: none;
+}
+
+.wa-listitem--density-chat {
+  min-height: 70px;
+}
+
+.wa-listitem--density-status {
+  min-height: 68px;
+}
+
+.wa-listitem--density-call {
+  min-height: 69px;
+}
+
+.wa-listitem--density-contact {
+  min-height: 63px;
+}
+
+.wa-listitem--density-settings {
+  min-height: 72px;
+}
+
+.wa-listitem--interactive {
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-listitem--interactive:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: -2px;
+}
+
+.wa-listitem__leading {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.wa-listitem__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-spacing-4xs);
+}
+
+.wa-listitem__title {
+  margin: 0;
+  color: var(--wa-color-text-primary);
+  font-size: var(--wa-font-title-lg-size);
+  font-weight: var(--wa-font-title-lg-weight);
+  line-height: var(--wa-font-title-lg-line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-listitem__subtitle {
+  margin: 0;
+  color: var(--wa-color-text-meta-alt);
+  font-size: var(--wa-font-label-md-size);
+  font-weight: var(--wa-font-label-md-weight);
+  line-height: var(--wa-font-label-md-line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-listitem__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--wa-spacing-xs);
+  flex-shrink: 0;
+}
+
+.wa-listitem__meta {
+  color: var(--wa-color-text-secondary);
+  font-size: var(--wa-font-caption-bold-size);
+  font-weight: var(--wa-font-caption-bold-weight);
+  line-height: var(--wa-font-caption-bold-line);
+  white-space: nowrap;
+}
+
+.wa-listitem__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-xxs);
+}
+
+.wa-listitem__divider {
+  position: absolute;
+  left: var(--wa-listitem-divider-inset, 71px);
+  right: var(--wa-gutter);
+  bottom: 0;
+  height: var(--wa-divider-width);
+  background-color: var(--wa-color-border-divider);
+}

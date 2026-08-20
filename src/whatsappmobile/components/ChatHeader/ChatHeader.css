@@ -1,0 +1,100 @@
+/**
+ * Estilos do Componente ChatHeader — Design System WhatsApp Mobile
+ * Faixa de 52px do frame "Direct Message" (node 1:2997): seta de voltar,
+ * avatar de 32px, nome de 21px e as três ações de vídeo, voz e menu com
+ * espaçamento de 24px (node 1:3003).
+ */
+
+.wa-chatheader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--wa-appbar-title-height);
+  padding: 0 var(--wa-spacing-l) 0 var(--wa-spacing-4xs);
+  background-color: var(--wa-color-surface-appbar);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-chatheader__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 36px;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--wa-color-icon-back);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-chatheader__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-s);
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  font-family: inherit;
+}
+
+.wa-chatheader__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.wa-chatheader__name {
+  margin: 0;
+  color: var(--wa-color-text-primary);
+  font-size: var(--wa-font-title-lg-size);
+  font-weight: var(--wa-font-title-lg-weight);
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-chatheader__presence {
+  margin: 0;
+  color: var(--wa-color-text-meta);
+  font-size: var(--wa-font-caption-size);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-chatheader__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-xxl);
+  flex-shrink: 0;
+}
+
+.wa-chatheader__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--wa-color-icon-appbar);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-chatheader__back:focus-visible,
+.wa-chatheader__identity:focus-visible,
+.wa-chatheader__action:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,77 @@
+/**
+ * Estilos do Componente ChatInput — Design System ChatGPT
+ *
+ * Medidas do componente `ChatInput` do Figma: 600 × 48, padding 8/8/8/16,
+ * gap 8, raio 24 (`radius/3xl`), contorno de 1px translúcido de 10% e botão
+ * de envio circular de 32px (`size/icon-xl`) com glifo de 16px.
+ */
+
+.gpt-chat-input {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 600px;
+  height: var(--gpt-spacing-12);
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-4) var(--gpt-spacing-4) var(--gpt-spacing-6);
+  border: 1px solid var(--gpt-fill-10);
+  border-radius: var(--gpt-radius-3xl);
+  background-color: var(--gpt-bg-primary);
+  transition: border-color var(--gpt-transition-fast);
+}
+
+.gpt-chat-input--block {
+  width: 100%;
+}
+
+.gpt-chat-input:focus-within {
+  border-color: var(--gpt-border-brand);
+}
+
+.gpt-chat-input__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-chat-input__field::placeholder {
+  color: var(--gpt-text-soft-40);
+}
+
+.gpt-chat-input__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--gpt-size-icon-xl);
+  height: var(--gpt-size-icon-xl);
+  padding: 0;
+  border: none;
+  border-radius: var(--gpt-radius-full);
+  background-color: var(--gpt-bg-inverse);
+  color: var(--gpt-text-inverse);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-size-icon-sm);
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity var(--gpt-transition-fast);
+}
+
+.gpt-chat-input__send:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-chat-input__send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

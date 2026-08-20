@@ -1,0 +1,23 @@
+/**
+ * Estilos do Componente Logo — Design System Instanooria
+ */
+
+.insta-logo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  fill: currentColor;
+  color: var(--insta-color-text-primary);
+}
+
+.insta-logo--tone-primary {
+  color: var(--insta-color-text-primary);
+}
+
+.insta-logo--tone-inverse {
+  color: #ffffff;
+}
+
+.insta-logo--tone-inherit {
+  color: inherit;
+}

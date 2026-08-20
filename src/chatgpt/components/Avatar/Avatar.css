@@ -1,0 +1,75 @@
+/**
+ * Estilos do Componente Avatar — Design System ChatGPT
+ *
+ * Medidas do conjunto `Avatar` do Figma: diâmetros 24/32/40/48 (tokens
+ * `size/avatar-sm..xl`), raio total e iniciais Inter Semi Bold.
+ * Os tamanhos de fonte das iniciais (10/13/16/19px) são valores literais das
+ * camadas de texto do arquivo, sem degrau equivalente na escala tipográfica.
+ */
+
+.gpt-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: var(--gpt-radius-full);
+  font-family: var(--gpt-font-sans);
+  font-weight: var(--gpt-font-weight-semibold);
+  line-height: 1;
+  user-select: none;
+}
+
+.gpt-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gpt-avatar__initials {
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.gpt-avatar--sm {
+  width: var(--gpt-size-avatar-sm);
+  height: var(--gpt-size-avatar-sm);
+  font-size: 10px;
+}
+
+.gpt-avatar--md {
+  width: var(--gpt-size-avatar-md);
+  height: var(--gpt-size-avatar-md);
+  font-size: 13px;
+}
+
+.gpt-avatar--lg {
+  width: var(--gpt-size-avatar-lg);
+  height: var(--gpt-size-avatar-lg);
+  font-size: 16px;
+}
+
+.gpt-avatar--xl {
+  width: var(--gpt-size-avatar-xl);
+  height: var(--gpt-size-avatar-xl);
+  font-size: 19px;
+}
+
+/* ==========================================================================
+   Tons de superfície
+   ========================================================================== */
+
+.gpt-avatar--brand {
+  background-color: var(--gpt-bg-brand);
+  color: var(--gpt-text-inverse);
+}
+
+.gpt-avatar--inverse {
+  background-color: var(--gpt-bg-inverse);
+  color: var(--gpt-text-inverse);
+}

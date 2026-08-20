@@ -1,0 +1,163 @@
+/**
+ * Estilos do Componente Avatar — Design System Instanooria
+ * Geometria fiel ao Figma: recorte interno de 56px, folga de 2px e anel de 2px
+ * resultando na caixa externa de 64px da bandeja de stories.
+ */
+
+.insta-avatar {
+  --insta-avatar-size: var(--insta-avatar-lg);
+  --insta-avatar-ring: transparent;
+  --insta-avatar-ring-thickness: 0px;
+  --insta-avatar-gap-thickness: 0px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  flex-shrink: 0;
+  font-family: var(--insta-font-sans);
+  line-height: 0;
+}
+
+.insta-avatar__ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: var(--insta-radius-full);
+  padding: var(--insta-avatar-ring-thickness);
+  background: var(--insta-avatar-ring);
+}
+
+.insta-avatar__gap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: var(--insta-radius-full);
+  padding: var(--insta-avatar-gap-thickness);
+  background: var(--insta-color-background-primary);
+}
+
+.insta-avatar__image,
+.insta-avatar__fallback {
+  display: block;
+  width: var(--insta-avatar-size);
+  height: var(--insta-avatar-size);
+  border-radius: var(--insta-radius-full);
+  object-fit: cover;
+  background-color: var(--insta-color-background-tertiary);
+}
+
+.insta-avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--insta-color-text-secondary);
+  font-weight: var(--insta-font-weight-semibold);
+  font-size: calc(var(--insta-avatar-size) * 0.36);
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* ==========================================================================
+   Tamanhos nomeados
+   ========================================================================== */
+
+.insta-avatar--size-xs {
+  --insta-avatar-size: var(--insta-avatar-xs);
+}
+
+.insta-avatar--size-sm {
+  --insta-avatar-size: var(--insta-avatar-sm);
+}
+
+.insta-avatar--size-md {
+  --insta-avatar-size: var(--insta-avatar-md);
+}
+
+.insta-avatar--size-lg {
+  --insta-avatar-size: var(--insta-avatar-lg);
+}
+
+.insta-avatar--size-xl {
+  --insta-avatar-size: var(--insta-avatar-xl);
+}
+
+/* ==========================================================================
+   Anéis
+   ========================================================================== */
+
+.insta-avatar--ring-story {
+  --insta-avatar-ring: var(--insta-gradient-story);
+  --insta-avatar-ring-thickness: var(--insta-avatar-ring-width);
+  --insta-avatar-gap-thickness: 2px;
+}
+
+.insta-avatar--ring-live {
+  --insta-avatar-ring: var(--insta-gradient-live);
+  --insta-avatar-ring-thickness: var(--insta-avatar-ring-width);
+  --insta-avatar-gap-thickness: 2px;
+}
+
+.insta-avatar--ring-seen {
+  --insta-avatar-ring: var(--insta-color-highlight-ring);
+  --insta-avatar-ring-thickness: 1px;
+  --insta-avatar-gap-thickness: 3px;
+}
+
+/* ==========================================================================
+   Selos sobrepostos
+   ========================================================================== */
+
+.insta-avatar__badge-add {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--insta-color-icon-primary);
+}
+
+.insta-avatar__badge-live {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 5px;
+  border: 2px solid var(--insta-color-ring-inner);
+  border-radius: var(--insta-radius-xs);
+  background: var(--insta-gradient-livebadge);
+  color: #ffffff;
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-nav-badge-size);
+  font-weight: var(--insta-font-nav-badge-weight);
+  line-height: var(--insta-font-nav-badge-line);
+  letter-spacing: var(--insta-font-nav-badge-tracking);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Interação
+   ========================================================================== */
+
+.insta-avatar--interactive {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  appearance: none;
+}
+
+.insta-avatar--interactive:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--insta-radius-full);
+}

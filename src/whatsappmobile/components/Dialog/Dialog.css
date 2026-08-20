@@ -1,0 +1,54 @@
+/**
+ * Estilos do Componente Dialog — Design System WhatsApp Mobile
+ * Diálogo modal de 331px com raio de 4px em `--wa-color-surface-dialog`,
+ * sobre véu `--wa-color-scrim`, extraído do frame "Mute notif" (node 1:3504).
+ */
+
+.wa-dialog-scrim {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wa-color-scrim);
+  z-index: 10;
+}
+
+.wa-dialog {
+  box-sizing: border-box;
+  width: var(--wa-dialog-width, 331px);
+  max-width: calc(100% - 2 * var(--wa-spacing-xl));
+  padding: var(--wa-spacing-xl) var(--wa-spacing-xxl) var(--wa-spacing-m);
+  border-radius: var(--wa-radius-s);
+  background-color: var(--wa-color-surface-dialog);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-dialog__title {
+  margin: 0 0 var(--wa-spacing-l);
+  color: var(--wa-color-text-dialog-title);
+  font-size: var(--wa-font-title-lg-size);
+  font-weight: var(--wa-font-title-lg-weight);
+  line-height: 1.2;
+}
+
+.wa-dialog__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-dialog__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-spacing-m);
+  margin-top: var(--wa-spacing-m);
+  padding-top: var(--wa-spacing-l);
+  border-top: var(--wa-divider-width) solid var(--wa-color-border-dialog);
+}
+
+.wa-dialog__footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wa-spacing-l);
+}

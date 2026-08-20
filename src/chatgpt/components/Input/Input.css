@@ -1,0 +1,71 @@
+/**
+ * Estilos do Componente Input — Design System ChatGPT
+ *
+ * Medidas do conjunto `Input` do Figma: 320 × 44 (`size/input-height`),
+ * padding 10/12, raio 8, contorno interno de 1px e texto Inter Regular de
+ * 14px (`Body/SM`).
+ *
+ * O padding vertical de 10px é valor literal do arquivo — a escala
+ * `Primitives/Spacing` salta de 8 para 12.
+ */
+
+.gpt-input {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 320px;
+  height: var(--gpt-size-input-height);
+  padding: 10px var(--gpt-spacing-5);
+  border: 1px solid var(--gpt-border-default);
+  border-radius: var(--gpt-radius-md);
+  background-color: var(--gpt-bg-primary);
+  transition: border-color var(--gpt-transition-fast);
+}
+
+.gpt-input--block {
+  width: 100%;
+}
+
+.gpt-input__field {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-input__field::placeholder {
+  color: var(--gpt-text-soft-40);
+}
+
+/* ==========================================================================
+   Estados
+   ========================================================================== */
+
+.gpt-input:focus-within,
+.gpt-input--focus {
+  border-color: var(--gpt-border-brand);
+}
+
+.gpt-input--error,
+.gpt-input--error:focus-within {
+  border-color: var(--gpt-status-error);
+}
+
+.gpt-input--disabled {
+  border-color: color-mix(in srgb, var(--gpt-border-default) 50%, transparent);
+}
+
+.gpt-input--disabled .gpt-input__field {
+  color: var(--gpt-text-soft-30);
+  cursor: not-allowed;
+}
+
+.gpt-input--disabled .gpt-input__field::placeholder {
+  color: var(--gpt-text-soft-30);
+}

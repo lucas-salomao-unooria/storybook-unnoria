@@ -1,0 +1,64 @@
+/**
+ * Estilos do Componente SettingsItem — Design System WhatsApp Mobile
+ * Linha da tela Settings (node 1:2691): glifo de 19px na calha de 41px, título
+ * de 17px em `--wa-color-text-settings` e descrição de 15px em
+ * `--wa-color-text-settings-sub`.
+ */
+
+.wa-settingsitem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 72px;
+  padding: 0 var(--wa-gutter-appbar) 0 41px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--wa-font-sans);
+  list-style: none;
+}
+
+.wa-settingsitem--interactive {
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-settingsitem--interactive:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: -2px;
+}
+
+.wa-settingsitem__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  color: var(--wa-color-icon-settings);
+}
+
+.wa-settingsitem__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-spacing-3xs);
+  min-width: 0;
+}
+
+.wa-settingsitem__title {
+  margin: 0;
+  color: var(--wa-color-text-settings);
+  font-size: var(--wa-font-body-lg-size);
+  font-weight: var(--wa-font-body-lg-weight);
+  line-height: 1.1;
+}
+
+.wa-settingsitem__description {
+  margin: 0;
+  color: var(--wa-color-text-settings-sub);
+  font-size: var(--wa-font-body-sm-size);
+  font-weight: var(--wa-font-body-sm-weight);
+  line-height: 1.1;
+}

@@ -1,0 +1,182 @@
+/**
+ * Estilos do Componente StoryViewer — Design System Instanooria
+ * Frame "Instagram Story": mídia de 375×667px com raio de 8px, gradientes de
+ * leitura no topo e na base, barra de progresso segmentada e composer de 43px.
+ */
+
+.insta-story-viewer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: var(--insta-color-background-primary);
+  font-family: var(--insta-font-sans);
+}
+
+.insta-story-viewer__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: var(--insta-radius-m);
+  overflow: hidden;
+}
+
+.insta-story-viewer__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.insta-story-viewer__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 81.552%,
+      var(--insta-color-overlay-scrim) 99.92%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 56.399%, var(--insta-color-overlay-scrim) 99.678%);
+}
+
+.insta-story-viewer__progress {
+  position: absolute;
+  top: var(--insta-spacing-xs);
+  left: var(--insta-spacing-xs);
+  right: var(--insta-spacing-xs);
+  display: flex;
+  gap: var(--insta-spacing-3xs);
+}
+
+.insta-story-viewer__segment {
+  flex: 1 1 0;
+  height: 2px;
+  border-radius: 1px;
+  background-color: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.insta-story-viewer__segment-fill {
+  display: block;
+  height: 100%;
+  border-radius: 1px;
+  background-color: #ffffff;
+}
+
+.insta-story-viewer__header {
+  position: absolute;
+  top: 18px;
+  left: var(--insta-spacing-m);
+  right: var(--insta-spacing-m);
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-xs);
+}
+
+.insta-story-viewer__identity {
+  display: flex;
+  align-items: baseline;
+  gap: var(--insta-spacing-xs);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.insta-story-viewer__username {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--insta-font-nav-title-size);
+  font-weight: var(--insta-font-nav-title-weight);
+  line-height: var(--insta-font-nav-title-line);
+  letter-spacing: var(--insta-font-nav-title-tracking);
+}
+
+.insta-story-viewer__timestamp {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+}
+
+.insta-story-viewer__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-story-viewer__icon-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  border-radius: var(--insta-radius-s);
+}
+
+.insta-story-viewer__composer {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-l);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  height: 94px;
+  padding: 0 var(--insta-spacing-m);
+}
+
+.insta-story-viewer__composer-field {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-s);
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 43px;
+  padding: 0 var(--insta-spacing-xs);
+  background: none;
+  border: 1px solid var(--insta-color-overlay-onmedia);
+  border-radius: var(--insta-radius-xl);
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-body-md-size);
+  font-weight: var(--insta-font-body-md-weight);
+  letter-spacing: var(--insta-font-body-md-tracking);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-story-viewer__composer-field:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+.insta-story-viewer__composer-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-l);
+  flex-shrink: 0;
+  color: var(--insta-color-icon-primary);
+}
+
+.insta-story-viewer__composer-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-story-viewer__composer-action:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 3px;
+  border-radius: var(--insta-radius-s);
+}

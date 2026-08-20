@@ -1,0 +1,123 @@
+/**
+ * Estilos do Componente MessageBubble — Design System WhatsApp Mobile
+ * Balão de mensagem extraído do frame "Starred messages" (node 1:2930):
+ * preenchimento #054640, miniatura com raio de 5px, faixa de documento #043D36
+ * com raio de 2px e rodapé de metadados em 13px.
+ */
+
+.wa-messagebubble {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-spacing-xxs);
+  box-sizing: border-box;
+  max-width: var(--wa-messagebubble-max-width, 240px);
+  padding: var(--wa-spacing-xs);
+  border-radius: var(--wa-radius-xl);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-md-size);
+  line-height: 1.3;
+  color: var(--wa-color-text-bubble);
+}
+
+.wa-messagebubble--out {
+  align-self: flex-end;
+  background-color: var(--wa-color-surface-bubble-out);
+}
+
+.wa-messagebubble--in {
+  align-self: flex-start;
+  background-color: var(--wa-color-surface-bubble-in);
+}
+
+/* Cauda triangular de 8px na base do balão */
+.wa-messagebubble__tail {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.wa-messagebubble--out .wa-messagebubble__tail {
+  right: -6px;
+  border-width: 0 0 10px 8px;
+  border-color: transparent transparent var(--wa-color-surface-bubble-out) transparent;
+}
+
+.wa-messagebubble--in .wa-messagebubble__tail {
+  left: -6px;
+  border-width: 0 8px 10px 0;
+  border-color: transparent var(--wa-color-surface-bubble-in) transparent transparent;
+}
+
+.wa-messagebubble__text {
+  margin: 0;
+  word-break: break-word;
+}
+
+.wa-messagebubble__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wa-spacing-3xs);
+  color: var(--wa-color-text-bubble-meta);
+  font-size: var(--wa-font-caption-size);
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Subcomponente de mídia
+   ========================================================================== */
+
+.wa-messagebubble__media {
+  overflow: hidden;
+  border-radius: var(--wa-radius-m);
+  background-color: var(--wa-color-surface-bubble-out-strip);
+}
+
+.wa-messagebubble__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Subcomponente de documento
+   ========================================================================== */
+
+.wa-messagebubble__document {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-xs);
+  box-sizing: border-box;
+  padding: var(--wa-spacing-xxs) var(--wa-spacing-xs);
+  border-radius: var(--wa-radius-xs);
+  background-color: var(--wa-color-surface-bubble-out-strip);
+}
+
+.wa-messagebubble__document-name {
+  flex: 1;
+  min-width: 0;
+  color: var(--wa-color-text-bubble);
+  font-size: var(--wa-font-body-md-size);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-messagebubble__document-details {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-xxs);
+  color: var(--wa-color-text-bubble-meta);
+  font-size: var(--wa-font-caption-size);
+}
+
+.wa-messagebubble__document-separator {
+  width: 2px;
+  height: 2px;
+  border-radius: var(--wa-radius-full);
+  background-color: var(--wa-color-text-bubble-meta);
+}

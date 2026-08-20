@@ -1,0 +1,39 @@
+/**
+ * Estilos do Componente CallListItem — Design System WhatsApp Mobile
+ * Linha da aba Calls do frame "Calls Main Page" (node 1:402).
+ */
+
+.wa-calllistitem__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wa-spacing-3xs);
+  color: var(--wa-color-text-meta);
+  font-size: var(--wa-font-label-md-size);
+}
+
+.wa-calllistitem__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-calllistitem__action:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 1px;
+  border-radius: var(--wa-radius-full);
+}
+
+.wa-calllistitem__action--voice {
+  color: var(--wa-color-accent-icon-call);
+}
+
+.wa-calllistitem__action--video {
+  color: var(--wa-color-accent-icon-video);
+}

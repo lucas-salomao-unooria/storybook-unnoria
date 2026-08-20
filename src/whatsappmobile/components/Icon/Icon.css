@@ -1,0 +1,138 @@
+/**
+ * Estilos do Componente Icon — Design System WhatsApp Mobile
+ * Glifos exportados do Figma "WhatsApp Clone - Dark mode (Community) - cópia".
+ */
+
+.wa-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  fill: currentColor;
+  color: var(--wa-color-icon-appbar);
+  transition: color var(--wa-transition-fast);
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.wa-icon--size-xs {
+  width: var(--wa-icon-size-xs);
+  height: var(--wa-icon-size-xs);
+}
+
+.wa-icon--size-sm {
+  width: var(--wa-icon-size-sm);
+  height: var(--wa-icon-size-sm);
+}
+
+.wa-icon--size-md {
+  width: var(--wa-icon-size-md);
+  height: var(--wa-icon-size-md);
+}
+
+.wa-icon--size-lg {
+  width: var(--wa-icon-size-lg);
+  height: var(--wa-icon-size-lg);
+}
+
+.wa-icon--size-xl {
+  width: var(--wa-icon-size-xl);
+  height: var(--wa-icon-size-xl);
+}
+
+/* ==========================================================================
+   Tons semânticos
+   ========================================================================== */
+
+.wa-icon--tone-appbar {
+  color: var(--wa-color-icon-appbar);
+}
+
+.wa-icon--tone-camera {
+  color: var(--wa-color-icon-camera);
+}
+
+.wa-icon--tone-back {
+  color: var(--wa-color-icon-back);
+}
+
+.wa-icon--tone-composerEmoji {
+  color: var(--wa-color-icon-composer-emoji);
+}
+
+.wa-icon--tone-composerAttach {
+  color: var(--wa-color-icon-composer-attach);
+}
+
+.wa-icon--tone-composerCamera {
+  color: var(--wa-color-icon-composer-camera);
+}
+
+.wa-icon--tone-onAccent {
+  color: var(--wa-color-icon-on-accent);
+}
+
+.wa-icon--tone-accent {
+  color: var(--wa-color-accent);
+}
+
+.wa-icon--tone-settings {
+  color: var(--wa-color-icon-settings);
+}
+
+.wa-icon--tone-settingsHelp {
+  color: var(--wa-color-icon-settings-help);
+}
+
+.wa-icon--tone-settingsQr {
+  color: var(--wa-color-icon-settings-qr);
+}
+
+.wa-icon--tone-tick {
+  color: var(--wa-color-icon-tick);
+}
+
+.wa-icon--tone-star {
+  color: var(--wa-color-icon-star);
+}
+
+.wa-icon--tone-forward {
+  color: var(--wa-color-icon-forward);
+}
+
+.wa-icon--tone-pin {
+  color: var(--wa-color-icon-pin);
+}
+
+.wa-icon--tone-callIcon {
+  color: var(--wa-color-call-icon);
+}
+
+.wa-icon--tone-callIconMuted {
+  color: var(--wa-color-call-icon-muted);
+}
+
+.wa-icon--tone-callOut {
+  color: var(--wa-color-accent-call-out);
+}
+
+.wa-icon--tone-callIn {
+  color: var(--wa-color-danger-call-in);
+}
+
+.wa-icon--tone-statusBar {
+  color: var(--wa-color-statusbar-fg);
+}
+
+.wa-icon--tone-notice {
+  color: var(--wa-color-text-notice);
+}
+
+.wa-icon--tone-ring {
+  color: var(--wa-color-border-status-ring);
+}
+
+.wa-icon--tone-inherit {
+  color: inherit;
+}

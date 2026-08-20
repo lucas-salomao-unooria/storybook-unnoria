@@ -1,0 +1,43 @@
+/**
+ * Estilos do Componente StoryBubble — Design System Instanooria
+ * Célula de 64×83px do Figma: avatar de 56px com anel e rótulo de 12px abaixo.
+ */
+
+.insta-story-bubble {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--insta-spacing-xxs);
+  box-sizing: border-box;
+  width: 72px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--insta-font-sans);
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-story-bubble:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--insta-radius-m);
+}
+
+.insta-story-bubble__label {
+  max-width: 100%;
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+  line-height: var(--insta-font-caption-md-line);
+  letter-spacing: var(--insta-font-caption-md-tracking);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insta-story-bubble--live .insta-story-bubble__label {
+  margin-top: var(--insta-spacing-3xs);
+}

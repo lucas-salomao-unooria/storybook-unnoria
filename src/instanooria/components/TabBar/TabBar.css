@@ -1,0 +1,50 @@
+/**
+ * Estilos do Componente TabBar — Design System Instanooria
+ * Barra de 79px (50px de conteúdo + 29px de home indicator) com cinco abas de 75px.
+ */
+
+.insta-tab-bar {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--insta-color-background-secondary);
+  box-shadow: var(--insta-elevation-bar-top);
+}
+
+.insta-tab-bar__items {
+  display: flex;
+  align-items: center;
+  height: var(--insta-tabbar-content-height);
+}
+
+.insta-tab-bar__home-inset {
+  height: calc(var(--insta-tabbar-height) - var(--insta-tabbar-content-height));
+  flex-shrink: 0;
+}
+
+.insta-tab-bar__item {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-tab-bar__item:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -4px;
+}
+
+.insta-tab-bar__notification {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+}

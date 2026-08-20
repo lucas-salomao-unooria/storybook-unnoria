@@ -1,0 +1,60 @@
+/**
+ * Estilos do Componente Icon — Design System Instanooria
+ * Glifos exportados do Figma "Instagram UI Screens (Community)".
+ */
+
+.insta-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  fill: currentColor;
+  color: var(--insta-color-icon-primary);
+  transition: color var(--insta-transition-fast);
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.insta-icon--size-sm {
+  width: var(--insta-icon-size-sm);
+  height: var(--insta-icon-size-sm);
+}
+
+.insta-icon--size-md {
+  width: var(--insta-icon-size-md);
+  height: var(--insta-icon-size-md);
+}
+
+.insta-icon--size-lg {
+  width: var(--insta-icon-size-lg);
+  height: var(--insta-icon-size-lg);
+}
+
+/* ==========================================================================
+   Tons semânticos
+   ========================================================================== */
+
+.insta-icon--tone-primary {
+  color: var(--insta-color-icon-primary);
+}
+
+.insta-icon--tone-secondary {
+  color: var(--insta-color-icon-secondary);
+}
+
+.insta-icon--tone-link {
+  color: var(--insta-color-action-primary);
+}
+
+.insta-icon--tone-like {
+  color: var(--insta-color-brand-like);
+}
+
+.insta-icon--tone-inverse {
+  color: #ffffff;
+}
+
+.insta-icon--tone-inherit {
+  color: inherit;
+}

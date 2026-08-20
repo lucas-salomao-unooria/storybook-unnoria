@@ -6,6 +6,22 @@ import '../src/whatsapp/tokens/spacing.css';
 import '../src/whatsapp/tokens/colors.css';
 import '../src/whatsapp/tokens/typography.css';
 
+/* WhatsApp Mobile Tokens */
+import '../src/whatsappmobile/tokens/typography.css';
+import '../src/whatsappmobile/tokens/colors.css';
+import '../src/whatsappmobile/tokens/spacing.css';
+
+/* Instanooria Tokens */
+import '../src/instanooria/tokens/colors.css';
+import '../src/instanooria/tokens/typography.css';
+import '../src/instanooria/tokens/spacing.css';
+
+/* ChatGPT Tokens */
+import '../src/chatgpt/tokens/colors.css';
+import '../src/chatgpt/tokens/typography.css';
+import '../src/chatgpt/tokens/spacing.css';
+import '../src/chatgpt/tokens/elevation.css';
+
 /* Plataforma Unooria Tokens */
 import '../src/unooria/tokens/colors.css';
 import '../src/unooria/tokens/typography.css';

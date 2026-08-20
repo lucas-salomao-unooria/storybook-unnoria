@@ -1,0 +1,15 @@
+/**
+ * Estilos do Componente SectionLabel — Design System WhatsApp Mobile
+ * Rótulo de agrupamento da aba Status (nodes 1:13 e 1:32).
+ */
+
+.wa-sectionlabel {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--wa-spacing-l) var(--wa-gutter) var(--wa-spacing-xs);
+  color: var(--wa-color-text-appbar);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-section-size);
+  font-weight: var(--wa-font-section-weight);
+  line-height: var(--wa-font-section-line);
+}

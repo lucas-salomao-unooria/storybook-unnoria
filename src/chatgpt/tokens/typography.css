@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   Tokens de Tipografia — Design System ChatGPT
+   Extraídos dos 13 estilos de texto oficiais do Figma
+   (Display/XL, Display/LG, Heading/H1..H3, Body/LG..XS, Label/LG..SM, Caption).
+   Família única: Inter. Pesos: 400 (Regular), 500 (Medium), 600 (Semi Bold).
+   ========================================================================== */
+
+:root {
+  --gpt-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --gpt-font-weight-regular: 400;
+  --gpt-font-weight-medium: 500;
+  --gpt-font-weight-semibold: 600;
+
+  /* Display/XL — 128px · line-height automático */
+  --gpt-font-display-xl-size: 128px;
+  --gpt-font-display-xl-line: 1.21;
+  --gpt-font-display-xl-weight: var(--gpt-font-weight-regular);
+
+  /* Display/LG — 64/72 */
+  --gpt-font-display-lg-size: 64px;
+  --gpt-font-display-lg-line: 72px;
+  --gpt-font-display-lg-weight: var(--gpt-font-weight-regular);
+
+  /* Heading/H1 — 48/56 · Semi Bold */
+  --gpt-font-heading-h1-size: 48px;
+  --gpt-font-heading-h1-line: 56px;
+  --gpt-font-heading-h1-weight: var(--gpt-font-weight-semibold);
+
+  /* Heading/H2 — 24/32 · Semi Bold */
+  --gpt-font-heading-h2-size: 24px;
+  --gpt-font-heading-h2-line: 32px;
+  --gpt-font-heading-h2-weight: var(--gpt-font-weight-semibold);
+
+  /* Heading/H3 — 18/28 · Semi Bold */
+  --gpt-font-heading-h3-size: 18px;
+  --gpt-font-heading-h3-line: 28px;
+  --gpt-font-heading-h3-weight: var(--gpt-font-weight-semibold);
+
+  /* Body/LG — 18/28 */
+  --gpt-font-body-lg-size: 18px;
+  --gpt-font-body-lg-line: 28px;
+  --gpt-font-body-lg-weight: var(--gpt-font-weight-regular);
+
+  /* Body/MD — 16/24 */
+  --gpt-font-body-md-size: 16px;
+  --gpt-font-body-md-line: 24px;
+  --gpt-font-body-md-weight: var(--gpt-font-weight-regular);
+
+  /* Body/SM — 14/20 · corpo padrão da interface */
+  --gpt-font-body-sm-size: 14px;
+  --gpt-font-body-sm-line: 20px;
+  --gpt-font-body-sm-weight: var(--gpt-font-weight-regular);
+
+  /* Body/XS — 12/16 */
+  --gpt-font-body-xs-size: 12px;
+  --gpt-font-body-xs-line: 16px;
+  --gpt-font-body-xs-weight: var(--gpt-font-weight-regular);
+
+  /* Label/LG — 16/24 · Semi Bold */
+  --gpt-font-label-lg-size: 16px;
+  --gpt-font-label-lg-line: 24px;
+  --gpt-font-label-lg-weight: var(--gpt-font-weight-semibold);
+
+  /* Label/MD — 14/20 · Semi Bold */
+  --gpt-font-label-md-size: 14px;
+  --gpt-font-label-md-line: 20px;
+  --gpt-font-label-md-weight: var(--gpt-font-weight-semibold);
+
+  /* Label/SM — 12/16 · Semi Bold */
+  --gpt-font-label-sm-size: 12px;
+  --gpt-font-label-sm-line: 16px;
+  --gpt-font-label-sm-weight: var(--gpt-font-weight-semibold);
+
+  /* Caption — 11/14 */
+  --gpt-font-caption-size: 11px;
+  --gpt-font-caption-line: 14px;
+  --gpt-font-caption-weight: var(--gpt-font-weight-regular);
+}

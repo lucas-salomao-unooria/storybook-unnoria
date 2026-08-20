@@ -1,0 +1,23 @@
+/**
+ * Estilos do Componente DateChip — Design System WhatsApp Mobile
+ * Etiqueta de 59×27px com raio de 6px do frame "Direct Message"
+ * (nodes 1:3011 e 1:3012).
+ */
+
+.wa-datechip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 59px;
+  height: 27px;
+  padding: 0 var(--wa-spacing-s);
+  border-radius: var(--wa-radius-l);
+  background-color: var(--wa-color-surface-datechip);
+  color: var(--wa-color-text-datechip);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-label-sm-size);
+  font-weight: var(--wa-font-label-sm-weight);
+  line-height: 1;
+  user-select: none;
+}

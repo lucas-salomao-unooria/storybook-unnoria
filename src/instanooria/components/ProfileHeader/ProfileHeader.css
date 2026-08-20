@@ -1,0 +1,115 @@
+/**
+ * Estilos do Componente ProfileHeader — Design System Instanooria
+ * Bloco "Account Info" do perfil: avatar de 80px, três estatísticas alinhadas
+ * à direita, nome, biografia e ação de largura total.
+ */
+
+.insta-profile-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--insta-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--insta-spacing-l) var(--insta-gutter);
+  background-color: var(--insta-color-background-primary);
+  font-family: var(--insta-font-sans);
+}
+
+.insta-profile-header__top {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-l);
+}
+
+.insta-profile-header__stats {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--insta-spacing-xs);
+}
+
+.insta-profile-header__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--insta-spacing-3xs);
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  cursor: default;
+  appearance: none;
+}
+
+.insta-profile-header__stat--interactive {
+  cursor: pointer;
+}
+
+.insta-profile-header__stat:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 3px;
+  border-radius: var(--insta-radius-s);
+}
+
+.insta-profile-header__stat-value {
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-title-md-size);
+  font-weight: var(--insta-font-title-md-weight);
+  line-height: 1.2;
+  letter-spacing: var(--insta-font-title-md-tracking);
+}
+
+.insta-profile-header__stat-label {
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: 1.2;
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-profile-header__bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--insta-spacing-4xs);
+}
+
+.insta-profile-header__name {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-lg-size);
+  font-weight: var(--insta-font-label-lg-weight);
+  line-height: var(--insta-font-label-lg-line);
+  letter-spacing: var(--insta-font-label-lg-tracking);
+}
+
+.insta-profile-header__description {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-profile-header__website {
+  color: var(--insta-color-text-link);
+  font-size: var(--insta-font-label-lg-size);
+  font-weight: var(--insta-font-label-lg-weight);
+  line-height: var(--insta-font-label-lg-line);
+  text-decoration: none;
+}
+
+.insta-profile-header__website:hover {
+  text-decoration: underline;
+}
+
+.insta-profile-header__actions {
+  display: flex;
+  gap: var(--insta-spacing-xs);
+}
+
+.insta-profile-header__actions > * {
+  flex: 1 1 auto;
+}

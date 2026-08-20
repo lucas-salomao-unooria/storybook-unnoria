@@ -1,0 +1,26 @@
+/**
+ * Estilos do Componente ChatListItem — Design System WhatsApp Mobile
+ * Linha da lista de conversas do frame "Chats Main Page" (node 1:2024).
+ */
+
+.wa-chatlistitem--compact .wa-listitem__title {
+  color: var(--wa-color-text-primary-alt);
+  font-size: var(--wa-font-title-sm-size);
+  font-weight: var(--wa-font-title-sm-weight);
+}
+
+.wa-chatlistitem__preview {
+  color: var(--wa-color-text-settings-sub);
+  font-size: var(--wa-font-body-md-size);
+}
+
+.wa-chatlistitem__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  border-radius: var(--wa-radius-full);
+  background-color: var(--wa-color-surface-sheet);
+  color: var(--wa-color-icon-pin);
+}

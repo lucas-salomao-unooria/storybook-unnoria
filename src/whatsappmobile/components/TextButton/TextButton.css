@@ -1,0 +1,32 @@
+/**
+ * Estilos do Componente TextButton — Design System WhatsApp Mobile
+ * Botões de texto do diálogo modal (CANCEL e OK), em PT Sans 15px na cor
+ * `--wa-color-accent-action` (node 1:3516).
+ */
+
+.wa-textbutton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wa-spacing-xs) var(--wa-spacing-s);
+  border: none;
+  border-radius: var(--wa-radius-s);
+  background: transparent;
+  color: var(--wa-color-accent-action);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-sm-size);
+  font-weight: var(--wa-font-body-sm-weight);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-textbutton:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 1px;
+}
+
+.wa-textbutton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

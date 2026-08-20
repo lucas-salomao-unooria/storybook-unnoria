@@ -1,0 +1,26 @@
+/**
+ * Estilos do Componente ChatWallpaper — Design System WhatsApp Mobile
+ * Fundo da conversa. Quando não há textura, aplica `--wa-color-surface-base`,
+ * a cor de base do frame de origem.
+ */
+
+.wa-chatwallpaper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  background-color: var(--wa-color-surface-base);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wa-chatwallpaper__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}

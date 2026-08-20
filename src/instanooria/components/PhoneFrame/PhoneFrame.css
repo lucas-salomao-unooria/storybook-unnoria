@@ -1,0 +1,79 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System Instanooria
+ * Quadro de 375×812px reproduzindo as barras de sistema do iPhone X usadas em
+ * todos os frames do Figma.
+ */
+
+.insta-phone-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--insta-screen-width);
+  height: var(--insta-screen-height);
+  background-color: var(--insta-color-background-primary);
+  font-family: var(--insta-font-sans);
+  overflow: hidden;
+}
+
+.insta-phone-frame--framed {
+  border-radius: 38px;
+  box-shadow: 0 0 0 1px var(--insta-color-border-default), 0 18px 48px rgba(0, 0, 0, 0.18);
+}
+
+.insta-phone-frame__status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  height: var(--insta-statusbar-height);
+  padding: 0 var(--insta-spacing-l) 0 21px;
+  color: var(--insta-color-text-primary);
+}
+
+.insta-phone-frame__time {
+  font-size: var(--insta-font-title-md-size);
+  font-weight: var(--insta-font-title-md-weight);
+  letter-spacing: var(--insta-font-title-md-tracking);
+}
+
+.insta-phone-frame__indicators {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-xxs);
+}
+
+.insta-phone-frame__battery {
+  color: var(--insta-color-icon-secondary);
+}
+
+.insta-phone-frame__screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.insta-phone-frame__home-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: var(--insta-home-indicator-height);
+  padding-bottom: 9px;
+  pointer-events: none;
+}
+
+.insta-phone-frame__home-indicator::after {
+  content: '';
+  display: block;
+  width: 134px;
+  height: 5px;
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-text-primary);
+}

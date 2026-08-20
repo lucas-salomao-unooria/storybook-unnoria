@@ -1,0 +1,43 @@
+/**
+ * Estilos do Componente Menu — Design System WhatsApp Mobile
+ * Menu suspenso de 190px em `--wa-color-surface-elevated` com itens de 44px de
+ * passo, recuo esquerdo de 24px e texto de 19px (nodes 1:2277 a 1:2284).
+ */
+
+.wa-menu {
+  box-sizing: border-box;
+  width: var(--wa-menu-width, 190px);
+  padding: var(--wa-spacing-m) 0;
+  background-color: var(--wa-color-surface-elevated);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-menu__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  height: 44px;
+  padding: 0 var(--wa-spacing-m) 0 var(--wa-gutter-appbar);
+  border: none;
+  background: transparent;
+  color: var(--wa-color-text-menu);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-subtitle-size);
+  font-weight: var(--wa-font-subtitle-weight);
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-menu__item:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: -2px;
+}
+
+.wa-menu__item:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

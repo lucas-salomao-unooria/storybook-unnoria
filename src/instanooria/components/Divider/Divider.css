@@ -1,0 +1,31 @@
+/**
+ * Estilos do Componente Divider — Design System Instanooria
+ */
+
+.insta-divider {
+  flex-shrink: 0;
+  border: 0;
+  background-color: var(--insta-color-border-subtle);
+}
+
+.insta-divider--horizontal {
+  width: 100%;
+  height: 0.33px;
+}
+
+.insta-divider--vertical {
+  width: 0.33px;
+  height: 100%;
+}
+
+.insta-divider--solid {
+  background-color: var(--insta-color-border-default);
+}
+
+.insta-divider--solid.insta-divider--horizontal {
+  height: 1px;
+}
+
+.insta-divider--solid.insta-divider--vertical {
+  width: 1px;
+}

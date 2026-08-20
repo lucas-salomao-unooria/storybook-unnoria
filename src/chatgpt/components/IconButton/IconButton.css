@@ -1,0 +1,103 @@
+/**
+ * Estilos do Componente IconButton — Design System ChatGPT
+ *
+ * Medidas do conjunto `IconButton` do Figma:
+ *   SM · 28px · raio 6 · glifo 12px (`size/icon-xs`)
+ *   MD · 36px · raio 8 · glifo 16px (`size/icon-sm`)
+ *   LG · 44px · raio 12 · glifo 20px (`size/icon-md`)
+ *
+ * As alturas 28/36/44 e o raio de 6px são valores literais dos frames do
+ * arquivo. A escala `size/button-*` de `Primitives/Sizing` (32/40/48) pertence
+ * a outra régua e **não** é usada por este conjunto de variantes.
+ */
+
+.gpt-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-family: var(--gpt-font-sans);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+  flex-shrink: 0;
+  transition: background-color var(--gpt-transition-fast), color var(--gpt-transition-fast),
+    opacity var(--gpt-transition-fast);
+}
+
+.gpt-icon-button:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gpt-icon-button__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.gpt-icon-button--sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: var(--gpt-size-icon-xs);
+}
+
+.gpt-icon-button--md {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--gpt-radius-md);
+  font-size: var(--gpt-size-icon-sm);
+}
+
+.gpt-icon-button--lg {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--gpt-radius-lg);
+  font-size: var(--gpt-size-icon-md);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.gpt-icon-button--default {
+  background-color: transparent;
+  color: var(--gpt-text-primary);
+}
+
+.gpt-icon-button--default:hover:not(:disabled) {
+  background-color: var(--gpt-fill-4);
+}
+
+.gpt-icon-button--filled {
+  background-color: var(--gpt-fill-4);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-icon-button--filled:hover:not(:disabled) {
+  background-color: var(--gpt-fill-10);
+}
+
+.gpt-icon-button--primary {
+  background-color: var(--gpt-interactive-primary);
+  color: var(--gpt-text-inverse);
+}
+
+.gpt-icon-button--primary:hover:not(:disabled) {
+  background-color: var(--gpt-interactive-hover);
+}

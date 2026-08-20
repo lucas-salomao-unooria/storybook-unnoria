@@ -1,0 +1,68 @@
+/**
+ * Unooria Design System — apenas a seção da Plataforma Unooria.
+ *
+ * Contraparte de `instanooria.css`: entrada granular para produtos que usam só
+ * o DS institucional. `styles.css` segue existindo com as duas seções.
+ */
+
+/**
+ * Unooria Design System - Estilos Globais e Componentes
+ * Padrão Ouro de Pacote NPM
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Plataforma Unooria)
+ * ---------------------------------------------------- */
+@import './unooria/tokens/colors.css';
+@import './unooria/tokens/typography.css';
+@import './unooria/tokens/spacing.css';
+@import './unooria/tokens/elevation.css';
+@import './unooria/tokens/blur.css';
+@import './unooria/tokens/grids.css';
+@import './unooria/tokens/icons.css';
+@import './unooria/tokens/scrollbar.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes
+ * ---------------------------------------------------- */
+@import './unooria/components/AlertBox/AlertBox.css';
+@import './unooria/components/Avatar/Avatar.css';
+@import './unooria/components/Badge/Badge.css';
+@import './unooria/components/BottomBar/BottomBar.css';
+@import './unooria/components/Breadcrumb/Breadcrumb.css';
+@import './unooria/components/Button/Button.css';
+@import './unooria/components/Calendar/Calendar.css';
+@import './unooria/components/Card/Card.css';
+@import './unooria/components/Checkbox/Checkbox.css';
+@import './unooria/components/Collapse/Collapse.css';
+@import './unooria/components/Cropper/Cropper.css';
+@import './unooria/components/DataViz/DataViz.css';
+@import './unooria/components/DatePicker/DatePicker.css';
+@import './unooria/components/EmptyState/EmptyState.css';
+@import './unooria/components/FeedbackAlert/FeedbackAlert.css';
+@import './unooria/components/Icon/Icon.css';
+@import './unooria/components/ListSectionItem/ListSectionItem.css';
+@import './unooria/components/Logo/Logo.css';
+@import './unooria/components/Modal/Modal.css';
+@import './unooria/components/NumberButton/NumberButton.css';
+@import './unooria/components/Outline/Outline.css';
+@import './unooria/components/Pagination/Pagination.css';
+@import './unooria/components/ProgressBar/ProgressBar.css';
+@import './unooria/components/RadioButton/RadioButton.css';
+@import './unooria/components/RichTextEditor/RichTextEditor.css';
+@import './unooria/components/ScrollBar/ScrollBar.css';
+@import './unooria/components/SectionHeader/SectionHeader.css';
+@import './unooria/components/SideBar/SideBar.css';
+@import './unooria/components/Snackbar/Snackbar.css';
+@import './unooria/components/Stepper/Stepper.css';
+@import './unooria/components/Tab/Tab.css';
+@import './unooria/components/Table/Table.css';
+@import './unooria/components/Tag/Tag.css';
+@import './unooria/components/TextField/TextField.css';
+@import './unooria/components/TimePicker/TimePicker.css';
+@import './unooria/components/Toggle/Toggle.css';
+@import './unooria/components/Tooltip/Tooltip.css';
+@import './unooria/components/UploadFileModal/UploadFileModal.css';

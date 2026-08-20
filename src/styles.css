@@ -4,6 +4,8 @@
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ----------------------------------------------------
  * Tokens de Fundação (Plataforma Unooria)
@@ -14,6 +16,8 @@
 @import './unooria/tokens/elevation.css';
 @import './unooria/tokens/blur.css';
 @import './unooria/tokens/grids.css';
+@import './unooria/tokens/icons.css';
+@import './unooria/tokens/scrollbar.css';
 
 /* ----------------------------------------------------
  * Estilos dos Componentes
@@ -33,8 +37,128 @@
 @import './unooria/components/DatePicker/DatePicker.css';
 @import './unooria/components/EmptyState/EmptyState.css';
 @import './unooria/components/FeedbackAlert/FeedbackAlert.css';
+@import './unooria/components/Icon/Icon.css';
+@import './unooria/components/ListSectionItem/ListSectionItem.css';
+@import './unooria/components/Logo/Logo.css';
 @import './unooria/components/Modal/Modal.css';
 @import './unooria/components/NumberButton/NumberButton.css';
+@import './unooria/components/Outline/Outline.css';
+@import './unooria/components/Pagination/Pagination.css';
+@import './unooria/components/ProgressBar/ProgressBar.css';
 @import './unooria/components/RadioButton/RadioButton.css';
+@import './unooria/components/RichTextEditor/RichTextEditor.css';
+@import './unooria/components/ScrollBar/ScrollBar.css';
+@import './unooria/components/SectionHeader/SectionHeader.css';
 @import './unooria/components/SideBar/SideBar.css';
+@import './unooria/components/Snackbar/Snackbar.css';
+@import './unooria/components/Stepper/Stepper.css';
+@import './unooria/components/Tab/Tab.css';
+@import './unooria/components/Table/Table.css';
+@import './unooria/components/Tag/Tag.css';
+@import './unooria/components/TextField/TextField.css';
+@import './unooria/components/TimePicker/TimePicker.css';
+@import './unooria/components/Toggle/Toggle.css';
+@import './unooria/components/Tooltip/Tooltip.css';
+@import './unooria/components/UploadFileModal/UploadFileModal.css';
 
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Instanooria)
+ * ---------------------------------------------------- */
+@import './instanooria/tokens/colors.css';
+@import './instanooria/tokens/typography.css';
+@import './instanooria/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Instanooria)
+ * ---------------------------------------------------- */
+@import './instanooria/components/Avatar/Avatar.css';
+@import './instanooria/components/Badge/Badge.css';
+@import './instanooria/components/Button/Button.css';
+@import './instanooria/components/Chip/Chip.css';
+@import './instanooria/components/Divider/Divider.css';
+@import './instanooria/components/Icon/Icon.css';
+@import './instanooria/components/ListItem/ListItem.css';
+@import './instanooria/components/Logo/Logo.css';
+@import './instanooria/components/MediaGrid/MediaGrid.css';
+@import './instanooria/components/NotificationItem/NotificationItem.css';
+@import './instanooria/components/PhoneFrame/PhoneFrame.css';
+@import './instanooria/components/PostCard/PostCard.css';
+@import './instanooria/components/ProfileHeader/ProfileHeader.css';
+@import './instanooria/components/SearchField/SearchField.css';
+@import './instanooria/components/SegmentedTabs/SegmentedTabs.css';
+@import './instanooria/components/StoriesTray/StoriesTray.css';
+@import './instanooria/components/StoryBubble/StoryBubble.css';
+@import './instanooria/components/StoryViewer/StoryViewer.css';
+@import './instanooria/components/TabBar/TabBar.css';
+@import './instanooria/components/TextField/TextField.css';
+@import './instanooria/components/TopBar/TopBar.css';
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (ChatGPT)
+ * ---------------------------------------------------- */
+@import './chatgpt/tokens/colors.css';
+@import './chatgpt/tokens/typography.css';
+@import './chatgpt/tokens/spacing.css';
+@import './chatgpt/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (ChatGPT)
+ * ---------------------------------------------------- */
+@import './chatgpt/components/Avatar/Avatar.css';
+@import './chatgpt/components/Badge/Badge.css';
+@import './chatgpt/components/Button/Button.css';
+@import './chatgpt/components/ChatBubble/ChatBubble.css';
+@import './chatgpt/components/ChatInput/ChatInput.css';
+@import './chatgpt/components/Divider/Divider.css';
+@import './chatgpt/components/FeatureCard/FeatureCard.css';
+@import './chatgpt/components/GPTCard/GPTCard.css';
+@import './chatgpt/components/IconButton/IconButton.css';
+@import './chatgpt/components/Input/Input.css';
+@import './chatgpt/components/Modal/Modal.css';
+@import './chatgpt/components/NavItem/NavItem.css';
+@import './chatgpt/components/SearchInput/SearchInput.css';
+@import './chatgpt/components/SettingsRow/SettingsRow.css';
+@import './chatgpt/components/Sidebar/Sidebar.css';
+@import './chatgpt/components/Tag/Tag.css';
+@import './chatgpt/components/Toggle/Toggle.css';
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (WhatsApp Mobile)
+ * ---------------------------------------------------- */
+@import './whatsappmobile/tokens/typography.css';
+@import './whatsappmobile/tokens/colors.css';
+@import './whatsappmobile/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (WhatsApp Mobile)
+ * ---------------------------------------------------- */
+@import './whatsappmobile/components/AttachmentSheet/AttachmentSheet.css';
+@import './whatsappmobile/components/Avatar/Avatar.css';
+@import './whatsappmobile/components/Badge/Badge.css';
+@import './whatsappmobile/components/CallListItem/CallListItem.css';
+@import './whatsappmobile/components/CallScreen/CallScreen.css';
+@import './whatsappmobile/components/ChatHeader/ChatHeader.css';
+@import './whatsappmobile/components/ChatListItem/ChatListItem.css';
+@import './whatsappmobile/components/ChatWallpaper/ChatWallpaper.css';
+@import './whatsappmobile/components/Checkbox/Checkbox.css';
+@import './whatsappmobile/components/DateChip/DateChip.css';
+@import './whatsappmobile/components/Dialog/Dialog.css';
+@import './whatsappmobile/components/EncryptionNotice/EncryptionNotice.css';
+@import './whatsappmobile/components/Fab/Fab.css';
+@import './whatsappmobile/components/FilterChip/FilterChip.css';
+@import './whatsappmobile/components/Icon/Icon.css';
+@import './whatsappmobile/components/ListItem/ListItem.css';
+@import './whatsappmobile/components/Menu/Menu.css';
+@import './whatsappmobile/components/MessageBubble/MessageBubble.css';
+@import './whatsappmobile/components/MessageComposer/MessageComposer.css';
+@import './whatsappmobile/components/PhoneFrame/PhoneFrame.css';
+@import './whatsappmobile/components/Radio/Radio.css';
+@import './whatsappmobile/components/SearchField/SearchField.css';
+@import './whatsappmobile/components/SectionLabel/SectionLabel.css';
+@import './whatsappmobile/components/SettingsItem/SettingsItem.css';
+@import './whatsappmobile/components/StatusBar/StatusBar.css';
+@import './whatsappmobile/components/StatusListItem/StatusListItem.css';
+@import './whatsappmobile/components/TabBar/TabBar.css';
+@import './whatsappmobile/components/TextButton/TextButton.css';
+@import './whatsappmobile/components/TopBar/TopBar.css';

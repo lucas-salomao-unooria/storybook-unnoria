@@ -1,0 +1,57 @@
+/**
+ * Estilos do Componente Tag — Design System ChatGPT
+ *
+ * Medidas do conjunto `Tag` do Figma: padding 8/16, gap 6, raio 20
+ * (`radius/2xl`), altura 33 e tipografia Inter Regular de 14px (`Body/SM`).
+ */
+
+.gpt-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gpt-spacing-3);
+  box-sizing: border-box;
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-6);
+  border: none;
+  border-radius: var(--gpt-radius-2xl);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--gpt-transition-fast), color var(--gpt-transition-fast);
+}
+
+.gpt-tag:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-tag:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gpt-tag__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.gpt-tag--default {
+  background-color: var(--gpt-fill-4);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-tag--default:hover:not(:disabled) {
+  background-color: var(--gpt-fill-10);
+}
+
+.gpt-tag--selected {
+  background-color: var(--gpt-bg-inverse);
+  color: var(--gpt-text-inverse);
+}

@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente TopBar — Design System Instanooria
+ * Barra de 88px (44px de status bar + 44px de conteúdo) fiel ao frame do Figma.
+ */
+
+.insta-top-bar {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--insta-color-background-secondary);
+}
+
+.insta-top-bar--plain {
+  background-color: var(--insta-color-background-primary);
+}
+
+.insta-top-bar--bordered {
+  box-shadow: var(--insta-elevation-bar-bottom);
+}
+
+.insta-top-bar--plain.insta-top-bar--bordered {
+  box-shadow: var(--insta-elevation-hairline-bottom);
+}
+
+.insta-top-bar__status-inset {
+  height: var(--insta-statusbar-height);
+  flex-shrink: 0;
+}
+
+.insta-top-bar__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--insta-spacing-m);
+  height: var(--insta-topbar-content-height);
+  padding: 0 var(--insta-spacing-m);
+}
+
+.insta-top-bar__slot {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-l);
+  flex: 0 0 auto;
+  min-width: 24px;
+  color: var(--insta-color-icon-primary);
+}
+
+.insta-top-bar__slot--trailing {
+  justify-content: flex-end;
+}
+
+.insta-top-bar__title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--insta-spacing-3xs);
+  max-width: 60%;
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-title-lg-size);
+  font-weight: var(--insta-font-title-lg-weight);
+  line-height: var(--insta-font-title-lg-line);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

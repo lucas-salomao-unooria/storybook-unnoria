@@ -1,0 +1,113 @@
+/**
+ * Estilos do Componente CallScreen — Design System WhatsApp Mobile
+ * Tela de chamada do frame "Voice call" (node 1:4595): cabeçalho de 133px e
+ * barra de controles de 87px em `--wa-color-call-surface`, retrato ao centro e
+ * botão de encerramento de 58px em `--wa-color-danger-endcall`.
+ */
+
+.wa-callscreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  background-color: var(--wa-color-call-surface);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-callscreen__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wa-spacing-s);
+  box-sizing: border-box;
+  min-height: var(--wa-callheader-height);
+  padding: var(--wa-spacing-s) var(--wa-spacing-xl);
+  background-color: var(--wa-color-call-surface);
+  text-align: center;
+}
+
+.wa-callscreen__encryption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wa-spacing-xxs);
+  color: var(--wa-color-call-text-encrypted);
+  font-size: var(--wa-font-body-sm-size);
+  line-height: 1;
+}
+
+.wa-callscreen__name {
+  margin: 0;
+  color: var(--wa-color-text-inverse);
+  font-size: var(--wa-font-display-size);
+  font-weight: var(--wa-font-display-weight);
+  line-height: 1.1;
+}
+
+.wa-callscreen__state {
+  margin: 0;
+  color: var(--wa-color-text-inverse-strong);
+  font-size: var(--wa-font-subtitle-size);
+  font-weight: var(--wa-font-subtitle-weight);
+  line-height: 1;
+}
+
+.wa-callscreen__stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: var(--wa-spacing-4xl);
+  background-color: var(--wa-color-surface-base);
+  overflow: hidden;
+}
+
+.wa-callscreen__portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wa-callscreen__endcall {
+  position: relative;
+}
+
+.wa-callscreen__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  height: var(--wa-callbar-height);
+  padding: 0 var(--wa-spacing-4xl);
+  background-color: var(--wa-color-call-surface);
+}
+
+.wa-callscreen__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: var(--wa-radius-full);
+  background: transparent;
+  color: var(--wa-color-call-icon);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-callscreen__control:focus-visible {
+  outline: 2px solid var(--wa-color-text-inverse-strong);
+  outline-offset: 2px;
+}
+
+.wa-callscreen__control--off {
+  color: var(--wa-color-call-icon-muted);
+}

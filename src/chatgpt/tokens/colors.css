@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Tokens de Cores — Design System ChatGPT
+   Extraídos das coleções de variáveis oficiais do Figma
+   "ChatGPT UI Kit (AI Chat) (Community)" — página 🟡 Design system:
+     · Primitives/Colors  (25 variáveis, modo Default)
+     · Semantic/Colors    (21 variáveis, modos Light e Dark)
+     · estilos de pintura Overlay/* (8 estilos)
+   Suporte nativo aos temas Light e Dark via [data-gpt-theme].
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+   * Primitivas — Primitives/Colors (modo Default, invariantes de tema)
+   * ------------------------------------------------------------------ */
+  --gpt-color-black: #000000;
+  --gpt-color-white: #FFFFFF;
+
+  --gpt-color-gray-50: #F9F9FA;
+  --gpt-color-gray-100: #F7F9FB;
+  --gpt-color-gray-200: #E0E0E0;
+  --gpt-color-gray-400: #9F9FFB;
+  --gpt-color-gray-600: #303030;
+  --gpt-color-gray-800: #1C1C1C;
+  --gpt-color-gray-900: #111111;
+
+  --gpt-color-purple-400: #ADADFB;
+  --gpt-color-purple-500: #9F9FF8;
+  --gpt-color-purple-600: #5856D6;
+  --gpt-color-purple-700: #9759FF;
+
+  --gpt-color-blue-400: #4C98FD;
+  --gpt-color-blue-500: #007AFF;
+  --gpt-color-blue-600: #3FA4FF;
+
+  --gpt-color-green-500: #34C759;
+  --gpt-color-green-600: #1AC69C;
+
+  --gpt-color-red-500: #FF4747;
+  --gpt-color-red-600: #E60019;
+
+  --gpt-color-orange-400: #FFAC60;
+  --gpt-color-orange-500: #FF5700;
+
+  --gpt-color-yellow-500: #FFDB56;
+
+  --gpt-color-pink-400: #C478FF;
+  --gpt-color-pink-500: #FF32C6;
+
+  /* ------------------------------------------------------------------
+   * Overlays — estilos de pintura Overlay/* (invariantes de tema)
+   * ------------------------------------------------------------------ */
+  --gpt-overlay-black-4: rgba(0, 0, 0, 0.04);
+  --gpt-overlay-black-10: rgba(0, 0, 0, 0.1);
+  --gpt-overlay-black-20: rgba(0, 0, 0, 0.2);
+  --gpt-overlay-black-40: rgba(0, 0, 0, 0.4);
+  --gpt-overlay-black-80: rgba(0, 0, 0, 0.8);
+  --gpt-overlay-white-20: rgba(255, 255, 255, 0.2);
+  --gpt-overlay-white-40: rgba(255, 255, 255, 0.4);
+  --gpt-overlay-white-80: rgba(255, 255, 255, 0.8);
+}
+
+:root,
+[data-gpt-theme='light'] {
+  /* ------------------------------------------------------------------
+   * Semânticas — Semantic/Colors, modo Light
+   * ------------------------------------------------------------------ */
+  --gpt-bg-primary: var(--gpt-color-white);
+  --gpt-bg-secondary: var(--gpt-color-gray-50);
+  --gpt-bg-tertiary: var(--gpt-color-gray-100);
+  --gpt-bg-inverse: var(--gpt-color-black);
+  --gpt-bg-brand: var(--gpt-color-purple-600);
+
+  --gpt-text-primary: var(--gpt-color-black);
+  --gpt-text-secondary: var(--gpt-color-gray-600);
+  --gpt-text-tertiary: var(--gpt-color-gray-800);
+  --gpt-text-inverse: var(--gpt-color-white);
+  --gpt-text-brand: var(--gpt-color-purple-600);
+  --gpt-text-link: var(--gpt-color-blue-500);
+
+  --gpt-border-default: var(--gpt-color-gray-200);
+  --gpt-border-strong: var(--gpt-color-black);
+  --gpt-border-brand: var(--gpt-color-purple-600);
+
+  --gpt-interactive-primary: var(--gpt-color-purple-600);
+  --gpt-interactive-hover: var(--gpt-color-purple-700);
+  --gpt-interactive-secondary: var(--gpt-color-blue-500);
+
+  --gpt-status-success: var(--gpt-color-green-500);
+  --gpt-status-error: var(--gpt-color-red-500);
+  --gpt-status-warning: var(--gpt-color-orange-500);
+  --gpt-status-info: var(--gpt-color-blue-500);
+
+  /* ------------------------------------------------------------------
+   * Escadas translúcidas dos componentes.
+   *
+   * Os componentes do arquivo de design usam preenchimentos literais de
+   * preto com opacidade (2%, 4%, 8%, 10%) e textos de preto com opacidade
+   * (30%, 40%, 50%, 60%, 70%, 80%) — todos sem vínculo com variável.
+   * A escada é reproduzida aqui com fidelidade no modo Light e espelhada
+   * em branco no modo Dark, seguindo a inversão declarada em
+   * Semantic/Colors (text/primary: black → white).
+   * ------------------------------------------------------------------ */
+  --gpt-fill-2: rgba(0, 0, 0, 0.02);
+  --gpt-fill-4: rgba(0, 0, 0, 0.04);
+  --gpt-fill-8: rgba(0, 0, 0, 0.08);
+  --gpt-fill-10: rgba(0, 0, 0, 0.1);
+
+  --gpt-text-soft-30: rgba(0, 0, 0, 0.3);
+  --gpt-text-soft-40: rgba(0, 0, 0, 0.4);
+  --gpt-text-soft-50: rgba(0, 0, 0, 0.5);
+  --gpt-text-soft-60: rgba(0, 0, 0, 0.6);
+  --gpt-text-soft-70: rgba(0, 0, 0, 0.7);
+  --gpt-text-soft-80: rgba(0, 0, 0, 0.8);
+}
+
+[data-gpt-theme='dark'] {
+  /* ------------------------------------------------------------------
+   * Semânticas — Semantic/Colors, modo Dark
+   * ------------------------------------------------------------------ */
+  --gpt-bg-primary: var(--gpt-color-gray-800);
+  --gpt-bg-secondary: var(--gpt-color-gray-600);
+  --gpt-bg-tertiary: var(--gpt-color-gray-900);
+  --gpt-bg-inverse: var(--gpt-color-white);
+  --gpt-bg-brand: var(--gpt-color-purple-500);
+
+  --gpt-text-primary: var(--gpt-color-white);
+  --gpt-text-secondary: var(--gpt-color-gray-200);
+  --gpt-text-tertiary: var(--gpt-color-purple-400);
+  --gpt-text-inverse: var(--gpt-color-black);
+  --gpt-text-brand: var(--gpt-color-purple-500);
+  --gpt-text-link: var(--gpt-color-blue-400);
+
+  --gpt-border-default: var(--gpt-color-gray-600);
+  --gpt-border-strong: var(--gpt-color-white);
+  --gpt-border-brand: var(--gpt-color-purple-500);
+
+  --gpt-interactive-primary: var(--gpt-color-purple-500);
+  --gpt-interactive-hover: var(--gpt-color-purple-600);
+  --gpt-interactive-secondary: var(--gpt-color-blue-400);
+
+  --gpt-status-success: var(--gpt-color-green-500);
+  --gpt-status-error: var(--gpt-color-red-500);
+  --gpt-status-warning: var(--gpt-color-orange-400);
+  --gpt-status-info: var(--gpt-color-blue-400);
+
+  /* Escadas translúcidas espelhadas em branco */
+  --gpt-fill-2: rgba(255, 255, 255, 0.02);
+  --gpt-fill-4: rgba(255, 255, 255, 0.04);
+  --gpt-fill-8: rgba(255, 255, 255, 0.08);
+  --gpt-fill-10: rgba(255, 255, 255, 0.1);
+
+  --gpt-text-soft-30: rgba(255, 255, 255, 0.3);
+  --gpt-text-soft-40: rgba(255, 255, 255, 0.4);
+  --gpt-text-soft-50: rgba(255, 255, 255, 0.5);
+  --gpt-text-soft-60: rgba(255, 255, 255, 0.6);
+  --gpt-text-soft-70: rgba(255, 255, 255, 0.7);
+  --gpt-text-soft-80: rgba(255, 255, 255, 0.8);
+}

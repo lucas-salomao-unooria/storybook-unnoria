@@ -1,0 +1,70 @@
+/**
+ * Estilos do Componente SearchField — Design System WhatsApp Mobile
+ * Barra de busca dos frames "Status search" (1:169), "Call log search" (1:699)
+ * e "Search in chat" (1:3271): fundo `--wa-color-surface-appbar`, seta de
+ * voltar e campo sublinhado.
+ */
+
+.wa-searchfield {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-m);
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--wa-subappbar-height);
+  padding: 0 var(--wa-spacing-l) 0 14px;
+  background-color: var(--wa-color-surface-appbar);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-searchfield__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--wa-color-icon-back);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-searchfield__button:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
+.wa-searchfield__button--nav {
+  color: var(--wa-color-icon-appbar);
+}
+
+.wa-searchfield__input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: var(--wa-spacing-3xs) 0;
+  border: none;
+  border-bottom: var(--wa-divider-width) solid var(--wa-color-border-dialog);
+  background: transparent;
+  color: var(--wa-color-text-primary);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-lg-size);
+  line-height: 1.2;
+  outline: none;
+}
+
+.wa-searchfield__input::placeholder {
+  color: var(--wa-color-text-placeholder);
+}
+
+.wa-searchfield__input:focus {
+  border-bottom-color: var(--wa-color-accent-underline);
+}
+
+.wa-searchfield__navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-l);
+  flex-shrink: 0;
+}

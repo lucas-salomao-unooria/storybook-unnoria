@@ -1,0 +1,216 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System Instanooria
+   Escala oficial do Figma baseada na família SF Pro (iOS).
+   Cada estilo declara família, peso, tamanho, altura de linha e tracking.
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --insta-font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Pesos (SF Pro usa eixos variáveis: 400 Regular, 510 Medium, 590 Semibold) */
+  --insta-font-weight-regular: 400;
+  --insta-font-weight-medium: 510;
+  --insta-font-weight-semibold: 590;
+
+  /* Heading/H3 — títulos de seção em telas de conteúdo */
+  --insta-font-heading-h3-size: 17px;
+  --insta-font-heading-h3-weight: 590;
+  --insta-font-heading-h3-line: 1;
+  --insta-font-heading-h3-tracking: -0.5px;
+
+  /* Title/Large — títulos de barra superior e nomes de perfil */
+  --insta-font-title-lg-size: 16px;
+  --insta-font-title-lg-weight: 590;
+  --insta-font-title-lg-line: 21px;
+  --insta-font-title-lg-tracking: -0.33px;
+
+  /* Title/Medium — números de estatísticas e destaques */
+  --insta-font-title-md-size: 15px;
+  --insta-font-title-md-weight: 590;
+  --insta-font-title-md-line: 1;
+  --insta-font-title-md-tracking: -0.3px;
+
+  /* Title/Small — rótulos de abas e botões */
+  --insta-font-title-sm-size: 14px;
+  --insta-font-title-sm-weight: 590;
+  --insta-font-title-sm-line: 1;
+  --insta-font-title-sm-tracking: -0.15px;
+
+  /* Body/Large — campos de entrada e textos longos */
+  --insta-font-body-lg-size: 16px;
+  --insta-font-body-lg-weight: 400;
+  --insta-font-body-lg-line: 22px;
+  --insta-font-body-lg-tracking: -0.3px;
+
+  /* Body/Medium — itens de menu e listas */
+  --insta-font-body-md-size: 15px;
+  --insta-font-body-md-weight: 400;
+  --insta-font-body-md-line: 1;
+  --insta-font-body-md-tracking: -0.25px;
+
+  /* Label/Large — nome de usuário em posts e legendas em negrito */
+  --insta-font-label-lg-size: 13px;
+  --insta-font-label-lg-weight: 590;
+  --insta-font-label-lg-line: 18px;
+  --insta-font-label-lg-tracking: -0.1px;
+
+  /* Label/Medium — corpo de legendas e mensagens */
+  --insta-font-label-md-size: 13px;
+  --insta-font-label-md-weight: 400;
+  --insta-font-label-md-line: 18px;
+  --insta-font-label-md-tracking: -0.1px;
+
+  /* Caption/Large — rótulos curtos em negrito */
+  --insta-font-caption-lg-size: 12px;
+  --insta-font-caption-lg-weight: 590;
+  --insta-font-caption-lg-line: 1;
+  --insta-font-caption-lg-tracking: 0;
+
+  /* Caption/Medium — nomes sob os stories e contadores */
+  --insta-font-caption-md-size: 12px;
+  --insta-font-caption-md-weight: 400;
+  --insta-font-caption-md-line: 1;
+  --insta-font-caption-md-tracking: 0;
+
+  /* Overline/Default — rótulos auxiliares em negrito */
+  --insta-font-overline-size: 11px;
+  --insta-font-overline-weight: 590;
+  --insta-font-overline-line: 1;
+  --insta-font-overline-tracking: 0;
+
+  /* Overline/Small — localização do post e data de publicação */
+  --insta-font-overline-sm-size: 11px;
+  --insta-font-overline-sm-weight: 400;
+  --insta-font-overline-sm-line: 1;
+  --insta-font-overline-sm-tracking: 0.07px;
+
+  /* Navigation/Title — títulos de overlay sobre mídia */
+  --insta-font-nav-title-size: 14px;
+  --insta-font-nav-title-weight: 510;
+  --insta-font-nav-title-line: 1;
+  --insta-font-nav-title-tracking: 0.33px;
+
+  /* Navigation/Badge — etiqueta LIVE e selos minúsculos */
+  --insta-font-nav-badge-size: 8px;
+  --insta-font-nav-badge-weight: 510;
+  --insta-font-nav-badge-line: 1;
+  --insta-font-nav-badge-tracking: 0.5px;
+}
+
+/* ==========================================================================
+   Classes utilitárias de tipografia
+   ========================================================================== */
+
+.insta-text {
+  font-family: var(--insta-font-sans);
+  color: var(--insta-color-text-primary);
+  margin: 0;
+}
+
+.insta-text--heading-h3 {
+  font-size: var(--insta-font-heading-h3-size);
+  font-weight: var(--insta-font-heading-h3-weight);
+  line-height: var(--insta-font-heading-h3-line);
+  letter-spacing: var(--insta-font-heading-h3-tracking);
+}
+
+.insta-text--title-lg {
+  font-size: var(--insta-font-title-lg-size);
+  font-weight: var(--insta-font-title-lg-weight);
+  line-height: var(--insta-font-title-lg-line);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+}
+
+.insta-text--title-md {
+  font-size: var(--insta-font-title-md-size);
+  font-weight: var(--insta-font-title-md-weight);
+  line-height: var(--insta-font-title-md-line);
+  letter-spacing: var(--insta-font-title-md-tracking);
+}
+
+.insta-text--title-sm {
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: var(--insta-font-title-sm-line);
+  letter-spacing: var(--insta-font-title-sm-tracking);
+}
+
+.insta-text--body-lg {
+  font-size: var(--insta-font-body-lg-size);
+  font-weight: var(--insta-font-body-lg-weight);
+  line-height: var(--insta-font-body-lg-line);
+  letter-spacing: var(--insta-font-body-lg-tracking);
+}
+
+.insta-text--body-md {
+  font-size: var(--insta-font-body-md-size);
+  font-weight: var(--insta-font-body-md-weight);
+  line-height: var(--insta-font-body-md-line);
+  letter-spacing: var(--insta-font-body-md-tracking);
+}
+
+.insta-text--label-lg {
+  font-size: var(--insta-font-label-lg-size);
+  font-weight: var(--insta-font-label-lg-weight);
+  line-height: var(--insta-font-label-lg-line);
+  letter-spacing: var(--insta-font-label-lg-tracking);
+}
+
+.insta-text--label-md {
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-text--caption-lg {
+  font-size: var(--insta-font-caption-lg-size);
+  font-weight: var(--insta-font-caption-lg-weight);
+  line-height: var(--insta-font-caption-lg-line);
+  letter-spacing: var(--insta-font-caption-lg-tracking);
+}
+
+.insta-text--caption-md {
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+  line-height: var(--insta-font-caption-md-line);
+  letter-spacing: var(--insta-font-caption-md-tracking);
+}
+
+.insta-text--overline {
+  font-size: var(--insta-font-overline-size);
+  font-weight: var(--insta-font-overline-weight);
+  line-height: var(--insta-font-overline-line);
+  letter-spacing: var(--insta-font-overline-tracking);
+}
+
+.insta-text--overline-sm {
+  font-size: var(--insta-font-overline-sm-size);
+  font-weight: var(--insta-font-overline-sm-weight);
+  line-height: var(--insta-font-overline-sm-line);
+  letter-spacing: var(--insta-font-overline-sm-tracking);
+}
+
+.insta-text--nav-title {
+  font-size: var(--insta-font-nav-title-size);
+  font-weight: var(--insta-font-nav-title-weight);
+  line-height: var(--insta-font-nav-title-line);
+  letter-spacing: var(--insta-font-nav-title-tracking);
+}
+
+.insta-text--nav-badge {
+  font-size: var(--insta-font-nav-badge-size);
+  font-weight: var(--insta-font-nav-badge-weight);
+  line-height: var(--insta-font-nav-badge-line);
+  letter-spacing: var(--insta-font-nav-badge-tracking);
+}
+
+.insta-text--secondary {
+  color: var(--insta-color-text-secondary);
+}
+
+.insta-text--link {
+  color: var(--insta-color-text-link);
+}

@@ -1,0 +1,34 @@
+/**
+ * Estilos do Componente Badge — Design System WhatsApp Mobile
+ * Selo circular de 19px com numeral em PT Sans Bold, extraído dos nós
+ * 1:2143 (círculo) e 1:2144 (numeral) do frame "Chats Main Page".
+ */
+
+.wa-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: var(--wa-badge-size, 19px);
+  height: var(--wa-badge-size, 19px);
+  padding: 0 4px;
+  border-radius: var(--wa-radius-full);
+  font-family: var(--wa-font-sans);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.wa-badge--tab {
+  background-color: var(--wa-color-accent);
+  color: var(--wa-color-text-on-accent);
+  font-size: var(--wa-font-body-md-size);
+}
+
+.wa-badge--row {
+  background-color: var(--wa-color-accent-badge);
+  color: var(--wa-color-text-on-accent);
+  font-size: var(--wa-font-badge-size);
+}

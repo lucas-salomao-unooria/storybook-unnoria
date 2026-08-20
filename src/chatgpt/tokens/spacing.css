@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Tokens de Medida — Design System ChatGPT
+   Extraídos das coleções Primitives/Spacing (19), Primitives/Radius (10) e
+   Primitives/Sizing (14) do Figma. Escala de espaçamento em grade de 4px
+   (com os degraus finos de 2px e 6px preservados do arquivo).
+   ========================================================================== */
+
+:root {
+  /* Primitives/Spacing */
+  --gpt-spacing-0: 0px;
+  --gpt-spacing-1: 2px;
+  --gpt-spacing-2: 4px;
+  --gpt-spacing-3: 6px;
+  --gpt-spacing-4: 8px;
+  --gpt-spacing-5: 12px;
+  --gpt-spacing-6: 16px;
+  --gpt-spacing-7: 20px;
+  --gpt-spacing-8: 24px;
+  --gpt-spacing-9: 28px;
+  --gpt-spacing-10: 32px;
+  --gpt-spacing-11: 40px;
+  --gpt-spacing-12: 48px;
+  --gpt-spacing-13: 56px;
+  --gpt-spacing-14: 64px;
+  --gpt-spacing-15: 80px;
+  --gpt-spacing-16: 96px;
+  --gpt-spacing-17: 120px;
+  --gpt-spacing-18: 160px;
+
+  /* Primitives/Radius */
+  --gpt-radius-none: 0px;
+  --gpt-radius-xs: 2px;
+  --gpt-radius-sm: 4px;
+  --gpt-radius-md: 8px;
+  --gpt-radius-lg: 12px;
+  --gpt-radius-xl: 16px;
+  --gpt-radius-2xl: 20px;
+  --gpt-radius-3xl: 24px;
+  --gpt-radius-4xl: 32px;
+  --gpt-radius-full: 9999px;
+
+  /* Primitives/Sizing */
+  --gpt-size-icon-xs: 12px;
+  --gpt-size-icon-sm: 16px;
+  --gpt-size-icon-md: 20px;
+  --gpt-size-icon-lg: 24px;
+  --gpt-size-icon-xl: 32px;
+
+  --gpt-size-avatar-sm: 24px;
+  --gpt-size-avatar-md: 32px;
+  --gpt-size-avatar-lg: 40px;
+  --gpt-size-avatar-xl: 48px;
+
+  --gpt-size-button-sm: 32px;
+  --gpt-size-button-md: 40px;
+  --gpt-size-button-lg: 48px;
+
+  --gpt-size-sidebar: 260px;
+  --gpt-size-input-height: 44px;
+
+  /* Transição padrão de estados interativos */
+  --gpt-transition-fast: 150ms ease;
+}

@@ -11,7 +11,11 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./unooria.css": "./dist/styles-unooria.css",
+    "./instanooria.css": "./dist/styles-instanooria.css",
+    "./chatgpt.css": "./dist/styles-chatgpt.css",
+    "./whatsappmobile.css": "./dist/styles-whatsappmobile.css"
   },
   "files": [
     "dist",
@@ -28,8 +32,9 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "build:package": "tsup",
-    "prepublishOnly": "npm run build:package"
+    "build:package": "npm run verificar:css && tsup",
+    "prepublishOnly": "npm run build:package",
+    "verificar:css": "node scripts/verificar-css-agregado.mjs"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos e Elevação — Instanooria
+   Medidas derivadas dos frames de 375×812 do Figma.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --insta-spacing-4xs: 2px;
+  --insta-spacing-3xs: 4px;
+  --insta-spacing-xxs: 6px;
+  --insta-spacing-xs: 8px;
+  --insta-spacing-s: 10px;
+  --insta-spacing-m: 12px;
+  --insta-spacing-l: 16px;
+  --insta-spacing-xl: 20px;
+  --insta-spacing-xxl: 24px;
+  --insta-spacing-3xl: 32px;
+  --insta-spacing-4xl: 48px;
+
+  /* Margem lateral padrão das telas (4% de 375px) */
+  --insta-gutter: 15px;
+
+  /* Raios de borda */
+  --insta-radius-xs: 3px;
+  --insta-radius-s: 4px;
+  --insta-radius-m: 8px;
+  --insta-radius-l: 10px;
+  --insta-radius-xl: 21.5px;
+  --insta-radius-full: 1000px;
+
+  /* Dimensões estruturais das telas */
+  --insta-screen-width: 375px;
+  --insta-screen-height: 812px;
+  --insta-statusbar-height: 44px;
+  --insta-topbar-height: 88px;
+  --insta-topbar-content-height: 44px;
+  --insta-tabbar-height: 79px;
+  --insta-tabbar-content-height: 50px;
+  --insta-home-indicator-height: 34px;
+
+  /* Dimensões de avatares (diâmetro do recorte interno) */
+  --insta-avatar-xs: 17px;
+  --insta-avatar-sm: 23px;
+  --insta-avatar-md: 32px;
+  --insta-avatar-lg: 56px;
+  --insta-avatar-xl: 80px;
+  --insta-avatar-ring-width: 2px;
+  --insta-avatar-ring-gap: 3px;
+
+  /* Alvos mínimos de toque e ícones */
+  --insta-icon-size-sm: 16px;
+  --insta-icon-size-md: 24px;
+  --insta-icon-size-lg: 28px;
+  --insta-touch-target: 44px;
+
+  /* Elevações (sombras hairline do iOS) */
+  --insta-elevation-hairline-bottom: 0 0.33px 0 0 var(--insta-color-border-subtle);
+  --insta-elevation-hairline-top: 0 -0.33px 0 0 var(--insta-color-border-subtle);
+  --insta-elevation-bar-bottom: 0 0.33px 0 0 var(--insta-color-border-bar);
+  --insta-elevation-bar-top: 0 -0.33px 0 0 var(--insta-color-border-bar);
+  --insta-elevation-drawer: -0.33px 0 0 0 var(--insta-color-border-subtle);
+
+  /* Movimento */
+  --insta-transition-fast: 120ms ease;
+  --insta-transition-base: 200ms ease;
+}

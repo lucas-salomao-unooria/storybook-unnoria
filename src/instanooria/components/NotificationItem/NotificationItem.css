@@ -1,0 +1,81 @@
+/**
+ * Estilos do Componente NotificationItem — Design System Instanooria
+ * Linha da tela de atividade: avatar de 40px, frase com nome em negrito,
+ * horário em cinza e miniatura de 44px ou botão de ação à direita.
+ */
+
+.insta-notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--insta-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--insta-spacing-m) var(--insta-gutter);
+  background-color: var(--insta-color-background-primary);
+  font-family: var(--insta-font-sans);
+  text-align: left;
+}
+
+.insta-notification-item--interactive {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-notification-item--interactive:hover {
+  background-color: var(--insta-color-background-secondary);
+}
+
+.insta-notification-item--interactive:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -2px;
+}
+
+.insta-notification-item__content {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.insta-notification-item__text {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-notification-item__username {
+  font-weight: var(--insta-font-label-lg-weight);
+}
+
+.insta-notification-item__timestamp {
+  margin-left: var(--insta-spacing-3xs);
+  color: var(--insta-color-text-secondary);
+}
+
+.insta-notification-item__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-xs);
+  margin-top: var(--insta-spacing-xs);
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-lg-weight);
+}
+
+.insta-notification-item__trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.insta-notification-item__thumbnail {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  background-color: var(--insta-color-background-tertiary);
+}

@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System WhatsApp Mobile
+   Escala oficial do Figma "WhatsApp Clone - Dark mode (Community) - cópia".
+   Famílias usadas no arquivo: PT Sans (interface), SF Compact Display
+   (barra de status do Android) e Poppins (assinatura "FACEBOOK").
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
+
+:root {
+  /* Famílias */
+  --wa-font-sans: 'PT Sans', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --wa-font-statusbar: 'SF Compact Display', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+  --wa-font-brand: 'Poppins', 'PT Sans', sans-serif;
+
+  /* Pesos */
+  --wa-font-weight-regular: 400;
+  --wa-font-weight-bold: 700;
+  --wa-font-weight-semibold: 600;
+
+  /* Display/Call — nome do contato na tela de chamada (1:4619) */
+  --wa-font-display-size: 30px;
+  --wa-font-display-weight: 400;
+  --wa-font-display-line: normal;
+
+  /* Subtitle/Call — estado da chamada (1:4620) */
+  --wa-font-subtitle-size: 19px;
+  --wa-font-subtitle-weight: 400;
+  --wa-font-subtitle-line: normal;
+
+  /* Title/Large — nome de contato em listas e cabeçalho de conversa (1:2070) */
+  --wa-font-title-lg-size: 21px;
+  --wa-font-title-lg-weight: 400;
+  --wa-font-title-lg-line: normal;
+
+  /* Title/Medium — marca "WhatsApp" e títulos de sub app bar (1:2137, 1:2697) */
+  --wa-font-title-md-size: 20px;
+  --wa-font-title-md-weight: 700;
+  --wa-font-title-md-line: normal;
+
+  /* Title/Small — status já visualizado e "My status" (1:60, 1:91) */
+  --wa-font-title-sm-size: 18.54px;
+  --wa-font-title-sm-weight: 700;
+  --wa-font-title-sm-line: normal;
+
+  /* Body/Large — linhas de configuração (1:2726) */
+  --wa-font-body-lg-size: 17px;
+  --wa-font-body-lg-weight: 400;
+  --wa-font-body-lg-line: normal;
+
+  /* Body/Medium — abas, texto de balão e nomes compactos (1:2140, 1:2939) */
+  --wa-font-body-md-size: 16px;
+  --wa-font-body-md-weight: 400;
+  --wa-font-body-md-line: normal;
+
+  /* Body/Small — opções de diálogo e descrições curtas (1:3507) */
+  --wa-font-body-sm-size: 15px;
+  --wa-font-body-sm-weight: 400;
+  --wa-font-body-sm-line: normal;
+
+  /* Section — rótulos "Recent updates" e "Viewed updates" (1:13) */
+  --wa-font-section-size: 15.54px;
+  --wa-font-section-weight: 700;
+  --wa-font-section-line: normal;
+
+  /* Label/Medium — metadados de status e chamadas (1:72, 1:506) */
+  --wa-font-label-md-size: 14.54px;
+  --wa-font-label-md-weight: 400;
+  --wa-font-label-md-line: normal;
+
+  /* Label/Small — etiqueta de data e aviso de criptografia (1:3012, 1:3017) */
+  --wa-font-label-sm-size: 14px;
+  --wa-font-label-sm-weight: 400;
+  --wa-font-label-sm-line: normal;
+
+  /* Caption — metadados dentro do balão (1:2940) */
+  --wa-font-caption-size: 13px;
+  --wa-font-caption-weight: 400;
+  --wa-font-caption-line: normal;
+
+  /* Caption/Bold — horário nas linhas de conversa (1:2106) */
+  --wa-font-caption-bold-size: 12px;
+  --wa-font-caption-bold-weight: 700;
+  --wa-font-caption-bold-line: normal;
+
+  /* Badge — numeral dentro do selo de não lidas (1:2126) */
+  --wa-font-badge-size: 11px;
+  --wa-font-badge-weight: 700;
+  --wa-font-badge-line: normal;
+
+  /* Placeholder — "Type a message" (1:3028) */
+  --wa-font-placeholder-size: 20px;
+  --wa-font-placeholder-weight: 400;
+  --wa-font-placeholder-line: normal;
+
+  /* Barra de status do Android (1:2147, 1:2157, 1:2158) */
+  --wa-font-statusbar-clock-size: 16.544px;
+  --wa-font-statusbar-clock-weight: 600;
+  --wa-font-statusbar-network-size: 14.238px;
+  --wa-font-statusbar-network-weight: 600;
+  --wa-font-statusbar-battery-size: 13.54px;
+  --wa-font-statusbar-battery-weight: 700;
+}

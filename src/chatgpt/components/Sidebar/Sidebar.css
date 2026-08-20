@@ -1,0 +1,118 @@
+/**
+ * Estilos do Componente Sidebar — Design System ChatGPT
+ *
+ * Medidas do componente `Sidebar` do Figma: 260 × 800 (`size/sidebar`),
+ * padding 12/8, gap 4 e superfície `bg/secondary`.
+ *   NewChatButton · padding 10/12 · gap 8 · raio 8 · rótulo Inter Medium 14
+ *   SectionLabel  · Inter Semi Bold 11 a 40% de opacidade
+ *   FooterItem    · padding 8/12 · rótulo Inter Regular 14 a 70%
+ *
+ * O padding vertical de 10px do botão de nova conversa e o corpo de 11px do
+ * rótulo de seção são valores literais do arquivo.
+ */
+
+.gpt-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gpt-spacing-2);
+  box-sizing: border-box;
+  width: var(--gpt-size-sidebar);
+  padding: var(--gpt-spacing-5) var(--gpt-spacing-4);
+  background-color: var(--gpt-bg-secondary);
+  font-family: var(--gpt-font-sans);
+}
+
+/* ==========================================================================
+   Botão de nova conversa
+   ========================================================================== */
+
+.gpt-sidebar__new-chat {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px var(--gpt-spacing-5);
+  border: none;
+  border-radius: var(--gpt-radius-md);
+  background-color: var(--gpt-bg-inverse);
+  color: var(--gpt-text-inverse);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-medium);
+  line-height: var(--gpt-font-body-sm-line);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  transition: opacity var(--gpt-transition-fast);
+}
+
+.gpt-sidebar__new-chat:hover {
+  opacity: 0.85;
+}
+
+.gpt-sidebar__new-chat:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-sidebar__new-chat-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Rótulo de seção
+   ========================================================================== */
+
+.gpt-sidebar__section-label {
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-5) var(--gpt-spacing-1);
+  font-size: 11px;
+  font-weight: var(--gpt-font-weight-semibold);
+  line-height: var(--gpt-font-caption-line);
+  color: var(--gpt-text-soft-40);
+}
+
+/* ==========================================================================
+   Espaçador e rodapé
+   ========================================================================== */
+
+.gpt-sidebar__spacer {
+  flex: 1 1 auto;
+}
+
+.gpt-sidebar__footer-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-5);
+  border: none;
+  border-radius: var(--gpt-radius-md);
+  background-color: transparent;
+  color: var(--gpt-text-soft-70);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--gpt-transition-fast), color var(--gpt-transition-fast);
+}
+
+.gpt-sidebar__footer-item:hover {
+  background-color: var(--gpt-fill-2);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-sidebar__footer-item:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}

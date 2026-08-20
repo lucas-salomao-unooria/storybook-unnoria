@@ -1,0 +1,142 @@
+/**
+ * Estilos do Componente TextField — Design System Instanooria
+ * Variante 'filled' fiel ao formulário de login (altura 44px, raio 4px) e
+ * variante 'underline' fiel à tela "Edit Profile" (rótulo à esquerda, hairline).
+ */
+
+.insta-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--insta-spacing-3xs);
+  box-sizing: border-box;
+  font-family: var(--insta-font-sans);
+}
+
+.insta-text-field--block {
+  width: 100%;
+}
+
+.insta-text-field__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Variante Filled
+   ========================================================================== */
+
+.insta-text-field--filled .insta-text-field__control {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--insta-spacing-m);
+  background-color: var(--insta-color-background-secondary);
+  border: 1px solid var(--insta-color-action-secondary-border);
+  border-radius: var(--insta-radius-s);
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-body-lg-size);
+  font-weight: var(--insta-font-body-lg-weight);
+  line-height: var(--insta-font-body-lg-line);
+  letter-spacing: var(--insta-font-body-lg-tracking);
+  appearance: none;
+  transition: border-color var(--insta-transition-fast);
+}
+
+.insta-text-field--filled .insta-text-field__control::placeholder {
+  color: var(--insta-color-text-placeholder);
+}
+
+.insta-text-field--filled .insta-text-field__control:focus {
+  outline: none;
+  border-color: var(--insta-color-border-default);
+}
+
+.insta-text-field--filled .insta-text-field__control:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 1px;
+}
+
+.insta-text-field--filled .insta-text-field__control:disabled {
+  color: var(--insta-color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Variante Underline
+   ========================================================================== */
+
+.insta-text-field--underline .insta-text-field__row {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-l);
+  min-height: 42px;
+  box-shadow: var(--insta-elevation-hairline-bottom);
+}
+
+.insta-text-field--underline .insta-text-field__label {
+  flex: 0 0 82px;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-body-md-size);
+  font-weight: var(--insta-font-body-md-weight);
+  letter-spacing: var(--insta-font-body-md-tracking);
+}
+
+.insta-text-field--underline .insta-text-field__control {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-body-md-size);
+  font-weight: var(--insta-font-body-md-weight);
+  letter-spacing: var(--insta-font-body-md-tracking);
+  appearance: none;
+}
+
+.insta-text-field--underline .insta-text-field__control::placeholder {
+  color: var(--insta-color-text-secondary);
+}
+
+.insta-text-field--underline .insta-text-field__control:focus {
+  outline: none;
+}
+
+.insta-text-field--underline .insta-text-field__control:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--insta-radius-s);
+}
+
+/* ==========================================================================
+   Estados e mensagens
+   ========================================================================== */
+
+.insta-text-field--error .insta-text-field__control {
+  border-color: var(--insta-color-brand-like);
+}
+
+.insta-text-field__message {
+  margin: 0;
+  font-size: var(--insta-font-caption-md-size);
+  line-height: 1.4;
+  color: var(--insta-color-text-secondary);
+}
+
+.insta-text-field__message--error {
+  color: var(--insta-color-brand-like);
+}
+
+.insta-text-field__trailing {
+  display: flex;
+  justify-content: flex-end;
+}

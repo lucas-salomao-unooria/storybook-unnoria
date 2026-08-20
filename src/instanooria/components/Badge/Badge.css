@@ -1,0 +1,99 @@
+/**
+ * Estilos do Componente Badge — Design System Instanooria
+ * Especificações do Figma: etiqueta LIVE (raio 3px, contorno 2px, texto 8px)
+ * e contador de mídia (raio total, fundo tertiary, texto 12px).
+ */
+
+.insta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: var(--insta-font-sans);
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Variante LIVE
+   ========================================================================== */
+
+.insta-badge--live {
+  padding: 2px 5px;
+  border: 2px solid var(--insta-color-ring-inner);
+  border-radius: var(--insta-radius-xs);
+  background: var(--insta-gradient-livebadge);
+  color: #ffffff;
+  font-size: var(--insta-font-nav-badge-size);
+  font-weight: var(--insta-font-nav-badge-weight);
+  line-height: var(--insta-font-nav-badge-line);
+  letter-spacing: var(--insta-font-nav-badge-tracking);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Variante Contador de mídia
+   ========================================================================== */
+
+.insta-badge--counter {
+  min-width: 34px;
+  height: 26px;
+  padding: 0 var(--insta-spacing-xs);
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-background-tertiary);
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+  line-height: var(--insta-font-caption-md-line);
+}
+
+/* ==========================================================================
+   Variante Notificação
+   ========================================================================== */
+
+.insta-badge--notification {
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-brand-notification);
+  color: #ffffff;
+  font-size: var(--insta-font-nav-badge-size);
+  font-weight: var(--insta-font-nav-badge-weight);
+  letter-spacing: var(--insta-font-nav-badge-tracking);
+}
+
+/* ==========================================================================
+   Variante Neutra
+   ========================================================================== */
+
+.insta-badge--neutral {
+  padding: 3px var(--insta-spacing-xs);
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-background-tertiary);
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+}
+
+/* ==========================================================================
+   Modo Dot (8×8px)
+   ========================================================================== */
+
+.insta-badge--dot {
+  width: 8px;
+  min-width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--insta-radius-full);
+}
+
+.insta-badge--dot.insta-badge--notification {
+  background-color: var(--insta-color-brand-notification);
+}
+
+.insta-badge--dot.insta-badge--live {
+  background: var(--insta-gradient-livebadge);
+}

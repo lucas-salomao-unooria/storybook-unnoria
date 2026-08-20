@@ -1017,7 +1017,13 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   title,
   value,
   variant = 'up',
-  tagText = '+12%',
+  /**
+   * Sem valor padrão de propósito: o default anterior ('+12%') fazia todo
+   * consumidor que só passasse `title` e `value` publicar uma variação
+   * inventada, com seta e cor de tendência. Métrica falsa é pior que métrica
+   * ausente — a etiqueta agora só aparece quando alguém informa o número.
+   */
+  tagText,
   theme = 'light',
   className = '',
   style,
@@ -1031,10 +1037,12 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       <h4 className="unooria-metric-card__title">{title}</h4>
       <div className="unooria-metric-card__bottom-row">
         <span className="unooria-metric-card__value">{value}</span>
-        <span className={`unooria-metric-card__tag unooria-metric-card__tag--${variant}`}>
-          {variant === 'up' ? <CallMadeIcon /> : <CallReceivedIcon />}
-          <span>{tagText}</span>
-        </span>
+        {tagText ? (
+          <span className={`unooria-metric-card__tag unooria-metric-card__tag--${variant}`}>
+            {variant === 'up' ? <CallMadeIcon /> : <CallReceivedIcon />}
+            <span>{tagText}</span>
+          </span>
+        ) : null}
       </div>
     </div>
   );

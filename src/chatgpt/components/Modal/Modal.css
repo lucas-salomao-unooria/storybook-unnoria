@@ -1,0 +1,103 @@
+/**
+ * Estilos do Componente Modal — Design System ChatGPT
+ *
+ * Medidas do componente `Modal` do Figma: 480px de largura, padding 24,
+ * gap 16, raio 16 (`radius/xl`), superfície `bg/primary` e a sombra local
+ * `0 8 32 -4 · preto 15%` (`--gpt-elevation-modal`).
+ *
+ * O scrim usa `Overlay/Black 40%`, o overlay publicado na biblioteca.
+ */
+
+.gpt-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gpt-spacing-8);
+  background-color: var(--gpt-overlay-black-40);
+}
+
+.gpt-modal-overlay__inner {
+  display: contents;
+}
+
+.gpt-modal-root {
+  display: inline-flex;
+}
+
+.gpt-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gpt-spacing-6);
+  box-sizing: border-box;
+  width: 480px;
+  max-width: 100%;
+  padding: var(--gpt-spacing-8);
+  border-radius: var(--gpt-radius-xl);
+  background-color: var(--gpt-bg-primary);
+  box-shadow: var(--gpt-elevation-modal);
+  font-family: var(--gpt-font-sans);
+}
+
+.gpt-modal:focus {
+  outline: none;
+}
+
+.gpt-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gpt-spacing-5);
+}
+
+.gpt-modal__title {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--gpt-font-heading-h3-size);
+  font-weight: var(--gpt-font-weight-semibold);
+  line-height: var(--gpt-font-heading-h3-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-heading-h3-size);
+  line-height: 1;
+  color: var(--gpt-text-soft-50);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color var(--gpt-transition-fast);
+}
+
+.gpt-modal__close:hover {
+  color: var(--gpt-text-primary);
+}
+
+.gpt-modal__close:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-modal__body {
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-soft-70);
+}
+
+.gpt-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gpt-spacing-5);
+  margin-top: auto;
+}

@@ -1,0 +1,138 @@
+/**
+ * Estilos do Componente Button — Design System Instanooria
+ * Medidas do Figma: ação principal de 44px nas telas de login, ações de perfil
+ * com 29–30px de altura e raio de 4px.
+ */
+
+.insta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--insta-spacing-xs);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: var(--insta-radius-s);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--insta-transition-fast),
+    border-color var(--insta-transition-fast), color var(--insta-transition-fast),
+    opacity var(--insta-transition-fast);
+}
+
+.insta-button:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+.insta-button--block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.insta-button--size-sm {
+  height: 30px;
+  padding: 0 var(--insta-spacing-m);
+}
+
+.insta-button--size-md {
+  height: 36px;
+  padding: 0 var(--insta-spacing-l);
+}
+
+.insta-button--size-lg {
+  height: 44px;
+  padding: 0 var(--insta-spacing-xl);
+}
+
+/* ==========================================================================
+   Variante Primária
+   ========================================================================== */
+
+.insta-button--primary {
+  background-color: var(--insta-color-action-primary);
+  color: #ffffff;
+}
+
+.insta-button--primary:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.insta-button--primary:active:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+.insta-button--primary:disabled {
+  background-color: var(--insta-color-action-disabled);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Variante Secundária
+   ========================================================================== */
+
+.insta-button--secondary {
+  background-color: transparent;
+  border-color: var(--insta-color-action-secondary-border);
+  color: var(--insta-color-text-primary);
+}
+
+.insta-button--secondary:hover:not(:disabled) {
+  background-color: var(--insta-color-background-secondary);
+}
+
+.insta-button--secondary:disabled {
+  color: var(--insta-color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Variante Link
+   ========================================================================== */
+
+.insta-button--link {
+  height: auto;
+  padding: 0;
+  background: none;
+  border-color: transparent;
+  color: var(--insta-color-text-link);
+}
+
+.insta-button--link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.insta-button--link:disabled {
+  color: var(--insta-color-action-disabled);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Variante Facebook
+   ========================================================================== */
+
+.insta-button--facebook {
+  background: none;
+  border-color: transparent;
+  color: var(--insta-color-text-link);
+}
+
+.insta-button--facebook:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.insta-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

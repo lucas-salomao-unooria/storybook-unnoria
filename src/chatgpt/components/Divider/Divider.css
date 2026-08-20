@@ -1,0 +1,25 @@
+/**
+ * Estilos do Componente Divider — Design System ChatGPT
+ *
+ * Medidas do componente `Divider` do Figma: 320 × 1px, preenchimento
+ * translúcido de 10%. A largura não é fixada aqui — o traço acompanha o
+ * contêiner, como acontece nas listas de configurações do arquivo.
+ */
+
+.gpt-divider {
+  border: none;
+  margin: 0;
+  background-color: var(--gpt-fill-10);
+  flex-shrink: 0;
+}
+
+.gpt-divider--horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.gpt-divider--vertical {
+  width: 1px;
+  height: 100%;
+  align-self: stretch;
+}

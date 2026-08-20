@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/**
+ * A fonte Inter é declarada aqui **e** no topo de `chatgpt/tokens/typography.css`.
+ *
+ * Não é redundância: o empacotador embute o conteúdo dos arquivos importados, e
+ * um `@import url(...)` que caia no meio da folha resultante é ignorado pelo
+ * navegador. A declaração no topo desta folha é a que funciona no pacote
+ * publicado; a do arquivo de tokens é a que funciona para quem importa
+ * `typography.css` direto (o preview do Storybook, por exemplo).
+ */
+
+/**
+ * Unooria Design System — apenas a seção ChatGPT.
+ *
+ * Entrada granular para superfícies que replicam o cliente de conversa e NÃO
+ * podem carregar o CSS da plataforma: são universos visuais distintos, e o
+ * pacote completo arrastaria tokens, componentes e a fonte Open Sans para
+ * dentro do clone. Use `@unooria/design-system/styles.css` quando quiser
+ * todas as seções.
+ */
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (ChatGPT)
+ * ---------------------------------------------------- */
+@import './chatgpt/tokens/colors.css';
+@import './chatgpt/tokens/typography.css';
+@import './chatgpt/tokens/spacing.css';
+@import './chatgpt/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (ChatGPT)
+ * ---------------------------------------------------- */
+@import './chatgpt/components/Avatar/Avatar.css';
+@import './chatgpt/components/Badge/Badge.css';
+@import './chatgpt/components/Button/Button.css';
+@import './chatgpt/components/ChatBubble/ChatBubble.css';
+@import './chatgpt/components/ChatInput/ChatInput.css';
+@import './chatgpt/components/Divider/Divider.css';
+@import './chatgpt/components/FeatureCard/FeatureCard.css';
+@import './chatgpt/components/GPTCard/GPTCard.css';
+@import './chatgpt/components/IconButton/IconButton.css';
+@import './chatgpt/components/Input/Input.css';
+@import './chatgpt/components/Modal/Modal.css';
+@import './chatgpt/components/NavItem/NavItem.css';
+@import './chatgpt/components/SearchInput/SearchInput.css';
+@import './chatgpt/components/SettingsRow/SettingsRow.css';
+@import './chatgpt/components/Sidebar/Sidebar.css';
+@import './chatgpt/components/Tag/Tag.css';
+@import './chatgpt/components/Toggle/Toggle.css';

@@ -1,0 +1,34 @@
+/**
+ * Estilos do Componente FilterChip — Design System WhatsApp Mobile
+ * Chips de filtro da busca em conversas (frame 1:1916): cápsula em
+ * `--wa-color-surface-sheet` com rótulo de 15px.
+ */
+
+.wa-filterchip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wa-spacing-xs);
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 var(--wa-spacing-m);
+  border: none;
+  border-radius: var(--wa-radius-full);
+  background-color: var(--wa-color-surface-sheet);
+  color: var(--wa-color-text-settings);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-sm-size);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-filterchip:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
+.wa-filterchip--selected {
+  background-color: var(--wa-color-accent);
+  color: var(--wa-color-text-on-accent);
+}

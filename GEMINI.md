@@ -24,6 +24,20 @@ Este documento estabelece as regras e padrões arquiteturais obrigatórios para 
 - **Clone WhatsApp**: `stories/whatsapp/` (para tokens, telas e componentes do clone WhatsApp).
 - **Componentes Utilitários de Documentação**: Em `.storybook/components/` (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`).
 
+### 1.3. Módulos Multimarca (`src/whatsapp/`, `src/instanooria/`)
+- O pacote hospeda **mais de um design system**. Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppUI`, `InstanooriaUI`) para evitar colisão de nomes com os componentes da Plataforma Unooria.
+- **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
+  - Código de produção: `src/chatgpt/tokens/` e `src/chatgpt/components/[NomeComponente]/`.
+  - Estórias: `stories/chatgpt/fundamentos/`, `stories/chatgpt/componentes/` e `stories/chatgpt/telas/`.
+  - Conteúdo de demonstração compartilhado: `stories/chatgpt/fixtures.ts`.
+  - Prefixo de variáveis CSS: `--gpt-*`. Prefixo de classes: `.gpt-*`. Atributo de tema: `data-gpt-theme="light | dark"`.
+- **Instanooria** (rede social visual da Unooria, derivada do arquivo Figma "Instagram UI Screens (Community)"):
+  - Código de produção: `src/instanooria/tokens/` e `src/instanooria/components/[NomeComponente]/`.
+  - Estórias: `stories/instanooria/fundamentos/`, `stories/instanooria/componentes/` e `stories/instanooria/telas/`.
+  - Conteúdo de demonstração compartilhado: `stories/instanooria/fixtures.ts`.
+  - Prefixo de variáveis CSS: `--insta-*`. Prefixo de classes: `.insta-*`. Atributo de tema: `data-insta-theme="light | dark"`.
+- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. É proibido usar `var(--unooria-*)` dentro do Instanooria ou do ChatGPT, `var(--insta-*)` fora do Instanooria e `var(--gpt-*)` fora do ChatGPT — são marcas com hierarquias cromáticas distintas.
+
 ---
 
 ## 2. Uso Obrigatório e Estrito de Design Tokens (Zero Cores Hardcoded)
@@ -60,6 +74,31 @@ Todo e qualquer componente, estilo CSS ou documentação **DEVE** utilizar exclu
 - **Espaçamento**: `var(--unooria-spacing-4xs)` (2px) a `var(--unooria-spacing-xxxl)` (64px).
 - **Raios de Borda**: `var(--unooria-radius-s)` (4px), `var(--unooria-radius-m)` (8px/12px), `var(--unooria-radius-full, 1000px)`.
 - **Barra de Rolagem**: `var(--unooria-scrollbar-*)` e utilitários `.unooria-scrollbar`.
+
+### 2.3. Tokens do Instanooria (`src/instanooria/tokens/`)
+Todo componente, estilo ou documentação do Instanooria **DEVE** consumir exclusivamente as variáveis `--insta-*`. Os valores foram extraídos das **variáveis oficiais do arquivo Figma**, e não estimados a partir de capturas de tela.
+
+- **Superfícies**: `--insta-color-background-primary` (`#FFFFFF` / `#000000`), `-secondary` (`#FAFAFA` / `#060606`), `-tertiary` (`#F8F8F8` / `#121212`), `-elevated` (`#FFFFFF` / `#262626`).
+- **Texto**: `--insta-color-text-primary` (`#262626` / `#F9F9F9`), `-secondary` (`#8E8E93` / `#979797`), `-link` (`#3897F0` / `#3797EF`), `-placeholder`.
+- **Ícones**: `--insta-color-icon-primary`, `--insta-color-icon-secondary`.
+- **Bordas**: `--insta-color-border-default` (`#C7C7CC` / `#3C3C43`), `-subtle` (`rgba(60,60,67,0.29)` / `#48484A`), `-bar` (`#A6A6AA`).
+- **Ações**: `--insta-color-action-primary` (`#3897F0`), `-disabled` (`#9FC4F2`), `--insta-color-fill-field` (`rgba(118,118,128,0.12)`).
+- **Marca (invariantes entre temas)**: `--insta-color-brand-like` (`#ED4956`), `-verified` (`#3897F0`), `-notification`, `--insta-color-highlight-ring` (`#C7C7CC`).
+- **Gradientes**: `--insta-gradient-story` (`#FBAA47 → #D91A46 → #A60F93`), `--insta-gradient-live` (`#E20337 → #C60188 → #7700C3`), `--insta-gradient-livebadge` (`#C90083 → #D22463 → #E10038`).
+- **Tipografia**: família SF Pro via `--insta-font-sans`; escala de 14 estilos (`--insta-font-title-lg-*`, `--insta-font-label-md-*`, `--insta-font-nav-badge-*`, etc.) com pesos 400/510/590 e tracking negativo obrigatório.
+- **Medidas**: escala `--insta-spacing-4xs` (2px) a `--insta-spacing-4xl` (48px), calha `--insta-gutter` (15px), raios `--insta-radius-xs` (3px) a `--insta-radius-full`, e dimensões estruturais (`--insta-topbar-height` 88px, `--insta-tabbar-height` 79px, `--insta-statusbar-height` 44px).
+- **Elevação**: apenas hairlines de 0.33px (`--insta-elevation-hairline-bottom`, `-top`, `--insta-elevation-bar-bottom`, `-top`, `--insta-elevation-drawer`). **É proibido introduzir sombras com desfoque** — elas não existem no arquivo de design.
+
+### 2.4. Tokens do ChatGPT (`src/chatgpt/tokens/`)
+Todo componente, estilo ou documentação do ChatGPT **DEVE** consumir exclusivamente as variáveis `--gpt-*`. Os valores foram lidos via Plugin API das **coleções de variáveis e dos estilos publicados** da página `🟡 Design system`, e não estimados a partir de captura de tela.
+
+- **Primitivas** (`Primitives/Colors`, modo único): `--gpt-color-black`, `-white`, `-gray-50|100|200|400|600|800|900`, `-purple-400|500|600|700`, `-blue-400|500|600`, `-green-500|600`, `-red-500|600`, `-orange-400|500`, `-yellow-500`, `-pink-400|500`. **Nunca aplicadas diretamente em componente** — servem de origem para os aliases semânticos.
+- **Semânticas** (`Semantic/Colors`, modos `Light` e `Dark`): `--gpt-bg-primary|secondary|tertiary|inverse|brand`, `--gpt-text-primary|secondary|tertiary|inverse|brand|link`, `--gpt-border-default|strong|brand`, `--gpt-interactive-primary|hover|secondary` e `--gpt-status-success|error|warning|info`. Marca: `--gpt-interactive-primary` (`#5856D6` no Light, `#9F9FF8` no Dark).
+- **Escada translúcida**: `--gpt-fill-2|4|8|10` para superfícies e `--gpt-text-soft-30|40|50|60|70|80` para hierarquia de texto por opacidade. Fiéis ao Light e espelhados em branco no Dark.
+- **Overlays** (estilos de pintura `Overlay/*`, invariantes de tema): `--gpt-overlay-black-4|10|20|40|80` e `--gpt-overlay-white-20|40|80`.
+- **Tipografia**: família Inter via `--gpt-font-sans`; escala de 13 estilos (`--gpt-font-display-xl-*`, `--gpt-font-heading-h1-*`, `--gpt-font-body-sm-*`, `--gpt-font-label-md-*`, `--gpt-font-caption-*`, etc.) com pesos 400/500/600 e **letter-spacing 0 em todos os degraus**.
+- **Medidas**: escala `--gpt-spacing-0` (0) a `--gpt-spacing-18` (160px) em grade de 4px com os degraus finos de 2px e 6px preservados; raios `--gpt-radius-none` a `--gpt-radius-full`; dimensões `--gpt-size-icon-xs..xl`, `--gpt-size-avatar-sm..xl`, `--gpt-size-button-sm|md|lg`, `--gpt-size-sidebar` (260px) e `--gpt-size-input-height` (44px).
+- **Elevação**: `--gpt-elevation-sm|md|lg|xl` dos estilos `Shadow/*`, mais `--gpt-elevation-knob` e `--gpt-elevation-modal` dos dois efeitos locais. A biblioteca é **plana por padrão** — cartões e campos se separam por contorno translúcido, e sombra existe apenas em diálogo e knob.
 
 ---
 
@@ -161,12 +200,89 @@ export default meta;
 - Semântica ARIA completa (`role="dialog"`, `role="progressbar"`, `role="button"`, `role="region"`, `aria-expanded`, `aria-controls`, `aria-labelledby`, `aria-describedby`).
 - Navegação completa por teclado (ESC para fechar modais/menus, Tab/Shift+Tab com focus trapping, Enter/Espaço para acionamento).
 
+### 4.4. Iconografia Derivada do Figma
+- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca. Todo ícone do Instanooria vive em `src/instanooria/components/Icon/IconPaths.tsx` com o atributo `d` **literal do export SVG do Figma** e o `viewBox` original preservado (não normalizado para 24×24).
+- O mesmo vale para o logotipo (`src/instanooria/components/Logo/LogoVector.ts`) e para os glifos de sistema do iPhone X (`src/instanooria/components/PhoneFrame/DeviceGlyphs.tsx`).
+- Ao adicionar um glifo novo, exporte o SVG do Figma, extraia o caminho e registre-o em `instaIcons` com `figmaName`, `viewBox` e `usage` preenchidos.
+
 ---
 
 ## 5. Validação e Qualidade de Código
 
 Sempre que criar ou alterar um componente ou estória:
-1. Verifique se **todos os estilos e cores consomem exclusivamente os tokens CSS de `src/unooria/tokens/`**.
+1. Verifique se **todos os estilos e cores consomem exclusivamente os tokens CSS do módulo correspondente** (`src/unooria/tokens/`, `src/instanooria/tokens/`, `src/chatgpt/tokens/` ou `src/whatsapp/tokens/`), sem hexadecimais avulsos e sem mistura entre marcas.
 2. Certifique-se de que os modos **Light** e **Dark** são suportados nativamente via tokens semânticos.
 3. Execute `npx tsc --noEmit` para garantir **0 erros de compilação**.
-4. Execute `npm run build-storybook` para validar o **build sem erros do Storybook**.
+4. Execute `node scripts/verificar-css-agregado.mjs` para garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`).
+5. Execute `npm run build-storybook` para validar o **build sem erros do Storybook**.
+
+---
+
+## 6. Design System Instanooria (Seção `Instanooria` do Storybook)
+
+O **Instanooria** é a rede social visual da Plataforma Unooria, implementada a partir do arquivo Figma [Instagram UI Screens (Community)](https://www.figma.com/design/RA6xg5xo3Ty2iXpjlqVnXq/Instagram-UI-Screens--Community---c%C3%B3pia-) (`fileKey RA6xg5xo3Ty2iXpjlqVnXq`, página `0:2`, 19 telas × 2 temas).
+
+### 6.1. Títulos das Estórias
+- **Fundamentos**: `Instanooria/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação & Gradientes | Ícones]`.
+- **Componentes**: `Instanooria/Componentes/[NomeComponente]`.
+- **Telas compostas**: `Instanooria/Telas/Telas Compostas`.
+
+### 6.2. Componentes Oficiais
+`Icon`, `Logo`, `Avatar`, `Badge`, `Button`, `Divider`, `StoryBubble`, `StoriesTray`, `TopBar`, `TabBar`, `PostCard` (composto), `TextField`, `SearchField`, `Chip`, `SegmentedTabs`, `ListItem`, `NotificationItem`, `ProfileHeader`, `MediaGrid`, `PhoneFrame` e `StoryViewer`.
+
+- Os destaques do perfil **não têm componente próprio**: são `StoriesTray` com `bordered={false}` e itens em estado `seen` / `add`. Não duplicar.
+- `PhoneFrame` é um contêiner **de documentação**, não de produção.
+
+### 6.3. Kit de Documentação
+As estórias do Instanooria usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/InstaDocKit.tsx`: `InstaDocGrid`, `InstaDocCard`, `InstaDocFigmaSpecs`, `InstaDocStage`, `InstaDocPractices`, `InstaDocThemeSwitcher`, `InstaDocPropsTable` e `InstaDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
+
+### 6.4. Registro de Desvios em Relação ao Figma
+Qualquer divergência intencional em relação ao arquivo de design **DEVE** ser documentada na seção "Figma & Especificações Técnicas" da estória do componente. Desvios registrados até o momento:
+- **PostCard.Timestamp**: o Figma vincula a data a `color/text/primary`; o Instanooria usa `--insta-color-text-secondary` para preservar a hierarquia de leitura entre legenda e metadado exigida pela seção 4.2.
+---
+
+## 7. Design System ChatGPT (Seção `ChatGPT` do Storybook)
+
+O **ChatGPT** é o cliente de conversa com IA da Plataforma Unooria, implementado a partir do arquivo Figma [ChatGPT UI Kit (AI Chat) (Community)](https://www.figma.com/design/FlQnC8T6Sg5HdVodu0f7bL/ChatGPT-UI-Kit--AI-Chat--Community-) (`fileKey FlQnC8T6Sg5HdVodu0f7bL`).
+
+### 7.1. Fonte Canônica: a Página `🟡 Design system`
+O arquivo tem cinco páginas. A **única fonte de implementação** é a página `🟡 Design system` (`609:5682`), onde vivem as coleções de variáveis, os estilos publicados e os 17 componentes.
+
+- A página `🟪 ChatGPT Web Client` (`665:2049`, 19 telas × 2 temas) está **inteiramente achatada em 4.516 nós vetoriais**, sem camadas de texto, componentes ou variáveis vinculadas. Ela serve apenas como referência de layout e fluxo — **não** é fonte de token nem de ícone.
+- As coleções foram lidas via Plugin API: `Primitives/Colors` (25 variáveis, modo `Default`), `Semantic/Colors` (21 variáveis, modos `Light` e `Dark`), `Primitives/Spacing` (19), `Primitives/Radius` (10) e `Primitives/Sizing` (14). Somam-se 13 estilos de texto, 4 de efeito e 21 de pintura.
+
+### 7.2. Títulos das Estórias
+- **Fundamentos**: `ChatGPT/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação & Overlays | Glifos]`.
+- **Componentes**: `ChatGPT/Componentes/[NomeComponente]`.
+- **Telas compostas**: `ChatGPT/Telas/Telas Compostas`.
+
+### 7.3. Componentes Oficiais (17)
+`Button`, `IconButton`, `Avatar`, `Badge`, `Tag`, `Toggle`, `Divider`, `Input`, `ChatInput`, `SearchInput`, `NavItem`, `ChatBubble`, `GPTCard`, `SettingsRow`, `Sidebar` (composto), `FeatureCard` e `Modal` (composto).
+
+- `Sidebar` expõe `Sidebar.NewChatButton`, `Sidebar.SectionLabel`, `Sidebar.Spacer` e `Sidebar.FooterItem`.
+- `Modal` expõe `Modal.Header`, `Modal.Body` e `Modal.Footer`.
+- A prop `theme` é **opcional e sem valor padrão** em todos os componentes: quando omitida, o componente herda o tema do contêiner ancestral via `data-gpt-theme`. Isso permite trocar o tema uma única vez, no nó mais externo.
+- A moldura de janela e o cabeçalho de área usados em `ChatGPT/Telas` são **andaimes de documentação**, restritos a `stories/`, e não integram o pacote.
+
+### 7.4. Iconografia: Glifos, Não Vetores
+O arquivo de design **não publica biblioteca de ícones**: os componentes usam caracteres tipográficos em camadas de texto Inter Regular. Os sete caracteres literais estão em `src/chatgpt/tokens/glyphs.ts` (`gptGlyphs`): `✕` `→` `↑` `✦` `⌕` `+` `💬`.
+
+- **PROIBIDO** desenhar um `<svg>`/`<path>` aproximado para substituir um glifo, ou adicionar símbolo que não exista em nenhuma camada do arquivo.
+- Toda prop de glifo aceita `ReactNode`, de modo que um produto com família vetorial própria possa injetá-la sem alterar o componente.
+
+### 7.5. Kit de Documentação
+As estórias do ChatGPT usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/GptDocKit.tsx`: `GptDocGrid`, `GptDocCard`, `GptDocFigmaSpecs` (com o slot `deviations`), `GptDocStage`, `GptDocPractices`, `GptDocThemeSwitcher`, `GptDocPropsTable` e `GptDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
+
+### 7.6. Registro de Desvios em Relação ao Figma
+Qualquer divergência intencional **DEVE** ser documentada no slot `deviations` do `GptDocFigmaSpecs` da estória correspondente. Desvios registrados até o momento:
+
+- **Alvos quadrados**: os frames de `IconButton`, `Avatar`, `GPTCard/Icon`, `ChatBubble/Avatar` e `ChatInput/SendButton` abraçam a largura do glifo (`layoutSizingHorizontal = HUG`), produzindo larguras de 8–20px contra alturas fixas. Os componentes renderizam o alvo **quadrado**, intenção confirmada pelo raio igual nos quatro cantos e pelos tokens `size/icon-*` e `size/avatar-*`.
+- **Escada translúcida**: os componentes do arquivo aplicam preenchimentos literais de preto com opacidade (2/4/8/10%) e textos de preto com opacidade (30/40/50/60/70/80%), sem vínculo com variável. Foram tokenizados como `--gpt-fill-*` e `--gpt-text-soft-*`, fiéis no Light e espelhados em branco no Dark, seguindo a inversão declarada em `Semantic/Colors`.
+- **Medidas literais**: valores sem degrau equivalente nas coleções estão anotados no CSS do componente — padding vertical de 10px (`Input`, `Sidebar.NewChatButton`), alturas 28/36/44 do `IconButton`, 36px do `SearchInput`, raio de 6px do `IconButton SM`, corpo de 13px do `FeatureCard` e alturas de linha 18/20px do `Button`.
+- **Pesos e corpos tipográficos**: o peso 500 (Medium) e os corpos 10/11/13/19px usados por `Badge`, `Avatar`, `FeatureCard` e `Sidebar.SectionLabel` não têm estilo de texto publicado. O peso foi tokenizado como `--gpt-font-weight-medium`; os corpos permanecem literais e anotados.
+- **Estados não publicados**: o arquivo não descreve hover, foco, desabilitado, scrim, `ESC` nem confinamento de foco. Foram acrescentados usando exclusivamente tokens da própria marca — hover pela escada translúcida ou `interactive/hover`, foco com anel de 2px em `border/brand`, desabilitado a 40% de opacidade e scrim em `Overlay/Black 40%`.
+- **Sombras locais**: a sombra do knob do `Toggle` (`0 1 3 · preto 15%`) e a do `Modal` (`0 8 32 -4 · preto 15%`) não têm estilo de efeito publicado — a do `Modal` fica entre `Shadow/LG` e `Shadow/XL`. Foram tokenizadas como `--gpt-elevation-knob` e `--gpt-elevation-modal`.
+- **`text/tertiary` e `color/gray/400`**: `text/tertiary` aponta para `color/gray/800` no Light e `color/purple/400` no Dark, e `color/gray/400` (`#9F9FFB`) é um lilás, não um cinza. Ambos foram preservados como declarados no arquivo, sem correção, para manter o vínculo com a variável de origem.
+- **`size/button-*`**: a régua de 32/40/48 existe em `Primitives/Sizing` mas **não é usada por nenhum componente publicado** — `Button` e `IconButton` derivam a altura de padding mais altura de linha. Mantida nos tokens por fidelidade à coleção.
+- **`Divider` vertical**: não existe como variante no arquivo; foi adicionado para separar controles em barras horizontais, com o mesmo preenchimento de 10%.
+- **`SettingsRow.value` com controle**: o arquivo mostra apenas valor textual. Aceitar `Toggle`, `Button` e `Badge` no slot é extensão necessária, pois as telas de configuração do produto colocam controles nessa coluna.

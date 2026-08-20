@@ -1,0 +1,127 @@
+/**
+ * Estilos do Componente StatusBar — Design System WhatsApp Mobile
+ * Reprodução da barra de status do Android presente em todos os frames de
+ * 411×823 do arquivo Figma (nós 1:2133 a 1:2164).
+ */
+
+.wa-statusbar {
+  position: relative;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--wa-font-statusbar);
+  color: var(--wa-color-statusbar-fg);
+  user-select: none;
+  overflow: hidden;
+}
+
+.wa-statusbar--app {
+  background-color: var(--wa-color-surface-canvas);
+}
+
+.wa-statusbar--call {
+  background-color: var(--wa-color-call-statusbar);
+}
+
+.wa-statusbar--transparent {
+  background-color: transparent;
+}
+
+/* ==========================================================================
+   Grupo à esquerda — relógio e indicadores do sistema
+   ========================================================================== */
+
+.wa-statusbar__left {
+  position: absolute;
+  left: var(--wa-gutter-appbar);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-s);
+}
+
+.wa-statusbar__clock {
+  font-family: var(--wa-font-statusbar);
+  font-size: var(--wa-font-statusbar-clock-size);
+  font-weight: var(--wa-font-statusbar-clock-weight);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Grupo à direita — rede, bateria e percentual
+   ========================================================================== */
+
+.wa-statusbar__right {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-xxs);
+}
+
+.wa-statusbar__signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+
+.wa-statusbar__signal-bar {
+  width: 3.006px;
+  background-color: var(--wa-color-statusbar-fg);
+  border-radius: 0.5px;
+}
+
+.wa-statusbar__signal-bar--off {
+  opacity: 0.3;
+}
+
+.wa-statusbar__network {
+  font-family: var(--wa-font-statusbar);
+  font-size: var(--wa-font-statusbar-network-size);
+  font-weight: var(--wa-font-statusbar-network-weight);
+  line-height: 1;
+}
+
+/* Bateria — corpo de 6,5×11,5px com nó superior de 3,46px (1:2154 a 1:2156) */
+.wa-statusbar__battery {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 7px;
+  height: 12.5px;
+  box-sizing: border-box;
+  border: 0.949px solid var(--wa-color-statusbar-fg);
+  border-radius: 2.848px;
+  margin-left: 2px;
+  padding: 0.9px;
+}
+
+.wa-statusbar__battery::before {
+  content: '';
+  position: absolute;
+  top: -2.4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.462px;
+  height: 1.6px;
+  border-radius: 1px;
+  background-color: var(--wa-color-statusbar-fg);
+}
+
+.wa-statusbar__battery-fill {
+  width: 100%;
+  border-radius: 0.949px;
+  background-color: var(--wa-color-warning-battery);
+}
+
+.wa-statusbar__battery-label {
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-statusbar-battery-size);
+  font-weight: var(--wa-font-statusbar-battery-weight);
+  line-height: 1;
+}

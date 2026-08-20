@@ -1,0 +1,59 @@
+/**
+ * Estilos do Componente Chip — Design System Instanooria
+ * Cápsula de categoria da tela Buscar: contorno de 1px, raio total e
+ * tipografia Title/Small.
+ */
+
+.insta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--insta-spacing-xxs);
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 var(--insta-spacing-m);
+  background-color: var(--insta-color-background-primary);
+  border: 1px solid var(--insta-color-action-secondary-border);
+  border-radius: var(--insta-radius-full);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--insta-transition-fast), color var(--insta-transition-fast),
+    border-color var(--insta-transition-fast);
+}
+
+.insta-chip:hover:not(:disabled) {
+  background-color: var(--insta-color-background-secondary);
+}
+
+.insta-chip:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+.insta-chip--selected {
+  background-color: var(--insta-color-text-primary);
+  border-color: var(--insta-color-text-primary);
+  color: var(--insta-color-background-primary);
+}
+
+.insta-chip--selected:hover:not(:disabled) {
+  background-color: var(--insta-color-text-primary);
+}
+
+.insta-chip:disabled {
+  color: var(--insta-color-text-secondary);
+  cursor: not-allowed;
+}
+
+.insta-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

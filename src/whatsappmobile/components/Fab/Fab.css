@@ -1,0 +1,101 @@
+/**
+ * Estilos do Componente Fab — Design System WhatsApp Mobile
+ * Botões de ação flutuantes circulares. O único efeito de elevação do arquivo
+ * é o drop shadow de 0 4px 2px rgba(0,0,0,.25) aplicado ao glifo.
+ */
+
+.wa-fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--wa-fab-diameter);
+  height: var(--wa-fab-diameter);
+  padding: 0;
+  border: none;
+  border-radius: var(--wa-radius-full);
+  background-color: var(--wa-fab-background);
+  color: var(--wa-color-icon-on-accent);
+  cursor: pointer;
+  appearance: none;
+  font-family: var(--wa-font-sans);
+}
+
+.wa-fab:focus-visible {
+  outline: 2px solid var(--wa-color-icon-appbar);
+  outline-offset: 2px;
+}
+
+.wa-fab:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.wa-fab__glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.25));
+}
+
+/* Composição do glifo de microfone: dois nós do Figma posicionados em
+   (18px, 14px) e (16px, 20,5px) dentro do círculo de 43px. */
+.wa-fab__mic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wa-fab__mic-body {
+  position: absolute;
+  left: 41.86%;
+  top: 32.56%;
+  width: 13.95%;
+  height: 25.58%;
+}
+
+.wa-fab__mic-stand {
+  position: absolute;
+  left: 37.21%;
+  top: 47.67%;
+  width: 23.26%;
+  height: 22.09%;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.wa-fab--chat {
+  --wa-fab-diameter: var(--wa-fab-chat);
+  --wa-fab-background: var(--wa-color-accent-fab-chat);
+}
+
+.wa-fab--camera {
+  --wa-fab-diameter: var(--wa-fab-lg);
+  --wa-fab-background: var(--wa-color-accent-fab);
+}
+
+.wa-fab--call {
+  --wa-fab-diameter: var(--wa-fab-lg);
+  --wa-fab-background: var(--wa-color-accent-fab);
+}
+
+.wa-fab--mic {
+  --wa-fab-diameter: var(--wa-fab-mic);
+  --wa-fab-background: var(--wa-color-accent-fab-mic);
+}
+
+.wa-fab--edit {
+  --wa-fab-diameter: var(--wa-fab-sm);
+  --wa-fab-background: var(--wa-color-surface-elevated);
+}
+
+.wa-fab--endCall {
+  --wa-fab-diameter: var(--wa-fab-endcall);
+  --wa-fab-background: var(--wa-color-danger-endcall);
+}

@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos e Elevação — WhatsApp Mobile
+   Medidas derivadas dos frames de 411×823 (Google Pixel 2 XL) do Figma.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --wa-spacing-4xs: 2px;
+  --wa-spacing-3xs: 4px;
+  --wa-spacing-xxs: 6px;
+  --wa-spacing-xs: 8px;
+  --wa-spacing-s: 10px;
+  --wa-spacing-m: 12px;
+  --wa-spacing-l: 16px;
+  --wa-spacing-xl: 20px;
+  --wa-spacing-xxl: 24px;
+  --wa-spacing-3xl: 32px;
+  --wa-spacing-4xl: 48px;
+
+  /* Calha lateral padrão das telas de listagem (1:2025 → left 19px) */
+  --wa-gutter: 19px;
+  /* Calha das barras superiores (1:2137 → left 24px) */
+  --wa-gutter-appbar: 24px;
+
+  /* Raios de borda */
+  --wa-radius-xs: 2px;
+  --wa-radius-s: 4px;
+  --wa-radius-m: 5px;
+  --wa-radius-l: 6px;
+  --wa-radius-xl: 8px;
+  --wa-radius-pill: 20px;
+  --wa-radius-full: 1000px;
+
+  /* Dimensões do dispositivo de referência */
+  --wa-device-width: 411px;
+  --wa-device-height: 823px;
+
+  /* Alturas estruturais */
+  --wa-statusbar-height: 21px;
+  --wa-appbar-height: 100px;      /* barra principal com abas (1:2136) */
+  --wa-appbar-title-height: 52px; /* cabeçalho de conversa (1:2997) */
+  --wa-subappbar-height: 57px;    /* Settings / Starred messages (1:2693) */
+  --wa-tabrow-height: 44px;
+  --wa-callbar-height: 87px;      /* barra de controles da chamada (1:4625) */
+  --wa-callheader-height: 133px;  /* cabeçalho da chamada (1:4597) */
+
+  /* Avatares */
+  --wa-avatar-xs: 23px;  /* linha de mensagem favoritada (1:2925) */
+  --wa-avatar-sm: 32px;  /* cabeçalho de conversa (1:3001) */
+  --wa-avatar-md: 45px;  /* linhas de status (1:93) */
+  --wa-avatar-lg: 50px;  /* linhas de conversa e chamadas (1:2044) */
+  --wa-avatar-ring: 56px;/* anel de status (1:33) */
+
+  /* Botões de ação flutuantes */
+  --wa-fab-lg: 54px;  /* câmera de status / nova chamada (1:165, 1:696) */
+  --wa-fab-chat: 52px;/* nova conversa (1:2128) */
+  --wa-fab-mic: 43px; /* microfone do compositor (1:3031) */
+  --wa-fab-sm: 41px;  /* editar status (1:162) */
+  --wa-fab-endcall: 58px; /* encerrar chamada (1:4631) */
+
+  /* Ícones */
+  --wa-icon-size-xs: 13px;
+  --wa-icon-size-sm: 17px;
+  --wa-icon-size-md: 20px;
+  --wa-icon-size-lg: 25px;
+  --wa-icon-size-xl: 28px;
+
+  /* Espessuras */
+  --wa-divider-width: 1px;
+  --wa-tab-indicator-width: 3px;
+  --wa-status-ring-width: 2.12px;
+
+  /* Elevação — o arquivo usa um único drop shadow (0 4px 2px rgba(0,0,0,.25))
+     aplicado ao glifo dos FABs; superfícies são planas. */
+  --wa-elevation-fab: 0 4px 2px rgba(0, 0, 0, 0.25);
+  --wa-elevation-none: none;
+
+  /* Transições */
+  --wa-transition-fast: 120ms ease;
+  --wa-transition-base: 200ms ease;
+}

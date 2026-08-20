@@ -1,0 +1,97 @@
+/**
+ * Estilos do Componente TopBar — Design System WhatsApp Mobile
+ * Faixa de 69px da tela inicial (1:2136) e de 57px das páginas internas
+ * (1:2693), ambas em `--wa-color-surface-appbar`.
+ */
+
+.wa-topbar {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--wa-color-surface-appbar);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-topbar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-l);
+  box-sizing: border-box;
+}
+
+.wa-topbar--home .wa-topbar__row {
+  height: 69px;
+  padding: 0 var(--wa-spacing-l) 0 var(--wa-gutter-appbar);
+}
+
+.wa-topbar--page .wa-topbar__row {
+  height: var(--wa-subappbar-height);
+  padding: 0 var(--wa-spacing-l) 0 14px;
+  gap: var(--wa-spacing-m);
+}
+
+.wa-topbar__heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.wa-topbar__title {
+  margin: 0;
+  font-size: var(--wa-font-title-md-size);
+  font-weight: var(--wa-font-title-md-weight);
+  line-height: var(--wa-font-title-md-line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-topbar--home .wa-topbar__title {
+  color: var(--wa-color-text-appbar);
+}
+
+.wa-topbar--page .wa-topbar__title {
+  color: var(--wa-color-text-title);
+}
+
+.wa-topbar__subtitle {
+  margin: 0;
+  color: var(--wa-color-text-meta);
+  font-size: var(--wa-font-caption-size);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-xs);
+}
+
+.wa-topbar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: var(--wa-radius-full);
+  background: transparent;
+  color: var(--wa-color-icon-appbar);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-topbar__button:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 1px;
+}
+
+.wa-topbar__button--back {
+  color: var(--wa-color-icon-back);
+  width: 38px;
+  height: 36px;
+}

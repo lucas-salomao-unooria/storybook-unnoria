@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+/*
+ * A fonte NÃO é importada aqui de propósito: quando este arquivo é inlinado num
+ * agregado, o @import deixa de ser a primeira regra da folha e o navegador o
+ * descarta em silêncio — os ícones passam a renderizar o nome do glifo como
+ * texto ("edit", "delete"). A declaração vive no topo de `src/styles.css` e de
+ * `src/styles-unooria.css`, junto com a fonte da marca.
+ */
 
 :root {
   /* ==========================================================================

@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Tokens de Cores — Design System WhatsApp Mobile
+   Extraídos do arquivo Figma "WhatsApp Clone - Dark mode (Community) - cópia"
+   (fileKey MSEV2CgXr84WwOyMauIBy2, página 0:1).
+
+   O arquivo de origem define APENAS o tema escuro. Todos os valores abaixo
+   foram lidos dos exports SVG / do contexto de design dos frames oficiais —
+   nenhum valor foi estimado. Ver seção "Desvios" na estória de Cores.
+   ========================================================================== */
+
+:root,
+[data-wa-theme='dark'] {
+  /* ------------------------------------------------------------------
+     Superfícies
+     ------------------------------------------------------------------ */
+  /** Base do documento (frames "Settings" 1:2691 e "Starred messages" 1:2919) */
+  --wa-color-surface-base: #090E12;
+  /** Fundo das telas de listagem (Chats/Status/Calls/Settings) */
+  --wa-color-surface-canvas: #101D25;
+  /** Barra superior, sub app bar e campo de busca */
+  --wa-color-surface-appbar: #232D36;
+  /** Menu suspenso e FAB secundário */
+  --wa-color-surface-elevated: #313C42;
+  /** Caixa de diálogo modal */
+  --wa-color-surface-dialog: #364147;
+  /** Folha de anexos, campo do compositor e chips de filtro */
+  --wa-color-surface-sheet: #2D383E;
+  /** Etiqueta de data ("TODAY") na conversa */
+  --wa-color-surface-datechip: #202B31;
+  /** Aviso de criptografia ponta a ponta */
+  --wa-color-surface-notice: #1E2A31;
+  /** Balão de mensagem enviada */
+  --wa-color-surface-bubble-out: #054640;
+  /** Faixa de documento dentro do balão enviado */
+  --wa-color-surface-bubble-out-strip: #043D36;
+  /** Balão de mensagem recebida (desvio documentado) */
+  --wa-color-surface-bubble-in: #232D36;
+  /** Véu escuro atrás de diálogos modais */
+  --wa-color-scrim: rgba(0, 0, 0, 0.6);
+
+  /* ------------------------------------------------------------------
+     Família de verde-água da marca
+     O arquivo comunitário utiliza onze verdes ligeiramente distintos.
+     Cada um é preservado como token nomeado pelo seu uso original.
+     ------------------------------------------------------------------ */
+  /** Aba ativa e contador de não lidas na barra principal */
+  --wa-color-accent: #0CA996;
+  /** Rótulo da aba STATUS ativa (1:151) */
+  --wa-color-accent-status: #189C87;
+  /** FAB de câmera (Status) e FAB de nova chamada */
+  --wa-color-accent-fab: #00B09C;
+  /** FAB de nova conversa (Chats) */
+  --wa-color-accent-fab-chat: #04AD9C;
+  /** FAB de microfone do compositor */
+  --wa-color-accent-fab-mic: #02AF9C;
+  /** Ícone de telefone nas linhas de chamada */
+  --wa-color-accent-icon-call: #02AD9B;
+  /** Ícone de vídeo nas linhas de chamada */
+  --wa-color-accent-icon-video: #00B29C;
+  /** Controle selecionado (radio) do diálogo */
+  --wa-color-accent-control: #05AD9C;
+  /** Botões de texto do diálogo (CANCEL / OK) */
+  --wa-color-accent-action: #25AC9D;
+  /** Selo de não lidas na busca em conversas */
+  --wa-color-accent-badge: #01A590;
+  /** Sublinhado do campo do compositor */
+  --wa-color-accent-underline: #20A497;
+  /** Direção de chamada efetuada (seta) */
+  --wa-color-accent-call-out: #17B49F;
+
+  /* ------------------------------------------------------------------
+     Severidades e estados
+     ------------------------------------------------------------------ */
+  /** Direção de chamada recebida / perdida (seta) */
+  --wa-color-danger-call-in: #DF788B;
+  /** Botão de encerrar chamada */
+  --wa-color-danger-endcall: #E91C43;
+  /** Bateria na barra de status */
+  --wa-color-warning-battery: #FDD015;
+
+  /* ------------------------------------------------------------------
+     Superfícies verdes da tela de chamada
+     ------------------------------------------------------------------ */
+  --wa-color-call-statusbar: #04453D;
+  --wa-color-call-surface: #054C44;
+  --wa-color-call-text-encrypted: #8DB5B4;
+  --wa-color-call-icon: #B8C8C7;
+  --wa-color-call-icon-muted: #4B7F7B;
+
+  /* ------------------------------------------------------------------
+     Texto
+     ------------------------------------------------------------------ */
+  /** Nome de contato em listas (21px) */
+  --wa-color-text-primary: #D3DAE0;
+  /** Nome de contato em linhas compactas (18,54px) */
+  --wa-color-text-primary-alt: #D4DCDF;
+  /** Título de sub app bar (Settings, Starred messages) */
+  --wa-color-text-title: #CFD6DC;
+  /** Marca "WhatsApp" e abas inativas */
+  --wa-color-text-appbar: #9DA5AC;
+  /** Horário nas linhas de conversa */
+  --wa-color-text-secondary: #868F94;
+  /** Metadados de chamada e de "My status" */
+  --wa-color-text-meta: #98A3A9;
+  /** Metadados de atualização de status */
+  --wa-color-text-meta-alt: #889397;
+  /** Nome de status já visualizado */
+  --wa-color-text-status-viewed: #DCDDE2;
+  /** Título "My status" */
+  --wa-color-text-status-own: #E3E8EE;
+  /** Título de linha de configuração */
+  --wa-color-text-settings: #C5CED3;
+  /** Descrição de linha de configuração */
+  --wa-color-text-settings-sub: #8A9295;
+  /** Recado do perfil nas configurações */
+  --wa-color-text-profile-status: #939CA1;
+  /** Título do diálogo modal */
+  --wa-color-text-dialog-title: #D7E0E5;
+  /** Opções do diálogo modal */
+  --wa-color-text-dialog-option: #FBFEFF;
+  /** Rótulo de caixa de seleção */
+  --wa-color-text-dialog-check: #F9FFFF;
+  /** Item do menu suspenso (node 1:2279) */
+  --wa-color-text-menu: #F9FFFF;
+  /** Placeholder do compositor */
+  --wa-color-text-placeholder: #707980;
+  /** Etiqueta de data da conversa */
+  --wa-color-text-datechip: #9CA7AD;
+  /** Aviso de criptografia */
+  --wa-color-text-notice: #C7BE8A;
+  /** Texto dentro do balão de mensagem */
+  --wa-color-text-bubble: #C3DDDC;
+  /** Metadados dentro do balão (tamanho, hora) */
+  --wa-color-text-bubble-meta: #80B3AE;
+  /** Nome na linha de mensagem favoritada */
+  --wa-color-text-starred: #D6DADD;
+  /** Data na linha de mensagem favoritada */
+  --wa-color-text-starred-date: #8D9296;
+  /** Rodapé "from" das configurações */
+  --wa-color-text-footnote: #899297;
+  /** Marca "FACEBOOK" no rodapé */
+  --wa-color-text-brand: #BBC4C9;
+  /** Numeral sobre o selo verde-água */
+  --wa-color-text-on-accent: #232D36;
+  /** Texto sobre superfícies escuras de chamada */
+  --wa-color-text-inverse: #F3FFFF;
+  --wa-color-text-inverse-strong: #FFFFFF;
+
+  /* ------------------------------------------------------------------
+     Ícones
+     ------------------------------------------------------------------ */
+  /** Busca e menu na barra superior */
+  --wa-color-icon-appbar: #FAFFFF;
+  /** Ícone de câmera na barra de abas */
+  --wa-color-icon-camera: #9DA5AC;
+  /** Seta de voltar */
+  --wa-color-icon-back: #9FA8B1;
+  /** Emoji do compositor */
+  --wa-color-icon-composer-emoji: #A6ABAF;
+  /** Clipe de anexo do compositor */
+  --wa-color-icon-composer-attach: #A7ACB0;
+  /** Câmera do compositor */
+  --wa-color-icon-composer-camera: #9FA5A9;
+  /** Glifos brancos sobre FAB e balões */
+  --wa-color-icon-on-accent: #FFFFFD;
+  /** Ícones das linhas de configuração */
+  --wa-color-icon-settings: #979CA2;
+  --wa-color-icon-settings-alt: #9CA4A7;
+  --wa-color-icon-settings-help: #95A0A6;
+  --wa-color-icon-settings-qr: #DEE2E5;
+  /** Confirmação de leitura no balão */
+  --wa-color-icon-tick: #82B4B3;
+  /** Estrela de mensagem favoritada */
+  --wa-color-icon-star: #5B8583;
+  /** Ícone de encaminhar */
+  --wa-color-icon-forward: #DADBDD;
+  /** Selo de conversa fixada */
+  --wa-color-icon-pin: #8F969E;
+
+  /* ------------------------------------------------------------------
+     Barra de status do Android
+     ------------------------------------------------------------------ */
+  --wa-color-statusbar-fg: #B5B5B5;
+
+  /* ------------------------------------------------------------------
+     Bordas, divisores e anéis
+     ------------------------------------------------------------------ */
+  /** Divisor entre linhas de lista (Line 1 / Line 16 / Line 17) */
+  --wa-color-border-divider: #18252D;
+  /** Divisor interno do diálogo (Line 33) */
+  --wa-color-border-dialog: #4D585E;
+  /** Contorno de caixa de seleção */
+  --wa-color-border-control: #A5B0B6;
+  /** Anel do avatar de status (Ellipse 3) */
+  --wa-color-border-status-ring: #C4C4C4;
+
+  /* ------------------------------------------------------------------
+     Cores das ações da folha de anexos
+     ------------------------------------------------------------------ */
+  --wa-color-attach-document: #5F66CE;
+  --wa-color-attach-camera: #EC407A;
+  --wa-color-attach-gallery: #BF57CF;
+  --wa-color-attach-audio: #F78D0D;
+  --wa-color-attach-location: #019D54;
+  --wa-color-attach-contact: #0EAAF4;
+}

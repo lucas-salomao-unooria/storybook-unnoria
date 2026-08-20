@@ -1,0 +1,49 @@
+/**
+ * Estilos do Componente Badge — Design System ChatGPT
+ *
+ * Medidas do conjunto `Badge` do Figma: padding 2/8, raio 4, altura 17 e
+ * rótulo Inter Medium de 11px (peso 500 literal — o estilo `Caption`
+ * publicado usa peso 400).
+ *
+ * As superfícies são a cor semântica da variante a 10% de opacidade,
+ * resolvidas com `color-mix` para acompanhar a troca de tema.
+ */
+
+.gpt-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--gpt-spacing-1) var(--gpt-spacing-4);
+  border-radius: var(--gpt-radius-sm);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-caption-size);
+  font-weight: var(--gpt-font-weight-medium);
+  line-height: var(--gpt-font-caption-line);
+  white-space: nowrap;
+}
+
+.gpt-badge--default {
+  background-color: var(--gpt-fill-4);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-badge--primary {
+  background-color: color-mix(in srgb, var(--gpt-interactive-primary) 10%, transparent);
+  color: var(--gpt-text-brand);
+}
+
+.gpt-badge--success {
+  background-color: color-mix(in srgb, var(--gpt-status-success) 10%, transparent);
+  color: var(--gpt-status-success);
+}
+
+.gpt-badge--error {
+  background-color: color-mix(in srgb, var(--gpt-status-error) 10%, transparent);
+  color: var(--gpt-status-error);
+}
+
+.gpt-badge--warning {
+  background-color: color-mix(in srgb, var(--gpt-status-warning) 10%, transparent);
+  color: var(--gpt-status-warning);
+}

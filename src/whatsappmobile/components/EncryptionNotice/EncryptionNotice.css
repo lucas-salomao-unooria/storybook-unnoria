@@ -1,0 +1,32 @@
+/**
+ * Estilos do Componente EncryptionNotice — Design System WhatsApp Mobile
+ * Cartão de 347px com raio de 5px, cadeado de 11×14px e texto centralizado em
+ * `--wa-color-text-notice` (nodes 1:3013 a 1:3019).
+ */
+
+.wa-encryptionnotice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wa-spacing-s);
+  box-sizing: border-box;
+  max-width: 347px;
+  padding: var(--wa-spacing-s) var(--wa-spacing-m);
+  border-radius: var(--wa-radius-m);
+  background-color: var(--wa-color-surface-notice);
+  color: var(--wa-color-text-notice);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-label-sm-size);
+  font-weight: var(--wa-font-label-sm-weight);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.wa-encryptionnotice__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--wa-color-text-notice);
+}
+
+.wa-encryptionnotice__text {
+  flex: 1;
+}

@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente GPTCard — Design System ChatGPT
+ *
+ * Medidas do componente `GPTCard` do Figma: 320 × 64, padding 12/16, gap 12,
+ * raio 12, contorno de 1px translúcido de 8%, avatar de 40px
+ * (`size/avatar-lg`) e coluna de conteúdo com gap 2.
+ */
+
+.gpt-card {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-5);
+  box-sizing: border-box;
+  width: 320px;
+  padding: var(--gpt-spacing-5) var(--gpt-spacing-6);
+  border: 1px solid var(--gpt-fill-8);
+  border-radius: var(--gpt-radius-lg);
+  background-color: var(--gpt-bg-primary);
+  font-family: var(--gpt-font-sans);
+  text-align: left;
+  text-decoration: none;
+  transition: background-color var(--gpt-transition-fast), border-color var(--gpt-transition-fast);
+}
+
+.gpt-card--block {
+  width: 100%;
+}
+
+button.gpt-card,
+a.gpt-card {
+  cursor: pointer;
+  appearance: none;
+}
+
+button.gpt-card:hover,
+a.gpt-card:hover {
+  background-color: var(--gpt-fill-2);
+}
+
+button.gpt-card:focus-visible,
+a.gpt-card:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-card__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.gpt-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gpt-spacing-1);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.gpt-card__name {
+  font-size: var(--gpt-font-label-md-size);
+  font-weight: var(--gpt-font-weight-semibold);
+  line-height: var(--gpt-font-label-md-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-card__description {
+  font-size: var(--gpt-font-body-xs-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-xs-line);
+  color: var(--gpt-text-soft-50);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

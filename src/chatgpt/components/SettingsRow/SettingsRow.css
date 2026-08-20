@@ -1,0 +1,38 @@
+/**
+ * Estilos do Componente SettingsRow — Design System ChatGPT
+ *
+ * Medidas do componente `SettingsRow` do Figma: 400 × 48, padding vertical de
+ * 12 e nenhum padding horizontal — a linha alinha-se à calha da seção de
+ * configurações que a contém.
+ */
+
+.gpt-settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gpt-spacing-5);
+  box-sizing: border-box;
+  width: 400px;
+  padding: var(--gpt-spacing-5) 0;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+}
+
+.gpt-settings-row--block {
+  width: 100%;
+}
+
+.gpt-settings-row__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--gpt-text-primary);
+}
+
+.gpt-settings-row__value {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--gpt-text-soft-50);
+}

@@ -1,0 +1,40 @@
+/**
+ * Unooria Design System — apenas a seção Instanooria.
+ *
+ * Entrada granular para superfícies que replicam o app e NÃO podem carregar o
+ * CSS da plataforma: são universos visuais distintos, e o pacote completo
+ * arrastaria tokens, componentes e a fonte Open Sans para dentro do clone.
+ * Use `@unooria/design-system/styles.css` quando quiser as duas seções.
+ */
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Instanooria)
+ * ---------------------------------------------------- */
+@import './instanooria/tokens/colors.css';
+@import './instanooria/tokens/typography.css';
+@import './instanooria/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Instanooria)
+ * ---------------------------------------------------- */
+@import './instanooria/components/Avatar/Avatar.css';
+@import './instanooria/components/Badge/Badge.css';
+@import './instanooria/components/Button/Button.css';
+@import './instanooria/components/Chip/Chip.css';
+@import './instanooria/components/Divider/Divider.css';
+@import './instanooria/components/Icon/Icon.css';
+@import './instanooria/components/ListItem/ListItem.css';
+@import './instanooria/components/Logo/Logo.css';
+@import './instanooria/components/MediaGrid/MediaGrid.css';
+@import './instanooria/components/NotificationItem/NotificationItem.css';
+@import './instanooria/components/PhoneFrame/PhoneFrame.css';
+@import './instanooria/components/PostCard/PostCard.css';
+@import './instanooria/components/ProfileHeader/ProfileHeader.css';
+@import './instanooria/components/SearchField/SearchField.css';
+@import './instanooria/components/SegmentedTabs/SegmentedTabs.css';
+@import './instanooria/components/StoriesTray/StoriesTray.css';
+@import './instanooria/components/StoryBubble/StoryBubble.css';
+@import './instanooria/components/StoryViewer/StoryViewer.css';
+@import './instanooria/components/TabBar/TabBar.css';
+@import './instanooria/components/TextField/TextField.css';
+@import './instanooria/components/TopBar/TopBar.css';

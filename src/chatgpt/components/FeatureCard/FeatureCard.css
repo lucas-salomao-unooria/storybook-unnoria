@@ -1,0 +1,63 @@
+/**
+ * Estilos do Componente FeatureCard — Design System ChatGPT
+ *
+ * Medidas do componente `FeatureCard` do Figma: 240 × 120, padding 16, gap 8,
+ * raio 12, contorno de 1px translúcido de 8% e conteúdo centralizado nos dois
+ * eixos. O corpo da descrição usa 13px — valor literal do arquivo, entre os
+ * degraus `Body/XS` (12) e `Body/SM` (14).
+ */
+
+.gpt-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 240px;
+  height: 120px;
+  padding: var(--gpt-spacing-6);
+  border: 1px solid var(--gpt-fill-8);
+  border-radius: var(--gpt-radius-lg);
+  background-color: var(--gpt-bg-primary);
+  font-family: var(--gpt-font-sans);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--gpt-transition-fast), border-color var(--gpt-transition-fast);
+}
+
+.gpt-feature-card--block {
+  width: 100%;
+  height: auto;
+}
+
+button.gpt-feature-card,
+a.gpt-feature-card {
+  cursor: pointer;
+  appearance: none;
+}
+
+button.gpt-feature-card:hover,
+a.gpt-feature-card:hover {
+  background-color: var(--gpt-fill-2);
+}
+
+button.gpt-feature-card:focus-visible,
+a.gpt-feature-card:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-feature-card__title {
+  font-size: var(--gpt-font-label-md-size);
+  font-weight: var(--gpt-font-weight-semibold);
+  line-height: var(--gpt-font-label-md-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-feature-card__description {
+  font-size: 13px;
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-soft-50);
+}

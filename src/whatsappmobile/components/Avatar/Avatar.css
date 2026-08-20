@@ -1,0 +1,119 @@
+/**
+ * Estilos do Componente Avatar — Design System WhatsApp Mobile
+ * Geometria fiel ao Figma: recorte de 45px dentro do anel de 56px nas linhas
+ * de status (folga de 3,4px) e recortes sem anel de 23px, 32px e 50px.
+ */
+
+.wa-avatar {
+  --wa-avatar-size: var(--wa-avatar-lg);
+  --wa-avatar-ring-color: transparent;
+  --wa-avatar-ring-thickness: 0px;
+  --wa-avatar-gap-thickness: 0px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  flex-shrink: 0;
+  font-family: var(--wa-font-sans);
+  line-height: 0;
+}
+
+.wa-avatar__ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: var(--wa-radius-full);
+  padding: var(--wa-avatar-ring-thickness);
+  background: var(--wa-avatar-ring-color);
+}
+
+.wa-avatar__gap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: var(--wa-radius-full);
+  padding: var(--wa-avatar-gap-thickness);
+  background: transparent;
+}
+
+.wa-avatar__image,
+.wa-avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--wa-avatar-size);
+  height: var(--wa-avatar-size);
+  border-radius: var(--wa-radius-full);
+  object-fit: cover;
+  background-color: var(--wa-color-surface-appbar);
+}
+
+.wa-avatar__fallback {
+  color: var(--wa-color-text-primary);
+  font-weight: var(--wa-font-weight-bold);
+  font-size: calc(var(--wa-avatar-size) * 0.36);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.wa-avatar__glyph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--wa-color-icon-on-accent);
+}
+
+/* ==========================================================================
+   Tamanhos nomeados
+   ========================================================================== */
+
+.wa-avatar--size-xs {
+  --wa-avatar-size: var(--wa-avatar-xs);
+}
+
+.wa-avatar--size-sm {
+  --wa-avatar-size: var(--wa-avatar-sm);
+}
+
+.wa-avatar--size-md {
+  --wa-avatar-size: var(--wa-avatar-md);
+}
+
+.wa-avatar--size-lg {
+  --wa-avatar-size: var(--wa-avatar-lg);
+}
+
+/* ==========================================================================
+   Anel de status
+   ========================================================================== */
+
+.wa-avatar--ring-status {
+  --wa-avatar-ring-color: var(--wa-color-border-status-ring);
+  --wa-avatar-ring-thickness: var(--wa-status-ring-width);
+  --wa-avatar-gap-thickness: 3.4px;
+}
+
+/* ==========================================================================
+   Interação
+   ========================================================================== */
+
+.wa-avatar--interactive {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  appearance: none;
+}
+
+.wa-avatar--interactive:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+  border-radius: var(--wa-radius-full);
+}

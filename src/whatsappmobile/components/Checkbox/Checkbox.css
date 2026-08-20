@@ -1,0 +1,57 @@
+/**
+ * Estilos do Componente Checkbox — Design System WhatsApp Mobile
+ * Caixa de 18px com raio de 3px, preenchimento `--wa-color-surface-dialog` e
+ * contorno de 2px em `--wa-color-border-control` (node 1:3515).
+ */
+
+.wa-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wa-spacing-l);
+  cursor: pointer;
+  font-family: var(--wa-font-sans);
+  color: var(--wa-color-text-dialog-check);
+  font-size: var(--wa-font-body-sm-size);
+  line-height: 1;
+}
+
+.wa-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wa-checkbox__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--wa-color-border-control);
+  border-radius: 3px;
+  background-color: var(--wa-color-surface-dialog);
+  color: var(--wa-color-text-dialog-check);
+}
+
+.wa-checkbox__input:checked + .wa-checkbox__control {
+  border-color: var(--wa-color-accent-control);
+  background-color: var(--wa-color-accent-control);
+}
+
+.wa-checkbox__input:focus-visible + .wa-checkbox__control {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
+.wa-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

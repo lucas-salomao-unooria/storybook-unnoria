@@ -1,0 +1,73 @@
+/**
+ * Estilos do Componente AttachmentSheet — Design System WhatsApp Mobile
+ * Folha de anexos do frame "Pin option" (node 1:3943): superfície
+ * `--wa-color-surface-sheet` com grade de três colunas e círculos de 56px nas
+ * seis cores de ação do arquivo.
+ */
+
+.wa-attachmentsheet {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--wa-spacing-xl) var(--wa-spacing-xs);
+  box-sizing: border-box;
+  padding: var(--wa-spacing-xxl) var(--wa-spacing-l);
+  border-radius: var(--wa-radius-xl);
+  background-color: var(--wa-color-surface-sheet);
+  font-family: var(--wa-font-sans);
+}
+
+.wa-attachmentsheet__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wa-spacing-xs);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--wa-color-text-settings);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-caption-size);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-attachmentsheet__action:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 4px;
+  border-radius: var(--wa-radius-s);
+}
+
+.wa-attachmentsheet__circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--wa-radius-full);
+  color: var(--wa-color-icon-on-accent);
+}
+
+.wa-attachmentsheet__circle--document {
+  background-color: var(--wa-color-attach-document);
+}
+
+.wa-attachmentsheet__circle--camera {
+  background-color: var(--wa-color-attach-camera);
+}
+
+.wa-attachmentsheet__circle--gallery {
+  background-color: var(--wa-color-attach-gallery);
+}
+
+.wa-attachmentsheet__circle--audio {
+  background-color: var(--wa-color-attach-audio);
+}
+
+.wa-attachmentsheet__circle--location {
+  background-color: var(--wa-color-attach-location);
+}
+
+.wa-attachmentsheet__circle--contact {
+  background-color: var(--wa-color-attach-contact);
+}

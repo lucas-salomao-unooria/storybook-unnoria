@@ -1,0 +1,62 @@
+/**
+ * Estilos do Componente SearchInput — Design System ChatGPT
+ *
+ * Medidas do componente `SearchInput` do Figma: 260 × 36, padding 8/12,
+ * gap 8, raio 8 e superfície translúcida de 4%. Glifo e placeholder
+ * compartilham o texto a 40% de opacidade.
+ */
+
+.gpt-search-input {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 260px;
+  height: 36px;
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-5);
+  border-radius: var(--gpt-radius-md);
+  background-color: var(--gpt-fill-4);
+  transition: background-color var(--gpt-transition-fast);
+}
+
+.gpt-search-input--block {
+  width: 100%;
+}
+
+.gpt-search-input:focus-within {
+  background-color: var(--gpt-fill-10);
+}
+
+.gpt-search-input__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  line-height: 1;
+  color: var(--gpt-text-soft-40);
+}
+
+.gpt-search-input__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-primary);
+  appearance: none;
+}
+
+.gpt-search-input__field::placeholder {
+  color: var(--gpt-text-soft-40);
+}
+
+.gpt-search-input__field::-webkit-search-cancel-button {
+  appearance: none;
+}

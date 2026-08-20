@@ -1,0 +1,69 @@
+/**
+ * Estilos do Componente SearchField — Design System Instanooria
+ * Especificações do Figma: 347×36px, raio 10px, preenchimento
+ * rgba(118,118,128,0.12) e placeholder rgba(60,60,67,0.6).
+ */
+
+.insta-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-m);
+  box-sizing: border-box;
+}
+
+.insta-search-field--block {
+  width: 100%;
+}
+
+.insta-search-field__box {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-xs);
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 var(--insta-spacing-m);
+  background-color: var(--insta-color-fill-field);
+  border-radius: var(--insta-radius-l);
+}
+
+.insta-search-field__icon {
+  flex-shrink: 0;
+  color: var(--insta-color-text-placeholder);
+}
+
+.insta-search-field__control {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-body-lg-size);
+  font-weight: var(--insta-font-body-lg-weight);
+  line-height: var(--insta-font-body-lg-line);
+  letter-spacing: var(--insta-font-body-lg-tracking);
+  appearance: none;
+}
+
+.insta-search-field__control::placeholder {
+  color: var(--insta-color-text-placeholder);
+}
+
+.insta-search-field__control:focus {
+  outline: none;
+}
+
+.insta-search-field__box:focus-within {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 1px;
+}
+
+.insta-search-field__trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--insta-color-icon-primary);
+}

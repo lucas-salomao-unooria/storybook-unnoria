@@ -1,0 +1,228 @@
+/**
+ * Estilos do Componente PostCard — Design System Instanooria
+ * Reproduz o frame "Post" (375×576px) do Figma: cabeçalho de 54px,
+ * mídia quadrada de 375px e rodapé de 147px.
+ */
+
+.insta-post-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--insta-color-background-primary);
+  font-family: var(--insta-font-sans);
+}
+
+/* ==========================================================================
+   Cabeçalho — frame "Post / Top"
+   ========================================================================== */
+
+.insta-post-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-s);
+  box-sizing: border-box;
+  min-height: 54px;
+  padding: 0 var(--insta-gutter) 0 var(--insta-spacing-s);
+  box-shadow: var(--insta-elevation-hairline-bottom);
+}
+
+.insta-post-card__identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.insta-post-card__username-row {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-3xs);
+  min-width: 0;
+}
+
+.insta-post-card__username {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-lg-size);
+  font-weight: var(--insta-font-label-lg-weight);
+  line-height: var(--insta-font-label-lg-line);
+  letter-spacing: var(--insta-font-label-lg-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insta-post-card__location {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-overline-sm-size);
+  font-weight: var(--insta-font-overline-sm-weight);
+  line-height: var(--insta-font-overline-sm-line);
+  letter-spacing: var(--insta-font-overline-sm-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insta-post-card__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-post-card__more:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--insta-radius-s);
+}
+
+/* ==========================================================================
+   Mídia
+   ========================================================================== */
+
+.insta-post-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--insta-color-background-tertiary);
+  overflow: hidden;
+}
+
+.insta-post-card__media-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.insta-post-card__media-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+/* ==========================================================================
+   Rodapé — frame "Post / Bottom"
+   ========================================================================== */
+
+.insta-post-card__actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-l);
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: var(--insta-spacing-m) var(--insta-gutter) var(--insta-spacing-xs);
+}
+
+.insta-post-card__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-post-card__action:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 3px;
+  border-radius: var(--insta-radius-s);
+}
+
+.insta-post-card__action--liked {
+  color: var(--insta-color-brand-like);
+}
+
+.insta-post-card__action--save {
+  margin-left: auto;
+}
+
+.insta-post-card__pagination {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-3xs);
+  pointer-events: none;
+}
+
+.insta-post-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-icon-primary);
+}
+
+.insta-post-card__dot--active {
+  background-color: var(--insta-color-action-primary);
+}
+
+.insta-post-card__likes {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-xs);
+  padding: 0 var(--insta-gutter) var(--insta-spacing-xxs);
+}
+
+.insta-post-card__likes-text {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-post-card__caption {
+  margin: 0;
+  padding: 0 var(--insta-gutter) var(--insta-spacing-xxs);
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-post-card__caption-author {
+  font-weight: var(--insta-font-label-lg-weight);
+}
+
+.insta-post-card__strong {
+  font-weight: var(--insta-font-label-lg-weight);
+}
+
+.insta-post-card__timestamp {
+  margin: 0;
+  padding: 0 var(--insta-gutter) var(--insta-spacing-m);
+  color: var(--insta-color-text-secondary);
+  font-size: var(--insta-font-overline-sm-size);
+  font-weight: var(--insta-font-overline-sm-weight);
+  line-height: var(--insta-font-overline-sm-line);
+  letter-spacing: var(--insta-font-overline-sm-tracking);
+}
+
+/*
+ * Salvo: o marcador preenche na cor do texto primário (o Instagram não tinge o
+ * salvo, ao contrário da curtida). Sem esta regra o botão salvava sem nenhum
+ * retorno visual — o usuário só descobria abrindo o próprio perfil.
+ */
+.insta-post-card__action--saved {
+  color: var(--insta-color-text-primary);
+}

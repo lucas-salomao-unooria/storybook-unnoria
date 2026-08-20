@@ -1,0 +1,127 @@
+/**
+ * Estilos do Componente Button — Design System ChatGPT
+ *
+ * Medidas lidas do conjunto `Button` do Figma:
+ *   SM · padding 6/12 · raio 8 · rótulo 12/16 Semi Bold · altura 28
+ *   MD · padding 8/16 · raio 8 · rótulo 14/18 Semi Bold · altura 34
+ *   LG · padding 12/24 · raio 12 · rótulo 16/20 Semi Bold · altura 44
+ *
+ * As alturas de linha 18px (MD) e 20px (LG) são valores literais das camadas
+ * de texto do arquivo — não há degrau equivalente na escala tipográfica.
+ */
+
+.gpt-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gpt-spacing-3);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  font-family: var(--gpt-font-sans);
+  font-weight: var(--gpt-font-weight-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--gpt-transition-fast),
+    border-color var(--gpt-transition-fast), color var(--gpt-transition-fast),
+    opacity var(--gpt-transition-fast);
+}
+
+.gpt-button:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-button:disabled,
+.gpt-button[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gpt-button--block {
+  width: 100%;
+}
+
+.gpt-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.gpt-button--sm {
+  padding: var(--gpt-spacing-3) var(--gpt-spacing-5);
+  border-radius: var(--gpt-radius-md);
+  font-size: var(--gpt-font-label-sm-size);
+  line-height: var(--gpt-font-label-sm-line);
+}
+
+.gpt-button--md {
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-6);
+  border-radius: var(--gpt-radius-md);
+  font-size: var(--gpt-font-label-md-size);
+  line-height: 18px;
+}
+
+.gpt-button--lg {
+  padding: var(--gpt-spacing-5) var(--gpt-spacing-8);
+  border-radius: var(--gpt-radius-lg);
+  font-size: var(--gpt-font-label-lg-size);
+  line-height: 20px;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.gpt-button--primary {
+  background-color: var(--gpt-interactive-primary);
+  color: var(--gpt-text-inverse);
+}
+
+.gpt-button--primary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--gpt-interactive-hover);
+}
+
+.gpt-button--secondary {
+  background-color: var(--gpt-bg-inverse);
+  color: var(--gpt-text-inverse);
+}
+
+.gpt-button--secondary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--gpt-text-soft-80);
+}
+
+.gpt-button--outline {
+  background-color: var(--gpt-bg-primary);
+  border-color: var(--gpt-border-default);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-button--outline:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--gpt-fill-4);
+}
+
+.gpt-button--ghost {
+  background-color: transparent;
+  color: var(--gpt-text-primary);
+}
+
+.gpt-button--ghost:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--gpt-fill-4);
+}
+
+.gpt-button--destructive {
+  background-color: var(--gpt-status-error);
+  color: var(--gpt-color-white);
+}
+
+.gpt-button--destructive:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--gpt-color-red-600);
+}

@@ -1,0 +1,57 @@
+/**
+ * Estilos do Componente Toggle — Design System ChatGPT
+ *
+ * Medidas do conjunto `Toggle` do Figma: trilho 44 × 24 com raio 12
+ * (`radius/lg`), knob de 20px centrado com folga de 2px (`spacing/1`) e
+ * sombra local `0 1 3 · preto 15%`.
+ */
+
+.gpt-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 44px;
+  height: var(--gpt-spacing-8);
+  padding: 0;
+  border: none;
+  border-radius: var(--gpt-radius-lg);
+  cursor: pointer;
+  appearance: none;
+  flex-shrink: 0;
+  transition: background-color var(--gpt-transition-fast);
+}
+
+.gpt-toggle:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gpt-toggle__knob {
+  position: absolute;
+  top: var(--gpt-spacing-1);
+  left: var(--gpt-spacing-1);
+  width: var(--gpt-spacing-7);
+  height: var(--gpt-spacing-7);
+  border-radius: var(--gpt-radius-full);
+  background-color: var(--gpt-color-white);
+  box-shadow: var(--gpt-elevation-knob);
+  transition: transform var(--gpt-transition-fast);
+}
+
+.gpt-toggle--off {
+  background-color: var(--gpt-border-default);
+}
+
+.gpt-toggle--on {
+  background-color: var(--gpt-interactive-primary);
+}
+
+.gpt-toggle--on .gpt-toggle__knob {
+  transform: translateX(var(--gpt-spacing-7));
+}

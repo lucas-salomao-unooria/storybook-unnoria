@@ -1,0 +1,53 @@
+/**
+ * Estilos do Componente SegmentedTabs — Design System Instanooria
+ * Faixa de 44px com indicador inferior de 1px sobre o segmento ativo,
+ * conforme os frames "Tabs" (perfil) e "Following / You" (atividade).
+ */
+
+.insta-segmented-tabs {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  background-color: var(--insta-color-background-primary);
+  box-shadow: var(--insta-elevation-hairline-bottom);
+}
+
+.insta-segmented-tabs__item {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-icon-secondary);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  cursor: pointer;
+  appearance: none;
+  transition: color var(--insta-transition-fast);
+}
+
+.insta-segmented-tabs__item:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -4px;
+}
+
+.insta-segmented-tabs__item--active {
+  color: var(--insta-color-text-primary);
+}
+
+.insta-segmented-tabs__item--active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--insta-color-text-primary);
+}

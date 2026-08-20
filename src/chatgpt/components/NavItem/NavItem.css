@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente NavItem — Design System ChatGPT
+ *
+ * Medidas do conjunto `NavItem` do Figma: 240 × 36, padding 8/12, gap 8,
+ * raio 8, glifo de 14px e rótulo Inter Regular de 14px (`Body/SM`) truncado
+ * em uma linha.
+ */
+
+.gpt-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-5);
+  border: none;
+  border-radius: var(--gpt-radius-md);
+  background-color: transparent;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--gpt-transition-fast), color var(--gpt-transition-fast);
+}
+
+.gpt-nav-item:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-nav-item__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: var(--gpt-font-body-sm-size);
+  line-height: 1;
+}
+
+.gpt-nav-item__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Estados
+   ========================================================================== */
+
+.gpt-nav-item--default {
+  background-color: transparent;
+  color: var(--gpt-text-soft-60);
+}
+
+.gpt-nav-item--default:hover {
+  background-color: var(--gpt-fill-2);
+  color: var(--gpt-text-soft-80);
+}
+
+.gpt-nav-item--hover {
+  background-color: var(--gpt-fill-2);
+  color: var(--gpt-text-soft-80);
+}
+
+.gpt-nav-item--active {
+  background-color: var(--gpt-fill-4);
+  color: var(--gpt-text-primary);
+}

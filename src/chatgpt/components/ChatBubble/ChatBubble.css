@@ -1,0 +1,39 @@
+/**
+ * Estilos do Componente ChatBubble — Design System ChatGPT
+ *
+ * Medidas do conjunto `ChatBubble` do Figma: padding 12/16, gap 12 e texto
+ * Inter Regular 14/20 (`Body/SM`) nos dois papéis. `Role=User` adiciona a
+ * superfície translúcida de 4% com raio 16 (`radius/xl`); `Role=Assistant`
+ * herda a superfície `bg/primary` da conversa.
+ */
+
+.gpt-chat-bubble {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--gpt-spacing-5);
+  box-sizing: border-box;
+  padding: var(--gpt-spacing-5) var(--gpt-spacing-6);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-chat-bubble__avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.gpt-chat-bubble__message {
+  min-width: 0;
+}
+
+.gpt-chat-bubble--user {
+  background-color: var(--gpt-fill-4);
+  border-radius: var(--gpt-radius-xl);
+}
+
+.gpt-chat-bubble--assistant {
+  background-color: var(--gpt-bg-primary);
+}

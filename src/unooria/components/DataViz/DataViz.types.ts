@@ -213,6 +213,10 @@ export interface MetricCardProps {
   title: string;
   value: string | number;
   variant?: 'up' | 'down';
+  /**
+   * Variação a exibir na etiqueta (ex.: '+12%'). Sem ela a etiqueta não é
+   * renderizada — o componente nunca inventa uma tendência.
+   */
   tagText?: string;
   description?: string;
   theme?: DataVizTheme;

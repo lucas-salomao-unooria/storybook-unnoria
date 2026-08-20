@@ -1,0 +1,37 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System WhatsApp Mobile
+ * Contêiner de documentação com as medidas exatas dos frames do arquivo:
+ * 411×823 (Google Pixel 2 XL). Não é um componente de produção.
+ */
+
+.wa-phoneframe {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wa-spacing-s);
+}
+
+.wa-phoneframe__device {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--wa-device-width);
+  height: var(--wa-device-height);
+  overflow: hidden;
+  background-color: var(--wa-color-surface-canvas);
+  font-family: var(--wa-font-sans);
+  transform-origin: top center;
+}
+
+.wa-phoneframe--bordered .wa-phoneframe__device {
+  border: 1px solid var(--wa-color-border-divider);
+  border-radius: var(--wa-radius-xl);
+}
+
+.wa-phoneframe__caption {
+  color: var(--wa-color-text-meta);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-caption-size);
+  text-align: center;
+}

@@ -1,0 +1,39 @@
+/**
+ * Estilos do Componente StatusListItem — Design System WhatsApp Mobile
+ * Linha da aba Status do frame "Status Main Page" (node 1:2).
+ */
+
+.wa-statuslistitem--own .wa-listitem__title {
+  color: var(--wa-color-text-status-own);
+  font-size: var(--wa-font-title-sm-size);
+  font-weight: var(--wa-font-title-sm-weight);
+}
+
+.wa-statuslistitem--own .wa-listitem__subtitle {
+  color: var(--wa-color-text-meta);
+}
+
+.wa-statuslistitem--viewed .wa-listitem__title {
+  color: var(--wa-color-text-status-viewed);
+  font-size: var(--wa-font-title-sm-size);
+  font-weight: var(--wa-font-title-sm-weight);
+}
+
+.wa-statuslistitem__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 31px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--wa-color-icon-appbar);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-statuslistitem__menu:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 1px;
+}

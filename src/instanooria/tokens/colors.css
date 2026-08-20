@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Instanooria
+   Extraídos das variáveis oficiais do Figma "Instagram UI Screens (Community)"
+   (color/background/*, color/text/*, color/icon/*, color/border/*, color/action/*)
+   Suporte nativo aos temas Classic (Light) e Dark.
+   ========================================================================== */
+
+:root,
+[data-insta-theme='light'] {
+  /* Superfícies */
+  --insta-color-background-primary: #FFFFFF;
+  --insta-color-background-secondary: #FAFAFA;
+  --insta-color-background-tertiary: #F8F8F8;
+  --insta-color-background-elevated: #FFFFFF;
+
+  /* Texto */
+  --insta-color-text-primary: #262626;
+  --insta-color-text-secondary: #8E8E93;
+  --insta-color-text-link: #3897F0;
+  --insta-color-text-placeholder: rgba(60, 60, 67, 0.6);
+
+  /* Ícones */
+  --insta-color-icon-primary: #262626;
+  --insta-color-icon-secondary: #8E8E93;
+
+  /* Bordas e divisores */
+  --insta-color-border-default: #C7C7CC;
+  --insta-color-border-subtle: rgba(60, 60, 67, 0.29);
+  --insta-color-border-bar: #A6A6AA;
+
+  /* Ações */
+  --insta-color-action-primary: #3897F0;
+  --insta-color-action-disabled: #9FC4F2;
+  --insta-color-action-secondary-border: #DBDBDB;
+
+  /* Preenchimentos de campo */
+  --insta-color-fill-field: rgba(118, 118, 128, 0.12);
+
+  /* Overlays */
+  --insta-color-overlay-scrim: rgba(0, 0, 0, 0.3);
+  --insta-color-overlay-onmedia: rgba(255, 255, 255, 0.4);
+}
+
+[data-insta-theme='dark'] {
+  /* Superfícies */
+  --insta-color-background-primary: #000000;
+  --insta-color-background-secondary: #060606;
+  --insta-color-background-tertiary: #121212;
+  --insta-color-background-elevated: #262626;
+
+  /* Texto */
+  --insta-color-text-primary: #F9F9F9;
+  --insta-color-text-secondary: #979797;
+  --insta-color-text-link: #3797EF;
+  --insta-color-text-placeholder: rgba(235, 235, 245, 0.6);
+
+  /* Ícones */
+  --insta-color-icon-primary: #F9F9F9;
+  --insta-color-icon-secondary: #979797;
+
+  /* Bordas e divisores */
+  --insta-color-border-default: #3C3C43;
+  --insta-color-border-subtle: #48484A;
+  --insta-color-border-bar: #262626;
+
+  /* Ações */
+  --insta-color-action-primary: #3797EF;
+  --insta-color-action-disabled: #9FC4F2;
+  --insta-color-action-secondary-border: #363636;
+
+  /* Preenchimentos de campo */
+  --insta-color-fill-field: rgba(118, 118, 128, 0.24);
+
+  /* Overlays */
+  --insta-color-overlay-scrim: rgba(0, 0, 0, 0.3);
+  --insta-color-overlay-onmedia: rgba(255, 255, 255, 0.4);
+}
+
+/* Preferência do sistema operacional para modo escuro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-insta-theme='light']) {
+    --insta-color-background-primary: #000000;
+    --insta-color-background-secondary: #060606;
+    --insta-color-background-tertiary: #121212;
+    --insta-color-background-elevated: #262626;
+    --insta-color-text-primary: #F9F9F9;
+    --insta-color-text-secondary: #979797;
+    --insta-color-text-link: #3797EF;
+    --insta-color-text-placeholder: rgba(235, 235, 245, 0.6);
+    --insta-color-icon-primary: #F9F9F9;
+    --insta-color-icon-secondary: #979797;
+    --insta-color-border-default: #3C3C43;
+    --insta-color-border-subtle: #48484A;
+    --insta-color-border-bar: #262626;
+    --insta-color-action-primary: #3797EF;
+    --insta-color-action-secondary-border: #363636;
+    --insta-color-fill-field: rgba(118, 118, 128, 0.24);
+  }
+}
+
+/* ==========================================================================
+   Cores de Marca — invariantes entre temas
+   ========================================================================== */
+
+:root {
+  /* Feedback e severidades */
+  --insta-color-brand-like: #ED4956;
+  --insta-color-brand-verified: #3897F0;
+  --insta-color-brand-notification: #ED4956;
+
+  /* Gradiente do anel de Story (Oval Copy — stroke 2px) */
+  --insta-color-story-gradient-start: #FBAA47;
+  --insta-color-story-gradient-mid: #D91A46;
+  --insta-color-story-gradient-end: #A60F93;
+  --insta-gradient-story: linear-gradient(
+    204deg,
+    var(--insta-color-story-gradient-start) 0%,
+    var(--insta-color-story-gradient-mid) 51.99%,
+    var(--insta-color-story-gradient-end) 100%
+  );
+
+  /* Gradiente do anel de Live */
+  --insta-color-live-gradient-start: #E20337;
+  --insta-color-live-gradient-mid: #C60188;
+  --insta-color-live-gradient-end: #7700C3;
+  --insta-gradient-live: linear-gradient(
+    136deg,
+    var(--insta-color-live-gradient-start) 0%,
+    var(--insta-color-live-gradient-mid) 51.87%,
+    var(--insta-color-live-gradient-end) 100%
+  );
+
+  /* Gradiente da etiqueta LIVE */
+  --insta-color-livebadge-gradient-start: #C90083;
+  --insta-color-livebadge-gradient-mid: #D22463;
+  --insta-color-livebadge-gradient-end: #E10038;
+  --insta-gradient-livebadge: linear-gradient(
+    139.58deg,
+    var(--insta-color-livebadge-gradient-start) 10.82%,
+    var(--insta-color-livebadge-gradient-mid) 29.29%,
+    var(--insta-color-livebadge-gradient-end) 93.41%
+  );
+
+  /* Anel neutro de destaque (Highlights) */
+  --insta-color-highlight-ring: #C7C7CC;
+
+  /* Base fixa branca usada como recorte interno de anéis */
+  --insta-color-ring-inner: #FEFEFE;
+}
