@@ -30,6 +30,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
     "build:package": "npm run verificar:css && tsup",
