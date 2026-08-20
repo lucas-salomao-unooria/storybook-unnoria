@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useRef } from 'react';
 import { FileUploadProps, UploadFileItem } from './UploadFileModal.types';
 import { Icon } from '../Icon/Icon';

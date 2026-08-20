@@ -1,0 +1,66 @@
+/**
+ * Estilos do Componente Avatar — Design System Unitube
+ * Nó de origem: `Avatar/UserAvatar` (7:58).
+ */
+
+.uni-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: var(--uni-radius-full);
+  background: var(--uni-color-background-surface);
+}
+
+.uni-avatar--xs {
+  width: var(--uni-avatar-xs);
+  height: var(--uni-avatar-xs);
+}
+
+.uni-avatar--sm {
+  width: var(--uni-avatar-sm);
+  height: var(--uni-avatar-sm);
+}
+
+.uni-avatar--md {
+  width: var(--uni-avatar-md);
+  height: var(--uni-avatar-md);
+}
+
+.uni-avatar--lg {
+  width: var(--uni-avatar-lg);
+  height: var(--uni-avatar-lg);
+}
+
+.uni-avatar--xl {
+  width: var(--uni-avatar-xl);
+  height: var(--uni-avatar-xl);
+}
+
+.uni-avatar--2xl {
+  width: var(--uni-avatar-2xl);
+  height: var(--uni-avatar-2xl);
+}
+
+.uni-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*
+ * Substituto tipográfico: o arquivo não publica estado vazio de avatar. Usa
+ * apenas tokens da própria marca.
+ */
+.uni-avatar__initials {
+  font-family: var(--uni-font-sans);
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-weight-bold);
+  line-height: 1;
+  color: var(--uni-color-text-secondary);
+  text-transform: uppercase;
+  user-select: none;
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState } from 'react';
 import { TextFieldProps } from './TextField.types';
 import { Icon } from '../Icon/Icon';

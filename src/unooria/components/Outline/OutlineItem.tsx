@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useEffect, useRef } from 'react';
 import {
   OutlineItemProps,
@@ -249,6 +251,7 @@ export const OutlineItem = forwardRef<HTMLDivElement, OutlineItemProps>(
               ref={inputRef}
               type="text"
               value={editValue}
+              readOnly={readOnly}
               onChange={(e) => setEditValue(e.target.value)}
               onBlur={handleSaveTitle}
               onKeyDown={handleKeyDownInput}

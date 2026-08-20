@@ -1,0 +1,45 @@
+/**
+ * Estilos do Componente ListRow — Design System Tik Tooria
+ * Linha social de 414×76 (node 4:198).
+ */
+
+.tik-listrow {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-social-row-height);
+  padding: 0 19.45px 0 var(--tik-gutter);
+  font-family: var(--tik-font-sans);
+  text-align: left;
+  background: var(--tik-color-surface-primary);
+  border: 0;
+  cursor: pointer;
+  transition: background var(--tik-transition-fast);
+}
+
+.tik-listrow:hover {
+  background: var(--tik-color-surface-sheet);
+}
+
+.tik-listrow:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: -2px;
+}
+
+/** O rótulo alinha em 84px a partir da borda (node 4:200). */
+.tik-listrow__leading {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+}
+
+.tik-listrow__label {
+  flex: 1 1 auto;
+  font-size: var(--tik-font-body-size);
+  font-weight: var(--tik-font-body-weight);
+  line-height: var(--tik-font-body-line);
+  color: var(--tik-color-text-primary);
+}

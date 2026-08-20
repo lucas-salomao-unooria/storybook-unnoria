@@ -44,7 +44,7 @@ const SpacingRuler: React.FC<{ token: string; value: string }> = ({ token, value
         height: 14,
         width: value,
         borderRadius: 3,
-        background: '#0CA996',
+        background: BAR,
       }}
     />
   </div>

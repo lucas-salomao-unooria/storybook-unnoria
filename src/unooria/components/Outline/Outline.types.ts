@@ -29,7 +29,7 @@ export interface OutlineItemData {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   children?: OutlineItemData[];
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 export interface OutlineItemProps

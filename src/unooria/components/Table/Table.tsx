@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState } from 'react';
 import {
   TableProps,
@@ -7,6 +9,7 @@ import {
   TableHeadCellProps,
   TableCellProps,
   TableSortDirection,
+  TableRowRecord,
 } from './Table.types';
 import { TableDropdownMenu } from './TableDropdownMenu';
 import { Icon } from '../Icon/Icon';
@@ -143,10 +146,19 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
 );
 TableCell.displayName = 'Table.Cell';
 
-interface TableComponent
-  extends React.ForwardRefExoticComponent<
-    TableProps & React.RefAttributes<HTMLDivElement>
-  > {
+/**
+ * Assinatura pública da Tabela.
+ *
+ * `forwardRef` apaga o parâmetro genérico da função que envolve, então o
+ * resultado é reafirmado com esta interface chamável: é ela que preserva o `T`
+ * e permite que `columns`, `data`, `keyExtractor`, `onRowClick` e
+ * `onSelectionChange` sejam checados contra o seu próprio tipo de registro.
+ */
+interface TableComponent {
+  <T = TableRowRecord>(
+    props: TableProps<T> & React.RefAttributes<HTMLDivElement>
+  ): React.ReactElement | null;
+  displayName?: string;
   Header: typeof TableHeader;
   Body: typeof TableBody;
   Row: typeof TableRow;
@@ -159,9 +171,11 @@ interface TableComponent
  * Componente oficial de Tabela (Table) do Unooria Design System.
  * Plataforma Unooria - Extraído do Figma (Node 19493:47329 & 19689:3273)
  */
-export const Table = forwardRef<HTMLDivElement, TableProps>(
-  (
-    {
+const TableRaiz = <T,>(
+  props: TableProps<T>,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => {
+  const {
       columns,
       data = [],
       keyExtractor,
@@ -180,10 +194,9 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
       children,
       className = '',
       style,
-      ...rest
-    },
-    ref
-  ) => {
+    ...rest
+  } = props;
+
     const [internalSortColumn, setInternalSortColumn] = useState<string | undefined>(undefined);
     const [internalSortDirection, setInternalSortDirection] = useState<TableSortDirection>('asc');
 
@@ -202,9 +215,14 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
       onSortChange?.(columnKey, nextDirection);
     };
 
-    const getKey = (item: any, index: number): string | number => {
+    const getKey = (item: T, index: number): string | number => {
       if (keyExtractor) return keyExtractor(item, index);
-      return item.id !== undefined ? item.id : item.key !== undefined ? item.key : index;
+      // Acesso por chave dinâmica: `T` é o tipo do consumidor e não carrega
+      // índice de string, então a leitura é feita através de `TableRowRecord`.
+      const registro = item as TableRowRecord;
+      if (registro.id !== undefined) return registro.id as string | number;
+      if (registro.key !== undefined) return registro.key as string | number;
+      return index;
     };
 
     const handleSelectAll = () => {
@@ -217,7 +235,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
       }
     };
 
-    const handleSelectRow = (key: string | number, record: any) => {
+    const handleSelectRow = (key: string | number) => {
       if (!onSelectionChange) return;
       const exists = selectedKeys.includes(key);
       const nextKeys = exists ? selectedKeys.filter((k) => k !== key) : [...selectedKeys, key];
@@ -238,7 +256,13 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
       .join(' ');
 
     return (
-      <div ref={ref} className={containerClassName} style={style} {...rest}>
+      <div
+        ref={ref}
+        className={containerClassName}
+        style={style}
+        aria-busy={loading || undefined}
+        {...rest}
+      >
         {columns && columns.length > 0 ? (
           <table className="unooria-table">
             <TableHeader>
@@ -276,7 +300,20 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
             </TableHeader>
 
             <TableBody>
-              {data.length === 0 ? (
+              {loading ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length + (selectable ? 1 : 0)}
+                    align="center"
+                    style={{
+                      padding: '32px',
+                      color: 'var(--unooria-color-neutral-700, #475157)',
+                    }}
+                  >
+                    Carregando...
+                  </TableCell>
+                </TableRow>
+              ) : data.length === 0 ? (
                 <TableRow>
                   <TableCell
                     colSpan={columns.length + (selectable ? 1 : 0)}
@@ -307,17 +344,20 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
                         >
                           <Checkbox
                             checked={isSelected}
-                            onChange={() => handleSelectRow(rowKey, record)}
+                            onChange={() => handleSelectRow(rowKey)}
                             aria-label={`Selecionar linha ${index + 1}`}
                           />
                         </TableCell>
                       )}
 
                       {columns.map((col) => {
-                        const cellValue = record[col.key];
+                        const cellValue = (record as TableRowRecord)[col.key];
+                        // Sem `render`, o valor cru é exibido. `cellValue` é
+                        // `unknown` (a coluna não amarra `key` ao tipo do
+                        // campo), então só primitivos renderizáveis passam.
                         const renderedContent = col.render
                           ? col.render(cellValue, record, index)
-                          : cellValue;
+                          : (cellValue as React.ReactNode);
 
                         return (
                           <TableCell key={col.key} align={col.align || 'left'}>
@@ -334,10 +374,18 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
         ) : (
           <table className="unooria-table">{children}</table>
         )}
-      </div>
-    );
-  }
-) as TableComponent;
+    </div>
+  );
+};
+
+/**
+ * Componente oficial de Tabela (Table) do Unooria Design System.
+ *
+ * Genérico: `<Table columns={colunas} data={fornecedores} />` infere `T` a
+ * partir de `data`, de modo que `render`, `keyExtractor`, `onRowClick` e
+ * `onSelectionChange` recebem o registro tipado em vez de `any`.
+ */
+export const Table = forwardRef(TableRaiz) as unknown as TableComponent;
 
 Table.displayName = 'Table';
 Table.Header = TableHeader;

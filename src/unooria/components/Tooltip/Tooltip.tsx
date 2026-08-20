@@ -1,6 +1,20 @@
-import React, { forwardRef, useState, useRef, useEffect, cloneElement } from 'react';
+'use client';
+
+import React, { forwardRef, useState, useRef, useId, useEffect, cloneElement } from 'react';
 import { TooltipProps, TooltipPlacement } from './Tooltip.types';
 import './Tooltip.css';
+
+/**
+ * Subconjunto de props que o Tooltip lê e reinjeta no elemento filho clonado.
+ */
+type TooltipChildProps = {
+  onMouseEnter?: React.MouseEventHandler;
+  onMouseLeave?: React.MouseEventHandler;
+  onFocus?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler;
+  onClick?: React.MouseEventHandler;
+  'aria-describedby'?: string;
+};
 
 /**
  * Renderiza o triângulo SVG oficial da seta conforme a orientação
@@ -70,7 +84,9 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     const [internalOpen, setInternalOpen] = useState<boolean>(defaultOpen);
     const enterTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const tooltipId = useRef<string>(`unooria-tooltip-${Math.random().toString(36).substr(2, 9)}`);
+    // `useId` em vez de `Math.random()`: o id alimenta `aria-describedby` e
+    // precisa coincidir entre a árvore renderizada no servidor e a do cliente.
+    const tooltipId = `unooria-tooltip-${useId()}`;
 
     const isControlled = open !== undefined;
     const isVisible = !disabled && (isControlled ? open : internalOpen);
@@ -118,7 +134,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     }, []);
 
     // Handlers para o elemento filho
-    const childProps = children.props as Record<string, any>;
+    const childProps = children.props as TooltipChildProps;
 
     const handleMouseEnter = (e: React.MouseEvent) => {
       childProps.onMouseEnter?.(e);
@@ -147,13 +163,13 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       }
     };
 
-    const clonedChild = cloneElement(children as React.ReactElement<any>, {
+    const clonedChild = cloneElement(children as React.ReactElement<TooltipChildProps>, {
       onMouseEnter: handleMouseEnter,
       onMouseLeave: handleMouseLeave,
       onFocus: handleFocus,
       onBlur: handleBlur,
       onClick: handleClick,
-      'aria-describedby': isVisible ? tooltipId.current : childProps['aria-describedby'],
+      'aria-describedby': isVisible ? tooltipId : childProps['aria-describedby'],
     });
 
     const placementClass = `unooria-tooltip--placement-${placement}`;
@@ -177,7 +193,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         {!disabled && (
           <div
             ref={ref}
-            id={tooltipId.current}
+            id={tooltipId}
             role="tooltip"
             aria-hidden={!isVisible}
             className={tooltipClassName}

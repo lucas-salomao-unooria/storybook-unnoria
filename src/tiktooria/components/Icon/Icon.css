@@ -1,0 +1,99 @@
+/**
+ * Estilos do Componente Icon — Design System Tik Tooria
+ * Glifos exportados do Figma "TikTok UI Screens (Community) - cópia".
+ */
+
+.tik-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  width: auto;
+  fill: currentColor;
+  color: var(--tik-color-icon-default);
+  transition: color var(--tik-transition-fast);
+}
+
+/* ==========================================================================
+   Tamanhos — o token governa a ALTURA; a largura vem do viewBox
+   ========================================================================== */
+
+.tik-icon--size-xs {
+  height: var(--tik-icon-size-xs);
+}
+
+.tik-icon--size-sm {
+  height: var(--tik-icon-size-sm);
+}
+
+.tik-icon--size-md {
+  height: var(--tik-icon-size-md);
+}
+
+.tik-icon--size-lg {
+  height: var(--tik-icon-size-lg);
+}
+
+.tik-icon--size-xl {
+  height: var(--tik-icon-size-xl);
+}
+
+/* ==========================================================================
+   Tons semânticos
+   ========================================================================== */
+
+.tik-icon--tone-default {
+  color: var(--tik-color-icon-default);
+}
+
+.tik-icon--tone-primary {
+  color: var(--tik-color-icon-primary);
+}
+
+.tik-icon--tone-secondary {
+  color: var(--tik-color-text-secondary);
+}
+
+.tik-icon--tone-tabInactive {
+  color: var(--tik-color-icon-tab-inactive);
+}
+
+.tik-icon--tone-tabActive {
+  color: var(--tik-color-icon-primary);
+}
+
+.tik-icon--tone-tabDisabled {
+  color: var(--tik-color-icon-tab-disabled);
+}
+
+.tik-icon--tone-onImmersive {
+  color: var(--tik-color-text-on-immersive);
+}
+
+.tik-icon--tone-onImmersiveMuted {
+  color: var(--tik-color-text-on-immersive-muted);
+}
+
+.tik-icon--tone-brand {
+  color: var(--tik-color-brand-button);
+}
+
+.tik-icon--tone-empty {
+  color: var(--tik-color-icon-empty);
+}
+
+.tik-icon--tone-emptyAlt {
+  color: var(--tik-color-icon-empty-alt);
+}
+
+.tik-icon--tone-statusBar {
+  color: var(--tik-color-text-statusbar);
+}
+
+.tik-icon--tone-inherit {
+  color: inherit;
+}
+
+/* Glifos com cores literais do arquivo ignoram o tom aplicado. */
+.tik-icon--multicolor {
+  color: inherit;
+}

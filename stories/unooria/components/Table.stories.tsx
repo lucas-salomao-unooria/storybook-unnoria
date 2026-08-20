@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Table } from '../../../src/unooria/components/Table/Table';
 import { TableColumn } from '../../../src/unooria/components/Table/Table.types';
 import { TableDropdownMenu } from '../../../src/unooria/components/Table/TableDropdownMenu';
-import { Icon } from '../../../src/unooria/components/Icon/Icon';
-import { Checkbox } from '../../../src/unooria/components/Checkbox/Checkbox';
 import '../../../src/unooria/tokens/icons.css';
 import '../../../src/unooria/components/Table/Table.css';
 import {
@@ -90,12 +88,12 @@ const ScreenExampleDemo: React.FC = () => {
     setSortCol(key);
     setSortDir(dir);
     const sorted = [...data].sort((a, b) => {
-      const valA = (a as any)[key];
-      const valB = (b as any)[key];
+      const valA = a[key as keyof FornecedorData];
+      const valB = b[key as keyof FornecedorData];
       if (typeof valA === 'string') {
-        return dir === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        return dir === 'asc' ? valA.localeCompare(String(valB)) : String(valB).localeCompare(valA);
       }
-      return dir === 'asc' ? valA - valB : valB - valA;
+      return dir === 'asc' ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
     });
     setData(sorted);
   };
@@ -116,7 +114,8 @@ const ScreenExampleDemo: React.FC = () => {
       key: 'status',
       title: 'Status',
       align: 'center',
-      render: (status) => {
+      render: (valor) => {
+        const status = valor as FornecedorData['status'];
         const variantClass =
           status === 'Homologado' || status === 'Ativo'
             ? 'unooria-table-cell__tag--success'
@@ -129,7 +128,9 @@ const ScreenExampleDemo: React.FC = () => {
     {
       key: 'progressLinear',
       title: 'Progresso da Homologação',
-      render: (progress) => (
+      render: (valor) => {
+        const progress = valor as number;
+        return (
         <div className="unooria-table-cell__progress-linear">
           <div className="unooria-table-cell__progress-track">
             <div
@@ -139,13 +140,16 @@ const ScreenExampleDemo: React.FC = () => {
           </div>
           <span className="unooria-table-cell__progress-label">{progress}%</span>
         </div>
-      ),
+        );
+      },
     },
     {
       key: 'progressCircle',
       title: 'DataViz Ring',
       align: 'center',
-      render: (prog) => (
+      render: (valor) => {
+        const prog = valor as number;
+        return (
         <div className="unooria-table-cell__progress-circle">
           <svg width="28" height="28" viewBox="0 0 36 36">
             <path
@@ -164,13 +168,16 @@ const ScreenExampleDemo: React.FC = () => {
           </svg>
           <span style={{ fontSize: '12px', fontWeight: 700, color: '#383E41' }}>{prog}%</span>
         </div>
-      ),
+        );
+      },
     },
     {
       key: 'verified',
       title: 'Ativo',
       align: 'center',
-      render: (verified, record) => (
+      render: (valor, record) => {
+        const verified = valor as boolean;
+        return (
         <input
           type="checkbox"
           checked={verified}
@@ -184,7 +191,8 @@ const ScreenExampleDemo: React.FC = () => {
           }}
           style={{ cursor: 'pointer', accentColor: '#0086FF', width: '16px', height: '16px' }}
         />
-      ),
+        );
+      },
     },
     {
       key: 'actions',
@@ -545,7 +553,7 @@ const TableDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -608,14 +616,14 @@ const TableDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'md'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;md&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Altura das linhas (md = 50px do Figma).</td>
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>
@@ -679,12 +687,19 @@ export const Documentacao: Story = {
 /**
  * Playground interativo com 100% das props mapeadas em controles.
  */
+interface PlaygroundRow {
+  id: string;
+  name: string;
+  category: string;
+  status: string;
+}
+
 export const Playground: Story = {
   name: '🕹️ 1. Playground Interativo',
   render: (args) => {
     const [selectedKeys, setSelectedKeys] = useState<(string | number)[]>([]);
 
-    const columns: TableColumn<any>[] = [
+    const columns: TableColumn<PlaygroundRow>[] = [
       { key: 'name', title: 'Aluno / Curso', sortable: true },
       { key: 'category', title: 'Trilha' },
       { key: 'status', title: 'Situação', align: 'center' },

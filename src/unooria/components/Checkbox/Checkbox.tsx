@@ -1,3 +1,5 @@
+'use client';
+
 import React, {
   createContext,
   useContext,
@@ -15,6 +17,22 @@ import {
 } from './Checkbox.types';
 import './Checkbox.css';
 
+/**
+ * Encaminha um nó DOM para uma ref externa (callback ou objeto).
+ * Declarada fora do componente para deixar explícito que a escrita ocorre
+ * na fase de commit do React, e não durante a renderização.
+ */
+const assignInputRef = (
+  target: React.Ref<HTMLInputElement> | undefined,
+  node: HTMLInputElement | null
+) => {
+  if (typeof target === 'function') {
+    target(node);
+  } else if (target && 'current' in target) {
+    (target as React.MutableRefObject<HTMLInputElement | null>).current = node;
+  }
+};
+
 /* ==========================================================================
    Contexto do CheckboxGroup
    ========================================================================== */
@@ -24,6 +42,12 @@ interface CheckboxGroupContextValue {
   disabled?: boolean;
   size?: CheckboxSize;
   theme?: CheckboxTheme;
+  /**
+   * Estado de erro do grupo. O role `group` do <fieldset> não suporta
+   * `aria-invalid`; por isso o estado é propagado até cada <input
+   * type="checkbox">, cujo role `checkbox` reconhece o atributo.
+   */
+  invalid?: boolean;
   onChange?: (optionValue: string, checked: boolean) => void;
 }
 
@@ -142,11 +166,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       } else if (ref && 'current' in ref) {
         (ref as React.MutableRefObject<HTMLInputElement | null>).current = node;
       }
-      if (typeof externalInputRef === 'function') {
-        externalInputRef(node);
-      } else if (externalInputRef && 'current' in externalInputRef) {
-        (externalInputRef as React.MutableRefObject<HTMLInputElement | null>).current = node;
-      }
+      assignInputRef(externalInputRef, node);
     };
 
     useEffect(() => {
@@ -210,7 +230,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           onChange={handleChange}
           aria-checked={indeterminate ? 'mixed' : isChecked}
           aria-disabled={finalDisabled}
-          aria-invalid={hasError ? true : undefined}
+          aria-invalid={hasError || groupContext?.invalid ? true : undefined}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           aria-describedby={combinedDescribedBy}
@@ -331,6 +351,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
         disabled,
         size,
         theme,
+        invalid: hasError,
         onChange: handleOptionToggle,
       }}
     >
@@ -341,7 +362,6 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
         role="group"
         aria-labelledby={label ? legendId : undefined}
         aria-describedby={helperId}
-        aria-invalid={hasError ? true : undefined}
         disabled={disabled}
       >
         {label && (
@@ -372,6 +392,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
         {(errorMessage || helperText) && (
           <div
             id={helperId}
+            role={hasError ? 'alert' : undefined}
             className={`unooria-checkbox-group__helper-text ${
               hasError ? 'unooria-checkbox-group__helper-text--error' : ''
             }`}

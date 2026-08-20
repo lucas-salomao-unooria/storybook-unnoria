@@ -145,7 +145,10 @@ const meta: Meta<typeof EncryptionNotice> = {
   component: EncryptionNotice,
   parameters: { layout: 'padded' },
   argTypes: { children: { control: 'text', description: 'Texto do aviso.' } },
-  args: {},
+  args: {
+    children:
+      'Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.',
+  },
 };
 
 export default meta;

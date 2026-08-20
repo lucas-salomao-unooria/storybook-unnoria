@@ -20,11 +20,13 @@ const src = path.join(raiz, 'src');
 
 /** Folhas publicadas e as seções que cada uma deve cobrir. */
 const AGREGADOS = [
-  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile'] },
+  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unitube'] },
   { arquivo: 'styles-unooria.css', secoes: ['unooria'] },
   { arquivo: 'styles-instanooria.css', secoes: ['instanooria'] },
   { arquivo: 'styles-chatgpt.css', secoes: ['chatgpt'] },
   { arquivo: 'styles-whatsappmobile.css', secoes: ['whatsappmobile'] },
+  { arquivo: 'styles-tiktooria.css', secoes: ['tiktooria'] },
+  { arquivo: 'styles-unitube.css', secoes: ['unitube'] },
 ];
 
 /** Todo `*.css` de tokens e de componentes de uma seção, como caminho relativo. */

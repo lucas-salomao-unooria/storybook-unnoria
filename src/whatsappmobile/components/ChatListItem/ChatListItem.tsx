@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ListItem } from '../ListItem';
 import { Avatar } from '../Avatar';
@@ -56,13 +58,12 @@ export const ChatListItem = React.forwardRef<HTMLElement, WaChatListItemProps>(
     return (
       <ListItem
         ref={ref}
-        as={onClick ? 'button' : 'li'}
         className={classes}
         density="chat"
         divider={divider}
         dividerInset={71}
         onClick={onClick}
-        leading={<Avatar size="lg" src={avatarSrc} alt={name} initials={initials} />}
+        leading={<Avatar size="lg" src={avatarSrc} alt="" initials={initials} />}
         title={name}
         subtitle={
           preview ? <span className="wa-chatlistitem__preview">{preview}</span> : undefined

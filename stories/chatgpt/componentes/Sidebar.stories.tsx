@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Sidebar } from '../../../src/chatgpt/components/Sidebar';
 import { NavItem, SearchInput } from '../../../src/chatgpt/components';
 import { gptGlyphs, gptSizing } from '../../../src/chatgpt/tokens';
@@ -127,7 +127,7 @@ const SidebarDocumentationPage = () => (
     <GptDocGrid min={260}>
       <GptDocCard icon="🧱" title="Sidebar">
         <code>&lt;nav&gt;</code> vertical com gap 4 e superfície <code>bg/secondary</code>. A prop{' '}
-        <code>height</code> aceita <code>'100%'</code> para acompanhar a aplicação.
+        <code>height</code> aceita <code>&apos;100%&apos;</code> para acompanhar a aplicação.
       </GptDocCard>
       <GptDocCard icon="➕" title="Sidebar.NewChatButton">
         Botão de largura total. Aceita <code>glyph</code> e <code>children</code> para
@@ -137,7 +137,7 @@ const SidebarDocumentationPage = () => (
         Rótulo de agrupamento, com padding próprio alinhado às linhas de conversa.
       </GptDocCard>
       <GptDocCard icon="👤" title="Sidebar.FooterItem">
-        Item de rodapé. Aceita <code>as="a"</code> e <code>href</code> para navegação real.
+        Item de rodapé. Aceita <code>as=&quot;a&quot;</code> e <code>href</code> para navegação real.
       </GptDocCard>
     </GptDocGrid>
 

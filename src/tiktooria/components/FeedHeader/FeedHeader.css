@@ -1,0 +1,56 @@
+/**
+ * Estilos do Componente FeedHeader — Design System Tik Tooria
+ * Frame "Header" (node 4:1116), 414×44, sobre o vídeo em tela cheia.
+ */
+
+.tik-feedheader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tik-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-feedheader-height);
+  background: transparent;
+}
+
+.tik-feedheader__tab {
+  padding: 0;
+  font-family: var(--tik-font-sans);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--tik-transition-fast),
+    font-size var(--tik-transition-fast);
+}
+
+.tik-feedheader__tab--active {
+  font-size: var(--tik-font-feedtab-active-size);
+  font-weight: var(--tik-font-feedtab-active-weight);
+  line-height: var(--tik-font-feedtab-active-line);
+  letter-spacing: var(--tik-font-feedtab-active-tracking);
+  color: var(--tik-color-text-on-immersive);
+}
+
+.tik-feedheader__tab--inactive {
+  font-size: var(--tik-font-feedtab-inactive-size);
+  font-weight: var(--tik-font-feedtab-inactive-weight);
+  line-height: var(--tik-font-feedtab-inactive-line);
+  letter-spacing: var(--tik-font-feedtab-inactive-tracking);
+  color: var(--tik-color-text-on-immersive-muted);
+}
+
+.tik-feedheader__tab:focus-visible {
+  outline: 2px solid var(--tik-color-text-on-immersive);
+  outline-offset: 3px;
+  border-radius: var(--tik-radius-s);
+}
+
+/** Traço vertical de 11px em branco a 20% (node 4:1119). */
+.tik-feedheader__divider {
+  width: 1px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.2);
+}

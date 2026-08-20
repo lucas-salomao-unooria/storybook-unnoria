@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { FeatureCard } from '../../../src/chatgpt/components/FeatureCard';
 import { ChatInput, Tag } from '../../../src/chatgpt/components';
 import { gptGlyphs } from '../../../src/chatgpt/tokens';
@@ -44,7 +44,7 @@ const FeatureCardDocumentationPage = () => (
         cartão peso de convite e não de item de lista.
       </GptDocCard>
       <GptDocCard icon="🖱️" title="Acionável">
-        Com <code>as="button"</code>, clicar preenche o compositor com o prompt correspondente.
+        Com <code>as=&quot;button&quot;</code>, clicar preenche o compositor com o prompt correspondente.
         Ganha hover a 2% e anel de foco.
       </GptDocCard>
       <GptDocCard icon="📐" title="Medidas fixas">

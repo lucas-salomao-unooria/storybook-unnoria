@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   unooriaElevation,
   UnooriaElevationKey,
@@ -683,8 +683,8 @@ const UnooriaElevationDocumentation: React.FC<{
                 backgroundColor: previewBg === 'light' ? '#FFFFFF' : '#22272A',
                 color: previewBg === 'light' ? '#0F172A' : '#FFFFFF',
                 boxShadow: unooriaElevation[activeTokenKey].boxShadow,
-                backdropFilter: (unooriaElevation[activeTokenKey] as any).backdropFilter || 'none',
-                WebkitBackdropFilter: (unooriaElevation[activeTokenKey] as any).backdropFilter || 'none',
+                backdropFilter: unooriaElevation[activeTokenKey].backdropFilter || 'none',
+                WebkitBackdropFilter: unooriaElevation[activeTokenKey].backdropFilter || 'none',
                 textAlign: 'center',
                 transition: 'all 0.3s ease',
                 border: previewBg === 'light' ? '1px solid #E2E8F0' : '1px solid rgba(255,255,255,0.05)',

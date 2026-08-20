@@ -40,7 +40,7 @@ export interface SideBarItemData {
   as?: React.ElementType;
   className?: string;
   style?: React.CSSProperties;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export type SideBarItem = SideBarItemData;

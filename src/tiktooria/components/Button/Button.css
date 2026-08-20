@@ -1,0 +1,106 @@
+/**
+ * Estilos do Componente Button — Design System Tik Tooria
+ * Nodes 4:622 (primary), 4:495 (outline) e 4:803 (floating).
+ */
+
+.tik-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tik-spacing-xs);
+  box-sizing: border-box;
+  font-family: var(--tik-font-sans);
+  cursor: pointer;
+  transition:
+    background var(--tik-transition-fast),
+    border-color var(--tik-transition-fast),
+    opacity var(--tik-transition-fast);
+}
+
+.tik-button--block {
+  width: 100%;
+}
+
+.tik-button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.tik-button:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Primary — cápsula de 270×44 (node 4:622)
+   ========================================================================== */
+
+.tik-button--primary {
+  height: var(--tik-primary-button-height);
+  padding: 0 var(--tik-spacing-xxl);
+  font-size: var(--tik-font-body-bold-size);
+  font-weight: var(--tik-font-body-bold-weight);
+  line-height: var(--tik-font-body-bold-line);
+  color: var(--tik-color-text-on-immersive);
+  background: var(--tik-color-brand-button);
+  border: 0;
+  border-radius: 22px;
+}
+
+.tik-button--primary.tik-button--fixed {
+  width: var(--tik-primary-button-width);
+}
+
+.tik-button--primary:hover:not(:disabled) {
+  background: var(--tik-color-accent-heart-shadow);
+}
+
+/* ==========================================================================
+   Outline — 164×44 com raio de 2px (node 4:495)
+   ========================================================================== */
+
+.tik-button--outline {
+  height: var(--tik-outline-button-height);
+  padding: 0 var(--tik-spacing-l);
+  font-size: var(--tik-font-body-strong-size);
+  font-weight: var(--tik-font-body-strong-weight);
+  line-height: var(--tik-font-body-strong-line);
+  color: var(--tik-color-text-callout);
+  background: var(--tik-color-surface-primary);
+  border: 1px solid var(--tik-color-border-outline);
+  border-radius: var(--tik-radius-s);
+}
+
+.tik-button--outline.tik-button--fixed {
+  width: var(--tik-outline-button-width);
+}
+
+.tik-button--outline:hover:not(:disabled) {
+  background: var(--tik-color-surface-sheet);
+}
+
+/* ==========================================================================
+   Floating — cápsula branca de 178×52 com sombra (node 4:803)
+   ========================================================================== */
+
+.tik-button--floating {
+  height: var(--tik-floating-button-height);
+  padding: 0 var(--tik-spacing-xl);
+  font-size: var(--tik-font-pill-size);
+  font-weight: var(--tik-font-pill-weight);
+  line-height: var(--tik-font-pill-line);
+  letter-spacing: var(--tik-font-pill-tracking);
+  color: var(--tik-color-text-primary);
+  background: var(--tik-color-surface-primary);
+  border: 0;
+  border-radius: 26px;
+  box-shadow: var(--tik-elevation-floating);
+}
+
+.tik-button--floating.tik-button--fixed {
+  width: var(--tik-floating-button-width);
+}
+
+.tik-button--floating:hover:not(:disabled) {
+  background: var(--tik-color-surface-sheet);
+}

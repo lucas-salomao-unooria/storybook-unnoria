@@ -1,0 +1,42 @@
+/**
+ * Estilos do Componente RecordButton — Design System Tik Tooria
+ * Frame "Record Button" (node 4:695), 80×80.
+ */
+
+.tik-recordbutton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--tik-radius-full);
+  cursor: pointer;
+  transition: transform var(--tik-transition-fast);
+}
+
+.tik-recordbutton:active {
+  transform: scale(0.96);
+}
+
+.tik-recordbutton:focus-visible {
+  outline: 2px solid var(--tik-color-text-on-immersive);
+  outline-offset: 4px;
+}
+
+/** Anel de 6px inscrito no raio de 37 (node 4:697). */
+.tik-recordbutton__ring {
+  position: absolute;
+  inset: 3.75%;
+  border: 6px solid var(--tik-color-brand-button);
+  border-radius: var(--tik-radius-full);
+}
+
+/** Disco de raio 32 no centro (node 4:696). */
+.tik-recordbutton__core {
+  width: 80%;
+  height: 80%;
+  background: var(--tik-color-brand-button);
+  border-radius: var(--tik-radius-full);
+}

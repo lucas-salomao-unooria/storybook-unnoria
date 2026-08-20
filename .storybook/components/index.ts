@@ -4,3 +4,5 @@ export * from './UnooriaDocSectionHeader';
 export * from './InstaDocKit';
 export * from './GptDocKit';
 export * from './WaDocKit';
+export * from './TikDocKit';
+export * from './UniDocKit';

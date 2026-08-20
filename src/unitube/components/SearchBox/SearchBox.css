@@ -1,0 +1,109 @@
+/**
+ * Estilos do Componente SearchBox — Design System Unitube
+ * Nó de origem: `Navigation/SearchBox` (7:49), 470×40.
+ */
+
+.uni-searchbox {
+  display: flex;
+  align-items: center;
+  gap: var(--uni-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--uni-searchbox-width);
+  height: var(--uni-searchbox-height);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-searchbox__area {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+}
+
+/*
+ * O arquivo desenha contorno em apenas três arestas: topo, base e esquerda.
+ * A direita fica aberta porque o botão de lupa encosta nela.
+ */
+.uni-searchbox__field {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 var(--uni-spacing-8);
+  background: var(--uni-color-background-field);
+  border-top: 1px solid var(--uni-color-border-subtle);
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+  border-left: 1px solid var(--uni-color-border-subtle);
+  border-radius: var(--uni-radius-sm) 0 0 var(--uni-radius-sm);
+}
+
+.uni-searchbox__input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: var(--uni-font-body-lg-size);
+  font-weight: var(--uni-font-body-lg-weight);
+  line-height: var(--uni-font-body-lg-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.uni-searchbox__input::placeholder {
+  color: var(--uni-color-text-secondary);
+  opacity: 1;
+}
+
+.uni-searchbox__field:focus-within {
+  border-color: var(--uni-color-border-active);
+}
+
+.uni-searchbox__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--uni-searchbox-button-width);
+  height: 100%;
+  padding: var(--uni-spacing-2) 0;
+  background: var(--uni-color-background-surface);
+  border: 1px solid var(--uni-color-background-surface);
+  border-radius: 0 var(--uni-radius-sm) var(--uni-radius-sm) 0;
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+/* Círculo de busca por voz: preto puro, mais escuro que a escada semântica. */
+.uni-searchbox__voice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--uni-icon-button-size);
+  height: var(--uni-icon-button-size);
+  padding: var(--uni-spacing-8);
+  background: var(--uni-color-background-inverse-deep);
+  border: none;
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+.uni-searchbox__submit:hover,
+.uni-searchbox__voice:hover {
+  background-image: linear-gradient(var(--uni-color-state-hover), var(--uni-color-state-hover));
+}
+
+.uni-searchbox__submit:focus-visible,
+.uni-searchbox__voice:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}

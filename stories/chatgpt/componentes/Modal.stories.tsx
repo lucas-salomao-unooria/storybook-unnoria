@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Modal } from '../../../src/chatgpt/components/Modal';
 import { Button, Divider, Input, SettingsRow, Toggle } from '../../../src/chatgpt/components';
 import {
@@ -47,7 +47,7 @@ const ModalDocumentationPage = () => {
           prop <code>title</code> monta o cabeçalho padrão sem composição manual.
         </GptDocCard>
         <GptDocCard icon="♿" title="Acessibilidade">
-          <code>role="dialog"</code> com <code>aria-modal</code>, foco inicial no primeiro elemento
+          <code>role=&quot;dialog&quot;</code> com <code>aria-modal</code>, foco inicial no primeiro elemento
           focável, <code>Tab</code>/<code>Shift+Tab</code> circulando dentro do diálogo e{' '}
           <code>ESC</code> fechando.
         </GptDocCard>

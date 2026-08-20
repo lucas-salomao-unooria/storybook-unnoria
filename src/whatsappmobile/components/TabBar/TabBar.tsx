@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Icon } from '../Icon';
 import { Badge } from '../Badge';
@@ -20,15 +22,45 @@ export const TabBar = React.forwardRef<HTMLDivElement, WaTabBarProps>(
       showCamera = true,
       onCamera,
       tone = 'accent',
+      panelId,
       className = '',
       ...restProps
     },
     ref
   ) => {
     const classes = ['wa-tabbar', `wa-tabbar--tone-${tone}`, className].filter(Boolean).join(' ');
+    const tabRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
+
+    /**
+     * Navegação por setas exigida pelo padrão ARIA de abas: a faixa tem uma
+     * única parada de tabulação (a aba ativa) e ←/→/Home/End movem a seleção.
+     */
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+
+      if (!keys.includes(event.key) || items.length === 0) {
+        return;
+      }
+
+      event.preventDefault();
+      const current = items.findIndex((item) => item.id === activeId);
+
+      const nextIndex =
+        event.key === 'Home'
+          ? 0
+          : event.key === 'End'
+            ? items.length - 1
+            : event.key === 'ArrowLeft'
+              ? (current - 1 + items.length) % items.length
+              : (current + 1) % items.length;
+
+      const next = items[nextIndex];
+      onChange?.(next.id);
+      tabRefs.current[next.id]?.focus();
+    };
 
     return (
-      <div ref={ref} className={classes} role="tablist" {...restProps}>
+      <div ref={ref} className={classes} {...restProps}>
         {showCamera && (
           <button
             type="button"
@@ -40,7 +72,7 @@ export const TabBar = React.forwardRef<HTMLDivElement, WaTabBarProps>(
           </button>
         )}
 
-        <div className="wa-tabbar__items">
+        <div className="wa-tabbar__items" role="tablist" onKeyDown={handleKeyDown}>
           {items.map((item) => {
             const isActive = item.id === activeId;
 
@@ -50,8 +82,12 @@ export const TabBar = React.forwardRef<HTMLDivElement, WaTabBarProps>(
                 type="button"
                 role="tab"
                 id={`wa-tab-${item.id}`}
+                ref={(node) => {
+                  tabRefs.current[item.id] = node;
+                }}
                 aria-selected={isActive}
-                aria-controls={`wa-tabpanel-${item.id}`}
+                aria-controls={panelId ? panelId(item.id) : undefined}
+                tabIndex={isActive ? 0 : -1}
                 className={[
                   'wa-tabbar__tab',
                   isActive ? 'wa-tabbar__tab--active' : '',

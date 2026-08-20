@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/**
+ * A família Montserrat é declarada aqui **e** no topo de
+ * `tiktooria/tokens/typography.css`.
+ *
+ * Não é redundância: o empacotador embute o conteúdo dos arquivos importados, e
+ * um `@import url(...)` que caia no meio da folha resultante é ignorado pelo
+ * navegador. A declaração no topo desta folha é a que funciona no pacote
+ * publicado; a do arquivo de tokens é a que funciona para quem importa
+ * `typography.css` direto (o preview do Storybook, por exemplo).
+ *
+ * Montserrat substitui a Proxima Nova do arquivo de design, que é comercial e
+ * não pode ser distribuída — ver o desvio registrado em `typography.css`.
+ */
+
+/**
+ * Folha de estilos do Design System Tik Tooria.
+ * Importe este arquivo para registrar os tokens `--tik-*` e os estilos dos
+ * componentes do módulo `src/tiktooria/`.
+ */
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Tik Tooria)
+ * ---------------------------------------------------- */
+@import './tiktooria/tokens/colors.css';
+@import './tiktooria/tokens/typography.css';
+@import './tiktooria/tokens/spacing.css';
+@import './tiktooria/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Tik Tooria)
+ * ---------------------------------------------------- */
+@import './tiktooria/components/ActionRail/ActionRail.css';
+@import './tiktooria/components/Avatar/Avatar.css';
+@import './tiktooria/components/Button/Button.css';
+@import './tiktooria/components/CameraModeStrip/CameraModeStrip.css';
+@import './tiktooria/components/CameraToolRail/CameraToolRail.css';
+@import './tiktooria/components/Chip/Chip.css';
+@import './tiktooria/components/CommentComposer/CommentComposer.css';
+@import './tiktooria/components/CommentItem/CommentItem.css';
+@import './tiktooria/components/EmptyState/EmptyState.css';
+@import './tiktooria/components/FeedHeader/FeedHeader.css';
+@import './tiktooria/components/HomeIndicator/HomeIndicator.css';
+@import './tiktooria/components/Icon/Icon.css';
+@import './tiktooria/components/ListRow/ListRow.css';
+@import './tiktooria/components/MediaGrid/MediaGrid.css';
+@import './tiktooria/components/MusicDisc/MusicDisc.css';
+@import './tiktooria/components/NavBar/NavBar.css';
+@import './tiktooria/components/PhoneFrame/PhoneFrame.css';
+@import './tiktooria/components/PhotoCard/PhotoCard.css';
+@import './tiktooria/components/ProfileHeader/ProfileHeader.css';
+@import './tiktooria/components/ProfileTabs/ProfileTabs.css';
+@import './tiktooria/components/RecordButton/RecordButton.css';
+@import './tiktooria/components/Scanner/Scanner.css';
+@import './tiktooria/components/SearchField/SearchField.css';
+@import './tiktooria/components/SectionLabel/SectionLabel.css';
+@import './tiktooria/components/Separator/Separator.css';
+@import './tiktooria/components/SettingsRow/SettingsRow.css';
+@import './tiktooria/components/ShareAction/ShareAction.css';
+@import './tiktooria/components/Sheet/Sheet.css';
+@import './tiktooria/components/SocialLogo/SocialLogo.css';
+@import './tiktooria/components/SoundHeader/SoundHeader.css';
+@import './tiktooria/components/StatTile/StatTile.css';
+@import './tiktooria/components/StatusBar/StatusBar.css';
+@import './tiktooria/components/TabBar/TabBar.css';
+@import './tiktooria/components/Tooltip/Tooltip.css';
+@import './tiktooria/components/VideoMeta/VideoMeta.css';

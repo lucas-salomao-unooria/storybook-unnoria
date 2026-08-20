@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
-  unooriaIconConfig,
   unooriaIconSizes,
-  unooriaIconSizesPx,
   unooriaIconSizesRem,
   unooriaIconStrokeWeights,
   unooriaTechAreasIcons,
@@ -15,6 +13,7 @@ import {
 } from '../../../src/unooria/tokens/icons';
 import '../../../src/unooria/tokens/icons.css';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
+import type { UnooriaIconWeight } from '../../../src/unooria/components/Icon/Icon.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Componente para notificação ao copiar
@@ -65,7 +64,7 @@ const UnooriaIconsDocumentation: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [interactiveSize, setInteractiveSize] = useState<UnooriaIconSizeKey>('S');
-  const [interactiveWeight, setInteractiveWeight] = useState<number>(300);
+  const [interactiveWeight, setInteractiveWeight] = useState<UnooriaIconWeight>(300);
   const [interactiveFill, setInteractiveFill] = useState<boolean>(false);
   const [interactiveColor, setInteractiveColor] = useState<string>('#22272A');
   const [selectedTechAreaSearch, setSelectedTechAreaSearch] = useState<string>('');
@@ -539,7 +538,7 @@ const UnooriaIconsDocumentation: React.FC = () => {
         >
           {strokeKeys.map((strokeKey) => {
             const strokeVal = unooriaIconStrokeWeights[strokeKey];
-            const weightMap: Record<UnooriaIconStrokeWeightKey, number> = {
+            const weightMap: Record<UnooriaIconStrokeWeightKey, UnooriaIconWeight> = {
               thin: 200,
               regular: 300,
               medium: 400,
@@ -584,9 +583,9 @@ const UnooriaIconsDocumentation: React.FC = () => {
                     gap: '20px',
                   }}
                 >
-                  <Icon name="home" size="m" weight={w as any} color="#22272A" />
-                  <Icon name="settings" size="m" weight={w as any} color="#22272A" />
-                  <Icon name="favorite" size="m" weight={w as any} color="#22272A" />
+                  <Icon name="home" size="m" weight={w} color="#22272A" />
+                  <Icon name="settings" size="m" weight={w} color="#22272A" />
+                  <Icon name="favorite" size="m" weight={w} color="#22272A" />
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px', color: '#64748B' }}>
@@ -936,7 +935,7 @@ const UnooriaIconsDocumentation: React.FC = () => {
               <span style={{ fontSize: '13px', color: '#475569', fontWeight: 600 }}>Peso:</span>
               <select
                 value={interactiveWeight}
-                onChange={(e) => setInteractiveWeight(Number(e.target.value))}
+                onChange={(e) => setInteractiveWeight(Number(e.target.value) as UnooriaIconWeight)}
                 style={{
                   padding: '10px 14px',
                   borderRadius: '8px',
@@ -1058,7 +1057,7 @@ const UnooriaIconsDocumentation: React.FC = () => {
               Nenhum ícone encontrado
             </h3>
             <p style={{ fontSize: '14px', margin: 0 }}>
-              Não encontramos nenhum ícone correspondente à busca "{searchTerm}".
+              Não encontramos nenhum ícone correspondente à busca &quot;{searchTerm}&quot;.
             </p>
           </div>
         ) : (
@@ -1143,7 +1142,7 @@ const UnooriaIconsDocumentation: React.FC = () => {
                       <Icon
                         name={iconName}
                         size={interactiveSize}
-                        weight={interactiveWeight as any}
+                        weight={interactiveWeight}
                         fill={interactiveFill}
                         color={interactiveColor}
                       />
@@ -1226,7 +1225,7 @@ const UnooriaIconsDocumentation: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>

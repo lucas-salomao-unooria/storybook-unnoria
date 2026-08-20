@@ -1,0 +1,81 @@
+/**
+ * Tokens de Tipografia do Design System Unitube.
+ *
+ * Extraídos do quadro `Typography` (`106:3067`) da página `🎨 Design System`.
+ * O arquivo declara uma escala de onze degraus em **Roboto**, com apenas dois
+ * pesos (Regular 400 e Bold 700) e `letter-spacing` **zero em todos os
+ * degraus** — é proibido inventar tracking. Todas as alturas de linha são
+ * absolutas, em pixels.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /** Família única do arquivo. */
+  --uni-font-sans: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --uni-font-weight-regular: 400;
+  --uni-font-weight-bold: 700;
+
+  /* Heading/H1 — 24/32 Bold · títulos de página (106:3070) */
+  --uni-font-heading-h1-size: 24px;
+  --uni-font-heading-h1-line: 32px;
+  --uni-font-heading-h1-weight: 700;
+
+  /* Heading/H2 — 20/28 Bold · cabeçalhos de seção (106:3075) */
+  --uni-font-heading-h2-size: 20px;
+  --uni-font-heading-h2-line: 28px;
+  --uni-font-heading-h2-weight: 700;
+
+  /* Heading/H3 — 18/24 Bold · títulos de cartão (106:3080) */
+  --uni-font-heading-h3-size: 18px;
+  --uni-font-heading-h3-line: 24px;
+  --uni-font-heading-h3-weight: 700;
+
+  /* Heading/H4 — 16/22 Bold · cabeçalhos da barra lateral (106:3085) */
+  --uni-font-heading-h4-size: 16px;
+  --uni-font-heading-h4-line: 22px;
+  --uni-font-heading-h4-weight: 700;
+
+  /* Body/Large — 16/24 Regular · descrições e parágrafos (106:3090) */
+  --uni-font-body-lg-size: 16px;
+  --uni-font-body-lg-line: 24px;
+  --uni-font-body-lg-weight: 400;
+
+  /* Body/Medium — 14/20 Regular · corpo padrão (106:3095) */
+  --uni-font-body-md-size: 14px;
+  --uni-font-body-md-line: 20px;
+  --uni-font-body-md-weight: 400;
+
+  /* Body/Small — 13/18 Regular · conteúdo secundário (106:3100) */
+  --uni-font-body-sm-size: 13px;
+  --uni-font-body-sm-line: 18px;
+  --uni-font-body-sm-weight: 400;
+
+  /* Caption/Default — 12/18 Regular · metadados e datas (106:3105) */
+  --uni-font-caption-size: 12px;
+  --uni-font-caption-line: 18px;
+  --uni-font-caption-weight: 400;
+
+  /* Caption/Small — 10/14 Regular · informação terciária e selos (106:3110) */
+  --uni-font-caption-sm-size: 10px;
+  --uni-font-caption-sm-line: 14px;
+  --uni-font-caption-sm-weight: 400;
+
+  /* Label/Large — 14/20 Bold · rótulo de botão e navegação (106:3115) */
+  --uni-font-label-lg-size: 14px;
+  --uni-font-label-lg-line: 20px;
+  --uni-font-label-lg-weight: 700;
+
+  /* Label/Medium — 12/18 Bold · botões pequenos e abas (106:3120) */
+  --uni-font-label-md-size: 12px;
+  --uni-font-label-md-line: 18px;
+  --uni-font-label-md-weight: 700;
+
+  /**
+   * O arquivo não declara tracking em nenhum degrau: todos medem
+   * `letterSpacing 0%`. Este token existe para que nenhum componente
+   * precise escrever `0` avulso.
+   */
+  --uni-font-tracking: 0;
+}

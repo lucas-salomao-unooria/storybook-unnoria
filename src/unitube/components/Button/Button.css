@@ -1,0 +1,73 @@
+/**
+ * Estilos do Componente Button — Design System Unitube
+ * Nó de origem: `Action/Button` (20:2758), 97×40.
+ */
+
+.uni-button {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--uni-icon-button-size);
+  padding: var(--uni-spacing-2) 0;
+  font-family: var(--uni-font-sans);
+  color: var(--uni-color-text-primary);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-sm);
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+/* Quadro de ícone de 36×36 com recuo de 6px (node 20:2758). */
+.uni-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: var(--uni-spacing-6);
+  box-sizing: border-box;
+}
+
+/* Quadro de rótulo com recuo 10/6/10/0 (node 20:2758). */
+.uni-button__label {
+  padding: var(--uni-spacing-10) var(--uni-spacing-6) var(--uni-spacing-10) 0;
+  font-size: var(--uni-font-label-lg-size);
+  font-weight: var(--uni-font-label-lg-weight);
+  line-height: var(--uni-font-label-lg-line);
+  letter-spacing: var(--uni-font-tracking);
+  white-space: nowrap;
+}
+
+/* Botão sem rótulo: o recuo do glifo já basta como alvo de toque. */
+.uni-button:not(:has(.uni-button__label)) .uni-button__icon {
+  margin-inline: var(--uni-spacing-2);
+}
+
+/*
+ * Estados de interação ausentes no arquivo, que é estático. Construídos
+ * exclusivamente sobre a escada de realce da própria marca.
+ */
+.uni-button:hover:not(:disabled) {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-button:active:not(:disabled) {
+  background: var(--uni-color-state-active);
+}
+
+.uni-button:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+.uni-button--pressed {
+  color: var(--uni-color-text-primary);
+  background: var(--uni-color-state-hover);
+}
+
+.uni-button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}

@@ -187,7 +187,7 @@ const meta: Meta<typeof FilterChip> = {
     selected: { control: 'boolean', description: 'Filtro aplicado.' },
     disabled: { control: 'boolean', description: 'Desabilita o chip.' },
   },
-  args: { label: 'Photos', selected: false, disabled: false },
+  args: { label: 'Photos', icon: undefined, selected: false, disabled: false },
 };
 
 export default meta;

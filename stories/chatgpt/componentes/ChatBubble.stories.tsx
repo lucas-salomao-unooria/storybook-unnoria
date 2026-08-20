@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ChatBubble } from '../../../src/chatgpt/components/ChatBubble';
 import { Avatar, ChatInput } from '../../../src/chatgpt/components';
 import {
@@ -97,7 +97,7 @@ const ChatBubbleDocumentationPage = () => (
     />
     <GptDocGrid min={260}>
       <GptDocCard icon="🤖" title="Avatar">
-        Renderizado somente em <code>role="assistant"</code>. Alinhado ao topo
+        Renderizado somente em <code>role=&quot;assistant&quot;</code>. Alinhado ao topo
         (<code>align-items: flex-start</code>) para acompanhar mensagens de várias linhas.
       </GptDocCard>
       <GptDocCard icon="💬" title="Mensagem">
@@ -303,6 +303,5 @@ export const ExemploOficialDoFigma: Story = {
  * Transcrição completa com os dois papéis alternados.
  */
 export const Transcricao_: Story = {
-  name: 'Transcricao',
   render: () => <Transcricao />,
 };

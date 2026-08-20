@@ -1,0 +1,48 @@
+/**
+ * Estilos do Componente ProfileHeader — Design System Tik Tooria
+ * Frame "User" (node 4:477), 414×318.
+ */
+
+.tik-profileheader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--tik-spacing-l) var(--tik-gutter) var(--tik-spacing-xl);
+  font-family: var(--tik-font-sans);
+  background: var(--tik-color-surface-primary);
+  box-shadow: var(--tik-elevation-bar-bottom);
+}
+
+.tik-profileheader__handle {
+  margin: 11px 0 0;
+  font-size: var(--tik-font-handle-size);
+  font-weight: var(--tik-font-handle-weight);
+  line-height: var(--tik-font-handle-line);
+  color: var(--tik-color-text-primary);
+}
+
+/** Os três blocos ficam a 92px de distância entre centros no arquivo. */
+.tik-profileheader__stats {
+  display: flex;
+  align-items: flex-start;
+  gap: 61px;
+  margin-top: var(--tik-spacing-l);
+}
+
+.tik-profileheader__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--tik-spacing-3xs);
+  margin-top: 16px;
+}
+
+.tik-profileheader__bio {
+  margin: var(--tik-spacing-l) 0 0;
+  font-size: var(--tik-font-label-size);
+  font-weight: var(--tik-font-label-weight);
+  line-height: var(--tik-font-label-line);
+  color: var(--tik-color-text-secondary);
+  text-align: center;
+}

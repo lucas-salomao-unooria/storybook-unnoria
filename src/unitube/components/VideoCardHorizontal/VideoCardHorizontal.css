@@ -1,0 +1,77 @@
+/**
+ * Estilos do Componente VideoCardHorizontal — Design System Unitube
+ * Nó de origem: `Media/VideoCardHorizontal` (19:1346), 1200×286.
+ */
+
+.uni-video-card-horizontal {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  /* Recuo 24/0/24/65 — a calha de 65px é a mesma da playlist. */
+  padding: var(--uni-spacing-24) 0 var(--uni-spacing-24) var(--uni-content-gutter);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-video-card-horizontal__player {
+  flex: none;
+  width: 424px;
+  max-width: 100%;
+  padding-right: var(--uni-spacing-24);
+  box-sizing: content-box;
+}
+
+.uni-video-card-horizontal__desc {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 400px;
+}
+
+/* Roboto Bold 14: Label/Large. */
+.uni-video-card-horizontal__title {
+  margin: 0 0 var(--uni-spacing-20);
+  font-size: var(--uni-font-label-lg-size);
+  font-weight: var(--uni-font-label-lg-weight);
+  line-height: var(--uni-font-label-lg-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+/* Body/Small em peso Bold: combinação exclusiva deste bloco. */
+.uni-video-card-horizontal__metadata {
+  margin-bottom: 19px;
+  font-size: var(--uni-font-body-sm-size);
+  font-weight: var(--uni-font-weight-bold);
+  line-height: var(--uni-font-body-sm-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-video-card-horizontal__text {
+  margin: var(--uni-spacing-12) 0 0;
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+/*
+ * Abaixo de 900px o arquivo não publica comportamento. O bloco empilha para
+ * que o reprodutor não seja comprimido abaixo da largura útil dos controles.
+ */
+@media (max-width: 900px) {
+  .uni-video-card-horizontal {
+    flex-direction: column;
+    padding-left: var(--uni-spacing-24);
+    padding-right: var(--uni-spacing-24);
+  }
+
+  .uni-video-card-horizontal__player {
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: var(--uni-spacing-16);
+  }
+}

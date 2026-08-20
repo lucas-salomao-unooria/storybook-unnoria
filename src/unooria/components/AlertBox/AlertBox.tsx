@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useId, useState } from 'react';
 import { AlertBoxProps, AlertBoxVariant, AlertBoxActionConfig } from './AlertBox.types';
 import { Button } from '../Button/Button';

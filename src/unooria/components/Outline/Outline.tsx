@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState } from 'react';
 import {
   OutlineProps,
@@ -10,11 +12,7 @@ import './Outline.css';
 /**
  * Função utilitária para calcular a numeração automática hierárquica (ex: "1.", "1.1", "1.1.1")
  */
-function computeHierarchicalNumber(
-  prefix: string,
-  index: number,
-  level: number
-): string {
+function computeHierarchicalNumber(prefix: string, index: number): string {
   const currentNum = `${index + 1}`;
   if (!prefix) {
     return `${currentNum}.`;
@@ -58,7 +56,7 @@ function renderOutlineTree(
     // Numeração: se autoNumber ativo e item.number ausente, calcula dinamicamente
     const computedNumber = options.autoNumber
       ? item.number ||
-        computeHierarchicalNumber(numberPrefix, index, itemLevel)
+        computeHierarchicalNumber(numberPrefix, index)
       : item.number;
 
     const childNumberPrefix =
@@ -151,6 +149,17 @@ export const Outline = forwardRef<HTMLDivElement, OutlineProps>(
     },
     ref
   ) => {
+    /**
+     * `onChange` faz parte da API pública (`OutlineProps`), porém o Outline é
+     * um componente 100% controlado: todas as mutações da árvore são delegadas
+     * ao consumidor via `onAction`, `onReorder`, `onIndent`, `onOutdent`,
+     * `onAddSubItem` e `onDelete`. Como o componente nunca produz uma nova
+     * árvore internamente, não há valor a emitir. A desestruturação é mantida
+     * para que o callback não vaze em `...rest` e seja registrado por engano
+     * como o `onChange` nativo do <div>.
+     */
+    void onChange;
+
     const [internalSelectedId, setInternalSelectedId] = useState<string | null>(
       defaultSelectedId
     );
@@ -211,7 +220,6 @@ export const Outline = forwardRef<HTMLDivElement, OutlineProps>(
       <div
         ref={ref}
         role="tree"
-        aria-readonly={readOnly}
         className={`unooria-outline ${
           isThemeDark ? 'unooria-outline--theme-dark' : ''
         } ${className}`.trim()}

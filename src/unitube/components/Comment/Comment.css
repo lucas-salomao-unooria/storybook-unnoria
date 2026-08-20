@@ -1,0 +1,134 @@
+/**
+ * Estilos do Componente Comment — Design System Unitube
+ * Nó de origem: `Content/Comment` (24:2191), 640×100.
+ */
+
+.uni-comment {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--uni-player-width);
+  padding-bottom: var(--uni-spacing-16);
+  font-family: var(--uni-font-sans);
+}
+
+/* Coluna do retrato: avatar de 40px com folga de 16px (node 24:2191). */
+.uni-comment__avatar {
+  flex: none;
+  padding-right: var(--uni-spacing-16);
+}
+
+.uni-comment__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.uni-comment__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--uni-spacing-8);
+  flex-wrap: wrap;
+  padding-bottom: var(--uni-spacing-2);
+}
+
+/* Roboto Bold 13 com altura de linha de 20px, declarada no arquivo. */
+.uni-comment__author {
+  font-size: var(--uni-font-body-sm-size);
+  font-weight: var(--uni-font-weight-bold);
+  line-height: 20px;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+/* Caption/Default, mas com altura de linha de 20px para alinhar à base. */
+.uni-comment__timestamp {
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-caption-weight);
+  line-height: 20px;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-comment__text {
+  margin: 0;
+  padding: var(--uni-spacing-2) 0;
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.uni-comment__toolbar {
+  display: flex;
+  align-items: center;
+  padding-top: var(--uni-spacing-4);
+}
+
+.uni-comment__action {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  padding: var(--uni-spacing-1) 0;
+  color: var(--uni-color-text-secondary);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-sm);
+  cursor: pointer;
+  transition: color var(--uni-transition-fast);
+}
+
+/* Alvo de 32px com recuo de 8px: glifo resultante de 16px. */
+.uni-comment__action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: var(--uni-spacing-8);
+  box-sizing: border-box;
+}
+
+.uni-comment__count {
+  padding: 7px var(--uni-spacing-8) 7px 0;
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-caption-weight);
+  line-height: var(--uni-font-caption-line);
+  letter-spacing: var(--uni-font-tracking);
+}
+
+.uni-comment__reply {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--uni-spacing-8) var(--uni-spacing-16);
+  font-family: inherit;
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-caption-weight);
+  line-height: var(--uni-font-caption-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-sm);
+  cursor: pointer;
+  transition: color var(--uni-transition-fast);
+}
+
+.uni-comment__action:hover,
+.uni-comment__reply:hover {
+  color: var(--uni-color-text-primary);
+}
+
+.uni-comment__action[aria-pressed='true'] {
+  color: var(--uni-color-text-primary);
+}
+
+.uni-comment__action:focus-visible,
+.uni-comment__reply:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}

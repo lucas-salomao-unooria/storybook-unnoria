@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useContext } from 'react';
 import { TabProps } from './Tab.types';
 import { Icon } from '../Icon/Icon';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useEffect } from 'react';
 import { PaginationProps } from './Pagination.types';
 import { Icon } from '../Icon/Icon';
@@ -101,6 +103,15 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     },
     ref
   ) => {
+    /**
+     * `totalItems` é documentado como "quantidade total de registros para
+     * exibição de resumo", mas o Figma da paginação (Node 24440:20534) não
+     * possui essa área de resumo e nenhum slot/estilo existe para ela. A prop
+     * é desestruturada apenas para não vazar como atributo inválido no <nav>
+     * via `...rest`; a exibição do resumo depende de definição de design.
+     */
+    void totalItems;
+
     const [internalPage, setInternalPage] = useState<number>(
       Math.max(1, Math.min(defaultPage, totalPages))
     );

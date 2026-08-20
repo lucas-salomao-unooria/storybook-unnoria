@@ -1,0 +1,27 @@
+/**
+ * Estilos do Componente StatTile — Design System Tik Tooria
+ * Métricas do cabeçalho do perfil (node 4:483).
+ */
+
+.tik-stattile {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tik-spacing-3xs);
+  font-family: var(--tik-font-sans);
+}
+
+.tik-stattile__value {
+  font-size: var(--tik-font-heading-size);
+  font-weight: var(--tik-font-heading-weight);
+  line-height: var(--tik-font-heading-line);
+  color: var(--tik-color-text-primary);
+}
+
+.tik-stattile__label {
+  font-size: var(--tik-font-meta-size);
+  font-weight: var(--tik-font-meta-weight);
+  line-height: var(--tik-font-meta-line);
+  color: var(--tik-color-text-secondary);
+  white-space: nowrap;
+}

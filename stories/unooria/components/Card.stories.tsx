@@ -1,7 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Card, CardHeader, CardTitle, CardMedia, CardProgress } from '../../../src/unooria/components/Card';
-import { CardProps } from '../../../src/unooria/components/Card/Card.types';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { Card } from '../../../src/unooria/components/Card';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones SVG inline para ilustrar o Card
@@ -203,13 +202,13 @@ const CardDocumentationPage = () => {
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A' }}>variant</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}><code>'default' | 'elevated' | 'outlined' | 'interactive'</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>&apos;default&apos; | &apos;elevated&apos; | &apos;outlined&apos; | &apos;interactive&apos;</code></td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>Variante visual do Card.</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A' }}>orientation</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}><code>'vertical' | 'horizontal'</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>&apos;vertical&apos; | &apos;horizontal&apos;</code></td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>Orientação do conteúdo do Card.</td>
             </tr>
@@ -317,7 +316,7 @@ const CardDocumentationPage = () => {
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A' }}>fit</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}><code>'cover' | 'contain' | 'fill' | 'none'</code></td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}><code>&apos;cover&apos; | &apos;contain&apos; | &apos;fill&apos; | &apos;none&apos;</code></td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>Comportamento de object-fit.</td>
             </tr>
@@ -360,7 +359,7 @@ const CardDocumentationPage = () => {
         </div>
         <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', padding: 24, borderRadius: 12 }}>
           <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span>❌</span> NÃO FAÇA (DON'T)
+            <span>❌</span> NÃO FAÇA (DON&apos;T)
           </h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#B91C1C' }}>
             <li>Não sobrecarregue o Card com muitos textos ou metadados desnecessários.</li>

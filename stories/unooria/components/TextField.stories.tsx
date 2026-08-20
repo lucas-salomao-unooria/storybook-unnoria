@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TextField } from '../../../src/unooria/components/TextField/TextField';
 import { PasswordInput } from '../../../src/unooria/components/TextField/PasswordInput';
 import { SearchInput } from '../../../src/unooria/components/TextField/SearchInput';
@@ -23,8 +23,6 @@ const RegistrationFormDemo: React.FC = () => {
     password: '',
     bio: '',
   });
-
-  const [submitted, setSubmitted] = useState(false);
 
   const isEmailValid = !formData.email || formData.email.includes('@');
   const isNameValid = !formData.name || formData.name.length >= 3;
@@ -99,7 +97,6 @@ const RegistrationFormDemo: React.FC = () => {
         <Button
           variant="primary"
           onClick={() => {
-            setSubmitted(true);
             alert('Formulário validado com sucesso!');
           }}
           disabled={!formData.name || !formData.email || !formData.password}
@@ -427,7 +424,7 @@ const TextFieldDocumentationPage: React.FC = () => {
                 <strong>Indique campos obrigatórios com o asterisco (*):</strong> Facilita o preenchimento sem erros.
               </li>
               <li>
-                <strong>Forneça mensagens de erro claras e orientadas à solução:</strong> Ex: "Insira um e-mail válido".
+                <strong>Forneça mensagens de erro claras e orientadas à solução:</strong> Ex: &quot;Insira um e-mail válido&quot;.
               </li>
             </ul>
           </div>
@@ -445,7 +442,7 @@ const TextFieldDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>

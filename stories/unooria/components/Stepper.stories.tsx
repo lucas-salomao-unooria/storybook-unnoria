@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Stepper } from '../../../src/unooria/components/Stepper/Stepper';
 import { Step } from '../../../src/unooria/components/Stepper/Step';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
@@ -205,7 +205,7 @@ const StepperDocumentationPage: React.FC = () => {
               </p>
               <p style={{ margin: 0 }}>
                 <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Em um formulário de inscrição com várias fases
-                (como "Dados Pessoais", "Endereço" e "Confirmação"), o Stepper apresenta essas etapas em linha, geralmente no
+                (como &quot;Dados Pessoais&quot;, &quot;Endereço&quot; e &quot;Confirmação&quot;), o Stepper apresenta essas etapas em linha, geralmente no
                 topo do formulário, destacando a etapa atual e marcando a anterior como concluída.
               </p>
             </div>
@@ -459,7 +459,7 @@ const StepperDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -510,14 +510,14 @@ const StepperDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>orientation</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'horizontal' | 'vertical'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'horizontal'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;horizontal&apos; | &apos;vertical&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;horizontal&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Disposição visual dos passos.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'md'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;md&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Escala visual (md = 48px Figma).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>

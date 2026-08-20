@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
 import { unooriaIconSizes, UnooriaIconSizeKey } from '../../../src/unooria/tokens/icons';
 import '../../../src/unooria/tokens/icons.css';
@@ -130,7 +130,7 @@ const IconDocumentationPage: React.FC = () => {
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--unooria-color-neutral-950, #22272A)' }}>{item.label}</div>
                 <code style={{ fontSize: '11px', color: 'var(--unooria-color-neutral-500, #617379)', backgroundColor: 'var(--unooria-color-neutral-100, #F5F5F5)', padding: '2px 6px', borderRadius: '4px', marginTop: '4px', display: 'inline-block' }}>
-                  name="{item.name}"
+                  name=&quot;{item.name}&quot;
                 </code>
               </div>
             </div>
@@ -239,12 +239,12 @@ const IconDocumentationPage: React.FC = () => {
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: 'var(--unooria-color-brandnavy-600, #7FA5E2)' }}>name</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: 'var(--unooria-color-neutral-500, #617379)' }}>string</td>
                 <td style={{ padding: '12px 18px', color: 'var(--unooria-color-danger-600, #E31A1A)', fontWeight: 600 }}>Obrigatório</td>
-                <td style={{ padding: '12px 18px', color: 'var(--unooria-color-neutral-800, #3D4448)' }}>Nome do ícone no Material Symbols ou marca SENAI (ex: 'search', 'mundo-senai').</td>
+                <td style={{ padding: '12px 18px', color: 'var(--unooria-color-neutral-800, #3D4448)' }}>Nome do ícone no Material Symbols ou marca SENAI (ex: &apos;search&apos;, &apos;mundo-senai&apos;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid var(--unooria-color-neutral-150, #E4E8E9)' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: 'var(--unooria-color-brandnavy-600, #7FA5E2)' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: 'var(--unooria-color-neutral-500, #617379)' }}>'4xs' | '3xs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | number</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'s' (24px)</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: 'var(--unooria-color-neutral-500, #617379)' }}>&apos;4xs&apos; | &apos;3xs&apos; | &apos;xxs&apos; | &apos;xs&apos; | &apos;s&apos; | &apos;m&apos; | &apos;l&apos; | &apos;xl&apos; | number</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;s&apos; (24px)</td>
                 <td style={{ padding: '12px 18px', color: 'var(--unooria-color-neutral-800, #3D4448)' }}>Tamanho baseado na escala de tokens ou pixels numéricos.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid var(--unooria-color-neutral-150, #E4E8E9)' }}>
@@ -262,7 +262,7 @@ const IconDocumentationPage: React.FC = () => {
               <tr style={{ borderBottom: '1px solid var(--unooria-color-neutral-150, #E4E8E9)' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: 'var(--unooria-color-brandnavy-600, #7FA5E2)' }}>color</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: 'var(--unooria-color-neutral-500, #617379)' }}>string</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'currentColor'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;currentColor&apos;</td>
                 <td style={{ padding: '12px 18px', color: 'var(--unooria-color-neutral-800, #3D4448)' }}>Cor do ícone em formato CSS hexadecimal, RGB ou variável de token (ex: var(--unooria-color-brandnavy-600)).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid var(--unooria-color-neutral-150, #E4E8E9)' }}>

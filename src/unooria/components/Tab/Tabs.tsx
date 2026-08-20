@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useState, useEffect } from 'react';
 import { TabsProps } from './Tab.types';
 import { Tab, TabsContext } from './Tab';

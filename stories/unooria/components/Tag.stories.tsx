@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Tag } from '../../../src/unooria/components/Tag/Tag';
 import { TagVariant } from '../../../src/unooria/components/Tag/Tag.types';
-import { Icon } from '../../../src/unooria/components/Icon/Icon';
 import '../../../src/unooria/tokens/icons.css';
 import '../../../src/unooria/components/Tag/Tag.css';
 import {
@@ -212,8 +211,8 @@ const TagDocumentationPage: React.FC = () => {
               </p>
               <p style={{ margin: 0 }}>
                 <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Em uma plataforma de cursos online, um curso pode exibir
-                tags como "Novo", "Certificação" ou "Esgotado" abaixo do título. A tag "Novo" pode ser verde, indicando que o curso foi
-                recentemente adicionado, enquanto "Certificação" pode ser azul e "Esgotado" vermelha, com bordas arredondadas para suavizar a
+                tags como &quot;Novo&quot;, &quot;Certificação&quot; ou &quot;Esgotado&quot; abaixo do título. A tag &quot;Novo&quot; pode ser verde, indicando que o curso foi
+                recentemente adicionado, enquanto &quot;Certificação&quot; pode ser azul e &quot;Esgotado&quot; vermelha, com bordas arredondadas para suavizar a
                 aparência.
               </p>
             </div>
@@ -325,7 +324,7 @@ const TagDocumentationPage: React.FC = () => {
                 <td style={{ padding: '12px 18px', fontWeight: 600 }}>Tipografia</td>
                 <td style={{ padding: '12px 18px' }}>Open Sans 400 (14px/20px)</td>
                 <td style={{ padding: '12px 18px', color: '#64748B' }}>font-sans</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#0086FF' }}>--unooria-font-sans: 'Open Sans', sans-serif;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#0086FF' }}>--unooria-font-sans: &apos;Open Sans&apos;, sans-serif;</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontWeight: 600 }}>Texto Tinted</td>
@@ -473,7 +472,7 @@ const TagDocumentationPage: React.FC = () => {
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#166534', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
-                <strong>Use rótulos curtos e objetivos:</strong> Palavras únicas ou termos compostos de 2 palavras (ex: "Em Aberto").
+                <strong>Use rótulos curtos e objetivos:</strong> Palavras únicas ou termos compostos de 2 palavras (ex: &quot;Em Aberto&quot;).
               </li>
               <li>
                 <strong>Mantenha consistência de cores semânticas:</strong> Verde sempre para sucesso/ativo, vermelho para erros.
@@ -497,7 +496,7 @@ const TagDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -536,14 +535,14 @@ const TagDocumentationPage: React.FC = () => {
             <tbody>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>variant</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'success' | 'info' | 'warning' | 'danger' | 'neutral' | 'brand' | 'outline'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'neutral'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;success&apos; | &apos;info&apos; | &apos;warning&apos; | &apos;danger&apos; | &apos;neutral&apos; | &apos;brand&apos; | &apos;outline&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;neutral&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Variante cromática / severidade da tag.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'md'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;md&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tamanho visual (md = 28px do Figma).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -562,12 +561,12 @@ const TagDocumentationPage: React.FC = () => {
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>dismissible</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>boolean</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>false</td>
-                <td style={{ padding: '12px 18px', color: '#334155' }}>Exibe botão de remoção 'x' à direita.</td>
+                <td style={{ padding: '12px 18px', color: '#334155' }}>Exibe botão de remoção &apos;x&apos; à direita.</td>
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>

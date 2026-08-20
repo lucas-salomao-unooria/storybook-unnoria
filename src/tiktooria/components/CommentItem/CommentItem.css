@@ -1,0 +1,92 @@
+/**
+ * Estilos do Componente CommentItem — Design System Tik Tooria
+ * Comentário da folha (nodes 4:968 e 4:1016).
+ */
+
+.tik-commentitem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tik-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--tik-spacing-xxs) var(--tik-gutter);
+  font-family: var(--tik-font-sans);
+  background: var(--tik-color-surface-sheet);
+}
+
+.tik-commentitem__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--tik-spacing-3xs);
+  min-width: 0;
+}
+
+.tik-commentitem__author {
+  display: flex;
+  align-items: center;
+  gap: var(--tik-spacing-3xs);
+  margin: 0;
+  font-size: var(--tik-font-meta-strong-size);
+  font-weight: var(--tik-font-meta-strong-weight);
+  line-height: var(--tik-font-meta-strong-line);
+  color: var(--tik-color-text-secondary);
+}
+
+.tik-commentitem__text {
+  margin: 0;
+  font-size: var(--tik-font-body-size);
+  font-weight: var(--tik-font-body-weight);
+  line-height: var(--tik-font-body-line);
+  color: var(--tik-color-text-primary);
+  overflow-wrap: break-word;
+}
+
+.tik-commentitem__time {
+  font-size: var(--tik-font-meta-size);
+  color: var(--tik-color-text-secondary);
+  white-space: nowrap;
+}
+
+.tik-commentitem__replies {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tik-spacing-xs);
+  align-self: flex-start;
+  padding: 0;
+  font-family: inherit;
+  font-size: var(--tik-font-meta-strong-size);
+  font-weight: var(--tik-font-meta-strong-weight);
+  line-height: var(--tik-font-meta-strong-line);
+  color: var(--tik-color-text-secondary);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-commentitem__replies:focus-visible,
+.tik-commentitem__like:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 2px;
+  border-radius: var(--tik-radius-s);
+}
+
+.tik-commentitem__like {
+  display: inline-flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--tik-spacing-xxs);
+  padding: var(--tik-spacing-3xs) 0 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-commentitem__likes {
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-meta-size);
+  font-weight: var(--tik-font-meta-weight);
+  line-height: var(--tik-font-meta-line);
+  color: var(--tik-color-text-secondary);
+}

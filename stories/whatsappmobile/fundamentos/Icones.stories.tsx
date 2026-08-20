@@ -168,6 +168,7 @@ const IconPlayground: React.FC<{
   tone: WaIconTone;
   rotate: number;
   flipX: boolean;
+  flipY: boolean;
   title?: string;
 }> = (props) => (
   <WaDocStage surface="canvas" padding={40}>
@@ -389,6 +390,13 @@ const IconesDocumentationPage = () => (
           description: 'Espelha o glifo no eixo horizontal, como no export de cameraFilled.',
         },
         {
+          name: 'flipY',
+          type: 'boolean',
+          default: 'false',
+          description:
+            'Espelha o glifo no eixo vertical. O arquivo combina rotate(-45) com scaleY(-1) no glifo do botão de encerrar chamada (node 1:4632).',
+        },
+        {
           name: 'title',
           type: 'string',
           description:
@@ -443,6 +451,7 @@ const meta: Meta<typeof Icon> = {
       description: 'Rotação em graus.',
     },
     flipX: { control: 'boolean', description: 'Espelha o glifo no eixo horizontal.' },
+    flipY: { control: 'boolean', description: 'Espelha o glifo no eixo vertical.' },
     title: { control: 'text', description: 'Rótulo acessível.' },
   },
   args: {
@@ -451,6 +460,7 @@ const meta: Meta<typeof Icon> = {
     tone: 'appbar',
     rotate: 0,
     flipX: false,
+    flipY: false,
     title: '',
   },
 };
@@ -479,6 +489,7 @@ export const Playground: Story = {
       tone={args.tone as WaIconTone}
       rotate={args.rotate as number}
       flipX={args.flipX as boolean}
+      flipY={args.flipY as boolean}
       title={args.title as string}
     />
   ),

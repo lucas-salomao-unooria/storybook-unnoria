@@ -1,9 +1,13 @@
+'use client';
+
 import React, {
   useState,
   useRef,
   useEffect,
   useCallback,
   useMemo,
+  useId,
+  useSyncExternalStore,
   forwardRef,
   useImperativeHandle,
 } from 'react';
@@ -15,6 +19,22 @@ import {
 import { Calendar } from '../Calendar/Calendar';
 import { DateRange } from '../Calendar/Calendar.types';
 import './DatePicker.css';
+
+/**
+ * Encaminha um nó DOM para uma ref externa (callback ou objeto).
+ * Declarada fora do componente para deixar explícito que a escrita ocorre
+ * na fase de commit do React, e não durante a renderização.
+ */
+const assignInputRef = (
+  target: React.Ref<HTMLInputElement> | undefined,
+  node: HTMLInputElement | null
+) => {
+  if (typeof target === 'function') {
+    target(node);
+  } else if (target) {
+    (target as React.MutableRefObject<HTMLInputElement | null>).current = node;
+  }
+};
 
 /* ==========================================================================
    Ícones SVG Utilitários Inline
@@ -143,6 +163,27 @@ function applyRangeMask(val: string): string {
   return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4, 8)} - ${digits.slice(8, 10)}/${digits.slice(10, 12)}/${digits.slice(12)}`;
 }
 
+/* ==========================================================================
+   Hidratação segura (SSR)
+   ========================================================================== */
+
+/** Assinatura vazia: o valor de hidratação nunca muda depois de resolvido. */
+const subscribeToNothing = () => () => {};
+const getHydratedSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+/**
+ * Retorna `false` durante a renderização no servidor e durante a hidratação,
+ * e `true` a partir daí (em renderização puramente client-side já retorna
+ * `true` na primeira passada, preservando o comportamento atual no browser).
+ *
+ * Usado para adiar qualquer leitura de `new Date()`, que é não determinística
+ * entre servidor e cliente e provocaria divergência de hidratação.
+ */
+function useIsHydrated(): boolean {
+  return useSyncExternalStore(subscribeToNothing, getHydratedSnapshot, getServerSnapshot);
+}
+
 /**
  * Gera atalhos pré-definidos padrão para seleção rápida
  */
@@ -252,8 +293,18 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const containerRef = useRef<HTMLDivElement>(null);
     const internalInputRef = useRef<HTMLInputElement>(null);
     const popoverRef = useRef<HTMLDivElement>(null);
+    const popoverId = `${useId()}-datepicker-popover`;
 
     useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+    /**
+     * Compatibilidade com SSR: `getDefaultShortcuts()` deriva os atalhos de
+     * `new Date()`. Avaliá-lo durante a renderização faz servidor e cliente
+     * calcularem datas diferentes (fusos/virada do dia). Os atalhos padrão só
+     * são materializados depois da hidratação, de modo que a marcação do
+     * servidor e a primeira renderização do cliente sejam idênticas.
+     */
+    const isHydrated = useIsHydrated();
 
     // Estado do Popover (aberto/fechado)
     const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState<boolean>(defaultIsOpen);
@@ -290,7 +341,14 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       return {};
     });
 
-    const activeRange = rangeValue !== undefined ? rangeValue || {} : internalRange;
+    /**
+     * `rangeValue || {}` criava um objeto novo a cada renderização, o que
+     * invalidava as dependências dos hooks que consomem `activeRange`.
+     */
+    const activeRange = useMemo<DateRange>(
+      () => (rangeValue !== undefined ? rangeValue || {} : internalRange),
+      [rangeValue, internalRange]
+    );
 
     // Formata o texto exibido no input conforme a seleção atual
     const getFormattedValue = useCallback(() => {
@@ -304,12 +362,18 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       return '';
     }, [mode, activeDate, activeRange]);
 
-    const [inputValue, setInputValue] = useState<string>(getFormattedValue);
+    const formattedValue = getFormattedValue();
+    const [inputValue, setInputValue] = useState<string>(formattedValue);
 
-    // Sincroniza o texto do input quando as propriedades controladas mudam
-    useEffect(() => {
-      setInputValue(getFormattedValue());
-    }, [getFormattedValue]);
+    // Sincroniza o texto do input quando as propriedades controladas mudam.
+    // Ajuste de estado durante a renderização (padrão recomendado pelo React)
+    // no lugar de um efeito: o texto digitado pelo usuário só é sobrescrito
+    // quando o valor formatado da seleção realmente muda.
+    const [lastFormattedValue, setLastFormattedValue] = useState<string>(formattedValue);
+    if (formattedValue !== lastFormattedValue) {
+      setLastFormattedValue(formattedValue);
+      setInputValue(formattedValue);
+    }
 
     // Fechar ao clicar fora do componente (clickOutside)
     useEffect(() => {
@@ -464,11 +528,13 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const shortcutList = useMemo(() => {
       if (!shortcuts) return [];
       if (Array.isArray(shortcuts)) return shortcuts;
+      if (!isHydrated) return [];
       return getDefaultShortcuts(mode);
-    }, [shortcuts, mode]);
+    }, [shortcuts, mode, isHydrated]);
 
-    // Determina placeholder padrão
-    const defaultPlaceholder = mode === 'single' ? 'dd/mm/aaaa' : 'dd/mm/aaaa - dd/mm/aaaa';
+    // Determina placeholder padrão a partir do formato configurado
+    const formatHint = format.toLowerCase();
+    const defaultPlaceholder = mode === 'single' ? formatHint : `${formatHint} - ${formatHint}`;
     const computedPlaceholder = placeholder || defaultPlaceholder;
 
     // Determina se há erro e mensagem
@@ -514,11 +580,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
           <input
             ref={(node) => {
               internalInputRef.current = node;
-              if (typeof externalInputRef === 'function') {
-                externalInputRef(node);
-              } else if (externalInputRef) {
-                (externalInputRef as React.MutableRefObject<HTMLInputElement | null>).current = node;
-              }
+              assignInputRef(externalInputRef, node);
             }}
             id={id}
             name={name}
@@ -529,9 +591,11 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             disabled={disabled}
             readOnly={readOnly}
             onChange={handleInputChange}
+            role="combobox"
             aria-label={ariaLabel || label || computedPlaceholder}
             aria-haspopup="dialog"
             aria-expanded={isOpen}
+            aria-controls={isOpen ? popoverId : undefined}
             aria-invalid={isError}
           />
 
@@ -573,6 +637,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         {isOpen && (
           <div
             ref={popoverRef}
+            id={popoverId}
             className={`unooria-datepicker__popover unooria-datepicker__popover--${popoverPlacement}`}
             role="dialog"
             aria-modal="false"

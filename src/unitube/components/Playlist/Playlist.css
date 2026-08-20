@@ -1,0 +1,109 @@
+/**
+ * Estilos do Componente Playlist — Design System Unitube
+ * Nó de origem: `Media/Playlist` (19:1562), 1200×288.
+ */
+
+.uni-playlist {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  /* Calha de 65px: o fio divisor fica alinhado ao conteúdo, não ao quadro. */
+  padding: 0 var(--uni-content-gutter);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-playlist__inner {
+  border-top: 1px solid var(--uni-color-border-subtle);
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+}
+
+.uni-playlist__header {
+  display: flex;
+  align-items: center;
+  gap: var(--uni-spacing-8);
+  flex-wrap: wrap;
+  padding-top: var(--uni-spacing-8);
+}
+
+/* Heading/H4 — 16px Bold, o mesmo corpo do rótulo "Play all". */
+.uni-playlist__title {
+  margin: 0;
+  padding: 9px var(--uni-spacing-8) var(--uni-spacing-8) 0;
+  font-size: var(--uni-font-heading-h4-size);
+  font-weight: var(--uni-font-heading-h4-weight);
+  line-height: var(--uni-font-heading-h4-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+.uni-playlist__play-all {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--uni-button-height);
+  padding: var(--uni-spacing-6) var(--uni-spacing-16);
+  /* Mesmo corpo do título, mas em tom secundário. */
+  color: var(--uni-color-text-secondary);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-sm);
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+.uni-playlist__play-all-label {
+  padding: 3px 0 var(--uni-spacing-2) var(--uni-spacing-8);
+  font-size: var(--uni-font-heading-h4-size);
+  font-weight: var(--uni-font-heading-h4-weight);
+  line-height: var(--uni-font-heading-h4-line);
+  letter-spacing: var(--uni-font-tracking);
+  white-space: nowrap;
+}
+
+.uni-playlist__play-all:hover {
+  background: var(--uni-color-state-hover);
+  color: var(--uni-color-text-primary);
+}
+
+.uni-playlist__play-all:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+/*
+ * A linha do arquivo tem cinco cartões fixos. Aqui ela rola horizontalmente
+ * para que a quantidade de cartões não force a quebra do quadro.
+ */
+.uni-playlist__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: var(--uni-spacing-24) 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--uni-color-background-surface) transparent;
+}
+
+.uni-playlist__row > * {
+  flex: none;
+  width: var(--uni-videocard-small-width);
+}
+
+.uni-playlist__row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.uni-playlist__row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.uni-playlist__row::-webkit-scrollbar-thumb {
+  background: var(--uni-color-background-surface);
+  border-radius: var(--uni-radius-full);
+}
+
+@media (max-width: 900px) {
+  .uni-playlist {
+    padding: 0 var(--uni-spacing-24);
+  }
+}

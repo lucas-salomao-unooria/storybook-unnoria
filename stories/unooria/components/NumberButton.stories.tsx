@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { NumberButton } from '../../../src/unooria/components/NumberButton/NumberButton';
-import {
-  NumberButtonProps,
-  NumberButtonSize,
-  NumberButtonTheme,
-} from '../../../src/unooria/components/NumberButton/NumberButton.types';
+import { NumberButtonSize } from '../../../src/unooria/components/NumberButton/NumberButton.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 /**
@@ -305,7 +301,7 @@ const NumberButtonDocumentationPage = () => {
             max={999}
             padLength={3}
           />
-          <span style={{ fontSize: 12, color: '#617379' }}>Exibe: "00{demoValuePad}"</span>
+          <span style={{ fontSize: 12, color: '#617379' }}>Exibe: &quot;00{demoValuePad}&quot;</span>
         </div>
 
         {/* Moeda R$ */}
@@ -428,7 +424,7 @@ const NumberButtonDocumentationPage = () => {
             padding: 20,
           }}
         >
-          <h4 style={{ color: '#00A369', margin: '0 0 12px 0', fontSize: 16 }}>✅ O que FAZER (Do's)</h4>
+          <h4 style={{ color: '#00A369', margin: '0 0 12px 0', fontSize: 16 }}>✅ O que FAZER (Do&apos;s)</h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#E8F5EE' }}>
             <li>Defina sempre limites semânticos razoáveis com <code>min</code> e <code>max</code>.</li>
             <li>Utilize o tamanho <code>LG</code> em interfaces touch e PDVs para fácil acionamento.</li>
@@ -445,7 +441,7 @@ const NumberButtonDocumentationPage = () => {
             padding: 20,
           }}
         >
-          <h4 style={{ color: '#E31A1A', margin: '0 0 12px 0', fontSize: 16 }}>❌ O que NÃO FAZER (Don'ts)</h4>
+          <h4 style={{ color: '#E31A1A', margin: '0 0 12px 0', fontSize: 16 }}>❌ O que NÃO FAZER (Don&apos;ts)</h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#FDECEC' }}>
             <li>Não utilize steppers para intervalos astronômicos sem permitir digitação direta.</li>
             <li>Não utilize tamanhos excessivamente pequenos (<code>XS</code>) em telas de toque.</li>

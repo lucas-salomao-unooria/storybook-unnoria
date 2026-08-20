@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ProfileHeader } from '../../../src/instanooria/components/ProfileHeader';
 import { Button } from '../../../src/instanooria/components/Button';
 import { StoriesTray } from '../../../src/instanooria/components/StoriesTray';

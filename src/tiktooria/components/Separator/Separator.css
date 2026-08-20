@@ -1,0 +1,25 @@
+/**
+ * Estilos do Componente Separator — Design System Tik Tooria
+ * Fio de 382px (nodes 4:269 e 4:928).
+ */
+
+.tik-separator {
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top-style: solid;
+}
+
+.tik-separator--inset {
+  margin: 0 var(--tik-gutter);
+}
+
+.tik-separator--hairline {
+  border-top-width: 0.66px;
+  border-top-color: var(--tik-color-border-hairline);
+}
+
+.tik-separator--sheet {
+  border-top-width: var(--tik-hairline);
+  border-top-color: var(--tik-color-border-separator);
+}

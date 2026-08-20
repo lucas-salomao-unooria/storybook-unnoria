@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { StoryBubble } from '../StoryBubble';
 import type { InstaStoriesTrayProps } from './StoriesTray.types';

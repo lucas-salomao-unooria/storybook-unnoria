@@ -1,0 +1,69 @@
+/**
+ * Estilos do Componente Sheet — Design System Tik Tooria
+ * Folhas inferiores (nodes 4:964 e 4:859). Sem sombra, por fidelidade.
+ */
+
+.tik-sheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--tik-font-sans);
+  background: var(--tik-color-surface-sheet);
+  border-radius: var(--tik-radius-xxl) var(--tik-radius-xxl) 0 0;
+}
+
+.tik-sheet__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 32px;
+  padding: var(--tik-spacing-m) var(--tik-gutter) var(--tik-spacing-xs);
+}
+
+.tik-sheet__title {
+  font-size: var(--tik-font-meta-strong-size);
+  font-weight: var(--tik-font-meta-strong-weight);
+  line-height: var(--tik-font-meta-strong-line);
+  color: var(--tik-color-text-primary);
+}
+
+.tik-sheet__close {
+  position: absolute;
+  right: 19.25px;
+  display: inline-flex;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-sheet__close:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 3px;
+  border-radius: var(--tik-radius-s);
+}
+
+.tik-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--tik-color-border-hairline) transparent;
+}
+
+.tik-sheet__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tik-sheet__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tik-sheet__body::-webkit-scrollbar-thumb {
+  background: var(--tik-color-border-hairline);
+  border-radius: var(--tik-radius-m);
+}

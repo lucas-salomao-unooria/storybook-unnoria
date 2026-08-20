@@ -43,7 +43,7 @@ export interface GptSidebarNewChatButtonProps
 /**
  * Propriedades do rótulo de seção `Sidebar.SectionLabel`.
  */
-export interface GptSidebarSectionLabelProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type GptSidebarSectionLabelProps = React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Propriedades do item de rodapé `Sidebar.FooterItem`.

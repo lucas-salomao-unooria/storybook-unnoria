@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Logo } from '../../../src/unooria/components/Logo/Logo';
 import { LogoSymbol } from '../../../src/unooria/components/Logo/LogoSymbol';
 import '../../../src/unooria/tokens/icons.css';

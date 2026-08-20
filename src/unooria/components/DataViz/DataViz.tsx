@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import {
   BarChartProps,
@@ -13,8 +15,6 @@ import {
   RankingCardProps,
   MultiBarDataPoint,
   DataPoint,
-  RadarAxis,
-  RadarSeries,
   TooltipState,
   UNOORIA_DATAVIZ_PALETTE,
 } from './DataViz.types';
@@ -522,7 +522,17 @@ export const PieChart: React.FC<PieChartProps> = ({
 }) => {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const total = data.reduce((acc, d) => acc + d.value, 0) || 1;
+
+  // Os ângulos acumulados são calculados antes da renderização do JSX para evitar
+  // mutação de variável dentro de um callback avaliado após o término do render.
+  const sliceAngles: { startAngle: number; endAngle: number }[] = [];
   let accumulatedAngle = 0;
+  for (const slice of data) {
+    const startAngle = accumulatedAngle;
+    const endAngle = accumulatedAngle + (slice.value / total) * 2 * Math.PI;
+    accumulatedAngle = endAngle;
+    sliceAngles.push({ startAngle, endAngle });
+  }
 
   const defaultColors = ['#2F4F7F', '#7FA5E2', '#8FAFE5', '#BDD0EF', '#D3E0F5', '#A4BDE9'];
 
@@ -545,9 +555,7 @@ export const PieChart: React.FC<PieChartProps> = ({
           <svg width="200" height="200" viewBox="-1 -1 2 2" style={{ transform: 'rotate(-90deg)' }}>
             {data.map((slice, idx) => {
               const portion = slice.value / total;
-              const startAngle = accumulatedAngle;
-              const endAngle = accumulatedAngle + portion * 2 * Math.PI;
-              accumulatedAngle = endAngle;
+              const { startAngle, endAngle } = sliceAngles[idx];
 
               const x1 = Math.cos(startAngle);
               const y1 = Math.sin(startAngle);
@@ -616,7 +624,17 @@ export const SemiDonutChart: React.FC<SemiDonutChartProps> = ({
 }) => {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
   const total = data.reduce((acc, d) => acc + d.value, 0) || 1;
+
+  // Os ângulos acumulados são calculados antes da renderização do JSX para evitar
+  // mutação de variável dentro de um callback avaliado após o término do render.
+  const sliceAngles: { startAngle: number; endAngle: number }[] = [];
   let accumulatedAngle = Math.PI;
+  for (const slice of data) {
+    const startAngle = accumulatedAngle;
+    const endAngle = accumulatedAngle + (slice.value / total) * Math.PI;
+    accumulatedAngle = endAngle;
+    sliceAngles.push({ startAngle, endAngle });
+  }
 
   const defaultColors = ['#2F4F7F', '#A4BDE9', '#8FAFE5', '#BDD0EF'];
 
@@ -639,10 +657,7 @@ export const SemiDonutChart: React.FC<SemiDonutChartProps> = ({
           <svg width="204" height="102" viewBox="0 0 204 102">
             <g transform="translate(102, 102)">
               {data.map((slice, idx) => {
-                const portion = slice.value / total;
-                const startAngle = accumulatedAngle;
-                const endAngle = accumulatedAngle + portion * Math.PI;
-                accumulatedAngle = endAngle;
+                const { startAngle, endAngle } = sliceAngles[idx];
 
                 const rOut = 95;
                 const rIn = 60;

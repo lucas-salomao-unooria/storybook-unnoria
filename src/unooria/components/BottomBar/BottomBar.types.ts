@@ -60,7 +60,7 @@ export interface BottomBarItemData {
   /** Estilos CSS inline adicionais para o item */
   style?: React.CSSProperties;
   /** Propriedades extras arbitrárias passadas ao elemento */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export type BottomBarItem = BottomBarItemData;

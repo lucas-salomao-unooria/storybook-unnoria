@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente Icon — Design System Unitube
+ *
+ * Todos os 45 glifos do arquivo são desenhados em quadros de 24×24, então o
+ * alvo é sempre quadrado. `flex: none` impede que um contêiner flexível
+ * comprima o glifo.
+ */
+
+.uni-icon {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+/* Alvo de 16px: menu superior e barra do comentário */
+.uni-icon--size-sm {
+  width: 16px;
+  height: 16px;
+}
+
+/* Alvo de 20px: informação do reprodutor */
+.uni-icon--size-md {
+  width: 20px;
+  height: 20px;
+}
+
+/* Alvo nativo de 24px: barra superior, barra lateral e ações */
+.uni-icon--size-lg {
+  width: 24px;
+  height: 24px;
+}
+
+.uni-icon--tone-primary {
+  color: var(--uni-color-text-primary);
+}
+
+.uni-icon--tone-secondary {
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-icon--tone-tertiary {
+  color: var(--uni-color-text-tertiary);
+}
+
+.uni-icon--tone-inverse {
+  color: var(--uni-color-text-inverse);
+}
+
+.uni-icon--tone-brand {
+  color: var(--uni-color-brand-primary);
+}
+
+.uni-icon--tone-playerChrome {
+  color: var(--uni-color-player-chrome);
+}
+
+/* `inherit` não declara cor: o glifo assume a cor do ancestral. */

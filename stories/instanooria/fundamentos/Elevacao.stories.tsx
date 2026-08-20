@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { instaElevation } from '../../../src/instanooria/tokens/spacing';
 import { instaGradients } from '../../../src/instanooria/tokens/colors';
 import {

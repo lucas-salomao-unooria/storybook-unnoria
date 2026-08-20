@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
 import { TableDropdownMenuProps } from './Table.types';
 import { Icon } from '../Icon/Icon';
@@ -39,7 +41,7 @@ export const TableDropdownMenu: React.FC<TableDropdownMenuProps> = ({
   }, [isOpen]);
 
   return (
-    <div ref={containerRef} className="unooria-table-dropdown">
+    <div ref={containerRef} className="unooria-table-dropdown" data-theme={theme}>
       <button
         type="button"
         aria-haspopup="true"

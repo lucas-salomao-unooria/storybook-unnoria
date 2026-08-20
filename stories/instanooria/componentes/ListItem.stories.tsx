@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ListItem } from '../../../src/instanooria/components/ListItem';
 import { Avatar } from '../../../src/instanooria/components/Avatar';
 import { Icon } from '../../../src/instanooria/components/Icon';

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { BadgeProps, BadgeVariant } from './Badge.types';
 import './Badge.css';
@@ -33,7 +35,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       onClick,
       onKeyDown,
       ...restProps
-    },
+    }: BadgeProps,
     ref
   ) => {
     // Resolução da variante ativa (variant ou status)

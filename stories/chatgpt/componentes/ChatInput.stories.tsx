@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ChatInput } from '../../../src/chatgpt/components/ChatInput';
 import { ChatBubble, Tag } from '../../../src/chatgpt/components';
 import { gptGlyphs } from '../../../src/chatgpt/tokens';
@@ -43,7 +43,7 @@ const ChatInputDocumentationPage = () => {
         </GptDocCard>
         <GptDocCard icon="↩️" title="Envio por Enter">
           O componente é um <code>&lt;form&gt;</code>: <code>Enter</code> submete e o botão de envio
-          é <code>type="submit"</code>. Nenhum listener de teclado artificial.
+          é <code>type=&quot;submit&quot;</code>. Nenhum listener de teclado artificial.
         </GptDocCard>
         <GptDocCard icon="🔗" title="Controlado ou não">
           Com <code>value</code> + <code>onValueChange</code> a aplicação controla o texto; sem

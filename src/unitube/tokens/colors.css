@@ -1,0 +1,133 @@
+/**
+ * Tokens de Cores do Design System Unitube.
+ *
+ * Extraídos do arquivo Figma "YouTube UI Clone Design (Community)"
+ * (fileKey `HcbrbLtDZ1rMEvSjoXpA5c`), página `🎨 Design System` (`104:3087`),
+ * quadro `Colors` (`106:2954`). As primitivas e os nove tokens semânticos são
+ * declarados pelo próprio arquivo; os valores anotados como "literal" foram
+ * lidos do preenchimento do nó indicado e registram o `figmaNode` em
+ * `colors.ts`.
+ *
+ * O arquivo publica **um único modo semântico — escuro**. O quadro se intitula
+ * "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme
+ * first". É PROIBIDO derivar um tema claro por cálculo: as primitivas neutras
+ * claras (`--uni-color-neutral-50` a `-400`) existem como origem de tokens de
+ * texto e de contorno sobre fundo escuro, não como uma superfície clara.
+ */
+
+:root,
+[data-uni-theme='dark'] {
+  /* ----------------------------------------------------
+   * Primitivas — Neutros (106:2957)
+   * Nunca aplicadas diretamente em componente: servem de
+   * origem para os aliases semânticos abaixo.
+   * ---------------------------------------------------- */
+  --uni-color-white: #ffffff;
+  --uni-color-black: #000000;
+  --uni-color-neutral-50: #f8f8f8;
+  --uni-color-neutral-100: #f1f2f1;
+  --uni-color-neutral-200: #eaeaea;
+  --uni-color-neutral-300: #c4c4c4;
+  --uni-color-neutral-400: #aaaaaa;
+  --uni-color-neutral-500: #303030;
+  --uni-color-neutral-600: #212121;
+  --uni-color-neutral-700: #181818;
+  --uni-color-neutral-800: #121212;
+  --uni-color-neutral-900: #030303;
+
+  /* ----------------------------------------------------
+   * Primitivas — Vermelho da marca (106:3007)
+   * ---------------------------------------------------- */
+  --uni-color-red-500: #ee1a26;
+  --uni-color-red-600: #fc0d1c;
+  --uni-color-red-700: #cc0000;
+  --uni-color-red-800: #ff0000;
+
+  /* ----------------------------------------------------
+   * Primitivas — Acento (106:3025)
+   * ---------------------------------------------------- */
+  --uni-color-blue-400: #9ebfd0;
+
+  /* ----------------------------------------------------
+   * Semânticos publicados pelo arquivo (106:3031 a 106:3066)
+   * ---------------------------------------------------- */
+
+  /** Fundo principal da página e das colunas de conteúdo. */
+  --uni-color-background-primary: var(--uni-color-neutral-700);
+  /** Barras de navegação e superfícies elevadas. */
+  --uni-color-background-secondary: var(--uni-color-neutral-600);
+  /** Superfícies interativas: chips, campos e itens ativos. */
+  --uni-color-background-surface: var(--uni-color-neutral-500);
+  /** Títulos e conteúdo principal. */
+  --uni-color-text-primary: var(--uni-color-white);
+  /** Metadados, descrições e rótulos de apoio. */
+  --uni-color-text-secondary: var(--uni-color-neutral-400);
+  /** Rótulos sutis. */
+  --uni-color-text-tertiary: var(--uni-color-neutral-300);
+  /** Vermelho da marca, usado em chamadas para ação. */
+  --uni-color-brand-primary: var(--uni-color-red-500);
+  /** Contorno de cartão publicado pelo arquivo. */
+  --uni-color-border-default: var(--uni-color-neutral-200);
+  /** Divisores e separadores, o contorno de uso corrente. */
+  --uni-color-border-subtle: var(--uni-color-neutral-500);
+
+  /* ----------------------------------------------------
+   * Semânticos derivados de preenchimento literal de nó
+   *
+   * O arquivo usa estes valores em componente, mas não os
+   * declara na lista de tokens semânticos. Foram tokenizados
+   * aqui para que nenhum componente precise citar primitiva.
+   * ---------------------------------------------------- */
+
+  /** Interior do campo de busca (node 7:49). */
+  --uni-color-background-field: var(--uni-color-neutral-800);
+  /** Fundo do botão de microfone da busca (node 7:49). */
+  --uni-color-background-inverse-deep: var(--uni-color-black);
+  /** Pílula ativa do menu superior (node 10:545). */
+  --uni-color-surface-inverse: var(--uni-color-white);
+  /** Rótulo sobre a pílula ativa (node 10:545). */
+  --uni-color-text-inverse: var(--uni-color-neutral-900);
+  /** Botão de inscrição (nodes 17:2796 e 20:2989). */
+  --uni-color-brand-subscribe: var(--uni-color-red-700);
+  /** Trecho reproduzido da linha do tempo (node 18:1295). */
+  --uni-color-brand-progress: var(--uni-color-red-600);
+  /** Emblema do logotipo (node 2:88). */
+  --uni-color-brand-logo: var(--uni-color-red-800);
+  /** Glifos e rótulos do controle de vídeo (node 18:1295). */
+  --uni-color-player-chrome: var(--uni-color-neutral-200);
+  /**
+   * Contorno de 1px que cada nó de controle do reprodutor carrega além do
+   * preenchimento (node 18:1295). Não é decoração arbitrária: é o que mantém o
+   * glifo legível sobre quadros de vídeo claros.
+   */
+  --uni-color-player-glyph-outline: rgba(0, 0, 0, 0.1);
+  /** Trilho não carregado da linha do tempo (node 18:1295). */
+  --uni-color-player-track: rgba(234, 234, 234, 0.2);
+  /** Trecho carregado da linha do tempo (node 18:1295). */
+  --uni-color-player-buffer: rgba(234, 234, 234, 0.5);
+  /** Cápsula de duração sobre a miniatura (node 11:997). */
+  --uni-color-overlay-duration: var(--uni-color-black);
+  /** Cor de espera do quadro de vídeo, antes do bitmap (node 18:1295). */
+  --uni-color-poster-placeholder: var(--uni-color-blue-400);
+  /** Sublinhado da aba ativa e contorno da pílula inativa (nodes 17:2796, 13:1698). */
+  --uni-color-border-active: var(--uni-color-neutral-400);
+
+  /* ----------------------------------------------------
+   * Véus do reprodutor (node 18:1295, grupo "shadows")
+   *
+   * Dois retângulos de 96px de altura com GRADIENT_LINEAR de
+   * preto para transparente, um no topo e outro na base.
+   * ---------------------------------------------------- */
+  --uni-gradient-player-top: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  --uni-gradient-player-bottom: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+
+  /* ----------------------------------------------------
+   * Realces de interação
+   *
+   * Ausentes no arquivo, que é estático. Construídos
+   * exclusivamente sobre a escada de neutros da própria marca.
+   * ---------------------------------------------------- */
+  --uni-color-state-hover: rgba(255, 255, 255, 0.1);
+  --uni-color-state-active: rgba(255, 255, 255, 0.2);
+  --uni-color-state-focus: var(--uni-color-brand-primary);
+}

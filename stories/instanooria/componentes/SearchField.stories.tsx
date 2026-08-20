@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { SearchField } from '../../../src/instanooria/components/SearchField';
 import { Icon } from '../../../src/instanooria/components/Icon';
 import { Chip } from '../../../src/instanooria/components/Chip';

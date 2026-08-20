@@ -84,9 +84,9 @@ export interface GptModalHeaderProps extends React.HTMLAttributes<HTMLDivElement
 /**
  * Propriedades do corpo composto `Modal.Body`.
  */
-export interface GptModalBodyProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type GptModalBodyProps = React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Propriedades do rodapé composto `Modal.Footer`.
  */
-export interface GptModalFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type GptModalFooterProps = React.HTMLAttributes<HTMLDivElement>;

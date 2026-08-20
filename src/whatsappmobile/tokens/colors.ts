@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Tokens de Cores do Design System WhatsApp Mobile.
  *

@@ -1,0 +1,43 @@
+/**
+ * Estilos do Componente CameraToolRail — Design System Tik Tooria
+ * Frame "Camera Settings" (node 4:672), 32×353.
+ */
+
+.tik-cameratoolrail {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 37.5px;
+  opacity: 0.9;
+}
+
+.tik-cameratool {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tik-spacing-xxs);
+  padding: 0;
+  font-family: var(--tik-font-sans);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: transform var(--tik-transition-fast);
+}
+
+.tik-cameratool:active {
+  transform: scale(0.94);
+}
+
+.tik-cameratool:focus-visible {
+  outline: 2px solid var(--tik-color-text-on-immersive);
+  outline-offset: 4px;
+  border-radius: var(--tik-radius-l);
+}
+
+.tik-cameratool__label {
+  font-size: var(--tik-font-tool-size);
+  font-weight: var(--tik-font-tool-weight);
+  line-height: var(--tik-font-tool-line);
+  color: var(--tik-color-text-on-immersive);
+  white-space: nowrap;
+}

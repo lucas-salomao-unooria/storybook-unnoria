@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ScrollBar } from '../../../src/unooria/components/ScrollBar/ScrollBar';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
 import '../../../src/unooria/tokens/icons.css';
@@ -483,14 +483,14 @@ const ScrollBarDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
                 <strong>Não use scrollbars cinzas nativas:</strong> Sempre utilize a classe <code>.unooria-scrollbar</code> ou o wrapper <code>ScrollBar</code>.
               </li>
               <li>
-                <strong>Não sobreponha rolagem horizontal e vertical desnecessariamente:</strong> Use <code>orientation="vertical"</code> por padrão.
+                <strong>Não sobreponha rolagem horizontal e vertical desnecessariamente:</strong> Use <code>orientation=&quot;vertical&quot;</code> por padrão.
               </li>
               <li>
                 <strong>Não force altura fixa minúscula:</strong> Deixe ao menos <code>140px</code> para que o usuário possa rolar confortavelmente.
@@ -522,14 +522,14 @@ const ScrollBarDocumentationPage: React.FC = () => {
             <tbody>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>orientation</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'vertical' | 'horizontal' | 'both'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'vertical'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;vertical&apos; | &apos;horizontal&apos; | &apos;both&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;vertical&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Direção permitida de rolagem.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>thickness</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'slim' | 'regular' | 'thick'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'slim'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;slim&apos; | &apos;regular&apos; | &apos;thick&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;slim&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Espessura da barra (slim = 4px do Figma).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -552,8 +552,8 @@ const ScrollBarDocumentationPage: React.FC = () => {
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>
@@ -726,7 +726,6 @@ export const ExemploOficialFigma: Story = {
  * Rolagem Vertical com Lista Fluida.
  */
 export const RolagemVertical: Story = {
-  name: 'Rolagem Vertical',
   render: () => (
     <div style={{ maxWidth: '420px', padding: '24px', backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #E4E8E9' }}>
       <ScrollBar maxHeight="200px">
@@ -746,7 +745,6 @@ export const RolagemVertical: Story = {
  * Rolagem Horizontal em Carrossel/Tabela.
  */
 export const RolagemHorizontal: Story = {
-  name: 'Rolagem Horizontal',
   render: () => (
     <div style={{ maxWidth: '500px', padding: '24px', backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #E4E8E9' }}>
       <ScrollBar orientation="horizontal">

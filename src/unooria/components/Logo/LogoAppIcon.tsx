@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { LogoAppIconProps } from './Logo.types';
 import { UnooriaAppIconVector } from './LogoVectors';

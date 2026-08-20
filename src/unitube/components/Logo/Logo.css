@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente Logo — Design System Unitube
+ * Nó de origem: `Brand/YoutubeLogo` (2:88), 90×20.
+ */
+
+.uni-logo {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+}
+
+/* Vermelho literal do arquivo: a primitiva red/800, não o vermelho semântico. */
+.uni-logo__badge {
+  fill: var(--uni-color-brand-logo);
+}
+
+/* Triângulo de reprodução, branco puro no arquivo. */
+.uni-logo__glyph {
+  fill: var(--uni-color-white);
+}
+
+/*
+ * O arquivo declara o logotipo tipográfico em preto, mas o aplica em branco em
+ * todas as telas. O token de texto primário reproduz o que as telas mostram.
+ */
+.uni-logo__wordmark {
+  fill: var(--uni-color-text-primary);
+}

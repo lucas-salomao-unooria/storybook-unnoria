@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Avatar } from '../../../src/chatgpt/components/Avatar';
 import { gptSizing } from '../../../src/chatgpt/tokens';
 import {

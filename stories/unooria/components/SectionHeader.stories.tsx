@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { SectionHeader } from '../../../src/unooria/components/SectionHeader/SectionHeader';
 import { Button } from '../../../src/unooria/components/Button/Button';
 import { Tag } from '../../../src/unooria/components/Tag/Tag';
@@ -64,7 +64,7 @@ const AdminPageDemo: React.FC = () => {
           fontSize: '14px',
         }}
       >
-        Área de conteúdo da seção (Tabela de dados filtrada por: <strong>"{search || 'Todos'}"</strong>)
+        Área de conteúdo da seção (Tabela de dados filtrada por: <strong>&quot;{search || 'Todos'}&quot;</strong>)
       </div>
     </div>
   );
@@ -321,7 +321,7 @@ const SectionHeaderDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>

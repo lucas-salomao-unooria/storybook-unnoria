@@ -67,5 +67,5 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   /** Estilos inline customizados */
   style?: React.CSSProperties;
   /** Atributos arbitrários adicionais para renderização polimórfica */
-  [key: string]: any;
+  [key: string]: unknown;
 }

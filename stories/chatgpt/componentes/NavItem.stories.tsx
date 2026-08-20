@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { NavItem } from '../../../src/chatgpt/components/NavItem';
 import { Sidebar } from '../../../src/chatgpt/components';
 import { gptGlyphs } from '../../../src/chatgpt/tokens';
@@ -45,12 +45,12 @@ const NavItemDocumentationPage = () => {
           temporais na <code>Sidebar</code>.
         </GptDocCard>
         <GptDocCard icon="⚫" title="Estado Active">
-          Superfície a 4% e texto a 100%. Aplica <code>aria-current="page"</code> automaticamente,
+          Superfície a 4% e texto a 100%. Aplica <code>aria-current=&quot;page&quot;</code> automaticamente,
           o que dá ao leitor de tela a posição atual.
         </GptDocCard>
         <GptDocCard icon="🖱️" title="Estado Hover">
           Superfície a 2% e texto a 80%. Aparece naturalmente no ponteiro e pode ser fixado por{' '}
-          <code>state="hover"</code> para matrizes.
+          <code>state=&quot;hover&quot;</code> para matrizes.
         </GptDocCard>
         <GptDocCard icon="✂️" title="Truncamento">
           O rótulo é truncado com reticências em uma linha — títulos de conversa são gerados e podem
@@ -99,7 +99,7 @@ const NavItemDocumentationPage = () => {
           medidos juntos no arquivo.
         </GptDocCard>
         <GptDocCard icon="🔗" title="as">
-          Renderize como <code>'a'</code> para navegação real, preservando o comportamento nativo do
+          Renderize como <code>&apos;a&apos;</code> para navegação real, preservando o comportamento nativo do
           link.
         </GptDocCard>
       </GptDocGrid>

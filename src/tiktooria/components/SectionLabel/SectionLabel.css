@@ -1,0 +1,14 @@
+/**
+ * Estilos do Componente SectionLabel — Design System Tik Tooria
+ * Rótulo de seção (node 4:254). Semibold 13, sem tracking nem transformação.
+ */
+
+.tik-sectionlabel {
+  margin: 0;
+  padding: 0 var(--tik-gutter) var(--tik-spacing-3xs);
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-meta-strong-size);
+  font-weight: var(--tik-font-meta-strong-weight);
+  line-height: var(--tik-font-meta-strong-line);
+  color: var(--tik-color-text-secondary);
+}

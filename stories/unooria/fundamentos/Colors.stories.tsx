@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   brandNavy,
   brandNavyOverlay,
   brandPurple,
   brandPurpleOverlay,
-  brandBlue,
-  brandBlueOverlay,
   brandOrange,
   brandOrangeOverlay,
   neutral,
@@ -856,7 +854,7 @@ export const SimuladorDeCoresUI: Story = {
             </label>
             <select
               value={feedbackStatus}
-              onChange={(e) => setFeedbackStatus(e.target.value as any)}
+              onChange={(e) => setFeedbackStatus(e.target.value as 'success' | 'warning' | 'danger' | 'info')}
               style={{
                 width: '100%',
                 padding: '8px 12px',
@@ -1159,7 +1157,7 @@ export const ExploradorInterativo: Story = {
           ))}
           {filteredEntries.length === 0 && (
             <div style={{ padding: '32px', color: '#7C8E94', width: '100%', textAlign: 'center' }}>
-              Nenhum token encontrado para a busca "{searchTerm}".
+              Nenhum token encontrado para a busca &quot;{searchTerm}&quot;.
             </div>
           )}
         </div>

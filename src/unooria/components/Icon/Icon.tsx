@@ -1,7 +1,11 @@
 import React, { forwardRef } from 'react';
 import { IconProps, UnooriaIconSize } from './Icon.types';
 import { customSenaiIconsMap } from './CustomIcons';
-import { unooriaIconSizes, UnooriaIconSizeKey } from '../../tokens/icons';
+import {
+  unooriaIconSizes,
+  unooriaIconStrokeWeights,
+  UnooriaIconSizeKey,
+} from '../../tokens/icons';
 import './Icon.css';
 
 /**
@@ -47,6 +51,10 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
   ) => {
     const sizePx = resolveIconSize(size);
     const fillValue = fill === true || fill === 1 ? 1 : 0;
+    // `stroke-width` é uma propriedade SVG herdada: aplicada no wrapper, ela
+    // alcança os traços dos ícones vetoriais customizados do SENAI.
+    const resolvedStrokeWidth =
+      strokeWeight !== undefined ? unooriaIconStrokeWeights[strokeWeight] : undefined;
     const resolvedOpticalSize = opticalSize !== undefined ? opticalSize : sizePx;
 
     // Acessibilidade: se aria-label fornecido, atua como imagem com significado; caso contrário é decorativo
@@ -76,6 +84,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
             width: sizePx,
             height: sizePx,
             color: color || undefined,
+            strokeWidth: resolvedStrokeWidth,
             transform: customTransform || undefined,
             ...style,
           }}

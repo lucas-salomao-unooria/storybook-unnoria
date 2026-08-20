@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TabBar, instaDefaultTabs } from '../../../src/instanooria/components/TabBar';
 import {
   UnooriaDocShell,

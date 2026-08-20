@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   BarChart,
   PositiveNegativeBarChart,
@@ -680,7 +680,7 @@ export const Documentacao: Story = {
 // ============================================================================
 
 // 1. BarChart
-export const PlaygroundBarChart: Story = {
+export const PlaygroundBarChart: StoryObj<typeof BarChart> = {
   name: '🕹️ 1. Gráfico de Barras',
   args: {
     title: 'Desempenho Mensal',
@@ -705,7 +705,7 @@ export const PlaygroundBarChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema Claro / Escuro' },
     showTooltip: { control: 'boolean', description: 'Balão flutuante no hover' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <BarChart {...args} />
     </div>
@@ -713,7 +713,7 @@ export const PlaygroundBarChart: Story = {
 };
 
 // 2. PositiveNegativeBarChart
-export const PlaygroundPositiveNegativeBarChart: Story = {
+export const PlaygroundPositiveNegativeBarChart: StoryObj<typeof PositiveNegativeBarChart> = {
   name: '🕹️ 2. Barras Positivas e Negativas',
   args: {
     title: 'Balanço Financeiro Mensal',
@@ -736,7 +736,7 @@ export const PlaygroundPositiveNegativeBarChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <PositiveNegativeBarChart {...args} />
     </div>
@@ -744,7 +744,7 @@ export const PlaygroundPositiveNegativeBarChart: Story = {
 };
 
 // 3. LineChart
-export const PlaygroundLineChart: Story = {
+export const PlaygroundLineChart: StoryObj<typeof LineChart> = {
   name: '🕹️ 3. Gráfico de Linhas',
   args: {
     title: 'Evolução de Usuários',
@@ -769,7 +769,7 @@ export const PlaygroundLineChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <LineChart {...args} />
     </div>
@@ -777,7 +777,7 @@ export const PlaygroundLineChart: Story = {
 };
 
 // 4. AreaChart
-export const PlaygroundAreaChart: Story = {
+export const PlaygroundAreaChart: StoryObj<typeof AreaChart> = {
   name: '🕹️ 4. Gráfico de Área',
   args: {
     title: 'Volume de Tráfego por Canal',
@@ -800,7 +800,7 @@ export const PlaygroundAreaChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <AreaChart {...args} />
     </div>
@@ -808,7 +808,7 @@ export const PlaygroundAreaChart: Story = {
 };
 
 // 5. PieChart
-export const PlaygroundPieChart: Story = {
+export const PlaygroundPieChart: StoryObj<typeof PieChart> = {
   name: '🕹️ 5. Gráfico de Pizza',
   args: {
     title: 'Distribuição de Alunos',
@@ -824,7 +824,7 @@ export const PlaygroundPieChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <PieChart {...args} />
     </div>
@@ -832,7 +832,7 @@ export const PlaygroundPieChart: Story = {
 };
 
 // 6. SemiDonutChart (180°)
-export const PlaygroundSemiDonutChart: Story = {
+export const PlaygroundSemiDonutChart: StoryObj<typeof SemiDonutChart> = {
   name: '🕹️ 6. Meio Gráfico de Pizza (180°)',
   args: {
     title: 'Capacidade de Vagas',
@@ -848,7 +848,7 @@ export const PlaygroundSemiDonutChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <SemiDonutChart {...args} />
     </div>
@@ -856,7 +856,7 @@ export const PlaygroundSemiDonutChart: Story = {
 };
 
 // 7. RadarChart (Com Profundidade e Eixos Customizáveis)
-export const PlaygroundRadarChart: Story = {
+export const PlaygroundRadarChart: StoryObj<typeof RadarChart> = {
   name: '🕹️ 7. Gráfico Radar (Customizável)',
   args: {
     title: 'Avaliação Multidimensional',
@@ -891,7 +891,7 @@ export const PlaygroundRadarChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <RadarChart {...args} />
     </div>
@@ -899,7 +899,7 @@ export const PlaygroundRadarChart: Story = {
 };
 
 // 8. RadialBarChart
-export const PlaygroundRadialBarChart: Story = {
+export const PlaygroundRadialBarChart: StoryObj<typeof RadialBarChart> = {
   name: '🕹️ 8. Barras Radiais Concêntricas',
   args: {
     title: 'Progresso por Módulo',
@@ -920,7 +920,7 @@ export const PlaygroundRadialBarChart: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <RadialBarChart {...args} />
     </div>
@@ -928,7 +928,7 @@ export const PlaygroundRadialBarChart: Story = {
 };
 
 // 9. MetricCard
-export const PlaygroundMetricCard: Story = {
+export const PlaygroundMetricCard: StoryObj<typeof MetricCard> = {
   name: '🕹️ 9. Painel de Métricas (KPI)',
   args: {
     title: 'Novas Matrículas',
@@ -944,7 +944,7 @@ export const PlaygroundMetricCard: Story = {
     tagText: { control: 'text', description: 'Texto da tag percentual' },
     theme: { control: 'radio', options: ['light', 'dark'] },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <MetricCard {...args} />
     </div>
@@ -952,7 +952,7 @@ export const PlaygroundMetricCard: Story = {
 };
 
 // 10. StackedProgressBar
-export const PlaygroundStackedProgressBar: Story = {
+export const PlaygroundStackedProgressBar: StoryObj<typeof StackedProgressBar> = {
   name: '🕹️ 10. Barra de Progresso Empilhada',
   args: {
     title: 'Distribuição de Solicitações',
@@ -974,7 +974,7 @@ export const PlaygroundStackedProgressBar: Story = {
     theme: { control: 'radio', options: ['light', 'dark'] },
     showTooltip: { control: 'boolean' },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <StackedProgressBar {...args} />
     </div>
@@ -982,7 +982,7 @@ export const PlaygroundStackedProgressBar: Story = {
 };
 
 // 11. CircularProgressBar
-export const PlaygroundCircularProgressBar: Story = {
+export const PlaygroundCircularProgressBar: StoryObj<typeof CircularProgressBar> = {
   name: '🕹️ 11. Progresso Circular',
   args: {
     value: 75,
@@ -1000,7 +1000,7 @@ export const PlaygroundCircularProgressBar: Story = {
     color: { control: 'color', description: 'Cor do progresso' },
     theme: { control: 'radio', options: ['light', 'dark'] },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 48, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <CircularProgressBar {...args} />
     </div>
@@ -1008,7 +1008,7 @@ export const PlaygroundCircularProgressBar: Story = {
 };
 
 // 12. RankingCard
-export const PlaygroundRankingCard: Story = {
+export const PlaygroundRankingCard: StoryObj<typeof RankingCard> = {
   name: '🕹️ 12. Cards de Ranking (Top Courses)',
   args: {
     title: 'Top Cursos Mais Acessados',
@@ -1026,7 +1026,7 @@ export const PlaygroundRankingCard: Story = {
     items: { control: 'object', description: 'Lista ordenada RankingItem[]' },
     theme: { control: 'radio', options: ['light', 'dark'] },
   },
-  render: (args: any) => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', padding: 24, backgroundColor: args.theme === 'dark' ? '#1a1d1f' : '#F8FAFC', borderRadius: 12 }}>
       <RankingCard {...args} />
     </div>

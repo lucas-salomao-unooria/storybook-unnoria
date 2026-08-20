@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Breadcrumb } from '../../../src/unooria/components/Breadcrumb/Breadcrumb';
-import { BreadcrumbProps, BreadcrumbItem, BreadcrumbSize } from '../../../src/unooria/components/Breadcrumb/Breadcrumb.types';
+import { BreadcrumbItem } from '../../../src/unooria/components/Breadcrumb/Breadcrumb.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones SVG inline para ilustrar navegação hierárquica
@@ -646,7 +646,12 @@ export const ColapsoInteligente: Story = {
 export const Polimorfismo: Story = {
   render: () => {
     // Simulação de componente de roteamento SPA
-    const CustomRouterLink = ({ href, to, children, ...rest }: any) => (
+    const CustomRouterLink = ({
+      href,
+      to,
+      children,
+      ...rest
+    }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { to?: string }) => (
       <a href={href || to} data-spa-link="true" style={{ textDecoration: 'none' }} {...rest}>
         {children}
       </a>

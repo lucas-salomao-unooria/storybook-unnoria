@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import {
   CardProps,
@@ -7,7 +9,6 @@ import {
   CardMediaProps,
   CardContentProps,
   CardFooterProps,
-  CardBadgeGroupProps,
   CardProgressProps,
 } from './Card.types';
 import './Card.css';
@@ -74,7 +75,7 @@ export const CardTitle = forwardRef<HTMLElement, CardTitleProps>(
     return React.createElement(
       Component,
       {
-        ref: ref as any,
+        ref: ref as React.Ref<HTMLElement>,
         className: `unooria-card__title unooria-card__title--${size} ${className}`.trim(),
         ...rest,
       },

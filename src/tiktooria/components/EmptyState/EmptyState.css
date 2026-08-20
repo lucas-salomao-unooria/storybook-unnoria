@@ -1,0 +1,34 @@
+/**
+ * Estilos do Componente EmptyState — Design System Tik Tooria
+ * Frames "Info" (nodes 4:567 e 4:532).
+ */
+
+.tik-emptystate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tik-spacing-xs);
+  max-width: 301px;
+  font-family: var(--tik-font-sans);
+  text-align: center;
+}
+
+.tik-emptystate__title {
+  margin: 25px 0 0;
+  font-size: var(--tik-font-handle-size);
+  font-weight: var(--tik-font-handle-weight);
+  line-height: var(--tik-font-handle-line);
+  color: var(--tik-color-text-primary);
+}
+
+.tik-emptystate__description {
+  margin: var(--tik-spacing-m) 0 0;
+  font-size: var(--tik-font-label-size);
+  font-weight: var(--tik-font-label-weight);
+  line-height: var(--tik-font-label-line);
+  color: var(--tik-color-text-muted);
+}
+
+.tik-emptystate__action {
+  margin-top: var(--tik-spacing-xl);
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { BreadcrumbProps, BreadcrumbItem } from './Breadcrumb.types';
 import '../../tokens/colors.css';

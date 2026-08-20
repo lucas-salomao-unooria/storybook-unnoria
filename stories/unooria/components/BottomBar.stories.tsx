@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { BottomBar, BottomBarItem, AppsIcon, MenuIcon } from '../../../src/unooria/components/BottomBar/BottomBar';
-import { BottomBarProps, BottomBarItemData } from '../../../src/unooria/components/BottomBar/BottomBar.types';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { BottomBar } from '../../../src/unooria/components/BottomBar/BottomBar';
+import { BottomBarItemData } from '../../../src/unooria/components/BottomBar/BottomBar.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones SVG inline para ilustrar navegação
@@ -219,14 +219,14 @@ const BottomBarDocumentationPage = () => {
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>variant</td>
-              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'fixed' | 'floating' | 'mobile-dock' | 'top-center'</td>
-              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'floating'</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>&apos;fixed&apos; | &apos;floating&apos; | &apos;mobile-dock&apos; | &apos;top-center&apos;</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>&apos;floating&apos;</td>
               <td style={{ padding: '12px 16px' }}>Variante visual e de layout da barra.</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>theme</td>
               <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>BottomBarTheme</td>
-              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'light'</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
               <td style={{ padding: '12px 16px' }}>Tema de cor da barra (light ou dark).</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
@@ -267,8 +267,8 @@ const BottomBarDocumentationPage = () => {
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#6487C2' }}>actionPosition</td>
-              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'center' | 'end'</td>
-              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>'center'</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>&apos;center&apos; | &apos;end&apos;</td>
+              <td style={{ padding: '12px 16px', fontFamily: 'monospace' }}>&apos;center&apos;</td>
               <td style={{ padding: '12px 16px' }}>Posição do botão de ação.</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
@@ -318,7 +318,7 @@ const BottomBarDocumentationPage = () => {
         <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', padding: 24, borderRadius: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
             <span style={{ fontSize: 20 }}>❌</span>
-            <h4 style={{ margin: 0, color: '#991B1B', fontSize: 16 }}>Don't (Evite)</h4>
+            <h4 style={{ margin: 0, color: '#991B1B', fontSize: 16 }}>Don&apos;t (Evite)</h4>
           </div>
           <p style={{ margin: 0, fontSize: 14, color: '#7F1D1D', lineHeight: 1.6 }}>
             Não inclua muitos botões de ação primária ou coloque botões extras flutuando isolados. A variante <strong>top-center</strong> deve apresentar apenas <strong>uma única</strong> ação principal proeminente.

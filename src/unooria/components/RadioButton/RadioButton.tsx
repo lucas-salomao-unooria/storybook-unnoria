@@ -1,3 +1,5 @@
+'use client';
+
 import React, {
   createContext,
   forwardRef,
@@ -171,7 +173,6 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
           onChange={handleChange}
           aria-checked={isChecked}
           aria-disabled={isDisabled}
-          aria-invalid={hasError}
           aria-describedby={helperId}
           aria-label={accessibleLabel}
           className="unooria-radio__input"
@@ -185,7 +186,11 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
           <div className="unooria-radio__text-group">
             {finalLabel && <span className="unooria-radio__label">{finalLabel}</span>}
             {(helperText || typeof individualError === 'string') && (
-              <span id={helperId} className="unooria-radio__helper">
+              <span
+                id={helperId}
+                role={typeof individualError === 'string' ? 'alert' : undefined}
+                className="unooria-radio__helper"
+              >
                 {typeof individualError === 'string' ? individualError : helperText}
               </span>
             )}

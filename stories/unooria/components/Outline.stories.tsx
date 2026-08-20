@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Outline } from '../../../src/unooria/components/Outline/Outline';
 import { OutlineItem } from '../../../src/unooria/components/Outline/OutlineItem';
 import { OutlineItemData } from '../../../src/unooria/components/Outline/Outline.types';
@@ -346,8 +346,8 @@ const OutlineDocumentationPage: React.FC = () => {
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
               <p style={{ fontSize: '14px', color: '#94A3B8', margin: 0 }}>
                 <strong style={{ color: '#7FA5E2' }}>Exemplo visual prático (Placeholder):</strong> Em uma plataforma de ensino,
-                o Outline Item organiza módulos e aulas: <em>"1. Metodologia ágil"</em>, <em>"1.1. Scrum"</em>, <em>"1.2 Kanban"</em>,
-                <em>"2. Conceitos de Usabilidade"</em>, <em>"8. Protótipo de alta-fidelidade"</em>. Ao clicar em um item, o usuário
+                o Outline Item organiza módulos e aulas: <em>&quot;1. Metodologia ágil&quot;</em>, <em>&quot;1.1. Scrum&quot;</em>, <em>&quot;1.2 Kanban&quot;</em>,
+                <em>&quot;2. Conceitos de Usabilidade&quot;</em>, <em>&quot;8. Protótipo de alta-fidelidade&quot;</em>. Ao clicar em um item, o usuário
                 revela ações contextuais para mover, indentar, outdentar, criar sub-itens e excluir.
               </p>
             </div>
@@ -368,7 +368,7 @@ const OutlineDocumentationPage: React.FC = () => {
                 Placeholder Oficial do Figma (Frame 24200:1439)
               </span>
               <span style={{ fontSize: '12px', color: '#0086FF', fontWeight: 600 }}>
-                Item "8. Protótipo de alta-fidelidade" ativo com 4 botões de ação
+                Item &quot;8. Protótipo de alta-fidelidade&quot; ativo com 4 botões de ação
               </span>
             </div>
 
@@ -413,7 +413,7 @@ const OutlineDocumentationPage: React.FC = () => {
               />
             </div>
             <p style={{ fontSize: '12px', color: '#64748B', marginTop: '12px', margin: '12px 0 0 0' }}>
-              Nível superior. A ação <em>"Subir na hierarquia"</em> (outdent) fica oculta pois o item já está na raiz.
+              Nível superior. A ação <em>&quot;Subir na hierarquia&quot;</em> (outdent) fica oculta pois o item já está na raiz.
             </p>
           </div>
 
@@ -719,7 +719,7 @@ const OutlineDocumentationPage: React.FC = () => {
                 <strong>Mantenha numeração consistente:</strong> Adote formatos estruturados como <code>1.</code>, <code>1.1</code>, <code>1.1.1</code> ou ative <code>autoNumber</code>.
               </li>
               <li>
-                <strong>Oculte 'outdent' no nível raiz:</strong> Não permita que itens de nível 1 sejam outdentados além do topo da árvore.
+                <strong>Oculte &apos;outdent&apos; no nível raiz:</strong> Não permita que itens de nível 1 sejam outdentados além do topo da árvore.
               </li>
               <li>
                 <strong>Revele ações contextuais no foco:</strong> Mantenha a interface limpa exibindo os botões de ação apenas no hover ou seleção do item.
@@ -740,7 +740,7 @@ const OutlineDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -833,8 +833,8 @@ const OutlineDocumentationPage: React.FC = () => {
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual aplicado para suporte claro e escuro.</td>
               </tr>
             </tbody>

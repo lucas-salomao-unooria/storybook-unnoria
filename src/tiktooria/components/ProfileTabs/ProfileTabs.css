@@ -1,0 +1,49 @@
+/**
+ * Estilos do Componente ProfileTabs — Design System Tik Tooria
+ * Frame "Tabs" (node 4:471), 414×40.
+ */
+
+.tik-profiletabs {
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-profiletabs-height);
+  background: var(--tik-color-surface-primary);
+  box-shadow: var(--tik-elevation-bar-bottom);
+}
+
+.tik-profiletabs__tab {
+  position: relative;
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--tik-color-icon-primary);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color var(--tik-transition-fast);
+}
+
+.tik-profiletabs__tab:disabled {
+  cursor: default;
+}
+
+.tik-profiletabs__tab:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: -2px;
+}
+
+/** Sublinhado de 2px × 48px da aba ativa (node 4:476). */
+.tik-profiletabs__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 48px;
+  height: 2px;
+  background: var(--tik-color-border-tab-active);
+  transform: translateX(-50%);
+}

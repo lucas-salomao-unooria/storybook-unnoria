@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useContext } from 'react';
 import { TabPanelProps } from './Tab.types';
 import { TabsContext } from './Tab';

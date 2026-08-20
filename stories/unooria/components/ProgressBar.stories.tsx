@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ProgressBar } from '../../../src/unooria/components/ProgressBar/ProgressBar';
 import '../../../src/unooria/components/ProgressBar/ProgressBar.css';
 import {
@@ -19,7 +19,7 @@ const ProgressBarDocumentationPage: React.FC = () => {
 
   // Simulação de upload contínuo
   useEffect(() => {
-    let interval: any;
+    let interval: ReturnType<typeof setInterval> | undefined;
     if (isUploading) {
       interval = setInterval(() => {
         setSimulatedProgress((prev) => {
@@ -196,7 +196,7 @@ const ProgressBarDocumentationPage: React.FC = () => {
             <div style={{ fontSize: '20px', marginBottom: '8px' }}>📏</div>
             <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#1E293B', margin: '0 0 6px 0' }}>Trilho & Altura</h4>
             <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: '#64748B', lineHeight: 1.6 }}>
-              <li>Altura Padrão Figma: <strong>8px</strong> (<code>size="sm"</code>)</li>
+              <li>Altura Padrão Figma: <strong>8px</strong> (<code>size=&quot;sm&quot;</code>)</li>
               <li>Raio de Borda: <strong>100px</strong> (Formato Pílula)</li>
               <li>Trilho (Fundo): <code>#E2E8F0</code> (Light) / <code>rgba(255,255,255,0.1)</code> (Dark)</li>
               <li>Preenchimento Padrão: <code>#7FA5E2</code> (Brand Navy)</li>
@@ -471,7 +471,7 @@ const ProgressBarDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -528,20 +528,20 @@ const ProgressBarDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>valuePosition</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'top' | 'inline' | 'bottom' | 'none'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'top'</td>
-                <td style={{ padding: '12px 18px', color: '#334155' }}>Posição do percentual ('top' = Variante 1 Figma, 'inline' = Variante 2 Figma).</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;top&apos; | &apos;inline&apos; | &apos;bottom&apos; | &apos;none&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;top&apos;</td>
+                <td style={{ padding: '12px 18px', color: '#334155' }}>Posição do percentual (&apos;top&apos; = Variante 1 Figma, &apos;inline&apos; = Variante 2 Figma).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>variant</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'brand' | 'primary' | 'success' | 'warning' | 'danger'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'brand'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;brand&apos; | &apos;primary&apos; | &apos;success&apos; | &apos;warning&apos; | &apos;danger&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;brand&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Variante cromática da barra (brand = #7FA5E2 padrão).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'xs' | 'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'sm' (8px)</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;xs&apos; | &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;sm&apos; (8px)</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Altura da barra de progresso.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -552,8 +552,8 @@ const ProgressBarDocumentationPage: React.FC = () => {
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>

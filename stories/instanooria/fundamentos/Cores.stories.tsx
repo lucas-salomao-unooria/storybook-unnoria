@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   instaLightColors,
   instaDarkColors,
@@ -121,7 +121,8 @@ const CoresDocumentationPage = () => {
         </InstaDocCard>
         <InstaDocCard icon="🧭" title="Namespace isolado">
           O prefixo <code>--insta-</code> convive com <code>--unooria-</code> e com os tokens do
-          WhatsApp UI sem colisão, seguindo o modelo já adotado em <code>src/whatsapp/</code>.
+          WhatsApp Mobile sem colisão, seguindo o modelo já adotado em{' '}
+          <code>src/whatsappmobile/</code>.
         </InstaDocCard>
         <InstaDocCard icon="🔴" title="Cores de marca invariantes">
           O vermelho de curtida, o azul do selo oficial e os três gradientes (story, live e etiqueta

@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente VideoMeta — Design System Tik Tooria
+ * Frames "Info" (node 4:1063) e "Music" (node 4:1090).
+ */
+
+.tik-videometa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tik-spacing-xs);
+  max-width: 332px;
+  font-family: var(--tik-font-sans);
+}
+
+.tik-videometa__handle {
+  margin: 0;
+  font-size: var(--tik-font-handle-size);
+  font-weight: var(--tik-font-handle-weight);
+  line-height: var(--tik-font-handle-line);
+  color: var(--tik-color-text-on-immersive);
+}
+
+.tik-videometa__caption {
+  margin: 0;
+  font-size: var(--tik-font-caption-size);
+  font-weight: var(--tik-font-caption-weight);
+  line-height: var(--tik-font-caption-line);
+  color: rgba(255, 255, 255, 0.9);
+  overflow-wrap: break-word;
+}
+
+.tik-videometa__tags {
+  font-weight: var(--tik-font-caption-strong-weight);
+  color: var(--tik-color-text-on-immersive);
+}
+
+.tik-videometa__music {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  max-width: 206px;
+}
+
+/**
+ * O arquivo pinta o texto com um gradiente linear que esmaece as duas pontas.
+ * Reproduzido com máscara de recorte no texto, preservando as paradas exatas.
+ */
+.tik-videometa__marquee {
+  font-size: var(--tik-font-caption-size);
+  font-weight: var(--tik-font-caption-weight);
+  line-height: var(--tik-font-caption-line);
+  color: transparent;
+  background: var(--tik-gradient-marquee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { LogoSymbolProps, LogoColor, LogoSymbolVariant } from './Logo.types';
 import { SYMBOL_IMAGES_BASE64, SymbolImageKey } from '../../assets/brand/brandImages';

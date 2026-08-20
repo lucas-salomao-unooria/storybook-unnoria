@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Input } from '../../../src/chatgpt/components/Input';
 import {
   UnooriaDocShell,
@@ -41,10 +41,10 @@ const InputDocumentationPage = () => (
       </GptDocCard>
       <GptDocCard icon="🎯" title="Foco real e forçado">
         O contorno de foco aparece por <code>:focus-within</code> na interação normal. A prop{' '}
-        <code>state="focus"</code> fixa o mesmo visual para matrizes de documentação.
+        <code>state=&quot;focus&quot;</code> fixa o mesmo visual para matrizes de documentação.
       </GptDocCard>
       <GptDocCard icon="🟥" title="Erro">
-        <code>state="error"</code> troca o contorno para <code>status/error</code> e aplica{' '}
+        <code>state=&quot;error&quot;</code> troca o contorno para <code>status/error</code> e aplica{' '}
         <code>aria-invalid</code>, mantendo o contorno vermelho mesmo em foco.
       </GptDocCard>
       <GptDocCard icon="🚫" title="Desabilitado">
@@ -94,7 +94,7 @@ const InputDocumentationPage = () => (
         Faz o campo ocupar 100% da largura; sem ela, mantém os 320px do arquivo.
       </GptDocCard>
       <GptDocCard icon="♿" title="aria-invalid">
-        Aplicado automaticamente quando <code>state="error"</code>, sem exigir código na aplicação.
+        Aplicado automaticamente quando <code>state=&quot;error&quot;</code>, sem exigir código na aplicação.
       </GptDocCard>
     </GptDocGrid>
 

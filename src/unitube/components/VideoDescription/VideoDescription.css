@@ -1,0 +1,114 @@
+/**
+ * Estilos do Componente VideoDescription — Design System Unitube
+ * Nó de origem: `Content/VideoDescription` (20:2989), 640×166.
+ */
+
+.uni-video-description {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--uni-player-width);
+  padding-bottom: var(--uni-spacing-16);
+  font-family: var(--uni-font-sans);
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+}
+
+.uni-video-description__channel {
+  display: flex;
+  align-items: flex-start;
+  padding-top: var(--uni-spacing-16);
+}
+
+/* Coluna do retrato: avatar de 48px com folga de 16px (node 20:2989). */
+.uni-video-description__avatar {
+  flex: none;
+  padding: 0 var(--uni-spacing-16) 3px 0;
+}
+
+.uni-video-description__identity {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 11px 0 var(--uni-spacing-10);
+}
+
+.uni-video-description__name {
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+.uni-video-description__subscribers {
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-caption-weight);
+  line-height: var(--uni-font-caption-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-video-description__action {
+  display: flex;
+  align-items: center;
+  flex: none;
+  padding: 7px var(--uni-spacing-4) var(--uni-spacing-8);
+}
+
+/*
+ * Recuo de 64px: a soma do avatar de 48px com a folga de 16px, para que o
+ * texto se alinhe ao nome do canal e não à aresta do bloco.
+ */
+.uni-video-description__text {
+  margin: 0;
+  padding: var(--uni-spacing-12) 0 0 var(--uni-spacing-64);
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.uni-video-description__text--expanded {
+  display: block;
+  overflow: visible;
+}
+
+/* Roboto Bold 12: o degrau Label/Medium, em tom secundário. */
+.uni-video-description__toggle {
+  align-self: flex-start;
+  margin-left: var(--uni-spacing-64);
+  padding: var(--uni-spacing-8) 0 0;
+  font-family: inherit;
+  font-size: var(--uni-font-label-md-size);
+  font-weight: var(--uni-font-label-md-weight);
+  line-height: var(--uni-font-label-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.uni-video-description__toggle:hover {
+  color: var(--uni-color-text-primary);
+}
+
+.uni-video-description__toggle:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .uni-video-description__text,
+  .uni-video-description__toggle {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}

@@ -35,7 +35,7 @@ export interface BreadcrumbItem {
   /**
    * Handler opcional para o evento de clique.
    */
-  onClick?: (event: React.MouseEvent<any>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 
   /**
    * Componente customizado ou polimórfico para renderização do link (ex: Next.js Link, React Router Link).
@@ -60,7 +60,7 @@ export interface BreadcrumbItem {
   /**
    * Propriedades extras arbitrárias passadas ao elemento do item (ex: `to`, `target`, `rel`, `data-*`).
    */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**

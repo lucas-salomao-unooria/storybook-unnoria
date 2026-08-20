@@ -1,0 +1,132 @@
+/**
+ * Tokens de Medida do Design System Unitube.
+ *
+ * A escala de espaçamento vem do quadro `Spacing` (`106:3125`) e os raios do
+ * quadro `Radius` (`106:3179`). O cabeçalho da página declara "Base unit: 4px";
+ * a escala publicada preserva os degraus finos de 1px, 2px, 6px e 10px, que
+ * NÃO podem ser arredondados para a grade de 4px.
+ *
+ * As dimensões estruturais foram medidas nó a nó nos componentes da página
+ * `Component` (`7:182`) e nas telas da página `Screen` (`0:1`), que são
+ * posicionadas em coordenadas absolutas.
+ */
+
+:root {
+  /* ----------------------------------------------------
+   * Escala de espaçamento (106:3128 a 106:3175)
+   * ---------------------------------------------------- */
+  --uni-spacing-0: 0px;
+  --uni-spacing-1: 1px;
+  --uni-spacing-2: 2px;
+  --uni-spacing-4: 4px;
+  --uni-spacing-6: 6px;
+  --uni-spacing-8: 8px;
+  --uni-spacing-10: 10px;
+  --uni-spacing-12: 12px;
+  --uni-spacing-16: 16px;
+  --uni-spacing-20: 20px;
+  --uni-spacing-24: 24px;
+  --uni-spacing-32: 32px;
+  --uni-spacing-64: 64px;
+
+  /* ----------------------------------------------------
+   * Raios de borda (106:3181)
+   * ---------------------------------------------------- */
+  --uni-radius-none: 0px;
+  --uni-radius-xs: 1px;
+  --uni-radius-sm: 2px;
+  --uni-radius-md: 8px;
+  --uni-radius-lg: 24px;
+  --uni-radius-xl: 32px;
+  --uni-radius-2xl: 40px;
+  --uni-radius-full: 80px;
+
+  /* ----------------------------------------------------
+   * Dimensões estruturais da área de trabalho
+   * ---------------------------------------------------- */
+
+  /** Largura do quadro de tela (3:185, 15:913, 19:1900). */
+  --uni-desktop-width: 1440px;
+  /** Altura do quadro de tela. */
+  --uni-desktop-height: 1024px;
+  /** Altura da barra superior (7:111). */
+  --uni-topbar-height: 56px;
+  /** Largura da barra lateral (8:114). */
+  --uni-sidebar-width: 240px;
+  /** Largura útil das linhas da barra lateral (8:126). */
+  --uni-sidebar-item-width: 224px;
+  /** Altura da linha de menu da barra lateral (8:126). */
+  --uni-sidebar-item-height: 40px;
+  /** Altura do rótulo de seção da barra lateral (9:1933). */
+  --uni-sidebar-title-height: 32px;
+  /** Altura da barra de filtros do topo (13:1696). */
+  --uni-topmenu-height: 56px;
+  /** Altura da pílula de filtro (10:545). */
+  --uni-topmenu-pill-height: 32px;
+  /** Calha lateral do conteúdo em largura total (19:1562, 19:1346). */
+  --uni-content-gutter: 65px;
+  /** Largura da coluna principal da tela de vídeo (20:2992). */
+  --uni-primary-column-width: 664px;
+  /** Largura da coluna secundária da tela de vídeo (20:2996). */
+  --uni-secondary-column-width: 426px;
+
+  /* ----------------------------------------------------
+   * Dimensões de mídia
+   * ---------------------------------------------------- */
+
+  /** Largura do cartão de vídeo da grade inicial (12:593). */
+  --uni-videocard-width: 276px;
+  /** Altura da miniatura do cartão de vídeo (11:997). */
+  --uni-thumbnail-height: 155px;
+  /** Largura do cartão compacto da playlist (19:1459). */
+  --uni-videocard-small-width: 214px;
+  /** Largura do cartão da coluna lateral (25:3450). */
+  --uni-videocard-sidebar-width: 402px;
+  /** Largura do reprodutor completo (20:2920). */
+  --uni-player-width: 640px;
+  /** Altura da faixa de controles do reprodutor (18:1295). */
+  --uni-player-controls-height: 31px;
+  /** Espessura da linha do tempo (18:1295). */
+  --uni-player-timeline-height: 3px;
+  /** Altura da capa do canal (17:2796). */
+  --uni-channel-cover-height: 192px;
+
+  /* ----------------------------------------------------
+   * Diâmetros de avatar publicados pelo arquivo
+   *
+   * São seis, todos preservados: é proibido consolidá-los.
+   * ---------------------------------------------------- */
+  --uni-avatar-xs: 24px;
+  --uni-avatar-sm: 32px;
+  --uni-avatar-md: 36px;
+  --uni-avatar-lg: 40px;
+  --uni-avatar-xl: 48px;
+  --uni-avatar-2xl: 80px;
+
+  /* ----------------------------------------------------
+   * Alvos de toque
+   * ---------------------------------------------------- */
+
+  /** Botão circular de ícone da barra superior (7:93). */
+  --uni-icon-button-size: 40px;
+  /** Alvo de ícone do menu superior (10:665). */
+  --uni-topmenu-icon-size: 56px;
+  /** Largura total da caixa de busca, com microfone (7:49). */
+  --uni-searchbox-width: 470px;
+  /** Altura da caixa de busca (7:49). */
+  --uni-searchbox-height: 40px;
+  /** Largura do campo de texto da busca (7:49). */
+  --uni-searchbox-field-width: 362px;
+  /** Largura do botão de lupa da busca (7:49). */
+  --uni-searchbox-button-width: 64px;
+  /** Altura do botão de ação e do botão de inscrição (20:2758, 17:2796). */
+  --uni-button-height: 36px;
+
+  /* ----------------------------------------------------
+   * Transições
+   *
+   * Ausentes no arquivo, que é estático. Valor único para
+   * que os realces de interação sejam consistentes.
+   * ---------------------------------------------------- */
+  --uni-transition-fast: 120ms ease;
+}

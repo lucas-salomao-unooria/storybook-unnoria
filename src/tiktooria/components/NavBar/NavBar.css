@@ -1,0 +1,63 @@
+/**
+ * Estilos do Componente NavBar — Design System Tik Tooria
+ * Barra superior de 414×88 (node 4:222). O título fica a 55px do topo do
+ * frame, ou seja, 11px abaixo da barra de status de 44px.
+ */
+
+.tik-navbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-navbar-height);
+  padding: var(--tik-statusbar-height) 18px 0;
+  background: var(--tik-color-surface-primary);
+}
+
+.tik-navbar--hairline {
+  box-shadow: var(--tik-elevation-bar-bottom);
+}
+
+.tik-navbar__slot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tik-spacing-m);
+  min-height: 22px;
+}
+
+.tik-navbar__slot--leading {
+  justify-content: flex-start;
+}
+
+.tik-navbar__slot--trailing {
+  justify-content: flex-end;
+}
+
+.tik-navbar__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-navbar__back:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 2px;
+  border-radius: var(--tik-radius-s);
+}
+
+.tik-navbar__title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tik-spacing-xs);
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-heading-size);
+  font-weight: var(--tik-font-heading-weight);
+  line-height: var(--tik-font-heading-line);
+  color: var(--tik-color-text-primary);
+  white-space: nowrap;
+}

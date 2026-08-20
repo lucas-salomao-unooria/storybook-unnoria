@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { ListSectionItemProps } from './ListSectionItem.types';
 import { Checkbox } from '../Checkbox/Checkbox';

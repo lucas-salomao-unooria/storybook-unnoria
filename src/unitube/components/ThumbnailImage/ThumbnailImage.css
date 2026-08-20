@@ -1,0 +1,38 @@
+/**
+ * Estilos do Componente ThumbnailImage — Design System Unitube
+ * Nó de origem: `Media/ThumbnailImage` (11:997), 276×155.
+ */
+
+.uni-thumbnail {
+  position: relative;
+  display: block;
+  width: 100%;
+  /* Razão literal do arquivo — 1,781, e não os 1,778 de 16:9. */
+  aspect-ratio: 276 / 155;
+  overflow: hidden;
+  background: var(--uni-color-background-surface);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-thumbnail__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cápsula de duração: 4px da aresta, recuo 3/4, preto puro. */
+.uni-thumbnail__duration {
+  position: absolute;
+  right: var(--uni-spacing-4);
+  bottom: var(--uni-spacing-4);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--uni-spacing-4);
+  font-size: var(--uni-font-caption-sm-size);
+  font-weight: var(--uni-font-caption-sm-weight);
+  line-height: var(--uni-font-caption-sm-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  background: var(--uni-color-overlay-duration);
+}

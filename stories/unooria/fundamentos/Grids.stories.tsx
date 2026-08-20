@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   gridBreakpoints,
-  gridColumns,
-  gridGutters,
-  gridMargins,
-  gridContainerWidths,
   GridBreakpointKey,
-  breakpoints,
 } from '../../../src/unooria/tokens/grids';
 import '../../../src/unooria/tokens/grids.css';
 import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
@@ -59,14 +54,7 @@ const UnooriaGridsDocumentation: React.FC<{
 }) => {
   const [activeBreakpoint, setActiveBreakpoint] = useState<GridBreakpointKey>(initialBreakpoint);
   const [showOverlay, setShowOverlay] = useState<boolean>(showOverlayInitially);
-  const [copiedToken, setCopiedToken] = useState<string | null>(null);
   const [customSpan, setCustomSpan] = useState<number>(4);
-
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedToken(text);
-    setTimeout(() => setCopiedToken(null), 2000);
-  };
 
   const currentConfig = gridBreakpoints[activeBreakpoint];
   const breakpointKeys: GridBreakpointKey[] = ['mobile', 'tablet', 'notebook', 'desktop'];
@@ -82,40 +70,6 @@ const UnooriaGridsDocumentation: React.FC<{
           </>
         }
       />
-
-      {/* FEEDBACK DE CÓPIA GLOBAL */}
-      {copiedToken && (
-        <div
-          style={{
-            position: 'fixed',
-            bottom: '24px',
-            right: '24px',
-            backgroundColor: '#22272A',
-            color: '#FFFFFF',
-            padding: '12px 20px',
-            borderRadius: '8px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-            fontSize: '14px',
-            fontWeight: 600,
-            zIndex: 9999,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
-          <span style={{ color: '#01B574' }}>✓</span> Copiado:{' '}
-          <code
-            style={{
-              color: '#7FA5E2',
-              backgroundColor: 'rgba(255,255,255,0.1)',
-              padding: '2px 6px',
-              borderRadius: '4px',
-            }}
-          >
-            {copiedToken}
-          </code>
-        </div>
-      )}
 
       {/* Seção 1: Seletor de Breakpoints e Painel de Métricas */}
       <section style={{ marginBottom: '48px' }}>

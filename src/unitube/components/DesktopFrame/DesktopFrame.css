@@ -1,0 +1,32 @@
+/**
+ * Estilos do Componente DesktopFrame — Design System Unitube
+ *
+ * Moldura de documentação com as medidas dos quadros de tela do arquivo
+ * (1440×1024). Não integra o repertório de produção.
+ */
+
+.uni-desktop-frame {
+  position: relative;
+  display: block;
+  margin: 0;
+  font-family: var(--uni-font-sans);
+}
+
+.uni-desktop-frame__screen {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--uni-desktop-width);
+  overflow: hidden;
+  transform-origin: top left;
+  background: var(--uni-color-background-primary);
+  border: 1px solid var(--uni-color-border-subtle);
+}
+
+.uni-desktop-frame__label {
+  padding-top: var(--uni-spacing-8);
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-caption-weight);
+  line-height: var(--uni-font-caption-line);
+  color: var(--uni-color-text-secondary);
+}

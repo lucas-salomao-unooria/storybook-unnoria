@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { DatePicker, DateRangePicker } from '../../../src/unooria/components/DatePicker/DatePicker';
 import {
-  DatePickerProps,
   DatePickerShortcut,
-  DatePickerSize,
   DatePickerTheme,
-  DatePickerPlacement,
 } from '../../../src/unooria/components/DatePicker/DatePicker.types';
 import { DateRange } from '../../../src/unooria/components/Calendar/Calendar.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
@@ -21,13 +18,6 @@ const CalendarIcon = ({ size = 20 }: { size?: number }) => (
     <line x1="16" y1="2" x2="16" y2="6" />
     <line x1="8" y1="2" x2="8" y2="6" />
     <line x1="3" y1="10" x2="21" y2="10" />
-  </svg>
-);
-
-const ClockIcon = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
   </svg>
 );
 
@@ -57,14 +47,6 @@ const ExternalLinkIcon = ({ size = 14 }: { size?: number }) => (
 const SparklesIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M12 2l2.4 7.2L21.6 12l-7.2 2.8L12 22l-2.4-7.2L2.4 12l7.2-2.8z" />
-  </svg>
-);
-
-const InfoIcon = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" />
-    <line x1="12" y1="16" x2="12" y2="12" />
-    <line x1="12" y1="8" x2="12.01" y2="8" />
   </svg>
 );
 
@@ -523,7 +505,7 @@ const DatePickerDocumentationPage = () => {
             </div>
 
             <div style={{ borderLeft: '3px solid #006BFF', paddingLeft: '12px' }}>
-              <strong style={{ fontSize: '14px', color: '#1E293B', display: 'block' }}>3. Botão Limpar ('x') & Ícone de Calendário</strong>
+              <strong style={{ fontSize: '14px', color: '#1E293B', display: 'block' }}>3. Botão Limpar (&apos;x&apos;) & Ícone de Calendário</strong>
               <span style={{ fontSize: '13px', color: '#64748B' }}>
                 Ações interativas integradas à direita para remoção do valor e acionamento manual do popover.
               </span>
@@ -1040,7 +1022,14 @@ export const Playground: Story = {
     });
 
     const isDark = args.theme === 'dark';
-    const { defaultValue, value, onChange, mode, ...restArgs } = args;
+    // Props controladas pelo próprio Playground: não devem ser espalhadas no componente.
+    type PlaygroundRestArgs = Omit<typeof args, 'defaultValue' | 'value' | 'onChange' | 'mode'>;
+    const argsSemControladas: Record<string, unknown> = { ...args };
+    delete argsSemControladas.defaultValue;
+    delete argsSemControladas.value;
+    delete argsSemControladas.onChange;
+    delete argsSemControladas.mode;
+    const restArgs = argsSemControladas as PlaygroundRestArgs;
 
     return (
       <div
@@ -1060,7 +1049,7 @@ export const Playground: Story = {
         <div style={{ width: '100%', maxWidth: '380px' }}>
           {args.mode === 'range' ? (
             <DateRangePicker
-              {...(restArgs as any)}
+              {...restArgs}
               value={rangeValue}
               onChange={(r) => setRangeValue(r)}
             />

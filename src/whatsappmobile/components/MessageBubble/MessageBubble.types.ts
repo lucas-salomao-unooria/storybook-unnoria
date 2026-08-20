@@ -74,8 +74,12 @@ export interface WaMessageBubbleProps extends React.HTMLAttributes<HTMLDivElemen
 export interface WaMessageMediaProps extends React.HTMLAttributes<HTMLDivElement> {
   /** URL da imagem anexada */
   src: string;
-  /** Texto alternativo da imagem */
-  alt?: string;
+  /**
+   * Texto alternativo. Obrigatório: a mídia de uma mensagem é conteúdo, não
+   * decoração. Passe `alt=""` explicitamente se a imagem for redundante em
+   * relação ao texto do balão.
+   */
+  alt: string;
   /** Proporção da miniatura, em formato CSS `aspect-ratio` */
   ratio?: string;
 }

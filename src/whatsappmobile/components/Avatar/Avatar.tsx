@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { WaAvatarProps } from './Avatar.types';
 import './Avatar.css';
@@ -53,6 +55,7 @@ export const Avatar = React.forwardRef<HTMLElement, WaAvatarProps>(
         style={resolvedStyle}
         onClick={onClick}
         type={Component === 'button' ? 'button' : undefined}
+        {...(isInteractive && !restProps['aria-label'] ? { 'aria-label': alt || initials } : {})}
         {...restProps}
       >
         <span className="wa-avatar__ring">

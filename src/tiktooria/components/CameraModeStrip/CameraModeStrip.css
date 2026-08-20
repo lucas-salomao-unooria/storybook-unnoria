@@ -1,0 +1,48 @@
+/**
+ * Estilos do Componente CameraModeStrip — Design System Tik Tooria
+ * Frame "Camera Configurations" (node 4:664), 179×29.
+ */
+
+.tik-cameramodestrip {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--tik-spacing-xxl);
+}
+
+.tik-cameramodestrip__mode {
+  position: relative;
+  padding: 0 0 var(--tik-spacing-s);
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-body-bold-size);
+  font-weight: var(--tik-font-body-bold-weight);
+  line-height: var(--tik-font-body-bold-line);
+  color: var(--tik-color-text-on-immersive);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--tik-transition-fast);
+}
+
+.tik-cameramodestrip__mode--active {
+  opacity: 1;
+}
+
+.tik-cameramodestrip__mode:focus-visible {
+  outline: 2px solid var(--tik-color-text-on-immersive);
+  outline-offset: 3px;
+  border-radius: var(--tik-radius-s);
+}
+
+/** Disco de 5px sob o modo ativo (node 4:668). */
+.tik-cameramodestrip__mode--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--tik-color-text-on-immersive);
+  border-radius: var(--tik-radius-full);
+  transform: translateX(-50%);
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { SearchInput } from '../../../src/chatgpt/components/SearchInput';
 import { NavItem, Sidebar } from '../../../src/chatgpt/components';
 import { gptGlyphs } from '../../../src/chatgpt/tokens';
@@ -54,7 +54,7 @@ const SearchInputDocumentationPage = () => {
           precisa ceder espaço às conversas.
         </GptDocCard>
         <GptDocCard icon="🔤" title="type=search">
-          O elemento nativo é <code>type="search"</code>, com o botão de limpar do navegador
+          O elemento nativo é <code>type=&quot;search&quot;</code>, com o botão de limpar do navegador
           neutralizado para preservar o desenho.
         </GptDocCard>
       </GptDocGrid>

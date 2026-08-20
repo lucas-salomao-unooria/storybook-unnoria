@@ -1,0 +1,49 @@
+/**
+ * Estilos do Componente Sidebar — Design System Unitube
+ * Nó de origem: `Navigation/Sidebar` (8:114), 240px de largura.
+ */
+
+.uni-sidebar {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--uni-sidebar-width);
+  flex: none;
+  height: 100%;
+  overflow-y: auto;
+  font-family: var(--uni-font-sans);
+  background: var(--uni-color-background-secondary);
+}
+
+.uni-sidebar__section {
+  display: flex;
+  flex-direction: column;
+  padding: var(--uni-spacing-12) 0;
+}
+
+/*
+ * O fio divisor tem 224px, e não os 240px da barra: a folga de 16px à direita
+ * é literal do arquivo. Por isso o divisor é um pseudoelemento com largura
+ * própria, e não um `border-bottom` no bloco.
+ */
+.uni-sidebar__section--divided::after {
+  content: '';
+  display: block;
+  width: var(--uni-sidebar-item-width);
+  height: 1px;
+  margin-top: var(--uni-spacing-12);
+  background: var(--uni-color-border-subtle);
+}
+
+.uni-sidebar__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uni-spacing-12);
+  padding: var(--uni-spacing-16) var(--uni-spacing-24);
+}
+
+.uni-sidebar__footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uni-spacing-4) 0;
+}

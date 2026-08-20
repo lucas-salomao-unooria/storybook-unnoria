@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ListItem } from '../ListItem';
 import { Avatar } from '../Avatar';
@@ -36,7 +38,6 @@ export const StatusListItem = React.forwardRef<HTMLElement, WaStatusListItemProp
     return (
       <ListItem
         ref={ref}
-        as={onClick ? 'button' : 'li'}
         className={classes}
         density="status"
         divider={divider}
@@ -47,7 +48,7 @@ export const StatusListItem = React.forwardRef<HTMLElement, WaStatusListItemProp
             size="md"
             ring={state === 'own' ? 'none' : 'status'}
             src={avatarSrc}
-            alt={name}
+            alt=""
             initials={initials}
           />
         }

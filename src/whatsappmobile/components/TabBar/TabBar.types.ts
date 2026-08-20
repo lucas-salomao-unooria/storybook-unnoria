@@ -57,6 +57,14 @@ export interface WaTabBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   tone?: WaTabBarTone;
 
   /**
+   * Resolve o `id` do painel controlado por cada aba, alimentando
+   * `aria-controls`. Informe apenas quando o consumidor realmente renderiza um
+   * elemento com `role="tabpanel"` e o `id` correspondente — sem isso a
+   * referência ARIA apontaria para um elemento inexistente.
+   */
+  panelId?: (id: string) => string;
+
+  /**
    * Classe CSS adicional.
    */
   className?: string;

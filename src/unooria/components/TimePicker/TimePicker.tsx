@@ -1,4 +1,6 @@
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
+'use client';
+
+import React, { forwardRef, useState, useRef, useEffect, useCallback } from 'react';
 import { TimePickerProps } from './TimePicker.types';
 import { Icon } from '../Icon/Icon';
 import './TimePicker.css';
@@ -45,6 +47,32 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
     );
 
     const containerRef = useRef<HTMLDivElement>(null);
+
+    /**
+     * O `ref` encaminhado precisa apontar para o mesmo elemento raiz usado
+     * internamente na detecção de clique externo. Sem esta fusão o ref do
+     * consumidor nunca era preenchido.
+     */
+    const setRootRef = useCallback(
+      (node: HTMLDivElement | null) => {
+        (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        }
+      },
+      [ref]
+    );
+
+    /**
+     * O Figma do TimePicker (Node 18753:5458) define apenas a roda de horas
+     * 00-23. O formato '12h' está declarado na API mas ainda não possui
+     * especificação de UI (coluna AM/PM) nem contrato de valor definido, então
+     * a prop é aceita e ignorada até que o design seja definido.
+     */
+    void format;
+
     const hoursColRef = useRef<HTMLDivElement>(null);
     const minutesColRef = useRef<HTMLDivElement>(null);
     const secondsColRef = useRef<HTMLDivElement>(null);
@@ -175,7 +203,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       .join(' ');
 
     return (
-      <div ref={containerRef} className={containerClassName} style={style} {...rest}>
+      <div ref={setRootRef} className={containerClassName} style={style} {...rest}>
         {label && (
           <div className="unooria-timepicker__label-row">
             <label className="unooria-timepicker__label">

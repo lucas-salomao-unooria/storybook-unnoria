@@ -1,0 +1,37 @@
+/**
+ * Estilos do Componente MediaGrid — Design System Tik Tooria
+ * Frame "Thumbnails" (node 4:447): células de 137×182 em três colunas.
+ */
+
+.tik-mediagrid {
+  display: grid;
+  gap: calc(var(--tik-grid-hairline) * 2);
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--tik-color-border-grid);
+}
+
+.tik-mediagrid__cell {
+  position: relative;
+  aspect-ratio: 137 / 182;
+  overflow: hidden;
+  background: var(--tik-color-surface-media);
+}
+
+.tik-mediagrid__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tik-mediagrid__overlay {
+  position: absolute;
+  bottom: var(--tik-spacing-xs);
+  left: var(--tik-spacing-xs);
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-meta-strong-size);
+  font-weight: var(--tik-font-meta-strong-weight);
+  color: var(--tik-color-text-on-immersive);
+  text-shadow: var(--tik-text-drop);
+}

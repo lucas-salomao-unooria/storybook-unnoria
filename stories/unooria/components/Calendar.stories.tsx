@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Calendar } from '../../../src/unooria/components/Calendar/Calendar';
 import {
-  CalendarProps,
   CalendarEvent,
   DateRange,
 } from '../../../src/unooria/components/Calendar/Calendar.types';
@@ -287,37 +286,37 @@ const CalendarDocumentationPage = () => {
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>value</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>Date | null</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Data selecionada para o modo 'single'.</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Data selecionada para o modo &apos;single&apos;.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>onSelectDate</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>{'(date: Date) => void'}</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Callback acionado ao selecionar uma data (modo 'single').</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Callback acionado ao selecionar uma data (modo &apos;single&apos;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>rangeValue</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>DateRange</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Intervalo de datas selecionado para o modo 'range'.</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Intervalo de datas selecionado para o modo &apos;range&apos;.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>onSelectRange</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>{'(range: DateRange) => void'}</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Callback acionado ao selecionar um intervalo de datas (modo 'range').</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Callback acionado ao selecionar um intervalo de datas (modo &apos;range&apos;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>multipleValues</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>Date[]</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Lista de datas selecionadas para o modo 'multiple'.</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Lista de datas selecionadas para o modo &apos;multiple&apos;.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>onSelectMultiple</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>{'(dates: Date[]) => void'}</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Callback acionado ao selecionar múltiplas datas (modo 'multiple').</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Callback acionado ao selecionar múltiplas datas (modo &apos;multiple&apos;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>currentMonth</code></td>
@@ -395,7 +394,7 @@ const CalendarDocumentationPage = () => {
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>theme</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>CalendarTheme</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Tema visual: 'light' ou 'dark'.</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Tema visual: &apos;light&apos; ou &apos;dark&apos;.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>size</code></td>
@@ -406,14 +405,14 @@ const CalendarDocumentationPage = () => {
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>locale</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>string</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>'pt-BR'</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>&apos;pt-BR&apos;</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>Código de localidade para nomes e formatações.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>showTodayButton</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>boolean</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Se deve exibir o botão de atalho "Hoje".</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Se deve exibir o botão de atalho &quot;Hoje&quot;.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>showHeader</code></td>
@@ -514,19 +513,19 @@ const CalendarDocumentationPage = () => {
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>time</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>string</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Horário de início e fim ou formatado (ex: "09:30 - 11:00" ou "Dia todo").</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Horário de início e fim ou formatado (ex: &quot;09:30 - 11:00&quot; ou &quot;Dia todo&quot;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>startTime</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>string</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Horário de início estruturado (ex: "09:00").</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Horário de início estruturado (ex: &quot;09:00&quot;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>endTime</code></td>
                 <td style={{ padding: '12px 16px', color: '#6487C2' }}>string</td>
                 <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-                <td style={{ padding: '12px 16px', color: '#475157' }}>Horário de término estruturado (ex: "10:30").</td>
+                <td style={{ padding: '12px 16px', color: '#475157' }}>Horário de término estruturado (ex: &quot;10:30&quot;).</td>
               </tr>
               <tr>
                 <td style={{ padding: '12px 16px', color: '#475157' }}><code>category</code></td>
@@ -581,7 +580,7 @@ const CalendarDocumentationPage = () => {
           </h4>
           <ul style={{ margin: 0, paddingLeft: 20, color: '#064E3B', fontSize: 14, lineHeight: 1.6 }}>
             <li>Utilize as cores oficiais da marca (Nacional, Estadual, Municipal, Evento) para classificar eventos.</li>
-            <li>No modo 'range', deixe claro visualmente o início e o fim da seleção para o usuário.</li>
+            <li>No modo &apos;range&apos;, deixe claro visualmente o início e o fim da seleção para o usuário.</li>
             <li>Forneça o atributo <code>ariaLabel</code> ou etiquetas visíveis quando o calendário tiver funcionalidade crítica para acessibilidade.</li>
           </ul>
         </div>
@@ -589,12 +588,12 @@ const CalendarDocumentationPage = () => {
         {/* DON'T Card */}
         <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 8, padding: 20 }}>
           <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', display: 'flex', alignItems: 'center', gap: 8 }}>
-            ❌ Não Fazer (Don't)
+            ❌ Não Fazer (Don&apos;t)
           </h4>
           <ul style={{ margin: 0, paddingLeft: 20, color: '#7F1D1D', fontSize: 14, lineHeight: 1.6 }}>
             <li>Não polua as células do modo compacto com muito texto; prefira mostrar o detalhe no clique ou no tooltip.</li>
             <li>Evite cores arbitrárias para <code>eventType</code> que não estejam mapeadas no Design System (a menos que seja o modo custom).</li>
-            <li>Não force um calendário de 'mês completo expandido' em telas muito pequenas que demandem rolagem horizontal excessiva.</li>
+            <li>Não force um calendário de &apos;mês completo expandido&apos; em telas muito pequenas que demandem rolagem horizontal excessiva.</li>
           </ul>
         </div>
       </div>

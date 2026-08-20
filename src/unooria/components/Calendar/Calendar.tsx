@@ -1,11 +1,7 @@
-import React, { useState, useMemo, useCallback } from 'react';
-import {
-  CalendarProps,
-  CalendarEvent,
-  CalendarDayRenderProps,
-  CalendarView,
-  DateRange,
-} from './Calendar.types';
+'use client';
+
+import React, { useState, useMemo, useCallback, useSyncExternalStore } from 'react';
+import { CalendarProps, CalendarEvent, CalendarView } from './Calendar.types';
 import './Calendar.css';
 
 // Nomes dos meses em PT-BR
@@ -62,6 +58,24 @@ function parseEventDate(dateValue: Date | string): Date {
   return new Date();
 }
 
+/* ==========================================================================
+   Hidratação segura (SSR)
+   ========================================================================== */
+
+/** Assinatura vazia: o valor de hidratação nunca muda depois de resolvido. */
+const subscribeToNothing = () => () => {};
+const getHydratedSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+/**
+ * Retorna `false` no servidor e durante a hidratação, e `true` a partir daí.
+ * Em renderização puramente client-side (SPA, Storybook) já retorna `true` na
+ * primeira passada, preservando exatamente o comportamento atual no browser.
+ */
+function useIsHydrated(): boolean {
+  return useSyncExternalStore(subscribeToNothing, getHydratedSnapshot, getServerSnapshot);
+}
+
 /**
  * Componente Calendar - Design System Plataforma Unooria
  * Especificação Fiel ao Figma #12694:2509 & #12694:2547 (Mês Completo)
@@ -100,11 +114,22 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     },
     ref
   ) => {
-    const today = useMemo(() => startOfDay(new Date()), []);
+    /**
+     * `new Date()` é não determinístico entre servidor e cliente (fuso horário
+     * e virada do dia), então tanto o destaque de "hoje" quanto o mês exibido
+     * por padrão só são resolvidos depois da hidratação. No servidor o
+     * calendário renderiza apenas o contêiner; o conteúdo aparece na primeira
+     * renderização do cliente, sem divergência de hidratação.
+     */
+    const isHydrated = useIsHydrated();
+    const today = useMemo(
+      () => (isHydrated ? startOfDay(new Date()) : null),
+      [isHydrated]
+    );
 
     // Estado interno de mês navegado
-    const [internalMonth, setInternalMonth] = useState<Date>(
-      () => defaultMonth || value || (rangeValue?.startDate ? rangeValue.startDate : new Date())
+    const [internalMonth, setInternalMonth] = useState<Date | null>(
+      () => defaultMonth || value || rangeValue?.startDate || null
     );
 
     // Estado interno de visualização
@@ -113,13 +138,14 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     // Estado interno para seleção de Range temporário
     const [rangeStart, setRangeStart] = useState<Date | null>(rangeValue?.startDate || null);
 
-    const activeMonth = controlledMonth || internalMonth;
+    const activeMonth = controlledMonth || internalMonth || today;
     const currentView = controlledView || internalView;
 
     const isExpanded = currentView === 'week-expanded' || currentView === 'month-expanded' || currentView === 'full-month';
 
     const navigateMonth = useCallback(
       (offset: number) => {
+        if (!activeMonth) return;
         const next = new Date(activeMonth.getFullYear(), activeMonth.getMonth() + offset, 1);
         if (!controlledMonth) {
           setInternalMonth(next);
@@ -133,6 +159,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     const navigateYear = useCallback(
       (offset: number) => {
+        if (!activeMonth) return;
         const next = new Date(activeMonth.getFullYear() + offset, activeMonth.getMonth(), 1);
         if (!controlledMonth) {
           setInternalMonth(next);
@@ -146,6 +173,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     const navigateDecade = useCallback(
       (offset: number) => {
+        if (!activeMonth) return;
         const next = new Date(activeMonth.getFullYear() + offset * 10, activeMonth.getMonth(), 1);
         if (!controlledMonth) {
           setInternalMonth(next);
@@ -159,6 +187,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     // Grid de dias do mês atual
     const calendarDays = useMemo(() => {
+      if (!activeMonth) return [] as Date[];
       const year = activeMonth.getFullYear();
       const month = activeMonth.getMonth();
       const firstDay = new Date(year, month, 1);
@@ -227,6 +256,29 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         }
       }
     };
+
+    // Antes da hidratação não há mês de referência determinístico: renderiza
+    // apenas o contêiner, mantendo a árvore do servidor idêntica à do cliente.
+    if (!activeMonth) {
+      return (
+        <div
+          ref={ref}
+          role="region"
+          aria-label={ariaLabel}
+          className={[
+            'unooria-calendar',
+            `unooria-calendar--${theme}`,
+            `unooria-calendar--size-${size}`,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ')}
+          style={style}
+          data-theme={theme}
+          {...restProps}
+        />
+      );
+    }
 
     const decadeStart = Math.floor(activeMonth.getFullYear() / 10) * 10;
     const decadeYears = Array.from({ length: 12 }, (_, i) => decadeStart - 1 + i);
@@ -368,7 +420,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             <div className="unooria-calendar__days-grid" role="grid">
               {calendarDays.map((date) => {
                 const isCurrentMonth = isSameMonth(date, activeMonth);
-                const isToday = isSameDay(date, today);
+                const isToday = today ? isSameDay(date, today) : false;
                 const isSelected =
                   mode === 'single'
                     ? isSameDay(date, value)
@@ -423,11 +475,20 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   .filter(Boolean)
                   .join(' ');
 
+                // Detalhes dos eventos do dia exibidos ao passar o mouse
+                const eventTooltip =
+                  showEventTooltip && dayEvents.length > 0
+                    ? dayEvents
+                        .map((ev) => (ev.time ? `${ev.time} - ${ev.title}` : ev.title))
+                        .join('\n')
+                    : undefined;
+
                 return (
                   <button
                     key={date.toISOString()}
                     type="button"
                     className={cellClasses}
+                    title={eventTooltip}
                     onClick={() => handleDayClick(date)}
                     disabled={isDisabled}
                   >

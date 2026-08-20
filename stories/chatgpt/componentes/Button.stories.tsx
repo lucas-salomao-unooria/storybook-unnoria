@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Button } from '../../../src/chatgpt/components/Button';
 import { gptGlyphs } from '../../../src/chatgpt/tokens';
 import {

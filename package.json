@@ -11,11 +11,44 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./unooria": {
+      "types": "./dist/unooria/index.d.ts",
+      "import": "./dist/unooria/index.mjs",
+      "require": "./dist/unooria/index.cjs"
+    },
+    "./instanooria": {
+      "types": "./dist/instanooria/index.d.ts",
+      "import": "./dist/instanooria/index.mjs",
+      "require": "./dist/instanooria/index.cjs"
+    },
+    "./chatgpt": {
+      "types": "./dist/chatgpt/index.d.ts",
+      "import": "./dist/chatgpt/index.mjs",
+      "require": "./dist/chatgpt/index.cjs"
+    },
+    "./whatsappmobile": {
+      "types": "./dist/whatsappmobile/index.d.ts",
+      "import": "./dist/whatsappmobile/index.mjs",
+      "require": "./dist/whatsappmobile/index.cjs"
+    },
+    "./tiktooria": {
+      "types": "./dist/tiktooria/index.d.ts",
+      "import": "./dist/tiktooria/index.mjs",
+      "require": "./dist/tiktooria/index.cjs"
+    },
+    "./unitube": {
+      "types": "./dist/unitube/index.d.ts",
+      "import": "./dist/unitube/index.mjs",
+      "require": "./dist/unitube/index.cjs"
+    },
     "./styles.css": "./dist/styles.css",
     "./unooria.css": "./dist/styles-unooria.css",
     "./instanooria.css": "./dist/styles-instanooria.css",
     "./chatgpt.css": "./dist/styles-chatgpt.css",
-    "./whatsappmobile.css": "./dist/styles-whatsappmobile.css"
+    "./whatsappmobile.css": "./dist/styles-whatsappmobile.css",
+    "./tiktooria.css": "./dist/styles-tiktooria.css",
+    "./unitube.css": "./dist/styles-unitube.css",
+    "./dist/*": "./dist/*"
   },
   "files": [
     "dist",
@@ -33,7 +66,7 @@
     "test": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "build:package": "npm run verificar:css && tsup",
+    "build:package": "npm run verificar:css && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist",
     "prepublishOnly": "npm run build:package",
     "verificar:css": "node scripts/verificar-css-agregado.mjs"
   },

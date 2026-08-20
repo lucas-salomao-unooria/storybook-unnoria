@@ -1,0 +1,57 @@
+/**
+ * Folha de estilos do Design System Unitube.
+ *
+ * Importe este arquivo para registrar os tokens `--uni-*` e os estilos dos
+ * componentes do módulo `src/unitube/`.
+ *
+ * A família Roboto é declarada aqui **e** no topo de
+ * `unitube/tokens/typography.css`. Não é redundância: o empacotador embute o
+ * conteúdo dos arquivos importados, e um `@import url(...)` que caia no meio
+ * da folha resultante é ignorado pelo navegador. A declaração no topo desta
+ * folha é a que funciona no pacote publicado; a do arquivo de tokens é a que
+ * funciona para quem importa `typography.css` direto (o preview do Storybook,
+ * por exemplo).
+ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unitube)
+ * ---------------------------------------------------- */
+@import './unitube/tokens/colors.css';
+@import './unitube/tokens/typography.css';
+@import './unitube/tokens/spacing.css';
+@import './unitube/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unitube)
+ * ---------------------------------------------------- */
+@import './unitube/components/Avatar/Avatar.css';
+@import './unitube/components/Button/Button.css';
+@import './unitube/components/ChannelHeader/ChannelHeader.css';
+@import './unitube/components/Comment/Comment.css';
+@import './unitube/components/DesktopFrame/DesktopFrame.css';
+@import './unitube/components/FooterItem/FooterItem.css';
+@import './unitube/components/Icon/Icon.css';
+@import './unitube/components/Logo/Logo.css';
+@import './unitube/components/Playlist/Playlist.css';
+@import './unitube/components/PrimaryColumn/PrimaryColumn.css';
+@import './unitube/components/ProfileCompact/ProfileCompact.css';
+@import './unitube/components/ProfileExpanded/ProfileExpanded.css';
+@import './unitube/components/SearchBox/SearchBox.css';
+@import './unitube/components/SecondaryColumn/SecondaryColumn.css';
+@import './unitube/components/Sidebar/Sidebar.css';
+@import './unitube/components/SidebarMenuItem/SidebarMenuItem.css';
+@import './unitube/components/SidebarMenuTitle/SidebarMenuTitle.css';
+@import './unitube/components/SubscribeButton/SubscribeButton.css';
+@import './unitube/components/ThumbnailImage/ThumbnailImage.css';
+@import './unitube/components/TopBar/TopBar.css';
+@import './unitube/components/TopMenuBar/TopMenuBar.css';
+@import './unitube/components/TopMenuIcon/TopMenuIcon.css';
+@import './unitube/components/TopMenuItem/TopMenuItem.css';
+@import './unitube/components/VideoCard/VideoCard.css';
+@import './unitube/components/VideoCardHorizontal/VideoCardHorizontal.css';
+@import './unitube/components/VideoCardSidebar/VideoCardSidebar.css';
+@import './unitube/components/VideoCardSmall/VideoCardSmall.css';
+@import './unitube/components/VideoDescription/VideoDescription.css';
+@import './unitube/components/VideoPlayer/VideoPlayer.css';
+@import './unitube/components/VideoPlayerFull/VideoPlayerFull.css';

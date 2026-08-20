@@ -13,7 +13,8 @@ export const SectionLabel = React.forwardRef<HTMLDivElement, WaSectionLabelProps
     <div
       ref={ref}
       className={['wa-sectionlabel', className].filter(Boolean).join(' ')}
-      role="presentation"
+      role="heading"
+      aria-level={2}
       {...restProps}
     >
       {children}

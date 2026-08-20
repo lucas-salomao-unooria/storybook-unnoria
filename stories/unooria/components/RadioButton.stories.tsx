@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { RadioButton, RadioGroup } from '../../../src/unooria/components/RadioButton/RadioButton';
-import {
-  RadioButtonProps,
-  RadioGroupProps,
-  RadioButtonOption,
-  RadioButtonSize,
-  RadioButtonTheme,
-  RadioButtonState,
-  RadioButtonBoxSide,
-  RadioGroupDirection,
-} from '../../../src/unooria/components/RadioButton/RadioButton.types';
+import { RadioButtonTheme } from '../../../src/unooria/components/RadioButton/RadioButton.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // ============================================================================

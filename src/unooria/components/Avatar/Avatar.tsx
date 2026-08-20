@@ -1,10 +1,7 @@
-import React, { useState, useEffect, forwardRef, isValidElement, cloneElement, Children } from 'react';
-import {
-  AvatarProps,
-  AvatarGroupProps,
-  AvatarSize,
-  AvatarVariant,
-} from './Avatar.types';
+'use client';
+
+import React, { useState, forwardRef, isValidElement, cloneElement, Children } from 'react';
+import { AvatarProps, AvatarGroupProps } from './Avatar.types';
 import './Avatar.css';
 
 /**
@@ -90,10 +87,13 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ) => {
     const [imageHasError, setImageHasError] = useState(false);
 
-    // Reseta o erro caso o src mude dinamicamente
-    useEffect(() => {
+    // Reseta o erro caso o src mude dinamicamente (ajuste de estado durante a
+    // renderização, padrão recomendado pelo React em vez de um efeito).
+    const [lastLoadedSrc, setLastLoadedSrc] = useState(src);
+    if (src !== lastLoadedSrc) {
+      setLastLoadedSrc(src);
       setImageHasError(false);
-    }, [src]);
+    }
 
     // Resolução dos estados funcionais
     const isSelected = Boolean(selected || state === 'selected' || state === 'selected_remove');

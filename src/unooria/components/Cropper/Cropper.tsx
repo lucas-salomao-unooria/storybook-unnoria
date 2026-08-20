@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+'use client';
+
+import React, { useState, useRef, useCallback } from 'react';
 import {
   CropperProps,
   CropperStep,

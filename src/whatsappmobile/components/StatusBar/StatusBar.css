@@ -8,6 +8,7 @@
   position: relative;
   display: block;
   width: 100%;
+  min-height: var(--wa-statusbar-height);
   box-sizing: border-box;
   font-family: var(--wa-font-statusbar);
   color: var(--wa-color-statusbar-fg);

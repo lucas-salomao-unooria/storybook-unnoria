@@ -46,7 +46,20 @@ export interface TableActionItem {
 /**
  * Definição de uma coluna na tabela
  */
-export interface TableColumn<T = any> {
+/**
+ * Registro genérico de uma linha da tabela.
+ * Utilizado internamente para acessar campos dinâmicos (`record[column.key]`).
+ */
+export type TableRowRecord = Record<string, unknown>;
+
+/**
+ * Definição de uma coluna da tabela.
+ *
+ * `T` é o tipo de um registro de `data`. Informe-o (`TableColumn<Fornecedor>[]`)
+ * para que `render` receba o registro tipado; o padrão `TableRowRecord` cobre
+ * dados dinâmicos sem forma conhecida.
+ */
+export interface TableColumn<T = TableRowRecord> {
   /**
    * Chave única da coluna / propriedade do objeto
    */
@@ -82,14 +95,23 @@ export interface TableColumn<T = any> {
   /**
    * Função customizada de renderização da célula
    */
-  render?: (value: any, record: T, index: number) => React.ReactNode;
+  // O valor da célula é resolvido dinamicamente via `record[column.key]`; `unknown` aqui
+  // invalidaria (por contravariância) todo `render: (value: string) => ...` já existente.
+  /**
+   * Renderização customizada da célula.
+   *
+   * `record` vem tipado como `T`, então `record.campo` é checado. Já `value` é
+   * `unknown` porque a coluna não amarra `key` ao tipo do campo em nível de
+   * tipo — faça o estreitamento (`value as boolean`) quando precisar dele.
+   */
+  render?: (value: unknown, record: T, index: number) => React.ReactNode;
 }
 
 /**
  * Propriedades do componente mestre Table
  * Plataforma Unooria - Extraído do Figma (Node 19493:47329 & 19689:3273)
  */
-export interface TableProps<T = any> {
+export interface TableProps<T = TableRowRecord> {
   /**
    * Definição das colunas da tabela
    */

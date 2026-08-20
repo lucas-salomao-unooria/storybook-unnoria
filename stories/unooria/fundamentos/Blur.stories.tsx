@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { backgroundBlur, BackgroundBlurLevel } from '../../../src/unooria/tokens/blur';
 import '../../../src/unooria/tokens/blur.css';
 import { UnooriaDocShell, UnooriaDocHeader } from '../../../.storybook/components';
@@ -219,15 +219,15 @@ const UnooriaBlurDocumentation: React.FC = () => {
               Fundo de Teste:
             </label>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {[
+              {([
                 { id: 'holographic', label: 'Holográfico' },
                 { id: 'vibrant', label: 'Vibrante' },
                 { id: 'shapes', label: 'Geométrico' },
                 { id: 'photo', label: 'Suave' },
-              ].map((bg) => (
+              ] as const).map((bg) => (
                 <button
                   key={bg.id}
-                  onClick={() => setActiveBg(bg.id as any)}
+                  onClick={() => setActiveBg(bg.id)}
                   style={{
                     padding: '8px 10px',
                     borderRadius: '8px',

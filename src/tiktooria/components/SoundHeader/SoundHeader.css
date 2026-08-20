@@ -1,0 +1,103 @@
+/**
+ * Estilos do Componente SoundHeader — Design System Tik Tooria
+ * Frame "Top bar" da tela "TikTok Album" (node 4:806), 414×265.
+ */
+
+.tik-soundheader {
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: var(--tik-statusbar-height);
+  font-family: var(--tik-font-sans);
+  background: var(--tik-color-surface-primary);
+  box-shadow: var(--tik-elevation-bar-bottom-outline);
+}
+
+.tik-soundheader__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 18px;
+}
+
+.tik-soundheader__icon {
+  display: inline-flex;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-soundheader__icon:focus-visible,
+.tik-soundheader__cover:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 3px;
+  border-radius: var(--tik-radius-s);
+}
+
+.tik-soundheader__content {
+  display: flex;
+  gap: 14px;
+  padding: var(--tik-spacing-xxl) 18px var(--tik-spacing-3xl);
+}
+
+.tik-soundheader__cover {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--tik-album-cover);
+  height: var(--tik-album-cover);
+  padding: 0;
+  overflow: hidden;
+  background: var(--tik-color-surface-media);
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-soundheader__coverimage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tik-soundheader__play {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tik-soundheader__meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tik-soundheader__title {
+  margin: 0;
+  font-size: var(--tik-font-title-lg-size);
+  font-weight: var(--tik-font-title-lg-weight);
+  line-height: var(--tik-font-title-lg-line);
+  color: var(--tik-color-text-primary);
+}
+
+.tik-soundheader__artist {
+  margin: var(--tik-spacing-m) 0 0;
+  font-size: var(--tik-font-meta-size);
+  font-weight: var(--tik-font-meta-weight);
+  line-height: var(--tik-font-meta-line);
+  color: var(--tik-color-text-secondary);
+}
+
+.tik-soundheader__count {
+  margin: var(--tik-spacing-3xs) 0 0;
+  font-size: var(--tik-font-meta-size);
+  font-weight: var(--tik-font-meta-weight);
+  line-height: var(--tik-font-meta-line);
+  color: var(--tik-color-text-secondary);
+}
+
+.tik-soundheader__action {
+  margin-top: var(--tik-spacing-l);
+}

@@ -1,10 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import {
-  SideBarProps,
-  SideBarItemProps,
-  SideBarItemData,
-  SideBarAppItem,
-} from './SideBar.types';
+import { SideBarProps, SideBarItemProps } from './SideBar.types';
 import { Badge } from '../Badge/Badge';
 import './SideBar.css';
 
@@ -71,12 +68,14 @@ export const SideBarItem = React.forwardRef<HTMLElement, SideBarItemProps>(
     return (
       <Component
         ref={ref}
+        id={id}
         type={Component === 'button' ? 'button' : undefined}
         className={itemClasses}
         style={style}
         onClick={handleClick}
         disabled={disabled}
         aria-label={typeof label === 'string' ? label : undefined}
+        data-theme={theme}
         {...restProps}
       >
         <div className="unooria-sidebar-item__icon-wrapper">

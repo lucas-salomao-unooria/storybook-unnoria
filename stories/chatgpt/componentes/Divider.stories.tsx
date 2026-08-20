@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Divider } from '../../../src/chatgpt/components/Divider';
 import { SettingsRow } from '../../../src/chatgpt/components';
 import {
@@ -43,7 +43,7 @@ const DividerDocumentationPage = () => (
         privacidade.
       </GptDocCard>
       <GptDocCard icon="↕️" title="Orientação vertical">
-        A prop <code>orientation="vertical"</code> gira o traço para separar controles em uma barra
+        A prop <code>orientation=&quot;vertical&quot;</code> gira o traço para separar controles em uma barra
         horizontal. Não existe como variante no Figma; é extensão registrada.
       </GptDocCard>
       <GptDocCard icon="🫥" title="Translucidez">

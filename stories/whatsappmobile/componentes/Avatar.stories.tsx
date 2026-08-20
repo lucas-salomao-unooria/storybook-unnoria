@@ -221,6 +221,7 @@ const meta: Meta<typeof Avatar> = {
     initials: 'JD',
     size: 'lg',
     ring: 'none',
+    fill: '',
   },
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { GPTCard } from '../../../src/chatgpt/components/GPTCard';
 import { Avatar, Badge, SearchInput } from '../../../src/chatgpt/components';
 import {
@@ -43,7 +43,7 @@ const GPTCardDocumentationPage = () => (
         <code>icon</code> troca por imagem ou logotipo próprio.
       </GptDocCard>
       <GptDocCard icon="🖱️" title="Acionável">
-        Passando <code>as="button"</code> ou <code>as="a"</code>, o cartão ganha cursor, hover a 2% e
+        Passando <code>as=&quot;button&quot;</code> ou <code>as=&quot;a&quot;</code>, o cartão ganha cursor, hover a 2% e
         anel de foco — sem alterar a geometria.
       </GptDocCard>
       <GptDocCard icon="✂️" title="Descrição em uma linha">

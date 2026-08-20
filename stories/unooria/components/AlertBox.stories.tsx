@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { AlertBox } from '../../../src/unooria/components/AlertBox/AlertBox';
-import { AlertBoxProps, AlertBoxVariant } from '../../../src/unooria/components/AlertBox/AlertBox.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 /**
@@ -463,12 +462,12 @@ const AlertBoxDocumentationPage = () => {
             padding: 20,
           }}
         >
-          <h4 style={{ color: '#00A369', margin: '0 0 12px 0', fontSize: 16 }}>✅ O que FAZER (Do's)</h4>
+          <h4 style={{ color: '#00A369', margin: '0 0 12px 0', fontSize: 16 }}>✅ O que FAZER (Do&apos;s)</h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#E8F5EE' }}>
             <li>Utilize para ações críticas que demandam consentimento ou confirmação imediata.</li>
-            <li>Forneça rótulos de botões claros e orientados à ação (ex: "Sair sem salvar", "Excluir conta").</li>
+            <li>Forneça rótulos de botões claros e orientados à ação (ex: &quot;Sair sem salvar&quot;, &quot;Excluir conta&quot;).</li>
             <li>Utilize a variante <code>danger</code> para operações destrutivas e irreversíveis.</li>
-            <li>Utilize o modo <code>device="mobile"</code> em telas estreitas para botões de fácil toque (48px).</li>
+            <li>Utilize o modo <code>device=&quot;mobile&quot;</code> em telas estreitas para botões de fácil toque (48px).</li>
           </ul>
         </div>
 
@@ -480,12 +479,12 @@ const AlertBoxDocumentationPage = () => {
             padding: 20,
           }}
         >
-          <h4 style={{ color: '#E31A1A', margin: '0 0 12px 0', fontSize: 16 }}>❌ O que NÃO FAZER (Don'ts)</h4>
+          <h4 style={{ color: '#E31A1A', margin: '0 0 12px 0', fontSize: 16 }}>❌ O que NÃO FAZER (Don&apos;ts)</h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#FDECEC' }}>
             <li>Não utilize para feedbacks passivos ou temporários de 3 segundos (use Toasts).</li>
             <li>Não utilize textos longos ou parágrafos múltiplos no corpo do alerta.</li>
             <li>Não utilize como barra horizontal de notificação de topo (use FeedbackAlert / Banners).</li>
-            <li>Evite usar rótulos ambíguos como "Sim" ou "Não" quando a ação puder ser explícita.</li>
+            <li>Evite usar rótulos ambíguos como &quot;Sim&quot; ou &quot;Não&quot; quando a ação puder ser explícita.</li>
           </ul>
         </div>
       </div>

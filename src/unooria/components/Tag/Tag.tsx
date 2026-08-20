@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { TagProps } from './Tag.types';
 import { Icon } from '../Icon/Icon';
@@ -57,7 +59,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(
       if (disabled) return;
       if (isClickable && (event.key === 'Enter' || event.key === ' ')) {
         event.preventDefault();
-        (onClick as any)?.(event);
+        onClick?.(event as unknown as React.MouseEvent<HTMLSpanElement>);
       }
     };
 

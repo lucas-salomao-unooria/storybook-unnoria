@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { EmptyState } from '../../../src/unooria/components/EmptyState/EmptyState';
-import {
-  EmptyStateProps,
-  EmptyStateVariant,
-  EmptyStateSize,
-  EmptyStateAlign,
-} from '../../../src/unooria/components/EmptyState/EmptyState.types';
+import { EmptyStateVariant } from '../../../src/unooria/components/EmptyState/EmptyState.types';
 import { Button } from '../../../src/unooria/components/Button';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
@@ -62,23 +57,6 @@ const FilterClearIcon = () => (
   >
     <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
     <line x1="1" y1="1" x2="23" y2="23" stroke="#DC2626" strokeWidth="2" />
-  </svg>
-);
-
-const LockIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
 
@@ -1204,7 +1182,6 @@ export const TodosTamanhos: Story = {
  * Exemplo prático simulando uma tabela de dados com estado vazio e adição interativa de registros.
  */
 export const SimuladorTabelaVazia: Story = {
-  name: 'Simulador Tabela Vazia',
   render: () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [students, setStudents] = useState<string[]>([]);

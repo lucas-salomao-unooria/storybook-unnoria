@@ -1,0 +1,23 @@
+/**
+ * Estilos do Componente PrimaryColumn — Design System Unitube
+ * Nó de origem: `Layout/PrimaryColumn` (20:2992), 664×968.
+ */
+
+.uni-primary-column {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* 640px de reprodutor mais 24px de recuo à esquerda. */
+  width: var(--uni-primary-column-width);
+  max-width: 100%;
+  flex: none;
+  padding: var(--uni-spacing-24);
+  font-family: var(--uni-font-sans);
+  background: var(--uni-color-background-primary);
+}
+
+@media (max-width: 900px) {
+  .uni-primary-column {
+    width: 100%;
+  }
+}

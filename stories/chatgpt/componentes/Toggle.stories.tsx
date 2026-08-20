@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Toggle } from '../../../src/chatgpt/components/Toggle';
 import { SettingsRow } from '../../../src/chatgpt/components';
 import {
@@ -44,7 +44,7 @@ const ToggleDocumentationPage = () => {
           memória, chats temporários, notificações.
         </GptDocCard>
         <GptDocCard icon="🎚️" title="Estado, não ação">
-          <code>role="switch"</code> com <code>aria-checked</code> descreve um estado persistente.
+          <code>role=&quot;switch&quot;</code> com <code>aria-checked</code> descreve um estado persistente.
           Para disparar uma ação use <code>Button</code>.
         </GptDocCard>
         <GptDocCard icon="⌨️" title="Teclado">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Pagination } from '../../../src/unooria/components/Pagination/Pagination';
 import '../../../src/unooria/tokens/icons.css';
 import '../../../src/unooria/components/Pagination/Pagination.css';
@@ -16,7 +16,7 @@ const PaginationDocumentationPage: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>('light');
   const [interactivePage, setInteractivePage] = useState<number>(5);
   const [interactiveTotalPages, setInteractiveTotalPages] = useState<number>(10);
-  const [interactivePageSize, setInteractivePageSize] = useState<number>(10);
+  const [interactivePageSize] = useState<number>(10);
   const [pageChangeLog, setPageChangeLog] = useState<string | null>(null);
 
   const handlePageChange = (newPage: number) => {
@@ -226,9 +226,9 @@ const PaginationDocumentationPage: React.FC = () => {
           {/* Card 2 */}
           <div style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #E2E8F0', padding: '24px' }}>
             <div style={{ fontSize: '20px', marginBottom: '8px' }}>⚡</div>
-            <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#1E293B', margin: '0 0 6px 0' }}>Salto de Página ("Ir para página")</h4>
+            <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#1E293B', margin: '0 0 6px 0' }}>Salto de Página (&quot;Ir para página&quot;)</h4>
             <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: '#64748B', lineHeight: 1.6 }}>
-              <li>Rótulo: <em>"Ir para página"</em> (Open Sans 12px)</li>
+              <li>Rótulo: <em>&quot;Ir para página&quot;</em> (Open Sans 12px)</li>
               <li>Input Box: Largura <strong>56px</strong>, Altura <strong>26px</strong></li>
               <li>Botão Submit: Seta <code>keyboard_arrow_right</code> (24x24px)</li>
               <li>Validação: Apenas inteiros entre <code>1</code> e <code>totalPages</code></li>
@@ -453,7 +453,7 @@ const PaginationDocumentationPage: React.FC = () => {
                 <strong>Desative setas nos limites:</strong> Desabilite a seta esquerda na página 1 e a seta direita na última página.
               </li>
               <li>
-                <strong>Ofereça salto direto:</strong> Inclua o input <em>"Ir para página"</em> quando o total de páginas for superior a 5.
+                <strong>Ofereça salto direto:</strong> Inclua o input <em>&quot;Ir para página&quot;</em> quando o total de páginas for superior a 5.
               </li>
             </ul>
           </div>
@@ -471,7 +471,7 @@ const PaginationDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -534,14 +534,14 @@ const PaginationDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'sm' (26px)</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;sm&apos; (26px)</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tamanho visual dos botões de paginação.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
               <tr>

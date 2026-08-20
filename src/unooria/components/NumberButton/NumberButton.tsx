@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+'use client';
+
+import React, { useState, useRef, useCallback } from 'react';
 import { NumberButtonProps, NumberButtonSize } from './NumberButton.types';
 import '../../tokens/colors.css';
 import '../../tokens/spacing.css';
@@ -155,22 +157,16 @@ export const NumberButton = React.forwardRef<HTMLDivElement, NumberButtonProps>(
     ref
   ) => {
     const isControlled = controlledValue !== undefined;
-    const [internalValue, setInternalValue] = useState<number>(
-      isControlled ? controlledValue : defaultValue
-    );
+    // Estado usado apenas no modo não controlado; no modo controlado o valor é
+    // derivado diretamente da prop durante a renderização.
+    const [uncontrolledValue, setUncontrolledValue] = useState<number>(defaultValue);
+    const internalValue = isControlled ? controlledValue : uncontrolledValue;
     const [inputValue, setInputValue] = useState<string>('');
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const isComponentDisabled = Boolean(disabled || isDisabled || state === 'disable' || state === 'disabled');
     const effectiveSize = normalizeSize(tamanho || size);
-
-    // Sincroniza valor controlado
-    useEffect(() => {
-      if (isControlled && controlledValue !== undefined) {
-        setInternalValue(controlledValue);
-      }
-    }, [isControlled, controlledValue]);
 
     const calculatePrecision = useCallback(() => {
       if (precision !== undefined) return precision;
@@ -180,7 +176,7 @@ export const NumberButton = React.forwardRef<HTMLDivElement, NumberButtonProps>(
 
     const clamp = useCallback(
       (val: number): number => {
-        let clamped = Math.max(min, Math.min(max, val));
+        const clamped = Math.max(min, Math.min(max, val));
         const prec = calculatePrecision();
         return roundToPrecision(clamped, prec);
       },
@@ -208,7 +204,7 @@ export const NumberButton = React.forwardRef<HTMLDivElement, NumberButtonProps>(
       (newValue: number) => {
         const clampedValue = clamp(newValue);
         if (!isControlled) {
-          setInternalValue(clampedValue);
+          setUncontrolledValue(clampedValue);
         }
         if (onChange && clampedValue !== internalValue) {
           onChange(clampedValue);

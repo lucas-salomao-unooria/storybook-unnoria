@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { PhoneFrame } from '../../../src/instanooria/components/PhoneFrame';
 import { TopBar } from '../../../src/instanooria/components/TopBar';
 import { TabBar, instaDefaultTabs } from '../../../src/instanooria/components/TabBar';

@@ -23,6 +23,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, WaBadgeProps>(
         ref={ref}
         className={classes}
         style={{ ['--wa-badge-size' as string]: `${size}px`, ...style }}
+        role="img"
         aria-label={label ?? `${count} não lidas`}
         {...restProps}
       >

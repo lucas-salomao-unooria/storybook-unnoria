@@ -1,0 +1,16 @@
+/**
+ * Estilos do Componente SocialLogo — Design System Tik Tooria
+ * Logotipos de terceiros da folha de compartilhamento e de "Find friends".
+ */
+
+.tik-sociallogo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  border-radius: var(--tik-radius-full);
+}
+
+/** O logotipo de SMS é o único com sombra no arquivo (node 4:921). */
+.tik-sociallogo[data-tik-logo='sms'] {
+  box-shadow: var(--tik-elevation-logo);
+}

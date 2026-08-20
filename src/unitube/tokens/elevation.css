@@ -1,0 +1,21 @@
+/**
+ * Tokens de Elevação do Design System Unitube.
+ *
+ * Extraídos do quadro `Elevation` (`106:3214`) da página `🎨 Design System`.
+ * O arquivo publica exatamente três degraus de sombra e os descreve por uso.
+ *
+ * A biblioteca é **plana por padrão**: nas telas reconstruídas (`0:1`) nenhuma
+ * barra, cartão ou lista carrega `box-shadow` — a separação é feita por
+ * luminância de superfície e por fios de 1px em `--uni-color-border-subtle`.
+ * Os três degraus existem para as camadas flutuantes que o produto venha a
+ * precisar (menus, diálogos), não para decorar superfícies planas.
+ */
+
+:root {
+  /** Elevation/Low — elevação sutil: cartões e botões (106:3218). */
+  --uni-elevation-low: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  /** Elevation/Medium — flutuante: menus suspensos e popovers (106:3222). */
+  --uni-elevation-medium: 0px 4px 8px 0px rgba(0, 0, 0, 0.16);
+  /** Elevation/High — modal: diálogos e folhas (106:3226). */
+  --uni-elevation-high: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}

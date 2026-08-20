@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { SettingsRow } from '../../../src/chatgpt/components/SettingsRow';
 import { Badge, Button, Divider, Toggle } from '../../../src/chatgpt/components';
 import {

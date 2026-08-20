@@ -1,11 +1,6 @@
 import type { Preview } from '@storybook/nextjs-vite';
 import '../app/globals.css';
 
-/* WhatsApp UI Tokens */
-import '../src/whatsapp/tokens/spacing.css';
-import '../src/whatsapp/tokens/colors.css';
-import '../src/whatsapp/tokens/typography.css';
-
 /* WhatsApp Mobile Tokens */
 import '../src/whatsappmobile/tokens/typography.css';
 import '../src/whatsappmobile/tokens/colors.css';
@@ -21,6 +16,18 @@ import '../src/chatgpt/tokens/colors.css';
 import '../src/chatgpt/tokens/typography.css';
 import '../src/chatgpt/tokens/spacing.css';
 import '../src/chatgpt/tokens/elevation.css';
+
+/* Tik Tooria Tokens */
+import '../src/tiktooria/tokens/colors.css';
+import '../src/tiktooria/tokens/typography.css';
+import '../src/tiktooria/tokens/spacing.css';
+import '../src/tiktooria/tokens/elevation.css';
+
+/* Unitube Tokens */
+import '../src/unitube/tokens/colors.css';
+import '../src/unitube/tokens/typography.css';
+import '../src/unitube/tokens/spacing.css';
+import '../src/unitube/tokens/elevation.css';
 
 /* Plataforma Unooria Tokens */
 import '../src/unooria/tokens/colors.css';

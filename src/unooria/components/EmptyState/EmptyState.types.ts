@@ -59,7 +59,7 @@ export interface EmptyStateAction {
   /** Estilos inline adicionais */
   style?: React.CSSProperties;
   /** Propriedades adicionais repassadas ao botão */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**

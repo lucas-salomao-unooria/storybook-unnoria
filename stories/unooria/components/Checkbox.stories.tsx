@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Checkbox, CheckboxGroup } from '../../../src/unooria/components/Checkbox/Checkbox';
-import {
-  CheckboxProps,
-  CheckboxGroupProps,
-  CheckboxSize,
-  CheckboxTheme,
-  CheckboxOption,
-} from '../../../src/unooria/components/Checkbox/Checkbox.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 /* ==========================================================================

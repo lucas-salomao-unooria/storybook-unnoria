@@ -5,7 +5,7 @@
  * "ChatGPT UI Kit (AI Chat) (Community)". Mantém namespace próprio de tokens
  * (`--gpt-*`), prefixo de classes `gpt-` e atributo de tema
  * `data-gpt-theme`, no mesmo modelo adotado por `src/instanooria/` e
- * `src/whatsapp/`.
+ * `src/whatsappmobile/`.
  */
 
 export * from './tokens';

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ButtonProps, ButtonSize } from './Button.types';
 import '../../tokens/colors.css';
@@ -84,7 +86,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       type = 'button',
       ...restProps
-    },
+    }: ButtonProps,
     ref
   ) => {
     // Estados internos para interatividade real no browser
@@ -115,7 +117,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       (isFocused || state === 'focus' || internalFocus);
 
     // Define o elemento polimórfico a ser renderizado
-    const Component = as || ('href' in restProps && (restProps as any).href ? 'a' : 'button');
+    const Component = as || ('href' in restProps && (restProps as { href?: string }).href ? 'a' : 'button');
     const isNativeButton = Component === 'button';
 
     // Construção das classes BEM
@@ -152,7 +154,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Component
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLButtonElement>}
         type={isNativeButton ? type : undefined}
         disabled={isNativeButton ? disabledResolved || loadingResolved : undefined}
         aria-disabled={disabledResolved || loadingResolved}

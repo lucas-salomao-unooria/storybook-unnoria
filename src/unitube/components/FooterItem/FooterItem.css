@@ -1,0 +1,31 @@
+/**
+ * Estilos do Componente FooterItem — Design System Unitube
+ * Nó de origem: `Navigation/FooterItem` (9:3231).
+ */
+
+.uni-footer-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--uni-spacing-8) 0 0;
+  font-family: var(--uni-font-sans);
+  /*
+   * Corpo de Body/Small com peso Bold: combinação que a escala publicada não
+   * declara, mas que o arquivo aplica literalmente neste nó.
+   */
+  font-size: var(--uni-font-body-sm-size);
+  font-weight: var(--uni-font-weight-bold);
+  line-height: var(--uni-font-body-sm-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.uni-footer-item:hover {
+  color: var(--uni-color-text-primary);
+}
+
+.uni-footer-item:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}

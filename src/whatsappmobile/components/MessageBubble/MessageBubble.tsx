@@ -12,7 +12,7 @@ import './MessageBubble.css';
  */
 const MessageMedia: React.FC<WaMessageMediaProps> = ({
   src,
-  alt = '',
+  alt,
   ratio = '16 / 9',
   className = '',
   style,
@@ -109,7 +109,12 @@ const MessageBubbleRoot = React.forwardRef<HTMLDivElement, WaMessageBubbleProps>
             {time && <span>{time}</span>}
             {delivery !== 'none' && (
               <>
-                <Icon name="tick" size={13} tone="tick" title="Enviada" />
+                <Icon
+                  name="tick"
+                  size={13}
+                  tone="tick"
+                  title={delivery === 'read' ? 'Lida' : 'Entregue'}
+                />
                 {delivery === 'read' && <Icon name="tick" size={13} tone="tick" />}
               </>
             )}

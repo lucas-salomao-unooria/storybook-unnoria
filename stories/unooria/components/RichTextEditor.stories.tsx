@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { RichTextEditor } from '../../../src/unooria/components/RichTextEditor/RichTextEditor';
 import '../../../src/unooria/tokens/icons.css';
 import '../../../src/unooria/components/RichTextEditor/RichTextEditor.css';
@@ -28,7 +28,6 @@ const FIGMA_SAMPLE_HTML = `
 const RichTextEditorDocumentationPage: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>('light');
   const [liveHtml, setLiveHtml] = useState<string>(FIGMA_SAMPLE_HTML);
-  const [livePlainText, setLivePlainText] = useState<string>('');
 
   return (
     <UnooriaDocShell>
@@ -123,7 +122,7 @@ const RichTextEditorDocumentationPage: React.FC = () => {
 
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
               <p style={{ fontSize: '14px', color: '#94A3B8', margin: 0 }}>
-                <strong style={{ color: '#7FA5E2' }}>Exemplo visual do Figma:</strong> Em um campo de <em>"Descrição da Atividade"</em>,
+                <strong style={{ color: '#7FA5E2' }}>Exemplo visual do Figma:</strong> Em um campo de <em>&quot;Descrição da Atividade&quot;</em>,
                 o Rich Text Editor permite destacar partes importantes do texto (como prazos ou nomes de responsáveis),
                 inserir links úteis e organizar o conteúdo em listas numeradas, melhorando a legibilidade e a compreensão.
               </p>
@@ -233,9 +232,8 @@ const RichTextEditorDocumentationPage: React.FC = () => {
               label="Editor Interativo"
               defaultValue={liveHtml}
               placeholder="Digite seu conteúdo aqui..."
-              onChange={(html, text) => {
+              onChange={(html) => {
                 setLiveHtml(html);
-                setLivePlainText(text);
               }}
               minHeight="220px"
               showWordCount={true}
@@ -380,7 +378,7 @@ const RichTextEditorDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -420,19 +418,19 @@ const RichTextEditorDocumentationPage: React.FC = () => {
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>defaultValue</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>string</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>''</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Conteúdo HTML inicial no modo não-controlado.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>placeholder</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>string</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'Comece a digitar...'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;Comece a digitar...&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Texto de ajuda quando vazio.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>minHeight</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>string | number</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'240px'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;240px&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Altura mínima da caixa de edição.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -455,8 +453,8 @@ const RichTextEditorDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
               <tr>
@@ -594,7 +592,6 @@ export const ExemploOficialFigma: Story = {
  * Modo Apenas Leitura (Ideal para visualização de termos, ementas e posts).
  */
 export const ModoApenasLeitura: Story = {
-  name: 'Modo Apenas Leitura',
   render: () => (
     <div style={{ maxWidth: '800px', padding: '24px', backgroundColor: '#FFFFFF', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
       <RichTextEditor

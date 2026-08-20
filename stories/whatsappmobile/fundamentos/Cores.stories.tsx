@@ -11,6 +11,7 @@ import {
   WaDocPractices,
   WaDocStage,
   WaDocTokenSwatch,
+  WaDocPropsTable,
 } from '../../../.storybook/components';
 import {
   waSurfaceColors,
@@ -45,7 +46,7 @@ const SwatchGroup: React.FC<{ tokens: Record<string, WaColorToken>; textPreview?
         key={key}
         name={key}
         cssVar={token.cssVar}
-        value={textPreview ? '#101D25' : token.value}
+        value={textPreview ? waSurfaceColors.canvas.value : token.value}
         figmaName={token.figmaNode ? `${token.usage} · ${token.figmaNode}` : token.usage}
         preview={
           textPreview ? (
@@ -358,6 +359,34 @@ const CoresDocumentationPage = () => (
         </div>
       ))}
     </WaDocStage>
+
+    <UnooriaDocSectionHeader
+      barColor={BAR}
+      title="13. Referência completa dos tokens"
+      description="Os 72 tokens de cor, com o nó do Figma de onde cada valor foi lido."
+    />
+    {(
+      [
+        ['Superfícies', waSurfaceColors],
+        ['Verdes da marca', waAccentColors],
+        ['Severidades e chamada', waStatusColors],
+        ['Texto', waTextColors],
+        ['Ícones', waIconColors],
+        ['Bordas e anéis', waBorderColors],
+        ['Ações da folha de anexos', waAttachmentColors],
+      ] as const
+    ).map(([groupTitle, group]) => (
+      <WaDocPropsTable
+        key={groupTitle}
+        title={groupTitle}
+        rows={Object.entries(group).map(([key, token]) => ({
+          name: key,
+          type: token.cssVar,
+          default: token.value,
+          description: `${token.usage}${token.figmaNode ? ` (node ${token.figmaNode})` : ''}`,
+        }))}
+      />
+    ))}
   </UnooriaDocShell>
 );
 

@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   typographyStyles,
-  fontFamilies,
-  fontWeights,
-  desktopFontSizes,
-  desktopLineHeights,
-  mobileFontSizes,
-  mobileLineHeights,
   typographyRules,
   TypographyTokenStyle,
 } from '../../../src/unooria/tokens/typography';
@@ -559,7 +553,7 @@ function UnooriaTypographyGuide({
               color: '#64748B',
             }}
           >
-            Nenhum token de tipografia encontrado para a busca "{searchQuery}".
+            Nenhum token de tipografia encontrado para a busca &quot;{searchQuery}&quot;.
           </div>
         )}
       </div>

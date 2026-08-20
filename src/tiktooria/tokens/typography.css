@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/**
+ * DESVIO REGISTRADO — a família do arquivo é **Proxima Nova**, uma fonte
+ * comercial da Adobe que não pode ser distribuída com o pacote. A pilha de
+ * fallback usa Montserrat (geométrica, disponível no Google Fonts) e, na
+ * sequência, as famílias de sistema. Um produto licenciado pode registrar a
+ * Proxima Nova via `@font-face` e ela será usada automaticamente, pois é o
+ * primeiro nome de `--tik-font-sans`.
+ *
+ * SF Pro Text, usada nos elementos de sistema do iPhone X, resolve nativamente
+ * em Apple e cai para as famílias de sistema nos demais.
+ */
+
+/* ==========================================================================
+   Tokens de Tipografia — Design System Tik Tooria
+   Escala lida via Plugin API dos 31 degraus de texto do arquivo Figma
+   "TikTok UI Screens (Community) - cópia" (fileKey UIYCB87CQkpFwf1aWTBl1a).
+
+   O arquivo usa duas famílias: Proxima Nova em todo o produto e SF Pro Text
+   nos elementos de sistema do iPhone X (relógio, título e link do leitor de
+   QR). Nenhum degrau declara `line-height`: todos são `normal`, exceto a
+   legenda do vídeo, que fixa 19,5px. É PROIBIDO inventar altura de linha ou
+   tracking em degraus que o arquivo não declara.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     Famílias
+     ------------------------------------------------------------------ */
+  --tik-font-sans: 'Proxima Nova', 'Montserrat', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --tik-font-system: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* ------------------------------------------------------------------
+     Pesos usados pelo arquivo
+     ------------------------------------------------------------------ */
+  --tik-font-weight-regular: 400;
+  --tik-font-weight-semibold: 600;
+  --tik-font-weight-bold: 700;
+
+  /* ------------------------------------------------------------------
+     Display / Bold 24 — título de álbum ("My 2020", node 4:635)
+     ------------------------------------------------------------------ */
+  --tik-font-display-size: 24px;
+  --tik-font-display-weight: 700;
+  --tik-font-display-line: normal;
+  --tik-font-display-tracking: 0;
+
+  /* Title LG / Semibold 20 — título do som (node 4:810) */
+  --tik-font-title-lg-size: 20px;
+  --tik-font-title-lg-weight: 600;
+  --tik-font-title-lg-line: normal;
+  --tik-font-title-lg-tracking: 0;
+
+  /* Feed Tab Active / Semibold 18 + 0,1px — aba "For You" (node 4:1118) */
+  --tik-font-feedtab-active-size: 18px;
+  --tik-font-feedtab-active-weight: 600;
+  --tik-font-feedtab-active-line: normal;
+  --tik-font-feedtab-active-tracking: 0.1px;
+
+  /* Feed Tab Inactive / Semibold 16 — aba "Following" (node 4:1117) */
+  --tik-font-feedtab-inactive-size: 16px;
+  --tik-font-feedtab-inactive-weight: 600;
+  --tik-font-feedtab-inactive-line: normal;
+  --tik-font-feedtab-inactive-tracking: 0;
+
+  /* Heading / Bold 17 — título de barra e valor de métrica (node 4:224) */
+  --tik-font-heading-size: 17px;
+  --tik-font-heading-weight: 700;
+  --tik-font-heading-line: normal;
+  --tik-font-heading-tracking: 0;
+
+  /* Handle / Semibold 17 — @usuário e título de estado vazio (node 4:482) */
+  --tik-font-handle-size: 17px;
+  --tik-font-handle-weight: 600;
+  --tik-font-handle-line: normal;
+  --tik-font-handle-tracking: 0;
+
+  /* Callout / Bold 16 + 0,5px — chamada "Tap to create" (node 4:469) */
+  --tik-font-callout-size: 16px;
+  --tik-font-callout-weight: 700;
+  --tik-font-callout-line: normal;
+  --tik-font-callout-tracking: 0.5px;
+
+  /* Pill / Semibold 16 - 0,25px — botão "Use this sound" (node 4:805) */
+  --tik-font-pill-size: 16px;
+  --tik-font-pill-weight: 600;
+  --tik-font-pill-line: normal;
+  --tik-font-pill-tracking: -0.25px;
+
+  /* Body / Regular 15 — rótulo de linha e campo (node 4:200) */
+  --tik-font-body-size: 15px;
+  --tik-font-body-weight: 400;
+  --tik-font-body-line: normal;
+  --tik-font-body-tracking: 0;
+
+  /* Body Strong / Semibold 15 — rótulo de botão contornado (node 4:494) */
+  --tik-font-body-strong-size: 15px;
+  --tik-font-body-strong-weight: 600;
+  --tik-font-body-strong-line: normal;
+  --tik-font-body-strong-tracking: 0;
+
+  /* Body Bold / Bold 15 — tira da câmera e botão primário (node 4:625) */
+  --tik-font-body-bold-size: 15px;
+  --tik-font-body-bold-weight: 700;
+  --tik-font-body-bold-line: normal;
+  --tik-font-body-bold-tracking: 0;
+
+  /* Body Wide / Regular 15 + 0,5px — 2ª linha da chamada (node 4:470) */
+  --tik-font-body-wide-size: 15px;
+  --tik-font-body-wide-weight: 400;
+  --tik-font-body-wide-line: normal;
+  --tik-font-body-wide-tracking: 0.5px;
+
+  /* Caption / Regular 15 com linha de 19,5px — legenda do vídeo (node 4:1065) */
+  --tik-font-caption-size: 15px;
+  --tik-font-caption-weight: 400;
+  --tik-font-caption-line: 19.5px;
+  --tik-font-caption-tracking: 0;
+
+  /* Caption Strong / Semibold 15 com linha de 19,5px — hashtags (node 4:1065) */
+  --tik-font-caption-strong-size: 15px;
+  --tik-font-caption-strong-weight: 600;
+  --tik-font-caption-strong-line: 19.5px;
+  --tik-font-caption-strong-tracking: 0;
+
+  /* Label / Regular 14 — bio, rótulo de mídia, descrição vazia (node 4:393) */
+  --tik-font-label-size: 14px;
+  --tik-font-label-weight: 400;
+  --tik-font-label-line: normal;
+  --tik-font-label-tracking: 0;
+
+  /* Label Strong / Semibold 14 — rótulo de chip (node 4:815) */
+  --tik-font-label-strong-size: 14px;
+  --tik-font-label-strong-weight: 600;
+  --tik-font-label-strong-line: normal;
+  --tik-font-label-strong-tracking: 0;
+
+  /* Meta / Regular 13 — rótulo de métrica e dica do leitor (node 4:485) */
+  --tik-font-meta-size: 13px;
+  --tik-font-meta-weight: 400;
+  --tik-font-meta-line: normal;
+  --tik-font-meta-tracking: 0;
+
+  /* Meta Strong / Semibold 13 — seção, autor e contador (node 4:254) */
+  --tik-font-meta-strong-size: 13px;
+  --tik-font-meta-strong-weight: 600;
+  --tik-font-meta-strong-line: normal;
+  --tik-font-meta-strong-tracking: 0;
+
+  /* Meta Bold / Bold 13 — rótulo "Sounds" da câmera (node 4:693) */
+  --tik-font-meta-bold-size: 13px;
+  --tik-font-meta-bold-weight: 700;
+  --tik-font-meta-bold-line: normal;
+  --tik-font-meta-bold-tracking: 0;
+
+  /* Counter / Bold 12 — contador de fotos e "My TikCode" (node 4:630) */
+  --tik-font-counter-size: 12px;
+  --tik-font-counter-weight: 700;
+  --tik-font-counter-line: normal;
+  --tik-font-counter-tracking: 0;
+
+  /* Micro / Regular 11 — rótulo de ação da folha (node 4:866) */
+  --tik-font-micro-size: 11px;
+  --tik-font-micro-weight: 400;
+  --tik-font-micro-line: normal;
+  --tik-font-micro-tracking: 0;
+
+  /* Micro Bold / Bold 11 — rótulos "Effects" e "Upload" (node 4:706) */
+  --tik-font-micro-bold-size: 11px;
+  --tik-font-micro-bold-weight: 700;
+  --tik-font-micro-bold-line: normal;
+  --tik-font-micro-bold-tracking: 0;
+
+  /* Nav / Regular 10 + 0,15px — estilo publicado "Button 10" (node 4:440) */
+  --tik-font-nav-size: 10px;
+  --tik-font-nav-weight: 400;
+  --tik-font-nav-line: normal;
+  --tik-font-nav-tracking: 0.15px;
+
+  /* Nav Active / Semibold 10 + 0,15px — rótulo de aba ativa (node 4:437) */
+  --tik-font-nav-active-size: 10px;
+  --tik-font-nav-active-weight: 600;
+  --tik-font-nav-active-line: normal;
+  --tik-font-nav-active-tracking: 0.15px;
+
+  /* Tool / Bold 10 — rótulos da coluna da câmera (node 4:675) */
+  --tik-font-tool-size: 10px;
+  --tik-font-tool-weight: 700;
+  --tik-font-tool-line: normal;
+  --tik-font-tool-tracking: 0;
+
+  /* ------------------------------------------------------------------
+     Sistema (SF Pro Text) — barra de status e leitor de QR
+     ------------------------------------------------------------------ */
+  /* Clock / Semibold 15 - 0,3px (node 4:1143) */
+  --tik-font-system-clock-size: 15px;
+  --tik-font-system-clock-weight: 600;
+  --tik-font-system-clock-line: normal;
+  --tik-font-system-clock-tracking: -0.3px;
+
+  /* Nav Title / Semibold 16 - 0,3px (node 4:761) */
+  --tik-font-system-title-size: 16px;
+  --tik-font-system-title-weight: 600;
+  --tik-font-system-title-line: normal;
+  --tik-font-system-title-tracking: -0.3px;
+
+  /* Link / Regular 14 (node 4:762) */
+  --tik-font-system-link-size: 14px;
+  --tik-font-system-link-weight: 400;
+  --tik-font-system-link-line: normal;
+  --tik-font-system-link-tracking: 0;
+
+  /* Body / Regular 15 - 0,6px (node 4:636) */
+  --tik-font-system-body-size: 15px;
+  --tik-font-system-body-weight: 400;
+  --tik-font-system-body-line: normal;
+  --tik-font-system-body-tracking: -0.6px;
+}

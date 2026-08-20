@@ -1,0 +1,53 @@
+/**
+ * Estilos do Componente StatusBar — Design System Tik Tooria
+ * Frame "Bars / Status Bar / iPhone X" (node 4:1123), 414×44.
+ */
+
+.tik-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-statusbar-height);
+  padding: 0 14.5px 0 23px;
+  font-family: var(--tik-font-system);
+}
+
+.tik-statusbar__clock {
+  font-size: var(--tik-font-system-clock-size);
+  font-weight: var(--tik-font-system-clock-weight);
+  line-height: var(--tik-font-system-clock-line);
+  letter-spacing: var(--tik-font-system-clock-tracking);
+}
+
+.tik-statusbar__glyphs {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tik-spacing-3xs);
+}
+
+/* ==========================================================================
+   Contextos de superfície
+   ========================================================================== */
+
+.tik-statusbar--chrome {
+  color: var(--tik-color-text-statusbar);
+}
+
+.tik-statusbar--immersive {
+  color: var(--tik-color-text-on-immersive);
+}
+
+/**
+ * A bateria é o único glifo multicolorido da barra: o arquivo pinta o contorno
+ * em #ABABAB e o miolo na cor do contexto. O miolo é o `rect` sem `fill`
+ * declarado, portanto herda `currentColor` do SVG.
+ */
+.tik-statusbar--chrome .tik-icon[data-tik-icon='battery'] {
+  color: var(--tik-color-indicator-light);
+}
+
+.tik-statusbar--immersive .tik-icon[data-tik-icon='battery'] {
+  color: var(--tik-color-text-on-immersive);
+}

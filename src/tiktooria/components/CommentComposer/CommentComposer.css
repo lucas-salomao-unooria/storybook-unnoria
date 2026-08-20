@@ -1,0 +1,56 @@
+/**
+ * Estilos do Componente CommentComposer — Design System Tik Tooria
+ * Frame "Bottom bar" (node 4:959), 414×83 com fio superior de 0,33px.
+ */
+
+.tik-commentcomposer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tik-spacing-xxl);
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-tabbar-height);
+  padding: 15px 15px 0 18px;
+  background: var(--tik-color-surface-primary);
+  box-shadow: var(--tik-elevation-bar-top);
+}
+
+.tik-commentcomposer__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-body-size);
+  font-weight: var(--tik-font-body-weight);
+  line-height: var(--tik-font-body-line);
+  color: var(--tik-color-text-primary);
+  background: none;
+  border: 0;
+  outline: none;
+}
+
+.tik-commentcomposer__input::placeholder {
+  color: var(--tik-color-text-secondary);
+  opacity: 1;
+}
+
+.tik-commentcomposer__input:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 2px;
+  border-radius: var(--tik-radius-s);
+}
+
+.tik-commentcomposer__action {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-commentcomposer__action:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 3px;
+  border-radius: var(--tik-radius-s);
+}

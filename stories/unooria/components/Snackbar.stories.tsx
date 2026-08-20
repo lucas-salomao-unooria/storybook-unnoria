@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Snackbar } from '../../../src/unooria/components/Snackbar/Snackbar';
 import { SnackbarProvider, useSnackbar } from '../../../src/unooria/components/Snackbar/SnackbarProvider';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
@@ -211,7 +211,7 @@ const SnackbarDocumentationPage: React.FC = () => {
               <p style={{ margin: 0 }}>
                 <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Em uma plataforma de ensino online, após o aluno
                 completar uma lição, um Snackbar pode aparecer no canto inferior da tela com a mensagem{' '}
-                <em>"Progresso salvo com sucesso"</em> e um botão opcional <em>"Desfazer"</em>.
+                <em>&quot;Progresso salvo com sucesso&quot;</em> e um botão opcional <em>&quot;Desfazer&quot;</em>.
               </p>
             </div>
           </div>
@@ -472,7 +472,7 @@ const SnackbarDocumentationPage: React.FC = () => {
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#166534', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
-                <strong>Use para feedbacks breves e temporários:</strong> Notificações de sucesso, salvamento em lote ou exclusões com "Desfazer".
+                <strong>Use para feedbacks breves e temporários:</strong> Notificações de sucesso, salvamento em lote ou exclusões com &quot;Desfazer&quot;.
               </li>
               <li>
                 <strong>Mantenha títulos objetivos:</strong> Textos com até 1 linha de título e 2 linhas de descrição.
@@ -496,7 +496,7 @@ const SnackbarDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -506,7 +506,7 @@ const SnackbarDocumentationPage: React.FC = () => {
                 <strong>Não use para avisos permanentes na página:</strong> Para mensagens que devem ficar fixas no layout, use o <code>FeedbackAlert</code>.
               </li>
               <li>
-                <strong>Não sobrecarregue com múltiplos botões:</strong> Use no máximo 1 botão de ação textual ("Desfazer").
+                <strong>Não sobrecarregue com múltiplos botões:</strong> Use no máximo 1 botão de ação textual (&quot;Desfazer&quot;).
               </li>
             </ul>
           </div>
@@ -535,8 +535,8 @@ const SnackbarDocumentationPage: React.FC = () => {
             <tbody>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>severity</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'success' | 'warning' | 'danger' | 'info'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'success'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;success&apos; | &apos;warning&apos; | &apos;danger&apos; | &apos;info&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;success&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Severidade cromática do feedback.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -555,12 +555,12 @@ const SnackbarDocumentationPage: React.FC = () => {
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>actionLabel</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>string</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>undefined</td>
-                <td style={{ padding: '12px 18px', color: '#334155' }}>Texto do botão de ação opcional (ex: "Desfazer").</td>
+                <td style={{ padding: '12px 18px', color: '#334155' }}>Texto do botão de ação opcional (ex: &quot;Desfazer&quot;).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'desktop' | 'mobile' | 'auto'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'auto'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;desktop&apos; | &apos;mobile&apos; | &apos;auto&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;auto&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Form factor visual do card.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -571,8 +571,8 @@ const SnackbarDocumentationPage: React.FC = () => {
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>

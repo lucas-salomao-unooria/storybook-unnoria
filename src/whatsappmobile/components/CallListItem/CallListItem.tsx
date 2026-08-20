@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ListItem } from '../ListItem';
 import { Avatar } from '../Avatar';
@@ -35,13 +37,12 @@ export const CallListItem = React.forwardRef<HTMLElement, WaCallListItemProps>(
     return (
       <ListItem
         ref={ref}
-        as={onClick ? 'button' : 'li'}
         className={classes}
         density="call"
         divider={divider}
         dividerInset={71}
         onClick={onClick}
-        leading={<Avatar size="lg" src={avatarSrc} alt={name} initials={initials} />}
+        leading={<Avatar size="lg" src={avatarSrc} alt="" initials={initials} />}
         title={name}
         subtitle={
           <span className="wa-calllistitem__meta">

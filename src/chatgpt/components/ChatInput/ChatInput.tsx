@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { GptChatInputProps } from './ChatInput.types';
 import { gptGlyphs } from '../../tokens';

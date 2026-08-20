@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, isValidElement } from 'react';
 import {
   BottomBarProps,
   BottomBarItemProps,
-  BottomBarItemData,
   BottomBarActionProps,
 } from './BottomBar.types';
 import { Badge } from '../Badge/Badge';
@@ -72,12 +73,13 @@ export const BottomBarAction = React.forwardRef<HTMLButtonElement, BottomBarActi
         ref={ref}
         type={Component === 'button' ? 'button' : undefined}
         href={href}
-        className={`unooria-bottom-bar-action unooria-bottom-bar-action--${size} ${className}`}
+        className={`unooria-bottom-bar-action unooria-bottom-bar-action--${size} unooria-bottom-bar-action--${variant} ${className}`}
         style={style}
         onClick={disabled ? undefined : onClick}
         disabled={disabled}
         aria-label={label}
         title={label}
+        data-theme={theme}
         {...restProps}
       >
         <span className="unooria-bottom-bar-action__icon" aria-hidden="true">
@@ -146,6 +148,7 @@ export const BottomBarItem = React.forwardRef<HTMLElement, BottomBarItemProps>(
         aria-selected={active}
         role="tab"
         tabIndex={active ? 0 : -1}
+        data-theme={theme}
         {...restProps}
       >
         {/* Tooltip Superior com 4px de distância conforme Figma */}
@@ -251,6 +254,28 @@ export const BottomBar = React.forwardRef<HTMLElement, BottomBarProps>(
       ...style,
     };
 
+    /**
+     * O botão de ação central aceita tanto um objeto de propriedades
+     * (`BottomBarActionProps`) quanto um nó React já pronto. Quando for um
+     * objeto simples, delegamos a renderização ao subcomponente oficial
+     * `BottomBarAction`, propagando o tema da barra.
+     */
+    const renderAction = (): React.ReactNode => {
+      if (!action) return null;
+      if (isValidElement(action)) return action;
+      if (typeof action === 'object') {
+        return <BottomBarAction theme={theme} {...(action as BottomBarActionProps)} />;
+      }
+      return action as React.ReactNode;
+    };
+
+    const actionNode = renderAction();
+
+    // `center`: o botão é inserido no meio da lista de itens.
+    // `end`: o botão é renderizado após todos os itens.
+    const centerActionIndex =
+      actionNode && actionPosition === 'center' ? Math.ceil(items.length / 2) : -1;
+
     return (
       <div className="unooria-bottom-bar-wrapper">
         <nav
@@ -283,15 +308,20 @@ export const BottomBar = React.forwardRef<HTMLElement, BottomBarProps>(
           )}
 
           {/* Renderização de itens fornecidos via prop items */}
-          {items.map((item) => (
-            <BottomBarItem
-              key={item.id}
-              {...item}
-              theme={theme}
-              active={item.active ?? item.id === currentActiveId}
-              onClick={handleItemClick}
-            />
+          {items.map((item, index) => (
+            <React.Fragment key={item.id}>
+              {index === centerActionIndex && actionNode}
+              <BottomBarItem
+                {...item}
+                theme={theme}
+                active={item.active ?? item.id === currentActiveId}
+                onClick={handleItemClick}
+              />
+            </React.Fragment>
           ))}
+
+          {/* Botão de ação central/final (prop `action`) */}
+          {actionNode && (centerActionIndex >= items.length || actionPosition === 'end') && actionNode}
 
           {/* Botão de expansão do Menu-Mob se aplicável */}
           {variant === 'mobile-dock' && (

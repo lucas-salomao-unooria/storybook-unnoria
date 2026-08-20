@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { StepProps } from './Stepper.types';
 import { Icon } from '../Icon/Icon';
@@ -57,6 +59,8 @@ export const Step = forwardRef<HTMLButtonElement, StepProps>(
         aria-current={status === 'selected' ? 'step' : undefined}
         className={combinedClassName}
         style={style}
+        data-index={index}
+        data-theme={theme}
         {...rest}
       >
         {/* Ícone */}

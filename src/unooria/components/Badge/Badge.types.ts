@@ -149,5 +149,5 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * Atributos arbitrários adicionais.
    */
-  [key: string]: any;
+  [key: string]: unknown;
 }

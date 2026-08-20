@@ -1,0 +1,166 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Tik Tooria
+   Extraídos do arquivo Figma "TikTok UI Screens (Community) - cópia"
+   (fileKey UIYCB87CQkpFwf1aWTBl1a, página 4:171 — 15 telas de 414×896).
+
+   O arquivo comunitário publica quatro variáveis de cor e dois estilos de
+   efeito; todos os demais valores foram lidos do preenchimento literal do nó
+   de origem via Plugin API. Nenhum valor foi estimado a partir de captura de
+   tela. O `figmaNode` de cada token está registrado em `colors.ts`.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     Marca — as quatro variáveis publicadas pelo arquivo
+     ------------------------------------------------------------------ */
+  /** Variável "Tik Tok Button": botão primário, coração e anel de gravação */
+  --tik-color-brand-button: #EA4359;
+  /** Variável "Tik Tok Pink": lóbulo esquerdo do botão de criação */
+  --tik-color-brand-pink: #E6436D;
+  /** Variável "Tik Tok Light Blue": lóbulo direito do botão de criação */
+  --tik-color-brand-cyan: #65D2E9;
+  /** Variável "Tik Tok Dark": texto e ícone primários */
+  --tik-color-brand-dark: #161722;
+
+  /* ------------------------------------------------------------------
+     Superfícies
+     O arquivo publica duas famílias: o cromo claro (telas de lista,
+     perfil e configurações) e o imersivo preto (feed de vídeo, câmera e
+     leitor de QR). Não são dois temas do mesmo componente — são dois
+     contextos distintos, ambos literais no arquivo.
+     ------------------------------------------------------------------ */
+  /** Fundo de tela, barras e linhas do cromo claro */
+  --tik-color-surface-primary: #FFFFFF;
+  /** Folha inferior de comentários e de compartilhamento */
+  --tik-color-surface-sheet: #F5F5F4;
+  /** Campo de busca preenchido */
+  --tik-color-surface-field: #F1F1F2;
+  /** Círculo de 47px das ações da folha de compartilhamento */
+  --tik-color-surface-action: #E8E8E7;
+  /** Feed de vídeo, câmera e barra de abas imersiva */
+  --tik-color-surface-immersive: #000000;
+  /** Reserva de mídia sob fotografia e miniatura */
+  --tik-color-surface-media: #C4C4C4;
+  /** Véu do leitor de QR (recorte de 250px) */
+  --tik-color-scrim: rgba(0, 0, 0, 0.4);
+  /** Véu do seletor de foto e vídeo do perfil */
+  --tik-color-scrim-strong: rgba(0, 0, 0, 0.6);
+
+  /* ------------------------------------------------------------------
+     Texto
+     ------------------------------------------------------------------ */
+  /** Rótulo de linha, texto de comentário e título de barra */
+  --tik-color-text-primary: #161722;
+  /** Metadado, autor de comentário e rótulo de seção */
+  --tik-color-text-secondary: #86878B;
+  /** Rótulo inativo da barra de abas clara */
+  --tik-color-text-tertiary: #8A8B8F;
+  /** Descrição de estado vazio */
+  --tik-color-text-muted: #7C7D83;
+  /** Rótulo das ações da folha de compartilhamento */
+  --tik-color-text-action: #4E4F57;
+  /** Chamada "Tap to create a new video" */
+  --tik-color-text-callout: #000000;
+  /** Relógio e glifos da barra de status sobre cromo claro */
+  --tik-color-text-statusbar: #171717;
+  /** Texto sobre superfície imersiva */
+  --tik-color-text-on-immersive: #FFFFFF;
+  /** Aba inativa do cabeçalho do feed */
+  --tik-color-text-on-immersive-muted: rgba(255, 255, 255, 0.6);
+
+  /* ------------------------------------------------------------------
+     Ícones
+     ------------------------------------------------------------------ */
+  /** Divisa, glifo de linha e coração de comentário */
+  --tik-color-icon-default: #86878B;
+  /** Glifo de barra superior, menu e ações da folha */
+  --tik-color-icon-primary: #161722;
+  /** Glifo inativo da barra de abas clara */
+  --tik-color-icon-tab-inactive: #8A8B8F;
+  /** Glifo de aba desativada (curtidas ocultas do perfil) */
+  --tik-color-icon-tab-disabled: #D7D7D9;
+  /** Ilustração de estado vazio de notificações */
+  --tik-color-icon-empty: #B0B0B3;
+  /** Ilustração de estado vazio de mensagens diretas */
+  --tik-color-icon-empty-alt: #AFB0B3;
+  /** Glifo da trilha de ações sobre o vídeo (camada inferior) */
+  --tik-color-icon-on-immersive: #FBFBFB;
+
+  /* ------------------------------------------------------------------
+     Bordas, fios e divisores
+     ------------------------------------------------------------------ */
+  /** Contorno de 1px de botão e chip contornados */
+  --tik-color-border-outline: #E3E3E4;
+  /** Fio de 0,33px das barras e separador de seção */
+  --tik-color-border-hairline: #D0D1D3;
+  /** Separador interno da folha de compartilhamento */
+  --tik-color-border-separator: #DADBDB;
+  /** Fio superior da barra de abas imersiva */
+  --tik-color-border-immersive: #262626;
+  /** Calha de 0,83px entre miniaturas da grade */
+  --tik-color-border-grid: #FFFFFF;
+  /** Sublinhado de 2px da aba ativa do perfil */
+  --tik-color-border-tab-active: #161722;
+  /** Contorno da cápsula de bateria da barra de status */
+  --tik-color-border-statusbar: #979797;
+  /** Indicador de home sobre cromo claro */
+  --tik-color-indicator-light: #060606;
+  /** Indicador de home sobre superfície imersiva */
+  --tik-color-indicator-immersive: #E9E9E9;
+
+  /* ------------------------------------------------------------------
+     Marcas de terceiros da folha de compartilhamento
+     Paleta exclusiva dos logotipos; é proibido reaproveitá-la em
+     qualquer outro componente.
+     ------------------------------------------------------------------ */
+  --tik-color-social-whatsapp: #65D072;
+  --tik-color-social-messenger: #2D67F6;
+  --tik-color-social-sms: #5FC87D;
+  --tik-color-social-facebook: #3173F1;
+  --tik-color-social-instagram-start: #FFDD55;
+  --tik-color-social-instagram-mid: #FF543E;
+  --tik-color-social-instagram-end: #C837AB;
+
+  /* ------------------------------------------------------------------
+     Avatares de convite da tela "Find friends"
+     ------------------------------------------------------------------ */
+  --tik-color-avatar-invite: #ED7360;
+  --tik-color-avatar-contacts: #67DDA0;
+
+  /* ------------------------------------------------------------------
+     Acentos localizados
+     ------------------------------------------------------------------ */
+  /** Camada de sombra do coração da trilha de ações */
+  --tik-color-accent-heart-shadow: #E44558;
+  /** Nota musical do disco giratório */
+  --tik-color-accent-disc-note: #DDBC43;
+
+  /* ------------------------------------------------------------------
+     Gradientes literais do arquivo
+     ------------------------------------------------------------------ */
+  /** Disco giratório (GRADIENT_ANGULAR de quatro paradas, node 4:1067) */
+  --tik-gradient-disc: conic-gradient(
+    from 0deg,
+    #171717 45.36deg,
+    #373736 138.24deg,
+    #171717 226.08deg,
+    #373736 316.8deg,
+    #171717 360deg
+  );
+  /** Esmaecimento das pontas do letreiro de música (node 4:1092) */
+  --tik-gradient-marquee: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 5.2083%,
+    rgba(255, 255, 255, 0.9) 95.833%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /** Logotipo do Instagram (GRADIENT_RADIAL, node 4:925) */
+  --tik-gradient-instagram: radial-gradient(
+    circle at 30% 107%,
+    #FFDD55 0%,
+    #FFDD55 10%,
+    #FF543E 50%,
+    #C837AB 100%
+  );
+}

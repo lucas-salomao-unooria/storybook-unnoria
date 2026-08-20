@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { FeedbackAlertProps, FeedbackAlertType } from './FeedbackAlert.types';
 import './FeedbackAlert.css';

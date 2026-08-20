@@ -1,0 +1,188 @@
+/**
+ * Estilos do Componente VideoPlayer — Design System Unitube
+ * Nó de origem: `Media/VideoPlayer` (18:1295), 424×238 e 640×360.
+ */
+
+.uni-video-player {
+  position: relative;
+  display: block;
+  width: 100%;
+  /* Razão literal do arquivo: 640×360 no reprodutor completo. */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  font-family: var(--uni-font-sans);
+  /* Cor de espera antes do bitmap: a primitiva blue/400 do arquivo. */
+  background: var(--uni-color-poster-placeholder);
+}
+
+.uni-video-player__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+ * Cada nó de controle do arquivo carrega, além do preenchimento, um traço de
+ * 1px em preto a 10%. É o que mantém o glifo legível sobre quadros de vídeo
+ * claros, e por isso é reproduzido em vez de descartado.
+ */
+.uni-player-glyph__shape {
+  stroke: var(--uni-color-player-glyph-outline);
+  stroke-width: 1;
+}
+
+/*
+ * Dois véus lineares de 96px, um em cada extremidade do quadro
+ * (node 18:1295, grupo "shadows").
+ */
+.uni-video-player__scrim-top,
+.uni-video-player__scrim-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 96px;
+  pointer-events: none;
+}
+
+.uni-video-player__scrim-top {
+  top: 0;
+  background: var(--uni-gradient-player-top);
+}
+
+.uni-video-player__scrim-bottom {
+  bottom: 0;
+  background: var(--uni-gradient-player-bottom);
+}
+
+.uni-video-player__header {
+  position: absolute;
+  top: 14px;
+  left: var(--uni-spacing-16);
+  right: var(--uni-spacing-16);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--uni-spacing-16);
+}
+
+.uni-video-player__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uni-video-player__info {
+  flex: none;
+  display: inline-flex;
+  padding: 0;
+  color: var(--uni-color-player-chrome);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.uni-video-player__controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--uni-spacing-8);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Linha do tempo: três camadas sobrepostas, recuadas 12px de cada aresta. */
+.uni-video-player__timeline {
+  position: relative;
+  height: var(--uni-player-timeline-height);
+  margin: 0 var(--uni-spacing-12);
+  background: var(--uni-color-player-track);
+}
+
+.uni-video-player__buffered,
+.uni-video-player__played {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.uni-video-player__buffered {
+  background: var(--uni-color-player-buffer);
+}
+
+/* Vermelho do progresso: #FC0D1C, distinto do vermelho semântico da marca. */
+.uni-video-player__played {
+  background: var(--uni-color-brand-progress);
+}
+
+.uni-video-player__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uni-spacing-16);
+  height: 28px;
+  padding: 0 var(--uni-spacing-20) 0 var(--uni-spacing-24);
+}
+
+.uni-video-player__cluster {
+  display: flex;
+  align-items: center;
+  gap: var(--uni-spacing-20);
+}
+
+.uni-video-player__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0;
+  color: var(--uni-color-player-chrome);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--uni-transition-fast);
+}
+
+.uni-video-player__control:hover {
+  opacity: 0.85;
+}
+
+.uni-video-player__info:focus-visible,
+.uni-video-player__control:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+  border-radius: var(--uni-radius-sm);
+}
+
+.uni-video-player__time {
+  /*
+   * Body/Small em `--uni-color-player-chrome`. A altura de linha declarada no
+   * arquivo é 146,48% — um valor fracionário que resulta em 19,04px sobre o
+   * corpo de 13px; preservada em vez de arredondada para os 18px do degrau.
+   */
+  font-size: var(--uni-font-body-sm-size);
+  font-weight: var(--uni-font-body-sm-weight);
+  line-height: 1.4648;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-player-chrome);
+  white-space: nowrap;
+}
+
+/*
+ * Abaixo de 400px o arquivo não publica comportamento. Os controles do lado
+ * direito são recolhidos para que a barra não quebre em duas linhas.
+ */
+@media (max-width: 400px) {
+  .uni-video-player__cluster:last-child .uni-video-player__control:not(:last-child) {
+    display: none;
+  }
+}

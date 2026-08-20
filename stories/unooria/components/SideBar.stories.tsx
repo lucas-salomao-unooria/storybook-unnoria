@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { SideBar, SideBarItem } from '../../../src/unooria/components/SideBar/SideBar';
-import { SideBarProps, SideBarItemData, SideBarAppItem } from '../../../src/unooria/components/SideBar/SideBar.types';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { SideBar } from '../../../src/unooria/components/SideBar/SideBar';
+import { SideBarItemData, SideBarAppItem } from '../../../src/unooria/components/SideBar/SideBar.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones SVG inline para ilustrar a sidebar
@@ -248,7 +248,7 @@ const SideBarDocumentationPage = () => {
           </p>
         </div>
         <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', padding: 24, borderRadius: 12 }}>
-          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>❌ Don't</h4>
+          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>❌ Don&apos;t</h4>
           <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: '#7F1D1D' }}>
             Evite sobrecarregar a barra lateral com muitos itens. O excesso prejudica a acessibilidade e a eficiência da navegação rápida.
           </p>

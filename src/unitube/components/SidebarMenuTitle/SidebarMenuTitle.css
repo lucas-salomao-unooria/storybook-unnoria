@@ -1,0 +1,22 @@
+/**
+ * Estilos do Componente SidebarMenuTitle — Design System Unitube
+ * Nó de origem: `Navigation/SidebarMenuTitle` (9:1933), 224×32.
+ */
+
+.uni-sidebar-title {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--uni-sidebar-item-width);
+  height: var(--uni-sidebar-title-height);
+  margin: 0;
+  padding: var(--uni-spacing-8) var(--uni-spacing-24);
+  font-family: var(--uni-font-sans);
+  font-size: var(--uni-font-label-lg-size);
+  font-weight: var(--uni-font-label-lg-weight);
+  line-height: var(--uni-font-label-lg-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+  text-transform: uppercase;
+}

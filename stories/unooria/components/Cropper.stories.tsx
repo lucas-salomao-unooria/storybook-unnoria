@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Cropper } from '../../../src/unooria/components/Cropper/Cropper';
-import {
-  CropperProps,
-  CropperStep,
-  CropResult,
-} from '../../../src/unooria/components/Cropper/Cropper.types';
+import { CropResult } from '../../../src/unooria/components/Cropper/Cropper.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 const DEMO_IMAGE = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80';
@@ -14,7 +10,7 @@ const DEMO_IMAGE = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb
  * Página de Documentação Rica do Cropper baseada no Padrão Ouro do Design System Unooria
  */
 const CropperDocumentationPage = () => {
-  const [result, setResult] = useState<CropResult | null>(null);
+  const [, setResult] = useState<CropResult | null>(null);
 
   return (
     <UnooriaDocShell>
@@ -206,25 +202,25 @@ const CropperDocumentationPage = () => {
               <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>initialStep</td>
               <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperStep</td>
               <td style={{ padding: '12px 16px', color: '#475157' }}>-</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}>Passo inicial do componente ('change-photo' | 'upload' | 'crop-preview').</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Passo inicial do componente (&apos;change-photo&apos; | &apos;upload&apos; | &apos;crop-preview&apos;).</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>shape</td>
               <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperShape</td>
-              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>'circle'</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}>Formato da máscara de corte ('circle' | 'square').</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>&apos;circle&apos;</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Formato da máscara de corte (&apos;circle&apos; | &apos;square&apos;).</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>viewMode</td>
               <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperViewMode</td>
-              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>'inline'</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}>Modo de exibição do componente ('modal' | 'inline').</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>&apos;inline&apos;</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Modo de exibição do componente (&apos;modal&apos; | &apos;inline&apos;).</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>theme</td>
               <td style={{ padding: '12px 16px', color: '#49699F', fontFamily: 'monospace' }}>CropperTheme</td>
-              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>'light'</td>
-              <td style={{ padding: '12px 16px', color: '#475157' }}>Tema visual de cor ('light' | 'dark').</td>
+              <td style={{ padding: '12px 16px', color: '#475157', fontFamily: 'monospace' }}>&apos;light&apos;</td>
+              <td style={{ padding: '12px 16px', color: '#475157' }}>Tema visual de cor (&apos;light&apos; | &apos;dark&apos;).</td>
             </tr>
             <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
               <td style={{ padding: '12px 16px', color: '#22272A', fontWeight: 500 }}>onClose</td>
@@ -303,7 +299,7 @@ const CropperDocumentationPage = () => {
           <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6, color: '#065F46' }}>
             <li>Permita que o usuário centralize visualmente o rosto ou o objeto principal.</li>
             <li>Forneça resoluções adequadas para evitar distorções no corte.</li>
-            <li>Use o shape "circle" para fotos de perfil ou avatares.</li>
+            <li>Use o shape &quot;circle&quot; para fotos de perfil ou avatares.</li>
           </ul>
         </div>
 
@@ -315,7 +311,7 @@ const CropperDocumentationPage = () => {
             borderRadius: 12,
           }}
         >
-          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16 }}>❌ Não Faça (Don't)</h4>
+          <h4 style={{ margin: '0 0 12px 0', color: '#991B1B', fontSize: 16 }}>❌ Não Faça (Don&apos;t)</h4>
           <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6, color: '#991B1B' }}>
             <li>Não use o Cropper para imagens de dimensões complexas ou muito longas.</li>
             <li>Evite pular a etapa de preview sem dar ao usuário a chance de ajustar a imagem.</li>

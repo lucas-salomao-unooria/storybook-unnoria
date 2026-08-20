@@ -1,0 +1,145 @@
+/**
+ * Estilos do Componente TabBar — Design System Tik Tooria
+ * Frames "Tab Bar" (nodes 4:428 e 4:1097), 414×83.
+ */
+
+.tik-tabbar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: start;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-tabbar-height);
+  padding-top: 7px;
+}
+
+.tik-tabbar--chrome {
+  background: var(--tik-color-surface-primary);
+  box-shadow: var(--tik-elevation-bar-top);
+}
+
+.tik-tabbar--immersive {
+  background: var(--tik-color-surface-immersive);
+  box-shadow: var(--tik-elevation-bar-top-immersive);
+}
+
+/* ==========================================================================
+   Item
+   ========================================================================== */
+
+.tik-tabbar__item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.5px;
+  padding: 0;
+  font-family: var(--tik-font-sans);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition:
+    color var(--tik-transition-fast),
+    opacity var(--tik-transition-fast);
+}
+
+.tik-tabbar__item:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 2px;
+  border-radius: var(--tik-radius-l);
+}
+
+.tik-tabbar__label {
+  font-size: var(--tik-font-nav-size);
+  font-weight: var(--tik-font-nav-weight);
+  line-height: var(--tik-font-nav-line);
+  letter-spacing: var(--tik-font-nav-tracking);
+  white-space: nowrap;
+}
+
+.tik-tabbar__item--active .tik-tabbar__label {
+  font-weight: var(--tik-font-nav-active-weight);
+}
+
+/* Sobre cromo claro: inativo em #8A8B8F a 80%, ativo em #161722. */
+.tik-tabbar--chrome .tik-tabbar__item--inactive {
+  color: var(--tik-color-icon-tab-inactive);
+  opacity: 0.8;
+}
+
+.tik-tabbar--chrome .tik-tabbar__item--active {
+  color: var(--tik-color-text-primary);
+}
+
+/* Sobre superfície imersiva: inativo em branco a 80%, ativo em branco cheio. */
+.tik-tabbar--immersive .tik-tabbar__item--inactive {
+  color: var(--tik-color-text-on-immersive);
+  opacity: 0.8;
+}
+
+.tik-tabbar--immersive .tik-tabbar__item--active {
+  color: var(--tik-color-text-on-immersive);
+}
+
+/* ==========================================================================
+   Botão de criação — três lóbulos de 36×28 com raio 8
+   ========================================================================== */
+
+.tik-createbutton {
+  position: relative;
+  align-self: start;
+  justify-self: center;
+  box-sizing: border-box;
+  width: var(--tik-create-button-width);
+  height: var(--tik-create-button-height);
+  margin-top: 1.5px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tik-createbutton:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 3px;
+  border-radius: var(--tik-radius-xxl);
+}
+
+.tik-createbutton__lobe {
+  position: absolute;
+  top: 0;
+  width: 36px;
+  height: var(--tik-create-button-height);
+  border-radius: var(--tik-radius-xxl);
+}
+
+.tik-createbutton__lobe--cyan {
+  left: 0;
+  background: var(--tik-color-brand-cyan);
+}
+
+.tik-createbutton__lobe--pink {
+  left: 7px;
+  background: var(--tik-color-brand-pink);
+}
+
+.tik-createbutton__core {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: var(--tik-create-button-height);
+  border-radius: var(--tik-radius-xxl);
+}
+
+.tik-createbutton--chrome .tik-createbutton__core {
+  color: var(--tik-color-text-on-immersive);
+  background: var(--tik-color-brand-dark);
+}
+
+.tik-createbutton--immersive .tik-createbutton__core {
+  color: var(--tik-color-text-primary);
+  background: var(--tik-color-surface-primary);
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { FileUpload } from '../../../src/unooria/components/UploadFileModal/FileUpload';
 import { UploadFileModal } from '../../../src/unooria/components/UploadFileModal/UploadFileModal';
 import { UploadFileItem } from '../../../src/unooria/components/UploadFileModal/UploadFileModal.types';
@@ -176,8 +176,8 @@ const UploadFileModalDocumentationPage: React.FC = () => {
                 Ele concentra as ações de seleção, visualização e confirmação do upload em um espaço compacto e focado, reduzindo distrações e mantendo o usuário no contexto da tarefa.
               </p>
               <p style={{ margin: 0 }}>
-                <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Ao clicar em "Enviar documento", abre-se um modal central com o título "Upload de arquivo".
-                O usuário escolhe o arquivo, e uma Progress Bar mostra o progresso do envio (ex.: "72%").
+                <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Ao clicar em &quot;Enviar documento&quot;, abre-se um modal central com o título &quot;Upload de arquivo&quot;.
+                O usuário escolhe o arquivo, e uma Progress Bar mostra o progresso do envio (ex.: &quot;72%&quot;).
               </p>
             </div>
           </div>
@@ -312,7 +312,7 @@ const UploadFileModalDocumentationPage: React.FC = () => {
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#166534', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
-                <strong>Informe claramente os formatos aceitos e limite de tamanho:</strong> Ex: "JPEG, PNG, PDF até 50 MB".
+                <strong>Informe claramente os formatos aceitos e limite de tamanho:</strong> Ex: &quot;JPEG, PNG, PDF até 50 MB&quot;.
               </li>
               <li>
                 <strong>Exiba o progresso individual de cada arquivo:</strong> A barra linear com porcentagem reduz a ansiedade de espera.
@@ -336,7 +336,7 @@ const UploadFileModalDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>

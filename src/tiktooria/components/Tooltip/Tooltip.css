@@ -1,0 +1,56 @@
+/**
+ * Estilos do Componente Tooltip — Design System Tik Tooria
+ * Frame "Bubble" (node 4:452), 130×98,9 com rabicho inferior centralizado.
+ */
+
+.tik-tooltip {
+  position: relative;
+  display: inline-block;
+  width: 130px;
+  height: 98.931px;
+  font-family: var(--tik-font-sans);
+}
+
+.tik-tooltip__bubble {
+  position: absolute;
+  inset: -6.06% -7.69% -14.15%;
+  width: auto;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+}
+
+.tik-tooltip__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tik-spacing-3xs);
+  box-sizing: border-box;
+  height: 100%;
+  padding: var(--tik-spacing-m) var(--tik-spacing-s) var(--tik-spacing-xl);
+  text-align: center;
+}
+
+.tik-tooltip__illustration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tik-tooltip__title {
+  font-size: var(--tik-font-callout-size);
+  font-weight: var(--tik-font-callout-weight);
+  line-height: var(--tik-font-callout-line);
+  letter-spacing: var(--tik-font-callout-tracking);
+  color: var(--tik-color-text-callout);
+  white-space: nowrap;
+}
+
+.tik-tooltip__description {
+  font-size: var(--tik-font-body-wide-size);
+  font-weight: var(--tik-font-body-wide-weight);
+  line-height: var(--tik-font-body-wide-line);
+  letter-spacing: var(--tik-font-body-wide-tracking);
+  color: var(--tik-color-text-callout);
+  white-space: nowrap;
+}

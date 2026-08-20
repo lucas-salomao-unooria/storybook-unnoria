@@ -42,7 +42,7 @@ export const StatusBar = React.forwardRef<HTMLDivElement, WaStatusBarProps>(
         ref={ref}
         className={classes}
         style={{ height, ...style }}
-        role="presentation"
+        aria-hidden="true"
         {...restProps}
       >
         <div className="wa-statusbar__left">

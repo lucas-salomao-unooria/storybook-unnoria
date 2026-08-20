@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Tokens de Elevação — Design System Tik Tooria
+
+   O arquivo Figma publica DOIS estilos de efeito ("Action Button Shadow" e
+   "Text Drop"). Os demais efeitos são locais, lidos do nó de origem. A
+   biblioteca é essencialmente plana: barras e cartões se separam por fio de
+   0,33px, e desfoque existe apenas nos alvos flutuantes.
+
+   É PROIBIDO introduzir `box-shadow` em linhas, campos ou folhas — elas não
+   têm sombra no arquivo.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     Estilos de efeito publicados
+     ------------------------------------------------------------------ */
+  /** Estilo "Action Button Shadow" (#0000001A, offset 0/0,33, raio 4) */
+  --tik-elevation-action-button: 0 0.33px 4px rgba(0, 0, 0, 0.1);
+  /** Estilo "Text Drop" (#0000004D, offset 1/1, raio 0) — rótulos sobre vídeo */
+  --tik-text-drop: 1px 1px 0 rgba(0, 0, 0, 0.3);
+
+  /* ------------------------------------------------------------------
+     Fios das barras — sombra de raio 0, não desfoque
+     ------------------------------------------------------------------ */
+  /** Barra superior de cromo claro (node 4:330) */
+  --tik-elevation-bar-bottom: 0 0.33px 0 var(--tik-color-border-hairline);
+  /** Barra de abas de cromo claro (node 4:429) */
+  --tik-elevation-bar-top: 0 -0.33px 0 var(--tik-color-border-hairline);
+  /** Barra de abas imersiva (node 4:1098) */
+  --tik-elevation-bar-top-immersive: 0 -0.33px 0 var(--tik-color-border-immersive);
+  /** Cabeçalho da página de som (node 4:807) */
+  --tik-elevation-bar-bottom-outline: 0 0.33px 0 var(--tik-color-border-outline);
+
+  /* ------------------------------------------------------------------
+     Efeitos locais com desfoque
+     ------------------------------------------------------------------ */
+  /** Contador de fotos do seletor (node 4:630) */
+  --tik-elevation-action-button-strong: 0 0.33px 4px rgba(0, 0, 0, 0.2);
+  /** Botão flutuante "Use this sound" (node 4:803) */
+  --tik-elevation-floating: 0 4px 8px rgba(0, 0, 0, 0.3);
+  /** Chamada "Tap to create a new video" (node 4:453) */
+  --tik-elevation-tooltip: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /** Cartão de fotografia do seletor (node 4:631) */
+  --tik-elevation-photo: 0 4px 4px rgba(0, 0, 0, 0.25);
+  /** Realce superior do cartão de fotografia (node 4:631) */
+  --tik-elevation-photo-rim: 0 2.5px 2px rgba(255, 255, 255, 0.1);
+  /** Logotipo de SMS da folha de compartilhamento (node 4:921) */
+  --tik-elevation-logo: 0 0.33px 1px rgba(0, 0, 0, 0.05);
+  /** Moldura do seletor de upload da câmera (node 4:717) */
+  --tik-elevation-upload-frame: 0 0.33px 2px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,60 @@
+/**
+ * Estilos do Componente MusicDisc — Design System Tik Tooria
+ * Frame "Disc" (node 4:1066), 49×49.
+ */
+
+.tik-musicdisc {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.tik-musicdisc__plate {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tik-gradient-disc);
+  border-radius: var(--tik-radius-full);
+}
+
+.tik-musicdisc__hub {
+  width: 25.5%;
+  height: 25.5%;
+  background: var(--tik-color-accent-disc-note);
+  border-radius: var(--tik-radius-full);
+}
+
+/** As notas flutuam à esquerda e acima do disco, como no arquivo. */
+.tik-musicdisc__tones {
+  position: absolute;
+  right: 60%;
+  bottom: -18%;
+  display: inline-flex;
+  pointer-events: none;
+}
+
+/**
+ * Rotação — extensão documentada. O arquivo de design é estático e não
+ * descreve movimento.
+ */
+.tik-musicdisc__plate--spinning {
+  animation: tik-musicdisc-spin 3s linear infinite;
+}
+
+@keyframes tik-musicdisc-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tik-musicdisc__plate--spinning {
+    animation: none;
+  }
+}

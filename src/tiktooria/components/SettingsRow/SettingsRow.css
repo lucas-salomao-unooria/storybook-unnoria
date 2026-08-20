@@ -1,0 +1,70 @@
+/**
+ * Estilos do Componente SettingsRow — Design System Tik Tooria
+ * Linha de 414×52 (nodes 4:255 e 4:361).
+ */
+
+.tik-settingsrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--tik-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-row-height);
+  padding: 0 19.45px 0 var(--tik-gutter);
+  font-family: var(--tik-font-sans);
+  text-align: left;
+  background: var(--tik-color-surface-primary);
+  border: 0;
+  cursor: pointer;
+  transition: background var(--tik-transition-fast);
+}
+
+/**
+ * Estados de interação — o arquivo não os descreve. O realce reaproveita a
+ * superfície de folha da própria marca, sem introduzir cor nova.
+ */
+.tik-settingsrow:hover {
+  background: var(--tik-color-surface-sheet);
+}
+
+.tik-settingsrow:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: -2px;
+}
+
+.tik-settingsrow:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+/** Com glifo, o rótulo alinha em 48px a partir da borda (node 4:257). */
+.tik-settingsrow--with-icon {
+  padding-left: 0;
+}
+
+.tik-settingsrow__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tik-row-inset);
+  flex-shrink: 0;
+}
+
+.tik-settingsrow__label {
+  flex: 1 1 auto;
+  font-size: var(--tik-font-body-size);
+  font-weight: var(--tik-font-body-weight);
+  line-height: var(--tik-font-body-line);
+  color: var(--tik-color-text-primary);
+}
+
+.tik-settingsrow__value {
+  flex: 0 1 auto;
+  font-size: var(--tik-font-body-size);
+  font-weight: var(--tik-font-body-weight);
+  line-height: var(--tik-font-body-line);
+  color: var(--tik-color-text-secondary);
+  text-align: right;
+  white-space: nowrap;
+}

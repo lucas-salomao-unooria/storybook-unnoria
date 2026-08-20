@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { SectionHeaderProps } from './SectionHeader.types';
 import { SearchInput } from '../TextField/SearchInput';

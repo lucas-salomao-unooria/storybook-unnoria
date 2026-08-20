@@ -1,8 +1,11 @@
+'use client';
+
 import React, {
   forwardRef,
   useRef,
   useEffect,
   useId,
+  useSyncExternalStore,
   createContext,
   useContext,
   useCallback,
@@ -111,7 +114,7 @@ export const ModalTitle = forwardRef<HTMLHeadingElement, ModalTitleProps>(
     return React.createElement(
       Component,
       {
-        ref: ref as any,
+        ref: ref as React.Ref<HTMLElement>,
         id: titleId,
         className: `unooria-modal__title ${className}`.trim(),
         ...restProps,
@@ -133,7 +136,7 @@ export const ModalDescription = forwardRef<HTMLParagraphElement, ModalDescriptio
     return React.createElement(
       Component,
       {
-        ref: ref as any,
+        ref: ref as React.Ref<HTMLElement>,
         id: descriptionId,
         className: `unooria-modal__description ${className}`.trim(),
         ...restProps,
@@ -300,6 +303,24 @@ export const ModalFooter = forwardRef<HTMLDivElement, ModalFooterProps>(
 ModalFooter.displayName = 'ModalFooter';
 
 // ============================================================================
+// Hidratação segura (SSR)
+// ============================================================================
+
+/** Assinatura vazia: o valor de hidratação nunca muda depois de resolvido. */
+const subscribeToNothing = () => () => {};
+const getHydratedSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+/**
+ * Retorna `false` no servidor e durante a hidratação, e `true` a partir daí.
+ * Em renderização puramente client-side já retorna `true` na primeira passada,
+ * preservando o comportamento atual no browser.
+ */
+function useIsHydrated(): boolean {
+  return useSyncExternalStore(subscribeToNothing, getHydratedSnapshot, getServerSnapshot);
+}
+
+// ============================================================================
 // Componente Principal: Modal
 // ============================================================================
 export interface ModalComponent
@@ -350,6 +371,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
   ) => {
     const autoTitleId = useId();
     const autoDescId = useId();
+
+    /**
+     * O portal só pode ser criado no cliente. Renderizar `null` no servidor e
+     * durante a hidratação mantém a árvore idêntica dos dois lados.
+     */
+    const isHydrated = useIsHydrated();
 
     const internalContainerRef = useRef<HTMLDivElement | null>(null);
     const mouseDownTargetRef = useRef<EventTarget | null>(null);
@@ -425,6 +452,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
       return () => {
         clearTimeout(focusTimer);
+        // A leitura de `finalFocusRef.current` precisa acontecer no momento do
+        // cleanup (fechamento do modal), e não na montagem: o elemento que
+        // deve receber o foco pode ser montado depois da abertura. Copiar o
+        // valor no início do efeito, como sugere a regra, devolveria o foco ao
+        // alvo errado, então a checagem é suprimida deliberadamente.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         const finalTarget = finalFocusRef?.current || previousActiveElementRef.current;
         if (finalTarget && typeof finalTarget.focus === 'function') {
           finalTarget.focus();
@@ -573,7 +606,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     );
 
     // SSR Safe Portal Rendering
-    if (typeof document === 'undefined') {
+    if (!isHydrated) {
       return null;
     }
 

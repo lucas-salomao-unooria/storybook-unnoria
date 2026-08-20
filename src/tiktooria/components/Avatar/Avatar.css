@@ -1,0 +1,97 @@
+/**
+ * Estilos do Componente Avatar — Design System Tik Tooria
+ * Os seis diâmetros do arquivo: 32, 47, 49, 56, 90 e 96px.
+ */
+
+.tik-avatar {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: visible;
+  background: var(--tik-color-surface-media);
+  border-radius: var(--tik-radius-full);
+}
+
+.tik-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--tik-radius-full);
+}
+
+.tik-avatar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tik-color-text-on-immersive);
+}
+
+/* ==========================================================================
+   Diâmetros
+   ========================================================================== */
+
+.tik-avatar--xs {
+  width: var(--tik-avatar-xs);
+  height: var(--tik-avatar-xs);
+}
+
+.tik-avatar--sm {
+  width: var(--tik-avatar-sm);
+  height: var(--tik-avatar-sm);
+}
+
+.tik-avatar--md {
+  width: var(--tik-avatar-md);
+  height: var(--tik-avatar-md);
+}
+
+.tik-avatar--lg {
+  width: var(--tik-avatar-lg);
+  height: var(--tik-avatar-lg);
+}
+
+.tik-avatar--xl {
+  width: var(--tik-avatar-xl);
+  height: var(--tik-avatar-xl);
+}
+
+.tik-avatar--xxl {
+  width: var(--tik-avatar-xxl);
+  height: var(--tik-avatar-xxl);
+}
+
+/* ==========================================================================
+   Anel e botão de seguir
+   ========================================================================== */
+
+/** Anel branco de 1px por fora do disco (node 4:852). */
+.tik-avatar--ring {
+  box-shadow: 0 0 0 1px var(--tik-color-border-grid);
+}
+
+/** O botão de seguir avança 11,5px além da base, como no arquivo. */
+.tik-avatar--followable {
+  margin-bottom: 11.5px;
+}
+
+.tik-avatar__follow {
+  position: absolute;
+  bottom: calc(var(--tik-follow-button) / -2);
+  left: 50%;
+  display: inline-flex;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--tik-radius-full);
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.tik-avatar__follow:focus-visible {
+  outline: 2px solid var(--tik-color-text-on-immersive);
+  outline-offset: 2px;
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, {
   forwardRef,
   useState,
@@ -119,6 +121,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
     // Executa comandos de formatação com garantia de foco e seleção
     const executeCommand = useCallback(
       (command: string, val: string = '') => {
+        // Mapeia os comandos de alinhamento do `document.execCommand` para o
+        // estado exibido na barra de ferramentas (ícone, rótulo e marcação ✓).
+        const ALIGN_BY_COMMAND: Record<string, RichTextAlign> = {
+          justifyLeft: 'left',
+          justifyCenter: 'center',
+          justifyRight: 'right',
+          justifyFull: 'justify',
+        };
+
         if (disabled || readOnly) return;
         if (editorRef.current) {
           editorRef.current.focus();
@@ -130,6 +141,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, RichTextEditorProps>(
         } catch {}
 
         document.execCommand(command, false, val);
+
+        const nextAlign = ALIGN_BY_COMMAND[command];
+        if (nextAlign) {
+          setCurrentAlign(nextAlign);
+        }
+
         saveSelection();
         handleInput();
       },

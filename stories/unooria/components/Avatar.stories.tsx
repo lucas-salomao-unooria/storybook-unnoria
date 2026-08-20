@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Avatar, AvatarGroup } from '../../../src/unooria/components/Avatar/Avatar';
 import {
-  AvatarProps,
-  AvatarGroupProps,
   AvatarSize,
   AvatarVariant,
   AvatarStatus,
-  AvatarState,
 } from '../../../src/unooria/components/Avatar/Avatar.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
@@ -22,13 +19,6 @@ const DEMO_AVATARS = {
 };
 
 // Ícones SVG inline para ilustrações e fallbacks customizados
-const UserIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
-);
-
 const BotIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect x="3" y="11" width="18" height="10" rx="2" />
@@ -740,7 +730,7 @@ const AvatarDocumentationPage = () => {
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: st.color }} />
                     <span style={{ fontSize: '13px', fontWeight: 700, color: '#1E293B' }}>{st.label}</span>
                   </div>
-                  <code style={{ fontSize: '11px', color: '#64748B' }}>status="{st.status}"</code>
+                  <code style={{ fontSize: '11px', color: '#64748B' }}>status=&quot;{st.status}&quot;</code>
                   <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#64748B', lineHeight: '1.4' }}>
                     {st.desc}
                   </p>
@@ -855,7 +845,7 @@ const AvatarDocumentationPage = () => {
 
             <div style={{ padding: '20px', backgroundColor: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
               <h5 style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: 600, color: '#1E293B' }}>
-                Formatos Arredondados (`variant="rounded"`):
+                Formatos Arredondados (`variant=&quot;rounded&quot;`):
               </h5>
               <div style={{ padding: '16px 0' }}>
                 <AvatarGroup max={4} size="md" variant="rounded">

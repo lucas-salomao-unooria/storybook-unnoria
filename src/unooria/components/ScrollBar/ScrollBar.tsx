@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef } from 'react';
 import { ScrollBarProps } from './ScrollBar.types';
 import '../../tokens/scrollbar.css';

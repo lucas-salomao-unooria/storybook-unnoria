@@ -178,6 +178,7 @@ const meta: Meta<typeof TopBar> = {
     title: 'WhatsApp',
     subtitle: '',
     variant: 'home',
+    showBack: false,
     showSearch: true,
     showMenu: true,
   },

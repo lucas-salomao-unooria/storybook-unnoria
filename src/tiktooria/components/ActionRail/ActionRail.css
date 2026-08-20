@@ -1,0 +1,45 @@
+/**
+ * Estilos do Componente ActionRail — Design System Tik Tooria
+ * Frame "Action Buttons" (node 4:1069), 41×208 na borda direita do feed.
+ */
+
+.tik-actionrail {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.tik-actionrail__item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  font-family: var(--tik-font-sans);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: transform var(--tik-transition-fast);
+}
+
+.tik-actionrail__item:active {
+  transform: scale(0.94);
+}
+
+.tik-actionrail__item:focus-visible {
+  outline: 2px solid var(--tik-color-text-on-immersive);
+  outline-offset: 4px;
+  border-radius: var(--tik-radius-l);
+}
+
+.tik-actionrail__label {
+  font-size: var(--tik-font-meta-strong-size);
+  font-weight: var(--tik-font-meta-strong-weight);
+  line-height: var(--tik-font-meta-strong-line);
+  color: var(--tik-color-text-on-immersive);
+  text-align: center;
+  text-shadow: var(--tik-text-drop);
+  white-space: nowrap;
+}

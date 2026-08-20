@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
+
+/**
+ * As fontes PT Sans e Poppins são declaradas aqui **e** no topo de
+ * `whatsappmobile/tokens/typography.css`.
+ *
+ * Não é redundância: o empacotador embute o conteúdo dos arquivos importados, e
+ * um `@import url(...)` que caia no meio da folha resultante é ignorado pelo
+ * navegador. A declaração no topo desta folha é a que funciona no pacote
+ * publicado; a do arquivo de tokens é a que funciona para quem importa
+ * `typography.css` direto (o preview do Storybook, por exemplo).
+ */
+
 /**
  * Folha de estilos do Design System WhatsApp Mobile.
  * Importe este arquivo para registrar os tokens `--wa-*` e os estilos dos

@@ -1,0 +1,156 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Dimensões e Ícones — Tik Tooria
+   Medidas derivadas dos 15 frames de 414×896 (iPhone XR/11) do arquivo Figma
+   "TikTok UI Screens (Community) - cópia".
+
+   O arquivo é posicionado em coordenadas absolutas, sem auto layout. Cada
+   dimensão abaixo foi lida da geometria do nó de origem — os degraus
+   fracionários (0,33px e 0,83px) são preservados, não arredondados.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     Escala de espaçamento
+     ------------------------------------------------------------------ */
+  --tik-spacing-4xs: 2px;
+  --tik-spacing-3xs: 4px;
+  --tik-spacing-xxs: 6px;
+  --tik-spacing-xs: 8px;
+  --tik-spacing-s: 10px;
+  --tik-spacing-m: 12px;
+  --tik-spacing-l: 16px;
+  --tik-spacing-xl: 20px;
+  --tik-spacing-xxl: 24px;
+  --tik-spacing-3xl: 32px;
+  --tik-spacing-4xl: 48px;
+
+  /** Calha lateral de todas as telas (node 4:219 → left 16px) */
+  --tik-gutter: 16px;
+  /** Recuo do rótulo em linha com ícone à esquerda (node 4:257 → left 48px) */
+  --tik-row-inset: 48px;
+  /** Recuo do valor à direita nas linhas de edição (node 4:365 → right 36px) */
+  --tik-row-inset-end: 36px;
+
+  /* ------------------------------------------------------------------
+     Raios de borda
+     ------------------------------------------------------------------ */
+  --tik-radius-xs: 1px;
+  /** Botão e chip contornados (nodes 4:495 e 4:816) */
+  --tik-radius-s: 2px;
+  /** Trilha de progresso da câmera (node 4:719) */
+  --tik-radius-m: 3px;
+  /** Campo de busca (node 4:219) */
+  --tik-radius-l: 4px;
+  /** Cartão de fotografia do seletor (node 4:632) */
+  --tik-radius-xl: 6px;
+  /** Topo das folhas inferiores e botão de criação (nodes 4:965 e 4:431) */
+  --tik-radius-xxl: 8px;
+  /** Superfície da câmera (node 4:670) */
+  --tik-radius-surface: 12px;
+  --tik-radius-full: 1000px;
+
+  /* ------------------------------------------------------------------
+     Dispositivo de referência
+     ------------------------------------------------------------------ */
+  --tik-device-width: 414px;
+  --tik-device-height: 896px;
+
+  /* ------------------------------------------------------------------
+     Alturas estruturais
+     ------------------------------------------------------------------ */
+  /** Fio de separação das barras — valor literal do arquivo */
+  --tik-hairline: 0.33px;
+  /** Calha branca entre miniaturas da grade (node 4:448) */
+  --tik-grid-hairline: 0.83px;
+  --tik-statusbar-height: 44px;
+  /** Barra superior das telas de cromo (node 4:222) */
+  --tik-navbar-height: 88px;
+  /** Cabeçalho de abas do feed imersivo (node 4:1116) */
+  --tik-feedheader-height: 44px;
+  /** Barra de abas inferior (node 4:1097) */
+  --tik-tabbar-height: 83px;
+  --tik-homeindicator-height: 35px;
+  /** Linha de configuração e de edição de perfil (node 4:255) */
+  --tik-row-height: 52px;
+  /** Linha social de "Find friends" (node 4:198) */
+  --tik-social-row-height: 76px;
+  /** Campo de busca preenchido (node 4:219) */
+  --tik-field-height: 36px;
+  /** Cabeçalho do perfil (node 4:477) */
+  --tik-profileheader-height: 318px;
+  /** Faixa de abas do perfil (node 4:471) */
+  --tik-profiletabs-height: 40px;
+  /** Cabeçalho da página de som (node 4:806) */
+  --tik-soundheader-height: 265px;
+
+  /* ------------------------------------------------------------------
+     Diâmetros de avatar — os seis do arquivo, preservados
+     ------------------------------------------------------------------ */
+  /** Comentário (node 4:970) */
+  --tik-avatar-xs: 32px;
+  /** Autor do vídeo no feed (node 4:1086) */
+  --tik-avatar-sm: 47px;
+  /** Disco giratório de música (node 4:1067) */
+  --tik-avatar-md: 49px;
+  /** Linha social de "Find friends" (node 4:202) */
+  --tik-avatar-lg: 56px;
+  /** Seletor de foto e vídeo do perfil (node 4:391) */
+  --tik-avatar-xl: 90px;
+  /** Cabeçalho do perfil (node 4:481) */
+  --tik-avatar-xxl: 96px;
+
+  /* ------------------------------------------------------------------
+     Alvos e superfícies fixas
+     ------------------------------------------------------------------ */
+  /** Círculo de ação da folha de compartilhamento (node 4:864) */
+  --tik-action-circle: 47px;
+  /** Botão de seguir sobre o avatar do feed (node 4:1087) */
+  --tik-follow-button: 21px;
+  /** Botão de criação da barra de abas (node 4:1099) */
+  --tik-create-button-width: 43px;
+  --tik-create-button-height: 28px;
+  /** Botão de gravação da câmera (node 4:695) */
+  --tik-record-button: 80px;
+  /** Miniatura da grade de mídia (node 4:448) */
+  --tik-thumbnail-width: 137px;
+  --tik-thumbnail-height: 182px;
+  /** Moldura do leitor de QR (node 4:750) */
+  --tik-scanner-size: 250px;
+  /** Capa do álbum na página de som (node 4:818) */
+  --tik-album-cover: 120px;
+  /** Botão contornado de edição de perfil (node 4:495) */
+  --tik-outline-button-width: 164px;
+  --tik-outline-button-height: 44px;
+  /** Chip contornado "Add to Favorites" (node 4:816) */
+  --tik-chip-width: 152px;
+  --tik-chip-height: 28px;
+  /** Botão primário "Select photos" (node 4:622) */
+  --tik-primary-button-width: 270px;
+  --tik-primary-button-height: 44px;
+  /** Botão flutuante "Use this sound" (node 4:803) */
+  --tik-floating-button-width: 178px;
+  --tik-floating-button-height: 52px;
+  /** Linha do indicador de home (node 4:1122) */
+  --tik-indicator-width: 134px;
+  --tik-indicator-height: 5px;
+
+  /* ------------------------------------------------------------------
+     Grade de ícones
+     ------------------------------------------------------------------ */
+  /** Nota musical da legenda (node 4:1091) */
+  --tik-icon-size-xs: 12px;
+  /** Glifo de linha de configuração (node 4:264) */
+  --tik-icon-size-sm: 16px;
+  /** Glifo da barra de abas (node 4:445) */
+  --tik-icon-size-md: 20px;
+  /** Glifo da coluna da câmera (node 4:677) */
+  --tik-icon-size-lg: 24px;
+  /** Glifo da trilha de ações do feed (node 4:1082) */
+  --tik-icon-size-xl: 35px;
+
+  /* ------------------------------------------------------------------
+     Transições — não publicadas pelo arquivo; ver registro de desvios
+     ------------------------------------------------------------------ */
+  --tik-transition-fast: 150ms ease;
+  --tik-transition-medium: 240ms ease;
+}

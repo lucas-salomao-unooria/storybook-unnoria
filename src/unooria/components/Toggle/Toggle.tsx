@@ -1,4 +1,6 @@
-import React, { forwardRef, useState } from 'react';
+'use client';
+
+import React, { forwardRef, useId, useState } from 'react';
 import { ToggleProps } from './Toggle.types';
 import './Toggle.css';
 
@@ -32,7 +34,11 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
     const isControlled = checked !== undefined;
     const isChecked = isControlled ? checked : internalChecked;
 
-    const generatedId = id || (label ? `unooria-toggle-${Math.random().toString(36).substr(2, 9)}` : undefined);
+    // `useId` em vez de `Math.random()`: o id vai para o DOM e precisa ser
+    // igual no servidor e no cliente (sob pena de erro de hidratação) e estável
+    // entre renders (senão a associação <label>/<input> se perde).
+    const reactId = useId();
+    const generatedId = id || (label ? `unooria-toggle-${reactId}` : undefined);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled) return;

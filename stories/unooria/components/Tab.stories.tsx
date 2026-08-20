@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Tabs } from '../../../src/unooria/components/Tab/Tabs';
-import { Tab } from '../../../src/unooria/components/Tab/Tab';
-import { TabList } from '../../../src/unooria/components/Tab/TabList';
-import { TabPanel } from '../../../src/unooria/components/Tab/TabPanel';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
 import '../../../src/unooria/tokens/icons.css';
 import '../../../src/unooria/components/Tab/Tab.css';
@@ -186,8 +183,8 @@ const TabDocumentationPage: React.FC = () => {
               </p>
               <p style={{ margin: 0 }}>
                 <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Em um painel de administração, um Tab pode ser
-                usado para alternar entre as seções "Usuários", "Configurações" e "Relatórios". Cada aba representa uma seção
-                diferente do conteúdo. Ao clicar na aba "Configurações", o conteúdo abaixo do menu de abas é atualizado sem
+                usado para alternar entre as seções &quot;Usuários&quot;, &quot;Configurações&quot; e &quot;Relatórios&quot;. Cada aba representa uma seção
+                diferente do conteúdo. Ao clicar na aba &quot;Configurações&quot;, o conteúdo abaixo do menu de abas é atualizado sem
                 recarregar a página.
               </p>
             </div>
@@ -498,7 +495,7 @@ const TabDocumentationPage: React.FC = () => {
                 <strong>Use para alternar visões na mesma página:</strong> Sem causar recarregamento de página.
               </li>
               <li>
-                <strong>Mantenha rótulos curtos e concisos:</strong> Palavras diretas (ex: "Geral", "Segurança", "Logs").
+                <strong>Mantenha rótulos curtos e concisos:</strong> Palavras diretas (ex: &quot;Geral&quot;, &quot;Segurança&quot;, &quot;Logs&quot;).
               </li>
               <li>
                 <strong>Utilize badges para contagens dinâmicas:</strong> Indique notificações ou itens pendentes na aba.
@@ -519,7 +516,7 @@ const TabDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -570,14 +567,14 @@ const TabDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>variant</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'line' | 'pill'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'line'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;line&apos; | &apos;pill&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;line&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Estilo visual das abas.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'md'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;md&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tamanho visual (md = 48px Figma).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -588,8 +585,8 @@ const TabDocumentationPage: React.FC = () => {
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>
@@ -761,7 +758,6 @@ export const ExemploOficialFigma: Story = {
  * Painel Administrativo Completo com troca dinâmica de abas.
  */
 export const PainelAdministrativoCompleto: Story = {
-  name: 'Painel Administrativo Completo',
   render: () => <AdminPanelDemo />,
 };
 

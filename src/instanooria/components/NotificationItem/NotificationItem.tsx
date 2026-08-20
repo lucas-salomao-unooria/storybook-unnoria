@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Avatar } from '../Avatar';
 import type { InstaNotificationItemProps } from './NotificationItem.types';

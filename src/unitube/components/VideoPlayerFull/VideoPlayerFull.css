@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente VideoPlayerFull — Design System Unitube
+ * Nó de origem: `Media/VideoPlayerFull` (20:2920), 640×455.
+ */
+
+.uni-video-player-full {
+  display: block;
+  width: 100%;
+  max-width: var(--uni-player-width);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-video-player-full__info {
+  display: flex;
+  flex-direction: column;
+  padding: var(--uni-spacing-20) 0 var(--uni-spacing-8);
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+}
+
+/*
+ * Roboto Regular 18: o arquivo usa peso regular no título, apesar de todos os
+ * degraus Heading da escala serem Bold.
+ */
+.uni-video-player-full__title {
+  margin: 0;
+  padding: 3px 0 var(--uni-spacing-2);
+  font-size: var(--uni-font-heading-h3-size);
+  font-weight: var(--uni-font-weight-regular);
+  line-height: var(--uni-font-heading-h3-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+.uni-video-player-full__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uni-spacing-16);
+  flex-wrap: wrap;
+  min-height: var(--uni-icon-button-size);
+}
+
+/* Roboto Bold 14 em texto secundário: o degrau Label/Large. */
+.uni-video-player-full__metadata {
+  padding: var(--uni-spacing-12) 0;
+  font-size: var(--uni-font-label-lg-size);
+  font-weight: var(--uni-font-label-lg-weight);
+  line-height: var(--uni-font-label-lg-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-video-player-full__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--uni-spacing-8);
+  flex-wrap: wrap;
+}

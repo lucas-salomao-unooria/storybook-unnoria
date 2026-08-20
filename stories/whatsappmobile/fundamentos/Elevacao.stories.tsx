@@ -11,6 +11,7 @@ import {
   WaDocPractices,
   WaDocPropsTable,
   WaDocStage,
+  WaDocSurfaceSwitcher,
 } from '../../../.storybook/components';
 import { Fab } from '../../../src/whatsappmobile';
 import { waElevation } from '../../../src/whatsappmobile/tokens';
@@ -49,6 +50,63 @@ const LAYERS: { cssVar: string; label: string; description: string }[] = [
     description: 'Caixa de diálogo modal, o nível mais alto.',
   },
 ];
+
+/**
+ * Explorador de elevação: empilha uma superfície sobre outra e alterna a sombra
+ * do glifo, mostrando por que o arquivo dispensa `box-shadow`.
+ */
+const ElevationLab: React.FC<{
+  base: string;
+  overlay: string;
+  withScrim: boolean;
+  fabShadow: boolean;
+}> = ({ base, overlay, withScrim, fabShadow }) => (
+  <div
+    data-wa-theme="dark"
+    style={{
+      position: 'relative',
+      width: 411,
+      height: 260,
+      background: `var(${base})`,
+      borderRadius: 12,
+      overflow: 'hidden',
+    }}
+  >
+    {withScrim && (
+      <div style={{ position: 'absolute', inset: 0, background: 'var(--wa-color-scrim)' }} />
+    )}
+    <div
+      style={{
+        position: 'absolute',
+        left: 40,
+        top: 60,
+        width: 331,
+        padding: 20,
+        borderRadius: 'var(--wa-radius-s)',
+        background: `var(${overlay})`,
+        color: 'var(--wa-color-text-dialog-title)',
+        fontFamily: 'var(--wa-font-sans)',
+        fontSize: 17,
+      }}
+    >
+      Camada sobreposta
+      <div
+        style={{
+          marginTop: 14,
+          color: 'var(--wa-color-text-meta)',
+          fontSize: 13,
+        }}
+      >
+        {base} sob {overlay}
+      </div>
+    </div>
+    <div style={{ position: 'absolute', right: 24, bottom: 20 }}>
+      <span style={{ filter: fabShadow ? 'none' : 'drop-shadow(none)' }}>
+        <Fab variant="chat" label="Nova conversa" />
+      </span>
+    </div>
+  </div>
+);
 
 /**
  * Página de documentação rica do sistema de elevação.
@@ -206,7 +264,35 @@ const ElevacaoDocumentationPage = () => (
       </div>
     </WaDocStage>
 
-    <UnooriaDocSectionHeader barColor={BAR} title="6. Boas práticas" />
+    <UnooriaDocSectionHeader
+      barColor={BAR}
+      title="6. Superfícies suportadas"
+      description="O arquivo publica apenas o tema escuro; alterne entre as superfícies oficiais para ver a elevação por luminância."
+    />
+    <ElevationLab
+      base="--wa-color-surface-canvas"
+      overlay="--wa-color-surface-dialog"
+      withScrim
+      fabShadow
+    />
+    <WaDocSurfaceSwitcher>
+      {() => (
+        <div
+          style={{
+            padding: '18px 22px',
+            borderRadius: 'var(--wa-radius-s)',
+            background: 'var(--wa-color-surface-dialog)',
+            color: 'var(--wa-color-text-dialog-title)',
+            fontFamily: 'var(--wa-font-sans)',
+            fontSize: 15,
+          }}
+        >
+          Camada de diálogo sobre a superfície escolhida
+        </div>
+      )}
+    </WaDocSurfaceSwitcher>
+
+    <UnooriaDocSectionHeader barColor={BAR} title="7. Boas práticas" />
     <WaDocPractices
       dos={[
         'Separar camadas trocando a superfície, subindo um degrau na escada de luminância.',
@@ -222,7 +308,7 @@ const ElevacaoDocumentationPage = () => (
       ]}
     />
 
-    <UnooriaDocSectionHeader barColor={BAR} title="7. Referência completa dos tokens" />
+    <UnooriaDocSectionHeader barColor={BAR} title="8. Referência completa dos tokens" />
     <WaDocPropsTable
       title="Tokens de elevação"
       rows={[
@@ -258,14 +344,24 @@ const ElevacaoDocumentationPage = () => (
   </UnooriaDocShell>
 );
 
-const meta: Meta = {
+/**
+ * Argumentos do playground de elevação.
+ */
+interface ElevationArgs {
+  base: string;
+  overlay: string;
+  withScrim: boolean;
+  fabShadow: boolean;
+}
+
+const meta: Meta<ElevationArgs> = {
   title: 'Whatsapp Mobile/Fundamentos/Elevação',
   parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<ElevationArgs>;
 
 /**
  * Documentação rica e completa do sistema de elevação, baseada nas especificações do Figma.
@@ -273,6 +369,43 @@ type Story = StoryObj;
 export const Documentacao: Story = {
   name: '📄 Documentação Completa',
   render: () => <ElevacaoDocumentationPage />,
+};
+
+/**
+ * Playground com as variáveis do sistema de elevação expostas.
+ */
+export const Playground: Story = {
+  name: '🕹️ 1. Playground de elevação',
+  argTypes: {
+    base: {
+      control: 'select',
+      options: LAYERS.map((layer) => layer.cssVar),
+      description: 'Superfície de fundo.',
+    },
+    overlay: {
+      control: 'select',
+      options: LAYERS.map((layer) => layer.cssVar),
+      description: 'Superfície da camada sobreposta.',
+    },
+    withScrim: { control: 'boolean', description: 'Aplica --wa-color-scrim entre as camadas.' },
+    fabShadow: { control: 'boolean', description: 'Mantém o drop shadow do glifo do FAB.' },
+  },
+  args: {
+    base: '--wa-color-surface-canvas',
+    overlay: '--wa-color-surface-dialog',
+    withScrim: true,
+    fabShadow: true,
+  },
+  render: (args) => (
+    <WaDocStage surface="base" padding={24}>
+      <ElevationLab
+        base={args.base}
+        overlay={args.overlay}
+        withScrim={args.withScrim}
+        fabShadow={args.fabShadow}
+      />
+    </WaDocStage>
+  ),
 };
 
 /**

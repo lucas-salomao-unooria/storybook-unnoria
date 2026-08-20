@@ -10,6 +10,9 @@ import {
   WaDocDeviations,
   WaDocPractices,
   WaDocStage,
+  WaDocAnatomy,
+  WaDocPropsTable,
+  WaDocSurfaceSwitcher,
 } from '../../../.storybook/components';
 import {
   AttachmentSheet,
@@ -628,14 +631,54 @@ const TelasDocumentationPage = () => (
 
     <UnooriaDocSectionHeader
       barColor={BAR}
-      title="3. Navegador de telas"
+      title="3. Anatomia de uma tela"
+      description="Toda composição empilha as mesmas camadas, nesta ordem."
+    />
+    <WaDocAnatomy
+      zones={[
+        {
+          name: 'PhoneFrame',
+          role: 'Moldura de documentação de 411×823 que recorta a tela e registra o node do Figma.',
+          token: '--wa-device-width · --wa-device-height',
+        },
+        {
+          name: 'StatusBar',
+          role: 'Moldura do sistema. Sempre o primeiro filho; nunca é coberta por véu ou menu.',
+          token: '--wa-statusbar-height',
+        },
+        {
+          name: 'Barra do aplicativo',
+          role: 'TopBar (+ TabBar no rodapé), ChatHeader ou SearchField, conforme a tela.',
+          token: '--wa-appbar-height · --wa-appbar-title-height · --wa-subappbar-height',
+        },
+        {
+          name: 'Conteúdo',
+          role: 'Lista, ChatWallpaper ou palco de chamada, ocupando o espaço restante com recorte.',
+          token: '--wa-color-surface-canvas · --wa-color-surface-base',
+        },
+        {
+          name: 'Rodapé',
+          role: 'MessageComposer nas conversas e barra de controles nas chamadas.',
+          token: '--wa-callbar-height',
+        },
+        {
+          name: 'Sobreposições',
+          role: 'Menu e Dialog, ancorados ao corpo abaixo da barra de status — como no arquivo.',
+          token: '--wa-color-surface-elevated · --wa-color-scrim',
+        },
+      ]}
+    />
+
+    <UnooriaDocSectionHeader
+      barColor={BAR}
+      title="4. Navegador de telas"
       description="Escolha uma tela para ver a composição completa."
     />
     <ScreenBrowser />
 
     <UnooriaDocSectionHeader
       barColor={BAR}
-      title="4. Abas principais"
+      title="5. Abas principais"
       description="As três abas da barra de navegação primária, lado a lado."
     />
     <WaDocStage surface="base" padding={24} gap={24} align="flex-start">
@@ -646,7 +689,7 @@ const TelasDocumentationPage = () => (
 
     <UnooriaDocSectionHeader
       barColor={BAR}
-      title="5. Fluxo de conversa"
+      title="6. Fluxo de conversa"
       description="Da conversa vazia ao anexo enviado, incluindo folha de anexos e diálogo."
     />
     <WaDocStage surface="base" padding={24} gap={24} align="flex-start">
@@ -658,7 +701,7 @@ const TelasDocumentationPage = () => (
 
     <UnooriaDocSectionHeader
       barColor={BAR}
-      title="6. Busca, favoritas e configurações"
+      title="7. Busca, favoritas e configurações"
     />
     <WaDocStage surface="base" padding={24} gap={24} align="flex-start">
       <SearchScreen />
@@ -667,13 +710,13 @@ const TelasDocumentationPage = () => (
       <MenuScreen />
     </WaDocStage>
 
-    <UnooriaDocSectionHeader barColor={BAR} title="7. Chamadas" />
+    <UnooriaDocSectionHeader barColor={BAR} title="8. Chamadas" />
     <WaDocStage surface="base" padding={24} gap={24} align="flex-start">
       <VoiceCallScreen />
       <VideoCallScreen />
     </WaDocStage>
 
-    <UnooriaDocSectionHeader barColor={BAR} title="8. Boas práticas" />
+    <UnooriaDocSectionHeader barColor={BAR} title="9. Boas práticas" />
     <WaDocPractices
       dos={[
         'Montar telas apenas com os componentes publicados em src/whatsappmobile.',
@@ -686,6 +729,39 @@ const TelasDocumentationPage = () => (
         'Aproximar frames que dependem de recursos ausentes no arquivo.',
         'Alterar as medidas de 411×823 para acomodar conteúdo.',
         'Misturar tokens de outra marca dentro das composições.',
+      ]}
+    />
+
+    <UnooriaDocSectionHeader
+      barColor={BAR}
+      title="10. Superfícies suportadas"
+      description="O arquivo publica apenas o tema escuro; alterne a superfície sob o aparelho."
+    />
+    <WaDocSurfaceSwitcher surfaces={['base', 'canvas']} initial="base">
+      {() => <PhoneFrame scale={0.45} caption="Chats Main Page · node 1:2024">{<ChatsMainPage />}</PhoneFrame>}
+    </WaDocSurfaceSwitcher>
+
+    <UnooriaDocSectionHeader
+      barColor={BAR}
+      title="11. Referência completa das telas"
+      description="Cada composição, o frame que reproduz e os componentes que a montam."
+    />
+    <WaDocPropsTable
+      title="Telas reconstruídas"
+      rows={[
+        { name: 'Chats Main Page', type: 'node 1:2024', default: '13 componentes', description: 'StatusBar · TopBar · TabBar · ChatListItem · Fab · PhoneFrame' },
+        { name: 'Status Main Page', type: 'node 1:2', default: '6 componentes', description: 'StatusBar · TopBar · TabBar · SectionLabel · StatusListItem · Fab' },
+        { name: 'Calls Main Page', type: 'node 1:402', default: '5 componentes', description: 'StatusBar · TopBar · TabBar · CallListItem · Fab' },
+        { name: 'General settings', type: 'node 1:2173', default: '5 componentes', description: 'StatusBar · TopBar · TabBar · ChatListItem · Menu' },
+        { name: 'Direct Message', type: 'node 1:2974', default: '6 componentes', description: 'StatusBar · ChatHeader · ChatWallpaper · DateChip · EncryptionNotice · MessageComposer' },
+        { name: 'Picture sent', type: 'node 1:4043', default: '7 componentes', description: 'os de Direct Message + MessageBubble.Media' },
+        { name: 'Pin option', type: 'node 1:3943', default: '7 componentes', description: 'os de Direct Message + AttachmentSheet' },
+        { name: 'Mute notif', type: 'node 1:3446', default: '10 componentes', description: 'os de Direct Message + Dialog · Radio · Checkbox · TextButton' },
+        { name: 'Search in chats', type: 'node 1:1916', default: '4 componentes', description: 'StatusBar · SearchField · FilterChip · ChatListItem' },
+        { name: 'Starred messages', type: 'node 1:2919', default: '5 componentes', description: 'StatusBar · TopBar · Avatar · MessageBubble (Media + Document) · Icon' },
+        { name: 'Settings', type: 'node 1:2691', default: '5 componentes', description: 'StatusBar · TopBar · ListItem · SettingsItem · Icon' },
+        { name: 'Voice call', type: 'node 1:4595', default: '2 componentes', description: 'StatusBar (variant="call") · CallScreen' },
+        { name: 'Video Call', type: 'node 1:4550', default: '2 componentes', description: 'StatusBar (variant="call") · CallScreen (mode="video")' },
       ]}
     />
   </UnooriaDocShell>

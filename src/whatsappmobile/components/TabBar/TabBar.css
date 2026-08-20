@@ -9,7 +9,7 @@
   align-items: stretch;
   width: 100%;
   box-sizing: border-box;
-  height: 31px;
+  height: calc(var(--wa-appbar-height) - 69px);
   padding-left: 9px;
   background-color: var(--wa-color-surface-appbar);
   font-family: var(--wa-font-sans);

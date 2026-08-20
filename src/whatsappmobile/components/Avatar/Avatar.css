@@ -94,10 +94,15 @@
    Anel de status
    ========================================================================== */
 
+/* Caixa externa de 56px (`--wa-avatar-ring`) = recorte de 45px + folga de
+   3,4px + traço de 2,12px em cada lado, exatamente como a Ellipse 3 do Figma. */
 .wa-avatar--ring-status {
   --wa-avatar-ring-color: var(--wa-color-border-status-ring);
   --wa-avatar-ring-thickness: var(--wa-status-ring-width);
-  --wa-avatar-gap-thickness: 3.4px;
+  --wa-avatar-gap-thickness: max(
+    0px,
+    calc((var(--wa-avatar-ring) - var(--wa-avatar-size) - 2 * var(--wa-status-ring-width)) / 2)
+  );
 }
 
 /* ==========================================================================

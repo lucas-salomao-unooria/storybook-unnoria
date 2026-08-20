@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TimePicker } from '../../../src/unooria/components/TimePicker/TimePicker';
 import { Button } from '../../../src/unooria/components/Button/Button';
 import '../../../src/unooria/tokens/icons.css';
@@ -163,8 +163,8 @@ const TimePickerDocumentationPage: React.FC = () => {
                 reduz erros, devendo ter boa legibilidade, contraste e interação fluida.
               </p>
               <p style={{ margin: 0 }}>
-                <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Ao clicar em "Horário da reunião", o Time Picker aparece.
-                O usuário ajusta as horas, minutos e segundos, e o valor selecionado, como "10:45:30", é exibido imediatamente no campo,
+                <strong style={{ color: '#22272A' }}>Exemplo visual:</strong> Ao clicar em &quot;Horário da reunião&quot;, o Time Picker aparece.
+                O usuário ajusta as horas, minutos e segundos, e o valor selecionado, como &quot;10:45:30&quot;, é exibido imediatamente no campo,
                 confirmando a escolha.
               </p>
             </div>
@@ -361,7 +361,7 @@ const TimePickerDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
@@ -402,7 +402,7 @@ const TimePickerDocumentationPage: React.FC = () => {
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>value</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>string</td>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>undefined</td>
-                <td style={{ padding: '12px 18px', color: '#334155' }}>Horário selecionado no formato "HH:mm" ou "HH:mm:ss".</td>
+                <td style={{ padding: '12px 18px', color: '#334155' }}>Horário selecionado no formato &quot;HH:mm&quot; ou &quot;HH:mm:ss&quot;.</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>showSeconds</td>
@@ -418,8 +418,8 @@ const TimePickerDocumentationPage: React.FC = () => {
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>size</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'xs' | 'sm' | 'md' | 'lg'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'md'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;xs&apos; | &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;md&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tamanho visual (md = 48px do Figma).</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #F1F5F9' }}>
@@ -430,8 +430,8 @@ const TimePickerDocumentationPage: React.FC = () => {
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontFamily: 'monospace', fontWeight: 700, color: '#0086FF' }}>theme</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>'light' | 'dark'</td>
-                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>'light'</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace', color: '#64748B' }}>&apos;light&apos; | &apos;dark&apos;</td>
+                <td style={{ padding: '12px 18px', fontFamily: 'monospace' }}>&apos;light&apos;</td>
                 <td style={{ padding: '12px 18px', color: '#334155' }}>Tema visual de contraste.</td>
               </tr>
             </tbody>

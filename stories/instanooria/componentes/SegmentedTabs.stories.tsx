@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { SegmentedTabs } from '../../../src/instanooria/components/SegmentedTabs';
 import { MediaGrid } from '../../../src/instanooria/components/MediaGrid';
 import {

@@ -1,0 +1,29 @@
+/**
+ * Estilos do Componente HomeIndicator — Design System Tik Tooria
+ * Frame "Bars / Home Indicator" (node 4:1120), 414×35.
+ */
+
+.tik-homeindicator {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--tik-homeindicator-height);
+  padding-bottom: var(--tik-spacing-s);
+  background: transparent;
+}
+
+.tik-homeindicator__line {
+  width: var(--tik-indicator-width);
+  height: var(--tik-indicator-height);
+  border-radius: var(--tik-radius-full);
+}
+
+.tik-homeindicator--chrome .tik-homeindicator__line {
+  background: var(--tik-color-indicator-light);
+}
+
+.tik-homeindicator--immersive .tik-homeindicator__line {
+  background: var(--tik-color-indicator-immersive);
+}

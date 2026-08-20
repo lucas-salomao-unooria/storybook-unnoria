@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Badge } from '../../../src/unooria/components/Badge/Badge';
-import { BadgeProps, BadgeVariant, BadgeSize } from '../../../src/unooria/components/Badge/Badge.types';
+import { BadgeVariant } from '../../../src/unooria/components/Badge/Badge.types';
 import { UnooriaDocShell, UnooriaDocHeader, UnooriaDocSectionHeader } from '../../../.storybook/components';
 
 // Ícones utilitários inline para independência e demonstração de casos de uso
@@ -334,7 +334,7 @@ const BadgeDocumentationPage = () => {
               <Badge variant="error" count={128} overflowCount={99} />
             </span>
           </div>
-          <span style={{ fontSize: 12, color: '#617379' }}>Exibe "99+"</span>
+          <span style={{ fontSize: 12, color: '#617379' }}>Exibe &quot;99+&quot;</span>
         </div>
 
         {/* Avatar Online com Dot */}
@@ -443,10 +443,10 @@ const BadgeDocumentationPage = () => {
             padding: 20,
           }}
         >
-          <h4 style={{ color: '#00A369', margin: '0 0 12px 0', fontSize: 16 }}>✅ O que FAZER (Do's)</h4>
+          <h4 style={{ color: '#00A369', margin: '0 0 12px 0', fontSize: 16 }}>✅ O que FAZER (Do&apos;s)</h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#E8F5EE' }}>
             <li>Utilize números curtos ou contagens diretas no badge.</li>
-            <li>Utilize o modo <code>number="off"</code> (Dot 8x8px) para indicar status simples (online, pendente).</li>
+            <li>Utilize o modo <code>number=&quot;off&quot;</code> (Dot 8x8px) para indicar status simples (online, pendente).</li>
             <li>Defina <code>overflowCount={99}</code> para contagens de três dígitos.</li>
             <li>Reserve a cor <code>error</code> (#E31A1A) para alertas e notificações não lidas.</li>
           </ul>
@@ -460,7 +460,7 @@ const BadgeDocumentationPage = () => {
             padding: 20,
           }}
         >
-          <h4 style={{ color: '#E31A1A', margin: '0 0 12px 0', fontSize: 16 }}>❌ O que NÃO FAZER (Don'ts)</h4>
+          <h4 style={{ color: '#E31A1A', margin: '0 0 12px 0', fontSize: 16 }}>❌ O que NÃO FAZER (Don&apos;ts)</h4>
           <ul style={{ margin: 0, paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: '#FDECEC' }}>
             <li>Não insira frases ou textos longos dentro de um badge.</li>
             <li>Não use múltiplos badges concorrentes com a cor vermelha na mesma linha.</li>

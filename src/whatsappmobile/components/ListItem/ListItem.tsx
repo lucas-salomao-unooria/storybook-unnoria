@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { WaListItemProps } from './ListItem.types';
 import './ListItem.css';
@@ -29,7 +31,7 @@ export const ListItem = React.forwardRef<HTMLElement, WaListItemProps>(
     ref
   ) => {
     const isInteractive = Boolean(onClick);
-    const Component = (as || (isInteractive ? 'button' : 'li')) as React.ElementType;
+    const Component = (as || 'li') as React.ElementType;
 
     const classes = [
       'wa-listitem',
@@ -39,6 +41,17 @@ export const ListItem = React.forwardRef<HTMLElement, WaListItemProps>(
     ]
       .filter(Boolean)
       .join(' ');
+
+    const body = (
+      <>
+        {leading && <span className="wa-listitem__leading">{leading}</span>}
+
+        <span className="wa-listitem__content">
+          <span className="wa-listitem__title">{title}</span>
+          {subtitle && <span className="wa-listitem__subtitle">{subtitle}</span>}
+        </span>
+      </>
+    );
 
     return (
       <Component
@@ -50,16 +63,19 @@ export const ListItem = React.forwardRef<HTMLElement, WaListItemProps>(
             ...style,
           } as React.CSSProperties
         }
-        onClick={onClick}
-        type={Component === 'button' ? 'button' : undefined}
         {...restProps}
       >
-        {leading && <span className="wa-listitem__leading">{leading}</span>}
-
-        <span className="wa-listitem__content">
-          <span className="wa-listitem__title">{title}</span>
-          {subtitle && <span className="wa-listitem__subtitle">{subtitle}</span>}
-        </span>
+        {/* O alvo principal é um <button> interno, e não a própria linha: o slot
+            `trailing` costuma conter outro botão (rediscar, opções do status), e
+            aninhar botões é HTML inválido — o filho fica inalcançável para
+            leitores de tela e para o teclado. */}
+        {isInteractive ? (
+          <button type="button" className="wa-listitem__main" onClick={onClick}>
+            {body}
+          </button>
+        ) : (
+          <span className="wa-listitem__main">{body}</span>
+        )}
 
         {(meta || trailing) && (
           <span className="wa-listitem__aside">

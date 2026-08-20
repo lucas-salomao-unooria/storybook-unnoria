@@ -6,6 +6,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 /* ----------------------------------------------------
  * Tokens de Fundação (Plataforma Unooria)
@@ -162,3 +165,92 @@
 @import './whatsappmobile/components/TabBar/TabBar.css';
 @import './whatsappmobile/components/TextButton/TextButton.css';
 @import './whatsappmobile/components/TopBar/TopBar.css';
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Tik Tooria)
+ * ---------------------------------------------------- */
+@import './tiktooria/tokens/colors.css';
+@import './tiktooria/tokens/typography.css';
+@import './tiktooria/tokens/spacing.css';
+@import './tiktooria/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Tik Tooria)
+ * ---------------------------------------------------- */
+@import './tiktooria/components/ActionRail/ActionRail.css';
+@import './tiktooria/components/Avatar/Avatar.css';
+@import './tiktooria/components/Button/Button.css';
+@import './tiktooria/components/CameraModeStrip/CameraModeStrip.css';
+@import './tiktooria/components/CameraToolRail/CameraToolRail.css';
+@import './tiktooria/components/Chip/Chip.css';
+@import './tiktooria/components/CommentComposer/CommentComposer.css';
+@import './tiktooria/components/CommentItem/CommentItem.css';
+@import './tiktooria/components/EmptyState/EmptyState.css';
+@import './tiktooria/components/FeedHeader/FeedHeader.css';
+@import './tiktooria/components/HomeIndicator/HomeIndicator.css';
+@import './tiktooria/components/Icon/Icon.css';
+@import './tiktooria/components/ListRow/ListRow.css';
+@import './tiktooria/components/MediaGrid/MediaGrid.css';
+@import './tiktooria/components/MusicDisc/MusicDisc.css';
+@import './tiktooria/components/NavBar/NavBar.css';
+@import './tiktooria/components/PhoneFrame/PhoneFrame.css';
+@import './tiktooria/components/PhotoCard/PhotoCard.css';
+@import './tiktooria/components/ProfileHeader/ProfileHeader.css';
+@import './tiktooria/components/ProfileTabs/ProfileTabs.css';
+@import './tiktooria/components/RecordButton/RecordButton.css';
+@import './tiktooria/components/Scanner/Scanner.css';
+@import './tiktooria/components/SearchField/SearchField.css';
+@import './tiktooria/components/SectionLabel/SectionLabel.css';
+@import './tiktooria/components/Separator/Separator.css';
+@import './tiktooria/components/SettingsRow/SettingsRow.css';
+@import './tiktooria/components/ShareAction/ShareAction.css';
+@import './tiktooria/components/Sheet/Sheet.css';
+@import './tiktooria/components/SocialLogo/SocialLogo.css';
+@import './tiktooria/components/SoundHeader/SoundHeader.css';
+@import './tiktooria/components/StatTile/StatTile.css';
+@import './tiktooria/components/StatusBar/StatusBar.css';
+@import './tiktooria/components/TabBar/TabBar.css';
+@import './tiktooria/components/Tooltip/Tooltip.css';
+@import './tiktooria/components/VideoMeta/VideoMeta.css';
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unitube)
+ * ---------------------------------------------------- */
+@import './unitube/tokens/colors.css';
+@import './unitube/tokens/typography.css';
+@import './unitube/tokens/spacing.css';
+@import './unitube/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unitube)
+ * ---------------------------------------------------- */
+@import './unitube/components/Avatar/Avatar.css';
+@import './unitube/components/Button/Button.css';
+@import './unitube/components/ChannelHeader/ChannelHeader.css';
+@import './unitube/components/Comment/Comment.css';
+@import './unitube/components/DesktopFrame/DesktopFrame.css';
+@import './unitube/components/FooterItem/FooterItem.css';
+@import './unitube/components/Icon/Icon.css';
+@import './unitube/components/Logo/Logo.css';
+@import './unitube/components/Playlist/Playlist.css';
+@import './unitube/components/PrimaryColumn/PrimaryColumn.css';
+@import './unitube/components/ProfileCompact/ProfileCompact.css';
+@import './unitube/components/ProfileExpanded/ProfileExpanded.css';
+@import './unitube/components/SearchBox/SearchBox.css';
+@import './unitube/components/SecondaryColumn/SecondaryColumn.css';
+@import './unitube/components/Sidebar/Sidebar.css';
+@import './unitube/components/SidebarMenuItem/SidebarMenuItem.css';
+@import './unitube/components/SidebarMenuTitle/SidebarMenuTitle.css';
+@import './unitube/components/SubscribeButton/SubscribeButton.css';
+@import './unitube/components/ThumbnailImage/ThumbnailImage.css';
+@import './unitube/components/TopBar/TopBar.css';
+@import './unitube/components/TopMenuBar/TopMenuBar.css';
+@import './unitube/components/TopMenuIcon/TopMenuIcon.css';
+@import './unitube/components/TopMenuItem/TopMenuItem.css';
+@import './unitube/components/VideoCard/VideoCard.css';
+@import './unitube/components/VideoCardHorizontal/VideoCardHorizontal.css';
+@import './unitube/components/VideoCardSidebar/VideoCardSidebar.css';
+@import './unitube/components/VideoCardSmall/VideoCardSmall.css';
+@import './unitube/components/VideoDescription/VideoDescription.css';
+@import './unitube/components/VideoPlayer/VideoPlayer.css';
+@import './unitube/components/VideoPlayerFull/VideoPlayerFull.css';

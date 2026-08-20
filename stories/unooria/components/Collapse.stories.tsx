@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   Collapse,
   CollapseHeader,
@@ -7,16 +7,8 @@ import {
   CollapseSubtitle,
   CollapseProgressBar,
   CollapseBody,
-  CollapsePanel,
 } from '../../../src/unooria/components/Collapse';
-import {
-  CollapseProps,
-  CollapseVariant,
-  CollapseSize,
-  CollapseTheme,
-  CollapseMediaVariant,
-  CollapseProgressConfig,
-} from '../../../src/unooria/components/Collapse/Collapse.types';
+import { CollapseTheme } from '../../../src/unooria/components/Collapse/Collapse.types';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -104,12 +96,7 @@ const PlusMinusIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
 // ============================================================================
 const CollapseDocumentationPage: React.FC = () => {
   const [docTheme, setDocTheme] = useState<CollapseTheme>('light');
-  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
   const [interactiveProgress, setInteractiveProgress] = useState<number>(65);
-
-  const toggleFaq = (index: number) => {
-    setFaqOpenIndex((prev) => (prev === index ? null : index));
-  };
 
   const collapsePropsList = [
     { name: 'title', type: 'React.ReactNode', default: 'undefined', desc: 'Título principal exibido no cabeçalho em peso semi-bold (600).' },
@@ -447,7 +434,7 @@ const CollapseDocumentationPage: React.FC = () => {
           </div>
           <div style={{ padding: '12px 16px', borderRadius: '8px', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0' }}>
             <strong style={{ color: '#8B5CF6', fontSize: '13px' }}>7. Grid Animation:</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#64748B' }}>Transição de 0fr para 1fr eliminando "jank" e recálculos custosos de JS.</p>
+            <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#64748B' }}>Transição de 0fr para 1fr eliminando &quot;jank&quot; e recálculos custosos de JS.</p>
           </div>
         </div>
       </section>
@@ -619,7 +606,7 @@ const CollapseDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px', color: '#166534', fontWeight: 700, fontSize: '15px' }}>
-              <span>✅ O Que Fazer (Do's)</span>
+              <span>✅ O Que Fazer (Do&apos;s)</span>
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#15803D', fontSize: '13px', lineHeight: '1.7' }}>
               <li><strong>Títulos Claros:</strong> Use textos objetivos que informem claramente o que será revelado na expansão.</li>
@@ -639,7 +626,7 @@ const CollapseDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px', color: '#991B1B', fontWeight: 700, fontSize: '15px' }}>
-              <span>❌ O Que Evitar (Don'ts)</span>
+              <span>❌ O Que Evitar (Don&apos;ts)</span>
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#B91C1C', fontSize: '13px', lineHeight: '1.7' }}>
               <li><strong>Aninhamento Excessivo:</strong> Evite aninhar mais de 2 níveis de collapse dentro de um mesmo fluxo visual.</li>
@@ -1268,7 +1255,7 @@ export const VariantesETamanhos: Story = {
         {/* Bloco 3: Tema Dark */}
         <div style={{ padding: '24px', borderRadius: '16px', backgroundColor: '#1E293B', border: '1px solid #334155' }}>
           <h3 style={{ margin: '0 0 12px 0', fontSize: '16px', color: '#F8FAFC' }}>
-            3. Suporte Nativo ao Tema Dark (theme='dark')
+            3. Suporte Nativo ao Tema Dark (theme=&apos;dark&apos;)
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <Collapse

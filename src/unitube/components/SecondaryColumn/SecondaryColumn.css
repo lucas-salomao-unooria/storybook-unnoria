@@ -1,0 +1,37 @@
+/**
+ * Estilos do Componente SecondaryColumn — Design System Unitube
+ * Nó de origem: `Layout/SecondaryColumn` (20:2996), 426×968.
+ */
+
+.uni-secondary-column {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--uni-secondary-column-width);
+  max-width: 100%;
+  flex: none;
+  /* Recuo assimétrico literal: 24/24/0/0. */
+  padding: var(--uni-spacing-24) var(--uni-spacing-24) 0 0;
+  font-family: var(--uni-font-sans);
+  background: var(--uni-color-background-primary);
+}
+
+.uni-secondary-column__header {
+  display: flex;
+  align-items: center;
+  gap: var(--uni-spacing-8);
+  flex-wrap: wrap;
+  padding-bottom: var(--uni-spacing-12);
+}
+
+.uni-secondary-column__list {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .uni-secondary-column {
+    width: 100%;
+    padding: var(--uni-spacing-24);
+  }
+}

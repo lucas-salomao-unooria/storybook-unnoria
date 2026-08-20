@@ -1,0 +1,42 @@
+/**
+ * Estilos do Componente TopMenuBar — Design System Unitube
+ * Nó de origem: `Top-Menu` (13:1696), 1200×58.
+ */
+
+.uni-topmenu-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(var(--uni-topmenu-height) + 2px);
+  /* Um fio acima e outro abaixo da faixa (nodes 13:1697 e 13:1719). */
+  border-top: 1px solid var(--uni-color-border-subtle);
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+  background: var(--uni-color-background-secondary);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-topmenu-bar__track {
+  display: flex;
+  align-items: center;
+  gap: var(--uni-spacing-12);
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--uni-topmenu-height);
+  padding: var(--uni-spacing-12) var(--uni-spacing-24);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/* A barra de rolagem é suprimida para preservar a aparência do arquivo. */
+.uni-topmenu-bar__track::-webkit-scrollbar {
+  display: none;
+}
+
+.uni-topmenu-bar__overflow {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: var(--uni-topmenu-height);
+}

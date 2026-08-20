@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Toggle } from '../../../src/unooria/components/Toggle/Toggle';
 import '../../../src/unooria/components/Toggle/Toggle.css';
 import {
@@ -170,7 +170,7 @@ const ToggleDocumentationPage: React.FC = () => {
               </p>
               <p style={{ margin: 0 }}>
                 <strong style={{ color: '#FFFFFF' }}>Exemplo visual:</strong> Em um painel de configurações, um toggle pode ser usado para ativar ou desativar notificações.
-                Quando "ativado", o botão desliza para a direita e muda de cor. Ao "desativar", ele retorna à esquerda e volta à cor original. Isso dá um feedback visual claro da ação.
+                Quando &quot;ativado&quot;, o botão desliza para a direita e muda de cor. Ao &quot;desativar&quot;, ele retorna à esquerda e volta à cor original. Isso dá um feedback visual claro da ação.
               </p>
             </div>
           </div>
@@ -366,10 +366,10 @@ const ToggleDocumentationPage: React.FC = () => {
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#166534', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
-                <strong>Use para ações de efeito imediato:</strong> Toggles devem aplicar alterações sem necessidade de clicar em "Salvar".
+                <strong>Use para ações de efeito imediato:</strong> Toggles devem aplicar alterações sem necessidade de clicar em &quot;Salvar&quot;.
               </li>
               <li>
-                <strong>Forneça labels afirmativos e claros:</strong> Ex: "Ativar notificações" em vez de "Notificações ligadas/desligadas?".
+                <strong>Forneça labels afirmativos e claros:</strong> Ex: &quot;Ativar notificações&quot; em vez de &quot;Notificações ligadas/desligadas?&quot;.
               </li>
               <li>
                 <strong>Inclua descrições quando a ação for complexa:</strong> Ajuda o usuário a entender o impacto da alteração.
@@ -390,14 +390,14 @@ const ToggleDocumentationPage: React.FC = () => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#DC2626', fontWeight: 700, fontSize: '16px' }}>
-              <span>✕</span> O QUE EVITAR (DON'T)
+              <span>✕</span> O QUE EVITAR (DON&apos;T)
             </div>
             <ul style={{ margin: 0, paddingLeft: '20px', color: '#991B1B', fontSize: '14px', lineHeight: 1.6 }}>
               <li>
                 <strong>Não use Toggle dentro de formulários que exigem confirmação com botão de submit:</strong> Nesses casos, prefira `Checkbox`.
               </li>
               <li>
-                <strong>Não use texto que mude dinamicamente dentro do label (ex: "Ligado" / "Desligado"):</strong> A própria posição do knob já indica o estado.
+                <strong>Não use texto que mude dinamicamente dentro do label (ex: &quot;Ligado&quot; / &quot;Desligado&quot;):</strong> A própria posição do knob já indica o estado.
               </li>
             </ul>
           </div>

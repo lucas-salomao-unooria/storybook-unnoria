@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente TopMenuIcon — Design System Unitube
+ * Nó de origem: `Navigation/TopMenuIcon` (10:665), 56×56.
+ */
+
+.uni-topmenu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--uni-topmenu-icon-size);
+  height: var(--uni-topmenu-icon-size);
+  padding: var(--uni-spacing-20);
+  background: var(--uni-color-background-secondary);
+  border: none;
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+.uni-topmenu-icon:hover {
+  background: var(--uni-color-background-surface);
+}
+
+.uni-topmenu-icon:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: -2px;
+}

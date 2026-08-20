@@ -1,0 +1,42 @@
+/**
+ * Estilos do Componente Chip — Design System Tik Tooria
+ * Alvo contornado de 152×28 (node 4:813).
+ */
+
+.tik-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tik-spacing-xs);
+  box-sizing: border-box;
+  height: var(--tik-chip-height);
+  padding: 0 var(--tik-spacing-m);
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-label-strong-size);
+  font-weight: var(--tik-font-label-strong-weight);
+  line-height: var(--tik-font-label-strong-line);
+  color: var(--tik-color-text-primary);
+  background: var(--tik-color-surface-primary);
+  border: 1px solid var(--tik-color-border-outline);
+  border-radius: var(--tik-radius-s);
+  cursor: pointer;
+  transition: background var(--tik-transition-fast);
+}
+
+.tik-chip--fixed {
+  width: var(--tik-chip-width);
+}
+
+.tik-chip:hover:not(:disabled) {
+  background: var(--tik-color-surface-sheet);
+}
+
+.tik-chip:focus-visible {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 2px;
+}
+
+.tik-chip:disabled {
+  cursor: default;
+  opacity: 0.4;
+}

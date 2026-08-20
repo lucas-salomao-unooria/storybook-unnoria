@@ -1,0 +1,62 @@
+/**
+ * Estilos do Componente ProfileExpanded — Design System Unitube
+ * Nó de origem: `Navigation/ProfileExpanded` (7:93), 204×40.
+ */
+
+.uni-profile-expanded {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uni-spacing-8);
+  flex: none;
+  height: var(--uni-icon-button-size);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-profile-expanded__action {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--uni-icon-button-size);
+  height: var(--uni-icon-button-size);
+  padding: var(--uni-spacing-8);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+.uni-profile-expanded__action:hover {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-profile-expanded__action:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+/*
+ * Selo de notificação: ausente no arquivo. Construído com o vermelho semântico
+ * da marca e o degrau Caption/Small, o menor da escala publicada.
+ */
+.uni-profile-expanded__badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 var(--uni-spacing-4);
+  box-sizing: border-box;
+  font-size: var(--uni-font-caption-sm-size);
+  font-weight: var(--uni-font-weight-bold);
+  line-height: var(--uni-font-caption-sm-line);
+  color: var(--uni-color-text-primary);
+  background: var(--uni-color-brand-primary);
+  border-radius: var(--uni-radius-full);
+}

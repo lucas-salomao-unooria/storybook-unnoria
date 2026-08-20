@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {
   Avatar,
   Badge,
@@ -420,7 +420,13 @@ const SearchScreen: React.FC<{ theme?: InstaTheme }> = ({ theme = 'light' }) => 
       </div>
     </div>
     <div style={{ flex: 1, overflowY: 'auto' }}>
-      <MediaGrid theme={theme} items={[...instaGridItems, ...instaGridItems]} />
+      <MediaGrid
+        theme={theme}
+        items={[
+          ...instaGridItems.map((item) => ({ ...item, id: `${item.id}-a` })),
+          ...instaGridItems.map((item) => ({ ...item, id: `${item.id}-b` })),
+        ]}
+      />
     </div>
     <TabBar theme={theme} items={tabsFor()} activeId="search" />
   </>

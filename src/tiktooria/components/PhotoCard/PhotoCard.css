@@ -1,0 +1,34 @@
+/**
+ * Estilos do Componente PhotoCard — Design System Tik Tooria
+ * Cartão de fotografia (node 4:631), raio de 6px com dois efeitos empilhados.
+ */
+
+.tik-photocard {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--tik-color-surface-media);
+  border-radius: var(--tik-radius-xl);
+  box-shadow:
+    var(--tik-elevation-photo-rim),
+    var(--tik-elevation-photo);
+}
+
+.tik-photocard__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tik-photocard__counter {
+  position: absolute;
+  top: var(--tik-spacing-m);
+  right: var(--tik-spacing-m);
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-counter-size);
+  font-weight: var(--tik-font-counter-weight);
+  line-height: var(--tik-font-counter-line);
+  color: var(--tik-color-text-on-immersive);
+  text-shadow: 0 0.33px 4px rgba(0, 0, 0, 0.2);
+}

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { FeedbackAlert } from '../../../src/unooria/components/FeedbackAlert/FeedbackAlert';
 import {
-  FeedbackAlertProps,
   FeedbackAlertType,
   FeedbackAlertTheme,
 } from '../../../src/unooria/components/FeedbackAlert/FeedbackAlert.types';
@@ -47,16 +46,6 @@ const KeyIcon = () => (
  */
 const FeedbackAlertDocumentationPage = () => {
   const [activeThemeTab, setActiveThemeTab] = useState<FeedbackAlertTheme>('light');
-  const [dismissedAlerts, setDismissedAlerts] = useState<Record<string, boolean>>({});
-
-  const handleDismiss = (id: string) => {
-    setDismissedAlerts((prev) => ({ ...prev, [id]: true }));
-  };
-
-  const handleResetAlerts = () => {
-    setDismissedAlerts({});
-  };
-
   const figmaSpecsData = [
     {
       variant: 'Error (Erro)',

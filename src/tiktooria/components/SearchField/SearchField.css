@@ -1,0 +1,44 @@
+/**
+ * Estilos do Componente SearchField — Design System Tik Tooria
+ * Campo de 382×36 com raio de 4px (node 4:218).
+ */
+
+.tik-searchfield {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  box-sizing: border-box;
+  height: var(--tik-field-height);
+  padding: 0 var(--tik-spacing-m);
+  background: var(--tik-color-surface-field);
+  border-radius: var(--tik-radius-l);
+}
+
+.tik-searchfield:focus-within {
+  outline: 2px solid var(--tik-color-brand-button);
+  outline-offset: 1px;
+}
+
+.tik-searchfield__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  font-family: var(--tik-font-sans);
+  font-size: var(--tik-font-body-size);
+  font-weight: var(--tik-font-body-weight);
+  line-height: var(--tik-font-body-line);
+  color: var(--tik-color-text-primary);
+  background: none;
+  border: 0;
+  outline: none;
+  appearance: none;
+}
+
+.tik-searchfield__input::placeholder {
+  color: var(--tik-color-text-secondary);
+  opacity: 1;
+}
+
+.tik-searchfield__input::-webkit-search-cancel-button {
+  appearance: none;
+}

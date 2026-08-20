@@ -1,5 +1,7 @@
+'use client';
+
 import React, { forwardRef, Children, isValidElement, cloneElement } from 'react';
-import { StepperProps, StepItem, StepStatus } from './Stepper.types';
+import { StepperProps, StepProps, StepStatus } from './Stepper.types';
 import { Step } from './Step';
 import './Stepper.css';
 
@@ -64,22 +66,22 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         >
           {childArray.map((child, index) => {
             const isLast = index === childArray.length - 1;
-            const childProps = child.props as any;
+            const childProps = child.props as StepProps;
 
-            let stepStatus: StepStatus = childProps.status;
-            if (!stepStatus) {
-              if (index === currentStep) {
-                stepStatus = 'selected';
-              } else if (index < currentStep) {
-                stepStatus = 'completed';
-              } else {
-                stepStatus = 'default';
-              }
+            let stepStatus: StepStatus;
+            if (childProps.status) {
+              stepStatus = childProps.status;
+            } else if (index === currentStep) {
+              stepStatus = 'selected';
+            } else if (index < currentStep) {
+              stepStatus = 'completed';
+            } else {
+              stepStatus = 'default';
             }
 
             const isConnectorFilled = fillCompletedConnectors && index < currentStep;
 
-            const clonedChild = cloneElement(child as React.ReactElement<any>, {
+            const clonedChild = cloneElement(child as React.ReactElement<StepProps>, {
               index,
               status: stepStatus,
               size,

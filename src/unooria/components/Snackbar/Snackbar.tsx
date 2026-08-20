@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useEffect, useRef, useState, useCallback } from 'react';
 import { SnackbarProps, SnackbarSeverity } from './Snackbar.types';
 import { Icon } from '../Icon/Icon';

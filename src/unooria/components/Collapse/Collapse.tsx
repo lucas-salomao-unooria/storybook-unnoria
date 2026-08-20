@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useId, forwardRef } from 'react';
 import {
   CollapseProps,
@@ -6,7 +8,6 @@ import {
   CollapseSubtitleProps,
   CollapseProgressBarProps,
   CollapsePanelProps,
-  CollapseBodyProps,
   CollapseProgressConfig,
   CollapseSize,
   CollapseTheme,
@@ -60,24 +61,6 @@ const DefaultChevronIcon: React.FC<{ className?: string }> = ({ className }) => 
   </svg>
 );
 
-const DefaultPlusIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    className={className}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <line x1="12" y1="5" x2="12" y2="19" />
-    <line x1="5" y1="12" x2="19" y2="12" />
-  </svg>
-);
-
 // ============================================================================
 // Subcomponente: CollapseTitle
 // ============================================================================
@@ -89,7 +72,7 @@ export const CollapseTitle = forwardRef<HTMLElement, CollapseTitleProps>(
     return React.createElement(
       Component,
       {
-        ref: ref as any,
+        ref: ref as React.Ref<HTMLElement>,
         className: `unooria-collapse__title unooria-collapse__title--${effectiveSize} ${className}`.trim(),
         ...rest,
       },

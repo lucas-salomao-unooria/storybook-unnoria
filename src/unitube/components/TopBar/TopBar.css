@@ -1,0 +1,90 @@
+/**
+ * Estilos do Componente TopBar — Design System Unitube
+ * Nó de origem: `Navigation/TopBar` (7:111), 1440×56.
+ */
+
+.uni-topbar {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--uni-topbar-height);
+  padding: 0 var(--uni-spacing-16);
+  font-family: var(--uni-font-sans);
+  /* A barra é uma superfície um degrau acima do fundo da página. */
+  background: var(--uni-color-background-secondary);
+}
+
+.uni-topbar__start {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.uni-topbar__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--uni-icon-button-size);
+  height: var(--uni-icon-button-size);
+  padding: var(--uni-spacing-8);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: background var(--uni-transition-fast);
+}
+
+.uni-topbar__menu:hover {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-topbar__menu:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+/* Quadro do logotipo: recuo 18/14/18/16 no arquivo (node 7:111). */
+.uni-topbar__logo {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--uni-spacing-16) 14px var(--uni-spacing-16) var(--uni-spacing-16);
+  text-decoration: none;
+}
+
+.uni-topbar__logo:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+  border-radius: var(--uni-radius-sm);
+}
+
+/*
+ * A busca é centrada no quadro inteiro, não no espaço remanescente: as duas
+ * colunas laterais crescem igualmente e a central carrega a largura máxima.
+ */
+.uni-topbar__center {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--uni-spacing-16);
+}
+
+.uni-topbar__end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: none;
+}
+
+/*
+ * Abaixo da largura em que a caixa de busca cabe, o arquivo não publica
+ * comportamento. A busca é recolhida para que a barra não quebre.
+ */
+@media (max-width: 800px) {
+  .uni-topbar__center {
+    display: none;
+  }
+}
