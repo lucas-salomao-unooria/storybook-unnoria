@@ -25,6 +25,7 @@ export * from './RadioButton';
 export * from './RichTextEditor';
 export * from './ScrollBar';
 export * from './SectionHeader';
+export * from './Selection';
 export * from './SideBar';
 export * from './Snackbar';
 export * from './Stepper';

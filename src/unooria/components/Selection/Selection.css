@@ -1,0 +1,465 @@
+/* ==========================================================================
+   Selection — Component Styles
+   Design System Plataforma Unooria
+   Figma: arquivo Unooria_DS_v0.2, prancha `Select` (6025:846)
+   Conjuntos: `Select` 1124:1007 · `Select State` 1218:10533
+              `Select Box` 17017:43244 · `Select Input` 12807:1730
+   ========================================================================== */
+
+.unooria-selection {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+.unooria-selection--full-width {
+  display: flex;
+  width: 100%;
+}
+
+.unooria-selection--disabled {
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Gatilho — conjunto `Select` (1124:1007)
+   Intervalo de 4px entre rótulo, caixa de valor e descrição (spacing-xxxs).
+   ========================================================================== */
+
+.unooria-selection-trigger {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* --------------------------------------------------------------------------
+   Linha de rótulo — body-XS/semibold (14/20) em todos os tamanhos
+   -------------------------------------------------------------------------- */
+
+.unooria-selection-trigger__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+}
+
+.unooria-selection-trigger__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: var(--unooria-color-neutral-950, #22272A);
+  user-select: none;
+}
+
+.unooria-selection-trigger__required {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--unooria-color-danger-700, #C11414);
+}
+
+/* Glifo de ajuda de 12px (Figma: propriedade `Helper`) */
+.unooria-selection-trigger__helper-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: help;
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+.unooria-selection-trigger__helper-icon:hover {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Caixa de valor — recuo de 6px vertical e 12px horizontal
+   -------------------------------------------------------------------------- */
+
+.unooria-selection-trigger__control {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  width: 100%;
+  margin: 0;
+  padding: 6px var(--unooria-spacing-xs, 12px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  box-sizing: border-box;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.unooria-selection-trigger__value {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--unooria-color-neutral-900, #383E41);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unooria-selection-trigger__value--placeholder {
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+.unooria-selection-trigger__chevron {
+  flex-shrink: 0;
+  color: var(--unooria-color-neutral-500, #617379);
+  transition: color 0.15s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Descrição sob a caixa — body-XXS/regular (12/18)
+   -------------------------------------------------------------------------- */
+
+.unooria-selection-trigger__description {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* ==========================================================================
+   Escala oficial de tamanhos do gatilho (XS, SM, MD, LG)
+   ========================================================================== */
+
+/* XS — 32px, raio 8px, valor em body-XXS */
+.unooria-selection-trigger--size-xs .unooria-selection-trigger__control {
+  min-height: 32px;
+  border-radius: var(--unooria-radius-s, 8px);
+}
+.unooria-selection-trigger--size-xs .unooria-selection-trigger__value {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* SM — 40px, raio 8px, valor em body-XS */
+.unooria-selection-trigger--size-sm .unooria-selection-trigger__control {
+  min-height: 40px;
+  border-radius: var(--unooria-radius-s, 8px);
+}
+.unooria-selection-trigger--size-sm .unooria-selection-trigger__value {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* MD — 48px, raio 12px, valor em body-S */
+.unooria-selection-trigger--size-md .unooria-selection-trigger__control {
+  min-height: 48px;
+  border-radius: var(--unooria-radius-m, 12px);
+}
+.unooria-selection-trigger--size-md .unooria-selection-trigger__value {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* LG — 56px, raio 16px, valor em body-M */
+.unooria-selection-trigger--size-lg .unooria-selection-trigger__control {
+  min-height: 56px;
+  border-radius: var(--unooria-radius-lg, 16px);
+}
+.unooria-selection-trigger--size-lg .unooria-selection-trigger__value {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* ==========================================================================
+   Estados publicados pelo conjunto `Select`
+   ========================================================================== */
+
+/* Hover — não publicado no arquivo; adotado do contorno do estado Active */
+.unooria-selection-trigger--state-default .unooria-selection-trigger__control:hover,
+.unooria-selection-trigger--state-active .unooria-selection-trigger__control:hover {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Active — contorno em brandnavy-600 */
+.unooria-selection-trigger--state-active .unooria-selection-trigger__control {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+}
+
+/* Foco por teclado — anel de 2px no contorno do estado Active */
+.unooria-selection-trigger__control:focus-visible {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  box-shadow: 0 0 0 2px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+}
+
+/* Error — contorno, valor e descrição em danger-700 */
+.unooria-selection-trigger--state-error .unooria-selection-trigger__control {
+  border-color: var(--unooria-color-danger-700, #C11414);
+}
+.unooria-selection-trigger--state-error .unooria-selection-trigger__value,
+.unooria-selection-trigger--state-error .unooria-selection-trigger__value--placeholder,
+.unooria-selection-trigger--state-error .unooria-selection-trigger__chevron,
+.unooria-selection-trigger--state-error .unooria-selection-trigger__description {
+  color: var(--unooria-color-danger-700, #C11414);
+}
+.unooria-selection-trigger--state-error .unooria-selection-trigger__control:focus-visible {
+  border-color: var(--unooria-color-danger-700, #C11414);
+  box-shadow: 0 0 0 2px var(--unooria-color-opacity-danger-300, rgba(227, 26, 26, 0.30));
+}
+
+/* Disabled — rótulo e valor em neutral-500, contorno inalterado */
+.unooria-selection-trigger--state-disabled .unooria-selection-trigger__control {
+  cursor: not-allowed;
+}
+.unooria-selection-trigger--state-disabled .unooria-selection-trigger__label,
+.unooria-selection-trigger--state-disabled .unooria-selection-trigger__value,
+.unooria-selection-trigger--state-disabled .unooria-selection-trigger__chevron {
+  color: var(--unooria-color-neutral-500, #617379);
+}
+
+/* ==========================================================================
+   Painel — conjunto `Select Box` (17017:43244)
+   Fundo neutral-50, contorno de 1px em neutral-150, recuo e intervalo de 4px.
+   ========================================================================== */
+
+.unooria-selection-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  width: 100%;
+  padding: var(--unooria-spacing-xxxs, 4px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  overflow-y: auto;
+}
+
+/* Painel flutuante: 4px sob o gatilho, sem empurrar o conteúdo seguinte */
+.unooria-selection-box--floating {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  margin-top: var(--unooria-spacing-xxxs, 4px);
+  box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
+}
+
+/* Raio por tamanho: LG 16px, MD e SM 12px, XS 8px */
+.unooria-selection-box--size-lg { border-radius: var(--unooria-radius-lg, 16px); }
+.unooria-selection-box--size-md { border-radius: var(--unooria-radius-m, 12px); }
+.unooria-selection-box--size-sm { border-radius: var(--unooria-radius-m, 12px); }
+.unooria-selection-box--size-xs { border-radius: var(--unooria-radius-s, 8px); }
+
+/*
+ * O quadro `Size=XS` do `Select Box` sobrescreve as instâncias de linha para
+ * 36px, contra os 32px publicados pelo conjunto `Select State` isolado.
+ * Os dois valores são preservados: o do painel manda dentro do painel.
+ */
+.unooria-selection-box--size-xs .unooria-selection-option {
+  min-height: 36px;
+}
+
+/* ==========================================================================
+   Linha de opção — conjunto `Select State` (1218:10533)
+   Recuo de 8px, intervalo de 12px entre caixa de seleção e rótulo.
+   ========================================================================== */
+
+.unooria-selection-option {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  width: 100%;
+  padding: var(--unooria-spacing-xxs, 8px);
+  background-color: transparent;
+  border: 0;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.unooria-selection-option__label {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--unooria-color-neutral-900, #383E41);
+}
+
+/*
+ * Moldura de 4px em volta da caixa de seleção, com raio de 10px — a mesma
+ * geometria do nó `Checkbox + Radio button` com `Box Side=No text`.
+ * A caixa é apresentacional: o alvo de interação é a linha.
+ */
+.unooria-selection-option__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--unooria-spacing-xxxs, 4px);
+  border-radius: 10px;
+  pointer-events: none;
+  transition: background-color 0.15s ease;
+}
+
+/* Estado Hover do arquivo — realce em brandnavy a 10% */
+.unooria-selection-option:not(.unooria-selection-option--disabled):hover,
+.unooria-selection-option--active:not(.unooria-selection-option--disabled) {
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+}
+
+/* No Hover, a moldura da caixa recebe brandnavy a 5% e contorno brandnavy-700 */
+.unooria-selection-option:not(.unooria-selection-option--disabled):hover
+  .unooria-selection-option__mark,
+.unooria-selection-option--active:not(.unooria-selection-option--disabled)
+  .unooria-selection-option__mark {
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+}
+
+.unooria-selection-option:not(.unooria-selection-option--disabled):hover
+  .unooria-selection-option__mark
+  .unooria-checkbox__control,
+.unooria-selection-option--active:not(.unooria-selection-option--disabled)
+  .unooria-selection-option__mark
+  .unooria-checkbox__control {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+.unooria-selection-option--disabled {
+  cursor: not-allowed;
+}
+
+.unooria-selection-option--disabled .unooria-selection-option__label {
+  color: var(--unooria-color-neutral-500, #617379);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   Escala de tamanhos da linha (raio e altura lidos nó a nó)
+   -------------------------------------------------------------------------- */
+
+.unooria-selection-option--size-xs {
+  min-height: 32px;
+  border-radius: var(--unooria-radius-s, 8px);
+}
+.unooria-selection-option--size-xs .unooria-selection-option__label {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.unooria-selection-option--size-sm {
+  min-height: 40px;
+  border-radius: var(--unooria-radius-s, 8px);
+}
+.unooria-selection-option--size-sm .unooria-selection-option__label {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.unooria-selection-option--size-md {
+  min-height: 48px;
+  border-radius: var(--unooria-radius-s, 8px);
+}
+.unooria-selection-option--size-md .unooria-selection-option__label {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.unooria-selection-option--size-lg {
+  min-height: 56px;
+  border-radius: var(--unooria-radius-m, 12px);
+}
+.unooria-selection-option--size-lg .unooria-selection-option__label {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* ==========================================================================
+   Tema Escuro
+   O arquivo de origem publica apenas o tema claro; os valores escuros vêm
+   exclusivamente da escala `neutraldark` da própria Plataforma Unooria.
+   ========================================================================== */
+
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__helper-icon {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__control {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__value {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__value--placeholder,
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__chevron,
+.unooria-selection-trigger--theme-dark .unooria-selection-trigger__description {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-disabled
+  .unooria-selection-trigger__label,
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-disabled
+  .unooria-selection-trigger__value,
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-disabled
+  .unooria-selection-trigger__chevron {
+  color: var(--unooria-color-neutraldark-700, #7C8E94);
+}
+
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-error
+  .unooria-selection-trigger__value,
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-error
+  .unooria-selection-trigger__chevron,
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-error
+  .unooria-selection-trigger__description {
+  color: var(--unooria-color-danger-400, #FF6A6A);
+}
+
+.unooria-selection-trigger--theme-dark.unooria-selection-trigger--state-error
+  .unooria-selection-trigger__control {
+  border-color: var(--unooria-color-danger-400, #FF6A6A);
+}
+
+.unooria-selection-box--theme-dark {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-selection-option--theme-dark .unooria-selection-option__label {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-selection-option--theme-dark.unooria-selection-option--selected
+  .unooria-selection-option__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-selection-option--theme-dark.unooria-selection-option--disabled
+  .unooria-selection-option__label {
+  color: var(--unooria-color-neutraldark-700, #7C8E94);
+}
+
+/* ==========================================================================
+   Movimento Reduzido
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-selection-trigger__control,
+  .unooria-selection-trigger__chevron,
+  .unooria-selection-option,
+  .unooria-selection-option__mark {
+    transition: none;
+  }
+}
