@@ -21,9 +21,11 @@ import path from 'node:path';
  * Duas consequências que exigiram solução explícita, ambas verificadas:
  *
  * - O tsup **não reescreve os specifiers relativos** (`from './Badge'` fica sem
- *   extensão). Isso é ESM inválido para o Node puro, mas irrelevante aqui: o
- *   pacote já era consumível apenas via bundler, porque os componentes fazem
- *   `import './X.css'`. Bundlers resolvem sem extensão normalmente.
+ *   extensão). Isso é ESM inválido e também quebra o esbuild (usado pelo Vite
+ *   dev no optimizeDeps). O script `scripts/corrigir-specifiers.mjs`, que roda
+ *   no `build:package` logo após o tsup, normaliza todos os specifiers
+ *   adicionando `.mjs`/`.cjs` conforme o formato. O guard
+ *   `scripts/verificar-esm.mjs` falha o build se restar algum sem extensão.
  * - O gerador de tipos do tsup **quebra** com esta quantidade de entradas (o
  *   worker aborta e não emite nada). As declarações passaram a ser emitidas
  *   pelo `tsc --emitDeclarationOnly`, no script `build:package`.

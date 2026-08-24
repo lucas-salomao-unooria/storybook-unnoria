@@ -1,6 +1,6 @@
 {
   "name": "@unooria/design-system",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Design System oficial da Plataforma Unooria para React e Next.js com suporte completo a temas Light/Dark",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -66,7 +66,7 @@
     "test": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "build:package": "npm run verificar:css && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist",
+    "build:package": "npm run verificar:css && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist && node scripts/corrigir-specifiers.mjs && node scripts/verificar-esm.mjs",
     "prepublishOnly": "npm run build:package",
     "verificar:css": "node scripts/verificar-css-agregado.mjs"
   },
