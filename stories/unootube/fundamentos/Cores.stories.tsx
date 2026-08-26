@@ -6,8 +6,8 @@ import {
   uniBrandColors,
   uniSemanticColors,
   uniDerivedColors,
-} from '../../../src/unitube/tokens';
-import { Button, SubscribeButton, TopMenuItem, VideoCard } from '../../../src/unitube';
+} from '../../../src/unootube/tokens';
+import { Button, SubscribeButton, TopMenuItem, VideoCard } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -24,7 +24,7 @@ import {
 import { videos } from '../fixtures';
 
 const meta: Meta = {
-  title: 'Unitube/Fundamentos/Cores',
+  title: 'Unootube/Fundamentos/Cores',
   parameters: { layout: 'fullscreen' },
 };
 
@@ -62,10 +62,10 @@ const GROUPS = [
 const ColorsDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Fundamentos • Cores"
       title="Cores"
-      description="A paleta do Unitube foi lida do arquivo Figma “YouTube UI Clone Design (Community)”, página “🎨 Design System”. Ao contrário das outras marcas da plataforma, este arquivo documenta os próprios tokens: publica dezessete primitivas e nove tokens semânticos com nome e descrição de uso. Os demais valores foram lidos do preenchimento literal do nó indicado em cada token."
+      description="A paleta do Unootube foi lida do arquivo Figma “YouTube UI Clone Design (Community)”, página “🎨 Design System”. Ao contrário das outras marcas da plataforma, este arquivo documenta os próprios tokens: publica dezessete primitivas e nove tokens semânticos com nome e descrição de uso. Os demais valores foram lidos do preenchimento literal do nó indicado em cada token."
     />
 
     <UnooriaDocSectionHeader
@@ -232,7 +232,7 @@ const ColorsDocumentationPage = () => (
         'Não derive um tema claro: o arquivo não publica nenhum valor claro de superfície.',
         'Não aplique primitivas diretamente em componente — use os aliases semânticos.',
         'Não substitua --uni-color-brand-subscribe por --uni-color-brand-primary: são vermelhos diferentes.',
-        'Não use var(--tik-*), var(--insta-*), var(--gpt-*), var(--wa-*) nem var(--unooria-*) dentro do Unitube.',
+        'Não use var(--tik-*), var(--insta-*), var(--gpt-*), var(--wa-*) nem var(--unooria-*) dentro do Unootube.',
       ]}
     />
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { VideoCardHorizontal } from '../../../src/unitube';
+import { VideoCardHorizontal } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { playerPoster } from '../fixtures';
 
 const meta: Meta<typeof VideoCardHorizontal> = {
-  title: 'Unitube/Componentes/VideoCardHorizontal',
+  title: 'Unootube/Componentes/VideoCardHorizontal',
   component: VideoCardHorizontal,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -46,7 +46,7 @@ type Story = StoryObj<typeof VideoCardHorizontal>;
 const VideoCardHorizontalDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="VideoCardHorizontal"
       description="Reprodução do nó Media/VideoCardHorizontal (19:1346), 1200×286, o destaque que abre a tela de canal: um reprodutor funcional de 424×238 ao lado de título, metadados e descrição. É o único bloco do arquivo cuja linha de metadados usa Body/Small em peso Bold."

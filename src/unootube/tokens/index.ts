@@ -1,5 +1,5 @@
 /**
- * Tokens do Design System Unitube.
+ * Tokens do Design System Unootube.
  */
 
 export * from './colors';

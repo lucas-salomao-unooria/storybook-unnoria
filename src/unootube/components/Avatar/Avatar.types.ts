@@ -16,7 +16,7 @@ import React from 'react';
 export type UniAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 /**
- * Propriedades do componente Avatar do Unitube.
+ * Propriedades do componente Avatar do Unootube.
  */
 export interface UniAvatarProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**

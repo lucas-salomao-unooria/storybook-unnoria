@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { Button, uniIconNames } from '../../../src/unitube';
+import { Button, uniIconNames } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof Button> = {
-  title: 'Unitube/Componentes/Button',
+  title: 'Unootube/Componentes/Button',
   component: Button,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof Button>;
 const ButtonDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Ação"
       title="Button"
       description="Reprodução do nó Action/Button (20:2758), o botão da barra de ações da tela de vídeo. É o único botão do arquivo sem preenchimento nem contorno: glifo de 24px em um alvo de 36×36, seguido do rótulo em Label/Large — a separação vem apenas do peso tipográfico."

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { VideoCardSidebar } from '../../../src/unitube';
+import { VideoCardSidebar } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { suggestions } from '../fixtures';
 
 const meta: Meta<typeof VideoCardSidebar> = {
-  title: 'Unitube/Componentes/VideoCardSidebar',
+  title: 'Unootube/Componentes/VideoCardSidebar',
   component: VideoCardSidebar,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -50,7 +50,7 @@ type Story = StoryObj<typeof VideoCardSidebar>;
 const VideoCardSidebarDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="VideoCardSidebar"
       description="Reprodução do nó Media/VideoCardSidebar (25:3450), 402×102, o cartão que a coluna secundária da tela de vídeo repete verticalmente. É o único cartão do arquivo cujo título usa peso regular — Body/Medium 14/20, e não um dos degraus Label."

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { VideoCardSmall } from '../../../src/unitube';
+import { VideoCardSmall } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { videos } from '../fixtures';
 
 const meta: Meta<typeof VideoCardSmall> = {
-  title: 'Unitube/Componentes/VideoCardSmall',
+  title: 'Unootube/Componentes/VideoCardSmall',
   component: VideoCardSmall,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -50,7 +50,7 @@ type Story = StoryObj<typeof VideoCardSmall>;
 const VideoCardSmallDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="VideoCardSmall"
       description="Reprodução do nó Media/VideoCardSmall (19:1459), 214×194, o cartão que a playlist do canal repete cinco vezes por linha. Ao contrário do VideoCard, o título usa Roboto Bold 14 e não há avatar: o canal aparece apenas como texto."

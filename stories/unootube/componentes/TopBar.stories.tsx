@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { Button, SearchBox, TopBar } from '../../../src/unitube';
+import { Button, SearchBox, TopBar } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { avatars } from '../fixtures';
 
 const meta: Meta<typeof TopBar> = {
-  title: 'Unitube/Componentes/TopBar',
+  title: 'Unootube/Componentes/TopBar',
   component: TopBar,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -47,7 +47,7 @@ type Story = StoryObj<typeof TopBar>;
 const TopBarDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="TopBar"
       description="Reprodução do nó Navigation/TopBar (7:111), a barra de 56px que atravessa as três telas do arquivo. Repare que ela usa --uni-color-background-secondary (#212121), e não o fundo principal (#181818): a barra é uma superfície um degrau acima da página, e é essa diferença de luminância que a separa do conteúdo."
@@ -163,7 +163,7 @@ const TopBarDocumentationPage = () => (
     <UniDocStage label="Busca substituída por um campo do produto" surface="primary" align="stretch" padding={0}>
       <TopBar
         avatarInitials="LS"
-        search={<SearchBox placeholder="Pesquisar no Unitube" showVoiceSearch={false} />}
+        search={<SearchBox placeholder="Pesquisar no Unootube" showVoiceSearch={false} />}
       />
     </UniDocStage>
 

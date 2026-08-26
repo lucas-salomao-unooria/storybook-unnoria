@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { Logo } from '../../../src/unitube';
+import { Logo } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof Logo> = {
-  title: 'Unitube/Componentes/Logo',
+  title: 'Unootube/Componentes/Logo',
   component: Logo,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -27,7 +27,7 @@ const meta: Meta<typeof Logo> = {
     title: { control: 'text' },
     className: { control: 'text' },
   },
-  args: { variant: 'full', height: 20, title: 'Unitube' },
+  args: { variant: 'full', height: 20, title: 'Unootube' },
 };
 
 export default meta;
@@ -37,7 +37,7 @@ type Story = StoryObj<typeof Logo>;
 const LogoDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Fundação"
       title="Logo"
       description="Reprodução do nó Brand/YoutubeLogo (2:88), 90×20, com os nove caminhos literais do export SVG. O emblema preserva o vermelho literal do arquivo — a primitiva red/800, e não o vermelho semântico — enquanto o logotipo tipográfico herda a cor do token de texto."
@@ -191,7 +191,7 @@ const LogoDocumentationPage = () => (
         {
           name: 'title',
           type: 'string',
-          default: "'Unitube'",
+          default: "'Unootube'",
           description:
             'Rótulo acessível. Informe string vazia para tratar o logotipo como decorativo quando ele já estiver dentro de um link rotulado.',
         },

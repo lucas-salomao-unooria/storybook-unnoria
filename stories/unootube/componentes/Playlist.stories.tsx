@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { Playlist, VideoCardSmall } from '../../../src/unitube';
+import { Playlist, VideoCardSmall } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { videos } from '../fixtures';
 
 const meta: Meta<typeof Playlist> = {
-  title: 'Unitube/Componentes/Playlist',
+  title: 'Unootube/Componentes/Playlist',
   component: Playlist,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -59,7 +59,7 @@ const Cards = ({ count = 5 }: { count?: number }) => (
 const PlaylistDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="Playlist"
       description="Reprodução do nó Media/Playlist (19:1562), 1200×288, a faixa horizontal que a tela de canal repete quatro vezes. Os fios de 1px acima e abaixo têm 1070px, e não os 1200px da seção: o arquivo os desenha dentro da calha de 65px, de modo que o divisor fique alinhado ao conteúdo."

@@ -3,7 +3,7 @@ import type { UniDesktopFrameProps } from './DesktopFrame.types';
 import './DesktopFrame.css';
 
 /**
- * Componente DesktopFrame — Design System Unitube
+ * Componente DesktopFrame — Design System Unootube
  *
  * Moldura de **documentação**, não de produção: reproduz o quadro de 1440×1024
  * em que o arquivo desenha as três telas, para que as estórias possam mostrar

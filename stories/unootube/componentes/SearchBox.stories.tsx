@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React, { useState } from 'react';
 
-import { SearchBox } from '../../../src/unitube';
+import { SearchBox } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof SearchBox> = {
-  title: 'Unitube/Componentes/SearchBox',
+  title: 'Unootube/Componentes/SearchBox',
   component: SearchBox,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -46,7 +46,7 @@ type Story = StoryObj<typeof SearchBox>;
 const SearchBoxDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="SearchBox"
       description="Reprodução do nó Navigation/SearchBox (7:49), 470×40 no total. Três detalhes do arquivo são literais e fáceis de perder: o campo tem contorno em apenas três arestas, o raio é assimétrico nos dois lados da emenda, e o botão de microfone é preto puro — mais escuro que qualquer superfície da escada semântica."
@@ -153,7 +153,7 @@ const SearchBoxDocumentationPage = () => (
       <SearchBox showVoiceSearch={false} />
     </UniDocStage>
     <UniDocStage label="Texto de espera localizado" surface="secondary" align="stretch">
-      <SearchBox placeholder="Pesquisar" fieldLabel="Pesquisar no Unitube" />
+      <SearchBox placeholder="Pesquisar" fieldLabel="Pesquisar no Unootube" />
     </UniDocStage>
 
     <UnooriaDocSectionHeader title="5. Boas práticas" barColor="#FC0D1C" />
@@ -295,7 +295,7 @@ export const Controlado: Story = {
   name: 'Modo controlado',
   render: () => {
     const ControlledDemo = () => {
-      const [value, setValue] = useState('unitube');
+      const [value, setValue] = useState('unootube');
       const [submitted, setSubmitted] = useState<string | null>(null);
 
       return (

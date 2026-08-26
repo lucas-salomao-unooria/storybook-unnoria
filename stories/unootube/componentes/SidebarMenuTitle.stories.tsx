@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { SidebarMenuItem, SidebarMenuTitle } from '../../../src/unitube';
+import { SidebarMenuItem, SidebarMenuTitle } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof SidebarMenuTitle> = {
-  title: 'Unitube/Componentes/SidebarMenuTitle',
+  title: 'Unootube/Componentes/SidebarMenuTitle',
   component: SidebarMenuTitle,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof SidebarMenuTitle>;
 const SidebarMenuTitleDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="SidebarMenuTitle"
       description="Reprodução do nó Navigation/SidebarMenuTitle (9:1933), o rótulo que abre cada bloco temático da barra lateral. O arquivo escreve o texto já em caixa alta; aqui a transformação é feita por CSS, para que o conteúdo entregue ao leitor de tela seja o texto natural e não uma sequência de maiúsculas."
@@ -125,10 +125,10 @@ const SidebarMenuTitleDocumentationPage = () => (
     </UniDocStage>
     <UniDocStage label="Os dois rótulos publicados pelo arquivo" surface="secondary" direction="column" align="stretch" gap={0}>
       <SidebarMenuTitle title="Subscriptions" />
-      <SidebarMenuTitle title="More from Unitube" />
+      <SidebarMenuTitle title="More from Unootube" />
     </UniDocStage>
     <UniDocStage label="Rótulo longo, localizado" surface="secondary" direction="column" align="stretch" gap={0}>
-      <SidebarMenuTitle title="Mais do Unitube" />
+      <SidebarMenuTitle title="Mais do Unootube" />
       <SidebarMenuTitle title="Inscrições" />
     </UniDocStage>
 
@@ -235,8 +235,8 @@ export const ComposicaoModular: Story = {
       <SidebarMenuItem icon="likedOutline" menuLabel="Alan Cooper" href="#" />
       <SidebarMenuItem icon="likedOutline" menuLabel="Marcus Levin" href="#" />
       <SidebarMenuItem icon="arrowBottom" menuLabel="Show 13 more" asButton />
-      <SidebarMenuTitle title="More from Unitube" />
-      <SidebarMenuItem icon="premium" activeIcon="premiumFill" menuLabel="Unitube Premium" href="#" />
+      <SidebarMenuTitle title="More from Unootube" />
+      <SidebarMenuItem icon="premium" activeIcon="premiumFill" menuLabel="Unootube Premium" href="#" />
       <SidebarMenuItem icon="gaming" activeIcon="gamingFill" menuLabel="Gaming" href="#" />
     </div>
   ),

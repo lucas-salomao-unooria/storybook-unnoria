@@ -4,7 +4,7 @@ import type { UniVideoCardHorizontalProps } from './VideoCardHorizontal.types';
 import './VideoCardHorizontal.css';
 
 /**
- * Componente VideoCardHorizontal — Design System Unitube
+ * Componente VideoCardHorizontal — Design System Unootube
  *
  * Reproduz o nó `Media/VideoCardHorizontal` (`19:1346`), o destaque que abre a
  * tela de canal: um reprodutor funcional ao lado de título, metadados e

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades da caixa de busca do Unitube.
+ * Propriedades da caixa de busca do Unootube.
  *
  * Reproduz o nó `Navigation/SearchBox` (`7:49`): 470×40 no total, formado pelo
  * campo de 362px, pelo botão de lupa de 64px e pelo botão circular de

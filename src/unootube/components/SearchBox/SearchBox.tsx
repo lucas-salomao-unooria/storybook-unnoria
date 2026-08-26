@@ -6,7 +6,7 @@ import type { UniSearchBoxProps } from './SearchBox.types';
 import './SearchBox.css';
 
 /**
- * Componente SearchBox — Design System Unitube
+ * Componente SearchBox — Design System Unootube
  *
  * Reproduz o nó `Navigation/SearchBox` (`7:49`). Três detalhes do arquivo são
  * preservados literalmente:

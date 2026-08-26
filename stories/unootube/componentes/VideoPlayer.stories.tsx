@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { VideoPlayer } from '../../../src/unitube';
+import { VideoPlayer } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { playerPoster } from '../fixtures';
 
 const meta: Meta<typeof VideoPlayer> = {
-  title: 'Unitube/Componentes/VideoPlayer',
+  title: 'Unootube/Componentes/VideoPlayer',
   component: VideoPlayer,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -61,7 +61,7 @@ type Story = StoryObj<typeof VideoPlayer>;
 const VideoPlayerDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="VideoPlayer"
       description="Reprodução do nó Media/VideoPlayer (18:1295). O arquivo o publica em duas larguras — 424×238 dentro do cartão horizontal do canal e 640×360 dentro do reprodutor completo —, sempre com a mesma geometria interna de controles: quem escala é o quadro, não a barra."

@@ -1,5 +1,5 @@
 /**
- * Tokens de Medida do Design System Unitube.
+ * Tokens de Medida do Design System Unootube.
  *
  * Espelho TypeScript de `spacing.css`. A escala vem do quadro `Spacing`
  * (`106:3125`) e os raios do quadro `Radius` (`106:3179`); as dimensões

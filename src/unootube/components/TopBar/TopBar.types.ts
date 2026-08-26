@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades da barra superior do Unitube.
+ * Propriedades da barra superior do Unootube.
  *
  * Reproduz o nó `Navigation/TopBar` (`7:111`): 1440×56 sobre
  * `--uni-color-background-secondary`, com o bloco de marca à esquerda (recuo de

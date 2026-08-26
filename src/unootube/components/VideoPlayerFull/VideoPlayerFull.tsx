@@ -4,7 +4,7 @@ import type { UniVideoPlayerFullProps } from './VideoPlayerFull.types';
 import './VideoPlayerFull.css';
 
 /**
- * Componente VideoPlayerFull — Design System Unitube
+ * Componente VideoPlayerFull — Design System Unootube
  *
  * Reproduz o nó `Media/VideoPlayerFull` (`20:2920`), o bloco que abre a coluna
  * principal da tela de vídeo.

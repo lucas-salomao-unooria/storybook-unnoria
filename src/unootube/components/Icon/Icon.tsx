@@ -4,7 +4,7 @@ import type { UniIconProps } from './Icon.types';
 import './Icon.css';
 
 /**
- * Componente Icon — Design System Unitube
+ * Componente Icon — Design System Unootube
  *
  * Renderiza os 45 glifos oficiais exportados do arquivo Figma "YouTube UI Clone
  * Design (Community)". Cada glifo preserva o `viewBox` original do export

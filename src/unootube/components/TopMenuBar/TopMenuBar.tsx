@@ -7,7 +7,7 @@ import type { UniTopMenuBarProps } from './TopMenuBar.types';
 import './TopMenuBar.css';
 
 /**
- * Componente TopMenuBar — Design System Unitube
+ * Componente TopMenuBar — Design System Unootube
  *
  * Reproduz o nó `Top-Menu` (`13:1696`) da tela inicial: a faixa horizontal de
  * pílulas de categoria, delimitada por um fio de 1px acima e outro abaixo.

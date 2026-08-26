@@ -1,5 +1,5 @@
 /**
- * Tokens de Cores do Design System Unitube.
+ * Tokens de Cores do Design System Unootube.
  *
  * Espelho TypeScript de `colors.css`. Os valores foram extraídos do arquivo
  * Figma "YouTube UI Clone Design (Community)" (fileKey

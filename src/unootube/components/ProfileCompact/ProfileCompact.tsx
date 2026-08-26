@@ -6,7 +6,7 @@ import type { UniProfileCompactProps } from './ProfileCompact.types';
 import './ProfileCompact.css';
 
 /**
- * Componente ProfileCompact — Design System Unitube
+ * Componente ProfileCompact — Design System Unootube
  *
  * Reproduz o nó `Navigation/ProfileCompact` (`7:87`): avatar de 32px em um alvo
  * de 60×40 com recuo lateral de 14px. É o único ponto do arquivo em que o

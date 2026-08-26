@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { uniElevation } from '../../../src/unitube/tokens';
-import { Sidebar, SidebarMenuItem, TopMenuBar, VideoCard } from '../../../src/unitube';
+import { uniElevation } from '../../../src/unootube/tokens';
+import { Sidebar, SidebarMenuItem, TopMenuBar, VideoCard } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { categories, videos } from '../fixtures';
 
 const meta: Meta = {
-  title: 'Unitube/Fundamentos/Elevação',
+  title: 'Unootube/Fundamentos/Elevação',
   parameters: { layout: 'fullscreen' },
 };
 
@@ -30,7 +30,7 @@ type Story = StoryObj;
 const ElevationDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Fundamentos • Elevação"
       title="Elevação"
       description="Três degraus de sombra, publicados com nome e uso pelo próprio arquivo. A biblioteca, no entanto, é plana por padrão: nenhuma das três telas reconstruídas aplica box-shadow em barra, cartão ou lista — a separação é feita por luminância de superfície e por fios de 1px."

@@ -24,7 +24,7 @@ import {
   VideoCardSmall,
   VideoDescription,
   VideoPlayerFull,
-} from '../../../src/unitube';
+} from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -51,7 +51,7 @@ import {
 } from '../fixtures';
 
 const meta: Meta = {
-  title: 'Unitube/Telas/Telas Compostas',
+  title: 'Unootube/Telas/Telas Compostas',
   parameters: { layout: 'fullscreen' },
 };
 
@@ -111,8 +111,8 @@ const FullSidebar = () => (
     </Sidebar.Section>
 
     <Sidebar.Section>
-      <SidebarMenuTitle title="More from Unitube" />
-      <SidebarMenuItem icon="premium" activeIcon="premiumFill" menuLabel="Unitube Premium" href="#" />
+      <SidebarMenuTitle title="More from Unootube" />
+      <SidebarMenuItem icon="premium" activeIcon="premiumFill" menuLabel="Unootube Premium" href="#" />
       <SidebarMenuItem icon="gaming" activeIcon="gamingFill" menuLabel="Gaming" href="#" />
       <SidebarMenuItem icon="live" activeIcon="liveFill" menuLabel="Live" href="#" />
       <SidebarMenuItem icon="sports" activeIcon="sportsFill" menuLabel="Sports" href="#" />
@@ -134,7 +134,7 @@ const FullSidebar = () => (
         )}
       </Sidebar.FooterRow>
       <Sidebar.FooterRow>
-        {['Terms', 'Privacy', 'Policy & Safety', 'How Unitube works', 'Test new features'].map(
+        {['Terms', 'Privacy', 'Policy & Safety', 'How Unootube works', 'Test new features'].map(
           (label) => (
             <FooterItem key={label} label={label} href="#" />
           )
@@ -369,10 +369,10 @@ const VideoScreen = () => (
 const ScreensDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Telas • Composições"
       title="Telas Compostas"
-      description="As três telas da página Screen (0:1) do arquivo Figma, reconstruídas com os componentes reais de src/unitube. Cada tela mede 1440×1024 e é montada exclusivamente a partir do repertório publicado — nenhum mockup paralelo foi criado."
+      description="As três telas da página Screen (0:1) do arquivo Figma, reconstruídas com os componentes reais de src/unootube. Cada tela mede 1440×1024 e é montada exclusivamente a partir do repertório publicado — nenhum mockup paralelo foi criado."
     />
 
     <UnooriaDocSectionHeader
@@ -499,7 +499,7 @@ const ScreensDocumentationPage = () => (
     <UnooriaDocSectionHeader title="5. Boas práticas de composição" barColor="#FC0D1C" />
     <UniDocPractices
       dos={[
-        'Monte as telas exclusivamente com os componentes de src/unitube.',
+        'Monte as telas exclusivamente com os componentes de src/unootube.',
         'Deixe a barra lateral e a área de conteúdo rolarem de forma independente.',
         'Use DesktopFrame para comparar a composição com o quadro do Figma.',
         'Mantenha a área de conteúdo em 1200px quando reproduzir a medida do arquivo.',
@@ -684,7 +684,7 @@ export const NavegacaoInterativa: Story = {
               }}
             >
               <Icon name="leftBottom" size="sm" tone="secondary" />
-              Composto com os componentes reais de src/unitube
+              Composto com os componentes reais de src/unootube
             </span>
           </div>
 

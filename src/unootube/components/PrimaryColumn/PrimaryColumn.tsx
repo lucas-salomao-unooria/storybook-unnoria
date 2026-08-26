@@ -3,7 +3,7 @@ import type { UniPrimaryColumnProps } from './PrimaryColumn.types';
 import './PrimaryColumn.css';
 
 /**
- * Componente PrimaryColumn — Design System Unitube
+ * Componente PrimaryColumn — Design System Unootube
  *
  * Reproduz o nó `Layout/PrimaryColumn` (`20:2992`). É um contêiner de
  * composição puro: define a largura de 664px, o recuo de 24px e o fundo

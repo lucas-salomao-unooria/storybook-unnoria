@@ -8,7 +8,7 @@ import type { UniChannelHeaderProps } from './ChannelHeader.types';
 import './ChannelHeader.css';
 
 /**
- * Componente ChannelHeader — Design System Unitube
+ * Componente ChannelHeader — Design System Unootube
  *
  * Reproduz o nó `Channel` (`17:2796`), o cabeçalho que abre a tela de canal.
  *

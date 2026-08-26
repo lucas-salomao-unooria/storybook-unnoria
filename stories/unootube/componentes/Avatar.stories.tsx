@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { Avatar } from '../../../src/unitube';
-import { uniAvatarSizes } from '../../../src/unitube/tokens';
+import { Avatar } from '../../../src/unootube';
+import { uniAvatarSizes } from '../../../src/unootube/tokens';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -20,7 +20,7 @@ import {
 import { avatars } from '../fixtures';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Unitube/Componentes/Avatar',
+  title: 'Unootube/Componentes/Avatar',
   component: Avatar,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -40,7 +40,7 @@ type Story = StoryObj<typeof Avatar>;
 const AvatarDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Fundação"
       title="Avatar"
       description="Reprodução do nó Avatar/UserAvatar (7:58): um quadrado com raio total preenchido por bitmap. O arquivo instancia o mesmo componente em seis diâmetros distintos — 24, 32, 36, 40, 48 e 80 pixels —, cada um medido em um contexto diferente e todos preservados como tokens literais."

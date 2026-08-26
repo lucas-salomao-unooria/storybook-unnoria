@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades do perfil expandido do Unitube.
+ * Propriedades do perfil expandido do Unootube.
  *
  * Reproduz o nó `Navigation/ProfileExpanded` (`7:93`): 204×40, formado por três
  * alvos de ícone de 40px — criar, aplicativos e notificações — seguidos do

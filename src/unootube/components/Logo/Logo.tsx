@@ -12,7 +12,7 @@ import './Logo.css';
 const BADGE_VIEWBOX = '0 0 28.5701 20';
 
 /**
- * Componente Logo — Design System Unitube
+ * Componente Logo — Design System Unootube
  *
  * Reproduz o nó `Brand/YoutubeLogo` (`2:88`) com os caminhos literais do export
  * SVG e o `viewBox` original de 90×20. O emblema preserva o vermelho literal do
@@ -24,7 +24,7 @@ const BADGE_VIEWBOX = '0 0 28.5701 20';
  * `--uni-color-text-primary` — ver o desvio registrado na estória.
  */
 export const Logo = React.forwardRef<SVGSVGElement, UniLogoProps>(
-  ({ variant = 'full', height = 20, title = 'Unitube', className = '', style, ...restProps }, ref) => {
+  ({ variant = 'full', height = 20, title = 'Unootube', className = '', style, ...restProps }, ref) => {
     const isBadge = variant === 'badge';
     const viewBox = isBadge ? BADGE_VIEWBOX : UNI_LOGO_VIEWBOX;
     const [, , viewWidth, viewHeight] = viewBox.split(' ').map(Number);

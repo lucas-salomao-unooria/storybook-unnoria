@@ -6,7 +6,7 @@ import type { UniTopMenuIconProps } from './TopMenuIcon.types';
 import './TopMenuIcon.css';
 
 /**
- * Componente TopMenuIcon — Design System Unitube
+ * Componente TopMenuIcon — Design System Unootube
  *
  * Reproduz o nó `Navigation/TopMenuIcon` (`10:665`), o alvo que fecha a barra
  * de filtros da tela inicial e permite avançar a lista de categorias.

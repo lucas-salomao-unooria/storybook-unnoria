@@ -1,5 +1,5 @@
 /**
- * Vetores do Logotipo do Design System Unitube.
+ * Vetores do Logotipo do Design System Unootube.
  *
  * Copiados **literalmente** do export SVG do nó `Brand/YoutubeLogo` (`2:88`) do
  * arquivo Figma "YouTube UI Clone Design (Community)". O `viewBox` original de

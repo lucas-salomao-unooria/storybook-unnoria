@@ -6,7 +6,7 @@ import type { UniPlaylistProps } from './Playlist.types';
 import './Playlist.css';
 
 /**
- * Componente Playlist — Design System Unitube
+ * Componente Playlist — Design System Unootube
  *
  * Reproduz o nó `Media/Playlist` (`19:1562`), a faixa horizontal que a tela de
  * canal repete quatro vezes.

@@ -96,7 +96,7 @@ export default defineConfig([
       'styles-chatgpt': 'src/styles-chatgpt.css',
       'styles-whatsappmobile': 'src/styles-whatsappmobile.css',
       'styles-tiktooria': 'src/styles-tiktooria.css',
-      'styles-unitube': 'src/styles-unitube.css',
+      'styles-unootube': 'src/styles-unootube.css',
     },
     outDir: OUT,
     clean: false,

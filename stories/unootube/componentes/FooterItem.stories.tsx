@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { FooterItem, Sidebar } from '../../../src/unitube';
+import { FooterItem, Sidebar } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof FooterItem> = {
-  title: 'Unitube/Componentes/FooterItem',
+  title: 'Unootube/Componentes/FooterItem',
   component: FooterItem,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -34,12 +34,12 @@ export default meta;
 type Story = StoryObj<typeof FooterItem>;
 
 const GROUP_ONE = ['About', 'Press', 'Copyright', 'Contact us', 'Creators', 'Advertise', 'Developers'];
-const GROUP_TWO = ['Terms', 'Privacy', 'Policy & Safety', 'How Unitube works', 'Test new features'];
+const GROUP_TWO = ['Terms', 'Privacy', 'Policy & Safety', 'How Unootube works', 'Test new features'];
 
 const FooterItemDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="FooterItem"
       description="Reprodução do nó Navigation/FooterItem (9:3231), o link institucional do rodapé da barra lateral. É o único uso de Roboto Bold 13 em todo o arquivo — uma combinação que a escala publica como Body/Small, mas em peso regular."

@@ -1,5 +1,5 @@
 /**
- * Componentes do Design System Unitube.
+ * Componentes do Design System Unootube.
  *
  * Reprodução em React do arquivo Figma "YouTube UI Clone Design (Community)"
  * (fileKey `HcbrbLtDZ1rMEvSjoXpA5c`). A ordem segue o inventário de componentes

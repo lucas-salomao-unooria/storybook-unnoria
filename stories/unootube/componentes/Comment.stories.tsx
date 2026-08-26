@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React, { useState } from 'react';
 
-import { Comment } from '../../../src/unitube';
+import { Comment } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { comments } from '../fixtures';
 
 const meta: Meta<typeof Comment> = {
-  title: 'Unitube/Componentes/Comment',
+  title: 'Unootube/Componentes/Comment',
   component: Comment,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -59,7 +59,7 @@ type Story = StoryObj<typeof Comment>;
 const CommentDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Conteúdo"
       title="Comment"
       description="Reprodução do nó Content/Comment (24:2191), o item da lista de comentários. É o único ponto do arquivo em que três degraus tipográficos convivem na mesma coluna — nome em Bold 13, data em Caption/Default e texto em Body/Medium —, todos com altura de linha declarada de 20px, o que mantém o ritmo vertical constante apesar dos corpos distintos."

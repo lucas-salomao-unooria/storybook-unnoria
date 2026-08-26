@@ -7,7 +7,7 @@ import {
   PrimaryColumn,
   VideoDescription,
   VideoPlayerFull,
-} from '../../../src/unitube';
+} from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -25,7 +25,7 @@ import {
 import { avatars, comments, playerPoster } from '../fixtures';
 
 const meta: Meta<typeof PrimaryColumn> = {
-  title: 'Unitube/Componentes/PrimaryColumn',
+  title: 'Unootube/Componentes/PrimaryColumn',
   component: PrimaryColumn,
   parameters: { layout: 'fullscreen' },
   argTypes: { className: { control: 'text' } },
@@ -77,7 +77,7 @@ const Content = () => (
 const PrimaryColumnDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Layout"
       title="PrimaryColumn"
       description="Reprodução do nó Layout/PrimaryColumn (20:2992), 664×968. É um contêiner de composição puro: define a largura, o recuo de 24px e o fundo principal — todo o conteúdo vem por children. Os 664px não são arbitrários: são os 640px do reprodutor mais os 24px de recuo à esquerda."

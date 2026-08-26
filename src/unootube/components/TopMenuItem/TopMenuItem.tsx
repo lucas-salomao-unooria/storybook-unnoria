@@ -5,7 +5,7 @@ import type { UniTopMenuItemProps } from './TopMenuItem.types';
 import './TopMenuItem.css';
 
 /**
- * Componente TopMenuItem — Design System Unitube
+ * Componente TopMenuItem — Design System Unootube
  *
  * Reproduz o nó `Navigation/TopMenuItem` (`10:545`), a pílula de categoria da
  * barra de filtros da tela inicial e das abas do canal.

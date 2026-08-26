@@ -65,7 +65,7 @@ const SidebarFooterRow = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
 SidebarFooterRow.displayName = 'Sidebar.FooterRow';
 
 /**
- * Componente Sidebar — Design System Unitube
+ * Componente Sidebar — Design System Unootube
  *
  * Reproduz o nó `Navigation/Sidebar` (`8:114`). É um contêiner de composição:
  * o arquivo o monta com 25 instâncias de `SidebarMenuItem`, 2 de

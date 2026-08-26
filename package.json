@@ -36,10 +36,10 @@
       "import": "./dist/tiktooria/index.mjs",
       "require": "./dist/tiktooria/index.cjs"
     },
-    "./unitube": {
-      "types": "./dist/unitube/index.d.ts",
-      "import": "./dist/unitube/index.mjs",
-      "require": "./dist/unitube/index.cjs"
+    "./unootube": {
+      "types": "./dist/unootube/index.d.ts",
+      "import": "./dist/unootube/index.mjs",
+      "require": "./dist/unootube/index.cjs"
     },
     "./styles.css": "./dist/styles.css",
     "./unooria.css": "./dist/styles-unooria.css",
@@ -47,7 +47,7 @@
     "./chatgpt.css": "./dist/styles-chatgpt.css",
     "./whatsappmobile.css": "./dist/styles-whatsappmobile.css",
     "./tiktooria.css": "./dist/styles-tiktooria.css",
-    "./unitube.css": "./dist/styles-unitube.css",
+    "./unootube.css": "./dist/styles-unootube.css",
     "./dist/*": "./dist/*"
   },
   "files": [

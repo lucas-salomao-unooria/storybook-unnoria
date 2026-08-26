@@ -3,7 +3,7 @@ import type { UniSidebarMenuTitleProps } from './SidebarMenuTitle.types';
 import './SidebarMenuTitle.css';
 
 /**
- * Componente SidebarMenuTitle — Design System Unitube
+ * Componente SidebarMenuTitle — Design System Unootube
  *
  * Reproduz o nó `Navigation/SidebarMenuTitle` (`9:1933`), o rótulo que abre
  * cada bloco temático da barra lateral.

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades da barra lateral do Unitube.
+ * Propriedades da barra lateral do Unootube.
  *
  * Reproduz o nó `Navigation/Sidebar` (`8:114`): 240px de largura sobre
  * `--uni-color-background-secondary`, dividida em blocos separados por fios de

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { uniTypography, UNI_FONT_FAMILY } from '../../../src/unitube/tokens';
-import { Comment, SidebarMenuItem, VideoCard, VideoCardSidebar } from '../../../src/unitube';
+import { uniTypography, UNI_FONT_FAMILY } from '../../../src/unootube/tokens';
+import { Comment, SidebarMenuItem, VideoCard, VideoCardSidebar } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { avatars, comments, videos } from '../fixtures';
 
 const meta: Meta = {
-  title: 'Unitube/Fundamentos/Tipografia',
+  title: 'Unootube/Fundamentos/Tipografia',
   parameters: { layout: 'fullscreen' },
 };
 
@@ -32,7 +32,7 @@ const SPECIMEN = 'The quick brown fox';
 const TypographyDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Fundamentos • Tipografia"
       title="Tipografia"
       description="Uma família — Roboto —, dois pesos e onze degraus. O arquivo declara letter-spacing zero em todos eles e alturas de linha absolutas em pixels, sem nenhum valor automático na escala publicada. É a escala tipográfica mais enxuta entre as marcas da plataforma."

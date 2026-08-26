@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { SecondaryColumn, TopMenuItem, VideoCardSidebar } from '../../../src/unitube';
+import { SecondaryColumn, TopMenuItem, VideoCardSidebar } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { suggestions } from '../fixtures';
 
 const meta: Meta<typeof SecondaryColumn> = {
-  title: 'Unitube/Componentes/SecondaryColumn',
+  title: 'Unootube/Componentes/SecondaryColumn',
   component: SecondaryColumn,
   parameters: { layout: 'fullscreen' },
   argTypes: { className: { control: 'text' } },
@@ -57,7 +57,7 @@ const Suggestions = ({ count = 8 }: { count?: number }) => (
 const SecondaryColumnDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Layout"
       title="SecondaryColumn"
       description="Reprodução do nó Layout/SecondaryColumn (20:2996), 426×968, a coluna de sugestões da tela de vídeo. O recuo é assimétrico — 24/24/0/0, sem folga inferior: a pilha de sugestões do arquivo tem 1530px de altura contra os 968px visíveis, ou seja, é deliberadamente cortada pela aresta do quadro."

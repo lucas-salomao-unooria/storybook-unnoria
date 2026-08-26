@@ -1,5 +1,5 @@
 /**
- * Módulo Principal do Design System Unitube
+ * Módulo Principal do Design System Unootube
  *
  * Reprodução em React do arquivo Figma "YouTube UI Clone Design (Community)"
  * (fileKey `HcbrbLtDZ1rMEvSjoXpA5c`), composto por três páginas: a documentação

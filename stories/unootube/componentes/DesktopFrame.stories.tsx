@@ -8,7 +8,7 @@ import {
   TopBar,
   TopMenuBar,
   VideoCard,
-} from '../../../src/unitube';
+} from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -26,7 +26,7 @@ import {
 import { avatars, categories, videos } from '../fixtures';
 
 const meta: Meta<typeof DesktopFrame> = {
-  title: 'Unitube/Componentes/DesktopFrame',
+  title: 'Unootube/Componentes/DesktopFrame',
   component: DesktopFrame,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -77,7 +77,7 @@ const MiniScreen = () => (
 const DesktopFrameDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Documentação"
       title="DesktopFrame"
       description="Moldura de documentação, não de produção. Reproduz o quadro de 1440×1024 em que o arquivo desenha as três telas — Home (3:185), Channel (15:913) e Video (19:1900) —, para que as estórias possam mostrar uma composição na medida exata do Figma. Cumpre o mesmo papel que o PhoneFrame nos módulos móveis da plataforma."

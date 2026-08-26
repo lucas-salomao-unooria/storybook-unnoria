@@ -4,7 +4,7 @@ import type { UniIconName } from './IconPaths';
 export type { UniIconName };
 
 /**
- * Tamanhos nomeados da grade de ícones do Unitube.
+ * Tamanhos nomeados da grade de ícones do Unootube.
  *
  * O arquivo desenha **todos** os 45 glifos em quadros de 24×24 e os aplica em
  * três tamanhos distintos, sempre por redimensionamento do quadro:
@@ -35,7 +35,7 @@ export type UniIconTone =
   | 'inherit';
 
 /**
- * Propriedades do componente Icon do Unitube.
+ * Propriedades do componente Icon do Unootube.
  */
 export interface UniIconProps extends Omit<React.SVGProps<SVGSVGElement>, 'name' | 'ref'> {
   /**

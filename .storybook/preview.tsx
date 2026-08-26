@@ -23,11 +23,11 @@ import '../src/tiktooria/tokens/typography.css';
 import '../src/tiktooria/tokens/spacing.css';
 import '../src/tiktooria/tokens/elevation.css';
 
-/* Unitube Tokens */
-import '../src/unitube/tokens/colors.css';
-import '../src/unitube/tokens/typography.css';
-import '../src/unitube/tokens/spacing.css';
-import '../src/unitube/tokens/elevation.css';
+/* Unootube Tokens */
+import '../src/unootube/tokens/colors.css';
+import '../src/unootube/tokens/typography.css';
+import '../src/unootube/tokens/spacing.css';
+import '../src/unootube/tokens/elevation.css';
 
 /* Plataforma Unooria Tokens */
 import '../src/unooria/tokens/colors.css';

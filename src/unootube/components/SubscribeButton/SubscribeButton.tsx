@@ -5,7 +5,7 @@ import type { UniSubscribeButtonProps } from './SubscribeButton.types';
 import './SubscribeButton.css';
 
 /**
- * Componente SubscribeButton — Design System Unitube
+ * Componente SubscribeButton — Design System Unootube
  *
  * Reproduz o nó `Channel/Subscribes-Btn`, o único botão preenchido do arquivo.
  * Aparece com geometria idêntica no cabeçalho de canal (`17:2796`) e na

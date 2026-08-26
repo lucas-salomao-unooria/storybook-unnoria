@@ -1,5 +1,5 @@
 /**
- * Tokens de Tipografia do Design System Unitube.
+ * Tokens de Tipografia do Design System Unootube.
  *
  * Espelho TypeScript de `typography.css`. Extraídos do quadro `Typography`
  * (`106:3067`) da página `🎨 Design System`. O arquivo declara onze degraus em

@@ -6,7 +6,7 @@ import type { UniSidebarMenuItemProps } from './SidebarMenuItem.types';
 import './SidebarMenuItem.css';
 
 /**
- * Componente SidebarMenuItem — Design System Unitube
+ * Componente SidebarMenuItem — Design System Unootube
  *
  * Reproduz o nó `Navigation/SidebarMenuItem` (`8:126`), a linha de 224×40 que
  * compõe todos os blocos da barra lateral.

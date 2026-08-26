@@ -3,7 +3,7 @@ import type { UniSecondaryColumnProps } from './SecondaryColumn.types';
 import './SecondaryColumn.css';
 
 /**
- * Componente SecondaryColumn — Design System Unitube
+ * Componente SecondaryColumn — Design System Unootube
  *
  * Reproduz o nó `Layout/SecondaryColumn` (`20:2996`), a coluna de sugestões da
  * tela de vídeo.

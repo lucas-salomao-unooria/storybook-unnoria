@@ -5,7 +5,7 @@ import type { UniVideoCardProps } from './VideoCard.types';
 import './VideoCard.css';
 
 /**
- * Componente VideoCard — Design System Unitube
+ * Componente VideoCard — Design System Unootube
  *
  * Reproduz o nó `Media/VideoCard` (`12:593`), o cartão que preenche a grade da
  * tela inicial em linhas de quatro.

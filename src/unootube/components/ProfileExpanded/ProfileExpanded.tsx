@@ -7,7 +7,7 @@ import type { UniProfileExpandedProps } from './ProfileExpanded.types';
 import './ProfileExpanded.css';
 
 /**
- * Componente ProfileExpanded — Design System Unitube
+ * Componente ProfileExpanded — Design System Unootube
  *
  * Reproduz o nó `Navigation/ProfileExpanded` (`7:93`): o bloco direito da barra
  * superior, com os alvos de criar, aplicativos e notificações — cada um de
@@ -46,7 +46,7 @@ export const ProfileExpanded = React.forwardRef<HTMLDivElement, UniProfileExpand
       <button
         type="button"
         className="uni-profile-expanded__action"
-        aria-label="Aplicativos do Unitube"
+        aria-label="Aplicativos do Unootube"
         onClick={onApps}
       >
         <Icon name="apps" size="lg" tone="primary" />

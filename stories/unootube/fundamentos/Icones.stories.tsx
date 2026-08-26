@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React, { useState } from 'react';
 
-import { Icon, uniIconRegistry, uniIcons, uniIconNames } from '../../../src/unitube';
-import type { UniIconName } from '../../../src/unitube';
-import { uniPlayerGlyphs } from '../../../src/unitube';
-import { PlayerGlyph } from '../../../src/unitube';
+import { Icon, uniIconRegistry, uniIcons, uniIconNames } from '../../../src/unootube';
+import type { UniIconName } from '../../../src/unootube';
+import { uniPlayerGlyphs } from '../../../src/unootube';
+import { PlayerGlyph } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -20,7 +20,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta = {
-  title: 'Unitube/Fundamentos/Ícones',
+  title: 'Unootube/Fundamentos/Ícones',
   parameters: { layout: 'fullscreen' },
 };
 
@@ -88,7 +88,7 @@ const GlyphCell: React.FC<{ name: UniIconName }> = ({ name }) => {
 const IconsDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Fundamentos • Ícones"
       title="Ícones"
       description="Quarenta e cinco glifos, todos desenhados em quadros de 24×24 e exportados literalmente do arquivo Figma. Treze deles existem em duas versões — contorno e preenchido —, e é essa dupla que marca o item ativo da barra lateral. Nenhum caminho foi desenhado à mão ou substituído por outra biblioteca."

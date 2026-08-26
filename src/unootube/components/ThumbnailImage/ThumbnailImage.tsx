@@ -3,7 +3,7 @@ import type { UniThumbnailImageProps } from './ThumbnailImage.types';
 import './ThumbnailImage.css';
 
 /**
- * Componente ThumbnailImage — Design System Unitube
+ * Componente ThumbnailImage — Design System Unootube
  *
  * Reproduz o nó `Media/ThumbnailImage` (`11:997`), a miniatura reutilizada pelos
  * quatro formatos de cartão do arquivo.

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { SidebarMenuItem, uniIconNames } from '../../../src/unitube';
+import { SidebarMenuItem, uniIconNames } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof SidebarMenuItem> = {
-  title: 'Unitube/Componentes/SidebarMenuItem',
+  title: 'Unootube/Componentes/SidebarMenuItem',
   component: SidebarMenuItem,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -52,7 +52,7 @@ const PAIRS: [string, string, string][] = [
   ['history', 'historyFill', 'History'],
   ['watchLater', 'watchLaterFill', 'Watch Later'],
   ['likedOutline', 'likedFill', 'Liked Videos'],
-  ['premium', 'premiumFill', 'Unitube Premium'],
+  ['premium', 'premiumFill', 'Unootube Premium'],
   ['gaming', 'gamingFill', 'Gaming'],
   ['live', 'liveFill', 'Live'],
   ['sports', 'sportsFill', 'Sports'],
@@ -62,7 +62,7 @@ const PAIRS: [string, string, string][] = [
 const SidebarMenuItemDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="SidebarMenuItem"
       description="Reprodução do nó Navigation/SidebarMenuItem (8:126), a linha de 224×40 que compõe todos os seis blocos da barra lateral. O estado ativo do arquivo é marcado de duas formas simultâneas: o fundo passa à superfície interativa e o glifo troca para a versão preenchida — não há mudança de cor de texto."

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades do perfil compacto do Unitube.
+ * Propriedades do perfil compacto do Unootube.
  *
  * Reproduz o nó `Navigation/ProfileCompact` (`7:87`): um alvo de 60×40 com
  * recuo 4/14 e avatar de 32px.

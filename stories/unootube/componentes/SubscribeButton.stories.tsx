@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { SubscribeButton } from '../../../src/unitube';
+import { SubscribeButton } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof SubscribeButton> = {
-  title: 'Unitube/Componentes/SubscribeButton',
+  title: 'Unootube/Componentes/SubscribeButton',
   component: SubscribeButton,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -43,7 +43,7 @@ type Story = StoryObj<typeof SubscribeButton>;
 const SubscribeButtonDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Ação"
       title="SubscribeButton"
       description="Reprodução do nó Channel/Subscribes-Btn, o único botão preenchido de todo o arquivo. Aparece com geometria idêntica no cabeçalho de canal (17:2796) e na descrição do vídeo (20:2989): 116×36, recuo 10/16, raio de 2px e preenchimento #CC0000 — a primitiva red/700, e não o vermelho semântico da marca."

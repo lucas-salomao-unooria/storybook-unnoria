@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { FooterItem, Sidebar, SidebarMenuItem, SidebarMenuTitle } from '../../../src/unitube';
+import { FooterItem, Sidebar, SidebarMenuItem, SidebarMenuTitle } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof Sidebar> = {
-  title: 'Unitube/Componentes/Sidebar',
+  title: 'Unootube/Componentes/Sidebar',
   component: Sidebar,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -78,11 +78,11 @@ const FullSidebar = ({ height = 720 }: { height?: number }) => (
     </Sidebar.Section>
 
     <Sidebar.Section>
-      <SidebarMenuTitle title="More from Unitube" />
+      <SidebarMenuTitle title="More from Unootube" />
       <SidebarMenuItem
         icon="premium"
         activeIcon="premiumFill"
-        menuLabel="Unitube Premium"
+        menuLabel="Unootube Premium"
         href="#"
       />
       <SidebarMenuItem icon="gaming" activeIcon="gamingFill" menuLabel="Gaming" href="#" />
@@ -106,7 +106,7 @@ const FullSidebar = ({ height = 720 }: { height?: number }) => (
         )}
       </Sidebar.FooterRow>
       <Sidebar.FooterRow>
-        {['Terms', 'Privacy', 'Policy & Safety', 'How Unitube works', 'Test new features'].map(
+        {['Terms', 'Privacy', 'Policy & Safety', 'How Unootube works', 'Test new features'].map(
           (label) => (
             <FooterItem key={label} label={label} href="#" />
           )
@@ -122,7 +122,7 @@ const FullSidebar = ({ height = 720 }: { height?: number }) => (
 const SidebarDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="Sidebar"
       description="Reprodução do nó Navigation/Sidebar (8:114): 240px de largura sobre a superfície de barra, dividida em seis blocos separados por fios de 1px. É um contêiner de composição — o arquivo o monta com 25 instâncias de SidebarMenuItem, duas de SidebarMenuTitle e um rodapé de links."
@@ -393,7 +393,7 @@ export const ComposicaoModular: Story = {
 
       <Sidebar style={{ height: 320 }} label="Barra com rótulo de seção">
         <Sidebar.Section divider={false}>
-          <SidebarMenuTitle title="More from Unitube" />
+          <SidebarMenuTitle title="More from Unootube" />
           <SidebarMenuItem icon="premium" activeIcon="premiumFill" menuLabel="Premium" href="#" />
           <SidebarMenuItem icon="gaming" activeIcon="gamingFill" menuLabel="Gaming" href="#" />
         </Sidebar.Section>

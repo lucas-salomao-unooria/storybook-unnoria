@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React, { useState } from 'react';
 
-import { ChannelHeader } from '../../../src/unitube';
+import { ChannelHeader } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { avatars, channelCover, channelTabs } from '../fixtures';
 
 const meta: Meta<typeof ChannelHeader> = {
-  title: 'Unitube/Componentes/ChannelHeader',
+  title: 'Unootube/Componentes/ChannelHeader',
   component: ChannelHeader,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -59,7 +59,7 @@ type Story = StoryObj<typeof ChannelHeader>;
 const ChannelHeaderDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Conteúdo"
       title="ChannelHeader"
       description="Reprodução do nó Channel (17:2796), 1200×340, o cabeçalho que abre a tela de canal. A barra de abas não usa a pílula do TopMenuItem: usa apenas o rótulo, e marca a aba ativa com um fio de 1px na base — a única aparição desse padrão de sublinhado em todo o arquivo."

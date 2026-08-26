@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 /**
- * Kit de documentação do Design System Unitube.
+ * Kit de documentação do Design System Unootube.
  *
  * Componentes utilitários compartilhados por todas as estórias da seção
- * "Unitube", garantindo que as sete seções obrigatórias do Padrão Ouro
+ * "Unootube", garantindo que as sete seções obrigatórias do Padrão Ouro
  * (visão geral, especificações do Figma, anatomia, matriz de variantes, boas
  * práticas, suporte a superfícies e referência de props) tenham apresentação
  * consistente. A moldura externa continua sendo o `UnooriaDocShell`.
@@ -21,7 +21,7 @@ const DOC_LINK = '#6487C2';
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
 /**
- * URL do arquivo Figma de origem do Design System Unitube.
+ * URL do arquivo Figma de origem do Design System Unootube.
  */
 export const UNI_FIGMA_FILE =
   'https://www.figma.com/design/HcbrbLtDZ1rMEvSjoXpA5c/YouTube-UI-Clone-Design--Community-';

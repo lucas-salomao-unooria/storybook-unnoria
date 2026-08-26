@@ -13,5 +13,5 @@ export * as InstanooriaUI from './instanooria';
 export * as WhatsAppMobileUI from './whatsappmobile';
 export * as ChatGPTUI from './chatgpt';
 export * as TikTooriaUI from './tiktooria';
-export * as UnitubeUI from './unitube';
+export * as UnootubeUI from './unootube';
 export * from './unooria';

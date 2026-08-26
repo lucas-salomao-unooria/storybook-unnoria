@@ -4,7 +4,7 @@ import type { UniVideoCardSidebarProps } from './VideoCardSidebar.types';
 import './VideoCardSidebar.css';
 
 /**
- * Componente VideoCardSidebar — Design System Unitube
+ * Componente VideoCardSidebar — Design System Unootube
  *
  * Reproduz o nó `Media/VideoCardSidebar` (`25:3450`), o cartão que a coluna
  * secundária da tela de vídeo repete verticalmente.

@@ -7,7 +7,7 @@ import type { UniCommentProps } from './Comment.types';
 import './Comment.css';
 
 /**
- * Componente Comment — Design System Unitube
+ * Componente Comment — Design System Unootube
  *
  * Reproduz o nó `Content/Comment` (`24:2191`), o item da lista de comentários
  * da tela de vídeo.

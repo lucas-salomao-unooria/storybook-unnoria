@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { ProfileCompact } from '../../../src/unitube';
+import { ProfileCompact } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { avatars } from '../fixtures';
 
 const meta: Meta<typeof ProfileCompact> = {
-  title: 'Unitube/Componentes/ProfileCompact',
+  title: 'Unootube/Componentes/ProfileCompact',
   component: ProfileCompact,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -40,7 +40,7 @@ type Story = StoryObj<typeof ProfileCompact>;
 const ProfileCompactDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="ProfileCompact"
       description="Reprodução do nó Navigation/ProfileCompact (7:87): um avatar de 32px dentro de um alvo de 60×40 com recuo lateral de 14px. É o único ponto de todo o arquivo em que o avatar de 32px aparece, e o recuo de 14px também não se repete em nenhum outro nó."

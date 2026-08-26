@@ -215,43 +215,44 @@
 @import './tiktooria/components/VideoMeta/VideoMeta.css';
 
 /* ----------------------------------------------------
- * Tokens de Fundação (Unitube)
+ * Tokens de Fundação (Unootube)
  * ---------------------------------------------------- */
-@import './unitube/tokens/colors.css';
-@import './unitube/tokens/typography.css';
-@import './unitube/tokens/spacing.css';
-@import './unitube/tokens/elevation.css';
+@import './unootube/tokens/colors.css';
+@import './unootube/tokens/typography.css';
+@import './unootube/tokens/spacing.css';
+@import './unootube/tokens/elevation.css';
 
 /* ----------------------------------------------------
- * Estilos dos Componentes (Unitube)
+ * Estilos dos Componentes (Unootube)
  * ---------------------------------------------------- */
-@import './unitube/components/Avatar/Avatar.css';
-@import './unitube/components/Button/Button.css';
-@import './unitube/components/ChannelHeader/ChannelHeader.css';
-@import './unitube/components/Comment/Comment.css';
-@import './unitube/components/DesktopFrame/DesktopFrame.css';
-@import './unitube/components/FooterItem/FooterItem.css';
-@import './unitube/components/Icon/Icon.css';
-@import './unitube/components/Logo/Logo.css';
-@import './unitube/components/Playlist/Playlist.css';
-@import './unitube/components/PrimaryColumn/PrimaryColumn.css';
-@import './unitube/components/ProfileCompact/ProfileCompact.css';
-@import './unitube/components/ProfileExpanded/ProfileExpanded.css';
-@import './unitube/components/SearchBox/SearchBox.css';
-@import './unitube/components/SecondaryColumn/SecondaryColumn.css';
-@import './unitube/components/Sidebar/Sidebar.css';
-@import './unitube/components/SidebarMenuItem/SidebarMenuItem.css';
-@import './unitube/components/SidebarMenuTitle/SidebarMenuTitle.css';
-@import './unitube/components/SubscribeButton/SubscribeButton.css';
-@import './unitube/components/ThumbnailImage/ThumbnailImage.css';
-@import './unitube/components/TopBar/TopBar.css';
-@import './unitube/components/TopMenuBar/TopMenuBar.css';
-@import './unitube/components/TopMenuIcon/TopMenuIcon.css';
-@import './unitube/components/TopMenuItem/TopMenuItem.css';
-@import './unitube/components/VideoCard/VideoCard.css';
-@import './unitube/components/VideoCardHorizontal/VideoCardHorizontal.css';
-@import './unitube/components/VideoCardSidebar/VideoCardSidebar.css';
-@import './unitube/components/VideoCardSmall/VideoCardSmall.css';
-@import './unitube/components/VideoDescription/VideoDescription.css';
-@import './unitube/components/VideoPlayer/VideoPlayer.css';
-@import './unitube/components/VideoPlayerFull/VideoPlayerFull.css';
+@import './unootube/components/Avatar/Avatar.css';
+@import './unootube/components/Button/Button.css';
+@import './unootube/components/ChannelHeader/ChannelHeader.css';
+@import './unootube/components/Comment/Comment.css';
+@import './unootube/components/DesktopFrame/DesktopFrame.css';
+@import './unootube/components/FooterItem/FooterItem.css';
+@import './unootube/components/Icon/Icon.css';
+@import './unootube/components/Logo/Logo.css';
+@import './unootube/components/Playlist/Playlist.css';
+@import './unootube/components/PrimaryColumn/PrimaryColumn.css';
+@import './unootube/components/ProfileCompact/ProfileCompact.css';
+@import './unootube/components/ProfileExpanded/ProfileExpanded.css';
+@import './unootube/components/SearchBox/SearchBox.css';
+@import './unootube/components/SecondaryColumn/SecondaryColumn.css';
+@import './unootube/components/Sidebar/Sidebar.css';
+@import './unootube/components/SidebarMenuItem/SidebarMenuItem.css';
+@import './unootube/components/SidebarMenuTitle/SidebarMenuTitle.css';
+@import './unootube/components/SubscribeButton/SubscribeButton.css';
+@import './unootube/components/ThumbnailImage/ThumbnailImage.css';
+@import './unootube/components/TopBar/TopBar.css';
+@import './unootube/components/TopMenuBar/TopMenuBar.css';
+@import './unootube/components/TopMenuIcon/TopMenuIcon.css';
+@import './unootube/components/TopMenuItem/TopMenuItem.css';
+@import './unootube/components/VideoCard/VideoCard.css';
+@import './unootube/components/VideoCardHorizontal/VideoCardHorizontal.css';
+@import './unootube/components/VideoCardSidebar/VideoCardSidebar.css';
+@import './unootube/components/VideoCardSmall/VideoCardSmall.css';
+@import './unootube/components/VideoDescription/VideoDescription.css';
+@import './unootube/components/VideoPlayer/VideoPlayer.css';
+@import './unootube/components/VideoPlayerFull/VideoPlayerFull.css';
+

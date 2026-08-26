@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades do reprodutor de vídeo do Unitube.
+ * Propriedades do reprodutor de vídeo do Unootube.
  *
  * Reproduz o nó `Media/VideoPlayer` (`18:1295`), publicado em duas larguras —
  * 424×238 dentro do cartão horizontal do canal e 640×360 dentro do reprodutor

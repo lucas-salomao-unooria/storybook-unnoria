@@ -9,7 +9,7 @@ import React from 'react';
 export type UniLogoVariant = 'full' | 'badge';
 
 /**
- * Propriedades do componente Logo do Unitube.
+ * Propriedades do componente Logo do Unootube.
  */
 export interface UniLogoProps extends Omit<React.SVGProps<SVGSVGElement>, 'ref'> {
   /**
@@ -27,7 +27,7 @@ export interface UniLogoProps extends Omit<React.SVGProps<SVGSVGElement>, 'ref'>
 
   /**
    * Rótulo acessível. Quando omitido, o SVG é tratado como decorativo.
-   * @default 'Unitube'
+   * @default 'Unootube'
    */
   title?: string;
 

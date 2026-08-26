@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { SubscribeButton, VideoDescription } from '../../../src/unitube';
+import { SubscribeButton, VideoDescription } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -22,7 +22,7 @@ const LONG_DESCRIPTION =
   'Video description text — nesta demonstração, o texto é longo o bastante para exceder as duas linhas que o componente mostra por padrão, de modo que o link de expansão tenha função real. O arquivo publica apenas o rótulo “show more”, sem descrever o comportamento de expansão.';
 
 const meta: Meta<typeof VideoDescription> = {
-  title: 'Unitube/Componentes/VideoDescription',
+  title: 'Unootube/Componentes/VideoDescription',
   component: VideoDescription,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -58,7 +58,7 @@ type Story = StoryObj<typeof VideoDescription>;
 const VideoDescriptionDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Conteúdo"
       title="VideoDescription"
       description="Reprodução do nó Content/VideoDescription (20:2989), o bloco que apresenta o canal e a descrição logo abaixo do reprodutor. O recuo de 64px na descrição não é arbitrário: é a soma do avatar de 48px com a folga de 16px da coluna de retrato, de modo que o texto se alinhe ao nome do canal e não à aresta do bloco."

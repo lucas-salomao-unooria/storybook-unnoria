@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { TopMenuIcon, TopMenuItem, uniIconNames } from '../../../src/unitube';
+import { TopMenuIcon, TopMenuItem, uniIconNames } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -18,7 +18,7 @@ import {
 } from '../../../.storybook/components';
 
 const meta: Meta<typeof TopMenuIcon> = {
-  title: 'Unitube/Componentes/TopMenuIcon',
+  title: 'Unootube/Componentes/TopMenuIcon',
   component: TopMenuIcon,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof TopMenuIcon>;
 const TopMenuIconDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="TopMenuIcon"
       description="Reprodução do nó Navigation/TopMenuIcon (10:665), o alvo que fecha a barra de filtros e permite avançar a lista de categorias. O recuo de 20px em um alvo de 56px deixa o glifo com 16px — é o único ponto do arquivo em que um glifo de 24×24 aparece nesse tamanho fora da barra do comentário."

@@ -6,8 +6,8 @@ import {
   uniRadius,
   uniDimensions,
   uniAvatarSizes,
-} from '../../../src/unitube/tokens';
-import { Avatar, SearchBox, TopMenuItem, VideoCard } from '../../../src/unitube';
+} from '../../../src/unootube/tokens';
+import { Avatar, SearchBox, TopMenuItem, VideoCard } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -24,7 +24,7 @@ import {
 import { avatars, videos } from '../fixtures';
 
 const meta: Meta = {
-  title: 'Unitube/Fundamentos/Espaçamento & Layout',
+  title: 'Unootube/Fundamentos/Espaçamento & Layout',
   parameters: { layout: 'fullscreen' },
 };
 
@@ -35,7 +35,7 @@ type Story = StoryObj;
 const SpacingDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Fundamentos • Espaçamento & Layout"
       title="Espaçamento & Layout"
       description="Treze degraus de espaçamento, oito raios e um conjunto de dimensões estruturais medidas nó a nó. O arquivo declara base de 4px, mas a escala publicada preserva degraus finos de 1, 2, 6 e 10 pixels — que não podem ser arredondados para a grade."

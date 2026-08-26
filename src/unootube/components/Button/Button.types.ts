@@ -2,7 +2,7 @@ import React from 'react';
 import type { UniIconName } from '../Icon';
 
 /**
- * Propriedades do botão de ação do Unitube.
+ * Propriedades do botão de ação do Unootube.
  *
  * Reproduz o nó `Action/Button` (`20:2758`): um alvo de 97×40 composto por um
  * quadro de ícone de 36×36 e um quadro de rótulo em Label/Large.

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { Button, VideoPlayerFull } from '../../../src/unitube';
+import { Button, VideoPlayerFull } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { playerPoster } from '../fixtures';
 
 const meta: Meta<typeof VideoPlayerFull> = {
-  title: 'Unitube/Componentes/VideoPlayerFull',
+  title: 'Unootube/Componentes/VideoPlayerFull',
   component: VideoPlayerFull,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -56,7 +56,7 @@ const Actions = () => (
 const VideoPlayerFullDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="VideoPlayerFull"
       description="Reprodução do nó Media/VideoPlayerFull (20:2920), 640×455, o bloco que abre a coluna principal da tela de vídeo. Duas escolhas tipográficas do arquivo destoam do esperado e foram preservadas: o título usa peso regular, enquanto a linha de metadados — de hierarquia inferior — usa Bold."
@@ -182,7 +182,7 @@ const VideoPlayerFullDocumentationPage = () => (
         <VideoPlayerFull
           src={playerPoster}
           overlayTitle="Ep 6"
-          videoTitle="Ep 6: Living to Serve | SEARCH ON — como a hierarquia tipográfica do Unitube organiza a tela de vídeo"
+          videoTitle="Ep 6: Living to Serve | SEARCH ON — como a hierarquia tipográfica do Unootube organiza a tela de vídeo"
           metadata="1M views · 3 years ago"
           actions={<Actions />}
         />

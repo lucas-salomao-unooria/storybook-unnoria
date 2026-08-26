@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React, { useState } from 'react';
 
-import { TopMenuBar } from '../../../src/unitube';
+import { TopMenuBar } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { categories } from '../fixtures';
 
 const meta: Meta<typeof TopMenuBar> = {
-  title: 'Unitube/Componentes/TopMenuBar',
+  title: 'Unootube/Componentes/TopMenuBar',
   component: TopMenuBar,
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -46,7 +46,7 @@ type Story = StoryObj<typeof TopMenuBar>;
 const TopMenuBarDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="TopMenuBar"
       description="Reprodução do nó Top-Menu (13:1696) da tela inicial: a faixa horizontal de pílulas de categoria, delimitada por um fio de 1px acima e outro abaixo. No arquivo a lista transborda o quadro — são 28 pílulas em 1200px de largura visível —, e o alvo de ícone à direita indica a continuação."

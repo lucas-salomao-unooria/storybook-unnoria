@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React, { useState } from 'react';
 
-import { TopMenuItem } from '../../../src/unitube';
+import { TopMenuItem } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { categories } from '../fixtures';
 
 const meta: Meta<typeof TopMenuItem> = {
-  title: 'Unitube/Componentes/TopMenuItem',
+  title: 'Unootube/Componentes/TopMenuItem',
   component: TopMenuItem,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -39,7 +39,7 @@ type Story = StoryObj<typeof TopMenuItem>;
 const TopMenuItemDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="TopMenuItem"
       description="Reprodução do nó Navigation/TopMenuItem (10:545), a pílula de categoria da barra de filtros. O arquivo publica os dois estados com valores literais distintos, e não por cálculo: ativo é branco puro com rótulo quase preto, sem contorno; inativo é a superfície interativa com um contorno de 0,3px — espessura fracionária que não pode ser arredondada."

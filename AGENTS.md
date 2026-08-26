@@ -49,7 +49,7 @@ O pacote publica **cinco design systems** em um único artefato NPM:
 | WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 29 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
 
-- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnitubeUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
+- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
 - **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
   - Código de produção: `src/chatgpt/tokens/` e `src/chatgpt/components/[NomeComponente]/`.
   - Estórias: `stories/chatgpt/fundamentos/`, `stories/chatgpt/componentes/` e `stories/chatgpt/telas/`.
@@ -72,13 +72,13 @@ O pacote publica **cinco design systems** em um único artefato NPM:
   - Conteúdo de demonstração compartilhado: `stories/tiktooria/fixtures.ts`.
   - Recursos rasterizados exportados do Figma (quadros de vídeo, retratos, miniaturas, capa de álbum e pré-visualização de câmera): `public/tiktooria/`.
   - Prefixo de variáveis CSS: `--tik-*`. Prefixo de classes: `.tik-*`. Atributo de contexto: `data-tik-surface="chrome | immersive"`.
-- **Unitube** (plataforma de vídeo da Unooria, derivada do arquivo Figma "YouTube UI Clone Design (Community)"):
-  - Código de produção: `src/unitube/tokens/` e `src/unitube/components/[NomeComponente]/`.
-  - Estórias: `stories/unitube/fundamentos/`, `stories/unitube/componentes/` e `stories/unitube/telas/`.
-  - Conteúdo de demonstração compartilhado: `stories/unitube/fixtures.ts`.
+- **Unootube** (plataforma de vídeo da Unooria, derivada do arquivo Figma "YouTube UI Clone Design (Community)"):
+  - Código de produção: `src/unootube/tokens/` e `src/unootube/components/[NomeComponente]/`.
+  - Estórias: `stories/unootube/fundamentos/`, `stories/unootube/componentes/` e `stories/unootube/telas/`.
+  - Conteúdo de demonstração compartilhado: `stories/unootube/fixtures.ts`.
   - Prefixo de variáveis CSS: `--uni-*`. Prefixo de classes: `.uni-*`. Atributo de tema: `data-uni-theme="dark"` (o arquivo publica **apenas** o tema escuro).
   - **Nenhum bitmap integra o pacote**: as miniaturas do arquivo são logotipos de terceiros e não foram redistribuídas. Todas as imagens entram por prop.
-- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unitube — são marcas com hierarquias cromáticas distintas.
+- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube — são marcas com hierarquias cromáticas distintas.
 
 ---
 
@@ -172,8 +172,8 @@ Todo componente, estilo ou documentação do Tik Tooria **DEVE** consumir exclus
 - **Medidas**: escala `--tik-spacing-4xs` (2px) a `--tik-spacing-4xl` (48px), calha `--tik-gutter` (16px), recuo de rótulo `--tik-row-inset` (48px), raios `--tik-radius-xs` (1px) a `--tik-radius-full`, dimensões estruturais (`--tik-device-width` 414px, `--tik-device-height` 896px, `--tik-navbar-height` 88px, `--tik-tabbar-height` 83px, `--tik-row-height` 52px, `--tik-social-row-height` 76px) e os **seis diâmetros de avatar** (32/47/49/56/90/96px), todos preservados. Os degraus fracionários `--tik-hairline` (0,33px) e `--tik-grid-hairline` (0,83px) **não podem ser arredondados**.
 - **Elevação**: a biblioteca é **plana por padrão**. Os dois estilos publicados são `--tik-elevation-action-button` ("Action Button Shadow") e `--tik-text-drop` ("Text Drop"). Barras e cartões se separam por fios de 0,33px em quatro tons distintos, e desfoque existe apenas em cinco alvos flutuantes. **É proibido introduzir `box-shadow`** em linhas, campos, chips ou folhas inferiores.
 
-### 2.7. Tokens do Unitube (`src/unitube/tokens/`)
-Todo componente, estilo ou documentação do Unitube **DEVE** consumir exclusivamente as variáveis `--uni-*`. É o único arquivo da plataforma que **documenta os próprios tokens**: a página `🎨 Design System` (`104:3087`) publica as primitivas, nove tokens semânticos com nome e descrição de uso, a escala tipográfica, o espaçamento, os raios e as elevações. Os demais valores foram lidos do preenchimento literal do nó e registram o `figmaNode` em `colors.ts`.
+### 2.7. Tokens do Unootube (`src/unootube/tokens/`)
+Todo componente, estilo ou documentação do Unootube **DEVE** consumir exclusivamente as variáveis `--uni-*`. É o único arquivo da plataforma que **documenta os próprios tokens**: a página `🎨 Design System` (`104:3087`) publica as primitivas, nove tokens semânticos com nome e descrição de uso, a escala tipográfica, o espaçamento, os raios e as elevações. Os demais valores foram lidos do preenchimento literal do nó e registram o `figmaNode` em `colors.ts`.
 
 - **Modo único — escuro**: o quadro semântico se intitula "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme first". **É PROIBIDO derivar um tema claro por cálculo** — as primitivas neutras claras (`--uni-color-neutral-50` a `-400`) existem como origem de texto e contorno sobre fundo escuro, não como superfície.
 - **Primitivas neutras (12 degraus)**: `--uni-color-white`, `-black` e `--uni-color-neutral-50|100|200|300|400|500|600|700|800|900`. **Nunca aplicadas diretamente em componente** — servem de origem para os aliases semânticos.
@@ -322,9 +322,9 @@ O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem
 
 ## 5. Validação Obrigatória e Critérios de Aceite
 Antes de considerar qualquer tarefa de componente ou documentação concluída:
-1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unitube/tokens/` para o Unitube), sem hexadecimais avulsos e sem mistura entre marcas.
+1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube), sem hexadecimais avulsos e sem mistura entre marcas.
 2. Executar `npx tsc --noEmit` e garantir **0 erros de compilação TypeScript**.
-3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unitube.css`).
+3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`).
 4. Executar `npm run build-storybook` e validar o **build sem falhas do Storybook**.
 5. Executar `npm run lint` e garantir **0 erros e 0 warnings**.
 6. Executar `npm test` e garantir que **todas as estórias renderizam** — a suíte Vitest monta cada estória em um Chromium real.
@@ -502,21 +502,21 @@ Qualquer divergência intencional **DEVE** ser documentada com o `TikDocDeviatio
 
 ---
 
-## 10. Design System Unitube (Seção `Unitube` do Storybook)
+## 10. Design System Unootube (Seção `Unootube` do Storybook)
 
-O **Unitube** é a plataforma de vídeo da Plataforma Unooria, implementada a partir do arquivo Figma [YouTube UI Clone Design (Community)](https://www.figma.com/design/HcbrbLtDZ1rMEvSjoXpA5c/YouTube-UI-Clone-Design--Community-) (`fileKey HcbrbLtDZ1rMEvSjoXpA5c`), composto por três páginas: a documentação de tokens em `🎨 Design System` (`104:3087`), os componentes em `Component` (`7:182`) e as três telas de referência em `Screen` (`0:1`), todas de 1440×1024.
+O **Unootube** é a plataforma de vídeo da Plataforma Unooria, implementada a partir do arquivo Figma [YouTube UI Clone Design (Community)](https://www.figma.com/design/HcbrbLtDZ1rMEvSjoXpA5c/YouTube-UI-Clone-Design--Community-) (`fileKey HcbrbLtDZ1rMEvSjoXpA5c`), composto por três páginas: a documentação de tokens em `🎨 Design System` (`104:3087`), os componentes em `Component` (`7:182`) e as três telas de referência em `Screen` (`0:1`), todas de 1440×1024.
 
 ### 10.1. Fonte Canônica e Particularidades do Arquivo
 - É o **único arquivo da plataforma que documenta os próprios tokens**. A página `🎨 Design System` publica primitivas, nove tokens semânticos com nome e descrição de uso, a escala tipográfica de onze degraus, o espaçamento, os raios, as elevações e um inventário de componentes com a assinatura JSX pretendida de cada um. Quando o arquivo declara um token, ele é a fonte; o restante foi lido do nó e registra o `figmaNode`.
 - O arquivo publica **um único modo semântico — escuro**. Não existe versão clara de nenhum componente, portanto **é proibido derivar um tema claro por cálculo**. A seção "Suporte a Temas" do Padrão Ouro é atendida pelo `UniDocSurfaceSwitcher`, que alterna entre as cinco superfícies escuras oficiais.
 - As telas são posicionadas em **coordenadas absolutas**, sem auto layout na maioria dos quadros. Os componentes reconstroem a geometria com flex e grid, preservando as medidas lidas nó a nó.
-- As miniaturas de vídeo do arquivo são renderizações tridimensionais de **logotipos de terceiros** (YouTube, Instagram, TikTok, Netflix, Twitter, Spotify, Discord e Tesla). **Não foram exportadas nem redistribuídas**: as estórias usam pôsteres sintéticos gerados em SVG a partir da própria paleta, e todas as imagens entram por prop (`src`, `avatarSrc`, `coverSrc`). Nenhum bitmap integra o pacote — não há diretório `public/unitube/`.
-- O logotipo é marca registrada do Google LLC e está presente por fidelidade ao arquivo comunitário. Um produto que publique a biblioteca deve substituir `src/unitube/components/Logo/LogoVector.ts` pela própria marca.
+- As miniaturas de vídeo do arquivo são renderizações tridimensionais de **logotipos de terceiros** (YouTube, Instagram, TikTok, Netflix, Twitter, Spotify, Discord e Tesla). **Não foram exportadas nem redistribuídas**: as estórias usam pôsteres sintéticos gerados em SVG a partir da própria paleta, e todas as imagens entram por prop (`src`, `avatarSrc`, `coverSrc`). Nenhum bitmap integra o pacote — não há diretório `public/unootube/`.
+- O logotipo é marca registrada do Google LLC e está presente por fidelidade ao arquivo comunitário. Um produto que publique a biblioteca deve substituir `src/unootube/components/Logo/LogoVector.ts` pela própria marca.
 
 ### 10.2. Títulos das Estórias
-- **Fundamentos**: `Unitube/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação | Ícones]`.
-- **Componentes**: `Unitube/Componentes/[NomeComponente]`.
-- **Telas compostas**: `Unitube/Telas/Telas Compostas`.
+- **Fundamentos**: `Unootube/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação | Ícones]`.
+- **Componentes**: `Unootube/Componentes/[NomeComponente]`.
+- **Telas compostas**: `Unootube/Telas/Telas Compostas`.
 
 ### 10.3. Componentes Oficiais (30)
 **Fundação**: `Icon`, `Logo`, `Avatar`.
@@ -533,14 +533,14 @@ O **Unitube** é a plataforma de vídeo da Plataforma Unooria, implementada a pa
 - O `Icon` é documentado apenas em `Fundamentos/Ícones`; não há estória duplicada em `Componentes`.
 
 ### 10.4. Iconografia Derivada do Figma
-- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca. Os 45 ícones vivem em `src/unitube/components/Icon/IconPaths.ts` com o atributo `d` **literal do export SVG do Figma** e o `viewBox` original preservado — todos são 24×24.
+- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca. Os 45 ícones vivem em `src/unootube/components/Icon/IconPaths.ts` com o atributo `d` **literal do export SVG do Figma** e o `viewBox` original preservado — todos são 24×24.
 - O arquivo pinta os 45 glifos de branco puro. O preenchimento literal foi trocado por `currentColor` para que o mesmo vetor sirva ao texto primário, ao secundário e ao cromo do reprodutor — as três cores em que as telas os aplicam.
 - **Treze glifos existem em par contorno/preenchido** (`home`/`homeFill`, `explore`/`exploreFill`, …). É essa dupla que marca o item ativo da barra lateral: a cor **não muda** entre ativo e inativo, apenas o peso do vetor e o fundo da linha.
-- Os **nove controles do reprodutor** (`play`, `next`, `sound`, `titles`, `quality`, `theater`, `tv`, `fullscreen`, `info`) **não são componentes** no arquivo: são nós `VECTOR`, `GROUP` e `BOOLEAN_OPERATION` soltos dentro do quadro `Media/VideoPlayer` (`18:1295`). Vivem em `src/unitube/components/VideoPlayer/PlayerGlyphs.ts`, com a **geometria de preenchimento resolvida** (`node.fillGeometry`) — o resultado literal das operações booleanas — e o traço de 1px em preto a 10% reproduzido via `--uni-color-player-glyph-outline`.
-- O logotipo vive em `src/unitube/components/Logo/LogoVector.ts`, também com os caminhos literais do export.
+- Os **nove controles do reprodutor** (`play`, `next`, `sound`, `titles`, `quality`, `theater`, `tv`, `fullscreen`, `info`) **não são componentes** no arquivo: são nós `VECTOR`, `GROUP` e `BOOLEAN_OPERATION` soltos dentro do quadro `Media/VideoPlayer` (`18:1295`). Vivem em `src/unootube/components/VideoPlayer/PlayerGlyphs.ts`, com a **geometria de preenchimento resolvida** (`node.fillGeometry`) — o resultado literal das operações booleanas — e o traço de 1px em preto a 10% reproduzido via `--uni-color-player-glyph-outline`.
+- O logotipo vive em `src/unootube/components/Logo/LogoVector.ts`, também com os caminhos literais do export.
 
 ### 10.5. Kit de Documentação
-As estórias do Unitube usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/UniDocKit.tsx`: `UniDocGrid`, `UniDocCard`, `UniDocFigmaSpecs`, `UniDocDeviations`, `UniDocAnatomy`, `UniDocStage`, `UniDocPractices`, `UniDocSurfaceSwitcher`, `UniDocPropsTable` e `UniDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
+As estórias do Unootube usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/UniDocKit.tsx`: `UniDocGrid`, `UniDocCard`, `UniDocFigmaSpecs`, `UniDocDeviations`, `UniDocAnatomy`, `UniDocStage`, `UniDocPractices`, `UniDocSurfaceSwitcher`, `UniDocPropsTable` e `UniDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
 
 ### 10.6. Registro de Desvios em Relação ao Figma
 Qualquer divergência intencional **DEVE** ser documentada com o `UniDocDeviations` na seção "Figma & Especificações Técnicas" da estória. Desvios registrados até o momento:

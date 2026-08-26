@@ -1,5 +1,5 @@
 /**
- * Tokens de Elevação do Design System Unitube.
+ * Tokens de Elevação do Design System Unootube.
  *
  * Espelho TypeScript de `elevation.css`. Extraídos do quadro `Elevation`
  * (`106:3214`) da página `🎨 Design System`, que publica exatamente três

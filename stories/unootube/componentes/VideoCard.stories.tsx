@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { VideoCard } from '../../../src/unitube';
+import { VideoCard } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { videos } from '../fixtures';
 
 const meta: Meta<typeof VideoCard> = {
-  title: 'Unitube/Componentes/VideoCard',
+  title: 'Unootube/Componentes/VideoCard',
   component: VideoCard,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -54,7 +54,7 @@ type Story = StoryObj<typeof VideoCard>;
 const VideoCardDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="VideoCard"
       description="Reprodução do nó Media/VideoCard (12:593), 276×247, o cartão que preenche a grade da tela inicial em linhas de quatro. Duas medidas do arquivo merecem nota: o título usa Roboto Bold 12 — o degrau Label/Medium —, e o canal e os metadados são empilhados sem nenhum intervalo entre si."
@@ -169,7 +169,7 @@ const VideoCardDocumentationPage = () => (
         thumbnailSrc={videos[4].thumbnailSrc}
         avatarSrc={videos[4].avatarSrc}
         duration="1:14:07"
-        videoTitle="Como a escala tipográfica do Unitube organiza a hierarquia dentro de um cartão de vídeo estreito"
+        videoTitle="Como a escala tipográfica do Unootube organiza a hierarquia dentro de um cartão de vídeo estreito"
         channelName="Jesica Lambert"
         metadata="329K views · 1 month ago"
       />

@@ -1,5 +1,5 @@
 /**
- * Conteúdo de demonstração compartilhado pelas estórias do Unitube.
+ * Conteúdo de demonstração compartilhado pelas estórias do Unootube.
  *
  * As miniaturas, retratos e capas do arquivo Figma são **bitmaps colados** nos
  * frames. Ao contrário do WhatsApp Mobile e do Tik Tooria, cujos bitmaps são
@@ -9,7 +9,7 @@
  * marcas não foram exportadas nem redistribuídas.
  *
  * Em seu lugar, as estórias usam pôsteres sintéticos gerados abaixo: gradientes
- * em SVG embutido, montados com a própria escada de neutros do Unitube. Eles
+ * em SVG embutido, montados com a própria escada de neutros do Unootube. Eles
  * não imitam nenhuma marca — servem apenas para dar massa visual às
  * composições. O desvio está registrado nas estórias correspondentes.
  *

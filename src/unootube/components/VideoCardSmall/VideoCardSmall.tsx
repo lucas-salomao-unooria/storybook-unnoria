@@ -4,7 +4,7 @@ import type { UniVideoCardSmallProps } from './VideoCardSmall.types';
 import './VideoCardSmall.css';
 
 /**
- * Componente VideoCardSmall — Design System Unitube
+ * Componente VideoCardSmall — Design System Unootube
  *
  * Reproduz o nó `Media/VideoCardSmall` (`19:1459`), o cartão que a playlist do
  * canal repete cinco vezes por linha.

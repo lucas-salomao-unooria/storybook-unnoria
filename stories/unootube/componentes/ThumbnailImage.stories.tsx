@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { ThumbnailImage } from '../../../src/unitube';
+import { ThumbnailImage } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { videos } from '../fixtures';
 
 const meta: Meta<typeof ThumbnailImage> = {
-  title: 'Unitube/Componentes/ThumbnailImage',
+  title: 'Unootube/Componentes/ThumbnailImage',
   component: ThumbnailImage,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof ThumbnailImage>;
 const ThumbnailImageDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Mídia"
       title="ThumbnailImage"
       description="Reprodução do nó Media/ThumbnailImage (11:997), a miniatura reutilizada pelos quatro formatos de cartão do arquivo. A proporção é 276×155, ou 1,781 — muito próxima de 16:9 (1,778), mas não idêntica; a razão literal do arquivo foi preservada."

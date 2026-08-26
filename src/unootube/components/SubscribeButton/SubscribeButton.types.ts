@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Propriedades do botão de inscrição do Unitube.
+ * Propriedades do botão de inscrição do Unootube.
  *
  * Reproduz o nó `Channel/Subscribes-Btn`, publicado tanto no cabeçalho de canal
  * (`17:2796`) quanto na descrição do vídeo (`20:2989`), com a mesma geometria

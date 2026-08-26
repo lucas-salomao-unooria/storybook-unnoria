@@ -6,7 +6,7 @@ import type { UniButtonProps } from './Button.types';
 import './Button.css';
 
 /**
- * Componente Button — Design System Unitube
+ * Componente Button — Design System Unootube
  *
  * Reproduz o nó `Action/Button` (`20:2758`), o botão da barra de ações da tela
  * de vídeo: glifo de 24px em um alvo de 36×36, seguido do rótulo em

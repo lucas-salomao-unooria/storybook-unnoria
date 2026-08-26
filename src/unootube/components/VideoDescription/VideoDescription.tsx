@@ -7,7 +7,7 @@ import type { UniVideoDescriptionProps } from './VideoDescription.types';
 import './VideoDescription.css';
 
 /**
- * Componente VideoDescription — Design System Unitube
+ * Componente VideoDescription — Design System Unootube
  *
  * Reproduz o nó `Content/VideoDescription` (`20:2989`), o bloco que apresenta o
  * canal e a descrição, logo abaixo do reprodutor.

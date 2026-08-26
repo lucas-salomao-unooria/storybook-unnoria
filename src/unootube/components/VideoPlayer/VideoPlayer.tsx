@@ -9,7 +9,7 @@ import './VideoPlayer.css';
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
 /**
- * Componente VideoPlayer — Design System Unitube
+ * Componente VideoPlayer — Design System Unootube
  *
  * Reproduz o nó `Media/VideoPlayer` (`18:1295`). O arquivo o publica em duas
  * larguras — 424 e 640 —, sempre com a mesma geometria interna de controles:

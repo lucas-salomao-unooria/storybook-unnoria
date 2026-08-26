@@ -1,5 +1,5 @@
 /**
- * Glifos de controle do reprodutor — Design System Unitube.
+ * Glifos de controle do reprodutor — Design System Unootube.
  *
  * Ao contrário dos 45 ícones de `Icon/IconPaths.ts`, os controles do reprodutor
  * **não são componentes** no arquivo Figma: são nós `VECTOR`, `GROUP` e

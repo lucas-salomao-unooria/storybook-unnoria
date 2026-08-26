@@ -3,7 +3,7 @@ import type { UniAvatarProps } from './Avatar.types';
 import './Avatar.css';
 
 /**
- * Componente Avatar — Design System Unitube
+ * Componente Avatar — Design System Unootube
  *
  * Reproduz o nó `Avatar/UserAvatar` (`7:58`): um quadrado com raio total
  * preenchido por bitmap. O arquivo instancia o mesmo componente em seis

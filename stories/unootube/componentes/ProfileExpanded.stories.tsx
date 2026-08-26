@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
 
-import { ProfileExpanded } from '../../../src/unitube';
+import { ProfileExpanded } from '../../../src/unootube';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -19,7 +19,7 @@ import {
 import { avatars } from '../fixtures';
 
 const meta: Meta<typeof ProfileExpanded> = {
-  title: 'Unitube/Componentes/ProfileExpanded',
+  title: 'Unootube/Componentes/ProfileExpanded',
   component: ProfileExpanded,
   parameters: { layout: 'padded' },
   argTypes: {
@@ -48,7 +48,7 @@ type Story = StoryObj<typeof ProfileExpanded>;
 const ProfileExpandedDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
-      badgeBrand="Unitube"
+      badgeBrand="Unootube"
       category="Componentes • Navegação"
       title="ProfileExpanded"
       description="Reprodução do nó Navigation/ProfileExpanded (7:93): 204×40, formado por três alvos de ícone de 40px — criar, aplicativos e notificações — seguidos do perfil compacto de 60px, com 8px de intervalo entre eles. É o bloco que fecha a barra superior à direita."

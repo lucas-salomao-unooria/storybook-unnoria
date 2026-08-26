@@ -9,7 +9,7 @@ import type { UniTopBarProps } from './TopBar.types';
 import './TopBar.css';
 
 /**
- * Componente TopBar — Design System Unitube
+ * Componente TopBar — Design System Unootube
  *
  * Reproduz o nó `Navigation/TopBar` (`7:111`), a barra superior de 56px que
  * atravessa as três telas do arquivo. Repare que ela usa
@@ -38,7 +38,7 @@ export const TopBar = React.forwardRef<HTMLElement, UniTopBarProps>(
     ref
   ) => {
     const brand = logoHref ? (
-      <a className="uni-topbar__logo" href={logoHref} aria-label="Unitube — página inicial">
+      <a className="uni-topbar__logo" href={logoHref} aria-label="Unootube — página inicial">
         <Logo title="" aria-hidden="true" />
       </a>
     ) : (
