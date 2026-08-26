@@ -2,13 +2,22 @@
  * Registro de Glifos do Design System Unootube.
  *
  * IMPORTANTE: todo o dado vetorial abaixo foi copiado **literalmente** dos
- * exports SVG do arquivo Figma "YouTube UI Clone Design (Community)" (fileKey
- * `HcbrbLtDZ1rMEvSjoXpA5c`, página `Component` — `7:182`). Nenhum caminho foi
- * desenhado à mão, aproximado ou substituído por outra biblioteca de ícones. O
- * `viewBox` original é preservado — todos os 45 glifos do arquivo são 24×24.
+ * exports SVG dos dois arquivos Figma de origem. Nenhum caminho foi desenhado
+ * à mão, aproximado ou substituído por outra biblioteca de ícones, e o
+ * `viewBox` original é sempre preservado.
+ *
+ * - "YouTube UI Clone Design (Community)" (fileKey `HcbrbLtDZ1rMEvSjoXpA5c`,
+ *   página `Component` — `7:182`): os **45** glifos originais, todos 24×24.
+ * - "Free YouTube Shorts Mockups (Community)" (fileKey
+ *   `FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`): **sete** glifos sem
+ *   equivalente no primeiro arquivo, exportados no contorno justo do nó e
+ *   portanto **não quadrados**. A análise de repetição que descartou os demais
+ *   está anotada no bloco `shorts` do registro.
  *
  * Para adicionar um glifo novo: exporte o SVG do Figma, copie o atributo `d`
- * sem edição e registre `figmaName`, `figmaNode`, `viewBox` e `usage`.
+ * sem edição e registre `figmaName`, `figmaNode`, `viewBox` e `usage`. Antes
+ * disso, **confira se o glifo já existe** — vários do arquivo de Shorts são o
+ * mesmo vetor do arquivo original, apenas transladado ou escalado.
  *
  * Convenção de cor: o arquivo pinta **todos** os glifos de branco puro
  * (`fill="white"`), o que os torna monocromáticos. O preenchimento literal foi
@@ -19,6 +28,28 @@
  */
 
 /**
+ * Um caminho de um glifo composto.
+ *
+ * Existe porque o segundo arquivo de origem ("Free YouTube Shorts Mockups")
+ * publica glifos que o primeiro não tinha: alguns são **traçados** em vez de
+ * preenchidos (`arrowLeft`, `camera`, com `stroke-width` 2 e pontas
+ * arredondadas) e outros combinam vários caminhos no mesmo nó (`cast`,
+ * `createCircle`). Os 45 glifos do arquivo original continuam usando o campo
+ * `d`, de caminho único.
+ */
+export interface UniIconShape {
+  /** Atributo `d` literal do export */
+  d: string;
+  /**
+   * Quando presente, o caminho é **traçado** com esta espessura em vez de
+   * preenchido — é o que o nó de origem declara.
+   */
+  strokeWidth?: number;
+  /** Preenchimento com regra par-ímpar, como o export declara */
+  evenOdd?: boolean;
+}
+
+/**
  * Definição de um glifo do Unootube.
  */
 export interface UniIconDefinition {
@@ -26,14 +57,23 @@ export interface UniIconDefinition {
   figmaName: string;
   /** Node do Figma de origem */
   figmaNode: string;
-  /** `viewBox` literal do export */
+  /**
+   * `viewBox` literal do export.
+   *
+   * Os 45 glifos do arquivo original são todos 24×24. Os do arquivo de Shorts
+   * são exportados no **contorno justo do nó** e por isso não são quadrados: a
+   * prop `size` governa a altura e a largura é derivada da razão do `viewBox`,
+   * exatamente como no Tik Tooria.
+   */
   viewBox: string;
-  /** Atributo `d` literal do export */
-  d: string;
+  /** Atributo `d` literal do export, para glifos de caminho único */
+  d?: string;
+  /** Caminhos múltiplos ou traçados, para glifos compostos */
+  shapes?: UniIconShape[];
   /** Onde o arquivo usa este glifo */
   usage: string;
   /** Grupo do glifo no arquivo, usado pela estória de Fundamentos */
-  group: 'navegacao' | 'menu' | 'menuPreenchido' | 'acao';
+  group: 'navegacao' | 'menu' | 'menuPreenchido' | 'acao' | 'shorts';
   /**
    * Nome do glifo de contorno equivalente, quando este for a versão
    * preenchida. Tipado como `string` — e não como `UniIconName` — porque
@@ -44,7 +84,8 @@ export interface UniIconDefinition {
 }
 
 /**
- * Registro completo dos 45 glifos publicados pelo arquivo.
+ * Registro completo dos 52 glifos: os 45 do arquivo original mais os sete que
+ * o arquivo de Shorts acrescenta sem equivalente.
  */
 export const uniIconRegistry = {
   /* ----------------------------------------------------
@@ -438,6 +479,114 @@ export const uniIconRegistry = {
     d: 'M21 6H3V5H21V6ZM15 11H3V12H15V11ZM9 17H3V18H9V17Z',
     usage: 'Ordenar comentários ("SORT BY")',
     group: 'acao',
+  },
+
+  /* ----------------------------------------------------
+   * Shorts e cromo móvel — arquivo "Free YouTube Shorts Mockups (Community)"
+   * (fileKey `FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`)
+   *
+   * ANÁLISE DE REPETIÇÃO. O segundo arquivo desenha muitos glifos que o
+   * primeiro já publicava, apenas exportados no contorno justo do nó em vez do
+   * quadro de 24×24. Cada um foi conferido caminho a caminho antes de decidir
+   * registrar ou reaproveitar:
+   *
+   * - lupa da barra móvel (1:215, 17,87×17,88) = `search` transladado (-3,-3)
+   * - sino da barra móvel (1:212, 16×20,04)    = `notifications` transladado
+   * - casa da barra de abas (1:238, 16×18)     = `homeFill` transladado (-4,-3)
+   * - biblioteca (1:248, 21×21)                = `library` × 1,1667
+   * - inscrições (1:245, 23,33×21)             = `subscriptions` × 1,1667
+   * - polegar da trilha (3:217, 27×25,5)       = `likedFill` × 1,5
+   * - reticências da trilha (3:212, 22,5×4,5)  = `more` × 1,5
+   *
+   * Nenhum deles foi duplicado: os componentes novos consomem o glifo que já
+   * existia. Só entram no registro os **sete** glifos sem equivalente.
+   * ---------------------------------------------------- */
+  shortsComment: {
+    figmaName: 'shorts-comment',
+    figmaNode: '3:228',
+    viewBox: '0 0 30.4615 30.4615',
+    shapes: [
+      {
+        d: 'M2.92899 0C1.31136 0 0 1.31176 0 2.92988V21.6811C0 23.2992 1.31136 24.611 2.92899 24.611H22.8462L27.8224 29.9716C28.7642 30.9863 30.4615 30.3196 30.4615 28.9349V24.611V2.92988C30.4615 1.31176 29.1502 0 27.5325 0H2.92899ZM5.85799 8.78965C5.85799 7.81877 6.6448 7.03172 7.61539 7.03172H22.8462C23.8167 7.03172 24.6036 7.81877 24.6036 8.78965C24.6036 9.76049 23.8167 10.5476 22.8462 10.5476H7.61539C6.6448 10.5476 5.85799 9.76049 5.85799 8.78965ZM5.85799 15.8214C5.85799 14.8505 6.6448 14.0634 7.61539 14.0634H18.1598C19.1303 14.0634 19.9172 14.8505 19.9172 15.8214C19.9172 16.7922 19.1303 17.5793 18.1598 17.5793H7.61539C6.6448 17.5793 5.85799 16.7922 5.85799 15.8214Z',
+        evenOdd: true,
+      },
+    ],
+    usage: 'Comentários, na trilha de ações do Shorts',
+    group: 'shorts',
+  },
+  shortsShare: {
+    figmaName: 'shorts-share',
+    figmaNode: '3:234',
+    viewBox: '0 0 32 28.1567',
+    shapes: [
+      {
+        d: 'M17.5844 0.337726L31.5836 13.1335C32.1388 13.641 32.1388 14.5156 31.5836 15.0232L17.5844 27.819C16.763 28.5698 15.4408 27.9871 15.4408 26.8743V21.2733C15.4408 21.2733 15.4407 21.2733 15.4405 21.2733C7.58534 21.2733 3.44523 24.2379 1.48732 26.3614C1.0339 26.8531 -0.0335691 26.5374 0.000811201 25.8695C0.289358 20.2626 2.38251 7.53589 15.4405 7.53589C15.4407 7.53589 15.4408 7.53589 15.4408 7.53589V1.28251C15.4408 0.169665 16.763 -0.413086 17.5844 0.337726Z',
+        evenOdd: true,
+      },
+    ],
+    usage: 'Compartilhar, na trilha de ações do Shorts. É a versão preenchida do `share`, que no arquivo original só existe em contorno',
+    group: 'shorts',
+  },
+  moreVertical: {
+    figmaName: 'Group (kebab)',
+    figmaNode: '1:127',
+    viewBox: '0 0 3.25686 16.2843',
+    d: 'M1.62843 13.0274C2.52949 13.0274 3.25686 13.7548 3.25686 14.6559C3.25686 15.5569 2.52949 16.2843 1.62843 16.2843C0.727365 16.2843 0 15.5569 0 14.6559C0 13.7548 0.727365 13.0274 1.62843 13.0274ZM0 8.14215C0 9.04322 0.727365 9.77058 1.62843 9.77058C2.52949 9.77058 3.25686 9.04322 3.25686 8.14215C3.25686 7.24109 2.52949 6.51372 1.62843 6.51372C0.727365 6.51372 0 7.24109 0 8.14215ZM0 1.62843C0 2.52949 0.727365 3.25686 1.62843 3.25686C2.52949 3.25686 3.25686 2.52949 3.25686 1.62843C3.25686 0.727366 2.52949 0 1.62843 0C0.727365 0 0 0.727366 0 1.62843Z',
+    usage: 'Menu de contexto vertical do cartão móvel e do cabeçalho de canal',
+    group: 'shorts',
+  },
+  arrowLeft: {
+    figmaName: 'ArrowLeft',
+    figmaNode: '3:246',
+    viewBox: '0 0 32 32',
+    shapes: [
+      { d: 'M27 16H5', strokeWidth: 2 },
+      { d: 'M14 7L5 16L14 25', strokeWidth: 2 },
+    ],
+    usage: 'Voltar, à esquerda da barra do reprodutor de Shorts',
+    group: 'shorts',
+  },
+  camera: {
+    figmaName: 'Camera',
+    figmaNode: '3:250',
+    viewBox: '0 0 32 32',
+    shapes: [
+      {
+        d: 'M26 26H6C5.46957 26 4.96086 25.7893 4.58579 25.4142C4.21071 25.0391 4 24.5304 4 24V10C4 9.46957 4.21071 8.96086 4.58579 8.58579C4.96086 8.21071 5.46957 8 6 8H9.99927L11.9993 5H19.9993L21.9993 8H26C26.5304 8 27.0391 8.21071 27.4142 8.58579C27.7893 8.96086 28 9.46957 28 10V24C28 24.5304 27.7893 25.0391 27.4142 25.4142C27.0391 25.7893 26.5304 26 26 26Z',
+        strokeWidth: 2,
+      },
+      {
+        d: 'M16 21C18.4853 21 20.5 18.9853 20.5 16.5C20.5 14.0147 18.4853 12 16 12C13.5147 12 11.5 14.0147 11.5 16.5C11.5 18.9853 13.5147 21 16 21Z',
+        strokeWidth: 2,
+      },
+    ],
+    usage: 'Gravar, à direita da barra do reprodutor de Shorts',
+    group: 'shorts',
+  },
+  cast: {
+    figmaName: 'Group 5',
+    figmaNode: '1:206',
+    viewBox: '0 0 20 16',
+    shapes: [
+      { d: 'M1.44438e-07 5.89472C1.37032 5.89472 2.72721 6.1561 3.99322 6.66394C5.25922 7.17177 6.40955 7.91612 7.37851 8.85448C8.34747 9.79284 9.11608 10.9068 9.64048 12.1329C10.1649 13.3589 10.4348 14.6729 10.4348 16H8.69565C8.69565 14.8941 8.47073 13.7991 8.03373 12.7774C7.59674 11.7557 6.95622 10.8274 6.14876 10.0454C5.34129 9.26343 4.38269 8.64314 3.32768 8.21995C2.27268 7.79675 1.14193 7.57893 1.44438e-07 7.57893V5.89472Z', evenOdd: true },
+      { d: 'M1.44438e-07 9.26311C0.913544 9.26311 1.81814 9.43737 2.66215 9.77593C3.50615 10.1145 4.27303 10.6107 4.919 11.2363C5.56498 11.8619 6.07739 12.6045 6.42699 13.4219C6.77659 14.2392 6.95652 15.1153 6.95652 16H5.21739C5.21739 15.3364 5.08244 14.6794 4.82024 14.0664C4.55804 13.4534 4.17373 12.8964 3.68925 12.4272C3.20477 11.958 2.62961 11.5859 1.99661 11.3319C1.36361 11.078 0.685158 10.9473 1.44438e-07 10.9473V9.26311Z', evenOdd: true },
+      { d: 'M1.44438e-07 16L0 12.6316C0.456772 12.6316 0.909071 12.7187 1.33107 12.888C1.69337 13.0333 2.02724 13.2368 2.31884 13.4894C2.3669 13.531 2.4138 13.5739 2.4595 13.6182C2.5052 13.6624 2.54956 13.7079 2.59254 13.7544C2.85336 14.0368 3.06343 14.3601 3.21349 14.711C3.38829 15.1197 3.47826 15.5577 3.47826 16L1.44438e-07 16Z', evenOdd: true },
+      { d: 'M2.88875e-07 2.25641C2.88875e-07 1.01023 1.04784 0 2.34043 0H17.6596C18.9522 0 20 1.01023 20 2.25641V13.7436C20 14.9898 18.9522 16 17.6596 16H12.5532V14.7692H17.6596C18.2471 14.7692 18.7234 14.31 18.7234 13.7436V2.25641C18.7234 1.68996 18.2471 1.23077 17.6596 1.23077H2.34043C1.75289 1.23077 1.2766 1.68996 1.2766 2.25641V3.89744H2.88875e-07V2.25641Z', evenOdd: true },
+    ],
+    usage: 'Transmitir para a TV, na barra superior móvel',
+    group: 'shorts',
+  },
+  createCircle: {
+    figmaName: 'Component 3',
+    figmaNode: '1:243',
+    viewBox: '0 0 35 35',
+    shapes: [
+      { d: 'M17.5 33.0556C26.0911 33.0556 33.0556 26.0911 33.0556 17.5C33.0556 8.9089 26.0911 1.94444 17.5 1.94444C8.9089 1.94444 1.94444 8.9089 1.94444 17.5C1.94444 26.0911 8.9089 33.0556 17.5 33.0556ZM17.5 35C27.165 35 35 27.165 35 17.5C35 7.83502 27.165 0 17.5 0C7.83502 0 0 7.83502 0 17.5C0 27.165 7.83502 35 17.5 35Z', evenOdd: true },
+      { d: 'M28 19.25H7V16.625H28V19.25Z', evenOdd: true },
+      { d: 'M15.75 28L15.75 7L18.375 7L18.375 28L15.75 28Z', evenOdd: true },
+    ],
+    usage: 'Criar, o alvo central da barra de abas móvel. Distinto do `create` do arquivo original, que é um retângulo de câmera com um mais dentro',
+    group: 'shorts',
   },
 } as const satisfies Record<string, UniIconDefinition>;
 

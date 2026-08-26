@@ -35,7 +35,7 @@ const TypographyDocumentationPage = () => (
       badgeBrand="Unootube"
       category="Fundamentos • Tipografia"
       title="Tipografia"
-      description="Uma família — Roboto —, dois pesos e onze degraus. O arquivo declara letter-spacing zero em todos eles e alturas de linha absolutas em pixels, sem nenhum valor automático na escala publicada. É a escala tipográfica mais enxuta entre as marcas da plataforma."
+      description="Uma família — Roboto — e onze degraus. O arquivo original declara letter-spacing zero em todos eles, alturas de linha absolutas em pixels e apenas dois pesos. O terceiro peso, Medium 500, veio com o arquivo de Shorts, que o usa em quase todo o cromo móvel. É a escala tipográfica mais enxuta entre as marcas da plataforma."
     />
 
     <UnooriaDocSectionHeader
@@ -49,9 +49,11 @@ const TypographyDocumentationPage = () => (
         Apache 2.0 e pode ser carregada diretamente. Não há pilha substituta a documentar — apenas
         um fallback de sistema para o caso de a fonte não carregar.
       </UniDocCard>
-      <UniDocCard icon="⚖️" title="Dois pesos, e só">
-        Regular 400 e Bold 700. O arquivo não usa Medium, Light nem itálico em nenhum degrau da
-        escala. A hierarquia é construída por corpo e por cor, não por peso intermediário.
+      <UniDocCard icon="⚖️" title="Dois pesos na escala, três na biblioteca">
+        A escala publicada usa Regular 400 e Bold 700, e a hierarquia é construída por corpo e por
+        cor, não por peso intermediário. O <strong>Medium 500</strong> entrou com o segundo arquivo
+        de origem, que o aplica em praticamente todo o Shorts e no cromo móvel — legenda do
+        reprodutor, rótulos da trilha, nome do canal, título do cartão e contagem de visualizações.
       </UniDocCard>
       <UniDocCard icon="📏" title="Tracking zero em todos os degraus">
         Os onze degraus medem <code>letterSpacing 0%</code>. É proibido inventar tracking — o token{' '}
@@ -90,6 +92,16 @@ const TypographyDocumentationPage = () => (
           subject: 'Combinações fora da escala',
           detail:
             'quatro nós combinam corpo e peso que a escala não pareia: o item de rodapé (13 Bold), a linha de metadados do cartão horizontal (13 Bold), o título do reprodutor completo (18 Regular) e o nome do canal (24 Regular). Os quatro estão anotados no CSS do componente correspondente.',
+        },
+        {
+          subject: 'Terceiro peso vindo do segundo arquivo',
+          detail:
+            'o arquivo original não usa Roboto Medium em nenhum degrau. O arquivo de Shorts (FlqnnoY0Mqdjic53twLAC1) o aplica na legenda do reprodutor (3:207), nos rótulos da trilha (3:219), no título do cartão (1:143), na contagem de visualizações (1:144) e no rótulo da prateleira móvel (1:134). Foi tokenizado como --uni-font-weight-medium; nenhum degrau da escala publicada mudou de peso.',
+        },
+        {
+          subject: 'Corpos fora da escala no arquivo de Shorts',
+          detail:
+            'o nome do canal móvel usa 26px (16:1085), um corpo sem degrau equivalente — a escala salta de 24 (Heading/H1) para nada. Permanece literal e anotado no CSS do MobileChannelHeader, como já acontece com os quatro pares do arquivo original.',
         },
         {
           subject: 'Peso invertido em relação à hierarquia',
@@ -309,6 +321,13 @@ const TypographyDocumentationPage = () => (
           type: 'number',
           default: '400',
           description: 'Peso regular, usado por corpo, legenda e metadados.',
+        },
+        {
+          name: '--uni-font-weight-medium',
+          type: 'number',
+          default: '500',
+          description:
+            'Peso Medium. Ausente do arquivo original; usado por praticamente todo o Shorts e o cromo móvel do segundo arquivo.',
         },
         {
           name: '--uni-font-weight-bold',

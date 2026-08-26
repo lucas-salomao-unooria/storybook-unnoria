@@ -1,5 +1,5 @@
 import React from 'react';
-import type { UniVideoPlayerProps } from '../VideoPlayer';
+import type { UniVideoPlayerProps, UniVideoSource } from '../VideoPlayer';
 
 /**
  * Propriedades do reprodutor completo com metadados.
@@ -9,9 +9,19 @@ import type { UniVideoPlayerProps } from '../VideoPlayer';
  */
 export interface UniVideoPlayerFullProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
-  /** Endereço do quadro de vídeo. */
+  /**
+   * Endereço do **vídeo**. Repassado ao `VideoPlayer`, que liga a reprodução
+   * real quando ele é informado.
+   *
+   * MIGRAÇÃO: até a versão anterior `src` designava o quadro estático. Agora o
+   * quadro estático é `poster`.
+   */
   src?: string;
-  /** Texto alternativo do quadro. */
+  /** Fontes alternativas do vídeo, repassadas ao `VideoPlayer`. */
+  sources?: UniVideoSource[];
+  /** Quadro exibido antes da reprodução e no modo estático. */
+  poster?: string;
+  /** Texto alternativo do quadro estático. */
   alt?: string;
   /** Título do vídeo, exibido abaixo do reprodutor em Heading/H3 regular. */
   videoTitle: React.ReactNode;
@@ -26,7 +36,7 @@ export interface UniVideoPlayerFullProps
    * Propriedades repassadas ao `VideoPlayer` interno — tempo, progresso e
    * manipuladores de controle.
    */
-  playerProps?: Omit<UniVideoPlayerProps, 'src' | 'alt' | 'videoTitle'>;
+  playerProps?: Omit<UniVideoPlayerProps, 'src' | 'sources' | 'poster' | 'alt' | 'videoTitle'>;
   /**
    * Título exibido **sobre** o quadro de vídeo, no véu superior. Quando
    * omitido, o `videoTitle` é reaproveitado, como o arquivo faz.

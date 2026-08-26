@@ -15,6 +15,16 @@
   --uni-font-sans: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   --uni-font-weight-regular: 400;
+  /**
+   * Roboto Medium. O arquivo original **não** usa este peso — publica apenas
+   * Regular e Bold. Ele entra com o segundo arquivo de origem ("Free YouTube
+   * Shorts Mockups"), que aplica Medium em praticamente todo o Shorts e no
+   * cromo móvel: legenda do reprodutor, rótulos da trilha de ações, nome do
+   * canal, título do cartão e contagem de visualizações.
+   *
+   * A família já é importada com os três pesos no topo desta folha.
+   */
+  --uni-font-weight-medium: 500;
   --uni-font-weight-bold: 700;
 
   /* Heading/H1 — 24/32 Bold · títulos de página (106:3070) */

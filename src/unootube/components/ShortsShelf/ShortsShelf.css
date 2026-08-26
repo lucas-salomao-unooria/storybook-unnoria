@@ -1,0 +1,114 @@
+/**
+ * Estilos do Componente ShortsShelf — Design System Unootube
+ * Nós de origem: `1:129` (prateleira móvel) e `1:735` (grade da área de
+ * trabalho).
+ */
+
+/*
+ * Sem preenchimento próprio: o arquivo desenha a prateleira **sobre a
+ * superfície da página**, nos dois temas e nas duas disposições. A separação
+ * das seções vizinhas vem dos recuos e, na área de trabalho, dos fios de
+ * `bordered`.
+ */
+.uni-shorts-shelf {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+}
+
+/*
+ * Recuos literais da prateleira móvel: 14 em cima, 20 embaixo, 12 à esquerda e
+ * 10 à direita. O recuo à direita é menor de propósito no arquivo — é o que
+ * deixa o cartão seguinte assomando na aresta.
+ */
+.uni-shorts-shelf--row {
+  gap: 14px;
+  padding: 14px 10px 20px 12px;
+}
+
+.uni-shorts-shelf--grid {
+  gap: var(--uni-spacing-24);
+  padding: 0;
+}
+
+.uni-shorts-shelf__header {
+  display: flex;
+  align-items: center;
+  /* 8px no móvel; a grade da área de trabalho usa 11px. */
+  gap: var(--uni-spacing-8);
+}
+
+.uni-shorts-shelf--grid .uni-shorts-shelf__header {
+  gap: 11px;
+}
+
+.uni-shorts-shelf__label {
+  margin: 0;
+  /* Roboto Medium 16 no móvel (1:134). */
+  font-size: var(--uni-font-body-lg-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+/* Roboto Regular 20 na área de trabalho (1:740) — corpo maior, peso menor. */
+.uni-shorts-shelf--grid .uni-shorts-shelf__label {
+  font-size: var(--uni-font-heading-h2-size);
+  font-weight: var(--uni-font-weight-regular);
+}
+
+.uni-shorts-shelf__track {
+  display: flex;
+  gap: var(--uni-spacing-12);
+  align-items: flex-start;
+}
+
+/*
+ * Rolagem real. O arquivo corta os cartões na aresta do quadro; sem rolagem o
+ * conteúdo além da borda seria inalcançável.
+ */
+.uni-shorts-shelf--row .uni-shorts-shelf__track {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.uni-shorts-shelf--row .uni-shorts-shelf__track::-webkit-scrollbar {
+  display: none;
+}
+
+.uni-shorts-shelf--row .uni-shorts-shelf__track > * {
+  scroll-snap-align: start;
+}
+
+/* Grade da área de trabalho: 16px entre colunas, 75px entre linhas (1:741). */
+.uni-shorts-shelf--grid .uni-shorts-shelf__track {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--uni-shorts-shelf-column, 150px), 1fr)
+  );
+  gap: 75px var(--uni-spacing-16);
+}
+
+/*
+ * Fios de 1px que delimitam a seção na área de trabalho (1:734 e 1:791). O
+ * arquivo os desenha como retângulos de 4px de altura preenchidos com o
+ * contorno sutil; reproduzidos como borda de 1px, que é a espessura efetiva
+ * do traço visível.
+ */
+.uni-shorts-shelf--bordered {
+  padding-top: var(--uni-spacing-24);
+  padding-bottom: var(--uni-spacing-24);
+  border-top: 1px solid var(--uni-color-border-subtle);
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+}
+
+@media (max-width: 520px) {
+  .uni-shorts-shelf--grid .uni-shorts-shelf__track {
+    gap: var(--uni-spacing-24) var(--uni-spacing-12);
+  }
+}

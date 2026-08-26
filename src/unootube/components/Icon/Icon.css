@@ -1,9 +1,13 @@
 /**
  * Estilos do Componente Icon — Design System Unootube
  *
- * Todos os 45 glifos do arquivo são desenhados em quadros de 24×24, então o
- * alvo é sempre quadrado. `flex: none` impede que um contêiner flexível
- * comprima o glifo.
+ * A prop `size` governa a **altura**; a largura vem de `aspect-ratio`, que o
+ * componente preenche com a razão do `viewBox` literal do export. Os 45 glifos
+ * do arquivo original são todos 24×24 e portanto continuam quadrados; os sete
+ * do arquivo de Shorts são exportados no contorno justo do nó e preservam a
+ * própria proporção.
+ *
+ * `flex: none` impede que um contêiner flexível comprima o glifo.
  */
 
 .uni-icon {
@@ -11,24 +15,33 @@
   flex: none;
   vertical-align: middle;
   fill: currentColor;
+  width: auto;
+  aspect-ratio: var(--uni-icon-aspect, 1);
 }
 
 /* Alvo de 16px: menu superior e barra do comentário */
 .uni-icon--size-sm {
-  width: 16px;
   height: 16px;
 }
 
 /* Alvo de 20px: informação do reprodutor */
 .uni-icon--size-md {
-  width: 20px;
   height: 20px;
 }
 
 /* Alvo nativo de 24px: barra superior, barra lateral e ações */
 .uni-icon--size-lg {
-  width: 24px;
   height: 24px;
+}
+
+/* Alvo de 28px: barra de abas móvel (1:245) */
+.uni-icon--size-xl {
+  height: 28px;
+}
+
+/* Alvo de 36px: trilha de ações do reprodutor de Shorts (3:216) */
+.uni-icon--size-2xl {
+  height: 36px;
 }
 
 .uni-icon--tone-primary {

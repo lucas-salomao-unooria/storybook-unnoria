@@ -9,14 +9,16 @@
  */
 
 /**
- * Modos de tema publicados pelo arquivo.
+ * Modos de tema publicados pelos arquivos de origem.
  *
- * O arquivo publica **apenas o escuro**: o quadro semântico se intitula
- * "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme
- * first". Nenhum valor claro foi inventado — ver o registro de desvios na
- * estória de Cores.
+ * O arquivo original publica **apenas o escuro**: o quadro semântico se
+ * intitula "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark
+ * theme first". O tema claro entrou com o segundo arquivo, "Free YouTube Shorts
+ * Mockups (Community)" (fileKey `FlqnnoY0Mqdjic53twLAC1`), que publica as mesmas
+ * telas nos dois temas — cada valor claro foi **medido**, não derivado por
+ * inversão. Ver o registro de desvios na estória de Cores.
  */
-export type UniTheme = 'dark';
+export type UniTheme = 'dark' | 'light';
 
 /**
  * Descrição de um token de cor com rastreabilidade até o Figma.
@@ -122,6 +124,53 @@ export const uniPlayerGradients: Record<string, UniColorToken> = {
   playerBottom: { cssVar: '--uni-gradient-player-bottom', value: 'linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%)', usage: 'Véu inferior do reprodutor', figmaNode: '18:1295' },
 };
 
+
+/**
+ * Tokens do Shorts e do cromo móvel.
+ *
+ * Lidos do preenchimento literal do nó no arquivo "Free YouTube Shorts Mockups
+ * (Community)" (fileKey `FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`).
+ */
+export const uniShortsColors: Record<string, UniColorToken> = {
+  shortsInk: { cssVar: '--uni-color-shorts-ink', value: '#161722', usage: 'Tinta escura do arquivo de Shorts: barra do reprodutor, rótulos e triângulo do raio', figmaNode: '3:245' },
+  brandShorts: { cssVar: '--uni-color-brand-shorts', value: '#FF0000', usage: 'Corpo do raio do Shorts', figmaNode: '1:737' },
+  shortsChrome: { cssVar: '--uni-color-shorts-chrome', value: '#161722', usage: 'Barra de navegação do reprodutor em tela cheia', figmaNode: '3:245' },
+  shortsCell: { cssVar: '--uni-color-shorts-cell', value: '#000000', usage: 'Cor de espera da célula da grade e da prateleira', figmaNode: '16:1018' },
+  shortsVeil: { cssVar: '--uni-color-shorts-veil', value: 'rgba(0, 0, 0, 0.32)', usage: 'Véu chapado sobre a miniatura da prateleira', figmaNode: '1:137' },
+  shortsSoundFill: { cssVar: '--uni-color-shorts-sound-fill', value: 'rgba(0, 0, 0, 0.2)', usage: 'Interior do botão de som do reprodutor de Shorts', figmaNode: '3:238' },
+  surfaceSelected: { cssVar: '--uni-color-surface-selected', value: '#303030', usage: 'Superfície de linha selecionada', figmaNode: '3:316' },
+  surfaceChrome: { cssVar: '--uni-color-surface-chrome', value: '#212121', usage: 'Superfície das barras móveis', figmaNode: '1:201' },
+  shortsBottom: { cssVar: '--uni-gradient-shorts-bottom', value: 'linear-gradient(180deg, rgba(0,0,0,0) 37.188%, rgba(0,0,0,0.81) 48.296%)', usage: 'Véu inferior do reprodutor de Shorts', figmaNode: '3:200' },
+};
+
+/**
+ * Tokens semânticos do **tema claro**.
+ *
+ * Todos medidos nos quadros claros do segundo arquivo de origem —
+ * `Desktop Shorts Light theme` (`1:593`), `iPhone Shorts Light theme` (`1:115`)
+ * e `Android Shorts Light theme` (`1:801`). Nenhum foi obtido por inversão do
+ * tema escuro: é essa medição que torna o par claro/escuro legítimo.
+ */
+export const uniLightColors: Record<string, UniColorToken> = {
+  backgroundPrimary: { cssVar: '--uni-color-background-primary', value: '#FFFFFF', usage: 'Fundo da página, atrás dos painéis', figmaNode: '1:593' },
+  backgroundSecondary: { cssVar: '--uni-color-background-secondary', value: '#F6F6F6', usage: 'Barra superior, barra lateral e painel de conteúdo', figmaNode: '1:596' },
+  backgroundSurface: { cssVar: '--uni-color-background-surface', value: '#ECECEC', usage: 'Pílula de filtro inativa', figmaNode: '1:228' },
+  surfaceSelected: { cssVar: '--uni-color-surface-selected', value: '#E4E4E4', usage: 'Linha selecionada da barra lateral', figmaNode: '1:602' },
+  backgroundField: { cssVar: '--uni-color-background-field', value: '#FFFFFF', usage: 'Interior do campo de busca', figmaNode: '1:723' },
+  backgroundInverseDeep: { cssVar: '--uni-color-background-inverse-deep', value: '#F9F9F9', usage: 'Botão de lupa da busca', figmaNode: '1:724' },
+  textPrimary: { cssVar: '--uni-color-text-primary', value: '#161722', usage: 'Títulos e conteúdo principal', figmaNode: '1:740' },
+  textSecondary: { cssVar: '--uni-color-text-secondary', value: '#6C6C6C', usage: 'Metadados e descrições', figmaNode: '1:125' },
+  textTertiary: { cssVar: '--uni-color-text-tertiary', value: '#8E8E8E', usage: 'Rótulos sutis', figmaNode: '16:1086' },
+  textInverse: { cssVar: '--uni-color-text-inverse', value: '#FFFFFF', usage: 'Rótulo sobre a pílula ativa', figmaNode: '1:227' },
+  surfaceInverse: { cssVar: '--uni-color-surface-inverse', value: '#161722', usage: 'Pílula ativa do menu superior', figmaNode: '1:227' },
+  borderDefault: { cssVar: '--uni-color-border-default', value: '#D3D3D3', usage: 'Contorno do campo de busca', figmaNode: '1:723' },
+  borderSubtle: { cssVar: '--uni-color-border-subtle', value: '#E1E1E1', usage: 'Divisores e separadores de seção', figmaNode: '1:734' },
+  borderActive: { cssVar: '--uni-color-border-active', value: '#CECECE', usage: 'Contorno da pílula inativa', figmaNode: '1:228' },
+  shortsChrome: { cssVar: '--uni-color-shorts-chrome', value: '#FFFFFF', usage: 'Barra de navegação do reprodutor de Shorts', figmaNode: '1:201' },
+  shortsCell: { cssVar: '--uni-color-shorts-cell', value: '#C4C4C4', usage: 'Cor de espera da célula de Shorts', figmaNode: '1:137' },
+  surfaceChrome: { cssVar: '--uni-color-surface-chrome', value: '#FFFFFF', usage: 'Barras móveis — branco puro, e não o #F6F6F6 do cromo de 1440px', figmaNode: '1:201' },
+};
+
 /**
  * Todos os tokens de cor da marca, em um único registro.
  */
@@ -130,5 +179,6 @@ export const uniColors = {
   ...uniBrandColors,
   ...uniSemanticColors,
   ...uniDerivedColors,
+  ...uniShortsColors,
   ...uniPlayerGradients,
 };

@@ -8,11 +8,17 @@
  * lidos do preenchimento do nó indicado e registram o `figmaNode` em
  * `colors.ts`.
  *
- * O arquivo publica **um único modo semântico — escuro**. O quadro se intitula
- * "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme
- * first". É PROIBIDO derivar um tema claro por cálculo: as primitivas neutras
- * claras (`--uni-color-neutral-50` a `-400`) existem como origem de tokens de
- * texto e de contorno sobre fundo escuro, não como uma superfície clara.
+ * O arquivo de origem publica **um único modo semântico — escuro**. O quadro se
+ * intitula "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark
+ * theme first". Foi por isso que a biblioteca nasceu escura, e continua sendo
+ * proibido derivar um tema claro **desse** arquivo por cálculo: as primitivas
+ * neutras claras (`--uni-color-neutral-50` a `-400`) existem como origem de
+ * tokens de texto e de contorno sobre fundo escuro, não como superfície clara.
+ *
+ * O tema claro declarado ao final desta folha **não é derivado**: vem do
+ * segundo arquivo de origem, "Free YouTube Shorts Mockups (Community)"
+ * (fileKey `FlqnnoY0Mqdjic53twLAC1`), que publica as mesmas telas nos dois
+ * temas. Cada valor claro registra o nó em que foi medido.
  */
 
 :root,
@@ -112,6 +118,59 @@
   /** Sublinhado da aba ativa e contorno da pílula inativa (nodes 17:2796, 13:1698). */
   --uni-color-border-active: var(--uni-color-neutral-400);
 
+
+  /* ----------------------------------------------------
+   * Shorts — arquivo "Free YouTube Shorts Mockups (Community)"
+   * (fileKey `FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`)
+   *
+   * O segundo arquivo de origem do Unootube. Ele publica o Shorts, o par
+   * claro/escuro que faltava e o cromo móvel. Todos os valores abaixo foram
+   * lidos do preenchimento literal do nó indicado.
+   * ---------------------------------------------------- */
+
+  /** Tinta escura do arquivo de Shorts: barra do reprodutor, rótulos e o
+      triângulo interno do raio (nodes 3:245, 1:134, 1:737). */
+  --uni-color-shorts-ink: #161722;
+  /** Corpo do raio do Shorts (node 1:737). É o mesmo #FF0000 do emblema do
+      logotipo — os dois convivem sem se confundir porque um é a marca e o
+      outro é o produto. */
+  --uni-color-brand-shorts: var(--uni-color-red-800);
+  /** Barra de navegação do reprodutor de Shorts em tela cheia (node 3:245). */
+  --uni-color-shorts-chrome: var(--uni-color-shorts-ink);
+  /**
+   * Superfície das barras móveis (nodes 1:201 e 1:235).
+   *
+   * No escuro coincide com `--uni-color-background-secondary`. No claro **não**:
+   * o arquivo pinta o cromo móvel de branco puro e o cromo de 1440px de
+   * `#F6F6F6`. A divergência é do próprio arquivo e foi preservada em um token
+   * próprio, em vez de consolidada no degrau mais próximo.
+   */
+  --uni-color-surface-chrome: var(--uni-color-neutral-600);
+  /** Cor de espera da célula da grade e da prateleira (nodes 16:1018, 1:137). */
+  --uni-color-shorts-cell: var(--uni-color-black);
+  /** Véu chapado sobre a miniatura da prateleira (node 1:137). */
+  --uni-color-shorts-veil: rgba(0, 0, 0, 0.32);
+  /** Interior do botão de som do reprodutor de Shorts (node 3:238). */
+  --uni-color-shorts-sound-fill: rgba(0, 0, 0, 0.2);
+  /**
+   * Véu inferior do reprodutor de Shorts (node 3:200). Não é o véu de 96px do
+   * VideoPlayer: aqui o gradiente cobre 194px e só começa a escurecer em
+   * 37,188%, com a parada final em 48,296% — as duas paradas são literais.
+   */
+  --uni-gradient-shorts-bottom: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 37.188%,
+    rgba(0, 0, 0, 0.81) 48.296%
+  );
+
+  /**
+   * Superfície de linha selecionada. No escuro coincide com
+   * `--uni-color-background-surface`; no claro o arquivo de Shorts mede um
+   * degrau distinto (#E4E4E4 contra #ECECEC das pílulas), e é por isso que
+   * existe um token próprio em vez de reaproveitar a superfície interativa.
+   */
+  --uni-color-surface-selected: var(--uni-color-neutral-500);
+
   /* ----------------------------------------------------
    * Véus do reprodutor (node 18:1295, grupo "shadows")
    *
@@ -130,4 +189,67 @@
   --uni-color-state-hover: rgba(255, 255, 255, 0.1);
   --uni-color-state-active: rgba(255, 255, 255, 0.2);
   --uni-color-state-focus: var(--uni-color-brand-primary);
+}
+
+
+/**
+ * Tema claro.
+ *
+ * O arquivo de origem original ("YouTube UI Clone Design (Community)") publica
+ * **apenas o modo escuro** e é por isso que a biblioteca nasceu escura. O
+ * segundo arquivo — "Free YouTube Shorts Mockups (Community)"
+ * (`FlqnnoY0Mqdjic53twLAC1`) — publica as **mesmas telas nos dois temas**, o
+ * que torna o par claro/escuro um dado medido, e não um cálculo.
+ *
+ * Cada valor abaixo foi lido do nó indicado nos quadros claros
+ * `Desktop Shorts Light theme` (`1:593`), `iPhone Shorts Light theme` (`1:115`)
+ * e `Android Shorts Light theme` (`1:801`). Nenhum foi derivado por inversão.
+ */
+[data-uni-theme='light'] {
+  /** Fundo da página, atrás dos painéis (node 1:593). */
+  --uni-color-background-primary: #ffffff;
+  /** Barra superior, barra lateral e painel de conteúdo (nodes 1:596, 1:594, 1:595). */
+  --uni-color-background-secondary: #f6f6f6;
+  /** Pílula de filtro inativa (node 1:228). */
+  --uni-color-background-surface: #ececec;
+  /** Linha selecionada da barra lateral (node 1:602). */
+  --uni-color-surface-selected: #e4e4e4;
+  /** Interior do campo de busca (node 1:723). */
+  --uni-color-background-field: #ffffff;
+  /** Botão de lupa da busca (node 1:724). */
+  --uni-color-background-inverse-deep: #f9f9f9;
+
+  /** Títulos e conteúdo principal (nodes 1:124, 1:740). */
+  --uni-color-text-primary: var(--uni-color-shorts-ink);
+  /** Metadados e descrições (node 1:125). */
+  --uni-color-text-secondary: #6c6c6c;
+  /** Rótulos sutis (node 16:1086). */
+  --uni-color-text-tertiary: #8e8e8e;
+  /** Rótulo sobre a pílula ativa (node 1:227). */
+  --uni-color-text-inverse: #ffffff;
+  /** Pílula ativa do menu superior (node 1:227). */
+  --uni-color-surface-inverse: var(--uni-color-shorts-ink);
+
+  /** Contorno do campo de busca (node 1:723). */
+  --uni-color-border-default: #d3d3d3;
+  /** Divisores e separadores de seção (nodes 1:734, 1:791). */
+  --uni-color-border-subtle: #e1e1e1;
+  /** Contorno da pílula inativa (node 1:228). */
+  --uni-color-border-active: #cecece;
+
+  /** Barra de navegação do reprodutor de Shorts no tema claro (node 1:201). */
+  --uni-color-shorts-chrome: #ffffff;
+  /** Barras móveis no tema claro: branco puro, e não o #F6F6F6 do cromo de 1440px (nodes 1:201, 1:235). */
+  --uni-color-surface-chrome: #ffffff;
+  /** Cor de espera da célula de Shorts no tema claro (node 1:137). */
+  --uni-color-shorts-cell: var(--uni-color-neutral-300);
+
+  /**
+   * Realces de interação. Ausentes no arquivo, que é estático — e é por isso
+   * que não podem simplesmente herdar os brancos translúcidos do escuro:
+   * sobre superfície clara eles seriam invisíveis. Construídos sobre o preto
+   * da própria escada.
+   */
+  --uni-color-state-hover: rgba(0, 0, 0, 0.06);
+  --uni-color-state-active: rgba(0, 0, 0, 0.12);
 }

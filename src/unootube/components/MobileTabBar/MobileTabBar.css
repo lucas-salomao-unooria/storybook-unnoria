@@ -1,0 +1,96 @@
+/**
+ * Estilos do Componente MobileTabBar — Design System Unootube
+ * Nós de origem: `1:235` (iPhone, 390×58) e `16:1055` (Android, 360×56).
+ */
+
+.uni-mobile-tabbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--uni-mobile-tabbar-height);
+  padding: var(--uni-spacing-10) var(--uni-spacing-12);
+  font-family: var(--uni-font-sans);
+  background: var(--uni-color-surface-chrome);
+}
+
+.uni-mobile-tabbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 1px entre o glifo e o rótulo nos dois primeiros; 2px nos dois últimos. */
+  gap: var(--uni-spacing-2);
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0;
+  color: var(--uni-color-text-primary);
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity var(--uni-transition-fast);
+}
+
+.uni-mobile-tabbar__item:hover {
+  opacity: 0.75;
+}
+
+.uni-mobile-tabbar__item:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+  border-radius: var(--uni-radius-control);
+}
+
+.uni-mobile-tabbar__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+}
+
+.uni-mobile-tabbar__label {
+  /* Roboto Regular 12 na tinta do arquivo (1:239). */
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-weight-regular);
+  line-height: normal;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/*
+ * Destino atual. O arquivo não desenha estado ativo na barra móvel — todos os
+ * cinco rótulos usam a mesma tinta. O realce é extensão, e usa apenas o peso,
+ * sem introduzir cor nova.
+ */
+.uni-mobile-tabbar__item--active .uni-mobile-tabbar__label {
+  font-weight: var(--uni-font-weight-medium);
+}
+
+.uni-mobile-tabbar__create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  height: 42px;
+  padding: 0;
+  color: var(--uni-color-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--uni-transition-fast);
+}
+
+.uni-mobile-tabbar__create:active {
+  transform: scale(0.92);
+}
+
+.uni-mobile-tabbar__create:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+  border-radius: var(--uni-radius-full);
+}

@@ -6,6 +6,7 @@ import {
   uniRadius,
   uniDimensions,
   uniAvatarSizes,
+  uniShortsSizes,
 } from '../../../src/unootube/tokens';
 import { Avatar, SearchBox, TopMenuItem, VideoCard } from '../../../src/unootube';
 import {
@@ -77,9 +78,10 @@ const SpacingDocumentationPage = () => (
       frameName="Spacing e Radius — página 🎨 Design System"
       specs={[
         { label: 'Espaçamento', value: '13 degraus (0 a 64)' },
-        { label: 'Raios', value: '8 degraus (0 a 80)' },
+        { label: 'Raios', value: '8 degraus (0 a 80) + o de 4px do segundo arquivo' },
         { label: 'Quadro de tela', value: '1440 × 1024' },
         { label: 'Calha de conteúdo', value: '65px' },
+        { label: 'Quadros móveis', value: '390 × 844 e 360 × 800' },
       ]}
     />
     <UniDocDeviations
@@ -103,6 +105,26 @@ const SpacingDocumentationPage = () => (
           subject: 'Espaçamentos por coordenada na barra de filtros',
           detail:
             'as 28 pílulas do menu superior têm intervalos irregulares no arquivo. O TopMenuBar usa um intervalo único de 12px, equivalente à distância média medida.',
+        },
+        {
+          subject: 'Raio de 4px ausente da coleção publicada',
+          detail:
+            'a coleção Radius do arquivo original salta de 2px para 8px. O arquivo de Shorts aplica 4px no botão de inscrição (3:208), no botão de som (3:238) e na pílula de filtro móvel (1:220). Foi tokenizado como --uni-radius-control, nomeado por uso e não por posição na escala, para não se confundir com --uni-radius-sm.',
+        },
+        {
+          subject: 'Dois quadros de dispositivo do segundo arquivo',
+          detail:
+            'o arquivo de Shorts publica as mesmas telas em 390×844 (iPhone) e 360×800 (Android). As duas medidas são literais e não foram consolidadas — o PhoneFrame expõe as duas.',
+        },
+        {
+          subject: 'Dois diâmetros de avatar fora da escala nomeada',
+          detail:
+            'a linha de canal do reprodutor de Shorts usa 38px (3:487) e o cabeçalho de canal móvel usa 77px (16:1082). Os dois entram por size numérico no Avatar, e não como degraus nomeados, para que a escala nomeada continue refletindo apenas o arquivo original.',
+        },
+        {
+          subject: 'Espaçamento irregular da barra de abas móvel',
+          detail:
+            'o arquivo agrupa os três primeiros destinos com 34px entre eles e afasta os dois últimos com 24px. O MobileTabBar distribui os cinco alvos uniformemente, porque a régua do arquivo não sobrevive a uma janela de largura diferente da do quadro.',
         },
         {
           subject: 'Pontos de quebra ausentes',
@@ -207,9 +229,64 @@ const SpacingDocumentationPage = () => (
     </div>
 
     <h4 style={{ margin: '0 0 12px 0', fontSize: 15, color: '#22272A' }}>
+      Medidas do Shorts e do cromo móvel
+    </h4>
+    <div style={{ border: '1px solid #E4E8E9', borderRadius: 12, overflow: 'auto', marginBottom: 32 }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+        <thead>
+          <tr style={{ backgroundColor: '#F5F5F5' }}>
+            <th style={{ textAlign: 'left', padding: '10px 14px', color: '#22272A' }}>Variável</th>
+            <th style={{ textAlign: 'left', padding: '10px 14px', color: '#22272A' }}>Valor</th>
+            <th style={{ textAlign: 'left', padding: '10px 14px', color: '#22272A' }}>Uso</th>
+            <th style={{ textAlign: 'left', padding: '10px 14px', color: '#22272A' }}>Figma</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(uniShortsSizes).map(([key, token]) => (
+            <tr key={key} style={{ borderTop: '1px solid #E4E8E9' }}>
+              <td
+                style={{
+                  padding: '10px 14px',
+                  fontFamily: 'ui-monospace, Menlo, monospace',
+                  fontSize: 12,
+                  color: '#22272A',
+                }}
+              >
+                {token.cssVar}
+              </td>
+              <td
+                style={{
+                  padding: '10px 14px',
+                  fontFamily: 'ui-monospace, Menlo, monospace',
+                  fontSize: 12,
+                  color: '#6487C2',
+                }}
+              >
+                {token.value}px
+              </td>
+              <td style={{ padding: '10px 14px', color: '#475157', lineHeight: 1.5 }}>
+                {token.usage}
+              </td>
+              <td
+                style={{
+                  padding: '10px 14px',
+                  fontFamily: 'ui-monospace, Menlo, monospace',
+                  fontSize: 11.5,
+                  color: '#475157',
+                }}
+              >
+                {token.figmaNode ?? '—'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style={{ margin: '0 0 12px 0', fontSize: 15, color: '#22272A' }}>
       Diâmetros de avatar
     </h4>
-    <UniDocStage label="Os seis diâmetros do arquivo, em escala real" surface="primary" gap={20}>
+    <UniDocStage label="Os seis diâmetros nomeados do arquivo original, mais os dois literais do arquivo de Shorts" surface="primary" gap={20}>
       {Object.entries(uniAvatarSizes).map(([key, token]) => (
         <div key={key} style={{ textAlign: 'center' }}>
           <Avatar src={avatars.marcusLevin} alt="" size={token.value} />

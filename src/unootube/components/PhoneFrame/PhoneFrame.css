@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System Unootube
+ * Quadros de origem: `1:115` (390×844) e `16:1012` (360×800).
+ *
+ * Contêiner de documentação. O raio de 24px não vem do arquivo, que desenha os
+ * quadros com cantos retos: existe apenas para que a moldura leia como um
+ * dispositivo dentro do painel de documentação, e nenhum componente de produção
+ * depende dele.
+ */
+
+.uni-phone-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: var(--uni-radius-lg);
+  font-family: var(--uni-font-sans);
+  background: var(--uni-color-background-primary);
+}
+
+.uni-phone-frame--iphone {
+  width: var(--uni-phone-width);
+  height: var(--uni-phone-height);
+}
+
+.uni-phone-frame--android {
+  width: var(--uni-phone-android-width);
+  height: var(--uni-phone-android-height);
+}
+
+.uni-phone-frame--primary {
+  background: var(--uni-color-background-primary);
+}
+
+.uni-phone-frame--secondary {
+  background: var(--uni-color-background-secondary);
+}
+
+.uni-phone-frame--immersive {
+  background: var(--uni-color-shorts-cell);
+}
+
+/*
+ * A tela rola de verdade. O arquivo é um quadro estático com o conteúdo
+ * cortado na aresta inferior; sem rolagem, o que passa da borda ficaria
+ * inalcançável.
+ */
+.uni-phone-frame > * {
+  flex: none;
+}
+
+.uni-phone-frame__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--uni-color-background-surface) transparent;
+}
+
+.uni-phone-frame__scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.uni-phone-frame__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.uni-phone-frame__scroll::-webkit-scrollbar-thumb {
+  background: var(--uni-color-background-surface);
+  border-radius: var(--uni-radius-full);
+}

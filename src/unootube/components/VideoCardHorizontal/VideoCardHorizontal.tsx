@@ -18,6 +18,8 @@ export const VideoCardHorizontal = React.forwardRef<HTMLElement, UniVideoCardHor
   (
     {
       src,
+      sources,
+      poster,
       alt = '',
       videoTitle,
       metadata,
@@ -34,7 +36,7 @@ export const VideoCardHorizontal = React.forwardRef<HTMLElement, UniVideoCardHor
       {...restProps}
     >
       <div className="uni-video-card-horizontal__player">
-        <VideoPlayer src={src} alt={alt} {...playerProps} />
+        <VideoPlayer src={src} sources={sources} poster={poster} alt={alt} {...playerProps} />
       </div>
 
       <div className="uni-video-card-horizontal__desc">

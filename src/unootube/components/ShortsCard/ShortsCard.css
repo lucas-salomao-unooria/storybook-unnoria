@@ -1,0 +1,220 @@
+/**
+ * Estilos do Componente ShortsCard — Design System Unootube
+ * Nós de origem: `1:136` (prateleira móvel), `1:742` (grade da área de
+ * trabalho) e `16:1017` (célula da grade de canal móvel).
+ */
+
+.uni-shorts-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+  color: var(--uni-color-text-primary);
+  text-decoration: none;
+}
+
+.uni-shorts-card__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* 488,16 × 867,49 no reprodutor: a razão vertical do arquivo é 9:16. */
+  aspect-ratio: var(--uni-shorts-aspect);
+  background: var(--uni-color-shorts-cell);
+}
+
+.uni-shorts-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*
+ * Véu chapado de 32%. O arquivo declara um GRADIENT_LINEAR de 90° com as duas
+ * paradas idênticas — ou seja, uma cor sólida translúcida. Reproduzido como
+ * cor, e não como gradiente, porque é isso que o valor significa.
+ */
+.uni-shorts-card__veil {
+  position: absolute;
+  inset: 0;
+  background: var(--uni-color-shorts-veil);
+  pointer-events: none;
+}
+
+.uni-shorts-card__overlay {
+  position: absolute;
+  left: var(--uni-spacing-8);
+  right: var(--uni-spacing-8);
+  bottom: var(--uni-spacing-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--uni-spacing-8);
+  pointer-events: none;
+}
+
+/*
+ * Menu de contexto. Fica sobreposto ao cartão inteiro para continuar acessível
+ * quando o cartão é um link.
+ */
+.uni-shorts-card__more {
+  position: absolute;
+  top: var(--uni-spacing-12);
+  right: var(--uni-spacing-8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uni-spacing-24);
+  height: var(--uni-spacing-24);
+  padding: 0;
+  color: var(--uni-color-white);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: background-color var(--uni-transition-fast);
+}
+
+.uni-shorts-card__more:hover {
+  background: var(--uni-color-shorts-sound-fill);
+}
+
+.uni-shorts-card__more:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------
+ * Variante `overlay` — prateleira móvel (1:136)
+ * ---------------------------------------------------- */
+
+.uni-shorts-card--overlay {
+  width: var(--uni-shorts-card-width);
+}
+
+/*
+ * O cartão do arquivo mede 150×266, uma razão de 0,564 — a mesma 9:16 da
+ * célula. A altura é declarada para que a prateleira alinhe as bases mesmo
+ * quando um título ocupa três linhas.
+ */
+.uni-shorts-card--overlay .uni-shorts-card__media {
+  height: var(--uni-shorts-card-height);
+  aspect-ratio: auto;
+}
+
+.uni-shorts-card--overlay .uni-shorts-card__title {
+  margin: 0;
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-white);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.uni-shorts-card--overlay .uni-shorts-card__views {
+  font-size: var(--uni-font-caption-sm-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  color: var(--uni-color-white);
+}
+
+/* ----------------------------------------------------
+ * Variante `below` — grade da área de trabalho (1:742)
+ * ---------------------------------------------------- */
+
+.uni-shorts-card--below {
+  width: var(--uni-shorts-card-width);
+  gap: 7px; /* literal do arquivo, entre a miniatura e o título */
+}
+
+.uni-shorts-card--below .uni-shorts-card__media {
+  border-radius: var(--uni-radius-md);
+}
+
+.uni-shorts-card--below .uni-shorts-card__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.uni-shorts-card--below .uni-shorts-card__title {
+  margin: 0;
+  /* Roboto Regular 16/22 — o arquivo não usa o degrau Heading aqui. */
+  font-size: var(--uni-font-body-lg-size);
+  font-weight: var(--uni-font-weight-regular);
+  line-height: 22px;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.uni-shorts-card--below .uni-shorts-card__views {
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-weight-regular);
+  line-height: 22px;
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-shorts-card--below .uni-shorts-card__more {
+  color: var(--uni-color-text-secondary);
+}
+
+/* ----------------------------------------------------
+ * Variante `views` — célula da grade de canal móvel (16:1017)
+ * ---------------------------------------------------- */
+
+.uni-shorts-card--views {
+  width: var(--uni-shorts-cell-width);
+}
+
+.uni-shorts-card--views .uni-shorts-card__media {
+  height: var(--uni-shorts-cell-height);
+  aspect-ratio: auto;
+}
+
+/*
+ * `contain` e não `cover`: o arquivo desenha a fotografia com 139,3px de altura
+ * dentro de uma célula de 199,5px, deixando faixas da cor da célula em cima e
+ * embaixo. É o que dá à grade o aspecto de tira de filme.
+ */
+.uni-shorts-card--views .uni-shorts-card__image {
+  object-fit: contain;
+}
+
+.uni-shorts-card--views .uni-shorts-card__overlay {
+  left: 7px;
+  right: 7px;
+  bottom: 10px;
+}
+
+.uni-shorts-card--views .uni-shorts-card__views {
+  font-size: var(--uni-font-caption-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  color: var(--uni-color-white);
+}
+
+/* ----------------------------------------------------
+ * Estados de interação
+ *
+ * Ausentes no arquivo, que é estático. Construídos apenas sobre a opacidade e
+ * os realces da própria marca.
+ * ---------------------------------------------------- */
+
+a.uni-shorts-card:hover .uni-shorts-card__image {
+  opacity: 0.92;
+}
+
+a.uni-shorts-card:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+  border-radius: var(--uni-radius-md);
+}

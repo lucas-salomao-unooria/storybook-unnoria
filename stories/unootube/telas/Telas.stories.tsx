@@ -9,9 +9,18 @@ import {
   DesktopFrame,
   FooterItem,
   Icon,
+  MobileChannelHeader,
+  MobileHeader,
+  MobileTabBar,
+  MobileTopBar,
+  PhoneFrame,
   Playlist,
   PrimaryColumn,
   SecondaryColumn,
+  ShortsCard,
+  ShortsLogo,
+  ShortsPlayer,
+  ShortsShelf,
   Sidebar,
   SidebarMenuItem,
   SidebarMenuTitle,
@@ -38,6 +47,7 @@ import {
   UniDocPropsTable,
   UniDocStage,
   UniDocSurfaceSwitcher,
+  UniDocThemeSwitcher,
 } from '../../../.storybook/components';
 import {
   avatars,
@@ -46,6 +56,10 @@ import {
   channelTabs,
   comments,
   playerPoster,
+  shorts,
+  shortsChannelTabs,
+  shortsPlayerPoster,
+  soundCover,
   suggestions,
   videos,
 } from '../fixtures';
@@ -269,7 +283,7 @@ const ChannelScreen = () => (
           activeTabId="home"
         />
         <VideoCardHorizontal
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Video Title"
           metadata="576K views · 3 weeks ago"
           description="Video description text"
@@ -310,7 +324,7 @@ const VideoScreen = () => (
     >
       <PrimaryColumn>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Video Title"
           metadata="576K views · Oct 8, 2021"
           actions={
@@ -366,18 +380,244 @@ const VideoScreen = () => (
   </>
 );
 
+
+/* ----------------------------------------------------
+ * As três telas do arquivo de Shorts (FlqnnoY0Mqdjic53twLAC1)
+ *
+ * O segundo arquivo de origem publica as mesmas três telas em seis quadros —
+ * iPhone, Android e área de trabalho, cada um em tema claro e escuro. As
+ * composições abaixo são as mesmas nos dois temas: quem troca é o atributo
+ * `data-uni-theme` no ancestral, exatamente como em produto.
+ * ---------------------------------------------------- */
+
+/** Legenda do Short, com as hashtags em Bold dentro do parágrafo (3:203). */
+const ShortsCaption = () => (
+  <>
+    Home video | Movements | Dancing in the rain <strong>#shorts</strong>{' '}
+    <strong>#Shorts</strong> tiktok
+  </>
+);
+
+/** Barra de abas móvel, com os cinco destinos do arquivo. */
+const MobileTabs = ({ activeId = 'home' }: { activeId?: string }) => (
+  <MobileTabBar>
+    <MobileTabBar.Item
+      icon={<Icon name="homeFill" size="lg" />}
+      label="Home"
+      active={activeId === 'home'}
+    />
+    <MobileTabBar.Item
+      icon={<ShortsLogo variant="mono" size={26} />}
+      label="Shorts"
+      active={activeId === 'shorts'}
+    />
+    <MobileTabBar.CreateButton />
+    <MobileTabBar.Item
+      icon={<Icon name="subscriptions" size="xl" />}
+      label="Subscription"
+      active={activeId === 'subscription'}
+    />
+    <MobileTabBar.Item
+      icon={<Icon name="library" size="xl" />}
+      label="Library"
+      active={activeId === 'library'}
+    />
+  </MobileTabBar>
+);
+
+/** Tela móvel `iPhone Shorts` — feed com a prateleira de Shorts (1:115). */
+const MobileFeedScreen = () => (
+  <PhoneFrame>
+    <MobileTopBar avatarSrc={avatars.currentUser} />
+    <div className="uni-phone-frame__scroll">
+      <VideoCard
+        thumbnailSrc={videos[0].thumbnailSrc}
+        avatarSrc={videos[0].avatarSrc}
+        videoTitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        metadata="8.280.021 views Dec • 01. 2022"
+      />
+      <ShortsShelf>
+        {shorts.slice(0, 6).map((short) => (
+          <ShortsCard
+            key={short.id}
+            thumbnailSrc={short.thumbnailSrc}
+            videoTitle={short.videoTitle}
+            views={short.views}
+          />
+        ))}
+      </ShortsShelf>
+      <VideoCard
+        thumbnailSrc={videos[5].thumbnailSrc}
+        avatarSrc={videos[5].avatarSrc}
+        videoTitle="The Beauty of Existence - Heart Touching Nasheed"
+        metadata="19,210,251 views Jul • 1, 2016"
+      />
+    </div>
+    <MobileTabs activeId="home" />
+  </PhoneFrame>
+);
+
+/** Tela móvel `iPhone Shorts` — reprodutor em tela cheia (3:196). */
+const MobileShortsScreen = () => (
+  <PhoneFrame surface="immersive">
+    <MobileHeader action={<Icon name="camera" size={32} />} />
+    <div style={{ flex: 1, minHeight: 0, position: 'relative' }}>
+      <ShortsPlayer
+        poster={shortsPlayerPoster}
+        caption={<ShortsCaption />}
+        channelName="SADEK Tuts"
+        avatarSrc={avatars.skylarDias}
+        likeCount="245K"
+        commentCount="952"
+        soundSrc={soundCover}
+        onMore={() => undefined}
+        style={{ height: '100%' }}
+      />
+    </div>
+  </PhoneFrame>
+);
+
+/** Tela móvel `Android Shorts` — canal com a grade de Shorts (16:1012). */
+const MobileChannelScreen = () => (
+  <PhoneFrame device="android">
+    <MobileHeader surface="page" action={<Icon name="moreVertical" size={20} />} />
+    <div className="uni-phone-frame__scroll">
+      <MobileChannelHeader
+        avatarInitials="U"
+        channelName="Username..."
+        subscriberCount="420 thousand subscribers"
+        sectionLabel="Short videos from this channel"
+      />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 2,
+        }}
+      >
+        {shorts.map((short) => (
+          <ShortsCard
+            key={short.id}
+            variant="views"
+            width="100%"
+            thumbnailSrc={short.thumbnailSrc}
+            views={short.views}
+          />
+        ))}
+      </div>
+    </div>
+    <MobileTabs activeId="library" />
+  </PhoneFrame>
+);
+
+/** Tela `Desktop Shorts` — feed com a prateleira de Shorts (1:385). */
+const DesktopShortsFeedScreen = () => (
+  <>
+    <TopBar avatarSrc={avatars.currentUser} />
+    <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+      <FullSidebar />
+      <div style={{ flex: 1, minWidth: 0, overflowY: 'auto' }}>
+        <TopMenuBar options={categories} activeId="all" />
+        <div style={{ padding: 24 }}>
+          <ShortsShelf layout="grid" bordered>
+            {shorts.map((short) => (
+              <ShortsCard
+                key={short.id}
+                variant="below"
+                width="100%"
+                thumbnailSrc={short.thumbnailSrc}
+                videoTitle={short.videoTitle}
+                views={short.views}
+              />
+            ))}
+          </ShortsShelf>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+/** Tela `Desktop Shorts` — reprodutor em cartão (3:306). */
+const DesktopShortsPlayerScreen = () => (
+  <>
+    <TopBar avatarSrc={avatars.currentUser} />
+    <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+      <FullSidebar />
+      <div
+        style={{
+          flex: 1,
+          minWidth: 0,
+          overflowY: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          padding: 32,
+        }}
+      >
+        <ShortsPlayer
+          variant="card"
+          poster={shortsPlayerPoster}
+          caption={<ShortsCaption />}
+          channelName="SADEK Tuts"
+          avatarSrc={avatars.skylarDias}
+          likeCount="245K thousand"
+          commentCount="952"
+          soundSrc={soundCover}
+          showPeek
+          onMore={() => undefined}
+        />
+      </div>
+    </div>
+  </>
+);
+
+/** Tela `Desktop Shorts` — canal com a prateleira de Shorts (16:348). */
+const DesktopShortsChannelScreen = () => (
+  <>
+    <TopBar avatarSrc={avatars.currentUser} />
+    <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+      <FullSidebar />
+      <div style={{ flex: 1, minWidth: 0, overflowY: 'auto' }}>
+        <ChannelHeader
+          coverSrc={channelCover}
+          avatarInitials="U"
+          channelName="Username..."
+          channelHandle="@User-name25 · subscribers 25K · video 146"
+          secondaryLine="No followers"
+          tabs={shortsChannelTabs}
+          activeTabId="home"
+          showTabArrows
+        />
+        <div style={{ padding: 24 }}>
+          <ShortsShelf layout="grid">
+            {shorts.slice(0, 10).map((short) => (
+              <ShortsCard
+                key={short.id}
+                variant="below"
+                width="100%"
+                thumbnailSrc={short.thumbnailSrc}
+                videoTitle={short.videoTitle}
+                views={short.views}
+              />
+            ))}
+          </ShortsShelf>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
 const ScreensDocumentationPage = () => (
   <UnooriaDocShell>
     <UnooriaDocHeader
       badgeBrand="Unootube"
       category="Telas • Composições"
       title="Telas Compostas"
-      description="As três telas da página Screen (0:1) do arquivo Figma, reconstruídas com os componentes reais de src/unootube. Cada tela mede 1440×1024 e é montada exclusivamente a partir do repertório publicado — nenhum mockup paralelo foi criado."
+      description="Nove telas reconstruídas com os componentes reais de src/unootube: as três da página Screen (0:1) do arquivo original, de 1440×1024, e as seis do arquivo de Shorts (FlqnnoY0Mqdjic53twLAC1) — três móveis e três de área de trabalho. Todas são montadas exclusivamente a partir do repertório publicado; nenhum mockup paralelo foi criado."
     />
 
     <UnooriaDocSectionHeader
       title="1. Visão geral & casos de uso"
-      description="As três telas e o que cada uma exercita."
+      description="As nove telas e o que cada uma exercita."
       barColor="#EE1A26"
     />
     <UniDocGrid>
@@ -397,6 +637,22 @@ const ScreensDocumentationPage = () => (
         <code>VideoPlayerFull</code>, <code>VideoDescription</code>, <code>Comment</code> e{' '}
         <code>VideoCardSidebar</code>.
       </UniDocCard>
+      <UniDocCard icon="📱" title="Shorts móvel (1:115, 3:196, 16:1012)">
+        Feed com a prateleira, reprodutor em tela cheia e canal com a grade. Exercita{' '}
+        <code>MobileTopBar</code>, <code>MobileTabBar</code>, <code>MobileHeader</code>,{' '}
+        <code>MobileChannelHeader</code>, <code>ShortsShelf</code>, <code>ShortsCard</code> e{' '}
+        <code>ShortsPlayer</code>, todos dentro do <code>PhoneFrame</code>.
+      </UniDocCard>
+      <UniDocCard icon="🖥️" title="Shorts de trabalho (1:385, 3:306, 16:348)">
+        As mesmas três telas em 1440px, com a barra lateral do arquivo original e a grade, o
+        reprodutor em cartão e o canal com identificador — a linha que o{' '}
+        <code>ChannelHeader</code> ganhou com o segundo arquivo.
+      </UniDocCard>
+      <UniDocCard icon="🌗" title="Os dois temas, medidos">
+        As composições são idênticas nos dois temas: o que troca é o atributo{' '}
+        <code>data-uni-theme</code> no ancestral, exatamente como em produto. É a demonstração de
+        que o tema claro veio medido, e não derivado por inversão.
+      </UniDocCard>
       <UniDocCard icon="🧩" title="Componentes reais, sempre">
         Nenhuma réplica artificial foi criada em <code>stories/</code>. Os únicos andaimes locais são
         o cabeçalho da lista de comentários e o campo de novo comentário, que o arquivo desenha como
@@ -413,8 +669,9 @@ const ScreensDocumentationPage = () => (
       nodeId="0:1"
       frameName="Screen — Home, Channel e Video"
       specs={[
-        { label: 'Telas', value: '3' },
-        { label: 'Dimensões', value: '1440 × 1024 cada' },
+        { label: 'Telas do arquivo original', value: '3 — Home, Channel e Video' },
+        { label: 'Telas do arquivo de Shorts', value: '6 — 3 móveis e 3 de área de trabalho' },
+        { label: 'Dimensões', value: '1440 × 1024 · 390 × 844 · 360 × 800' },
         { label: 'Área de conteúdo', value: '1200px' },
         { label: 'Barra lateral', value: '240px' },
       ]}
@@ -698,4 +955,137 @@ export const NavegacaoInterativa: Story = {
     };
     return <ScreenSwitcher />;
   },
+};
+
+
+/* ----------------------------------------------------
+ * Telas do arquivo de Shorts
+ * ---------------------------------------------------- */
+
+/**
+ * Réplica da tela móvel `iPhone Shorts` (1:115): feed com a prateleira de Shorts.
+ */
+export const TelaShortsFeedMovel: Story = {
+  name: '📱 Tela Shorts — feed móvel',
+  render: () => (
+    <div
+      data-uni-theme="dark"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: 32,
+        background: 'var(--uni-color-background-primary)',
+      }}
+    >
+      <MobileFeedScreen />
+    </div>
+  ),
+};
+
+/**
+ * Réplica da tela móvel `iPhone Shorts` (3:196): reprodutor em tela cheia.
+ *
+ * O quadro é a réplica estática do arquivo. Para ver a reprodução real, use a
+ * estória "Reprodução real" do `ShortsPlayer`.
+ */
+export const TelaShortsReprodutorMovel: Story = {
+  name: '📱 Tela Shorts — reprodutor móvel',
+  render: () => (
+    <div
+      data-uni-theme="dark"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: 32,
+        background: 'var(--uni-color-background-primary)',
+      }}
+    >
+      <MobileShortsScreen />
+    </div>
+  ),
+};
+
+/**
+ * Réplica da tela móvel `Android Shorts` (16:1012): canal com a grade de Shorts.
+ */
+export const TelaShortsCanalMovel: Story = {
+  name: '📱 Tela Shorts — canal móvel',
+  render: () => (
+    <div
+      data-uni-theme="dark"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: 32,
+        background: 'var(--uni-color-background-primary)',
+      }}
+    >
+      <MobileChannelScreen />
+    </div>
+  ),
+};
+
+/**
+ * Réplica da tela `Desktop Shorts` (1:385): feed com a grade de Shorts.
+ */
+export const TelaShortsFeedDesktop: Story = {
+  name: '🖥️ Tela Shorts — feed de trabalho',
+  render: () => (
+    <div data-uni-theme="dark" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <DesktopShortsFeedScreen />
+    </div>
+  ),
+};
+
+/**
+ * Réplica da tela `Desktop Shorts` (3:306): reprodutor em cartão.
+ */
+export const TelaShortsReprodutorDesktop: Story = {
+  name: '🖥️ Tela Shorts — reprodutor de trabalho',
+  render: () => (
+    <div data-uni-theme="dark" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <DesktopShortsPlayerScreen />
+    </div>
+  ),
+};
+
+/**
+ * Réplica da tela `Desktop Shorts` (16:348): canal com a prateleira de Shorts.
+ */
+export const TelaShortsCanalDesktop: Story = {
+  name: '🖥️ Tela Shorts — canal de trabalho',
+  render: () => (
+    <div data-uni-theme="dark" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <DesktopShortsChannelScreen />
+    </div>
+  ),
+};
+
+/**
+ * As três telas móveis do arquivo de Shorts, nos dois temas.
+ *
+ * É a demonstração de que o par claro/escuro é medido e não derivado: a mesma
+ * composição, com o mesmo repertório, trocando apenas `data-uni-theme`.
+ */
+export const TelasShortsNosDoisTemas: Story = {
+  name: '🌗 Telas de Shorts nos dois temas',
+  render: () => (
+    <div style={{ padding: 24 }}>
+      <UniDocThemeSwitcher align="stretch" padding={32}>
+        {() => (
+          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+            <div style={{ transform: 'scale(0.62)', transformOrigin: 'top left', width: 242, height: 524 }}>
+              <MobileFeedScreen />
+            </div>
+            <div style={{ transform: 'scale(0.62)', transformOrigin: 'top left', width: 242, height: 524 }}>
+              <MobileShortsScreen />
+            </div>
+            <div style={{ transform: 'scale(0.62)', transformOrigin: 'top left', width: 224, height: 496 }}>
+              <MobileChannelScreen />
+            </div>
+          </div>
+        )}
+      </UniDocThemeSwitcher>
+    </div>
+  ),
 };

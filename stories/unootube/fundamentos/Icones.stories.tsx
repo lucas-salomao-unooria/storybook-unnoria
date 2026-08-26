@@ -33,9 +33,10 @@ const GROUP_LABELS: Record<string, string> = {
   menu: 'Barra lateral, contorno — frame Sidebar-Icons (7:185)',
   menuPreenchido: 'Barra lateral, preenchidos — frame sidebar-Icons-Fill (7:186)',
   acao: 'Ações da tela de vídeo — nós soltos da página Component',
+  shorts: 'Shorts e cromo móvel — arquivo FlqnnoY0Mqdjic53twLAC1',
 };
 
-const GROUP_ORDER = ['navegacao', 'menu', 'menuPreenchido', 'acao'] as const;
+const GROUP_ORDER = ['navegacao', 'menu', 'menuPreenchido', 'acao', 'shorts'] as const;
 
 /** Célula de um glifo, com nome, nó de origem e cópia do nome para uso em código. */
 const GlyphCell: React.FC<{ name: UniIconName }> = ({ name }) => {
@@ -105,9 +106,17 @@ const IconsDocumentationPage = () => (
         e registra <code>figmaName</code> e <code>figmaNode</code>. É proibido desenhar, aproximar
         ou substituir um glifo por outra biblioteca de ícones.
       </UniDocCard>
-      <UniDocCard icon="📐" title="Todos 24×24">
-        Ao contrário do Tik Tooria, cujos glifos têm proporções variadas, aqui os 45 quadros são
-        quadrados de 24. O alvo é sempre quadrado, e a prop <code>size</code> governa a aresta.
+      <UniDocCard icon="📐" title="24×24 no primeiro arquivo, justos no segundo">
+        Os 45 glifos do arquivo original são todos quadrados de 24. Os sete do arquivo de Shorts são
+        exportados no contorno justo do nó e por isso <strong>não</strong> são quadrados. A prop{' '}
+        <code>size</code> governa a <strong>altura</strong>; a largura vem da razão do{' '}
+        <code>viewBox</code>.
+      </UniDocCard>
+      <UniDocCard icon="🔎" title="Sete novos, sete descartados">
+        O arquivo de Shorts redesenha muitos glifos que o primeiro já publicava — lupa, sino, casa,
+        biblioteca, inscrições, polegar e reticências —, apenas transladados ou escalados. Todos
+        foram conferidos caminho a caminho e <strong>nenhum</strong> foi duplicado. Só entraram os
+        sete sem equivalente.
       </UniDocCard>
       <UniDocCard icon="🎯" title="Ativo por peso, não por cor">
         O arquivo publica treze glifos preenchidos para marcar o item ativo da barra lateral. A cor
@@ -129,10 +138,11 @@ const IconsDocumentationPage = () => (
       nodeId="7:182"
       frameName="Component — frames 7:184, 7:185 e 7:186"
       specs={[
-        { label: 'Glifos de ícone', value: '45' },
-        { label: 'viewBox', value: '0 0 24 24 (todos)' },
+        { label: 'Glifos de ícone', value: '52 — 45 do primeiro arquivo, 7 do segundo' },
+        { label: 'viewBox', value: '24 × 24 nos 45; contorno justo nos 7' },
         { label: 'Pares contorno/preenchido', value: '13' },
         { label: 'Glifos de reprodutor', value: '9 (registro à parte)' },
+        { label: 'Formas do raio do Shorts', value: '2 (registro à parte, em ShortsLogo)' },
       ]}
     />
     <UniDocDeviations
@@ -162,12 +172,32 @@ const IconsDocumentationPage = () => (
           detail:
             'o arquivo coloca Icon/ArrowTop no frame sidebar-Icons-Fill, embora seja um glifo de contorno como o arrowBottom. O agrupamento do arquivo foi preservado no registro.',
         },
+        {
+          subject: 'Análise de repetição do segundo arquivo',
+          detail:
+            'sete glifos do arquivo de Shorts foram descartados por serem o mesmo vetor do arquivo original: a lupa (1:215) é search transladado (-3,-3); o sino (1:212) é notifications transladado; a casa da barra de abas (1:238) é homeFill transladado (-4,-3); a biblioteca (1:248) é library × 1,1667; as inscrições (1:245) são subscriptions × 1,1667; o polegar da trilha (3:217) é likedFill × 1,5; e as reticências da trilha (3:212) são more × 1,5. A conferência está anotada no bloco shorts de IconPaths.ts.',
+        },
+        {
+          subject: 'Caminhos traçados',
+          detail:
+            'arrowLeft e camera declaram stroke-width 2 com pontas arredondadas nos nós de origem, e não preenchimento. São o único par assim na biblioteca, e foram o motivo de o registro passar a aceitar um campo shapes com traço além do campo d de caminho único.',
+        },
+        {
+          subject: 'Glifos não quadrados',
+          detail:
+            'moreVertical mede 3,26 × 16,28 e cast mede 20 × 16. Normalizá-los para um quadro de 24×24 os esticaria — por isso a prop size passou a governar a altura, com a largura derivada da razão do viewBox, como já acontece no Tik Tooria.',
+        },
+        {
+          subject: 'Glifo de som fora do registro',
+          detail:
+            'o equalizador do botão de som do reprodutor de Shorts não é um caminho no arquivo: são cinco retângulos (nodes 3:240 a 3:244). Vive em ShortsPlayer/SoundGlyph.tsx pelo mesmo motivo que os retângulos do selo HD vivem em PlayerGlyphs.',
+        },
       ]}
     />
 
     <UnooriaDocSectionHeader
       title="3. Anatomia da biblioteca"
-      description="Os 45 glifos, agrupados como o arquivo os organiza."
+      description="Os 52 glifos, agrupados como os dois arquivos os organizam."
       barColor="#9EBFD0"
     />
     {GROUP_ORDER.map((group) => {
@@ -333,7 +363,7 @@ const IconsDocumentationPage = () => (
         {
           name: 'name',
           type: 'UniIconName',
-          description: 'Nome do glifo na biblioteca oficial. São 45 valores possíveis.',
+          description: 'Nome do glifo na biblioteca oficial. São 52 valores possíveis.',
         },
         {
           name: 'size',
@@ -407,7 +437,8 @@ export const Playground: StoryObj<typeof Icon> = {
   name: '🕹️ 1. Playground do Icon',
   argTypes: {
     name: { control: 'select', options: uniIconNames },
-    size: { control: 'select', options: ['sm', 'md', 'lg', 16, 24, 32, 48] },
+    size: { control: 'select', options: ['sm', 'md', 'lg', 'xl', '2xl', 16, 24, 32, 48] },
+    rotate: { control: { type: 'range', min: -180, max: 180, step: 15 } },
     tone: {
       control: 'select',
       options: ['primary', 'secondary', 'tertiary', 'inverse', 'brand', 'playerChrome', 'inherit'],
@@ -432,10 +463,10 @@ export const Playground: StoryObj<typeof Icon> = {
 };
 
 /**
- * Todos os 45 glifos da biblioteca, em uma única grade.
+ * Todos os 52 glifos da biblioteca, em uma única grade.
  */
 export const TodosOsGlifos: Story = {
-  name: 'Todos os 45 glifos',
+  name: 'Todos os 52 glifos',
   render: () => (
     <div
       data-uni-theme="dark"

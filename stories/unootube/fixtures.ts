@@ -167,3 +167,108 @@ export const channelTabs = [
 
 /** Pôster de demonstração do reprodutor. */
 export const playerPoster = poster('#1B2A44', '#0C1422', 'Video Title');
+
+/**
+ * Gera um pôster sintético **vertical** (9:16), para o Shorts.
+ *
+ * As miniaturas de Shorts do arquivo são fotografias de banco de imagens;
+ * nenhuma foi redistribuída. O substituto abaixo é o mesmo recurso já usado nos
+ * pôsteres de 16:9: gradiente em SVG embutido, sem imitar marca nenhuma.
+ */
+export const shortsPoster = (from: string, to: string, label: string): string =>
+  toDataUri(`
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${from}"/>
+      <stop offset="1" stop-color="${to}"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="640" fill="url(#s)"/>
+  <circle cx="180" cy="250" r="86" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="180" cy="250" r="46" fill="rgba(255,255,255,0.14)"/>
+  <text x="180" y="470" fill="rgba(255,255,255,0.66)" font-family="Roboto, Arial, sans-serif"
+        font-size="26" font-weight="700" text-anchor="middle">${label}</text>
+</svg>`);
+
+/**
+ * Capa de áudio sintética, para o botão de som do reprodutor de Shorts.
+ */
+export const soundCover: string = toDataUri(`
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B2350"/>
+      <stop offset="1" stop-color="#4A1D2C"/>
+    </linearGradient>
+  </defs>
+  <rect width="72" height="72" fill="url(#a)"/>
+  <circle cx="36" cy="36" r="14" fill="rgba(255,255,255,0.22)"/>
+  <circle cx="36" cy="36" r="4" fill="rgba(255,255,255,0.6)"/>
+</svg>`);
+
+/**
+ * Um Short de demonstração.
+ */
+export interface UniDemoShort {
+  id: string;
+  videoTitle: string;
+  views: string;
+  thumbnailSrc: string;
+}
+
+/**
+ * Doze Shorts de demonstração, com os textos literais do arquivo
+ * ("Lorem ipsum dolor sit amet...", "1 million views", "24M views").
+ */
+export const shorts: UniDemoShort[] = [
+  { id: 's1', videoTitle: 'Lorem ipsum dolor sit amet...', views: '4 thousand views', thumbnailSrc: shortsPoster('#4A1D3F', '#1F0C1B', 'Dança') },
+  { id: 's2', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#3B2350', '#180E22', 'Bastidores') },
+  { id: 's3', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#1B2A44', '#0C1422', 'Estúdio') },
+  { id: 's4', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#4A1D2C', '#1F0C13', 'Retrato') },
+  { id: 's5', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#14331F', '#0A1A10', 'Quadra') },
+  { id: 's6', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#3A2A12', '#1D1509', 'Oficina') },
+  { id: 's7', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#123039', '#09181D', 'Cozinha') },
+  { id: 's8', videoTitle: 'DIY Toys | Satisfying And Relaxing | DIY Tiktok Compilation..', views: '24M views', thumbnailSrc: shortsPoster('#241B3F', '#120E1F', 'Faça você') },
+  { id: 's9', videoTitle: 'Lorem ipsum | Sit amet | consectetur adipiscing elit..', views: '24M views', thumbnailSrc: shortsPoster('#3A1520', '#1D0B10', 'Palco') },
+  { id: 's10', videoTitle: 'Lorem ipsum | Sit amet | consectetur adipiscing elit..', views: '14M views', thumbnailSrc: shortsPoster('#16273F', '#0D1726', 'Viagem') },
+  { id: 's11', videoTitle: 'Lorem ipsum | Sit amet | consectetur adipiscing elit..', views: '4M views', thumbnailSrc: shortsPoster('#3D1B3A', '#1E0E1D', 'Neon') },
+  { id: 's12', videoTitle: 'Lorem ipsum dolor sit amet...', views: '1 million views', thumbnailSrc: shortsPoster('#1F3A33', '#0F1D19', 'Natureza') },
+];
+
+/** Pôster vertical de demonstração do reprodutor de Shorts. */
+export const shortsPlayerPoster: string = shortsPoster('#241B3F', '#0C0A18', 'Shorts');
+
+/**
+ * Legenda do Short, com as hashtags em negrito **dentro** do mesmo parágrafo —
+ * é assim que o arquivo escreve o nó `3:203`.
+ */
+export const shortsCaptionParts = [
+  { text: 'Home video | Movements | Dancing in the rain ', bold: false },
+  { text: '#shorts ', bold: true },
+  { text: '#Shorts ', bold: true },
+  { text: 'tiktok', bold: false },
+];
+
+/**
+ * Destinos da barra de abas móvel, com os rótulos do arquivo.
+ */
+export const mobileTabs = [
+  { id: 'home', label: 'Home' },
+  { id: 'shorts', label: 'Shorts' },
+  { id: 'subscription', label: 'Subscription' },
+  { id: 'library', label: 'Library' },
+];
+
+/**
+ * Abas do canal na tela de Shorts da área de trabalho, com os rótulos do
+ * arquivo (`16:604`).
+ */
+export const shortsChannelTabs = [
+  { id: 'home', label: 'HOME' },
+  { id: 'playlist', label: 'PLAYLIST' },
+  { id: 'channel', label: 'CHANNEL' },
+  { id: 'about', label: 'ABOUT CHANNEL' },
+  { id: 'community', label: 'COMMUNITY' },
+  { id: 'channels', label: 'CHANNELS' },
+];

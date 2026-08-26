@@ -84,6 +84,33 @@ export const uniDimensions: Record<string, UniMeasureToken> = {
   channelCoverHeight: { cssVar: '--uni-channel-cover-height', value: 192, usage: 'Capa do canal', figmaNode: '17:2796' },
 };
 
+
+/**
+ * Medidas do Shorts e do cromo móvel.
+ *
+ * Medidas nó a nó no arquivo "Free YouTube Shorts Mockups (Community)"
+ * (fileKey `FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`).
+ */
+export const uniShortsSizes: Record<string, UniMeasureToken> = {
+  phoneWidth: { cssVar: '--uni-phone-width', value: 390, usage: 'Quadro do iPhone das telas móveis', figmaNode: '1:115' },
+  phoneHeight: { cssVar: '--uni-phone-height', value: 844, usage: 'Altura do quadro do iPhone', figmaNode: '1:115' },
+  phoneAndroidWidth: { cssVar: '--uni-phone-android-width', value: 360, usage: 'Quadro do Android das telas móveis', figmaNode: '16:1012' },
+  phoneAndroidHeight: { cssVar: '--uni-phone-android-height', value: 800, usage: 'Altura do quadro do Android', figmaNode: '16:1012' },
+  mobileTopbarHeight: { cssVar: '--uni-mobile-topbar-height', value: 50, usage: 'Barra superior móvel', figmaNode: '1:201' },
+  mobileTabbarHeight: { cssVar: '--uni-mobile-tabbar-height', value: 58, usage: 'Barra de abas móvel', figmaNode: '1:235' },
+  mobileHeaderHeight: { cssVar: '--uni-mobile-header-height', value: 47, usage: 'Barra de navegação do reprodutor de Shorts', figmaNode: '3:245' },
+  shortsFrameWidth: { cssVar: '--uni-shorts-frame-width', value: 488, usage: 'Quadro do reprodutor de Shorts na área de trabalho', figmaNode: '3:481' },
+  shortsPeekHeight: { cssVar: '--uni-shorts-peek-height', value: 44, usage: 'Faixa do próximo Short abaixo do quadro', figmaNode: '3:482' },
+  shortsCardWidth: { cssVar: '--uni-shorts-card-width', value: 150, usage: 'Cartão da prateleira móvel', figmaNode: '1:136' },
+  shortsCardHeight: { cssVar: '--uni-shorts-card-height', value: 266, usage: 'Altura do cartão da prateleira', figmaNode: '1:136' },
+  shortsCellWidth: { cssVar: '--uni-shorts-cell-width', value: 119, usage: 'Célula da grade de Shorts do canal móvel', figmaNode: '16:1018' },
+  shortsCellHeight: { cssVar: '--uni-shorts-cell-height', value: 200, usage: 'Altura da célula da grade de Shorts', figmaNode: '16:1018' },
+  shortsRailWidth: { cssVar: '--uni-shorts-rail-width', value: 36, usage: 'Trilha de ações sobreposta ao vídeo', figmaNode: '3:210' },
+  shortsRailGap: { cssVar: '--uni-shorts-rail-gap', value: 20, usage: 'Intervalo entre ações da trilha', figmaNode: '3:214' },
+  shortsRailButton: { cssVar: '--uni-shorts-rail-button', value: 54, usage: 'Botão circular da trilha na área de trabalho', figmaNode: '3:460' },
+  shortsSoundSize: { cssVar: '--uni-shorts-sound-size', value: 36, usage: 'Botão de som do reprodutor de Shorts', figmaNode: '3:237' },
+};
+
 /**
  * Os seis diâmetros de avatar publicados pelo arquivo.
  *
@@ -97,4 +124,12 @@ export const uniAvatarSizes: Record<string, UniMeasureToken> = {
   lg: { cssVar: '--uni-avatar-lg', value: 40, usage: 'Comentário', figmaNode: '24:2191' },
   xl: { cssVar: '--uni-avatar-xl', value: 48, usage: 'Descrição do vídeo', figmaNode: '20:2989' },
   xl2: { cssVar: '--uni-avatar-2xl', value: 80, usage: 'Cabeçalho de canal', figmaNode: '17:2796' },
+  /*
+   * Os dois diâmetros que o arquivo de Shorts acrescenta. Não são degraus
+   * nomeados do `Avatar` — são valores literais informados por `size={38}` e
+   * `size={77}`, para que a escala nomeada continue refletindo só o arquivo
+   * original.
+   */
+  shorts: { cssVar: '--uni-avatar-shorts', value: 38, usage: 'Linha de canal do reprodutor de Shorts', figmaNode: '3:487' },
+  xl3: { cssVar: '--uni-avatar-3xl', value: 77, usage: 'Cabeçalho de canal móvel', figmaNode: '16:1082' },
 };

@@ -27,12 +27,11 @@ export const UNI_FIGMA_FILE =
   'https://www.figma.com/design/HcbrbLtDZ1rMEvSjoXpA5c/YouTube-UI-Clone-Design--Community-';
 
 /**
- * As cinco superfícies escuras publicadas pelo arquivo.
+ * As cinco superfícies da escada de luminância.
  *
- * O arquivo publica **um único modo semântico — escuro**. Não há par
- * claro/escuro de nenhum componente, portanto a seção "Suporte a Temas" do
- * Padrão Ouro é atendida pelo `UniDocSurfaceSwitcher`, que alterna entre as
- * superfícies oficiais em vez de simular um tema que não existe.
+ * Os rótulos citam os valores do tema escuro, que é o do arquivo original. No
+ * tema claro os mesmos tokens resolvem para os valores medidos no arquivo de
+ * Shorts — ver `UniDocThemeSwitcher`.
  */
 export type UniDocSurface = 'primary' | 'secondary' | 'surface' | 'field' | 'deep';
 
@@ -216,12 +215,98 @@ export const UniDocDeviations: React.FC<{
   </div>
 );
 
+
+/**
+ * Os dois temas que a biblioteca publica.
+ *
+ * O arquivo original ("YouTube UI Clone Design") só desenha o escuro. O claro
+ * entrou com "Free YouTube Shorts Mockups" (`FlqnnoY0Mqdjic53twLAC1`), que
+ * publica as mesmas telas nas duas versões — cada valor claro foi **medido**,
+ * não derivado por inversão.
+ */
+export type UniDocTheme = 'dark' | 'light';
+
+const THEME_LABELS: Record<UniDocTheme, { label: string; icon: string }> = {
+  dark: { label: 'Escuro · arquivo original', icon: '🌑' },
+  light: { label: 'Claro · arquivo de Shorts', icon: '☀️' },
+};
+
+/**
+ * Alternador interativo entre os temas claro e escuro.
+ *
+ * Diferente do `UniDocSurfaceSwitcher`, que percorre as superfícies de uma
+ * mesma escada, este alterna o atributo `data-uni-theme` — o mesmo que um
+ * produto usa. Ele só existe porque o segundo arquivo de origem publica o par:
+ * enquanto havia apenas o escuro, simular um claro exigiria inventar valores.
+ */
+export const UniDocThemeSwitcher: React.FC<{
+  children: (theme: UniDocTheme) => React.ReactNode;
+  initial?: UniDocTheme;
+  surface?: UniDocSurface;
+  padding?: number;
+  align?: 'center' | 'stretch';
+}> = ({ children, initial = 'dark', surface = 'primary', padding = 24, align = 'center' }) => {
+  const [theme, setTheme] = useState<UniDocTheme>(initial);
+
+  return (
+    <div style={{ marginBottom: 32 }}>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+        {(['dark', 'light'] as UniDocTheme[]).map((option) => (
+          <button
+            key={option}
+            type="button"
+            onClick={() => setTheme(option)}
+            style={{
+              padding: '6px 14px',
+              borderRadius: 999,
+              border: `1px solid ${theme === option ? DOC_TEXT : DOC_BORDER}`,
+              backgroundColor: theme === option ? DOC_TEXT : DOC_SURFACE,
+              color: theme === option ? '#FFFFFF' : DOC_MUTED,
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            {THEME_LABELS[option].icon} {THEME_LABELS[option].label}
+          </button>
+        ))}
+      </div>
+
+      <div
+        data-uni-theme={theme}
+        style={{
+          display: 'flex',
+          justifyContent: align === 'stretch' ? 'flex-start' : 'center',
+          alignItems: align === 'stretch' ? 'stretch' : 'center',
+          gap: 24,
+          flexWrap: 'wrap',
+          padding,
+          borderRadius: 12,
+          border: `1px solid ${DOC_BORDER}`,
+          fontFamily: 'var(--uni-font-sans)',
+          background: `var(${SURFACE_TOKENS[surface].cssVar})`,
+          transition: 'background-color 200ms ease',
+          overflowX: 'auto',
+        }}
+      >
+        {children(theme)}
+      </div>
+    </div>
+  );
+};
+
 /**
  * Palco de demonstração sobre uma das superfícies escuras do arquivo.
  */
 export const UniDocStage: React.FC<{
   label?: string;
   surface?: UniDocSurface;
+  /**
+   * Tema em que o palco renderiza. O padrão continua escuro, porque é o tema
+   * do arquivo de origem original; o claro passou a existir com o arquivo de
+   * Shorts, que publica as mesmas telas nos dois.
+   */
+  theme?: UniDocTheme;
   padding?: number;
   align?: 'center' | 'flex-start' | 'stretch';
   direction?: 'row' | 'column';
@@ -231,6 +316,7 @@ export const UniDocStage: React.FC<{
 }> = ({
   label,
   surface = 'primary',
+  theme = 'dark',
   padding = 24,
   align = 'center',
   direction = 'row',
@@ -245,7 +331,7 @@ export const UniDocStage: React.FC<{
       </div>
     )}
     <div
-      data-uni-theme="dark"
+      data-uni-theme={theme}
       style={{
         display: 'flex',
         flexDirection: direction,
@@ -318,13 +404,12 @@ export const UniDocPractices: React.FC<{
 );
 
 /**
- * Alternador interativo entre as superfícies escuras do arquivo.
+ * Alternador interativo entre as superfícies de uma mesma escada.
  *
- * O arquivo **não publica um par claro/escuro**: o quadro semântico se intitula
- * "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme
- * first". O alternador demonstra o comportamento do componente sobre cada
- * superfície oficial da escada de luminância, em vez de simular um tema claro
- * que exigiria inventar valores.
+ * Complementa o `UniDocThemeSwitcher`, e não o substitui: um percorre as
+ * superfícies **dentro** de um tema, o outro troca de tema. Para os componentes
+ * que só existem no arquivo original — que publica exclusivamente o escuro — é
+ * este o alternador que atende à seção "Suporte a Temas" do Padrão Ouro.
  */
 export const UniDocSurfaceSwitcher: React.FC<{
   children: (surface: UniDocSurface) => React.ReactNode;

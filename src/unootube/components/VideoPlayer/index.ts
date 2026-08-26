@@ -7,4 +7,14 @@ export type {
   UniPlayerGlyphShape,
   UniPlayerGlyphRect,
 } from './PlayerGlyphs';
-export type { UniVideoPlayerProps } from './VideoPlayer.types';
+export { useVideoPlayback, formatPlaybackTime } from './useVideoPlayback';
+export type {
+  UniVideoState,
+  UniVideoControls,
+  UniVideoPlaybackOptions,
+} from './useVideoPlayback';
+export type {
+  UniVideoPlayerProps,
+  UniVideoSource,
+  UniVideoCaptionTrack,
+} from './VideoPlayer.types';

@@ -30,6 +30,26 @@ export interface UniChannelHeaderProps
   channelName: React.ReactNode;
   /** Contagem de inscritos. */
   subscriberCount?: React.ReactNode;
+
+  /**
+   * Identificador público do canal, exibido sob o nome — o arquivo de Shorts
+   * escreve "@User-name25 · subscribers 25K · video 146" (`16:604`). O arquivo
+   * original não desenha esta linha; ela entrou com o segundo arquivo.
+   */
+  channelHandle?: React.ReactNode;
+
+  /**
+   * Terceira linha da identidade, abaixo do identificador — o arquivo escreve
+   * "No followers". Só é renderizada quando informada.
+   */
+  secondaryLine?: React.ReactNode;
+
+  /**
+   * Exibe as setas de rolagem nas extremidades da barra de abas, como o
+   * arquivo de Shorts desenha (`16:604`). Elas rolam a faixa de verdade.
+   * @default false
+   */
+  showTabArrows?: boolean;
   /**
    * Marca o canal como já inscrito.
    * @default false

@@ -19,6 +19,8 @@ export const VideoPlayerFull = React.forwardRef<HTMLElement, UniVideoPlayerFullP
   (
     {
       src,
+      sources,
+      poster,
       alt = '',
       videoTitle,
       metadata,
@@ -37,6 +39,8 @@ export const VideoPlayerFull = React.forwardRef<HTMLElement, UniVideoPlayerFullP
     >
       <VideoPlayer
         src={src}
+        sources={sources}
+        poster={poster}
         alt={alt}
         videoTitle={overlayTitle ?? videoTitle}
         {...playerProps}

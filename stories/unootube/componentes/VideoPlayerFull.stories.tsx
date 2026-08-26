@@ -24,6 +24,7 @@ const meta: Meta<typeof VideoPlayerFull> = {
   parameters: { layout: 'padded' },
   argTypes: {
     src: { control: 'text' },
+    poster: { control: 'text' },
     alt: { control: 'text' },
     videoTitle: { control: 'text' },
     metadata: { control: 'text' },
@@ -31,7 +32,7 @@ const meta: Meta<typeof VideoPlayerFull> = {
     className: { control: 'text' },
   },
   args: {
-    src: playerPoster,
+    poster: playerPoster,
     alt: '',
     videoTitle: 'Video Title',
     metadata: '576K views · Oct 8, 2021',
@@ -104,6 +105,11 @@ const VideoPlayerFullDocumentationPage = () => (
     <UniDocDeviations
       items={[
         {
+          subject: 'Reprodução real e migração de `src`',
+          detail:
+            'o VideoPlayer interno passou a montar um <video> quando recebe fonte. Em consequência, `src` designa o vídeo e o quadro estático passou a ser `poster`, tanto aqui quanto no VideoPlayer e no VideoCardHorizontal. Sem fonte, o bloco continua sendo a réplica estática do arquivo.',
+        },
+        {
           subject: 'Peso invertido em relação à hierarquia',
           detail:
             'o título usa Roboto Regular 18 e a linha de metadados usa Roboto Bold 14, ou seja, o elemento de maior hierarquia tem o peso menor. O arquivo declara assim e o par foi preservado, anotado no CSS do componente.',
@@ -161,7 +167,7 @@ const VideoPlayerFullDocumentationPage = () => (
     <UniDocStage label="Como no arquivo" surface="primary" align="stretch">
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Video Title"
           metadata="576K views · Oct 8, 2021"
           actions={<Actions />}
@@ -171,7 +177,7 @@ const VideoPlayerFullDocumentationPage = () => (
     <UniDocStage label="Sem barra de ações" surface="primary" align="stretch">
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Video Title"
           metadata="576K views · Oct 8, 2021"
         />
@@ -180,7 +186,7 @@ const VideoPlayerFullDocumentationPage = () => (
     <UniDocStage label="Título longo e sobreposto distinto" surface="primary" align="stretch">
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           overlayTitle="Ep 6"
           videoTitle="Ep 6: Living to Serve | SEARCH ON — como a hierarquia tipográfica do Unootube organiza a tela de vídeo"
           metadata="1M views · 3 years ago"
@@ -214,7 +220,7 @@ const VideoPlayerFullDocumentationPage = () => (
       {() => (
         <div style={{ width: 560, maxWidth: '100%' }}>
           <VideoPlayerFull
-            src={playerPoster}
+            poster={playerPoster}
             videoTitle="Video Title"
             metadata="576K views · Oct 8, 2021"
             actions={<Actions />}
@@ -227,7 +233,22 @@ const VideoPlayerFullDocumentationPage = () => (
     <UniDocPropsTable
       title="VideoPlayerFull"
       rows={[
-        { name: 'src', type: 'string', description: 'Endereço do quadro de vídeo.' },
+        {
+          name: 'src',
+          type: 'string',
+          description:
+            'Endereço do vídeo, repassado ao VideoPlayer. MIGRAÇÃO: até a versão anterior src designava o quadro estático, que agora é poster.',
+        },
+        {
+          name: 'sources',
+          type: 'UniVideoSource[]',
+          description: 'Fontes alternativas do vídeo, repassadas ao VideoPlayer.',
+        },
+        {
+          name: 'poster',
+          type: 'string',
+          description: 'Quadro exibido antes da reprodução e no modo estático.',
+        },
         { name: 'alt', type: 'string', default: "''", description: 'Texto alternativo do quadro.' },
         {
           name: 'videoTitle',
@@ -246,9 +267,9 @@ const VideoPlayerFullDocumentationPage = () => (
         },
         {
           name: 'playerProps',
-          type: "Omit<UniVideoPlayerProps, 'src' | 'alt' | 'videoTitle'>",
+          type: "Omit<UniVideoPlayerProps, 'src' | 'sources' | 'poster' | 'alt' | 'videoTitle'>",
           description:
-            'Propriedades repassadas ao VideoPlayer interno — tempo, progresso e manipuladores de controle.',
+            'Propriedades repassadas ao VideoPlayer interno — reprodução, tempo, progresso e manipuladores de controle.',
         },
         {
           name: 'overlayTitle',
@@ -304,7 +325,7 @@ export const ExemploOficialDoFigma: Story = {
     >
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Video Title"
           metadata="576K views · Oct 8, 2021"
           actions={<Actions />}
@@ -332,7 +353,7 @@ export const TodasVariantes: Story = {
     >
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Com barra de ações"
           metadata="576K views · Oct 8, 2021"
           actions={<Actions />}
@@ -340,14 +361,14 @@ export const TodasVariantes: Story = {
       </div>
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Sem barra de ações"
           metadata="576K views · Oct 8, 2021"
         />
       </div>
       <div style={{ width: 640, maxWidth: '100%' }}>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           overlayTitle="Ep 6"
           videoTitle="Título sobreposto distinto do título abaixo do reprodutor"
           metadata="1M views · 3 years ago"

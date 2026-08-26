@@ -12,7 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Este documento é a referência arquitetural e técnica obrigatória para o desenvolvimento de componentes, tokens e documentação interativa no Storybook da **Plataforma Unooria**.
 
-> **Paridade obrigatória**: `AGENTS.md` e `GEMINI.md` compartilham o mesmo corpo normativo (seções 1 a 9) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
+> **Paridade obrigatória**: `AGENTS.md` e `GEMINI.md` compartilham o mesmo corpo normativo (seções 1 a 10) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
 
 ---
 
@@ -39,7 +39,7 @@ Este documento é a referência arquitetural e técnica obrigatória para o dese
 - **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`).
 
 ### 1.3. Módulos Multimarca (`src/whatsappmobile/`, `src/instanooria/`, `src/chatgpt/`, `src/tiktooria/`)
-O pacote publica **cinco design systems** em um único artefato NPM:
+O pacote publica **seis design systems** em um único artefato NPM:
 
 | Marca | Módulo | Namespace | Prefixo CSS / classes | Tema ou contexto | Componentes | Arquivo Figma de origem |
 |---|---|---|---|---|---|---|
@@ -48,6 +48,7 @@ O pacote publica **cinco design systems** em um único artefato NPM:
 | ChatGPT | `src/chatgpt/` | `ChatGPTUI` | `--gpt-*` / `.gpt-*` | `data-gpt-theme="light \| dark"` | 17 | ChatGPT UI Kit (AI Chat) (Community) |
 | WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 29 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
+| Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 40 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
 
 - Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
 - **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
@@ -76,8 +77,9 @@ O pacote publica **cinco design systems** em um único artefato NPM:
   - Código de produção: `src/unootube/tokens/` e `src/unootube/components/[NomeComponente]/`.
   - Estórias: `stories/unootube/fundamentos/`, `stories/unootube/componentes/` e `stories/unootube/telas/`.
   - Conteúdo de demonstração compartilhado: `stories/unootube/fixtures.ts`.
-  - Prefixo de variáveis CSS: `--uni-*`. Prefixo de classes: `.uni-*`. Atributo de tema: `data-uni-theme="dark"` (o arquivo publica **apenas** o tema escuro).
-  - **Nenhum bitmap integra o pacote**: as miniaturas do arquivo são logotipos de terceiros e não foram redistribuídas. Todas as imagens entram por prop.
+  - **Dois arquivos de origem**: além do arquivo original, o módulo consome "Free YouTube Shorts Mockups (Community)" (`fileKey FlqnnoY0Mqdjic53twLAC1`), origem do Shorts, do cromo móvel e do **tema claro**.
+  - Prefixo de variáveis CSS: `--uni-*`. Prefixo de classes: `.uni-*`. Atributo de tema: `data-uni-theme="light | dark"`. O tema claro **não é derivado** do arquivo original — vem medido do segundo arquivo, que publica as mesmas telas nas duas versões.
+  - **Nenhum bitmap integra o pacote**: as miniaturas do primeiro arquivo são logotipos de terceiros e as do segundo são fotografias de banco de imagens. Nenhuma foi redistribuída; todas as imagens entram por prop.
 - **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube — são marcas com hierarquias cromáticas distintas.
 
 ---
@@ -175,7 +177,7 @@ Todo componente, estilo ou documentação do Tik Tooria **DEVE** consumir exclus
 ### 2.7. Tokens do Unootube (`src/unootube/tokens/`)
 Todo componente, estilo ou documentação do Unootube **DEVE** consumir exclusivamente as variáveis `--uni-*`. É o único arquivo da plataforma que **documenta os próprios tokens**: a página `🎨 Design System` (`104:3087`) publica as primitivas, nove tokens semânticos com nome e descrição de uso, a escala tipográfica, o espaçamento, os raios e as elevações. Os demais valores foram lidos do preenchimento literal do nó e registram o `figmaNode` em `colors.ts`.
 
-- **Modo único — escuro**: o quadro semântico se intitula "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme first". **É PROIBIDO derivar um tema claro por cálculo** — as primitivas neutras claras (`--uni-color-neutral-50` a `-400`) existem como origem de texto e contorno sobre fundo escuro, não como superfície.
+- **Dois temas, e só um deles vem do arquivo original**. O quadro semântico do primeiro arquivo se intitula "SEMANTIC TOKENS (DARK MODE)" e o cabeçalho da página declara "Dark theme first": dele **continua PROIBIDO derivar um tema claro por cálculo**, e as primitivas neutras claras (`--uni-color-neutral-50` a `-400`) seguem existindo como origem de texto e contorno sobre fundo escuro, não como superfície. O tema claro da biblioteca vem **medido** do segundo arquivo, "Free YouTube Shorts Mockups (Community)" (`FlqnnoY0Mqdjic53twLAC1`), que publica as mesmas telas nos dois temas; cada valor claro registra em `colors.ts` o nó em que foi lido. O bloco `[data-uni-theme='light']` de `colors.css` redeclara apenas os semânticos, nunca as primitivas.
 - **Primitivas neutras (12 degraus)**: `--uni-color-white`, `-black` e `--uni-color-neutral-50|100|200|300|400|500|600|700|800|900`. **Nunca aplicadas diretamente em componente** — servem de origem para os aliases semânticos.
 - **Quatro vermelhos distintos, preservados**: `--uni-color-red-500` (`#EE1A26`, semântico), `-600` (`#FC0D1C`, progresso da linha do tempo), `-700` (`#CC0000`, botão de inscrição) e `-800` (`#FF0000`, emblema do logotipo). Convivem na mesma tela — no reprodutor, o selo HD usa o semântico enquanto a linha do tempo usa o de progresso. **É proibido consolidá-los.** Acento: `--uni-color-blue-400` (`#9EBFD0`, cor de espera do quadro de vídeo).
 - **Semânticos publicados (9)**: `--uni-color-background-primary` (`#181818`), `-secondary` (`#212121`), `-surface` (`#303030`), `--uni-color-text-primary` (`#FFFFFF`), `-secondary` (`#AAAAAA`), `-tertiary` (`#C4C4C4`), `--uni-color-brand-primary` (`#EE1A26`), `--uni-color-border-default` (`#EAEAEA`) e `-subtle` (`#303030`).
@@ -184,6 +186,9 @@ Todo componente, estilo ou documentação do Unootube **DEVE** consumir exclusiv
 - **Tipografia**: família Roboto via `--uni-font-sans`; escala de **onze degraus** (`--uni-font-heading-h1|h2|h3|h4-*`, `--uni-font-body-lg|md|sm-*`, `--uni-font-caption-*`, `--uni-font-caption-sm-*`, `--uni-font-label-lg|md-*`), com apenas dois pesos (400 e 700), alturas de linha absolutas em pixels e **`letter-spacing` zero em todos os degraus** — é proibido inventar tracking.
 - **Medidas**: escala `--uni-spacing-0` a `--uni-spacing-64` em base de 4px, com os degraus finos de 1px, 2px, 6px e 10px **preservados**; raios `--uni-radius-none` (0) a `--uni-radius-full` (**80px literal**, não um valor arbitrariamente grande); dimensões estruturais (`--uni-desktop-width` 1440px, `--uni-topbar-height` 56px, `--uni-sidebar-width` 240px, `--uni-content-gutter` **65px**, `--uni-primary-column-width` 664px, `--uni-secondary-column-width` 426px) e os **seis diâmetros de avatar** (24/32/36/40/48/80px), todos literais.
 - **Elevação**: `--uni-elevation-low|medium|high`, os três degraus publicados pelo quadro `Elevation`. A biblioteca é **plana por padrão** — nenhuma das três telas aplica `box-shadow`: a separação é feita por luminância de superfície e por fios de 1px em `--uni-color-border-subtle`. **É proibido introduzir `box-shadow`** em barras, cartões, listas ou pílulas.
+- **Tokens do Shorts e do cromo móvel** (segundo arquivo, todos lidos do preenchimento literal do nó): `--uni-color-shorts-ink` (`#161722`, a tinta do arquivo), `--uni-color-brand-shorts` (`#FF0000`, o corpo do raio), `-shorts-chrome`, `-shorts-cell`, `-shorts-veil` (preto a 32%), `-shorts-sound-fill` (preto a 20%) e `--uni-gradient-shorts-bottom` (véu de 194px com as paradas literais 37,188% e 48,296%). Dois tokens nasceram de divergências que só aparecem no tema claro: `--uni-color-surface-selected`, porque a linha selecionada (`#E4E4E4`) e a pílula de filtro (`#ECECEC`) divergem ali ainda que coincidam no escuro; e `--uni-color-surface-chrome`, porque o arquivo pinta o cromo **móvel** de branco puro e o de 1440px de `#F6F6F6`. Nos dois casos a divergência é do próprio arquivo e foi preservada em token próprio, em vez de consolidada no degrau mais próximo.
+- **Degraus que o primeiro arquivo não publica**: o peso `--uni-font-weight-medium` (Roboto Medium 500, usado em quase todo o Shorts e o cromo móvel) e o raio `--uni-radius-control` (4px, do botão de inscrição, do botão de som e da pílula de filtro móvel). Ambos são literais do segundo arquivo — a coleção `Radius` do primeiro salta de 2px para 8px, e a escala tipográfica declara apenas 400 e 700.
+- **Medidas móveis**: quadros `--uni-phone-width|height` (390×844) e `--uni-phone-android-width|height` (360×800), alturas `--uni-mobile-topbar-height` (50px), `-tabbar-height` (58px) e `-header-height` (47px), e a família `--uni-shorts-*` (razão 9:16, quadro de 488px, faixa de 44px, cartão de 150×266, célula de 119×200, trilha de 36px, botão de 54px). Os diâmetros de avatar de **38px** e **77px** que o segundo arquivo acrescenta entram por `size` numérico, e não como degraus nomeados: a escala nomeada continua refletindo apenas o primeiro arquivo.
 ---
 
 ## 3. Convenção Oficial de Documentação em Componentes (Padrão Ouro)
@@ -306,7 +311,7 @@ export default meta;
 
 O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem (`bundle: false` em `tsup.config.ts`), preservando o grafo de módulos.
 
-- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**71 dos 140** na última medição: 2/38 na Plataforma Unooria, 10/21 no Instanooria, 14/17 no ChatGPT, 13/29 no WhatsApp Mobile e 32/35 no Tik Tooria). Para recontar depois de um `npm run build:package`:
+- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**94 dos 181** na última medição: 2/39 na Plataforma Unooria, 10/21 no Instanooria, 14/17 no ChatGPT, 13/29 no WhatsApp Mobile, 32/35 no Tik Tooria e 23/40 no Unootube). Para recontar depois de um `npm run build:package`:
   ```bash
   for d in dist/*/components/*/; do n=$(basename "$d"); f="$d$n.mjs"; \
     [ -f "$f" ] && { head -3 "$f" | grep -q 'use client' && echo client || echo server; }; \
@@ -322,6 +327,7 @@ O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem
 
 ## 5. Validação Obrigatória e Critérios de Aceite
 Antes de considerar qualquer tarefa de componente ou documentação concluída:
+0. Ao tocar no Unootube, conferir **antes de registrar um glifo novo** se ele já existe: os dois arquivos de origem redesenham vários dos mesmos vetores, apenas transladados ou escalados. A análise de repetição vive no bloco `shorts` de `IconPaths.ts`.
 1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube), sem hexadecimais avulsos e sem mistura entre marcas.
 2. Executar `npx tsc --noEmit` e garantir **0 erros de compilação TypeScript**.
 3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`).
@@ -504,11 +510,16 @@ Qualquer divergência intencional **DEVE** ser documentada com o `TikDocDeviatio
 
 ## 10. Design System Unootube (Seção `Unootube` do Storybook)
 
-O **Unootube** é a plataforma de vídeo da Plataforma Unooria, implementada a partir do arquivo Figma [YouTube UI Clone Design (Community)](https://www.figma.com/design/HcbrbLtDZ1rMEvSjoXpA5c/YouTube-UI-Clone-Design--Community-) (`fileKey HcbrbLtDZ1rMEvSjoXpA5c`), composto por três páginas: a documentação de tokens em `🎨 Design System` (`104:3087`), os componentes em `Component` (`7:182`) e as três telas de referência em `Screen` (`0:1`), todas de 1440×1024.
+O **Unootube** é a plataforma de vídeo da Plataforma Unooria. É o **único módulo com dois arquivos de origem**:
+
+1. [YouTube UI Clone Design (Community)](https://www.figma.com/design/HcbrbLtDZ1rMEvSjoXpA5c/YouTube-UI-Clone-Design--Community-) (`fileKey HcbrbLtDZ1rMEvSjoXpA5c`), composto por três páginas: a documentação de tokens em `🎨 Design System` (`104:3087`), os componentes em `Component` (`7:182`) e as três telas de referência em `Screen` (`0:1`), todas de 1440×1024. É a origem dos 30 primeiros componentes, de toda a escala de tokens e do tema escuro.
+2. [Free YouTube Shorts Mockups (Community)](https://www.figma.com/design/FlqnnoY0Mqdjic53twLAC1/Free-YouTube-Shorts-Mockups--Community-) (`fileKey FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`), com **18 quadros**: três telas × três dispositivos (iPhone 390×844, Android 360×800 e área de trabalho 1440×1024) × **dois temas**. É a origem do Shorts, do cromo móvel, do **tema claro** e de sete glifos novos.
 
 ### 10.1. Fonte Canônica e Particularidades do Arquivo
-- É o **único arquivo da plataforma que documenta os próprios tokens**. A página `🎨 Design System` publica primitivas, nove tokens semânticos com nome e descrição de uso, a escala tipográfica de onze degraus, o espaçamento, os raios, as elevações e um inventário de componentes com a assinatura JSX pretendida de cada um. Quando o arquivo declara um token, ele é a fonte; o restante foi lido do nó e registra o `figmaNode`.
-- O arquivo publica **um único modo semântico — escuro**. Não existe versão clara de nenhum componente, portanto **é proibido derivar um tema claro por cálculo**. A seção "Suporte a Temas" do Padrão Ouro é atendida pelo `UniDocSurfaceSwitcher`, que alterna entre as cinco superfícies escuras oficiais.
+- O primeiro arquivo é o **único da plataforma que documenta os próprios tokens**. A página `🎨 Design System` publica primitivas, nove tokens semânticos com nome e descrição de uso, a escala tipográfica de onze degraus, o espaçamento, os raios, as elevações e um inventário de componentes com a assinatura JSX pretendida de cada um. Quando o arquivo declara um token, ele é a fonte; o restante foi lido do nó e registra o `figmaNode`.
+- O primeiro arquivo publica **um único modo semântico — escuro**, e dele **continua proibido derivar um tema claro por cálculo**. O par claro/escuro da biblioteca vem do **segundo** arquivo, que desenha as mesmas três telas nas duas versões: cada valor claro foi **medido** no quadro correspondente (`1:593`, `1:115`, `1:801`) e registra o nó em `colors.ts`. É essa medição — e só ela — que torna o `data-uni-theme="light"` legítimo. A seção "Suporte a Temas" do Padrão Ouro passa a ser atendida pelo `UniDocThemeSwitcher`; o `UniDocSurfaceSwitcher` continua existindo para percorrer a escada de luminância **dentro** de um tema.
+- O segundo arquivo é **posicionado em coordenadas absolutas**, sem variáveis publicadas: todos os seus valores foram lidos do preenchimento literal do nó e carregam o `figmaNode` de origem.
+- O segundo arquivo **redesenha vários glifos que o primeiro já publicava**, apenas transladados ou escalados. **Antes de registrar qualquer glifo novo, é obrigatório conferir se ele já existe** — a análise caminho a caminho que descartou sete deles está anotada no bloco `shorts` de `IconPaths.ts`.
 - As telas são posicionadas em **coordenadas absolutas**, sem auto layout na maioria dos quadros. Os componentes reconstroem a geometria com flex e grid, preservando as medidas lidas nó a nó.
 - As miniaturas de vídeo do arquivo são renderizações tridimensionais de **logotipos de terceiros** (YouTube, Instagram, TikTok, Netflix, Twitter, Spotify, Discord e Tesla). **Não foram exportadas nem redistribuídas**: as estórias usam pôsteres sintéticos gerados em SVG a partir da própria paleta, e todas as imagens entram por prop (`src`, `avatarSrc`, `coverSrc`). Nenhum bitmap integra o pacote — não há diretório `public/unootube/`.
 - O logotipo é marca registrada do Google LLC e está presente por fidelidade ao arquivo comunitário. Um produto que publique a biblioteca deve substituir `src/unootube/components/Logo/LogoVector.ts` pela própria marca.
@@ -516,35 +527,78 @@ O **Unootube** é a plataforma de vídeo da Plataforma Unooria, implementada a p
 ### 10.2. Títulos das Estórias
 - **Fundamentos**: `Unootube/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação | Ícones]`.
 - **Componentes**: `Unootube/Componentes/[NomeComponente]`.
-- **Telas compostas**: `Unootube/Telas/Telas Compostas`.
+- **Telas compostas**: `Unootube/Telas/Telas Compostas` — nove telas: as três do primeiro arquivo e as seis do segundo (três móveis e três de área de trabalho).
 
-### 10.3. Componentes Oficiais (30)
-**Fundação**: `Icon`, `Logo`, `Avatar`.
-**Navegação**: `TopBar`, `SearchBox`, `ProfileCompact`, `ProfileExpanded`, `Sidebar` (composto: `.Section`, `.Footer`, `.FooterRow`), `SidebarMenuItem`, `SidebarMenuTitle`, `FooterItem`, `TopMenuBar`, `TopMenuItem`, `TopMenuIcon`.
+### 10.3. Componentes Oficiais (40)
+**Fundação**: `Icon`, `Logo`, `Avatar`, `ShortsLogo`.
+**Navegação**: `TopBar`, `SearchBox`, `ProfileCompact`, `ProfileExpanded`, `Sidebar` (composto: `.Section`, `.Footer`, `.FooterRow`), `SidebarMenuItem`, `SidebarMenuTitle`, `FooterItem`, `TopMenuBar`, `TopMenuItem`, `TopMenuIcon`, `MobileTopBar`, `MobileTabBar` (composto: `.Item`, `.CreateButton`), `MobileHeader`.
 **Mídia**: `ThumbnailImage`, `VideoCard`, `VideoCardHorizontal`, `VideoCardSmall`, `VideoCardSidebar`, `VideoPlayer`, `VideoPlayerFull`, `Playlist`.
-**Conteúdo**: `ChannelHeader`, `VideoDescription`, `Comment`.
+**Shorts**: `ShortsCard`, `ShortsShelf`, `ShortsActionRail` (composto: `.Item`), `ShortsPlayer`.
+**Conteúdo**: `ChannelHeader`, `MobileChannelHeader`, `VideoDescription`, `Comment`.
 **Ação**: `Button`, `SubscribeButton`.
 **Layout**: `PrimaryColumn`, `SecondaryColumn`.
-**Documentação**: `DesktopFrame`.
+**Documentação**: `DesktopFrame`, `PhoneFrame`.
 
-- `VideoCard`, `VideoCardSmall`, `VideoCardSidebar` e `VideoCardHorizontal` são **quatro formatos distintos** publicados pelo arquivo, com tipografia e composição próprias. Não duplicar nem consolidar.
-- `SubscribeButton` é o **único botão sólido** do arquivo. `Button` é transparente.
-- `DesktopFrame` é um contêiner **de documentação**, não de produção — o mesmo papel que o `PhoneFrame` cumpre nos módulos móveis.
+- `VideoCard`, `VideoCardSmall`, `VideoCardSidebar` e `VideoCardHorizontal` são **quatro formatos distintos** publicados pelo primeiro arquivo, com tipografia e composição próprias. Não duplicar nem consolidar. O `ShortsCard` é um quinto, vertical, com três variantes próprias (`overlay`, `below`, `views`) que também não podem ser consolidadas — o que muda entre elas é **onde o texto mora**, não a medida.
+- **Três alvos de inscrição distintos convivem no produto** e nenhum pode ser consolidado: o `SubscribeButton` sólido em `#CC0000` (tela de vídeo, primeiro arquivo), o botão do `ShortsPlayer` sólido em `#FF0000` com raio de 4px (`3:208`) e a chamada em **texto** vermelho do `MobileChannelHeader` (`16:1087`).
+- `SubscribeButton` é o **único botão sólido do primeiro arquivo**. `Button` é transparente.
+- `DesktopFrame` e `PhoneFrame` são contêineres **de documentação**, não de produção.
 - O `Icon` é documentado apenas em `Fundamentos/Ícones`; não há estória duplicada em `Componentes`.
 
+#### 10.3.1. Reprodução de vídeo real
+
+`VideoPlayer` e `ShortsPlayer` **não são mais camadas de apresentação**. Os arquivos de design são estáticos — bitmaps com controles desenhados —, e a máquina de estados que faltava vive em `src/unootube/components/VideoPlayer/useVideoPlayback.ts`, deliberadamente separada da apresentação para que o quadro de 16:9 e o de 9:16 compartilhem exatamente o mesmo motor.
+
+- **Dois modos, decididos pela presença de fonte.** Com `src` ou `sources`, o componente monta um `<video>` real e os controles operam: reproduzir, pausar, buscar na linha do tempo, volume, mudo, legendas e tela cheia; relógio, progresso e trecho carregado passam a vir do elemento. **Sem fonte, permanece a réplica estática** governada por `poster`, `progress`, `buffered`, `currentTime` e `duration` — é assim que a documentação continua reproduzindo o arquivo quadro a quadro, e é por isso que os dois modos precisam continuar existindo.
+- **MIGRAÇÃO**: `src` designava o quadro estático até a versão anterior. Agora `src` é o **vídeo** e o quadro estático é `poster`. `VideoPlayerFull` e `VideoCardHorizontal` foram migrados junto.
+- O estado é sempre **lido dos eventos do elemento**, nunca escrito de forma otimista: é o que mantém o botão refletindo a verdade quando o navegador recusa o autoplay ou quando o vídeo é comandado por fora.
+- O `ShortsPlayer` começa **silenciado e em laço** por padrão — a única combinação que os navegadores aceitam para autoplay, e o comportamento do formato.
+- As estórias **não embarcam mídia**: o vídeo de demonstração é desenhado em um `<canvas>` e gravado pelo navegador com `MediaRecorder` (`stories/unootube/demoVideo.ts`). Falhando a gravação, as estórias caem no modo estático.
+
 ### 10.4. Iconografia Derivada do Figma
-- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca. Os 45 ícones vivem em `src/unootube/components/Icon/IconPaths.ts` com o atributo `d` **literal do export SVG do Figma** e o `viewBox` original preservado — todos são 24×24.
+- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca. Os **52** ícones vivem em `src/unootube/components/Icon/IconPaths.ts` com o atributo `d` **literal do export SVG do Figma** e o `viewBox` original preservado: **45** do primeiro arquivo, todos 24×24, e **sete** do segundo, exportados no contorno justo do nó e portanto **não quadrados**.
+- **A prop `size` governa a altura**; a largura é derivada da razão do `viewBox`. Para os 45 glifos quadrados o alvo continua quadrado; para os sete do arquivo de Shorts é essa derivação que preserva a forma — normalizar o `moreVertical` (3,26 × 16,28) para um quadrado o esticaria.
+- **Sete glifos foram descartados por já existirem.** O segundo arquivo redesenha a lupa (`1:215` = `search` transladado -3,-3), o sino (`1:212` = `notifications` transladado), a casa da barra de abas (`1:238` = `homeFill` transladado -4,-3), a biblioteca (`1:248` = `library` × 1,1667), as inscrições (`1:245` = `subscriptions` × 1,1667), o polegar da trilha (`3:217` = `likedFill` × 1,5) e as reticências da trilha (`3:212` = `more` × 1,5). **Nenhum foi duplicado**; a conferência está anotada no bloco `shorts` do registro.
+- **Os sete que entraram**: `shortsComment`, `shortsShare`, `moreVertical`, `arrowLeft`, `camera`, `cast` e `createCircle`.
+- **`arrowLeft` e `camera` são traçados, não preenchidos** — os nós declaram `stroke-width: 2` com pontas arredondadas. São o único par assim na biblioteca, e o motivo de o registro passar a aceitar um campo `shapes` com traço além do campo `d` de caminho único.
+- Quando o arquivo reaproveita o mesmo vetor girado — o polegar de "não curtir" (`3:221`) —, use a prop `rotate` em vez de duplicar o caminho com coordenadas reescritas.
+- **As duas formas do raio do Shorts vivem em `src/unootube/components/ShortsLogo/ShortsLogoVector.ts`**, e não no registro de ícones: o maciço vermelho da marca (`1:737`) e o de contorno monocromático da navegação (`I1:241;13:110`). **Não são a mesma forma em cores diferentes** — são dois vetores distintos, com papéis distintos, e por isso a prop se chama `variant` e não `tone`.
+- **O glifo de som do reprodutor de Shorts não tem caminho no arquivo**: são cinco retângulos (`3:240` a `3:244`). Vive em `ShortsPlayer/SoundGlyph.tsx`, pelo mesmo motivo que os retângulos do selo HD vivem em `PlayerGlyphs`.
 - O arquivo pinta os 45 glifos de branco puro. O preenchimento literal foi trocado por `currentColor` para que o mesmo vetor sirva ao texto primário, ao secundário e ao cromo do reprodutor — as três cores em que as telas os aplicam.
 - **Treze glifos existem em par contorno/preenchido** (`home`/`homeFill`, `explore`/`exploreFill`, …). É essa dupla que marca o item ativo da barra lateral: a cor **não muda** entre ativo e inativo, apenas o peso do vetor e o fundo da linha.
 - Os **nove controles do reprodutor** (`play`, `next`, `sound`, `titles`, `quality`, `theater`, `tv`, `fullscreen`, `info`) **não são componentes** no arquivo: são nós `VECTOR`, `GROUP` e `BOOLEAN_OPERATION` soltos dentro do quadro `Media/VideoPlayer` (`18:1295`). Vivem em `src/unootube/components/VideoPlayer/PlayerGlyphs.ts`, com a **geometria de preenchimento resolvida** (`node.fillGeometry`) — o resultado literal das operações booleanas — e o traço de 1px em preto a 10% reproduzido via `--uni-color-player-glyph-outline`.
 - O logotipo vive em `src/unootube/components/Logo/LogoVector.ts`, também com os caminhos literais do export.
 
 ### 10.5. Kit de Documentação
-As estórias do Unootube usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/UniDocKit.tsx`: `UniDocGrid`, `UniDocCard`, `UniDocFigmaSpecs`, `UniDocDeviations`, `UniDocAnatomy`, `UniDocStage`, `UniDocPractices`, `UniDocSurfaceSwitcher`, `UniDocPropsTable` e `UniDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
+As estórias do Unootube usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/UniDocKit.tsx`: `UniDocGrid`, `UniDocCard`, `UniDocFigmaSpecs`, `UniDocDeviations`, `UniDocAnatomy`, `UniDocStage`, `UniDocPractices`, `UniDocThemeSwitcher`, `UniDocSurfaceSwitcher`, `UniDocPropsTable` e `UniDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
+
+- A seção 6 ("Suporte a Temas") usa o **`UniDocThemeSwitcher`**, que alterna `data-uni-theme` entre `dark` e `light` — exatamente como um produto faz. Ele só é legítimo porque o segundo arquivo publica o par medido.
+- O **`UniDocSurfaceSwitcher`** continua sendo a ferramenta para percorrer a escada de luminância **dentro** de um tema, e é o que se usa quando o componente só existe no primeiro arquivo.
+- O `UniDocStage` aceita a prop `theme`, que continua padrão `dark`.
 
 ### 10.6. Registro de Desvios em Relação ao Figma
 Qualquer divergência intencional **DEVE** ser documentada com o `UniDocDeviations` na seção "Figma & Especificações Técnicas" da estória. Desvios registrados até o momento:
-- **Ausência de tema claro**: o arquivo publica apenas o modo escuro; nenhum valor claro de superfície foi inventado.
+- **Tema claro medido, não derivado**: o primeiro arquivo publica apenas o modo escuro, e nenhum valor claro foi inventado a partir dele. O tema claro veio integralmente medido do segundo arquivo, que desenha as mesmas telas nas duas versões (`1:593`, `1:115`, `1:801`).
+- **Superfície de seleção separada da interativa**: no escuro a linha selecionada da barra lateral e a pílula de filtro compartilham `#303030`. No claro o segundo arquivo mede valores distintos — `#E4E4E4` na linha (`1:602`) contra `#ECECEC` na pílula (`1:228`) —, e por isso surgiu `--uni-color-surface-selected`. O `SidebarMenuItem` passou a citá-lo; no escuro nada mudou.
+- **Cromo móvel branco, cromo de trabalho cinza**: no tema claro o arquivo pinta as barras móveis (`1:201`, `1:235`) de branco puro e o cromo de 1440px (`1:596`) de `#F6F6F6`. A divergência é do próprio arquivo e foi preservada em `--uni-color-surface-chrome`, que no escuro coincide com `--uni-color-background-secondary`.
+- **Prateleira sem preenchimento próprio**: o arquivo desenha a prateleira de Shorts sobre a superfície da página nos dois temas e nas duas disposições. O componente não pinta fundo — a separação vem dos recuos e, na área de trabalho, dos fios de `bordered`.
+- **Um quinto vermelho**: o botão de inscrição do reprodutor de Shorts usa `#FF0000`, o mesmo valor do emblema do logotipo. Foi tokenizado como `--uni-color-brand-shorts` em vez de reaproveitar `--uni-color-brand-logo` — são papéis diferentes, e um produto que troque a marca não deve trocar junto o botão de inscrição.
+- **Terceiro peso e raio de 4px**: o primeiro arquivo publica apenas Regular 400 e Bold 700, e uma coleção `Radius` que salta de 2px para 8px. O segundo usa Roboto Medium 500 em quase todo o Shorts e raio de 4px em três alvos. Ambos entraram como tokens (`--uni-font-weight-medium`, `--uni-radius-control`) sem alterar nenhum degrau publicado.
+- **Corpo de 26px fora da escala**: o nome do canal móvel (`16:1085`) não tem degrau equivalente — a escala salta de 24 para nada. Preservado como literal e anotado no CSS do `MobileChannelHeader`.
+- **Dois diâmetros de avatar fora da escala nomeada**: 38px na linha de canal do Shorts (`3:487`) e 77px no cabeçalho de canal móvel (`16:1082`). Entram por `size` numérico no `Avatar`, para que a escala nomeada continue refletindo só o primeiro arquivo.
+- **Reprodução de vídeo acrescentada**: os arquivos são estáticos e não descrevem reprodução, tempo, volume, tela cheia, botão central, recolhimento de controles, punho da linha do tempo, régua de volume nem indicador de carregamento. Todos foram acrescentados usando exclusivamente tokens da própria marca — ver 10.3.1.
+- **Linha do tempo do Shorts**: o arquivo não desenha progresso no reprodutor vertical. A faixa de 2px na base é extensão, e pode ser desligada com `showProgress={false}` para obter a réplica exata do quadro.
+- **Rótulo "Storts"**: o arquivo escreve "Storts" na prateleira móvel (`1:134`) e "Shorts" na da área de trabalho (`1:740`). É um erro de digitação do arquivo comunitário, **não reproduzido**.
+- **Véu do cartão de Shorts declarado como gradiente**: o arquivo declara um `GRADIENT_LINEAR` de 90° com as duas paradas idênticas — ou seja, uma cor sólida translúcida. Reproduzido como cor, porque é isso que o valor significa.
+- **Hierarquia de texto no cartão `below`**: no quadro claro o arquivo pinta título e visualizações com a mesma tinta (`1:745`). O componente usa `text-primary` e `text-secondary`, para preservar a hierarquia exigida pela seção 4.2.
+- **Espaçamento irregular da barra de abas móvel**: o arquivo agrupa os três primeiros destinos com 34px e afasta os dois últimos com 24px. O `MobileTabBar` distribui os cinco uniformemente — a régua do arquivo não sobrevive a uma janela diferente da do quadro.
+- **Passo irregular da trilha de ações**: as ações da variante `standalone` são posicionadas em coordenadas absolutas, com passo de 108,9px que inclui o rótulo. O componente usa um espaçamento único equivalente, para sobreviver a rótulos de comprimento diferente.
+- **Superfície `transparent` do `MobileHeader`**: não existe no arquivo, que sempre desenha a barra opaca acima do vídeo. Foi acrescentada porque o reprodutor de Shorts em tela cheia não deixa faixa para uma barra opaca.
+- **Ausência de barra de status nas telas móveis**: ao contrário do Instanooria, do WhatsApp Mobile e do Tik Tooria, o segundo arquivo não desenha a barra de status do sistema em nenhuma das seis telas móveis. Nenhuma foi inventada.
+- **Raio do `PhoneFrame`**: o arquivo desenha os quadros de dispositivo com cantos retos. O raio de 24px existe só para que a moldura leia como um dispositivo no painel de documentação, e nenhum componente de produção depende dele.
+- **Raio maciço do Shorts colado como PNG no móvel**: na prateleira móvel o arquivo cola o raio como bitmap (`1:132`). O vetor foi tomado da versão da área de trabalho (`1:737`), idêntica em forma. Nenhum bitmap foi redistribuído.
+- **Ponto de quebra em 560px do `ShortsPlayer`**: o arquivo publica a variante de cartão só no quadro de 1440px. Abaixo de 560px o quadro de 488px não cabe ao lado da trilha.
+- **Marca registrada do Shorts**: o raio é marca do Google LLC e está presente por fidelidade ao arquivo comunitário. Um produto que publique a biblioteca deve substituir `ShortsLogoVector.ts` pela própria marca, como já vale para o `Logo`.
 - **`color/text/tertiary` mais claro que o secundário**: o arquivo aponta `text/tertiary` para `neutral/300` (`#C4C4C4`) e `text/secondary` para `neutral/400` (`#AAAAAA`) — o degrau "mais sutil" é o mais claro dos dois. A inversão foi preservada sem correção.
 - **`color/border/default` é um neutro claro**: aponta para `neutral/200` (`#EAEAEA`), e nenhuma tela o usa como divisor — todas usam `border/subtle` (`#303030`). O token foi preservado como declarado, e os componentes consomem o sutil.
 - **Peso invertido em relação à hierarquia**: no `VideoPlayerFull` o título usa Regular 18 e a linha de metadados, de hierarquia inferior, usa Bold 14. Preservado.
@@ -560,4 +614,4 @@ Qualquer divergência intencional **DEVE** ser documentada com o `UniDocDeviatio
 - **Sombra local do selo HD**: as letras "HD" do reprodutor carregam um drop shadow de 1px em `#560A0F` que não corresponde a nenhum degrau publicado. Por ser efeito decorativo de um único nó, não foi tokenizado nem reproduzido.
 - **Andaimes restritos a `stories/`**: o cabeçalho da lista de comentários ("286 Comments" mais o controle de ordenação) e o campo de novo comentário são camadas de texto soltas no arquivo, sem componente publicado. São montados localmente nas telas compostas e **não integram o pacote**.
 - **Segundo botão da barra de abas do canal**: o arquivo desenha um quadro vazio de 48×48 à direita da lupa, sem glifo nem rótulo. Não foi reproduzido.
-- **Frames não reconstruídos**: nenhum. As três telas da página `Screen` foram todas reconstruídas.
+- **Frames não reconstruídos**: nenhum. As três telas da página `Screen` do primeiro arquivo e as seis composições do segundo (três telas × móvel e área de trabalho) foram todas reconstruídas. Os quadros do segundo arquivo se repetem em iPhone e Android com as mesmas composições e recuos ligeiramente diferentes; o `PhoneFrame` publica as duas medidas.

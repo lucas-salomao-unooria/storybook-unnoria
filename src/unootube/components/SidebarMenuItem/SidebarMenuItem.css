@@ -43,9 +43,17 @@
   white-space: nowrap;
 }
 
-/* Estado ativo publicado pelo arquivo: fundo em superfície interativa. */
+/*
+ * Estado ativo publicado pelo arquivo: fundo em superfície de seleção.
+ *
+ * No tema escuro o token coincide com `--uni-color-background-surface`
+ * (`#303030`), que era o valor usado antes. No tema claro os dois divergem: o
+ * arquivo de Shorts mede `#E4E4E4` na linha selecionada (`1:602`) contra
+ * `#ECECEC` na pílula de filtro (`1:228`), e por isso a linha passou a citar o
+ * token próprio.
+ */
 .uni-sidebar-item--active {
-  background: var(--uni-color-background-surface);
+  background: var(--uni-color-surface-selected);
 }
 
 .uni-sidebar-item:hover:not(.uni-sidebar-item--active) {

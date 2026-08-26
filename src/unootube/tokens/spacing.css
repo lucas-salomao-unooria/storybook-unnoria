@@ -35,6 +35,14 @@
   --uni-radius-none: 0px;
   --uni-radius-xs: 1px;
   --uni-radius-sm: 2px;
+  /**
+   * Degrau de 4px. **Não** está na coleção `Radius` do arquivo original, que
+   * salta de 2px para 8px — entra com o arquivo de Shorts, que o aplica no
+   * botão de inscrição (`3:208`), no botão de som (`3:238`) e na pílula de
+   * filtro móvel (`1:220`). Nomeado por uso, e não por posição na escala, para
+   * não se confundir com `--uni-radius-sm`.
+   */
+  --uni-radius-control: 4px;
   --uni-radius-md: 8px;
   --uni-radius-lg: 24px;
   --uni-radius-xl: 32px;
@@ -102,6 +110,57 @@
   --uni-avatar-lg: 40px;
   --uni-avatar-xl: 48px;
   --uni-avatar-2xl: 80px;
+
+
+  /* ----------------------------------------------------
+   * Shorts e cromo móvel
+   *
+   * Medidos nó a nó no arquivo "Free YouTube Shorts Mockups (Community)"
+   * (fileKey `FlqnnoY0Mqdjic53twLAC1`, página `YouTube ` — `1:2`), que também
+   * é posicionado em coordenadas absolutas.
+   * ---------------------------------------------------- */
+
+  /** Quadro do iPhone usado nas telas móveis (1:115). */
+  --uni-phone-width: 390px;
+  --uni-phone-height: 844px;
+  /** Quadro do Android usado nas telas móveis (16:1012). */
+  --uni-phone-android-width: 360px;
+  --uni-phone-android-height: 800px;
+
+  /** Barra superior móvel (1:201). */
+  --uni-mobile-topbar-height: 50px;
+  /** Barra de abas móvel (1:235). */
+  --uni-mobile-tabbar-height: 58px;
+  /** Barra de navegação do reprodutor de Shorts (3:245). */
+  --uni-mobile-header-height: 47px;
+
+  /** Razão do quadro vertical: 488,16 × 867,49 no reprodutor (3:481). */
+  --uni-shorts-aspect: 9 / 16;
+  /** Quadro do reprodutor de Shorts na área de trabalho (3:481). */
+  --uni-shorts-frame-width: 488px;
+  /** Faixa do próximo Short, logo abaixo do quadro (3:482). */
+  --uni-shorts-peek-height: 44px;
+  /** Cartão da prateleira móvel (1:136). */
+  --uni-shorts-card-width: 150px;
+  --uni-shorts-card-height: 266px;
+  /** Célula da grade de Shorts do canal móvel (16:1018). */
+  --uni-shorts-cell-width: 119px;
+  --uni-shorts-cell-height: 200px;
+  /** Trilha de ações sobreposta ao vídeo (3:210). */
+  --uni-shorts-rail-width: 36px;
+  /** Intervalo entre ações da trilha (3:214). */
+  --uni-shorts-rail-gap: 20px;
+  /** Botão circular da trilha na área de trabalho (3:460). */
+  --uni-shorts-rail-button: 54px;
+  /** Botão de som do reprodutor de Shorts (3:237). */
+  --uni-shorts-sound-size: 36px;
+  /** Espessura da linha do tempo do reprodutor de Shorts (extensão). */
+  --uni-shorts-timeline-height: 2px;
+
+  /** Diâmetro do avatar da linha de canal do Shorts (3:487). */
+  --uni-avatar-shorts: 38px;
+  /** Diâmetro do avatar do cabeçalho de canal móvel (16:1082). */
+  --uni-avatar-3xl: 77px;
 
   /* ----------------------------------------------------
    * Alvos de toque

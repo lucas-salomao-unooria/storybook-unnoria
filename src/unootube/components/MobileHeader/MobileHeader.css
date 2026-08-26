@@ -1,0 +1,97 @@
+/**
+ * Estilos do Componente MobileHeader — Design System Unootube
+ * Nós de origem: `3:245` (reprodutor de Shorts, 390×47) e `16:1070`
+ * (cabeçalho de canal, 360×43,46).
+ */
+
+.uni-mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--uni-mobile-header-height);
+  padding: var(--uni-spacing-12) var(--uni-spacing-16);
+  font-family: var(--uni-font-sans);
+}
+
+.uni-mobile-header--chrome {
+  background: var(--uni-color-shorts-chrome);
+}
+
+/*
+ * Sobre o vídeo o cabeçalho não tem preenchimento: o contraste vem do próprio
+ * quadro. O glifo é fixado em branco porque a superfície é sempre mídia.
+ */
+.uni-mobile-header--transparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: none;
+}
+
+.uni-mobile-header__target {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--uni-color-white);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--uni-transition-fast);
+}
+
+.uni-mobile-header__target:hover {
+  opacity: 0.75;
+}
+
+.uni-mobile-header__target:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+  border-radius: var(--uni-radius-full);
+}
+
+.uni-mobile-header__title {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  /* Roboto Medium 16, o degrau que o arquivo usa nos rótulos móveis. */
+  font-size: var(--uni-font-body-lg-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uni-mobile-header__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-width: 32px;
+  height: 32px;
+  color: var(--uni-color-white);
+}
+
+/*
+ * A barra do cabeçalho de canal acompanha o tema; a do reprodutor fica sobre a
+ * tinta escura do arquivo e por isso é sempre branca.
+ */
+.uni-mobile-header--page {
+  background: var(--uni-color-surface-chrome);
+}
+
+.uni-mobile-header--page .uni-mobile-header__target,
+.uni-mobile-header--page .uni-mobile-header__title,
+.uni-mobile-header--page .uni-mobile-header__action {
+  color: var(--uni-color-text-primary);
+}

@@ -58,12 +58,52 @@
   color: var(--uni-color-text-primary);
 }
 
-.uni-channel-header__subscribers {
+.uni-channel-header__subscribers,
+.uni-channel-header__handle,
+.uni-channel-header__secondary {
   font-size: var(--uni-font-body-md-size);
   font-weight: var(--uni-font-body-md-weight);
   line-height: var(--uni-font-body-md-line);
   letter-spacing: var(--uni-font-tracking);
   color: var(--uni-color-text-secondary);
+}
+
+/*
+ * Terceira linha da identidade ("No followers", node 16:604). O arquivo de
+ * Shorts a pinta mais sutil que o identificador — é a única aparição do degrau
+ * terciário nesta faixa.
+ */
+.uni-channel-header__secondary {
+  color: var(--uni-color-text-tertiary);
+}
+
+/*
+ * Setas de rolagem da barra de abas (node 16:604). O arquivo as desenha como
+ * chevrons soltos nas extremidades da faixa; aqui são alvos de verdade,
+ * montados sobre o mesmo glifo `arrowTop` girado — o registro não publica um
+ * chevron lateral próprio, e girar é a regra da casa em vez de duplicar vetor.
+ */
+.uni-channel-header__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--uni-spacing-32);
+  padding: 0;
+  color: var(--uni-color-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--uni-transition-fast);
+}
+
+.uni-channel-header__arrow:hover {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-channel-header__arrow:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: -2px;
 }
 
 .uni-channel-header__action {

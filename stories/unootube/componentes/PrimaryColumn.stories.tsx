@@ -40,7 +40,7 @@ type Story = StoryObj<typeof PrimaryColumn>;
 const Content = () => (
   <>
     <VideoPlayerFull
-      src={playerPoster}
+      poster={playerPoster}
       videoTitle="Video Title"
       metadata="576K views · Oct 8, 2021"
       actions={
@@ -172,7 +172,7 @@ const PrimaryColumnDocumentationPage = () => (
     <UniDocStage label="Apenas o reprodutor" surface="primary" align="stretch" padding={0}>
       <PrimaryColumn>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Video Title"
           metadata="576K views · Oct 8, 2021"
         />
@@ -204,7 +204,7 @@ const PrimaryColumnDocumentationPage = () => (
       {() => (
         <PrimaryColumn>
           <VideoPlayerFull
-            src={playerPoster}
+            poster={playerPoster}
             videoTitle="Video Title"
             metadata="576K views · Oct 8, 2021"
           />
@@ -281,7 +281,7 @@ export const ComposicaoModular: Story = {
     >
       <PrimaryColumn>
         <VideoPlayerFull
-          src={playerPoster}
+          poster={playerPoster}
           videoTitle="Apenas o reprodutor"
           metadata="576K views · Oct 8, 2021"
         />

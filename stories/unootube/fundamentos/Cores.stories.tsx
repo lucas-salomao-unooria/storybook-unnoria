@@ -6,6 +6,8 @@ import {
   uniBrandColors,
   uniSemanticColors,
   uniDerivedColors,
+  uniShortsColors,
+  uniLightColors,
 } from '../../../src/unootube/tokens';
 import { Button, SubscribeButton, TopMenuItem, VideoCard } from '../../../src/unootube';
 import {
@@ -19,6 +21,7 @@ import {
   UniDocPractices,
   UniDocStage,
   UniDocSurfaceSwitcher,
+  UniDocThemeSwitcher,
   UniDocTokenSwatch,
 } from '../../../.storybook/components';
 import { videos } from '../fixtures';
@@ -56,6 +59,18 @@ const GROUPS = [
     description:
       'Valores que o arquivo aplica em componente mas não declara na lista de tokens. Foram tokenizados para que nenhum componente cite primitiva.',
     tokens: uniDerivedColors,
+  },
+  {
+    title: 'Shorts e cromo móvel',
+    description:
+      'Tokens do segundo arquivo de origem, “Free YouTube Shorts Mockups (Community)” (FlqnnoY0Mqdjic53twLAC1). Todos lidos do preenchimento literal do nó indicado.',
+    tokens: uniShortsColors,
+  },
+  {
+    title: 'Tema claro',
+    description:
+      'Os mesmos tokens semânticos, medidos nos quadros claros do segundo arquivo. Nenhum foi obtido por inversão do tema escuro — é essa medição que torna o par claro/escuro legítimo.',
+    tokens: uniLightColors,
   },
 ];
 
@@ -110,15 +125,27 @@ const ColorsDocumentationPage = () => (
         { label: 'Primitivas neutras', value: '12 degraus' },
         { label: 'Primitivas de marca', value: '4 vermelhos + 1 azul' },
         { label: 'Tokens semânticos', value: '9 publicados' },
-        { label: 'Modos', value: 'Dark (único)' },
+        { label: 'Modos no arquivo original', value: 'Dark (único)' },
+        { label: 'Modos na biblioteca', value: 'Dark e Light' },
+        { label: 'Segundo arquivo', value: 'FlqnnoY0Mqdjic53twLAC1 — Shorts e tema claro' },
       ]}
     />
     <UniDocDeviations
       items={[
         {
-          subject: 'Ausência de tema claro',
+          subject: 'Tema claro medido, não derivado',
           detail:
-            'o arquivo publica apenas o modo escuro. Nenhum valor claro foi inventado — as primitivas neutras claras (neutral/50 a 400) existem como origem de texto e contorno sobre fundo escuro, não como superfície.',
+            'o arquivo original publica apenas o modo escuro, e continua proibido derivar um claro dele por cálculo — as primitivas neutras claras (neutral/50 a 400) existem como origem de texto e contorno sobre fundo escuro, não como superfície. O tema claro da biblioteca veio do segundo arquivo de origem, "Free YouTube Shorts Mockups (Community)" (FlqnnoY0Mqdjic53twLAC1), que publica as mesmas telas nas duas versões. Cada valor claro registra o nó em que foi medido.',
+        },
+        {
+          subject: 'Superfície de seleção separada da interativa',
+          detail:
+            'no tema escuro a linha selecionada da barra lateral e a pílula de filtro usam o mesmo #303030. No claro o segundo arquivo mede valores distintos — #E4E4E4 na linha (1:602) contra #ECECEC na pílula (1:228) —, e por isso surgiu --uni-color-surface-selected em vez de reaproveitar a superfície interativa.',
+        },
+        {
+          subject: 'Um quinto vermelho no arquivo de Shorts',
+          detail:
+            'o botão de inscrição do reprodutor de Shorts usa #FF0000, o mesmo valor do emblema do logotipo. Foi tokenizado como --uni-color-brand-shorts em vez de reaproveitar --uni-color-brand-logo: são papéis diferentes, e um produto que troque a marca não deve trocar junto o botão de inscrição.',
         },
         {
           subject: 'color/text/tertiary mais claro que o secundário',
@@ -237,8 +264,24 @@ const ColorsDocumentationPage = () => (
     />
 
     <UnooriaDocSectionHeader
-      title="6. Suporte a superfícies"
-      description="O arquivo tem modo único; a demonstração alterna entre as cinco superfícies escuras oficiais."
+      title="6. Suporte a temas"
+      description="A biblioteca passou a ter par claro/escuro. O arquivo original publica só o escuro — “SEMANTIC TOKENS (DARK MODE)”, “Dark theme first” — e continua proibido derivar um claro dele por cálculo. O tema claro veio medido do segundo arquivo, que publica as mesmas telas nas duas versões."
+      barColor="#9EBFD0"
+    />
+    <UniDocThemeSwitcher>
+      {() => (
+        <>
+          <SubscribeButton />
+          <TopMenuItem label="Categoria" active />
+          <TopMenuItem label="Categoria" />
+          <Button icon="share">SHARE</Button>
+        </>
+      )}
+    </UniDocThemeSwitcher>
+
+    <UnooriaDocSectionHeader
+      title="6.1. Suporte a superfícies"
+      description="Dentro de cada tema, a escada de luminância continua a mesma: cinco superfícies com papéis distintos."
       barColor="#9EBFD0"
     />
     <UniDocSurfaceSwitcher surfaces={['primary', 'secondary', 'surface', 'field', 'deep']}>
@@ -268,7 +311,16 @@ const ColorsDocumentationPage = () => (
           </tr>
         </thead>
         <tbody>
-          {GROUPS.flatMap((group) => Object.entries(group.tokens)).map(([key, token]) => (
+          {/*
+            A chave inclui o grupo porque o tema claro redeclara os mesmos
+            tokens semânticos do escuro — sem o prefixo, as duas linhas de
+            `--uni-color-text-primary` colidiriam.
+          */}
+          {GROUPS.flatMap((group) =>
+            Object.entries(group.tokens).map(
+              ([key, token]) => [`${group.title}-${key}`, token] as const
+            )
+          ).map(([key, token]) => (
             <tr key={key} style={{ borderTop: '1px solid #E4E8E9' }}>
               <td
                 style={{

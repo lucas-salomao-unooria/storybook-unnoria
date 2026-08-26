@@ -29,6 +29,9 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
       avatarInitials,
       channelName,
       subscriberCount,
+      channelHandle,
+      secondaryLine,
+      showTabArrows = false,
       subscribed = false,
       onSubscribe,
       tabs = [],
@@ -40,7 +43,21 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
       ...restProps
     },
     ref
-  ) => (
+  ) => {
+    const tabsRef = React.useRef<HTMLDivElement | null>(null);
+
+    /*
+     * As setas rolam a faixa de verdade. O arquivo as desenha como decoração
+     * sobre um quadro estático em que as abas já estão cortadas na aresta; sem
+     * a rolagem, as abas além da borda ficariam inalcançáveis.
+     */
+    const scrollTabs = (direction: -1 | 1) => {
+      const track = tabsRef.current;
+      if (!track) return;
+      track.scrollBy({ left: direction * Math.max(160, track.clientWidth * 0.6), behavior: 'smooth' });
+    };
+
+    return (
     <header
       ref={ref}
       className={['uni-channel-header', className].filter(Boolean).join(' ')}
@@ -59,8 +76,14 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
 
         <div className="uni-channel-header__names">
           <h1 className="uni-channel-header__name">{channelName}</h1>
+          {channelHandle != null && (
+            <span className="uni-channel-header__handle">{channelHandle}</span>
+          )}
           {subscriberCount != null && (
             <span className="uni-channel-header__subscribers">{subscriberCount}</span>
+          )}
+          {secondaryLine != null && (
+            <span className="uni-channel-header__secondary">{secondaryLine}</span>
           )}
         </div>
 
@@ -71,7 +94,23 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
 
       {(tabs.length > 0 || showSearch) && (
         <div className="uni-channel-header__toolbar">
-          <div className="uni-channel-header__tabs" role="tablist" aria-label="Seções do canal">
+          {showTabArrows && tabs.length > 0 && (
+            <button
+              type="button"
+              className="uni-channel-header__arrow"
+              aria-label="Abas anteriores"
+              onClick={() => scrollTabs(-1)}
+            >
+              <Icon name="arrowTop" size="lg" rotate={-90} />
+            </button>
+          )}
+
+          <div
+            ref={tabsRef}
+            className="uni-channel-header__tabs"
+            role="tablist"
+            aria-label="Seções do canal"
+          >
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -91,6 +130,17 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
             ))}
           </div>
 
+          {showTabArrows && tabs.length > 0 && (
+            <button
+              type="button"
+              className="uni-channel-header__arrow"
+              aria-label="Próximas abas"
+              onClick={() => scrollTabs(1)}
+            >
+              <Icon name="arrowTop" size="lg" rotate={90} />
+            </button>
+          )}
+
           {showSearch && (
             <button
               type="button"
@@ -104,7 +154,8 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
         </div>
       )}
     </header>
-  )
+    );
+  }
 );
 
 ChannelHeader.displayName = 'ChannelHeader';

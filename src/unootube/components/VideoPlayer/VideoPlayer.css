@@ -1,6 +1,12 @@
 /**
  * Estilos do Componente VideoPlayer — Design System Unootube
  * Nó de origem: `Media/VideoPlayer` (18:1295), 424×238 e 640×360.
+ *
+ * A geometria é integralmente do arquivo. O que o arquivo não desenha — e por
+ * isso está registrado como desvio na estória — são os estados de reprodução:
+ * o botão central, o recolhimento dos controles, o punho da linha do tempo, o
+ * indicador de carregamento e o controle de volume. Todos usam exclusivamente
+ * tokens da própria marca.
  */
 
 .uni-video-player {
@@ -15,12 +21,24 @@
   background: var(--uni-color-poster-placeholder);
 }
 
-.uni-video-player__poster {
+.uni-video-player:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+.uni-video-player__poster,
+.uni-video-player__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+/* O quadro inteiro é alvo de reproduzir/pausar quando há vídeo. */
+.uni-video-player--live .uni-video-player__video {
+  cursor: pointer;
 }
 
 /*
@@ -44,6 +62,25 @@
   right: 0;
   height: 96px;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity 200ms ease;
+}
+
+/*
+ * Recolhimento: enquanto o vídeo avança e ninguém interage, véus, cabeçalho e
+ * barra saem de cena. Sem isso os dois véus de 96px cobrem permanentemente as
+ * duas faixas mais importantes do quadro.
+ */
+.uni-video-player--idle .uni-video-player__scrim-top,
+.uni-video-player--idle .uni-video-player__scrim-bottom,
+.uni-video-player--idle .uni-video-player__header,
+.uni-video-player--idle .uni-video-player__controls {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.uni-video-player--idle .uni-video-player__video {
+  cursor: none;
 }
 
 .uni-video-player__scrim-top {
@@ -57,6 +94,7 @@
 }
 
 .uni-video-player__header {
+  transition: opacity 200ms ease;
   position: absolute;
   top: 14px;
   left: var(--uni-spacing-16);
@@ -97,6 +135,69 @@
   bottom: var(--uni-spacing-8);
   display: flex;
   flex-direction: column;
+  transition: opacity 200ms ease;
+}
+
+/*
+ * Botão central de reprodução. Não existe no arquivo, que desenha o quadro
+ * sempre "em reprodução"; sem ele um vídeo pausado não teria alvo óbvio. O
+ * círculo usa o preto da cápsula de duração, o único preenchimento escuro
+ * translúcido que o arquivo publica sobre mídia.
+ */
+.uni-video-player__bigplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  padding: 0 0 0 var(--uni-spacing-4);
+  color: var(--uni-color-player-chrome);
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: background-color var(--uni-transition-fast), transform var(--uni-transition-fast);
+}
+
+.uni-video-player__bigplay:hover {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.uni-video-player__bigplay:active {
+  transform: translate(-50%, -50%) scale(0.94);
+}
+
+.uni-video-player__bigplay:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+}
+
+/*
+ * Indicador de carregamento: a mesma linha do tempo pulsa em vez de ganhar um
+ * elemento novo, para não introduzir forma que o arquivo não tem.
+ */
+.uni-video-player--waiting .uni-video-player__buffered {
+  animation: uni-video-player-waiting 1200ms ease-in-out infinite;
+}
+
+@keyframes uni-video-player-waiting {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uni-video-player--waiting .uni-video-player__buffered {
+    animation: none;
+  }
 }
 
 /* Linha do tempo: três camadas sobrepostas, recuadas 12px de cada aresta. */
@@ -105,6 +206,26 @@
   height: var(--uni-player-timeline-height);
   margin: 0 var(--uni-spacing-12);
   background: var(--uni-color-player-track);
+}
+
+/*
+ * Alvo de arraste. A espessura desenhada é de 3px, pequena demais para um
+ * ponteiro; o pseudoelemento amplia a área sensível sem alterar o desenho.
+ */
+.uni-video-player--live .uni-video-player__timeline {
+  cursor: pointer;
+  touch-action: none;
+}
+
+.uni-video-player--live .uni-video-player__timeline::before {
+  content: '';
+  position: absolute;
+  inset: -8px 0;
+}
+
+.uni-video-player__timeline:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 4px;
 }
 
 .uni-video-player__buffered,
@@ -122,6 +243,52 @@
 /* Vermelho do progresso: #FC0D1C, distinto do vermelho semântico da marca. */
 .uni-video-player__played {
   background: var(--uni-color-brand-progress);
+}
+
+/*
+ * Punho da linha do tempo. Ausente no arquivo — aparece só ao apontar ou
+ * focar, para que o quadro em repouso continue idêntico ao desenho.
+ */
+.uni-video-player__knob {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: var(--uni-radius-full);
+  background: var(--uni-color-brand-progress);
+  transform: translate(50%, -50%) scale(0);
+  transition: transform var(--uni-transition-fast);
+}
+
+.uni-video-player--live .uni-video-player__timeline:hover .uni-video-player__knob,
+.uni-video-player--live .uni-video-player__timeline:focus-visible .uni-video-player__knob {
+  transform: translate(50%, -50%) scale(1);
+}
+
+/*
+ * Controle de volume. O arquivo publica apenas o glifo de som, sem régua; a
+ * régua é acrescentada em tokens da marca e só aparece ao apontar a barra,
+ * para não alterar a composição desenhada.
+ */
+.uni-video-player__volume {
+  width: 0;
+  max-width: 72px;
+  height: 3px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  accent-color: var(--uni-color-player-chrome);
+  background: var(--uni-color-player-track);
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: width var(--uni-transition-fast), opacity var(--uni-transition-fast);
+}
+
+.uni-video-player__bar:hover .uni-video-player__volume,
+.uni-video-player__volume:focus-visible {
+  width: 72px;
+  opacity: 1;
 }
 
 .uni-video-player__bar {

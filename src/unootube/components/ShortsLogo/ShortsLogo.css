@@ -1,0 +1,13 @@
+/**
+ * Estilos do Componente ShortsLogo — Design System Unootube
+ * Nós de origem: `1:737` (maciço) e `I1:241;13:110` (contorno).
+ *
+ * O componente já emite `width` e `height` calculados a partir do `viewBox`
+ * literal; o CSS só garante que um contêiner flexível não comprima o raio.
+ */
+
+.uni-shorts-logo {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+}

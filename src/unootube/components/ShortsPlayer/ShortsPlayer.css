@@ -1,0 +1,351 @@
+/**
+ * Estilos do Componente ShortsPlayer — Design System Unootube
+ * Nós de origem: `3:196` (imersivo, móvel) e `3:450` (cartão, área de
+ * trabalho).
+ */
+
+.uni-shorts-player {
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+}
+
+.uni-shorts-player__stage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.uni-shorts-player__frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--uni-color-shorts-cell);
+}
+
+.uni-shorts-player__frame:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+.uni-shorts-player__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*
+ * Véu inferior. Não é o véu de 96px do VideoPlayer: o arquivo desenha um
+ * retângulo de 193,9px cujo gradiente só começa a escurecer em 37,188% e
+ * termina em 48,296% (node 3:200). As duas paradas estão no token.
+ */
+.uni-shorts-player__scrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 194px;
+  background: var(--uni-gradient-shorts-bottom);
+  pointer-events: none;
+}
+
+/*
+ * Alvo de reproduzir e pausar. Cobre o quadro inteiro e fica **abaixo** do
+ * corpo na ordem de empilhamento, para que legenda, inscrição e trilha
+ * continuem clicáveis.
+ */
+.uni-shorts-player__surface {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.uni-shorts-player__surface:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: -4px;
+}
+
+/*
+ * Glifo central de pausa. Não existe no arquivo, que desenha o quadro sempre em
+ * reprodução; sem ele não haveria sinal de que o vídeo está parado.
+ */
+.uni-shorts-player__bigplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  padding-left: var(--uni-spacing-6);
+  color: var(--uni-color-white);
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: var(--uni-radius-full);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.uni-shorts-player__body {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+.uni-shorts-player__meta {
+  display: flex;
+  flex-direction: column;
+  /* 16px entre a legenda e a linha de canal (3:202). */
+  gap: var(--uni-spacing-16);
+  min-width: 0;
+}
+
+/* Roboto Regular 16 branco, com as hashtags em Bold dentro do parágrafo. */
+.uni-shorts-player__caption {
+  margin: 0;
+  font-size: var(--uni-font-body-lg-size);
+  font-weight: var(--uni-font-weight-regular);
+  line-height: normal;
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-white);
+  overflow-wrap: anywhere;
+}
+
+.uni-shorts-player__channel {
+  display: flex;
+  align-items: center;
+  /* 8px entre retrato, nome e botão (3:204). */
+  gap: var(--uni-spacing-8);
+}
+
+.uni-shorts-player__channel-name {
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  color: var(--uni-color-white);
+  white-space: nowrap;
+}
+
+/*
+ * Botão de inscrição do Shorts. É **vermelho puro** (`#FF0000`) e de raio 4px
+ * (node 3:208) — não é o `SubscribeButton` da tela de vídeo, que usa `#CC0000`
+ * e outra altura. Os dois convivem no produto e não podem ser consolidados.
+ */
+.uni-shorts-player__subscribe {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--uni-spacing-6) var(--uni-spacing-12);
+  font-family: inherit;
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  color: var(--uni-color-white);
+  background: var(--uni-color-brand-shorts);
+  border: none;
+  border-radius: var(--uni-radius-control);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--uni-transition-fast);
+}
+
+.uni-shorts-player__subscribe:hover {
+  opacity: 0.88;
+}
+
+.uni-shorts-player__subscribe:focus-visible {
+  outline: 2px solid var(--uni-color-white);
+  outline-offset: 2px;
+}
+
+/*
+ * Estado inscrito. Ausente no arquivo, que só desenha o não inscrito.
+ * Reproduz o mesmo alvo em superfície neutra, sem inventar forma nova.
+ */
+.uni-shorts-player__subscribe--subscribed {
+  color: var(--uni-color-white);
+  background: var(--uni-color-shorts-sound-fill);
+}
+
+/*
+ * Linha do tempo. Ausente no arquivo — pode ser desligada com
+ * `showProgress={false}` para obter a réplica exata do quadro.
+ */
+.uni-shorts-player__timeline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--uni-shorts-timeline-height);
+  background: var(--uni-color-player-track);
+  z-index: 3;
+}
+
+.uni-shorts-player__progress {
+  display: block;
+  height: 100%;
+  background: var(--uni-color-brand-progress);
+}
+
+/* Menu de reticências do topo da trilha (3:211). */
+.uni-shorts-player__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uni-shorts-rail-width);
+  height: var(--uni-shorts-rail-width);
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.uni-shorts-player__more:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+  border-radius: var(--uni-radius-full);
+}
+
+/*
+ * Botão de som. Quadrado de 36px com raio de 4px, interior preto a 20% e
+ * contorno branco de 1px (node 3:238). Com capa de áudio, o bitmap preenche o
+ * quadrado.
+ */
+.uni-shorts-player__sound {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uni-shorts-sound-size);
+  height: var(--uni-shorts-sound-size);
+  padding: 0;
+  overflow: hidden;
+  color: var(--uni-color-white);
+  background: var(--uni-color-shorts-sound-fill);
+  border: 1px solid var(--uni-color-white);
+  border-radius: var(--uni-radius-control);
+  cursor: pointer;
+}
+
+.uni-shorts-player__sound:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+.uni-shorts-player__sound-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ----------------------------------------------------
+ * Variante `immersive` — tela móvel (3:196)
+ * ---------------------------------------------------- */
+
+.uni-shorts-player--immersive {
+  width: 100%;
+}
+
+.uni-shorts-player--immersive .uni-shorts-player__stage {
+  width: 100%;
+}
+
+.uni-shorts-player--immersive .uni-shorts-player__frame {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: var(--uni-shorts-aspect);
+}
+
+/*
+ * Corpo: legenda à esquerda e trilha à direita, com 62px entre as duas e
+ * alinhamento pela base (node 3:201). O recuo de 26px à esquerda e de 24px à
+ * direita são os do arquivo.
+ */
+.uni-shorts-player--immersive .uni-shorts-player__body {
+  left: 26px;
+  right: 24px;
+  bottom: 47px;
+  gap: 62px;
+  justify-content: space-between;
+}
+
+.uni-shorts-player--immersive .uni-shorts-player__caption {
+  max-width: 242px;
+}
+
+/* ----------------------------------------------------
+ * Variante `card` — área de trabalho (3:450)
+ * ---------------------------------------------------- */
+
+.uni-shorts-player--card {
+  /* 22,9px entre o quadro e a trilha (3:453 contra 3:481). */
+  gap: 23px;
+}
+
+.uni-shorts-player--card .uni-shorts-player__frame {
+  width: var(--uni-shorts-frame-width);
+  max-width: 100%;
+  aspect-ratio: var(--uni-shorts-aspect);
+  border-radius: var(--uni-radius-md);
+}
+
+.uni-shorts-player--card .uni-shorts-player__body {
+  left: 20px;
+  right: 20px;
+  bottom: 34px;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.uni-shorts-player--card .uni-shorts-player__channel {
+  justify-content: space-between;
+}
+
+/*
+ * Na área de trabalho o nome ocupa o vão e o botão fica encostado à direita,
+ * a 341px do início da linha (node 3:489).
+ */
+.uni-shorts-player--card .uni-shorts-player__channel-name {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uni-shorts-player--card .uni-shorts-player__subscribe {
+  padding: 11px var(--uni-spacing-20);
+}
+
+/* Faixa do próximo Short, logo abaixo do quadro (3:482). */
+.uni-shorts-player__peek {
+  display: block;
+  width: var(--uni-shorts-frame-width);
+  max-width: 100%;
+  height: var(--uni-shorts-peek-height);
+  margin-top: var(--uni-spacing-24);
+  background: var(--uni-color-shorts-cell);
+  border-radius: var(--uni-radius-md) var(--uni-radius-md) 0 0;
+  opacity: 0.6;
+}
+
+/*
+ * Abaixo de 560px o quadro de 488px não cabe ao lado da trilha. O arquivo não
+ * publica esse ponto de quebra; sem ele a coluna de ações empurraria o vídeo
+ * para fora da janela.
+ */
+@media (max-width: 560px) {
+  .uni-shorts-player--card {
+    gap: var(--uni-spacing-12);
+  }
+
+  .uni-shorts-player--card .uni-shorts-player__frame {
+    width: 100%;
+  }
+}

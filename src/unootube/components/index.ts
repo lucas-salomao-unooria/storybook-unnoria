@@ -1,9 +1,14 @@
 /**
  * Componentes do Design System Unootube.
  *
- * Reprodução em React do arquivo Figma "YouTube UI Clone Design (Community)"
- * (fileKey `HcbrbLtDZ1rMEvSjoXpA5c`). A ordem segue o inventário de componentes
- * publicado na página `🎨 Design System` (`106:3229`).
+ * Reprodução em React de **dois** arquivos Figma:
+ *
+ * - "YouTube UI Clone Design (Community)" (fileKey `HcbrbLtDZ1rMEvSjoXpA5c`),
+ *   origem dos 30 primeiros componentes. A ordem segue o inventário publicado
+ *   na página `🎨 Design System` (`106:3229`).
+ * - "Free YouTube Shorts Mockups (Community)" (fileKey
+ *   `FlqnnoY0Mqdjic53twLAC1`), origem do Shorts, do cromo móvel e do tema
+ *   claro.
  */
 
 /* ----------------------------------------------------
@@ -41,6 +46,23 @@ export * from './VideoPlayerFull';
 export * from './Playlist';
 
 /* ----------------------------------------------------
+ * Shorts (arquivo `FlqnnoY0Mqdjic53twLAC1`)
+ * ---------------------------------------------------- */
+export * from './ShortsLogo';
+export * from './ShortsCard';
+export * from './ShortsShelf';
+export * from './ShortsActionRail';
+export * from './ShortsPlayer';
+
+/* ----------------------------------------------------
+ * Cromo móvel (arquivo `FlqnnoY0Mqdjic53twLAC1`)
+ * ---------------------------------------------------- */
+export * from './MobileTopBar';
+export * from './MobileTabBar';
+export * from './MobileHeader';
+export * from './MobileChannelHeader';
+
+/* ----------------------------------------------------
  * Conteúdo
  * ---------------------------------------------------- */
 export * from './ChannelHeader';
@@ -62,6 +84,8 @@ export * from './SecondaryColumn';
 /* ----------------------------------------------------
  * Documentação
  *
- * `DesktopFrame` é um contêiner de documentação, não de produção.
+ * `DesktopFrame` e `PhoneFrame` são contêineres de documentação, não de
+ * produção.
  * ---------------------------------------------------- */
 export * from './DesktopFrame';
+export * from './PhoneFrame';

@@ -1,0 +1,148 @@
+/**
+ * Estilos do Componente ShortsActionRail — Design System Unootube
+ * Nós de origem: `3:210` (sobreposta, móvel) e `3:453` (ao lado, área de
+ * trabalho).
+ */
+
+.uni-shorts-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: none;
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+}
+
+.uni-shorts-rail__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uni-shorts-rail__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--uni-transition-fast), opacity var(--uni-transition-fast);
+}
+
+.uni-shorts-rail__item:active {
+  transform: scale(0.92);
+}
+
+.uni-shorts-rail__item:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 3px;
+  border-radius: var(--uni-radius-md);
+}
+
+.uni-shorts-rail__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uni-shorts-rail__label {
+  font-weight: var(--uni-font-weight-medium);
+  line-height: normal;
+  letter-spacing: var(--uni-font-tracking);
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------
+ * Variante `overlay` — sobre o vídeo (3:210)
+ * ---------------------------------------------------- */
+
+.uni-shorts-rail--overlay {
+  width: var(--uni-shorts-rail-width);
+  /* 2px entre o menu de reticências e o grupo de ações (3:210). */
+  gap: var(--uni-spacing-2);
+}
+
+.uni-shorts-rail--overlay .uni-shorts-rail__actions {
+  gap: var(--uni-shorts-rail-gap);
+}
+
+.uni-shorts-rail--overlay .uni-shorts-rail__item {
+  gap: var(--uni-spacing-4);
+  color: var(--uni-color-white);
+}
+
+.uni-shorts-rail--overlay .uni-shorts-rail__glyph {
+  width: var(--uni-shorts-rail-width);
+  height: var(--uni-shorts-rail-width);
+}
+
+.uni-shorts-rail--overlay .uni-shorts-rail__label {
+  font-size: var(--uni-font-caption-size);
+  color: var(--uni-color-white);
+}
+
+/*
+ * O arquivo reserva 16px de recuo abaixo do último rótulo antes do botão de
+ * som (3:231), e a base da coluna fica a 36px do fim do quadro.
+ */
+.uni-shorts-rail--overlay .uni-shorts-rail__footer {
+  margin-top: var(--uni-spacing-16);
+}
+
+.uni-shorts-rail--overlay .uni-shorts-rail__item:hover {
+  opacity: 0.82;
+}
+
+/* ----------------------------------------------------
+ * Variante `standalone` — ao lado do vídeo (3:453)
+ * ---------------------------------------------------- */
+
+.uni-shorts-rail--standalone {
+  width: 59px;
+  gap: var(--uni-spacing-32);
+}
+
+.uni-shorts-rail--standalone .uni-shorts-rail__actions {
+  /* 108,9px de passo entre ações no arquivo, com o rótulo ocupando o restante. */
+  gap: var(--uni-spacing-32);
+}
+
+.uni-shorts-rail--standalone .uni-shorts-rail__item {
+  gap: var(--uni-spacing-8);
+  color: var(--uni-color-text-primary);
+}
+
+.uni-shorts-rail--standalone .uni-shorts-rail__glyph {
+  width: var(--uni-shorts-rail-button);
+  height: var(--uni-shorts-rail-button);
+  border-radius: var(--uni-radius-full);
+  background: var(--uni-color-background-surface);
+  transition: background-color var(--uni-transition-fast);
+}
+
+.uni-shorts-rail--standalone .uni-shorts-rail__item:hover .uni-shorts-rail__glyph {
+  background: var(--uni-color-surface-selected);
+}
+
+.uni-shorts-rail--standalone .uni-shorts-rail__label {
+  font-size: var(--uni-font-caption-size);
+  color: var(--uni-color-text-primary);
+  text-align: center;
+  white-space: normal;
+}
+
+/* ----------------------------------------------------
+ * Estado acionado
+ *
+ * Ausente no arquivo, que é estático. Marca apenas a cor do glifo, sem
+ * introduzir forma nova.
+ * ---------------------------------------------------- */
+
+.uni-shorts-rail__item--active {
+  color: var(--uni-color-brand-primary);
+}
+
+.uni-shorts-rail--standalone .uni-shorts-rail__item--active .uni-shorts-rail__glyph {
+  color: var(--uni-color-brand-primary);
+}

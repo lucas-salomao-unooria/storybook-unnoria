@@ -145,7 +145,7 @@ const VideoCardHorizontalDocumentationPage = () => (
     <UnooriaDocSectionHeader title="4. Matriz de variantes e estados" barColor="#EE1A26" />
     <UniDocStage label="Como no arquivo" surface="primary" align="stretch" padding={0}>
       <VideoCardHorizontal
-        src={playerPoster}
+        poster={playerPoster}
         videoTitle="Video Title"
         metadata="576K views · 3 weeks ago"
         description="Video description text"
@@ -153,14 +153,14 @@ const VideoCardHorizontalDocumentationPage = () => (
     </UniDocStage>
     <UniDocStage label="Sem descrição" surface="primary" align="stretch" padding={0}>
       <VideoCardHorizontal
-        src={playerPoster}
+        poster={playerPoster}
         videoTitle="Video Title"
         metadata="576K views · 3 weeks ago"
       />
     </UniDocStage>
     <UniDocStage label="Descrição longa" surface="primary" align="stretch" padding={0}>
       <VideoCardHorizontal
-        src={playerPoster}
+        poster={playerPoster}
         videoTitle="Ep 6: Living to Serve | SEARCH ON"
         metadata="1M views · 3 years ago"
         description="Uma descrição mais longa, que ocupa várias linhas dentro da coluna de 400px reservada pelo arquivo para o texto do destaque."
@@ -192,7 +192,7 @@ const VideoCardHorizontalDocumentationPage = () => (
       {() => (
         <div style={{ width: '100%' }}>
           <VideoCardHorizontal
-            src={playerPoster}
+            poster={playerPoster}
             videoTitle="Video Title"
             metadata="576K views · 3 weeks ago"
             description="Video description text"
@@ -261,7 +261,7 @@ export const ExemploOficialDoFigma: Story = {
       style={{ width: 1200, maxWidth: '100%', background: 'var(--uni-color-background-primary)' }}
     >
       <VideoCardHorizontal
-        src={playerPoster}
+        poster={playerPoster}
         videoTitle="Video Title"
         metadata="576K views · 3 weeks ago"
         description="Video description text"
@@ -278,13 +278,13 @@ export const TodasVariantes: Story = {
   render: () => (
     <div data-uni-theme="dark" style={{ background: 'var(--uni-color-background-primary)' }}>
       <VideoCardHorizontal
-        src={playerPoster}
+        poster={playerPoster}
         videoTitle="Com descrição"
         metadata="576K views · 3 weeks ago"
         description="Video description text"
       />
       <VideoCardHorizontal
-        src={playerPoster}
+        poster={playerPoster}
         videoTitle="Sem descrição"
         metadata="576K views · 3 weeks ago"
       />
