@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-
 /**
- * A família Montserrat é declarada aqui **e** no topo de
- * `tiktooria/tokens/typography.css`.
+ * A fonte da marca entra por `tiktooria/tokens/fonts.css`, que contém apenas o
+ * `@import url(...)`, e este import precisa ser o **primeiro** da folha: um
+ * `@import url(...)` que caia no meio de uma folha é descartado pelo navegador.
  *
- * Não é redundância: o empacotador embute o conteúdo dos arquivos importados, e
- * um `@import url(...)` que caia no meio da folha resultante é ignorado pelo
- * navegador. A declaração no topo desta folha é a que funciona no pacote
- * publicado; a do arquivo de tokens é a que funciona para quem importa
- * `typography.css` direto (o preview do Storybook, por exemplo).
- *
- * Montserrat substitui a Proxima Nova do arquivo de design, que é comercial e
- * não pode ser distribuída — ver o desvio registrado em `typography.css`.
+ * ATENÇÃO — o `@import` NÃO sobrevive ao empacotamento. O esbuild remove
+ * `@import url(...)` externo do CSS emitido, e isso vale para todas as folhas
+ * deste pacote, inclusive a da Plataforma Unooria. Quem consome
+ * `@unooria/design-system/styles-tiktooria.css` **precisa carregar a família por
+ * conta própria** — via `next/font`, `<link>` no documento ou um `@import` na
+ * própria folha da aplicação. A declaração aqui serve a quem importa o
+ * código-fonte direto e ao preview do Storybook.
  */
+@import './tiktooria/tokens/fonts.css';
 
 /**
  * Folha de estilos do Design System Tik Tooria.

@@ -32,6 +32,7 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
       channelHandle,
       secondaryLine,
       showTabArrows = false,
+      showSubscribe = true,
       subscribed = false,
       onSubscribe,
       tabs = [],
@@ -87,9 +88,11 @@ export const ChannelHeader = React.forwardRef<HTMLElement, UniChannelHeaderProps
           )}
         </div>
 
-        <div className="uni-channel-header__action">
-          <SubscribeButton subscribed={subscribed} onClick={onSubscribe} />
-        </div>
+        {showSubscribe && (
+          <div className="uni-channel-header__action">
+            <SubscribeButton subscribed={subscribed} onClick={onSubscribe} />
+          </div>
+        )}
       </div>
 
       {(tabs.length > 0 || showSearch) && (

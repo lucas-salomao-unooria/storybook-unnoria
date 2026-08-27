@@ -111,6 +111,9 @@ export const uniDerivedColors: Record<string, UniColorToken> = {
   overlayDuration: { cssVar: '--uni-color-overlay-duration', value: '#000000', usage: 'Cápsula de duração sobre a miniatura', figmaNode: '11:997' },
   posterPlaceholder: { cssVar: '--uni-color-poster-placeholder', value: '#9EBFD0', usage: 'Cor de espera do quadro de vídeo', figmaNode: '18:1295' },
   borderActive: { cssVar: '--uni-color-border-active', value: '#AAAAAA', usage: 'Sublinhado de aba ativa e contorno da pílula inativa', figmaNode: '17:2796' },
+  textOnMedia: { cssVar: '--uni-color-text-on-media', value: '#FFFFFF', usage: 'Texto e glifo desenhados sobre mídia. Invariante de tema: o fundo é o vídeo, não a superfície da página', figmaNode: '3:203' },
+  coverPlaceholder: { cssVar: '--uni-color-cover-placeholder', value: '#303030', usage: 'Cor de espera da capa de canal. O arquivo mede #F8F8F8, mas ali o bitmap sempre cobre a laje — esse literal passou a ser o valor do tema claro', figmaNode: '17:2796' },
+  scrim: { cssVar: '--uni-color-scrim', value: 'rgba(0, 0, 0, 0.6)', usage: 'EXTENSÃO — véu do diálogo. Nenhum dos dois arquivos publica camada modal; construído sobre a primitiva preta, na opacidade da parada mais escura dos véus do reprodutor' },
 };
 
 /**
@@ -168,6 +171,7 @@ export const uniLightColors: Record<string, UniColorToken> = {
   borderActive: { cssVar: '--uni-color-border-active', value: '#CECECE', usage: 'Contorno da pílula inativa', figmaNode: '1:228' },
   shortsChrome: { cssVar: '--uni-color-shorts-chrome', value: '#FFFFFF', usage: 'Barra de navegação do reprodutor de Shorts', figmaNode: '1:201' },
   shortsCell: { cssVar: '--uni-color-shorts-cell', value: '#C4C4C4', usage: 'Cor de espera da célula de Shorts', figmaNode: '1:137' },
+  coverPlaceholder: { cssVar: '--uni-color-cover-placeholder', value: '#F8F8F8', usage: 'Cor de espera da capa de canal: o literal do arquivo original', figmaNode: '17:2796' },
   surfaceChrome: { cssVar: '--uni-color-surface-chrome', value: '#FFFFFF', usage: 'Barras móveis — branco puro, e não o #F6F6F6 do cromo de 1440px', figmaNode: '1:201' },
 };
 

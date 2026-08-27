@@ -118,6 +118,38 @@
   /** Sublinhado da aba ativa e contorno da pílula inativa (nodes 17:2796, 13:1698). */
   --uni-color-border-active: var(--uni-color-neutral-400);
 
+  /**
+   * Texto e glifo desenhados **sobre mídia** — legenda do Shorts, rótulos da
+   * trilha de ações, visualizações do cartão, cromo do reprodutor vertical.
+   *
+   * Não entra no par claro/escuro: o arquivo pinta os dois temas de branco,
+   * porque o fundo é o vídeo, não a superfície da página. O token existe para
+   * que nenhum componente precise citar a primitiva `--uni-color-white` e para
+   * deixar essa invariância explícita em vez de implícita.
+   */
+  --uni-color-text-on-media: var(--uni-color-white);
+
+  /**
+   * Cor de espera da capa de canal, atrás do bitmap (node 17:2796).
+   *
+   * O arquivo mede `#F8F8F8` aqui, mas no Figma o bitmap sempre cobre a laje —
+   * ela nunca chega a aparecer. Em produto sem capa, aparece: eram 192px de
+   * branco no meio de uma tela escura. O literal do arquivo passou a ser o
+   * valor do **tema claro**, e o escuro recebe a superfície interativa da
+   * própria escada. Ver o registro de desvios.
+   */
+  --uni-color-cover-placeholder: var(--uni-color-background-surface);
+
+  /**
+   * Véu atrás de camadas flutuantes (diálogo).
+   *
+   * EXTENSÃO — nenhum dos dois arquivos de origem publica diálogo, e portanto
+   * nenhum publica véu de diálogo. O valor foi construído sobre a primitiva
+   * preta da própria escada, na mesma opacidade que os véus do reprodutor usam
+   * como parada mais escura (60%). Ver o registro de desvios.
+   */
+  --uni-color-scrim: rgba(0, 0, 0, 0.6);
+
 
   /* ----------------------------------------------------
    * Shorts — arquivo "Free YouTube Shorts Mockups (Community)"
@@ -243,6 +275,9 @@
   --uni-color-surface-chrome: #ffffff;
   /** Cor de espera da célula de Shorts no tema claro (node 1:137). */
   --uni-color-shorts-cell: var(--uni-color-neutral-300);
+
+  /** Cor de espera da capa de canal: o literal do arquivo (node 17:2796). */
+  --uni-color-cover-placeholder: var(--uni-color-neutral-50);
 
   /**
    * Realces de interação. Ausentes no arquivo, que é estático — e é por isso

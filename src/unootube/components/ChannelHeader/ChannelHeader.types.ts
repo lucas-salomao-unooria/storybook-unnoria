@@ -51,6 +51,16 @@ export interface UniChannelHeaderProps
    */
   showTabArrows?: boolean;
   /**
+   * Exibe o botão de inscrição.
+   *
+   * O arquivo sempre o desenha, porque toda tela de canal que ele publica é a
+   * de um canal de terceiro. Um produto que abra o canal **do próprio usuário**
+   * precisa suprimi-lo — ninguém se inscreve em si mesmo —, e é para isso que a
+   * prop existe. Ver o registro de desvios.
+   * @default true
+   */
+  showSubscribe?: boolean;
+  /**
    * Marca o canal como já inscrito.
    * @default false
    */

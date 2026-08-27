@@ -26,6 +26,7 @@ export const MobileChannelHeader = React.forwardRef<HTMLElement, UniMobileChanne
       avatarInitials,
       channelName,
       subscriberCount,
+      showSubscribe = true,
       subscribed = false,
       subscribeLabel = 'Subscribe',
       subscribedLabel = 'Subscribed',
@@ -55,19 +56,21 @@ export const MobileChannelHeader = React.forwardRef<HTMLElement, UniMobileChanne
           {subscriberCount != null && (
             <span className="uni-mobile-channel-header__count">{subscriberCount}</span>
           )}
-          <button
-            type="button"
-            className={[
-              'uni-mobile-channel-header__subscribe',
-              subscribed ? 'uni-mobile-channel-header__subscribe--subscribed' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-            aria-pressed={subscribed}
-            onClick={onSubscribe}
-          >
-            {subscribed ? subscribedLabel : subscribeLabel}
-          </button>
+          {showSubscribe && (
+            <button
+              type="button"
+              className={[
+                'uni-mobile-channel-header__subscribe',
+                subscribed ? 'uni-mobile-channel-header__subscribe--subscribed' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-pressed={subscribed}
+              onClick={onSubscribe}
+            >
+              {subscribed ? subscribedLabel : subscribeLabel}
+            </button>
+          )}
         </div>
       </div>
 

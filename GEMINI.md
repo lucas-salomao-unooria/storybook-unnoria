@@ -38,7 +38,7 @@ O pacote publica **seis design systems** em um único artefato NPM:
 | ChatGPT | `src/chatgpt/` | `ChatGPTUI` | `--gpt-*` / `.gpt-*` | `data-gpt-theme="light \| dark"` | 25 | ChatGPT UI Kit (AI Chat) (Community) |
 | WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 29 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
-| Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 40 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
+| Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 44 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
 
 - Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
 - **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
@@ -568,7 +568,7 @@ O **Unootube** é a plataforma de vídeo da Plataforma Unooria. É o **único m�
 - **Componentes**: `Unootube/Componentes/[NomeComponente]`.
 - **Telas compostas**: `Unootube/Telas/Telas Compostas` — nove telas: as três do primeiro arquivo e as seis do segundo (três móveis e três de área de trabalho).
 
-### 10.3. Componentes Oficiais (40)
+### 10.3. Componentes Oficiais (40) e Extensões (4)
 **Fundação**: `Icon`, `Logo`, `Avatar`, `ShortsLogo`.
 **Navegação**: `TopBar`, `SearchBox`, `ProfileCompact`, `ProfileExpanded`, `Sidebar` (composto: `.Section`, `.Footer`, `.FooterRow`), `SidebarMenuItem`, `SidebarMenuTitle`, `FooterItem`, `TopMenuBar`, `TopMenuItem`, `TopMenuIcon`, `MobileTopBar`, `MobileTabBar` (composto: `.Item`, `.CreateButton`), `MobileHeader`.
 **Mídia**: `ThumbnailImage`, `VideoCard`, `VideoCardHorizontal`, `VideoCardSmall`, `VideoCardSidebar`, `VideoPlayer`, `VideoPlayerFull`, `Playlist`.
@@ -576,11 +576,13 @@ O **Unootube** é a plataforma de vídeo da Plataforma Unooria. É o **único m�
 **Conteúdo**: `ChannelHeader`, `MobileChannelHeader`, `VideoDescription`, `Comment`.
 **Ação**: `Button`, `SubscribeButton`.
 **Layout**: `PrimaryColumn`, `SecondaryColumn`.
+**Extensões** (não publicadas por nenhum dos dois arquivos): `Modal` (composto: `.Header`, `.Body`, `.Footer`), `Snackbar`, `Table` (composto: `.Head`, `.Body`, `.Row`, `.Cell`) e `EmptyState`.
 **Documentação**: `DesktopFrame`, `PhoneFrame`.
 
 - `VideoCard`, `VideoCardSmall`, `VideoCardSidebar` e `VideoCardHorizontal` são **quatro formatos distintos** publicados pelo primeiro arquivo, com tipografia e composição próprias. Não duplicar nem consolidar. O `ShortsCard` é um quinto, vertical, com três variantes próprias (`overlay`, `below`, `views`) que também não podem ser consolidadas — o que muda entre elas é **onde o texto mora**, não a medida.
 - **Três alvos de inscrição distintos convivem no produto** e nenhum pode ser consolidado: o `SubscribeButton` sólido em `#CC0000` (tela de vídeo, primeiro arquivo), o botão do `ShortsPlayer` sólido em `#FF0000` com raio de 4px (`3:208`) e a chamada em **texto** vermelho do `MobileChannelHeader` (`16:1087`).
 - `SubscribeButton` é o **único botão sólido do primeiro arquivo**. `Button` é transparente.
+- **As quatro extensões não vêm dos arquivos de origem.** As seis telas publicadas não abrem camada modal, não confirmam ação, não organizam dados em grade e nunca estão vazias. `Modal`, `Snackbar`, `Table` e `EmptyState` foram acrescentados porque produto precisa deles, e a alternativa — compor com os equivalentes da Plataforma Unooria — traria Open Sans e a paleta navy para dentro do Roboto e do vermelho. **Cada um deriva a forma de degraus que os arquivos DE FATO publicam**: a superfície elevada e os três degraus de `Elevation` no `Modal` e no `Snackbar` (o quadro `Elevation` chega a descrever o degrau alto como "modal: diálogos e folhas"), a régua da linha de lista de 40px na `Table`, a escala tipográfica de onze degraus no `EmptyState`. O único valor novo em todo o grupo é `--uni-color-scrim`. **É PROIBIDO ampliar esse grupo sem registrar o desvio na estória correspondente**, e continua proibido inventar cor: o `Snackbar` não tem escada de severidade porque a marca publica um único vermelho semântico e nenhum verde, âmbar ou azul de estado.
 - `DesktopFrame` e `PhoneFrame` são contêineres **de documentação**, não de produção.
 - O `Icon` é documentado apenas em `Fundamentos/Ícones`; não há estória duplicada em `Componentes`.
 
@@ -653,4 +655,9 @@ Qualquer divergência intencional **DEVE** ser documentada com o `UniDocDeviatio
 - **Sombra local do selo HD**: as letras "HD" do reprodutor carregam um drop shadow de 1px em `#560A0F` que não corresponde a nenhum degrau publicado. Por ser efeito decorativo de um único nó, não foi tokenizado nem reproduzido.
 - **Andaimes restritos a `stories/`**: o cabeçalho da lista de comentários ("286 Comments" mais o controle de ordenação) e o campo de novo comentário são camadas de texto soltas no arquivo, sem componente publicado. São montados localmente nas telas compostas e **não integram o pacote**.
 - **Segundo botão da barra de abas do canal**: o arquivo desenha um quadro vazio de 48×48 à direita da lupa, sem glifo nem rótulo. Não foi reproduzido.
+- **Quatro componentes que o arquivo não publica**: `Modal`, `Snackbar`, `Table` e `EmptyState` são extensões declaradas — ver 10.3. Cada um registra o desvio na própria estória, e o único token novo do grupo é `--uni-color-scrim` (preto a 60%), construído sobre a primitiva preta da escada.
+- **Glifo de fechar tipográfico**: nenhum dos 52 glifos é um "fechar" — as telas publicadas não abrem camada nenhuma. O `Modal` usa o caractere `✕` na própria família Roboto e expõe a prop `closeIcon` para que um produto com família vetorial própria injete a sua, em vez de a biblioteca desenhar um vetor à mão.
+- **`showSubscribe`**: o arquivo sempre desenha o botão de inscrição, porque toda tela de canal que ele publica é a de um canal de terceiro. `ChannelHeader` e `MobileChannelHeader` ganharam a prop para suprimi-lo no canal do próprio usuário. Vem ligada, preservando o desenho do arquivo por padrão.
+- **Capa de canal sem bitmap**: o arquivo mede `#F8F8F8` atrás da capa (`17:2796`), mas ali o bitmap sempre a cobre — a laje nunca aparece. Em produto sem capa, aparecia: eram 192px de branco no meio de uma tela escura. O literal virou o valor do **tema claro** e o escuro recebeu a superfície interativa, no token `--uni-color-cover-placeholder`.
+- **`--uni-color-text-on-media`**: texto e glifo desenhados sobre vídeo ou miniatura não entram no par claro/escuro — o arquivo os pinta de branco nos dois temas, porque o fundo é a mídia e não a superfície da página. O token existe para deixar essa invariância explícita e para que nenhum componente precise citar a primitiva `--uni-color-white`.
 - **Frames não reconstruídos**: nenhum. As três telas da página `Screen` do primeiro arquivo e as seis composições do segundo (três telas × móvel e área de trabalho) foram todas reconstruídas. Os quadros do segundo arquivo se repetem em iPhone e Android com as mesmas composições e recuos ligeiramente diferentes; o `PhoneFrame` publica as duas medidas.

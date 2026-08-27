@@ -1,14 +1,25 @@
 /**
  * Unooria Design System - Estilos Globais e Componentes
  * Padrão Ouro de Pacote NPM
+ *
+ * ATENÇÃO — os `@import url(...)` de fonte abaixo NÃO sobrevivem ao
+ * empacotamento: o esbuild remove `@import` externo do CSS emitido. Quem
+ * consome `@unooria/design-system/styles.css` **precisa carregar as famílias
+ * por conta própria** — via `next/font`, `<link>` no documento ou um `@import`
+ * na própria folha da aplicação. As declarações aqui servem a quem importa o
+ * código-fonte direto e ao preview do Storybook, onde funcionam.
+ *
+ * Cada marca isola a sua declaração em `tokens/fonts.css`, para que o
+ * `@import url(...)` fique sempre na primeira posição da folha em que for
+ * embutido — no meio de uma folha, o navegador o descarta.
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import './chatgpt/tokens/fonts.css';
+@import './whatsappmobile/tokens/fonts.css';
+@import './tiktooria/tokens/fonts.css';
+@import './unootube/tokens/fonts.css';
 
 /* ----------------------------------------------------
  * Tokens de Fundação (Plataforma Unooria)
@@ -246,6 +257,10 @@
 @import './unootube/components/MobileTabBar/MobileTabBar.css';
 @import './unootube/components/MobileTopBar/MobileTopBar.css';
 @import './unootube/components/PhoneFrame/PhoneFrame.css';
+@import './unootube/components/EmptyState/EmptyState.css';
+@import './unootube/components/Modal/Modal.css';
+@import './unootube/components/Snackbar/Snackbar.css';
+@import './unootube/components/Table/Table.css';
 @import './unootube/components/Playlist/Playlist.css';
 @import './unootube/components/PrimaryColumn/PrimaryColumn.css';
 @import './unootube/components/ProfileCompact/ProfileCompact.css';

@@ -1,0 +1,73 @@
+/**
+ * Estilos do Componente EmptyState — Design System Unootube
+ *
+ * EXTENSÃO DECLARADA: nenhum dos dois arquivos de origem publica estado vazio.
+ * Toda medida vem de um degrau publicado — título em `Heading/H3`, descrição em
+ * `Body/Medium` na tinta secundária, calha de 16px e a escala de espaçamento.
+ *
+ * A biblioteca é plana: sem sombra, sem contorno. O estado vazio se separa do
+ * entorno pelo próprio ar, como as seções das telas do arquivo.
+ */
+
+.uni-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--uni-spacing-16);
+  padding: var(--uni-spacing-64) var(--uni-spacing-24);
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+  text-align: center;
+}
+
+.uni-empty-state--compact {
+  gap: var(--uni-spacing-12);
+  padding: var(--uni-spacing-32) var(--uni-spacing-16);
+}
+
+.uni-empty-state__illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*
+   * Tinta secundária: a ilustração é apoio, não conteúdo. Deixá-la na tinta
+   * primária competiria com o título.
+   */
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-empty-state__title {
+  margin: 0;
+  font-size: var(--uni-font-heading-h3-size);
+  font-weight: var(--uni-font-heading-h3-weight);
+  line-height: var(--uni-font-heading-h3-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+.uni-empty-state__description {
+  /*
+   * 480px: a mesma medida de linha do `--uni-primary-column-width` reduzida ao
+   * intervalo confortável de leitura. Sem limite, a descrição atravessa a
+   * largura da página e vira uma linha só.
+   */
+  max-width: 480px;
+  margin: 0;
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-empty-state__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uni-spacing-8);
+  margin-top: var(--uni-spacing-8);
+}
+
+.uni-empty-state--compact .uni-empty-state__action {
+  margin-top: var(--uni-spacing-4);
+}

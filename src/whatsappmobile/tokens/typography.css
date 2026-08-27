@@ -5,8 +5,6 @@
    (barra de status do Android) e Poppins (assinatura "FACEBOOK").
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
-
 :root {
   /* Famílias */
   --wa-font-sans: 'PT Sans', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

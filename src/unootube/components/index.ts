@@ -82,6 +82,26 @@ export * from './PrimaryColumn';
 export * from './SecondaryColumn';
 
 /* ----------------------------------------------------
+ * Extensões
+ *
+ * NÃO SÃO PUBLICADAS POR NENHUM DOS DOIS ARQUIVOS DE ORIGEM. As seis telas que
+ * eles desenham não abrem camada modal, não confirmam ação, não organizam
+ * dados em grade e nunca estão vazias. Estes quatro existem porque produto
+ * precisa deles, e a alternativa — compor com os equivalentes da Plataforma
+ * Unooria — traria Open Sans e a paleta navy para dentro do Roboto e do
+ * vermelho.
+ *
+ * Cada um deriva a forma de degraus que os arquivos DE FATO publicam (a
+ * superfície elevada, os três degraus de `Elevation`, a régua da linha de
+ * lista, a escala tipográfica de onze degraus). O único valor novo em todo o
+ * grupo é `--uni-color-scrim`. Ver o registro de desvios da seção 10.6.
+ * ---------------------------------------------------- */
+export * from './Modal';
+export * from './Snackbar';
+export * from './Table';
+export * from './EmptyState';
+
+/* ----------------------------------------------------
  * Documentação
  *
  * `DesktopFrame` e `PhoneFrame` são contêineres de documentação, não de

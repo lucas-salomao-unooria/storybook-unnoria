@@ -68,7 +68,7 @@
   width: var(--uni-spacing-24);
   height: var(--uni-spacing-24);
   padding: 0;
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
   background: none;
   border: none;
   border-radius: var(--uni-radius-full);
@@ -109,7 +109,7 @@
   font-weight: var(--uni-font-weight-medium);
   line-height: normal;
   letter-spacing: var(--uni-font-tracking);
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -120,7 +120,7 @@
   font-size: var(--uni-font-caption-sm-size);
   font-weight: var(--uni-font-weight-medium);
   line-height: normal;
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
 }
 
 /* ----------------------------------------------------
@@ -199,7 +199,7 @@
   font-size: var(--uni-font-caption-size);
   font-weight: var(--uni-font-weight-medium);
   line-height: normal;
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
 }
 
 /* ----------------------------------------------------

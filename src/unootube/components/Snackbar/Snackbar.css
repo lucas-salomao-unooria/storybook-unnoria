@@ -1,0 +1,100 @@
+/**
+ * Estilos do Componente Snackbar — Design System Unootube
+ *
+ * EXTENSÃO DECLARADA: nenhum dos dois arquivos de origem publica aviso
+ * flutuante. Cada medida vem de um degrau publicado:
+ *
+ * - superfície: `background/surface`, a mesma dos chips e da linha ativa
+ * - sombra: `Elevation/Medium`, descrita no quadro `Elevation` (106:3222) como
+ *   "flutuante: menus suspensos e popovers"
+ * - raio: `--uni-radius-sm` (2px), o degrau fino da coleção `Radius`
+ * - texto: `Body/Medium` · ação: `Label/Large` no vermelho semântico
+ */
+
+.uni-snackbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uni-spacing-16);
+  min-height: 48px;
+  max-width: 568px;
+  padding: var(--uni-spacing-12) var(--uni-spacing-16);
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+  background: var(--uni-color-background-surface);
+  border-radius: var(--uni-radius-sm);
+  box-shadow: var(--uni-elevation-medium);
+}
+
+/*
+ * Posição fixa no canto inferior esquerdo — onde o produto de origem coloca o
+ * aviso. Opcional, para que quem já tem uma região de avisos própria receba o
+ * componente em fluxo.
+ */
+.uni-snackbar--floating {
+  position: fixed;
+  left: var(--uni-spacing-24);
+  bottom: var(--uni-spacing-24);
+  z-index: 900;
+  width: calc(100% - var(--uni-spacing-24) * 2);
+}
+
+.uni-snackbar__message {
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+/*
+ * Ação em `Label/Large`. O vermelho semântico `--uni-color-brand-primary` é o
+ * único acento que o arquivo publica — não existe verde nem âmbar de estado, e
+ * por isso o componente não tem escada de severidade.
+ */
+.uni-snackbar__action {
+  flex: none;
+  padding: var(--uni-spacing-6) var(--uni-spacing-8);
+  margin: calc(var(--uni-spacing-6) * -1) calc(var(--uni-spacing-8) * -1);
+  font-family: var(--uni-font-sans);
+  font-size: var(--uni-font-label-lg-size);
+  font-weight: var(--uni-font-label-lg-weight);
+  line-height: var(--uni-font-label-lg-line);
+  letter-spacing: var(--uni-font-tracking);
+  text-transform: uppercase;
+  color: var(--uni-color-brand-primary);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-sm);
+  cursor: pointer;
+  transition: background-color var(--uni-transition-fast);
+}
+
+.uni-snackbar__action:hover {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-snackbar__action:active {
+  background: var(--uni-color-state-active);
+}
+
+.uni-snackbar__action:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+/*
+ * Tom de perigo. Marca a aresta esquerda com o vermelho semântico em vez de
+ * pintar a superfície inteira: o Unootube não publica superfície de estado, e
+ * tingir o fundo exigiria um vermelho escuro que nenhum dos dois arquivos tem.
+ */
+.uni-snackbar--danger {
+  border-left: var(--uni-spacing-4) solid var(--uni-color-brand-primary);
+}
+
+@media (min-width: 600px) {
+  .uni-snackbar--floating {
+    width: auto;
+    min-width: 288px;
+  }
+}

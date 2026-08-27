@@ -30,6 +30,7 @@ const meta: Meta<typeof MobileChannelHeader> = {
     avatarInitials: { control: 'text' },
     channelName: { control: 'text' },
     subscriberCount: { control: 'text' },
+    showSubscribe: { control: 'boolean' },
     subscribed: { control: 'boolean' },
     subscribeLabel: { control: 'text' },
     subscribedLabel: { control: 'text' },
@@ -41,6 +42,7 @@ const meta: Meta<typeof MobileChannelHeader> = {
     avatarInitials: 'U',
     channelName: 'Username...',
     subscriberCount: '420 thousand subscribers',
+    showSubscribe: true,
     subscribed: false,
     subscribeLabel: 'Subscribe',
     subscribedLabel: 'Subscribed',
@@ -111,6 +113,11 @@ const MobileChannelHeaderDocumentationPage = () => (
     />
     <UniDocDeviations
       items={[
+        {
+          subject: 'showSubscribe',
+          detail:
+            'o arquivo sempre desenha a chamada de inscrição, porque a única tela de canal que ele publica é a de um canal de terceiro. No canal do próprio usuário não existe alvo de inscrição, e a prop suprime a chamada. Vem ligada, para preservar o desenho do arquivo por padrão.',
+        },
         {
           subject: 'Corpo de 26px fora da escala',
           detail:
@@ -252,6 +259,13 @@ const MobileChannelHeaderDocumentationPage = () => (
           description: 'Linha de contagem, como o arquivo escreve.',
         },
         {
+          name: 'showSubscribe',
+          type: 'boolean',
+          default: 'true',
+          description:
+            'Exibe a chamada de inscrição. Desligue no canal do próprio usuário.',
+        },
+        {
           name: 'subscribed · subscribeLabel · subscribedLabel · onSubscribe',
           type: 'boolean · React.ReactNode · React.ReactNode · () => void',
           default: "false · 'Subscribe' · 'Subscribed' · —",
@@ -353,6 +367,27 @@ export const Estados: Story = {
           </Phone>
         </div>
       ))}
+    </div>
+  ),
+};
+
+/**
+ * O canal do próprio usuário: sem chamada de inscrição.
+ */
+export const CanalProprio: Story = {
+  name: 'Canal do próprio usuário',
+  render: () => (
+    <div
+      data-uni-theme="dark"
+      style={{ padding: 32, background: 'var(--uni-color-background-primary)' }}
+    >
+      <MobileChannelHeader
+        showSubscribe={false}
+        avatarInitials="LS"
+        channelName="Meu canal"
+        subscriberCount="128 inscritos"
+        sectionLabel="Meus Shorts"
+      />
     </div>
   ),
 };

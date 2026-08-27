@@ -16,8 +16,13 @@
   width: 100%;
   height: var(--uni-channel-cover-height);
   overflow: hidden;
-  /* Cor de espera literal do arquivo antes do bitmap de capa. */
-  background: var(--uni-color-neutral-50);
+  /*
+   * Cor de espera antes do bitmap de capa. O arquivo mede `#F8F8F8`, mas ali a
+   * laje nunca aparece — o bitmap sempre a cobre. Sem capa, no escuro, eram
+   * 192px de branco: o token resolve para a superfície interativa no escuro e
+   * para o literal do arquivo no claro.
+   */
+  background: var(--uni-color-cover-placeholder);
 }
 
 .uni-channel-header__cover-image {

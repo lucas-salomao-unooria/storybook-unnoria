@@ -40,7 +40,7 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
   background: none;
   border: none;
   cursor: pointer;
@@ -66,7 +66,7 @@
   font-weight: var(--uni-font-weight-medium);
   line-height: normal;
   letter-spacing: var(--uni-font-tracking);
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -79,7 +79,7 @@
   flex: none;
   min-width: 32px;
   height: 32px;
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
 }
 
 /*

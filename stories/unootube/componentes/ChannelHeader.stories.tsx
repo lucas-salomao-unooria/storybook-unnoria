@@ -29,6 +29,7 @@ const meta: Meta<typeof ChannelHeader> = {
     avatarInitials: { control: 'text' },
     channelName: { control: 'text' },
     subscriberCount: { control: 'text' },
+    showSubscribe: { control: 'boolean' },
     subscribed: { control: 'boolean' },
     tabs: { control: 'object' },
     activeTabId: { control: 'text' },
@@ -45,6 +46,7 @@ const meta: Meta<typeof ChannelHeader> = {
     avatarInitials: 'ML',
     channelName: 'Marcus Levin',
     subscriberCount: '1.2M subscribers',
+    showSubscribe: true,
     subscribed: false,
     tabs: channelTabs,
     activeTabId: 'home',
@@ -106,6 +108,11 @@ const ChannelHeaderDocumentationPage = () => (
     />
     <UniDocDeviations
       items={[
+        {
+          subject: 'showSubscribe',
+          detail:
+            'o arquivo sempre desenha o botão de inscrição, porque toda tela de canal que ele publica é a de um canal de terceiro. Um produto que abra o canal do próprio usuário precisa suprimi-lo — ninguém se inscreve em si mesmo — e é para isso que a prop existe. Vem ligada, para preservar o desenho do arquivo por padrão.',
+        },
         {
           subject: 'Abas montadas localmente',
           detail:
@@ -249,6 +256,13 @@ const ChannelHeaderDocumentationPage = () => (
         { name: 'channelName', type: 'React.ReactNode', description: 'Nome do canal, em <h1>.' },
         { name: 'subscriberCount', type: 'React.ReactNode', description: 'Contagem de inscritos.' },
         {
+          name: 'showSubscribe',
+          type: 'boolean',
+          default: 'true',
+          description:
+            'Exibe o botão de inscrição. Desligue no canal do próprio usuário — o arquivo só publica canal de terceiro.',
+        },
+        {
           name: 'subscribed',
           type: 'boolean',
           default: 'false',
@@ -376,4 +390,31 @@ export const Estados: Story = {
     };
     return <TabsDemo />;
   },
+};
+
+/**
+ * O canal do próprio usuário: sem alvo de inscrição.
+ *
+ * O arquivo só publica canal de terceiro, e por isso sempre desenha o botão.
+ * Quando a tela é o canal de quem está logado, `showSubscribe={false}` remove
+ * o alvo — ninguém se inscreve em si mesmo.
+ */
+export const CanalProprio: Story = {
+  name: 'Canal do próprio usuário',
+  render: () => (
+    <div
+      data-uni-theme="dark"
+      style={{ padding: 32, background: 'var(--uni-color-background-primary)' }}
+    >
+      <ChannelHeader
+        showSubscribe={false}
+        coverSrc={channelCover}
+        avatarInitials="LS"
+        channelName="Meu canal"
+        subscriberCount="128 inscritos · 12 vídeos"
+        tabs={channelTabs}
+        activeTabId="home"
+      />
+    </div>
+  ),
 };

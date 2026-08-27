@@ -1,0 +1,155 @@
+/**
+ * Estilos do Componente Modal — Design System Unootube
+ *
+ * EXTENSÃO DECLARADA: nenhum dos dois arquivos de origem publica diálogo. Cada
+ * medida abaixo vem de um degrau que os arquivos **de fato** publicam:
+ *
+ * - superfície: `background/secondary`, a mesma das barras de navegação
+ * - sombra: `Elevation/High`, descrita no quadro `Elevation` (106:3226) como
+ *   "modal: diálogos e folhas" — o arquivo previu o uso, só não desenhou a tela
+ * - raio: `--uni-radius-md` (8px), o degrau intermediário da coleção `Radius`
+ * - título: `Heading/H3` · corpo: `Body/Medium` · rodapé na calha de 16px
+ *
+ * O único valor que não existia é o véu, tokenizado em `--uni-color-scrim`.
+ */
+
+.uni-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--uni-spacing-24);
+  background: var(--uni-color-scrim);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.uni-modal-overlay__inner {
+  display: flex;
+  max-width: 100%;
+}
+
+.uni-modal-root {
+  display: flex;
+}
+
+.uni-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uni-spacing-16);
+  width: 100%;
+  max-width: 100%;
+  padding: var(--uni-spacing-24);
+  box-sizing: border-box;
+  font-family: var(--uni-font-sans);
+  color: var(--uni-color-text-primary);
+  background: var(--uni-color-background-secondary);
+  border-radius: var(--uni-radius-md);
+  box-shadow: var(--uni-elevation-high);
+}
+
+.uni-modal:focus {
+  outline: none;
+}
+
+.uni-modal--sm {
+  width: 320px;
+}
+
+.uni-modal--md {
+  width: 480px;
+}
+
+.uni-modal--lg {
+  width: 640px;
+}
+
+.uni-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--uni-spacing-16);
+}
+
+.uni-modal__title {
+  margin: 0;
+  font-size: var(--uni-font-heading-h3-size);
+  font-weight: var(--uni-font-heading-h3-weight);
+  line-height: var(--uni-font-heading-h3-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+}
+
+/*
+ * Botão de fechar. O glifo padrão é o caractere tipográfico ✕ — nenhum dos dois
+ * arquivos publica um vetor de fechar, e desenhar um seria invenção.
+ */
+.uni-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--uni-icon-button-size);
+  height: var(--uni-icon-button-size);
+  margin: calc(var(--uni-spacing-8) * -1) calc(var(--uni-spacing-8) * -1) 0 0;
+  padding: 0;
+  font-family: var(--uni-font-sans);
+  font-size: var(--uni-font-body-lg-size);
+  line-height: 1;
+  color: var(--uni-color-text-secondary);
+  background: none;
+  border: none;
+  border-radius: var(--uni-radius-full);
+  cursor: pointer;
+  transition: background-color var(--uni-transition-fast), color var(--uni-transition-fast);
+}
+
+.uni-modal__close:hover {
+  color: var(--uni-color-text-primary);
+  background: var(--uni-color-state-hover);
+}
+
+.uni-modal__close:active {
+  background: var(--uni-color-state-active);
+}
+
+.uni-modal__close:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+.uni-modal__body {
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-secondary);
+}
+
+.uni-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--uni-spacing-8);
+}
+
+/*
+ * Abaixo de 520px o diálogo passa a ocupar a largura da janela. O arquivo não
+ * publica ponto de quebra porque não publica diálogo; sem isso, o degrau `lg`
+ * de 640px estouraria a viewport de um telefone.
+ */
+@media (max-width: 520px) {
+  .uni-modal-overlay {
+    padding: var(--uni-spacing-16);
+    align-items: flex-end;
+  }
+
+  .uni-modal-overlay__inner,
+  .uni-modal--sm,
+  .uni-modal--md,
+  .uni-modal--lg {
+    width: 100%;
+  }
+}

@@ -1,0 +1,13 @@
+/**
+ * Declaração de fonte do Design System unootube.
+ *
+ * Existe como arquivo separado por uma razão mecânica: `@import url(...)` só é
+ * válido no **topo** de uma folha de estilos. Enquanto essa declaração vivia em
+ * `typography.css`, ela caía no meio da folha agregada — o empacotador embute o
+ * conteúdo dos arquivos importados — e era descartada com aviso no build.
+ *
+ * Agora quem precisa da fonte importa este arquivo **primeiro**: as folhas
+ * agregadas (`styles.css` e `styles-unootube.css`) já a declaram no próprio topo,
+ * e o preview do Storybook a importa antes dos tokens.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');

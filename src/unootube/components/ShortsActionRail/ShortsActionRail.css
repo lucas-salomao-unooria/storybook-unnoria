@@ -69,7 +69,7 @@
 
 .uni-shorts-rail--overlay .uni-shorts-rail__item {
   gap: var(--uni-spacing-4);
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
 }
 
 .uni-shorts-rail--overlay .uni-shorts-rail__glyph {
@@ -79,7 +79,7 @@
 
 .uni-shorts-rail--overlay .uni-shorts-rail__label {
   font-size: var(--uni-font-caption-size);
-  color: var(--uni-color-white);
+  color: var(--uni-color-text-on-media);
 }
 
 /*

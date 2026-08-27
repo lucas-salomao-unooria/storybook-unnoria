@@ -1,0 +1,129 @@
+/**
+ * Estilos do Componente Table — Design System Unootube
+ *
+ * EXTENSÃO DECLARADA: nenhum dos dois arquivos de origem publica tabela. A
+ * régua é a da **linha de lista**, que eles publicam à exaustão:
+ *
+ * - altura da linha: 40px (`--uni-sidebar-item-height`, node 8:126)
+ * - divisor: fio de 1px em `border/subtle`, o mesmo da barra lateral (1:599)
+ * - rótulo: `Label/Large` · conteúdo: `Body/Medium`
+ * - calha: 16px, a calha padrão de conteúdo
+ *
+ * A biblioteca é plana: nenhuma sombra, exatamente como as listas do arquivo.
+ */
+
+.uni-table__scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.uni-table__scroll:focus-visible {
+  outline: 2px solid var(--uni-color-state-focus);
+  outline-offset: 2px;
+}
+
+.uni-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--uni-font-sans);
+  color: var(--uni-color-text-primary);
+  background: transparent;
+}
+
+/* Legenda acessível, visualmente oculta sem sair da árvore de acessibilidade. */
+.uni-table__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.uni-table__cell {
+  height: var(--uni-sidebar-item-height);
+  padding: var(--uni-spacing-8) var(--uni-spacing-16);
+  box-sizing: border-box;
+  font-size: var(--uni-font-body-md-size);
+  font-weight: var(--uni-font-body-md-weight);
+  line-height: var(--uni-font-body-md-line);
+  letter-spacing: var(--uni-font-tracking);
+  color: var(--uni-color-text-primary);
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--uni-color-border-subtle);
+}
+
+.uni-table__cell--center {
+  text-align: center;
+}
+
+/*
+ * `end` e não `right`: a escada lógica respeita direção de leitura, e o produto
+ * publica interface em mais de um idioma.
+ */
+.uni-table__cell--end {
+  text-align: right;
+}
+
+.uni-table__cell--nowrap {
+  white-space: nowrap;
+}
+
+/* Cabeçalho em `Label/Large`, na tinta secundária da escada. */
+.uni-table__head .uni-table__cell {
+  font-size: var(--uni-font-label-lg-size);
+  font-weight: var(--uni-font-label-lg-weight);
+  line-height: var(--uni-font-label-lg-line);
+  color: var(--uni-color-text-secondary);
+  white-space: nowrap;
+}
+
+.uni-table--dense .uni-table__cell {
+  height: 32px;
+  padding-top: var(--uni-spacing-4);
+  padding-bottom: var(--uni-spacing-4);
+}
+
+/*
+ * Cabeçalho fixo. Precisa de uma superfície opaca por baixo — sem ela, o
+ * conteúdo rolaria visível através dele.
+ */
+.uni-table--sticky .uni-table__head .uni-table__cell {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--uni-color-background-primary);
+}
+
+.uni-table__row {
+  transition: background-color var(--uni-transition-fast);
+}
+
+.uni-table__body .uni-table__row:hover {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-table__row--selected {
+  background: var(--uni-color-surface-selected);
+}
+
+/*
+ * Listra. O arquivo separa listas por fio, não por faixa — a listra é extensão
+ * e vem desligada, construída sobre o realce de interação da própria marca.
+ */
+.uni-table--zebra .uni-table__body .uni-table__row:nth-child(even) {
+  background: var(--uni-color-state-hover);
+}
+
+.uni-table--zebra .uni-table__body .uni-table__row--selected {
+  background: var(--uni-color-surface-selected);
+}
+
+/* A última linha não leva fio: a tabela termina no conteúdo, como as listas. */
+.uni-table__body .uni-table__row:last-child .uni-table__cell {
+  border-bottom: none;
+}

@@ -22,6 +22,14 @@ export interface UniMobileChannelHeaderProps
    * Marca o canal como já inscrito. O arquivo só desenha o estado não inscrito.
    * @default false
    */
+  /**
+   * Exibe a chamada de inscrição.
+   *
+   * Mesmo motivo do `ChannelHeader`: o arquivo só publica canal de terceiro, e
+   * o canal do próprio usuário não tem alvo de inscrição.
+   * @default true
+   */
+  showSubscribe?: boolean;
   subscribed?: boolean;
   /**
    * Rótulo da chamada de inscrição.

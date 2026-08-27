@@ -1,6 +1,19 @@
 import type { Preview } from '@storybook/nextjs-vite';
 import '../app/globals.css';
 
+/*
+ * Fontes das marcas, antes de qualquer outro token.
+ *
+ * `@import url(...)` só vale no topo de uma folha; por isso cada marca isola a
+ * declaração em `tokens/fonts.css` em vez de deixá-la em `typography.css`, de
+ * onde ela caía no meio da folha agregada e era descartada no build. Estes
+ * imports precisam continuar sendo os primeiros do arquivo.
+ */
+import '../src/chatgpt/tokens/fonts.css';
+import '../src/whatsappmobile/tokens/fonts.css';
+import '../src/tiktooria/tokens/fonts.css';
+import '../src/unootube/tokens/fonts.css';
+
 /* WhatsApp Mobile Tokens */
 import '../src/whatsappmobile/tokens/typography.css';
 import '../src/whatsappmobile/tokens/colors.css';

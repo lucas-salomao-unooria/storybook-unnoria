@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
-
 /**
- * As fontes PT Sans e Poppins são declaradas aqui **e** no topo de
- * `whatsappmobile/tokens/typography.css`.
+ * A fonte da marca entra por `whatsappmobile/tokens/fonts.css`, que contém apenas o
+ * `@import url(...)`, e este import precisa ser o **primeiro** da folha: um
+ * `@import url(...)` que caia no meio de uma folha é descartado pelo navegador.
  *
- * Não é redundância: o empacotador embute o conteúdo dos arquivos importados, e
- * um `@import url(...)` que caia no meio da folha resultante é ignorado pelo
- * navegador. A declaração no topo desta folha é a que funciona no pacote
- * publicado; a do arquivo de tokens é a que funciona para quem importa
- * `typography.css` direto (o preview do Storybook, por exemplo).
+ * ATENÇÃO — o `@import` NÃO sobrevive ao empacotamento. O esbuild remove
+ * `@import url(...)` externo do CSS emitido, e isso vale para todas as folhas
+ * deste pacote, inclusive a da Plataforma Unooria. Quem consome
+ * `@unooria/design-system/styles-whatsappmobile.css` **precisa carregar a família por
+ * conta própria** — via `next/font`, `<link>` no documento ou um `@import` na
+ * própria folha da aplicação. A declaração aqui serve a quem importa o
+ * código-fonte direto e ao preview do Storybook.
  */
+@import './whatsappmobile/tokens/fonts.css';
 
 /**
  * Folha de estilos do Design System WhatsApp Mobile.
