@@ -1,0 +1,51 @@
+/**
+ * Estilos do Componente TopicColumn — Design System ChatGPT
+ *
+ * Medidas da instância `Frame` (`State=Static, Vertical=True`) do quadro
+ * `New chat - V1 - A`: coluna de 280px, cabeçalho com padding vertical de 8,
+ * intervalo de 8 entre o ícone de 32px e o título, e título Inter Semi Bold
+ * de 18/28 (`Heading/H3`), tudo centralizado.
+ *
+ * O intervalo de 16px entre o cabeçalho e o primeiro cartão vem da diferença
+ * medida no arquivo entre o fim do cabeçalho (84) e o topo dos cartões (100).
+ */
+
+.gpt-topic-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gpt-spacing-6);
+  box-sizing: border-box;
+  width: 280px;
+  font-family: var(--gpt-font-sans);
+}
+
+.gpt-topic-column__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  padding: var(--gpt-spacing-4) 0;
+}
+
+.gpt-topic-column__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gpt-text-primary);
+}
+
+.gpt-topic-column__title {
+  margin: 0;
+  font-size: var(--gpt-font-heading-h3-size);
+  font-weight: var(--gpt-font-weight-semibold);
+  line-height: var(--gpt-font-heading-h3-line);
+  color: var(--gpt-text-primary);
+  text-align: center;
+}
+
+.gpt-topic-column__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gpt-spacing-6);
+  align-items: center;
+}

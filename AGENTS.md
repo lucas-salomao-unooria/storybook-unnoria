@@ -45,7 +45,7 @@ O pacote publica **seis design systems** em um único artefato NPM:
 |---|---|---|---|---|---|---|
 | Plataforma Unooria | `src/unooria/` | `UnooriaUI` + exportação na raiz | `--unooria-*` / `.unooria-*` | Light e Dark | 38 | — (design próprio) |
 | Instanooria | `src/instanooria/` | `InstanooriaUI` | `--insta-*` / `.insta-*` | `data-insta-theme="light \| dark"` | 21 | Instagram UI Screens (Community) |
-| ChatGPT | `src/chatgpt/` | `ChatGPTUI` | `--gpt-*` / `.gpt-*` | `data-gpt-theme="light \| dark"` | 17 | ChatGPT UI Kit (AI Chat) (Community) |
+| ChatGPT | `src/chatgpt/` | `ChatGPTUI` | `--gpt-*` / `.gpt-*` | `data-gpt-theme="light \| dark"` | 25 | ChatGPT UI Kit (AI Chat) (Community) |
 | WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 29 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
 | Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 40 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
@@ -143,6 +143,7 @@ Todo componente, estilo ou documentação do ChatGPT **DEVE** consumir exclusiva
 - **Tipografia**: família Inter via `--gpt-font-sans`; escala de 13 estilos (`--gpt-font-display-xl-*`, `--gpt-font-heading-h1-*`, `--gpt-font-body-sm-*`, `--gpt-font-label-md-*`, `--gpt-font-caption-*`, etc.) com pesos 400/500/600 e **letter-spacing 0 em todos os degraus**.
 - **Medidas**: escala `--gpt-spacing-0` (0) a `--gpt-spacing-18` (160px) em grade de 4px com os degraus finos de 2px e 6px preservados; raios `--gpt-radius-none` a `--gpt-radius-full`; dimensões `--gpt-size-icon-xs..xl`, `--gpt-size-avatar-sm..xl`, `--gpt-size-button-sm|md|lg`, `--gpt-size-sidebar` (260px) e `--gpt-size-input-height` (44px).
 - **Elevação**: `--gpt-elevation-sm|md|lg|xl` dos estilos `Shadow/*`, mais `--gpt-elevation-knob` e `--gpt-elevation-modal` dos dois efeitos locais. A biblioteca é **plana por padrão** — cartões e campos se separam por contorno translúcido, e sombra existe apenas em diálogo e knob.
+- **Superfícies do cliente web** (`--gpt-web-*`, origem `🟪 ChatGPT UI Kit`): `--gpt-web-canvas`, `-suggestion`, `-composer-fill`, `-composer-border`, `-composer-placeholder`, `-veil`, `-hairline` e `-accent`. Cada lado do par foi **medido** no quadro correspondente — `681:2796` no claro e `681:3246` no escuro —, e três deles não são espelho um do outro (ver 7.6). Some-se a primitiva `--gpt-color-gray-700` (`#333333`), a superfície da tela escura, que `Primitives/Colors` não publica.
 
 ### 2.5. Tokens do WhatsApp Mobile (`src/whatsappmobile/tokens/`)
 Todo componente, estilo ou documentação do WhatsApp Mobile **DEVE** consumir exclusivamente as variáveis `--wa-*`. O arquivo comunitário **não publica variáveis de cor** (`get_variable_defs` retorna vazio), portanto cada token foi lido do preenchimento literal do nó de origem e registra o `figmaNode` correspondente em `colors.ts`.
@@ -311,7 +312,7 @@ export default meta;
 
 O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem (`bundle: false` em `tsup.config.ts`), preservando o grafo de módulos.
 
-- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**94 dos 181** na última medição: 2/39 na Plataforma Unooria, 10/21 no Instanooria, 14/17 no ChatGPT, 13/29 no WhatsApp Mobile, 32/35 no Tik Tooria e 23/40 no Unootube). Para recontar depois de um `npm run build:package`:
+- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**101 dos 189** na última medição: 2/39 na Plataforma Unooria, 10/21 no Instanooria, 21/25 no ChatGPT, 13/29 no WhatsApp Mobile, 32/35 no Tik Tooria e 23/40 no Unootube). Para recontar depois de um `npm run build:package`:
   ```bash
   for d in dist/*/components/*/; do n=$(basename "$d"); f="$d$n.mjs"; \
     [ -f "$f" ] && { head -3 "$f" | grep -q 'use client' && echo client || echo server; }; \
@@ -366,30 +367,63 @@ Qualquer divergência intencional em relação ao arquivo de design **DEVE** ser
 
 O **ChatGPT** é o cliente de conversa com IA da Plataforma Unooria, implementado a partir do arquivo Figma [ChatGPT UI Kit (AI Chat) (Community)](https://www.figma.com/design/FlQnC8T6Sg5HdVodu0f7bL/ChatGPT-UI-Kit--AI-Chat--Community-) (`fileKey FlQnC8T6Sg5HdVodu0f7bL`).
 
-### 7.1. Fonte Canônica: a Página `🟡 Design system`
-O arquivo tem cinco páginas. A **única fonte de implementação** é a página `🟡 Design system` (`609:5682`), onde vivem as coleções de variáveis, os estilos publicados e os 17 componentes.
+### 7.1. Duas Fontes Canônicas
+O arquivo tem cinco páginas, e **duas** delas são fonte de implementação.
 
-- A página `🟪 ChatGPT Web Client` (`665:2049`, 19 telas × 2 temas) está **inteiramente achatada em 4.516 nós vetoriais**, sem camadas de texto, componentes ou variáveis vinculadas. Ela serve apenas como referência de layout e fluxo — **não** é fonte de token nem de ícone.
+**A. `🟡 Design system` (`609:5682`)** — origem dos 17 primeiros componentes, de todas as coleções de variáveis e de todos os estilos publicados.
+
 - As coleções foram lidas via Plugin API: `Primitives/Colors` (25 variáveis, modo `Default`), `Semantic/Colors` (21 variáveis, modos `Light` e `Dark`), `Primitives/Spacing` (19), `Primitives/Radius` (10) e `Primitives/Sizing` (14). Somam-se 13 estilos de texto, 4 de efeito e 21 de pintura.
+- Os 17 componentes são conjuntos de variantes locais, com propriedades declaradas (`Variant`, `Size`, `State`, `Role`) e slots de texto.
+
+**B. `🟪 ChatGPT UI Kit` (`0:1`)** — origem dos 8 componentes do cliente web, da biblioteca vetorial e do logotipo.
+
+- A página tem três nós de topo, e dois deles são o **mesmo quadro em dois temas**: `New chat - V1 - A` em `681:2796` (claro) e `681:3246` (escuro), ambos de 1440 × 1024.
+- São **instâncias de uma biblioteca remota** (`mainComponent.remote === true`, a versão paga do kit). Os componentes-mestre não existem no arquivo, mas as instâncias carregam a geometria resolvida: 121 nós, com **23 camadas de texto reais** e **17 nós VECTOR reais**. Tudo foi medido nó a nó.
+- O par claro/escuro é **medido, não derivado**: cada valor do tema escuro foi lido de `681:3246`. Três deles não são o espelho do claro — ver 7.6.
+
+**C. `🟪 ChatGPT Web Client` (`665:2049`) — NÃO é fonte.** O quadro `ChatGPT` (`676:342`, 10000 × 16992) tem **6.124 nós, exclusivamente `GROUP` e `VECTOR`, com zero camadas de texto**: está inteiramente contornado. Serve apenas como referência de fluxo — **não** é fonte de token, de componente nem de ícone. A conferência é reproduzível:
+
+```js
+// use_figma, página 665:2049
+const frame = await figma.getNodeByIdAsync('676:342');
+const all = frame.findAll(() => true);
+const byType = {}; for (const n of all) byType[n.type] = (byType[n.type] || 0) + 1;
+return { total: all.length, byType }; // → { total: 6124, GROUP: 895, VECTOR: 5229 }
+```
 
 ### 7.2. Títulos das Estórias
-- **Fundamentos**: `ChatGPT/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação & Overlays | Glifos]`.
+- **Fundamentos**: `ChatGPT/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação & Overlays | Glifos | Ícones]`. `Glifos` documenta os caracteres tipográficos da página `🟡 Design system`; `Ícones`, os vetores literais da página `🟪 ChatGPT UI Kit`. O `Icon` é documentado apenas em `Fundamentos/Ícones`; não há estória duplicada em `Componentes`.
 - **Componentes**: `ChatGPT/Componentes/[NomeComponente]`.
 - **Telas compostas**: `ChatGPT/Telas/Telas Compostas`.
 
-### 7.3. Componentes Oficiais (17)
-`Button`, `IconButton`, `Avatar`, `Badge`, `Tag`, `Toggle`, `Divider`, `Input`, `ChatInput`, `SearchInput`, `NavItem`, `ChatBubble`, `GPTCard`, `SettingsRow`, `Sidebar` (composto), `FeatureCard` e `Modal` (composto).
+### 7.3. Componentes Oficiais (25)
+
+**Página `🟡 Design system` (17)**: `Button`, `IconButton`, `Avatar`, `Badge`, `Tag`, `Toggle`, `Divider`, `Input`, `ChatInput`, `SearchInput`, `NavItem`, `ChatBubble`, `GPTCard`, `SettingsRow`, `Sidebar` (composto), `FeatureCard` e `Modal` (composto).
+
+**Página `🟪 ChatGPT UI Kit` (8)**: `Icon`, `Logo`, `PlanTag`, `PromptSuggestion`, `TopicColumn`, `SidebarRow`, `Composer` (composto) e `WebSidebar` (composto).
 
 - `Sidebar` expõe `Sidebar.NewChatButton`, `Sidebar.SectionLabel`, `Sidebar.Spacer` e `Sidebar.FooterItem`.
 - `Modal` expõe `Modal.Header`, `Modal.Body` e `Modal.Footer`.
+- `Composer` expõe `Composer.Dock`; `WebSidebar` expõe `WebSidebar.Section` e `WebSidebar.NewChat`.
+- **REGRA CRÍTICA — as duas páginas publicam réguas distintas, e um componente NUNCA substitui o seu equivalente da outra.** `SidebarRow` (48px, raio 12, ícone vetorial de 24) não é `NavItem` (36px, raio 8, glifo tipográfico de 14). `WebSidebar` (282px, transparente) não é `Sidebar` (260px, `bg/secondary`). `Composer` (760 × 56, quatro alvos, contorno de 0,5px) não é `ChatInput` (600 × 48, um alvo redondo). `PlanTag` (sólido, invariante) não é `Badge` (cinco variantes semânticas a 10%). Consolidar qualquer um desses pares apaga uma medida real do arquivo.
 - A prop `theme` é **opcional e sem valor padrão** em todos os componentes: quando omitida, o componente herda o tema do contêiner ancestral via `data-gpt-theme`. Isso permite trocar o tema uma única vez, no nó mais externo.
 - A moldura de janela e o cabeçalho de área usados em `ChatGPT/Telas` são **andaimes de documentação**, restritos a `stories/`, e não integram o pacote.
 
-### 7.4. Iconografia: Glifos, Não Vetores
-O arquivo de design **não publica biblioteca de ícones**: os componentes usam caracteres tipográficos em camadas de texto Inter Regular. Os sete caracteres literais estão em `src/chatgpt/tokens/glyphs.ts` (`gptGlyphs`): `✕` `→` `↑` `✦` `⌕` `+` `💬`.
+### 7.4. Iconografia: Duas Bibliotecas, Uma por Página
+O ChatGPT é a única marca com **duas iconografias**, porque suas duas páginas de origem resolvem ícone de formas diferentes. **Nenhuma substitui a outra.**
+
+**A. Glifos tipográficos — página `🟡 Design system`.** Aquela página **não publica biblioteca de ícones**: seus componentes usam caracteres tipográficos em camadas de texto Inter Regular. Os sete caracteres literais estão em `src/chatgpt/tokens/glyphs.ts` (`gptGlyphs`): `✕` `→` `↑` `✦` `⌕` `+` `💬`.
 
 - **PROIBIDO** desenhar um `<svg>`/`<path>` aproximado para substituir um glifo, ou adicionar símbolo que não exista em nenhuma camada do arquivo.
 - Toda prop de glifo aceita `ReactNode`, de modo que um produto com família vetorial própria possa injetá-la sem alterar o componente.
+
+**B. Vetores literais — página `🟪 ChatGPT UI Kit`.** Os **13** ícones vivem em `src/chatgpt/components/Icon/IconPaths.ts` com o atributo `d` **literal do export SVG do nó** e o `viewBox` original preservado — **não** normalizado para 24 × 24.
+
+- Três grades distintas, todas quadradas: **16** (`microphone`, `image`, `paperPlaneRight`, `add`), **24** (`chatText`, `trash`, `sun`, `user`, `arrowSquareOut`, `signOut`) e **32** (`chats`, `stars`, `shieldWarning`). A prop `size` governa a aresta do alvo.
+- Só o `stars` tem duas formas; os outros doze são de caminho único. As duas do `stars` declaram `fill-rule="evenodd"`, preservado no registro.
+- O arquivo pinta cada glifo com a cor do contexto — preto nas linhas, branco sobre o botão de nova conversa, preto a 40% no envio. O preenchimento literal foi trocado por `currentColor`; a opacidade fica a cargo do CSS do componente.
+- O logotipo vive em `src/chatgpt/components/Logo/LogoVector.ts`: a marca (`0 0 65 64`, um caminho) e o wordmark (`0 0 140 24`, sete caminhos), também com os caminhos literais do export.
+- **PROIBIDO** desenhar à mão, aproximar ou substituir por outra biblioteca. Ao acrescentar um glifo, exporte o SVG do nó e copie `d` sem edição, preenchendo `figmaName`, `viewBox` e `usage`.
 
 ### 7.5. Kit de Documentação
 As estórias do ChatGPT usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/GptDocKit.tsx`: `GptDocGrid`, `GptDocCard`, `GptDocFigmaSpecs` (com o slot `deviations`), `GptDocStage`, `GptDocPractices`, `GptDocThemeSwitcher`, `GptDocPropsTable` e `GptDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
@@ -407,6 +441,21 @@ Qualquer divergência intencional **DEVE** ser documentada no slot `deviations` 
 - **`size/button-*`**: a régua de 32/40/48 existe em `Primitives/Sizing` mas **não é usada por nenhum componente publicado** — `Button` e `IconButton` derivam a altura de padding mais altura de linha. Mantida nos tokens por fidelidade à coleção.
 - **`Divider` vertical**: não existe como variante no arquivo; foi adicionado para separar controles em barras horizontais, com o mesmo preenchimento de 10%.
 - **`SettingsRow.value` com controle**: o arquivo mostra apenas valor textual. Aceitar `Toggle`, `Button` e `Badge` no slot é extensão necessária, pois as telas de configuração do produto colocam controles nessa coluna.
+
+- **Duas páginas, duas réguas** (🟪 ChatGPT UI Kit): `SidebarRow`, `WebSidebar`, `Composer` e `PlanTag` convivem com `NavItem`, `Sidebar`, `ChatInput` e `Badge` porque vêm de páginas diferentes do mesmo arquivo, com medidas diferentes. Nenhum par foi consolidado — ver a regra crítica em 7.3.
+- **Tema escuro medido, não derivado** (🟪 ChatGPT UI Kit): o par claro/escuro do cliente web veio inteiramente lido dos quadros `681:2796` e `681:3246`. Três valores **não** são o espelho um do outro e foram preservados como medidos: o fio da barra lateral (preto a 10% no claro contra branco a **15%** no escuro), o véu da doca do compositor (que inverte de branco a 10% para preto a 10%) e o botão de nova conversa (preto no claro, lilás `color/purple/400` no escuro — o arquivo **não** o inverte para branco).
+- **`--gpt-color-gray-700` (`#333333`)**: a superfície da tela escura do cliente web não corresponde a nenhum degrau de `Primitives/Colors` — `gray/800` é `#1C1C1C`. Foi registrada como primitiva nova, com o nó de origem anotado.
+- **`PlanTag` consome primitiva, não alias**: a cápsula usa `--gpt-color-purple-400` diretamente, contrariando a regra geral da seção 2. É deliberado: o arquivo mede `#ADADFB` nos dois temas, e qualquer alias semântico faria a cápsula inverter junto com o tema.
+- **Alvos de 24px do `Composer`**: são o `Button` (`Size=Small, Variant=Borderless`) da biblioteca remota — 24 × 24, padding 4, raio 12 —, e **não** o `IconButton` da página de design system, cujo menor degrau é 28px com raio 6.
+- **Contorno de 0,5px**: o compositor declara meio pixel. O valor é literal e **não** foi arredondado para 1px.
+- **`paperPlaneRight` a 40%**: o vetor é exportado com `fill-opacity="0.4"` porque a instância de origem está a 40% — o alvo de envio em repouso. O vetor foi registrado sem opacidade, e o valor virou responsabilidade do CSS, que devolve 100% no hover e no foco.
+- **Altura dos cartões de sugestão**: os 48px do arquivo viraram `min-height`. As telas são estáticas e cabem sempre em duas linhas; fixar a altura cortaria texto real em produção.
+- **Coordenadas absolutas nas colunas**: no arquivo os cartões das três colunas são posicionados em `y = 100, 164 e 228`. O `TopicColumn` reconstrói a coluna como fluxo vertical único, preservando os intervalos medidos de 16px e sobrevivendo a títulos de outro comprimento.
+- **Estados não publicados** (🟪 ChatGPT UI Kit): as duas telas são estáticas e publicam apenas `State=Default`. Hover, foco, pressionado, desabilitado e selecionado foram acrescentados usando exclusivamente tokens da própria marca — realce em `--gpt-fill-4` e `--gpt-fill-8`, anel de foco de 2px em `border/brand`, 40% de opacidade no desabilitado e `aria-current="page"` na linha ativa.
+- **Elementos promovidos a semântica correta** (🟪 ChatGPT UI Kit): a barra lateral virou `<nav>`, as linhas viraram `<button>`/`<a>`, o título de coluna virou `<h2>` dentro de `<section>` e o compositor virou `<form>` — de modo que `Enter` envie sem escuta de tecla.
+- **Rolagem e pontos de quebra** (🟪 ChatGPT UI Kit): o arquivo publica um único quadro de 1440 × 1024 com o conteúdo cortado na aresta. A barra lateral rola de fato, e abaixo de 800px o compositor passa a ocupar toda a largura — sem isso os 760px fixos não caberiam.
+- **Quebras coladas no texto de origem**: os quadros escrevem "computing insimple terms" e "10year old's birthday" porque o texto está em caixa de largura fixa. As fixtures restauram o espaço; o erro do arquivo **não** foi reproduzido.
+- **Marca registrada**: o logotipo do ChatGPT é marca da OpenAI OpCo, LLC, e está presente por fidelidade ao arquivo comunitário. Um produto que publique a biblioteca deve substituir `Logo/LogoVector.ts` pela própria marca.
 
 ---
 

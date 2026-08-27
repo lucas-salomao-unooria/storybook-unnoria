@@ -22,6 +22,11 @@ export const gptPrimitiveColors = {
   gray200: '#E0E0E0',
   gray400: '#9F9FFB',
   gray600: '#303030',
+  /**
+   * Superfície da tela `New chat` no tema escuro (nó `681:3246`) — degrau que
+   * `Primitives/Colors` não publica, lido do preenchimento literal do quadro.
+   */
+  gray700: '#333333',
   gray800: '#1C1C1C',
   gray900: '#111111',
   purple400: '#ADADFB',
@@ -167,6 +172,79 @@ export const gptOverlays = {
 } as const;
 
 /**
+ * Superfícies do cliente web, medidas nas duas versões do quadro
+ * `New chat - V1 - A` da página `🟪 ChatGPT UI Kit` — `681:2796` (Light) e
+ * `681:3246` (Dark).
+ *
+ * Não são derivações dos semânticos: o arquivo desenha a mesma tela nas duas
+ * versões, e cada lado foi lido do nó correspondente. Três valores **não** são
+ * espelho um do outro e foram preservados como medidos — o fio da barra
+ * lateral (10% no claro contra 15% no escuro), o véu da base (que inverte de
+ * branco para preto) e o botão de nova conversa (preto no claro, lilás
+ * `purple/400` no escuro).
+ */
+export interface GptWebClientColors {
+  /** Fundo da área de conversa (681:2796 / 681:3246) */
+  canvas: string;
+  /** Superfície do cartão de sugestão de prompt */
+  suggestion: string;
+  /** Preenchimento translúcido do compositor */
+  composerFill: string;
+  /** Contorno de 0,5px do compositor */
+  composerBorder: string;
+  /** Texto do placeholder do compositor */
+  composerPlaceholder: string;
+  /** Véu com desfoque de fundo atrás do compositor */
+  veil: string;
+  /** Fio de 1px que separa as seções da barra lateral */
+  hairline: string;
+  /** Superfície do botão de nova conversa */
+  accent: string;
+}
+
+/** Superfícies do cliente web no modo Light (nó `681:2796`). */
+export const gptWebClientLightColors: GptWebClientColors = {
+  canvas: gptPrimitiveColors.white,
+  suggestion: gptPrimitiveColors.gray50,
+  composerFill: 'rgba(255, 255, 255, 0.8)',
+  composerBorder: 'rgba(0, 0, 0, 0.2)',
+  composerPlaceholder: 'rgba(0, 0, 0, 0.2)',
+  veil: 'rgba(255, 255, 255, 0.1)',
+  hairline: 'rgba(0, 0, 0, 0.1)',
+  accent: gptPrimitiveColors.black,
+};
+
+/** Superfícies do cliente web no modo Dark (nó `681:3246`). */
+export const gptWebClientDarkColors: GptWebClientColors = {
+  canvas: gptPrimitiveColors.gray700,
+  suggestion: 'rgba(255, 255, 255, 0.04)',
+  composerFill: 'rgba(255, 255, 255, 0.04)',
+  composerBorder: 'rgba(255, 255, 255, 0.2)',
+  composerPlaceholder: 'rgba(255, 255, 255, 0.2)',
+  veil: 'rgba(0, 0, 0, 0.1)',
+  hairline: 'rgba(255, 255, 255, 0.15)',
+  accent: gptPrimitiveColors.purple400,
+};
+
+/** Índice das superfícies do cliente web por tema. */
+export const gptWebClientColorsByTheme: Record<GptTheme, GptWebClientColors> = {
+  light: gptWebClientLightColors,
+  dark: gptWebClientDarkColors,
+};
+
+/** Variável CSS correspondente a cada superfície do cliente web. */
+export const gptWebClientCssVars: Record<keyof GptWebClientColors, string> = {
+  canvas: '--gpt-web-canvas',
+  suggestion: '--gpt-web-suggestion',
+  composerFill: '--gpt-web-composer-fill',
+  composerBorder: '--gpt-web-composer-border',
+  composerPlaceholder: '--gpt-web-composer-placeholder',
+  veil: '--gpt-web-veil',
+  hairline: '--gpt-web-hairline',
+  accent: '--gpt-web-accent',
+};
+
+/**
  * Variável CSS correspondente a cada token semântico.
  */
 export const gptSemanticCssVars: Record<keyof GptSemanticColors, string> = {
@@ -231,6 +309,7 @@ export const gptPrimitiveCssVars: Record<keyof typeof gptPrimitiveColors, string
   gray200: '--gpt-color-gray-200',
   gray400: '--gpt-color-gray-400',
   gray600: '--gpt-color-gray-600',
+  gray700: '--gpt-color-gray-700',
   gray800: '--gpt-color-gray-800',
   gray900: '--gpt-color-gray-900',
   purple400: '--gpt-color-purple-400',
@@ -262,6 +341,7 @@ export const gptPrimitiveFigmaNames: Record<keyof typeof gptPrimitiveColors, str
   gray200: 'color/gray/200',
   gray400: 'color/gray/400',
   gray600: 'color/gray/600',
+  gray700: 'nó 681:3246 (não publicada em Primitives/Colors)',
   gray800: 'color/gray/800',
   gray900: 'color/gray/900',
   purple400: 'color/purple/400',

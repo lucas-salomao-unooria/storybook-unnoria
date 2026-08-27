@@ -1,0 +1,66 @@
+/**
+ * Estilos do Componente SidebarRow — Design System ChatGPT
+ *
+ * Medidas da instância `Frame` (`State=Default, Vertical=False`) da barra
+ * lateral do quadro `New chat - V1 - A`: 242 × 48, padding 12 (`spacing/5`),
+ * intervalo 8 (`spacing/4`), raio 12 (`radius/lg`), ícone de 24px
+ * (`size/icon-lg`) e rótulo Inter Regular de 14/20 (`Body/SM`).
+ *
+ * O arquivo desenha a linha sem preenchimento — a separação vem do fio das
+ * seções, não de uma superfície por linha.
+ */
+
+.gpt-sidebar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gpt-spacing-5);
+  border: none;
+  border-radius: var(--gpt-radius-lg);
+  background-color: transparent;
+  color: var(--gpt-text-primary);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--gpt-transition-fast);
+}
+
+.gpt-sidebar-row:hover:not(:disabled) {
+  background-color: var(--gpt-fill-4);
+}
+
+.gpt-sidebar-row:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-sidebar-row:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gpt-sidebar-row--active {
+  background-color: var(--gpt-fill-8);
+}
+
+.gpt-sidebar-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gpt-sidebar-row__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

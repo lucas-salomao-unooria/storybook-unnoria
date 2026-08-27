@@ -1,0 +1,128 @@
+/**
+ * Estilos do Componente Composer — Design System ChatGPT
+ *
+ * Medidas da instância `Input` (`Type=1 row, State=Default`) do quadro
+ * `New chat - V1 - A`: 760 × 56, padding 16/20 (`spacing/6` e `spacing/7`),
+ * raio 16 (`radius/xl`), contorno de **0,5px** e trilha interna de quatro
+ * alvos com 8px de intervalo.
+ *
+ * Os alvos medem 24 × 24 com padding 4 e raio 12 — são o `Button`
+ * (`Size=Small, Variant=Borderless`) da biblioteca de origem, e não o
+ * `IconButton` da página `🟡 Design system`, cujo menor degrau é 28px.
+ *
+ * A doca reproduz a faixa de 116px da base da tela: padding 20/0/40, véu
+ * translúcido de 10% e `backdrop-filter: blur(40px)`, que é a tradução do
+ * efeito `BACKGROUND_BLUR` de 40 declarado no nó.
+ */
+
+.gpt-composer {
+  display: flex;
+  align-items: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 760px;
+  max-width: 100%;
+  padding: var(--gpt-spacing-6) var(--gpt-spacing-7);
+  border: 0.5px solid var(--gpt-web-composer-border);
+  border-radius: var(--gpt-radius-xl);
+  background-color: var(--gpt-web-composer-fill);
+  font-family: var(--gpt-font-sans);
+  transition: border-color var(--gpt-transition-fast);
+}
+
+.gpt-composer--block {
+  width: 100%;
+}
+
+.gpt-composer:focus-within {
+  border-color: var(--gpt-border-brand);
+}
+
+.gpt-composer__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--gpt-spacing-4);
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  color: var(--gpt-text-primary);
+}
+
+.gpt-composer__field::placeholder {
+  color: var(--gpt-web-composer-placeholder);
+}
+
+.gpt-composer__field:disabled {
+  cursor: not-allowed;
+}
+
+.gpt-composer__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--gpt-size-icon-lg);
+  height: var(--gpt-size-icon-lg);
+  padding: var(--gpt-spacing-2);
+  border: none;
+  border-radius: var(--gpt-radius-lg);
+  background-color: transparent;
+  color: var(--gpt-text-primary);
+  cursor: pointer;
+  appearance: none;
+  flex-shrink: 0;
+  transition: background-color var(--gpt-transition-fast), opacity var(--gpt-transition-fast);
+}
+
+.gpt-composer__action:hover:not(:disabled) {
+  background-color: var(--gpt-fill-8);
+}
+
+.gpt-composer__action:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-composer__action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/**
+ * O arquivo pinta o avião de papel a 40% de opacidade — é o alvo em repouso,
+ * sem texto para enviar. Ele volta a 100% no hover e no foco.
+ */
+.gpt-composer__action--send {
+  color: var(--gpt-text-soft-40);
+}
+
+.gpt-composer__action--send:hover:not(:disabled),
+.gpt-composer__action--send:focus-visible {
+  color: var(--gpt-text-primary);
+}
+
+/* ==========================================================================
+   Doca
+   ========================================================================== */
+
+.gpt-composer-dock {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gpt-spacing-7) 0 var(--gpt-spacing-11);
+  background-color: var(--gpt-web-veil);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+@media (max-width: 800px) {
+  .gpt-composer {
+    width: 100%;
+  }
+}

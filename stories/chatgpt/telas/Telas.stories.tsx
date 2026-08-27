@@ -6,6 +6,7 @@ import {
   Button,
   ChatBubble,
   ChatInput,
+  Composer,
   Divider,
   FeatureCard,
   GPTCard,
@@ -14,10 +15,16 @@ import {
   Modal,
   NavItem,
   SearchInput,
+  Logo,
+  PlanTag,
+  PromptSuggestion,
   SettingsRow,
   Sidebar,
+  SidebarRow,
   Tag,
   Toggle,
+  TopicColumn,
+  WebSidebar,
 } from '../../../src/chatgpt/components';
 import { gptGlyphs, type GptTheme } from '../../../src/chatgpt/tokens';
 import {
@@ -38,7 +45,10 @@ import {
   gptPromptSuggestions,
   gptSettings,
   gptSidebarFooter,
+  gptTopicColumns,
   gptTranscript,
+  gptWebFooterActions,
+  gptWebHistory,
 } from '../fixtures';
 
 /**
@@ -641,6 +651,128 @@ const TelasDocumentationPage = () => (
   </UnooriaDocShell>
 );
 
+
+/**
+ * Tela `New chat - V1 - A` da página `🟪 ChatGPT UI Kit`.
+ *
+ * É a única tela do arquivo reconstruída a partir de uma superfície
+ * estruturada: as duas versões (`681:2796` clara e `681:3246` escura) têm
+ * camadas de texto e vetores reais, e cada medida abaixo foi lida do nó.
+ *
+ * As demais telas desta seção são montadas com os componentes da página
+ * `🟡 Design system`, porque é de lá que vêm os componentes delas.
+ */
+const TelaClienteWeb: React.FC<{ theme?: GptTheme }> = ({ theme = 'light' }) => {
+  const [enviadas, setEnviadas] = React.useState<string[]>([]);
+  const [ativa, setAtiva] = React.useState<string>(gptWebHistory[0]);
+
+  return (
+    <div
+      data-gpt-theme={theme}
+      style={{
+        display: 'flex',
+        width: '100%',
+        maxWidth: 1440,
+        height: 760,
+        borderRadius: 24,
+        overflow: 'hidden',
+        backgroundColor: 'var(--gpt-web-canvas)',
+        border: '1px solid var(--gpt-web-hairline)',
+      }}
+    >
+      <WebSidebar height="100%">
+        <WebSidebar.Section>
+          <WebSidebar.NewChat onClick={() => setEnviadas([])}>New chat</WebSidebar.NewChat>
+          {gptWebHistory.map((title) => (
+            <SidebarRow
+              key={title}
+              icon="chatText"
+              active={ativa === title}
+              onClick={() => setAtiva(title)}
+            >
+              {title}
+            </SidebarRow>
+          ))}
+        </WebSidebar.Section>
+        <WebSidebar.Section bordered>
+          {gptWebFooterActions.map((action) => (
+            <SidebarRow key={action.label} icon={action.icon}>
+              {action.label}
+            </SidebarRow>
+          ))}
+        </WebSidebar.Section>
+      </WebSidebar>
+
+      <div style={{ display: 'flex', flexDirection: 'column', flex: '1 1 auto', minWidth: 0 }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 80,
+            flex: '1 1 auto',
+            padding: '48px 24px',
+            overflowY: 'auto',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <Logo variant="horizontal" height={64} />
+            <PlanTag>Plus</PlanTag>
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              gap: 40,
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
+            {gptTopicColumns.map((column) => (
+              <TopicColumn key={column.title} icon={column.icon} title={column.title}>
+                {column.items.map((item) =>
+                  column.title === 'Examples' ? (
+                    <PromptSuggestion
+                      key={item}
+                      as="button"
+                      onClick={() => setEnviadas((prev) => [...prev, item])}
+                    >
+                      {item}
+                    </PromptSuggestion>
+                  ) : (
+                    <PromptSuggestion key={item}>{item}</PromptSuggestion>
+                  )
+                )}
+              </TopicColumn>
+            ))}
+          </div>
+
+          {enviadas.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', maxWidth: 760 }}>
+              {enviadas.map((mensagem, index) => (
+                <ChatBubble key={`${mensagem}-${index}`} role="user">
+                  {mensagem}
+                </ChatBubble>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <Composer.Dock>
+          <Composer
+            onSend={(valor) => {
+              if (!valor.trim()) return;
+              setEnviadas((prev) => [...prev, valor]);
+            }}
+          />
+        </Composer.Dock>
+      </div>
+    </div>
+  );
+};
+
 const meta: Meta = {
   title: 'ChatGPT/Telas/Telas Compostas',
   parameters: {
@@ -710,6 +842,32 @@ export const Configuracoes: Story = {
   render: () => (
     <div style={{ padding: 24 }}>
       <TelaConfiguracoes />
+    </div>
+  ),
+};
+
+/**
+ * Tela `New chat - V1 - A` do cliente web, reconstruída a partir da única
+ * superfície estruturada do arquivo.
+ */
+export const ClienteWeb: Story = {
+  name: '🖥️ Cliente Web — New chat',
+  render: () => (
+    <div style={{ padding: 24 }}>
+      <TelaClienteWeb />
+    </div>
+  ),
+};
+
+/**
+ * O par claro/escuro medido do cliente web, lado a lado.
+ */
+export const ClienteWebParDeTemas: Story = {
+  name: '🌗 Cliente Web — par claro/escuro',
+  render: () => (
+    <div style={{ display: 'grid', gap: 24, padding: 24 }}>
+      <TelaClienteWeb theme="light" />
+      <TelaClienteWeb theme="dark" />
     </div>
   ),
 };

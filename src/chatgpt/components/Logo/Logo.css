@@ -1,0 +1,14 @@
+/**
+ * Estilos do Componente Logo — Design System ChatGPT
+ *
+ * A composição horizontal do arquivo mede 220 × 64. Aqui a altura é a prop e a
+ * largura vem da proporção do `viewBox`, de modo que as três variantes
+ * mantenham a forma publicada em qualquer escala.
+ */
+
+.gpt-logo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  color: var(--gpt-text-primary);
+}

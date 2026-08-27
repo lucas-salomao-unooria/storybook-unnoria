@@ -4,7 +4,9 @@
  *
  * Os textos reproduzem os rótulos das camadas do arquivo Figma
  * "ChatGPT UI Kit (AI Chat) (Community)" — tanto os da página
- * `🟡 Design system` quanto os das telas da página `🟪 ChatGPT Web Client`.
+ * `🟡 Design system` quanto os das telas `New chat - V1 - A` da página
+ * `🟪 ChatGPT UI Kit`, que é a única superfície do arquivo com camadas de
+ * texto reais.
  */
 
 const unsplash = (id: string, width = 200) =>
@@ -50,6 +52,70 @@ export const gptFigmaNodes = {
   collectionRadius: '1805:2588',
   collectionSizing: '1805:2599',
 } as const;
+
+/**
+ * Node IDs da página `🟪 ChatGPT UI Kit` — a única superfície estruturada do
+ * arquivo, com camadas de texto e vetores reais.
+ *
+ * A página `🟪 ChatGPT Web Client` (`665:2049`) **não** entra aqui: seus 6.124
+ * nós são exclusivamente GROUP e VECTOR, sem uma única camada de texto. Ela é
+ * referência de fluxo, não fonte de componente.
+ */
+export const gptWebClientNodes = {
+  page: '0:1',
+  screenLight: '681:2796',
+  screenDark: '681:3246',
+  sidebar: 'I681:2796;387056:452902',
+  composer: 'I681:2796;387056:452901',
+  logo: 'I681:2796;387056:452884',
+} as const;
+
+/** As três colunas da tela `New chat - V1 - A`, com o texto literal do arquivo. */
+export const gptTopicColumns = [
+  {
+    icon: 'chats' as const,
+    title: 'Examples',
+    items: [
+      '"Explain quantum computing in simple terms"',
+      '"Got any creative ideas for a 10 year old\'s birthday?"',
+      '"How do I make an HTTP request in Javascript?"',
+    ],
+  },
+  {
+    icon: 'stars' as const,
+    title: 'Capabilities',
+    items: [
+      'Remembers what user said earlier in the conversation.',
+      'Allows user to provide follow-up corrections.',
+      'Trained to decline inappropriate requests.',
+    ],
+  },
+  {
+    icon: 'shieldWarning' as const,
+    title: 'Limitations',
+    items: [
+      'May occasionally generate incorrect information.',
+      'May occasionally produce harmful instructions or biased content.',
+      'Limited knowledge of world and events after 2021.',
+    ],
+  },
+] as const;
+
+/** Histórico de conversas da barra lateral do cliente web. */
+export const gptWebHistory = [
+  'AI Chat Tool Ethics',
+  'Al Chat Tool Impact Writing',
+  'New chat',
+] as const;
+
+/** Ações do rodapé da barra lateral do cliente web, com o ícone de cada uma. */
+export const gptWebFooterActions = [
+  { icon: 'trash' as const, label: 'Clear conversations' },
+  { icon: 'sun' as const, label: 'Light mode' },
+  { icon: 'user' as const, label: 'My account' },
+  { icon: 'arrowSquareOut' as const, label: 'Updates & FAQ' },
+  { icon: 'signOut' as const, label: 'Log out' },
+] as const;
 
 /** Conversas listadas na barra lateral do arquivo. */
 export const gptConversations = [

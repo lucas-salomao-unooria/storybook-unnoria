@@ -1,0 +1,84 @@
+/**
+ * Estilos do Componente WebSidebar — Design System ChatGPT
+ *
+ * Medidas da instância `AIChatSidebar` (`Property=B`) do quadro
+ * `New chat - V1 - A`: coluna de 282 × 1024, sem preenchimento, com as seções
+ * distribuídas por `SPACE_BETWEEN` e 20px de intervalo entre elas. Cada seção
+ * tem padding 20 (`spacing/7`) e 4px entre as linhas (`spacing/2`).
+ *
+ * A coluna não pinta fundo: no arquivo ela mostra a mesma superfície da
+ * conversa, e a separação vem dos fios. O fio é `--gpt-web-hairline`, que vale
+ * 10% no tema claro e **15%** no escuro — a assimetria é do próprio arquivo.
+ */
+
+.gpt-web-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gpt-spacing-7);
+  box-sizing: border-box;
+  width: 282px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--gpt-web-hairline);
+  background-color: transparent;
+  font-family: var(--gpt-font-sans);
+  overflow-y: auto;
+}
+
+.gpt-web-sidebar__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gpt-spacing-2);
+  box-sizing: border-box;
+  padding: var(--gpt-spacing-7);
+}
+
+.gpt-web-sidebar__section--bordered {
+  border-top: 1px solid var(--gpt-web-hairline);
+}
+
+/* ==========================================================================
+   Botão de nova conversa
+   ========================================================================== */
+
+.gpt-web-sidebar__new-chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gpt-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--gpt-spacing-4) var(--gpt-spacing-6);
+  border: none;
+  border-radius: var(--gpt-radius-lg);
+  background-color: var(--gpt-web-accent);
+  color: var(--gpt-color-white);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  cursor: pointer;
+  appearance: none;
+  transition: opacity var(--gpt-transition-fast);
+}
+
+.gpt-web-sidebar__new-chat:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.gpt-web-sidebar__new-chat:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+.gpt-web-sidebar__new-chat:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gpt-web-sidebar__new-chat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

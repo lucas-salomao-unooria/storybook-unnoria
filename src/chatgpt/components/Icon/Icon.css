@@ -1,0 +1,15 @@
+/**
+ * Estilos do Componente Icon — Design System ChatGPT
+ *
+ * O arquivo desenha cada glifo dentro de um quadro quadrado do componente
+ * `Icon` (propriedade `Size`: 16, 24 e 32), centralizado nos dois eixos. Aqui
+ * o quadrado é o próprio `<svg>`: `width` e `height` recebem a aresta e o
+ * `viewBox` literal cuida do enquadramento.
+ */
+
+.gpt-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  color: inherit;
+}

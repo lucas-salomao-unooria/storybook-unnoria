@@ -1,0 +1,59 @@
+/**
+ * Estilos do Componente PromptSuggestion — Design System ChatGPT
+ *
+ * Medidas do cartão `Text` das três colunas do quadro `New chat - V1 - A`:
+ * 280 × 48, padding 4/8 (`spacing/2` e `spacing/4`), raio 8 (`radius/md`) e
+ * texto Inter Regular de 14/20 (`Body/SM`).
+ *
+ * A altura de 48px é o que cabem duas linhas de 20px mais o padding — o
+ * arquivo desenha exatamente duas linhas em todos os nove cartões. Aqui ela é
+ * `min-height`, para que um texto de uma linha continue com a mesma caixa e um
+ * texto mais longo cresça em vez de vazar.
+ */
+
+.gpt-prompt-suggestion {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 280px;
+  min-height: 48px;
+  margin: 0;
+  padding: var(--gpt-spacing-2) var(--gpt-spacing-4);
+  border: none;
+  border-radius: var(--gpt-radius-md);
+  background-color: var(--gpt-web-suggestion);
+  color: var(--gpt-text-primary);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-sm-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  transition: background-color var(--gpt-transition-fast);
+}
+
+.gpt-prompt-suggestion--block {
+  width: 100%;
+}
+
+button.gpt-prompt-suggestion,
+a.gpt-prompt-suggestion {
+  cursor: pointer;
+  appearance: none;
+}
+
+button.gpt-prompt-suggestion:hover:not(:disabled),
+a.gpt-prompt-suggestion:hover {
+  background-color: var(--gpt-fill-8);
+}
+
+button.gpt-prompt-suggestion:focus-visible,
+a.gpt-prompt-suggestion:focus-visible {
+  outline: 2px solid var(--gpt-border-brand);
+  outline-offset: 2px;
+}
+
+button.gpt-prompt-suggestion:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

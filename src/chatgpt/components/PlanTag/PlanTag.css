@@ -1,0 +1,27 @@
+/**
+ * Estilos do Componente PlanTag — Design System ChatGPT
+ *
+ * Medidas da instância `Tag` do quadro `New chat - V1 - A`: 32 × 20, padding
+ * 2/4 (`spacing/1` e `spacing/2`), raio 4 (`radius/sm`) e rótulo Inter Regular
+ * de 12/16 (`Body/XS`).
+ *
+ * A superfície é `--gpt-color-purple-400` **direto da primitiva**, e não de um
+ * alias semântico: o arquivo usa o mesmo `#ADADFB` no tema claro e no escuro,
+ * e passar por um semântico faria a cápsula trocar de cor junto com o tema.
+ */
+
+.gpt-plan-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--gpt-spacing-1) var(--gpt-spacing-2);
+  border-radius: var(--gpt-radius-sm);
+  background-color: var(--gpt-color-purple-400);
+  color: var(--gpt-color-white);
+  font-family: var(--gpt-font-sans);
+  font-size: var(--gpt-font-body-xs-size);
+  font-weight: var(--gpt-font-weight-regular);
+  line-height: var(--gpt-font-body-xs-line);
+  white-space: nowrap;
+}
