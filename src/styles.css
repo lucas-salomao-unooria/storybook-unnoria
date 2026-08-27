@@ -2,22 +2,18 @@
  * Unooria Design System - Estilos Globais e Componentes
  * Padrão Ouro de Pacote NPM
  *
- * As seis famílias de fonte são **embutidas no pacote**. Cada marca declara os
- * próprios `@font-face` em `tokens/fonts.css`, apontando para os `.woff2` de
- * `dist/fonts/` por `url()` relativa — nenhuma requisição ao Google Fonts
- * acontece em tempo de execução, e nenhum app consumidor precisa carregar
- * família nenhuma.
+ * Contém os tokens e o CSS de componente das seis marcas.
  *
- * Os arquivos são gerados por `npm run fontes`; ver `scripts/baixar-fontes.mjs`
- * para acrescentar peso, família ou subset. O Instanooria não aparece aqui
- * porque usa SF Pro, fonte de sistema.
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--...-font-sans)`, com pilha de fallback. A família é opt-in, uma folha
+ * por marca:
+ *
+ *     import '@unooria/design-system/fonts/unootube.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md.
  */
 
-@import './unooria/tokens/fonts.css';
-@import './chatgpt/tokens/fonts.css';
-@import './whatsappmobile/tokens/fonts.css';
-@import './tiktooria/tokens/fonts.css';
-@import './unootube/tokens/fonts.css';
 
 /* ----------------------------------------------------
  * Tokens de Fundação (Plataforma Unooria)

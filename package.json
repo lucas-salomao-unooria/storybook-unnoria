@@ -48,6 +48,11 @@
     "./whatsappmobile.css": "./dist/styles-whatsappmobile.css",
     "./tiktooria.css": "./dist/styles-tiktooria.css",
     "./unootube.css": "./dist/styles-unootube.css",
+    "./fonts/unooria.css": "./dist/fonts/unooria.css",
+    "./fonts/chatgpt.css": "./dist/fonts/chatgpt.css",
+    "./fonts/whatsappmobile.css": "./dist/fonts/whatsappmobile.css",
+    "./fonts/tiktooria.css": "./dist/fonts/tiktooria.css",
+    "./fonts/unootube.css": "./dist/fonts/unootube.css",
     "./dist/*": "./dist/*"
   },
   "files": [

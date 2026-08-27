@@ -1,21 +1,16 @@
 /**
- * A fonte da marca é **embutida no pacote**: `chatgpt/tokens/fonts.css` declara os
- * `@font-face` apontando para os `.woff2` de `dist/fonts/`, por `url()`
- * relativa. Não há requisição ao Google Fonts em tempo de execução, e quem
- * consome o pacote não precisa carregar a família por conta própria.
+ * Folha de estilos do Design System ChatGPT.
  *
- * Os arquivos são gerados por `npm run fontes` — ver `scripts/baixar-fontes.mjs`.
- */
-@import './chatgpt/tokens/fonts.css';
-
-/**
- * Unooria Design System — apenas a seção ChatGPT.
+ * Importe este arquivo para registrar os tokens `--gpt-*` e os estilos dos
+ * componentes do módulo `src/chatgpt/`.
  *
- * Entrada granular para superfícies que replicam o cliente de conversa e NÃO
- * podem carregar o CSS da plataforma: são universos visuais distintos, e o
- * pacote completo arrastaria tokens, componentes e a fonte Open Sans para
- * dentro do clone. Use `@unooria/design-system/styles.css` quando quiser
- * todas as seções.
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--gpt-font-sans)`, com pilha de fallback. A família é opt-in:
+ *
+ *     import '@unooria/design-system/fonts/chatgpt.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md.
  */
 
 /* ----------------------------------------------------

@@ -1,24 +1,16 @@
 /**
- * A fonte da marca é **embutida no pacote**: `unootube/tokens/fonts.css` declara os
- * `@font-face` apontando para os `.woff2` de `dist/fonts/`, por `url()`
- * relativa. Não há requisição ao Google Fonts em tempo de execução, e quem
- * consome o pacote não precisa carregar a família por conta própria.
- *
- * Os arquivos são gerados por `npm run fontes` — ver `scripts/baixar-fontes.mjs`.
- */
-@import './unootube/tokens/fonts.css';
-
-/**
  * Folha de estilos do Design System Unootube.
  *
  * Importe este arquivo para registrar os tokens `--uni-*` e os estilos dos
  * componentes do módulo `src/unootube/`.
  *
- * A família Roboto é declarada no topo desta folha, que é a posição em que
- * `@import url(...)` vale. A mesma declaração vive isolada em
- * `unootube/tokens/fonts.css`, para quem importa os tokens avulsos — o
- * preview do Storybook, por exemplo. Não fica em `typography.css`: ali ela
- * cairia no meio da folha agregada e seria descartada com aviso no build.
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--uni-font-sans)`, com pilha de fallback. A família é opt-in:
+ *
+ *     import '@unooria/design-system/fonts/unootube.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md.
  */
 
 /* ----------------------------------------------------

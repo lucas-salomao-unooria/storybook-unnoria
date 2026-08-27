@@ -37,12 +37,17 @@ const OUT = 'dist';
  * Em modo bundleless o `import './X.css'` permanece no JS emitido, então cada
  * CSS precisa existir ao lado do seu módulo dentro de `dist/`.
  *
- * Os `.woff2` de `src/fonts/` entram pelo mesmo caminho: os `tokens/fonts.css`
- * de cada marca os referenciam por `url()` relativa, e essa referência só
- * resolve se a árvore de `src/` for reproduzida em `dist/` com os mesmos
- * caminhos.
+ * Os `.woff2` e os `tokens/fonts.css` NÃO entram por aqui. Eles são resolvidos
+ * pelas entradas `fonts/*` do passo 2, que empacotam os `@font-face` e emitem
+ * os arquivos com hash de conteúdo. Copiá-los também colocaria cada fonte duas
+ * vezes no pacote — foram 14 MB dos 33,8 MB na 0.1.16.
  */
-const EXTENSOES_COPIADAS = ['.css', '.woff2'];
+const EXTENSOES_COPIADAS = ['.css'];
+
+/** Arquivos que o passo 2 já resolve e que não devem ser copiados crus. */
+const NAO_COPIAR = (origem: string) =>
+  origem.endsWith(`${path.sep}fonts.css`) ||
+  origem.includes(`${path.sep}src${path.sep}fonts${path.sep}`);
 
 const copiarCssColocalizado = () => {
   const origemRaiz = path.resolve('src');
@@ -56,6 +61,7 @@ const copiarCssColocalizado = () => {
         continue;
       }
       if (!EXTENSOES_COPIADAS.some((ext) => nome.endsWith(ext))) continue;
+      if (NAO_COPIAR(origem)) continue;
       const destino = path.join(destinoRaiz, path.relative(origemRaiz, origem));
       fs.mkdirSync(path.dirname(destino), { recursive: true });
       fs.copyFileSync(origem, destino);
@@ -104,6 +110,22 @@ export default defineConfig([
       'styles-whatsappmobile': 'src/styles-whatsappmobile.css',
       'styles-tiktooria': 'src/styles-tiktooria.css',
       'styles-unootube': 'src/styles-unootube.css',
+
+      /*
+       * Folhas de fonte, opt-in. Ficam separadas das folhas de componente para
+       * que um app que resolva a tipografia por `next/font` não receba um
+       * `@font-face` concorrente. O esbuild embute os `@font-face`, emite os
+       * `.woff2` com hash de conteúdo e reescreve a `url()`.
+       */
+      'fonts/unooria': 'src/fonts-unooria.css',
+      'fonts/chatgpt': 'src/fonts-chatgpt.css',
+      'fonts/whatsappmobile': 'src/fonts-whatsappmobile.css',
+      'fonts/tiktooria': 'src/fonts-tiktooria.css',
+      'fonts/unootube': 'src/fonts-unootube.css',
+    },
+    esbuildOptions(options) {
+      /* Os arquivos de fonte ao lado das folhas que os declaram. */
+      options.assetNames = 'fonts/[name]-[hash]';
     },
     outDir: OUT,
     clean: false,

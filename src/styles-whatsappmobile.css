@@ -1,17 +1,16 @@
 /**
- * A fonte da marca é **embutida no pacote**: `whatsappmobile/tokens/fonts.css` declara os
- * `@font-face` apontando para os `.woff2` de `dist/fonts/`, por `url()`
- * relativa. Não há requisição ao Google Fonts em tempo de execução, e quem
- * consome o pacote não precisa carregar a família por conta própria.
- *
- * Os arquivos são gerados por `npm run fontes` — ver `scripts/baixar-fontes.mjs`.
- */
-@import './whatsappmobile/tokens/fonts.css';
-
-/**
  * Folha de estilos do Design System WhatsApp Mobile.
+ *
  * Importe este arquivo para registrar os tokens `--wa-*` e os estilos dos
  * componentes do módulo `src/whatsappmobile/`.
+ *
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--wa-font-sans)`, com pilha de fallback. A família é opt-in:
+ *
+ *     import '@unooria/design-system/fonts/whatsappmobile.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md.
  */
 
 /* ----------------------------------------------------

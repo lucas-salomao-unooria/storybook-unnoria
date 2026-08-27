@@ -18,27 +18,54 @@ import path from 'node:path';
 const raiz = process.cwd();
 const src = path.join(raiz, 'src');
 
+/**
+ * `fonts.css` não entra nas folhas de componente.
+ *
+ * A partir da 0.1.17 a fonte é **opt-in**: quem quiser a família embutida
+ * importa `@unooria/design-system/fonts/<marca>.css`. Manter o `@font-face`
+ * dentro de `styles-<marca>.css` obrigaria todo consumidor a recebê-lo, o que
+ * conflita com o `next/font` — que faz preload e gera fallback com
+ * `size-adjust`, coisas que um `@font-face` de biblioteca não tem como
+ * oferecer. Ver a seção 4.6 do AGENTS.md.
+ */
+const FONTE = 'fonts.css';
+
 /** Folhas publicadas e as seções que cada uma deve cobrir. */
 const AGREGADOS = [
-  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube'] },
-  { arquivo: 'styles-unooria.css', secoes: ['unooria'] },
-  { arquivo: 'styles-instanooria.css', secoes: ['instanooria'] },
-  { arquivo: 'styles-chatgpt.css', secoes: ['chatgpt'] },
-  { arquivo: 'styles-whatsappmobile.css', secoes: ['whatsappmobile'] },
-  { arquivo: 'styles-tiktooria.css', secoes: ['tiktooria'] },
-  { arquivo: 'styles-unootube.css', secoes: ['unootube'] },
+  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube'], excluir: [FONTE] },
+  { arquivo: 'styles-unooria.css', secoes: ['unooria'], excluir: [FONTE] },
+  { arquivo: 'styles-instanooria.css', secoes: ['instanooria'], excluir: [FONTE] },
+  { arquivo: 'styles-chatgpt.css', secoes: ['chatgpt'], excluir: [FONTE] },
+  { arquivo: 'styles-whatsappmobile.css', secoes: ['whatsappmobile'], excluir: [FONTE] },
+  { arquivo: 'styles-tiktooria.css', secoes: ['tiktooria'], excluir: [FONTE] },
+  { arquivo: 'styles-unootube.css', secoes: ['unootube'], excluir: [FONTE] },
+
+  /*
+   * As folhas de fonte, do outro lado: cada uma cobre exatamente o `fonts.css`
+   * da sua marca. O Instanooria não tem — usa SF Pro, fonte de sistema.
+   */
+  { arquivo: 'fonts-unooria.css', secoes: ['unooria'], apenas: [FONTE] },
+  { arquivo: 'fonts-chatgpt.css', secoes: ['chatgpt'], apenas: [FONTE] },
+  { arquivo: 'fonts-whatsappmobile.css', secoes: ['whatsappmobile'], apenas: [FONTE] },
+  { arquivo: 'fonts-tiktooria.css', secoes: ['tiktooria'], apenas: [FONTE] },
+  { arquivo: 'fonts-unootube.css', secoes: ['unootube'], apenas: [FONTE] },
 ];
 
 /** Todo `*.css` de tokens e de componentes de uma seção, como caminho relativo. */
-function cssDaSecao(secao) {
+function cssDaSecao(secao, { apenas, excluir } = {}) {
   const achados = [];
+  const querido = (nome) =>
+    (!apenas || apenas.includes(nome)) && (!excluir || !excluir.includes(nome));
 
   const tokens = path.join(src, secao, 'tokens');
   if (fs.existsSync(tokens)) {
     for (const nome of fs.readdirSync(tokens).filter((n) => n.endsWith('.css'))) {
-      achados.push(`./${secao}/tokens/${nome}`);
+      if (querido(nome)) achados.push(`./${secao}/tokens/${nome}`);
     }
   }
+
+  /* Uma folha de fonte cobre só o `fonts.css`: componente não entra nela. */
+  if (apenas) return achados;
 
   const componentes = path.join(src, secao, 'components');
   if (fs.existsSync(componentes)) {
@@ -56,7 +83,7 @@ function cssDaSecao(secao) {
 
 const falhas = [];
 
-for (const { arquivo, secoes } of AGREGADOS) {
+for (const { arquivo, secoes, apenas, excluir } of AGREGADOS) {
   const caminho = path.join(src, arquivo);
   if (!fs.existsSync(caminho)) {
     falhas.push(`${arquivo}: folha agregada não encontrada`);
@@ -65,7 +92,7 @@ for (const { arquivo, secoes } of AGREGADOS) {
 
   const conteudo = fs.readFileSync(caminho, 'utf8');
   for (const secao of secoes) {
-    for (const relativo of cssDaSecao(secao)) {
+    for (const relativo of cssDaSecao(secao, { apenas, excluir })) {
       if (!conteudo.includes(relativo)) {
         falhas.push(`${arquivo}: falta @import '${relativo}'`);
       }

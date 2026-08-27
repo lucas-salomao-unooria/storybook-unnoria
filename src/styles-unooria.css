@@ -3,6 +3,10 @@
  *
  * Contraparte de `instanooria.css`: entrada granular para produtos que usam só
  * o DS institucional. `styles.css` segue existindo com as duas seções.
+ *
+ * FONTES: esta folha **não** declara `@font-face`. Ela só cita
+ * `var(--...-font-sans)`, com pilha de fallback — a família é opt-in, por
+ * `@unooria/design-system/fonts/unooria.css`. Ver a seção 4.6 do AGENTS.md.
  */
 
 /**
@@ -14,11 +18,6 @@
 /* ----------------------------------------------------
  * Tokens de Fundação (Plataforma Unooria)
  * ---------------------------------------------------- */
-/*
- * Open Sans e Material Symbols Rounded, embutidas no pacote. Ver
- * `scripts/baixar-fontes.mjs`.
- */
-@import './unooria/tokens/fonts.css';
 @import './unooria/tokens/colors.css';
 @import './unooria/tokens/typography.css';
 @import './unooria/tokens/spacing.css';

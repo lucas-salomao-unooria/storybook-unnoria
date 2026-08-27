@@ -1,0 +1,20 @@
+/**
+ * Fontes do Design System whatsappmobile — PT Sans e Poppins.
+ *
+ * Folha **opt-in**. As folhas de componente (`styles-whatsappmobile.css` e
+ * `styles.css`) NÃO declaram `@font-face`: elas só citam
+ * `var(--...-font-sans)`, com pilha de fallback. Quem quiser a família
+ * embutida importa este arquivo:
+ *
+ *     import '@unooria/design-system/fonts/whatsappmobile.css';
+ *
+ * É uma linha, e é explícita de propósito. Um app Next que já resolva a
+ * tipografia por `next/font` simplesmente não a escreve — e assim evita duas
+ * declarações da mesma família disputando, além de manter o preload e o
+ * `size-adjust` que o `next/font` gera e que um `@font-face` de biblioteca não
+ * tem como oferecer.
+ *
+ * Os `@font-face` e os `.woff2` são gerados por `npm run fontes`; ver
+ * `scripts/baixar-fontes.mjs`.
+ */
+@import './whatsappmobile/tokens/fonts.css';

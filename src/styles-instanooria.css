@@ -5,6 +5,9 @@
  * CSS da plataforma: são universos visuais distintos, e o pacote completo
  * arrastaria tokens, componentes e a fonte Open Sans para dentro do clone.
  * Use `@unooria/design-system/styles.css` quando quiser as duas seções.
+ *
+ * FONTES: o Instanooria usa SF Pro, fonte de sistema da Apple. É o único
+ * módulo sem família embutida, e não há folha de fonte para ele.
  */
 
 /* ----------------------------------------------------

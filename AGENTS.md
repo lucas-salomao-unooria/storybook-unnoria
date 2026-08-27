@@ -326,33 +326,49 @@ O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem
 
 ---
 
-## 4.6. Fontes Embutidas no Pacote
+## 4.6. Fontes: Opt-in, Embutidas, Fora das Folhas de Componente
 
-As famílias de fonte **não vêm do Google Fonts em tempo de execução**. Cada
-marca declara os próprios `@font-face` em `src/[marca]/tokens/fonts.css`,
-apontando por `url()` relativa para os `.woff2` de `src/fonts/` — que o
-`tsup.config.ts` copia para `dist/` junto com o CSS colocalizado. Um app que
-instala o pacote **não precisa carregar família nenhuma**.
+As famílias **não vêm do Google Fonts em tempo de execução** e **não vêm junto
+com o CSS de componente**. São duas decisões distintas:
 
-- **Os arquivos são gerados.** `npm run fontes` executa
-  `scripts/baixar-fontes.mjs`, que baixa os `woff2` do Google e regrava
-  `src/fonts/` e todos os `tokens/fonts.css`. **É PROIBIDO editar um
-  `fonts.css` à mão** — a próxima execução do script sobrescreve. Para
-  acrescentar um peso, uma família ou um subset, altere a configuração `MARCAS`
-  do script.
-- **Subsets**: apenas `latin` e `latin-ext` nas famílias de texto, que juntos
-  cobrem português, inglês, espanhol, francês, alemão e italiano. O Material
-  Symbols Rounded não tem subset — o Google o serve como arquivo único de
-  5,1 MB, e ele **não pode ser reduzido**: é uma fonte de ligadura, e o
-  conjunto de ícones usado é decidido pelo consumidor em tempo de execução.
-- **O Instanooria não tem `fonts.css`**: usa SF Pro, fonte de sistema da Apple.
-  É o único módulo sem família embutida, e é assim de propósito.
-- **`src/fonts/` fica fora do tarball** (`files: ["dist", "src", "!src/fonts"]`).
-  Só `dist/fonts/` é publicado; sem a exclusão os `woff2` iriam duas vezes.
-- **`@import url(...)` é proibido em folha de token.** Ele só é válido no topo
-  de uma folha, e no meio da folha agregada seria descartado pelo navegador.
-  Toda declaração de fonte passa por `@font-face` com arquivo local.
+**1. Embutidas.** Os `.woff2` vivem em `src/fonts/` e os `@font-face` em
+`src/[marca]/tokens/fonts.css`. Ambos são **gerados** por `npm run fontes`
+(`scripts/baixar-fontes.mjs`), que baixa do Google e regrava tudo. **É PROIBIDO
+editar um `fonts.css` à mão** — a próxima execução sobrescreve. Para
+acrescentar peso, família ou subset, altere a configuração `MARCAS` do script.
 
+**2. Opt-in.** `styles.css` e `styles-[marca].css` **NÃO declaram
+`@font-face`** — os componentes só citam `var(--[prefixo]-font-sans)`, com
+pilha de fallback. Quem quiser a família importa uma folha à parte:
+
+```ts
+import '@unooria/design-system/fonts/unootube.css';
+```
+
+O motivo é o `next/font`: ele faz self-host, preload e gera um fallback com
+`size-adjust` que elimina layout shift. Um `@font-face` embutido na folha de
+componente não oferece nada disso e ainda concorre com o que o `next/font`
+declara. Sendo opt-in, um app que resolva a tipografia por lá simplesmente não
+escreve a linha.
+
+- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*` e `--unooria-*` têm folha de
+  fonte.** O Instanooria não: usa SF Pro, fonte de sistema da Apple.
+- **A Plataforma Unooria é o caso crítico.** Os ícones dela são uma **fonte de
+  ligadura** (Material Symbols Rounded): sem a família carregada, `.unooria-icon`
+  renderiza o **nome do ícone como texto**. Um app que consuma
+  `styles-unooria.css` sem importar `fonts/unooria.css` — e sem carregar
+  Material Symbols por conta própria — mostra a palavra "search" no lugar da
+  lupa. É o único módulo em que a folha de fonte é, na prática, obrigatória.
+- **Nada é copiado cru para o `dist`.** Os `tokens/fonts.css` e os `.woff2` são
+  resolvidos pelas entradas `fonts/*` do passo 2 do `tsup.config.ts`, que
+  embute os `@font-face` e emite os arquivos com hash de conteúdo em
+  `dist/fonts/`. Copiá-los também colocaria cada fonte duas vezes no pacote —
+  foram 14 MB dos 33,8 MB na 0.1.16.
+- **Subsets**: apenas `latin` e `latin-ext` nas famílias de texto. O Material
+  Symbols vai inteiro (5,1 MB) e **não pode ser reduzido**: é fonte de
+  ligadura, e o ícone usado é escolhido pelo consumidor em tempo de execução.
+- **`@import url(...)` é proibido em folha de token.** Só é válido no topo de
+  uma folha; no meio da agregada o navegador o descarta.
 ---
 
 ## 5. Validação Obrigatória e Critérios de Aceite
