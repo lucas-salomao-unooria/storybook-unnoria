@@ -115,7 +115,7 @@
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  padding: var(--gpt-spacing-7) 0 var(--gpt-spacing-11);
+  padding: var(--gpt-spacing-7) var(--gpt-spacing-6) var(--gpt-spacing-11);
   background-color: var(--gpt-web-veil);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
