@@ -2,13 +2,14 @@ import type { Preview } from '@storybook/nextjs-vite';
 import '../app/globals.css';
 
 /*
- * Fontes das marcas, antes de qualquer outro token.
+ * Fontes das marcas, embutidas no pacote.
  *
- * `@import url(...)` só vale no topo de uma folha; por isso cada marca isola a
- * declaração em `tokens/fonts.css` em vez de deixá-la em `typography.css`, de
- * onde ela caía no meio da folha agregada e era descartada no build. Estes
- * imports precisam continuar sendo os primeiros do arquivo.
+ * Cada `fonts.css` declara os `@font-face` apontando para os `.woff2` de
+ * `src/fonts/` — nenhuma requisição ao Google Fonts. Ficam antes dos tokens
+ * para que a família já esteja registrada quando o primeiro componente pintar.
+ * O Instanooria não entra: usa SF Pro, fonte de sistema.
  */
+import '../src/unooria/tokens/fonts.css';
 import '../src/chatgpt/tokens/fonts.css';
 import '../src/whatsappmobile/tokens/fonts.css';
 import '../src/tiktooria/tokens/fonts.css';

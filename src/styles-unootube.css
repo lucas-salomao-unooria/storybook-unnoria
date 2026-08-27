@@ -1,15 +1,10 @@
 /**
- * A fonte da marca entra por `unootube/tokens/fonts.css`, que contém apenas o
- * `@import url(...)`, e este import precisa ser o **primeiro** da folha: um
- * `@import url(...)` que caia no meio de uma folha é descartado pelo navegador.
+ * A fonte da marca é **embutida no pacote**: `unootube/tokens/fonts.css` declara os
+ * `@font-face` apontando para os `.woff2` de `dist/fonts/`, por `url()`
+ * relativa. Não há requisição ao Google Fonts em tempo de execução, e quem
+ * consome o pacote não precisa carregar a família por conta própria.
  *
- * ATENÇÃO — o `@import` NÃO sobrevive ao empacotamento. O esbuild remove
- * `@import url(...)` externo do CSS emitido, e isso vale para todas as folhas
- * deste pacote, inclusive a da Plataforma Unooria. Quem consome
- * `@unooria/design-system/styles-unootube.css` **precisa carregar a família por
- * conta própria** — via `next/font`, `<link>` no documento ou um `@import` na
- * própria folha da aplicação. A declaração aqui serve a quem importa o
- * código-fonte direto e ao preview do Storybook.
+ * Os arquivos são gerados por `npm run fontes` — ver `scripts/baixar-fontes.mjs`.
  */
 @import './unootube/tokens/fonts.css';
 

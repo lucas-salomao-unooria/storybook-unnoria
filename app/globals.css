@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
 
 
 /* Plataforma Unooria Tokens */
+/* Open Sans e Material Symbols, embutidas — ver scripts/baixar-fontes.mjs. */
+@import "../src/unooria/tokens/fonts.css";
 @import "../src/unooria/tokens/colors.css";
 @import "../src/unooria/tokens/typography.css";
 @import "../src/unooria/tokens/grids.css";

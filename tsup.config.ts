@@ -36,7 +36,14 @@ const OUT = 'dist';
 /**
  * Em modo bundleless o `import './X.css'` permanece no JS emitido, então cada
  * CSS precisa existir ao lado do seu módulo dentro de `dist/`.
+ *
+ * Os `.woff2` de `src/fonts/` entram pelo mesmo caminho: os `tokens/fonts.css`
+ * de cada marca os referenciam por `url()` relativa, e essa referência só
+ * resolve se a árvore de `src/` for reproduzida em `dist/` com os mesmos
+ * caminhos.
  */
+const EXTENSOES_COPIADAS = ['.css', '.woff2'];
+
 const copiarCssColocalizado = () => {
   const origemRaiz = path.resolve('src');
   const destinoRaiz = path.resolve(OUT);
@@ -48,7 +55,7 @@ const copiarCssColocalizado = () => {
         andar(origem);
         continue;
       }
-      if (!nome.endsWith('.css')) continue;
+      if (!EXTENSOES_COPIADAS.some((ext) => nome.endsWith(ext))) continue;
       const destino = path.join(destinoRaiz, path.relative(origemRaiz, origem));
       fs.mkdirSync(path.dirname(destino), { recursive: true });
       fs.copyFileSync(origem, destino);

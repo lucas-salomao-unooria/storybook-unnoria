@@ -2,20 +2,18 @@
  * Unooria Design System - Estilos Globais e Componentes
  * Padrão Ouro de Pacote NPM
  *
- * ATENÇÃO — os `@import url(...)` de fonte abaixo NÃO sobrevivem ao
- * empacotamento: o esbuild remove `@import` externo do CSS emitido. Quem
- * consome `@unooria/design-system/styles.css` **precisa carregar as famílias
- * por conta própria** — via `next/font`, `<link>` no documento ou um `@import`
- * na própria folha da aplicação. As declarações aqui servem a quem importa o
- * código-fonte direto e ao preview do Storybook, onde funcionam.
+ * As seis famílias de fonte são **embutidas no pacote**. Cada marca declara os
+ * próprios `@font-face` em `tokens/fonts.css`, apontando para os `.woff2` de
+ * `dist/fonts/` por `url()` relativa — nenhuma requisição ao Google Fonts
+ * acontece em tempo de execução, e nenhum app consumidor precisa carregar
+ * família nenhuma.
  *
- * Cada marca isola a sua declaração em `tokens/fonts.css`, para que o
- * `@import url(...)` fique sempre na primeira posição da folha em que for
- * embutido — no meio de uma folha, o navegador o descarta.
+ * Os arquivos são gerados por `npm run fontes`; ver `scripts/baixar-fontes.mjs`
+ * para acrescentar peso, família ou subset. O Instanooria não aparece aqui
+ * porque usa SF Pro, fonte de sistema.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import './unooria/tokens/fonts.css';
 @import './chatgpt/tokens/fonts.css';
 @import './whatsappmobile/tokens/fonts.css';
 @import './tiktooria/tokens/fonts.css';

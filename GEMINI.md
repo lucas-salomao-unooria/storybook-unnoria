@@ -316,6 +316,35 @@ O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem
 
 ---
 
+## 4.6. Fontes Embutidas no Pacote
+
+As famílias de fonte **não vêm do Google Fonts em tempo de execução**. Cada
+marca declara os próprios `@font-face` em `src/[marca]/tokens/fonts.css`,
+apontando por `url()` relativa para os `.woff2` de `src/fonts/` — que o
+`tsup.config.ts` copia para `dist/` junto com o CSS colocalizado. Um app que
+instala o pacote **não precisa carregar família nenhuma**.
+
+- **Os arquivos são gerados.** `npm run fontes` executa
+  `scripts/baixar-fontes.mjs`, que baixa os `woff2` do Google e regrava
+  `src/fonts/` e todos os `tokens/fonts.css`. **É PROIBIDO editar um
+  `fonts.css` à mão** — a próxima execução do script sobrescreve. Para
+  acrescentar um peso, uma família ou um subset, altere a configuração `MARCAS`
+  do script.
+- **Subsets**: apenas `latin` e `latin-ext` nas famílias de texto, que juntos
+  cobrem português, inglês, espanhol, francês, alemão e italiano. O Material
+  Symbols Rounded não tem subset — o Google o serve como arquivo único de
+  5,1 MB, e ele **não pode ser reduzido**: é uma fonte de ligadura, e o
+  conjunto de ícones usado é decidido pelo consumidor em tempo de execução.
+- **O Instanooria não tem `fonts.css`**: usa SF Pro, fonte de sistema da Apple.
+  É o único módulo sem família embutida, e é assim de propósito.
+- **`src/fonts/` fica fora do tarball** (`files: ["dist", "src", "!src/fonts"]`).
+  Só `dist/fonts/` é publicado; sem a exclusão os `woff2` iriam duas vezes.
+- **`@import url(...)` é proibido em folha de token.** Ele só é válido no topo
+  de uma folha, e no meio da folha agregada seria descartado pelo navegador.
+  Toda declaração de fonte passa por `@font-face` com arquivo local.
+
+---
+
 ## 5. Validação Obrigatória e Critérios de Aceite
 Antes de considerar qualquer tarefa de componente ou documentação concluída:
 0. Ao tocar no Unootube, conferir **antes de registrar um glifo novo** se ele já existe: os dois arquivos de origem redesenham vários dos mesmos vetores, apenas transladados ou escalados. A análise de repetição vive no bloco `shorts` de `IconPaths.ts`.
