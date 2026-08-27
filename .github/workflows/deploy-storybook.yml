@@ -1,0 +1,85 @@
+name: CI/CD - Storybook no Cloud Run
+
+# Todo commit em master valida o código e publica o Storybook no Cloud Run.
+# A publicação do pacote NPM é responsabilidade exclusiva de publish-npm.yml.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # 1. Portão de qualidade: roda em push e em PR.
+  #    Não compila o Storybook aqui — o Dockerfile já faz isso no job de deploy.
+  validate:
+    name: Typecheck & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Instalar Dependências
+        run: npm ci
+
+      - name: 🔍 Verificação de Tipos TypeScript
+        run: npx tsc --noEmit
+
+      - name: 🧹 Lint
+        run: npm run lint
+
+      - name: 🎨 Verificar CSS Agregado
+        run: npm run verificar:css
+
+  # 2. Build da imagem e deploy. Só em push para master.
+  deploy:
+    name: Build & Deploy no Cloud Run
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Obrigatório para OIDC / Workload Identity Federation
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: 🔐 Autenticar no Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_DEPLOYER_SA }}
+
+      - name: ☁️ Configurar Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: 🐳 Configurar Docker Auth no Artifact Registry
+        run: gcloud auth configure-docker us-east1-docker.pkg.dev --quiet
+
+      - name: 🏗️ Build e Push da Imagem
+        run: |
+          IMAGE="${{ secrets.GCP_IMAGE_BASE }}/storybook:${{ github.sha }}"
+          docker build -t "$IMAGE" -t "${{ secrets.GCP_IMAGE_BASE }}/storybook:latest" .
+          docker push "$IMAGE"
+          docker push "${{ secrets.GCP_IMAGE_BASE }}/storybook:latest"
+          echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
+
+      - name: 🚀 Deploy no Cloud Run
+        run: |
+          gcloud run deploy plataforma-unooria-dev-storybook \
+            --image="$IMAGE" \
+            --region=us-east1 \
+            --port=8080 \
+            --min-instances=0 \
+            --cpu-throttling \
+            --quiet

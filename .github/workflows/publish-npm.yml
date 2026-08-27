@@ -1,12 +1,17 @@
 name: Publicar Pacote no NPM
 
+# Roda SOMENTE quando uma versão é publicada:
+#   npm version patch && git push --follow-tags
+# Nada aqui toca o Cloud Run.
 on:
   push:
     tags:
       - 'v*'
-  release:
-    types: [published, created]
   workflow_dispatch:
+
+concurrency:
+  group: publish-npm-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   publish:
@@ -24,18 +29,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
       - name: 📦 Instalar Dependências
         run: npm ci
 
-      - name: 🔍 Verificação de Tipos TypeScript (Typecheck)
+      - name: 🔍 Verificação de Tipos TypeScript
         run: npx tsc --noEmit
 
       - name: 🏗️ Compilar Pacote NPM (@unooria/design-system)
         run: npm run build:package
 
-      - name: 🚀 Publicar Pacote no NPM
-        run: npm publish --access public
+      - name: 🚀 Publicar no NPM
+        run: npm publish --access public --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
