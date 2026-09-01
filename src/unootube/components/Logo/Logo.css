@@ -1,6 +1,6 @@
 /**
  * Estilos do Componente Logo — Design System Unootube
- * Nó de origem: `Brand/YoutubeLogo` (2:88), 90×20.
+ * Emblema: geometria do nó `Brand/YoutubeLogo` (2:88). Lockup: 109,83×20.
  */
 
 .uni-logo {
@@ -9,7 +9,7 @@
   vertical-align: middle;
 }
 
-/* Vermelho literal do arquivo: a primitiva red/800, não o vermelho semântico. */
+/* Azul da marca Unooria (#005CE6). Invariante de tema, como toda cor de marca. */
 .uni-logo__badge {
   fill: var(--uni-color-brand-logo);
 }
@@ -20,8 +20,8 @@
 }
 
 /*
- * O arquivo declara o logotipo tipográfico em preto, mas o aplica em branco em
- * todas as telas. O token de texto primário reproduz o que as telas mostram.
+ * O logotipo tipográfico acompanha o tema: branco sobre o escuro, quase preto
+ * sobre o claro. É o mesmo token que as telas do arquivo aplicavam ao wordmark.
  */
 .uni-logo__wordmark {
   fill: var(--uni-color-text-primary);

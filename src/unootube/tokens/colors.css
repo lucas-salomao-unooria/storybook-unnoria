@@ -53,6 +53,12 @@
    * Primitivas — Acento (106:3025)
    * ---------------------------------------------------- */
   --uni-color-blue-400: #9ebfd0;
+  /**
+   * EXTENSÃO — azul da marca Unooria. Não vem de nenhum dos dois arquivos de
+   * origem: entrou quando o logotipo do YouTube foi substituído pelo da
+   * Unooria. É a única primitiva do módulo sem `figmaNode`.
+   */
+  --uni-color-blue-600: #005ce6;
 
   /* ----------------------------------------------------
    * Semânticos publicados pelo arquivo (106:3031 a 106:3066)
@@ -97,8 +103,12 @@
   --uni-color-brand-subscribe: var(--uni-color-red-700);
   /** Trecho reproduzido da linha do tempo (node 18:1295). */
   --uni-color-brand-progress: var(--uni-color-red-600);
-  /** Emblema do logotipo (node 2:88). */
-  --uni-color-brand-logo: var(--uni-color-red-800);
+  /**
+   * Emblema do logotipo. A geometria continua sendo a do node `2:88`, mas o
+   * preenchimento é o azul da Unooria — o vermelho `red/800` pertencia à marca
+   * substituída. Invariante de tema, como toda cor de marca.
+   */
+  --uni-color-brand-logo: var(--uni-color-blue-600);
   /** Glifos e rótulos do controle de vídeo (node 18:1295). */
   --uni-color-player-chrome: var(--uni-color-neutral-200);
   /**

@@ -14,14 +14,14 @@ const BADGE_VIEWBOX = '0 0 28.5701 20';
 /**
  * Componente Logo — Design System Unootube
  *
- * Reproduz o nó `Brand/YoutubeLogo` (`2:88`) com os caminhos literais do export
- * SVG e o `viewBox` original de 90×20. O emblema preserva o vermelho literal do
- * arquivo (`--uni-color-brand-logo`, a primitiva `red/800`); o logotipo
- * tipográfico herda `currentColor`.
+ * Lockup da marca Unooria: o emblema com a geometria literal do nó
+ * `Brand/YoutubeLogo` (`2:88`), pintado com o azul `--uni-color-brand-logo`
+ * (`#005CE6`), e o logotipo tipográfico “Unootube” contornado em Roboto Bold —
+ * ver `LogoVector.ts`. O `viewBox` do lockup completo é 109,83 × 20.
  *
- * O arquivo pinta o logotipo tipográfico de preto no quadro de componentes, mas
- * o aplica em branco em todas as telas escuras. O padrão do componente é
- * `--uni-color-text-primary` — ver o desvio registrado na estória.
+ * O logotipo tipográfico herda `currentColor` e resolve para
+ * `--uni-color-text-primary`, de modo que acompanha o tema; só o emblema é
+ * invariante. O desvio está registrado na estória do componente.
  */
 export const Logo = React.forwardRef<SVGSVGElement, UniLogoProps>(
   ({ variant = 'full', height = 20, title = 'Unootube', className = '', style, ...restProps }, ref) => {

@@ -85,7 +85,7 @@ const ShortsLogoDocumentationPage = () => (
       specs={[
         { label: 'brand', value: 'viewBox 15,9097 × 20,0251' },
         { label: 'mono', value: 'viewBox 27,1787 × 24,8375' },
-        { label: 'Corpo', value: '#FF0000 · o mesmo do emblema do logotipo' },
+        { label: 'Corpo', value: '#FF0000 · --uni-color-brand-shorts, não o emblema' },
         { label: 'Triângulo', value: '#161722 · a tinta do arquivo de Shorts' },
       ]}
     />

@@ -40,7 +40,7 @@ const LogoDocumentationPage = () => (
       badgeBrand="Unootube"
       category="Componentes • Fundação"
       title="Logo"
-      description="Reprodução do nó Brand/YoutubeLogo (2:88), 90×20, com os nove caminhos literais do export SVG. O emblema preserva o vermelho literal do arquivo — a primitiva red/800, e não o vermelho semântico — enquanto o logotipo tipográfico herda a cor do token de texto."
+      description="Lockup da marca Unooria, 109,83×20. O emblema conserva a geometria literal do nó Brand/YoutubeLogo (2:88) e é pintado com o azul da marca, #005CE6; o logotipo tipográfico “Unootube” são oito contornos de Roboto Bold, um por letra, que herdam a cor do token de texto."
     />
 
     <UnooriaDocSectionHeader
@@ -53,19 +53,19 @@ const LogoDocumentationPage = () => (
         Único uso no arquivo: o quadro de marca da <code>TopBar</code>, com recuo{' '}
         <code>18/14/18/16</code>. É o ponto de retorno à tela inicial.
       </UniDocCard>
-      <UniDocCard icon="🔴" title="Vermelho literal, não semântico">
-        O emblema usa <code>#FF0000</code> — a primitiva <code>red/800</code>. O vermelho semântico
-        da marca é <code>#EE1A26</code>, e não é usado aqui. Os dois valores foram preservados
-        separados.
+      <UniDocCard icon="🔵" title="Azul da marca, invariante de tema">
+        O emblema usa <code>#005CE6</code> — a primitiva <code>blue/600</code>, extensão da
+        biblioteca. Não é o vermelho semântico <code>#EE1A26</code>, que continua governando
+        chamadas para ação: cor de marca e cor de ação são papéis distintos.
       </UniDocCard>
-      <UniDocCard icon="🔤" title="Sete caminhos no logotipo tipográfico">
-        Cada letra é um caminho vetorial independente, não texto. O logotipo é imune a fallback de
-        fonte — o que é correto para uma marca.
+      <UniDocCard icon="🔤" title="Oito contornos, não texto">
+        Cada letra de <code>Unootube</code> é um caminho vetorial independente, contornado da
+        própria Roboto Bold da marca. O logotipo é imune a fallback de fonte — o que é correto
+        para uma marca, e é a razão de não ser um <code>&lt;text&gt;</code>.
       </UniDocCard>
-      <UniDocCard icon="⚖️" title="Marca de terceiro">
-        O logotipo do YouTube é marca registrada do Google LLC e está presente por fidelidade ao
-        arquivo comunitário de origem. Um produto que publique esta biblioteca deve substituir os
-        caminhos pela própria marca.
+      <UniDocCard icon="⚖️" title="Sem marca de terceiro">
+        O logotipo tipográfico do YouTube, marca registrada do Google LLC, foi <strong>removido</strong>{' '}
+        do pacote. O que resta do arquivo comunitário é a geometria do emblema, agora em azul.
       </UniDocCard>
     </UniDocGrid>
 
@@ -78,18 +78,33 @@ const LogoDocumentationPage = () => (
       nodeId="2:88"
       frameName="Brand/YoutubeLogo"
       specs={[
-        { label: 'Dimensões', value: '90 × 20' },
-        { label: 'Emblema', value: '28,57 × 20 · #FF0000' },
+        { label: 'Dimensões', value: '109,83 × 20' },
+        { label: 'Emblema', value: '28,57 × 20 · #005CE6' },
         { label: 'Triângulo', value: '7,42 × 8,57 · #FFFFFF' },
-        { label: 'Logotipo tipográfico', value: '7 caminhos' },
+        { label: 'Logotipo tipográfico', value: '8 contornos · Roboto Bold' },
       ]}
     />
     <UniDocDeviations
       items={[
         {
-          subject: 'Logotipo tipográfico declarado preto',
+          subject: 'Marca substituída',
           detail:
-            'o arquivo pinta os sete caminhos do logotipo tipográfico com preto puro no quadro de componentes, mas o aplica em branco em todas as três telas escuras. O padrão do componente é --uni-color-text-primary, que reproduz o que as telas mostram.',
+            'o arquivo publica o logotipo do YouTube. Os sete caminhos do wordmark foram removidos e substituídos por “Unootube”, contornado da Roboto Bold embutida no pacote (eixo wght instanciado em 700, altura de maiúscula de 13px, linha de base em y = 16,77). A tinta começa em x = 31,3945 — o mesmo ponto em que começava o “Y” —, o que preserva a folga óptica de 2,82px em relação ao emblema.',
+        },
+        {
+          subject: 'viewBox de 90 para 109,83',
+          detail:
+            '“Unootube” tem oito letras contra as sete de “YouTube”, e Roboto Bold é bem menos condensada que a face do arquivo. O lockup ficou 22% mais largo. Como o componente deriva a largura do viewBox, quem informa só height acompanha a nova proporção sem alteração.',
+        },
+        {
+          subject: 'Emblema em azul',
+          detail:
+            'a geometria do emblema é literal do arquivo, mas o preenchimento saiu de #FF0000 (primitiva red/800) para #005CE6 — o azul da Unooria, registrado como a primitiva blue/600. É a única primitiva do módulo sem figmaNode, porque não vem de nenhum dos dois arquivos de origem.',
+        },
+        {
+          subject: 'Logotipo tipográfico acompanha o tema',
+          detail:
+            'os contornos herdam --uni-color-text-primary: branco sobre o escuro, quase preto sobre o claro. Só o emblema é invariante, como convém a uma cor de marca.',
         },
         {
           subject: 'Variante badge',
@@ -97,9 +112,9 @@ const LogoDocumentationPage = () => (
             'o arquivo publica apenas a composição completa. A variante que exibe só o emblema foi acrescentada recortando o viewBox nos 28,57px do grupo esquerdo, sem alterar nenhum caminho — necessária para alvos quadrados como favicon e avatar de aplicação.',
         },
         {
-          subject: 'Marca de terceiro',
+          subject: 'Geometria remanescente do arquivo',
           detail:
-            'os caminhos reproduzem o logotipo do YouTube, marca registrada do Google LLC. As props do componente não permitem trocar o vetor; um produto que precise da própria marca deve substituir LogoVector.ts.',
+            'o retângulo arredondado e o triângulo continuam sendo os caminhos literais do nó 2:88. É silhueta reconhecível do arquivo comunitário de origem: um produto que queira independência total da referência deve redesenhar também o emblema em LogoVector.ts.',
         },
       ]}
     />
@@ -109,8 +124,8 @@ const LogoDocumentationPage = () => (
       zones={[
         {
           name: 'Emblema',
-          role: 'Retângulo arredondado de 28,57 × 20 no vermelho literal do arquivo.',
-          token: '--uni-color-brand-logo · #FF0000',
+          role: 'Retângulo arredondado de 28,57 × 20 no azul da marca Unooria.',
+          token: '--uni-color-brand-logo · #005CE6',
         },
         {
           name: 'Triângulo de reprodução',
@@ -119,12 +134,12 @@ const LogoDocumentationPage = () => (
         },
         {
           name: 'Logotipo tipográfico',
-          role: 'Sete caminhos vetoriais que herdam a cor do token de texto.',
+          role: 'Oito contornos de Roboto Bold, um por letra, que herdam a cor do token de texto.',
           token: '--uni-color-text-primary',
         },
         {
           name: 'Proporção',
-          role: 'A largura é derivada do viewBox 90×20 a partir da altura informada.',
+          role: 'A largura é derivada do viewBox 109,83×20 a partir da altura informada.',
           token: 'prop height',
         },
       ]}
@@ -154,10 +169,10 @@ const LogoDocumentationPage = () => (
         'Informe title quando o logotipo for o próprio link para a página inicial.',
       ]}
       donts={[
-        'Não troque o vermelho do emblema pelo vermelho semântico da marca: são valores distintos.',
-        'Não distorça a proporção 90×20 definindo largura e altura independentes.',
-        'Não recolora o emblema nem o triângulo: os dois são literais do arquivo.',
-        'Não use o logotipo de terceiro em produto sem verificar as próprias permissões de uso.',
+        'Não troque o azul do emblema pelo vermelho semântico da marca: são papéis distintos.',
+        'Não distorça a proporção 109,83×20 definindo largura e altura independentes.',
+        'Não recolora o emblema nem o triângulo fora de --uni-color-brand-logo.',
+        'Não redesenhe o logotipo tipográfico como <text>: fallback de fonte deformaria a marca.',
       ]}
     />
 
@@ -186,7 +201,7 @@ const LogoDocumentationPage = () => (
           type: 'number',
           default: '20',
           description:
-            'Altura em pixels. A largura é derivada do viewBox original para preservar a proporção do arquivo.',
+            'Altura em pixels. A largura é derivada do viewBox para preservar a proporção do lockup (109,83×20 na variante completa, 28,57×20 na badge).',
         },
         {
           name: 'title',
@@ -239,7 +254,7 @@ export const Playground: Story = {
 };
 
 /**
- * Réplica visual do nó `Brand/YoutubeLogo` (2:88).
+ * O lockup na medida do arquivo: 20px de altura.
  */
 export const ExemploOficialDoFigma: Story = {
   name: '🎨 Exemplo Oficial do Figma',
@@ -276,7 +291,7 @@ export const TodasVariantes: Story = {
 };
 
 /**
- * A proporção 90×20 preservada em quatro alturas.
+ * A proporção 109,83×20 preservada em cinco alturas.
  */
 export const Tamanhos: Story = {
   render: () => (

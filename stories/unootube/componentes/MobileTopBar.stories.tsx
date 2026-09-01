@@ -93,7 +93,7 @@ const MobileTopBarDocumentationPage = () => (
       specs={[
         { label: 'Dimensões', value: '390 × 50' },
         { label: 'Recuos', value: '10 em cima · 13 embaixo · 12 à esquerda · 15 à direita' },
-        { label: 'Marca', value: '90 × 20' },
+        { label: 'Marca', value: '109,83 × 20 (era 90 × 20 no arquivo)' },
         { label: 'Alvos', value: '24px · 12px entre eles' },
       ]}
     />
@@ -125,7 +125,11 @@ const MobileTopBarDocumentationPage = () => (
     <UnooriaDocSectionHeader title="3. Anatomia do componente" barColor="#9EBFD0" />
     <UniDocAnatomy
       zones={[
-        { name: 'Marca', role: 'Logo de 90×20 à esquerda.', token: '--uni-color-text-primary' },
+        {
+          name: 'Marca',
+          role: 'Logo de 109,83×20 à esquerda, na altura de 20px do arquivo.',
+          token: '--uni-color-text-primary',
+        },
         {
           name: 'Alvos',
           role: 'Transmitir, notificações, busca e perfil, com 12px entre eles.',

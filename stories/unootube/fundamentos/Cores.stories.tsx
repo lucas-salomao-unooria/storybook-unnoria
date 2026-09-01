@@ -102,9 +102,11 @@ const ColorsDocumentationPage = () => (
       </UniDocCard>
       <UniDocCard icon="🔴" title="Quatro vermelhos, não um">
         O arquivo publica <code>#EE1A26</code> (semântico), <code>#FC0D1C</code> (progresso),{' '}
-        <code>#CC0000</code> (inscrição) e <code>#FF0000</code> (logotipo). Eles convivem na mesma
-        tela — no reprodutor, o selo HD usa o semântico enquanto a linha do tempo usa o de
-        progresso. É proibido consolidá-los.
+        <code>#CC0000</code> (inscrição) e <code>#FF0000</code> (emblema do logotipo). Eles
+        convivem na mesma tela — no reprodutor, o selo HD usa o semântico enquanto a linha do tempo
+        usa o de progresso. É proibido consolidá-los. O quarto perdeu o único consumidor quando o
+        emblema passou ao azul da marca, mas continua registrado: é degrau publicado pelo arquivo,
+        e a régua não encolhe porque um componente deixou de citá-la.
       </UniDocCard>
       <UniDocCard icon="🧾" title="Rastreabilidade por token">
         Cada entrada de <code>colors.ts</code> registra <code>figmaToken</code> quando o arquivo
@@ -145,7 +147,12 @@ const ColorsDocumentationPage = () => (
         {
           subject: 'Um quinto vermelho no arquivo de Shorts',
           detail:
-            'o botão de inscrição do reprodutor de Shorts usa #FF0000, o mesmo valor do emblema do logotipo. Foi tokenizado como --uni-color-brand-shorts em vez de reaproveitar --uni-color-brand-logo: são papéis diferentes, e um produto que troque a marca não deve trocar junto o botão de inscrição.',
+            'o botão de inscrição do reprodutor de Shorts usa #FF0000, o mesmo valor que o emblema do logotipo tinha no arquivo. Foi tokenizado como --uni-color-brand-shorts em vez de reaproveitar --uni-color-brand-logo, porque são papéis diferentes — e a troca da marca provou o ponto: o emblema virou #005CE6 e o botão de inscrição do Shorts continuou vermelho, sem nenhuma alteração.',
+        },
+        {
+          subject: 'Azul da marca Unooria — a única primitiva sem figmaNode',
+          detail:
+            '--uni-color-blue-600 (#005CE6) não vem de nenhum dos dois arquivos de origem. Entrou quando o logotipo do YouTube foi substituído pelo da Unooria e é consumido por um único semântico, --uni-color-brand-logo. Não é o vermelho semântico da marca: chamadas para ação continuam em #EE1A26.',
         },
         {
           subject: 'color/text/tertiary mais claro que o secundário',

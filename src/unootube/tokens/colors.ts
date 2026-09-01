@@ -70,6 +70,7 @@ export const uniBrandColors: Record<string, UniColorToken> = {
   red700: { cssVar: '--uni-color-red-700', value: '#CC0000', usage: 'Botão de inscrição', figmaNode: '106:3016', figmaToken: 'red/700' },
   red800: { cssVar: '--uni-color-red-800', value: '#FF0000', usage: 'Emblema do logotipo', figmaNode: '106:3020', figmaToken: 'red/800' },
   blue400: { cssVar: '--uni-color-blue-400', value: '#9EBFD0', usage: 'Cor de espera do quadro de vídeo', figmaNode: '106:3026', figmaToken: 'blue/400' },
+  blue600: { cssVar: '--uni-color-blue-600', value: '#005CE6', usage: 'EXTENSÃO — azul da marca Unooria, emblema do logotipo. Não vem de nenhum dos dois arquivos de origem: entrou quando o logotipo do YouTube foi substituído. É a única primitiva do módulo sem figmaNode' },
 };
 
 /**
@@ -103,7 +104,7 @@ export const uniDerivedColors: Record<string, UniColorToken> = {
   textInverse: { cssVar: '--uni-color-text-inverse', value: '#030303', usage: 'Rótulo sobre a pílula ativa', figmaNode: '10:545' },
   brandSubscribe: { cssVar: '--uni-color-brand-subscribe', value: '#CC0000', usage: 'Botão de inscrição', figmaNode: '17:2796' },
   brandProgress: { cssVar: '--uni-color-brand-progress', value: '#FC0D1C', usage: 'Trecho reproduzido da linha do tempo', figmaNode: '18:1295' },
-  brandLogo: { cssVar: '--uni-color-brand-logo', value: '#FF0000', usage: 'Emblema do logotipo', figmaNode: '2:88' },
+  brandLogo: { cssVar: '--uni-color-brand-logo', value: '#005CE6', usage: 'EXTENSÃO — emblema do logotipo. A geometria é a do node 2:88, mas a cor é o azul da marca Unooria: o vermelho #FF0000 do arquivo pertencia à marca substituída' },
   playerChrome: { cssVar: '--uni-color-player-chrome', value: '#EAEAEA', usage: 'Glifos e relógio do reprodutor', figmaNode: '18:1295' },
   playerGlyphOutline: { cssVar: '--uni-color-player-glyph-outline', value: 'rgba(0, 0, 0, 0.1)', usage: 'Contorno de 1px dos glifos de controle do reprodutor', figmaNode: '18:1295' },
   playerTrack: { cssVar: '--uni-color-player-track', value: 'rgba(234, 234, 234, 0.2)', usage: 'Trilho não carregado da linha do tempo', figmaNode: '18:1295' },
