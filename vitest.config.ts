@@ -21,8 +21,19 @@ export default defineConfig({
      * Sem o pré-bundle, o arquivo CJS cru é servido ao browser e o import
      * nomeado quebra o setup — derrubando as 132 estórias antes de qualquer
      * teste rodar. Pré-bundlar o pacote raiz converte a cadeia inteira.
+     *
+     * `storybook/test` entra pelo mesmo motivo, com outro sintoma. Ele só é
+     * importado DENTRO de um arquivo de estória (é de onde vêm `expect`,
+     * `userEvent` e `within` dos `play`), então o scanner do Vite também não o
+     * acha na varredura inicial. Com o cache frio o Vite o descobre no meio da
+     * execução, otimiza e RECARREGA — e o recarregamento invalida os módulos já
+     * importados, derrubando o arquivo inteiro com
+     * `Failed to fetch dynamically imported module .../sb-vitest/deps/...`.
+     * O erro não fala de estória nenhuma e parece falha do componente; é só
+     * cache. Passa na segunda execução (cache quente), o que o torna um falso
+     * verde local e um vermelho garantido no CI, que sempre parte do frio.
      */
-    include: ['@testing-library/dom'],
+    include: ['@testing-library/dom', 'storybook/test'],
   },
   test: {
     projects: [

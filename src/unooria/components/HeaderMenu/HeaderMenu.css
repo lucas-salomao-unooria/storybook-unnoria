@@ -1,0 +1,408 @@
+/**
+ * HeaderMenu - Design System Plataforma Unooria
+ * Extraído do Figma (Node 21765:12693 — component set `Menu Desk`)
+ *
+ * Medidas do arquivo, conferidas nos variantes `Menu=Close` (40x44) e
+ * `Menu=Open` (280x44):
+ *
+ *   faixa      fundo `neutralOverlay50`, padding 4px, gap 4px, raio 12px
+ *   item       34x34, raio 8px, fundo `neutralOverlay700`, ícone 18px
+ *   item hover fundo `primary600`, ícone/texto branco, dica abaixo
+ *   item ativo fundo `primary800`, ícone/texto branco
+ *   gatilho    40x40 (avatar `sm` com a borda em gradiente)
+ *   gap faixa/gatilho 8px
+ *
+ * A soma fecha os 280px do variante aberto: 6 itens x 34 + 5 gaps x 4 +
+ * 2 x 4 de padding = 232, + 8 de gap + 40 do gatilho = 280.
+ */
+
+.unooria-header-menu {
+  /*
+   * DURAÇÃO E CURVA: o Figma NÃO publica dado de movimento para este component
+   * set — `get_motion_context` devolve `{"nodes":[]}`, não há transição de
+   * variante nem keyframe no arquivo. A direção ("da direita para a esquerda")
+   * é a única coisa que o design fixa, e ela vem da geometria: o gatilho é o
+   * último item do auto-layout e a faixa cresce à esquerda dele.
+   *
+   * Então duração e curva seguem a convenção JÁ EXISTENTE deste pacote para
+   * expandir/recolher: `Collapse.css` usa `0.3s cubic-bezier(0.4, 0, 0.2, 1)`.
+   * Não é um número inventado — é o mesmo do único componente do DS que já
+   * abre e fecha. Trocar aqui exige trocar lá.
+   */
+  --unooria-header-menu-duracao: 0.3s;
+  --unooria-header-menu-curva: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Atraso entre um item e o seguinte, da direita para a esquerda. */
+  --unooria-header-menu-escada: 30ms;
+
+  /* Medidas do Figma, expostas para as compensações de layout do consumidor. */
+  --unooria-header-menu-altura: 44px;
+  --unooria-header-menu-item: 34px;
+  --unooria-header-menu-gatilho: 40px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--unooria-header-menu-altura);
+  font-family: var(--unooria-font-sans, 'Open Sans', system-ui, sans-serif);
+}
+
+/* ==========================================================================
+   Faixa de ações — ancorada na borda direita do gatilho
+   ========================================================================== */
+
+/*
+ * A faixa é posicionada em relação ao gatilho, e não em fluxo, por dois
+ * motivos medidos:
+ *
+ * 1. Ancoragem. `right: calc(gatilho + gap)` prende a borda direita da faixa à
+ *    borda esquerda do gatilho. O gatilho não se move um pixel ao abrir — que é
+ *    o que o Figma mostra e o que o header precisa, porque o avatar é o último
+ *    elemento da barra.
+ * 2. A dica. Ela pendura ABAIXO do item. Recolher a faixa por
+ *    `overflow: hidden` (a alternativa óbvia) recortaria a dica junto, e não
+ *    existe recorte só no eixo X em CSS — `overflow-x: hidden` com
+ *    `overflow-y: visible` computa para `auto`. Fora de fluxo, não há o que
+ *    recortar: o recolhimento é por opacidade e deslocamento.
+ */
+.unooria-header-menu__faixa {
+  position: absolute;
+  top: 50%;
+  right: calc(var(--unooria-header-menu-gatilho) + var(--unooria-spacing-xxs, 8px));
+
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  padding: var(--unooria-spacing-xxxs, 4px);
+  border-radius: var(--unooria-spacing-xs, 12px);
+  background-color: var(--unooria-color-opacity-neutraldark-50, rgba(34, 39, 42, 0.05));
+
+  opacity: 0;
+  transform: translateY(-50%) translateX(12px);
+  visibility: hidden;
+
+  /*
+   * `visibility` com duração 0 e ATRASO igual à duração: ao fechar, a faixa
+   * continua visível durante o desaparecimento e só então sai da árvore de
+   * acessibilidade e da ordem de tabulação. Sem o atraso, ela sumiria na
+   * metade da transição.
+   */
+  transition:
+    opacity var(--unooria-header-menu-duracao) var(--unooria-header-menu-curva),
+    transform var(--unooria-header-menu-duracao) var(--unooria-header-menu-curva),
+    visibility 0s linear var(--unooria-header-menu-duracao);
+}
+
+.unooria-header-menu[data-state='open'] .unooria-header-menu__faixa {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  visibility: visible;
+  transition:
+    opacity var(--unooria-header-menu-duracao) var(--unooria-header-menu-curva),
+    transform var(--unooria-header-menu-duracao) var(--unooria-header-menu-curva),
+    visibility 0s linear 0s;
+}
+
+/* ==========================================================================
+   Item de ação (34x34)
+   ========================================================================== */
+
+.unooria-header-menu__item {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unooria-header-menu-item);
+  height: var(--unooria-header-menu-item);
+  padding: var(--unooria-spacing-xxs, 8px);
+  border: none;
+  border-radius: var(--unooria-spacing-xxs, 8px);
+  background-color: var(--unooria-color-opacity-neutrallight-700, rgba(255, 255, 255, 0.7));
+  color: var(--unooria-color-brandnavy-700, #6487c2);
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+
+  /*
+   * A ESCADA da direita para a esquerda. `--unooria-header-menu-ordem` é
+   * escrito pelo componente como `itens.length - 1 - índice`, então o item
+   * encostado no gatilho tem ordem 0 e entra primeiro.
+   */
+  opacity: 0;
+  transform: translateX(8px);
+  transition:
+    opacity var(--unooria-header-menu-duracao) var(--unooria-header-menu-curva),
+    transform var(--unooria-header-menu-duracao) var(--unooria-header-menu-curva),
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.unooria-header-menu[data-state='open'] .unooria-header-menu__item {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: calc(var(--unooria-header-menu-ordem, 0) * var(--unooria-header-menu-escada));
+}
+
+.unooria-header-menu__item:hover,
+.unooria-header-menu__item:focus-visible {
+  background-color: var(--unooria-color-brandnavy-600, #7fa5e2);
+  color: var(--unooria-color-neutral-50, #ffffff);
+}
+
+.unooria-header-menu__item:active,
+.unooria-header-menu__item[data-pressed] {
+  background-color: var(--unooria-color-brandnavy-800, #49699f);
+  color: var(--unooria-color-neutral-50, #ffffff);
+}
+
+/* Anel de foco visível: o hover pinta o fundo, mas cor não é indicação de foco. */
+.unooria-header-menu__item:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.9)),
+    0 0 0 4px var(--unooria-color-brandnavy-700, #6487c2);
+}
+
+.unooria-header-menu__item[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.unooria-header-menu[data-state='open'] .unooria-header-menu__item[aria-disabled='true'] {
+  opacity: 0.45;
+}
+
+.unooria-header-menu__item[aria-disabled='true']:hover,
+.unooria-header-menu__item[aria-disabled='true']:active {
+  background-color: var(--unooria-color-opacity-neutrallight-700, rgba(255, 255, 255, 0.7));
+  color: var(--unooria-color-brandnavy-700, #6487c2);
+}
+
+/* --------------------------------------------------------------------------
+   Item destrutivo — o 'Sair'
+   -------------------------------------------------------------------------- */
+
+.unooria-header-menu__item[data-danger] {
+  color: var(--unooria-color-danger-600, #e31a1a);
+}
+
+.unooria-header-menu__item[data-danger]:hover,
+.unooria-header-menu__item[data-danger]:focus-visible {
+  background-color: var(--unooria-color-danger-600, #e31a1a);
+  color: var(--unooria-color-neutral-50, #ffffff);
+}
+
+.unooria-header-menu__item[data-danger]:active,
+.unooria-header-menu__item[data-danger][data-pressed] {
+  background-color: var(--unooria-color-danger-700, #b31313);
+  color: var(--unooria-color-neutral-50, #ffffff);
+}
+
+.unooria-header-menu__item[data-danger]:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.9)),
+    0 0 0 4px var(--unooria-color-danger-600, #e31a1a);
+}
+
+/* --------------------------------------------------------------------------
+   Conteúdo do item: ícone de 18px ou rótulo curto de texto
+   -------------------------------------------------------------------------- */
+
+.unooria-header-menu__icone {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.unooria-header-menu__texto {
+  /* Figma: Body/body-XXS/semibold — 12px / 18px, peso 600. */
+  font-size: var(--unooria-size-body-xxs, 12px);
+  line-height: var(--unooria-line-height-body-xxs, 18px);
+  font-weight: 600;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Dica flutuante (Figma: `Tooltip` dentro do `Button Header`)
+   ==========================================================================
+   Por que não é o `Tooltip` do DS: o `Tooltip` embrulha o filho num
+   `<span class="unooria-tooltip-wrapper">`, e esse `<span>` genérico entraria
+   ENTRE o `role="menu"` e o `role="menuitem"`, quebrando a relação de posse que
+   a ARIA exige do par. Ele encadeia bem os handlers e não toca no `ref` — o
+   problema é só estrutural. Aqui a dica é um `<span aria-hidden>` DENTRO do
+   próprio botão: o nome acessível continua vindo do `aria-label`, e a árvore
+   fica `menu > menuitem` direta.
+
+   Consequência a pagar: os tokens de aparência do balão estão duplicados entre
+   este arquivo e `Tooltip.css`. Some no dia em que o `Tooltip` aceitar
+   `asChild` (ou equivalente) e dispensar o wrapper.
+   ========================================================================== */
+
+.unooria-header-menu__dica {
+  position: absolute;
+  top: calc(100% + var(--unooria-spacing-xxxs, 4px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-xs, 12px);
+  border-radius: var(--unooria-spacing-xxs, 8px);
+  max-width: 300px;
+
+  background-color: var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.9));
+  color: var(--unooria-color-neutral-950, #22272a);
+  /* Figma: Elevation/Neutral/Elevation Neutral 1 + Body/body-XXS/regular. */
+  box-shadow: 0 0 5px 1px var(--unooria-color-opacity-neutraldark-100, rgba(34, 39, 42, 0.1));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  font-size: var(--unooria-size-body-xxs, 12px);
+  line-height: var(--unooria-line-height-body-xxs, 18px);
+  font-weight: 400;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.unooria-header-menu__item:hover .unooria-header-menu__dica,
+.unooria-header-menu__item:focus-visible .unooria-header-menu__dica {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Gatilho (avatar de 40px, ou o nó que o consumidor plugar)
+   ========================================================================== */
+
+.unooria-header-menu__gatilho {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--unooria-header-menu-gatilho);
+  min-height: var(--unooria-header-menu-gatilho);
+  padding: 0;
+  border: none;
+  border-radius: var(--unooria-spacing-l, 32px);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.unooria-header-menu__gatilho:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-neutral-50, #ffffff),
+    0 0 0 4px var(--unooria-color-brandnavy-700, #6487c2);
+}
+
+/* ==========================================================================
+   Painel suspenso (Figma: `Menu=Iniciativas` e `Menu=Linguagem`)
+   ========================================================================== */
+
+.unooria-header-menu__painel {
+  position: absolute;
+  top: calc(100% + var(--unooria-spacing-xxxs, 4px));
+  right: calc(var(--unooria-header-menu-gatilho) + var(--unooria-spacing-xxs, 8px));
+  z-index: 30;
+
+  min-width: 200px;
+  padding: var(--unooria-spacing-xxxs, 4px);
+  border-radius: var(--unooria-spacing-xs, 12px);
+  background-color: var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.9));
+  box-shadow: 0 0 5px 1px var(--unooria-color-opacity-neutraldark-100, rgba(34, 39, 42, 0.1));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--unooria-color-neutral-950, #22272a);
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+}
+
+/* ==========================================================================
+   Tema escuro
+   ==========================================================================
+   O Figma publica o `Menu Desk` só no tema claro do arquivo. O par escuro
+   abaixo NÃO é um variante do design: ele reusa os tokens `neutraldark` do DS,
+   que é o que a seção 4.2 do AGENTS.md manda fazer para qualquer componente da
+   Plataforma. A marca (`brandnavy`) não muda entre temas — só as superfícies.
+   ========================================================================== */
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__faixa,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__faixa {
+  background-color: var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.1));
+}
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__item,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__item {
+  background-color: var(--unooria-color-opacity-neutraldark-700, rgba(34, 39, 42, 0.7));
+  color: var(--unooria-color-brandnavy-500, #8fafe5);
+}
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__item:hover,
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__item:focus-visible,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__item:hover,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__item:focus-visible {
+  background-color: var(--unooria-color-brandnavy-600, #7fa5e2);
+  color: var(--unooria-color-neutral-950, #22272a);
+}
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__item[data-pressed],
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__item[data-pressed] {
+  background-color: var(--unooria-color-brandnavy-800, #49699f);
+  color: var(--unooria-color-neutral-50, #ffffff);
+}
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__item[data-danger],
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__item[data-danger] {
+  color: var(--unooria-color-danger-500, #f83b3b);
+}
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__dica,
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__painel,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__dica,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__painel {
+  background-color: var(--unooria-color-opacity-neutraldark-900, rgba(34, 39, 42, 0.9));
+  color: var(--unooria-color-neutraldark-950, #f5f5f5);
+  box-shadow: 0 0 5px 1px var(--unooria-color-opacity-neutraldark-200, rgba(34, 39, 42, 0.2));
+}
+
+.unooria-header-menu[data-theme='dark'] .unooria-header-menu__gatilho:focus-visible,
+[data-theme='dark'] .unooria-header-menu .unooria-header-menu__gatilho:focus-visible {
+  box-shadow: 0 0 0 2px var(--unooria-color-neutraldark-50, #22272a),
+    0 0 0 4px var(--unooria-color-brandnavy-500, #8fafe5);
+}
+
+/* ==========================================================================
+   Movimento Reduzido
+   ==========================================================================
+   Com `prefers-reduced-motion: reduce` a faixa aparece e desaparece sem
+   deslocamento e sem escada. A `visibility` MANTÉM o atraso de fechamento —
+   ele não é enfeite: é o que impede o item de sair da ordem de tabulação antes
+   do menu ter fechado de fato.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-header-menu__faixa,
+  .unooria-header-menu[data-state='open'] .unooria-header-menu__faixa {
+    transform: translateY(-50%);
+    transition: opacity 0s linear, visibility 0s linear;
+  }
+
+  .unooria-header-menu__item,
+  .unooria-header-menu[data-state='open'] .unooria-header-menu__item {
+    transform: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    transition-delay: 0s;
+  }
+
+  .unooria-header-menu__dica {
+    transition: none;
+  }
+}

@@ -13,6 +13,7 @@ export * from './DataViz';
 export * from './DatePicker';
 export * from './EmptyState';
 export * from './FeedbackAlert';
+export * from './HeaderMenu';
 export * from './Icon';
 export * from './ListSectionItem';
 export * from './Logo';
