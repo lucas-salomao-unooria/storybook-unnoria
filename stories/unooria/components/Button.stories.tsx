@@ -233,7 +233,7 @@ const ButtonDocumentationPage = () => {
                 Destinada à ação de maior relevância da tela ou modal (ex: &quot;Salvar alterações&quot;, &quot;Confirmar compra&quot;). <strong>Regra:</strong> Deve haver no máximo 1 botão Primary em foco por bloco visual.
               </p>
               <p style={{ margin: '8px 0 0 0', fontSize: '13px', color: '#475569', lineHeight: '1.5', padding: '8px 10px', backgroundColor: '#F8FAFC', borderLeft: '3px solid #CBD4D6', borderRadius: '4px' }}>
-                <strong>O tom desta variante mudou, e essa era a razão de ser do quadro novo.</strong> O azul anterior (<code>brandnavy-600</code>) é quase o mesmo tom do desabilitado, e o botão principal da tela lia como desligado em vez de apertável. Agora o repouso é <code>brandnavy-700</code> e o <code>600</code> virou o realce do ponteiro — repouso e <em>hover</em> trocaram de lugar.
+                <strong>O tom desta variante mudou, e essa era a razão de ser do quadro novo.</strong> O azul anterior (<code>brandnavy-600</code>) é quase o mesmo tom do desabilitado, e o botão principal da tela lia como desligado em vez de apertável. Agora o repouso é o roxo quase preto <code>brandpurple-950</code> e o <em>pressed</em> clareia um degrau, para <code>brandpurple-900</code> — não há para onde escurecer a partir do extremo da escala.
               </p>
             </div>
           </div>
@@ -436,7 +436,10 @@ const ButtonDocumentationPage = () => {
               <strong>Contraste:</strong> no claro, o rótulo de <code>outline</code>, <code>ghost</code> e <code>light</code> mede <strong>5.52:1</strong> (<code>brandnavy-800</code>) e o gradiente da <code>ai</code> vai de 7.07:1 a 5.52:1 em toda a sua extensão — todos acima do mínimo de 4.5:1 da WCAG AA. O tema escuro atende inteiro (rótulo 9.65:1; <code>primary</code> 6.78:1 em repouso, 7.93:1 em <em>hover</em>, 6.02:1 em <em>pressed</em>).
             </li>
             <li>
-              <strong>A <code>primary</code> no tema claro NÃO atende, e é o desenho, não a implementação:</strong> o rótulo branco sobre <code>brandnavy-700</code> mede <strong>3.63:1</strong> em repouso e <strong>2.51:1</strong> em <em>hover</em> (<code>brandnavy-600</code>); só o <em>pressed</em> passa, com 5.52:1. <strong>Ainda assim é uma melhora</strong>: o tom anterior media 2.51:1 em repouso, e a mudança subiu para 3.63:1. Fechar o caso exige descer o repouso para <code>brandnavy-800</code>, que daria 5.52:1 — e, por acaso feliz, deixaria o botão ainda mais claramente apertável, que é o que o quadro quis corrigir. <strong>Pendente de decisão de design.</strong>
+              <strong>A <code>primary</code> passou a ser a variante de MAIOR contraste</strong> — rótulo branco sobre o roxo quase preto mede <strong>19.58:1</strong> em repouso e <strong>18.23:1</strong> em <em>pressed</em>. Era a de menor contraste antes (2.51:1). No tema escuro, 9.32:1, 11.27:1 e 6.37:1.
+            </li>
+            <li>
+              <strong>Exceção aberta — o <em>hover</em> da <code>primary</code> no tema claro:</strong> o quadro o mantém em <code>brandnavy-600</code>, que com rótulo branco mede <strong>2.51:1</strong>. O botão salta de 19.58:1 em repouso para 2.51:1 sob o ponteiro, ou seja, o rótulo quase some no momento em que a pessoa mira nele. Está implementado como o desenho manda; a correção de um degrau seria <code>brandpurple-800</code>, que daria <strong>11.37:1</strong> e preservaria o clareamento. <strong>Pendente de decisão de design.</strong>
             </li>
             <li>
               <strong>Desvio deliberado em relação ao Figma:</strong> o quadro põe rótulo e borda no mesmo degrau, e o rótulo ali mediria 3.63:1 em repouso e 2.51:1 em <em>hover</em> — abaixo do mínimo. Aqui os dois se separam: a <strong>borda</strong> segue o degrau mais leve do desenho (<code>brandnavy-700</code>, e <code>600</code> no <em>hover</em>) e o <strong>rótulo</strong> fica no degrau legível. A intenção visual do desenho se mantém; o que não acompanha é o texto, que é o que precisa ser lido. Registrado na seção 5.1 do <code>AGENTS.md</code>.

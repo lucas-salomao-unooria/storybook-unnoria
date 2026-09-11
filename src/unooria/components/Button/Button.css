@@ -131,19 +131,28 @@
  * Primary - Light
  *
  * O quadro do Figma ERA a correção desta variante: o azul de antes
- * (`brandnavy-600`) é praticamente o mesmo tom do desabilitado novo
+ * (`brandnavy-600`) é praticamente o mesmo tom do desabilitado
  * (`rgba(127,165,226,.3)`), e o botão principal da tela lia como desligado em
- * vez de apertável. Default e hover INVERTERAM: o repouso desce para o 700 e o
- * 600 passa a ser o realce do ponteiro.
+ * vez de apertável. A correção é o roxo quase preto.
  *
- * A linha LG do quadro traz `#080922` e `#0e1039` fixados à mão, discordando do
- * Hover da própria linha e das linhas MD/SM/XS. Vale a variável: cor não varia
- * por tamanho em nenhum outro lugar do quadro, e o valor cravado é meia-edição,
- * não intenção.
+ * A cor vem da linha LG, a única do quadro que traz os valores à mão. Ela É a
+ * intenção: o desenho não foi propagado para MD/SM/XS, que ficaram com as
+ * variáveis antigas. Os dois hex batem com tokens que já existiam —
+ * `#080922` é `brandpurple-950` e `#0E1039` é `brandpurple-900` —, então isto
+ * continua consumindo token, sem hex solto.
+ *
+ * O repouso é o extremo escuro da escala e o pressed clareia um degrau: não há
+ * para onde escurecer a partir do 950.
+ *
+ * O HOVER é o ponto frágil, e está como o quadro desenha: `brandnavy-600`, que
+ * com rótulo branco mede 2,51:1. O botão salta de 19,58:1 em repouso para
+ * 2,51:1 sob o ponteiro — o rótulo praticamente some na hora em que a pessoa
+ * mira nele. Alternativa de um degrau, medida e proposta no review:
+ * `brandpurple-800` (#34375C) daria 11,37:1 e manteria o clareamento.
  */
 .unooria-button--light.unooria-button--variant-primary,
 :not([data-theme="dark"]) .unooria-button--variant-primary {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-brandpurple-950, #080922);
   color: #FFFFFF;
   border-color: transparent;
 }
@@ -155,13 +164,13 @@
 
 .unooria-button--light.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-primary.unooria-button--state-active {
-  background-color: var(--unooria-color-brandnavy-800, #49699F);
+  background-color: var(--unooria-color-brandpurple-900, #0E1039);
 }
 
 .unooria-button--light.unooria-button--variant-primary:focus-visible,
 .unooria-button--light.unooria-button--variant-primary.unooria-button--state-focus {
-  box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
-  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
+  box-shadow: var(--unooria-elevation-brand-secondary, 0px 0px 10px 0px rgba(14, 16, 57, 0.3));
+  outline: 2px solid var(--unooria-color-brandpurple-950, #080922);
   outline-offset: 2px;
 }
 
@@ -499,11 +508,15 @@
 /*
  * Primary - Dark — PROPOSTA, o quadro não traz o tema escuro.
  *
- * A queixa que originou a correção vale nos dois temas: o botão principal lia
- * como desligado. No claro o conserto foi escurecer o repouso; no escuro é
- * CLAREAR, porque é o que afasta o botão do fundo — os lados trocam junto com o
- * fundo, o mesmo critério usado nas outras variantes. O repouso sobe de 600
- * para 500, o hover clareia para 400 e o pressed escurece para 600.
+ * Aqui a cor do claro não pode ser copiada: `brandpurple-950` (#080922) contra
+ * a superfície escura (#22272A) mede 1,30:1 — o botão principal desapareceria
+ * no fundo, que é uma versão pior do defeito que se está consertando.
+ *
+ * O que se espelha é a INTENÇÃO, não o valor: no claro o botão é o extremo
+ * ESCURO da escala roxa sobre fundo claro; no escuro é o extremo CLARO da mesma
+ * escala sobre fundo escuro, com o rótulo invertido para o tom da superfície.
+ * Repouso `brandpurple-300`, hover clareia para `200`, pressed escurece para
+ * `400` — 9,32:1, 11,27:1 e 6,37:1, todos acima do mínimo.
  *
  * O desabilitado NÃO recebe o `rgba(127,165,226,.3)` do quadro: composto sobre
  * o fundo escuro ele dá 8,61:1 com rótulo branco, contraste de botão ativo — o
@@ -511,19 +524,19 @@
  */
 .unooria-button--dark.unooria-button--variant-primary,
 [data-theme="dark"] .unooria-button--variant-primary {
-  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+  background-color: var(--unooria-color-brandpurple-300, #CCC9DE);
   color: var(--unooria-color-neutraldark-50, #22272A);
   border-color: transparent;
 }
 
 .unooria-button--dark.unooria-button--variant-primary:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-primary.unooria-button--state-hover {
-  background-color: var(--unooria-color-brandnavy-400, #A4BDE9);
+  background-color: var(--unooria-color-brandpurple-200, #DFDDEB);
 }
 
 .unooria-button--dark.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-primary.unooria-button--state-active {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-brandpurple-400, #AAA5C2);
 }
 
 .unooria-button--dark.unooria-button--variant-primary:focus-visible,
