@@ -58,7 +58,7 @@ const getIconSize = (size: ButtonSize): number => {
  * Componente Button do Design System Plataforma Unooria (Padrão Ouro NPM)
  * 
  * Elemento de controle principal para acionar ações do usuário, submeter formulários
- * e guiar a navegação. Suporta 5 variantes visuais, 3 tamanhos, modos Claro e Escuro,
+ * e guiar a navegação. Suporta 7 variantes visuais, 3 tamanhos, modos Claro e Escuro,
  * renderização polimórfica (ex: como tag `<a>`), ícones direcionais, spinner de
  * carregamento acessível e tratamento completo de estados interativos.
  */

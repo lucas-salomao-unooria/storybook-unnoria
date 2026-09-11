@@ -2,8 +2,23 @@ import React from 'react';
 
 /**
  * Variantes visuais disponíveis para o Button
+ *
+ * O quadro `buttons` do Figma (Unooria_DS_v0.2) chama a `ghost` de **Subtle**.
+ * O nome do código NÃO acompanhou de propósito: `variant` é API pública e há 107
+ * chamadas de `ghost` entre o monorepo consumidor e as estórias daqui — renomear
+ * quebraria todas sem mudar um pixel. O mapeamento Figma -> código é
+ * Filled->`primary`, Outline->`outline`, Subtle->`ghost`, Light->`light`, AI->`ai`.
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'ghost'
+  | 'danger'
+  /** Para fundo escuro ou sobre foto: pastilha branca translúcida que vira sólida no hover. */
+  | 'light'
+  /** Ação de IA: contorno roxo e o rótulo em gradiente roxo->azul. */
+  | 'ai';
 
 /**
  * Escala de tamanhos padronizada da Unooria

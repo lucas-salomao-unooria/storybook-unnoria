@@ -181,50 +181,56 @@
 .unooria-button--light.unooria-button--variant-outline,
 :not([data-theme="dark"]) .unooria-button--variant-outline {
   background-color: transparent;
-  color: var(--unooria-color-brandnavy-800, #49699F);
+  color: var(--unooria-color-brandnavy-700, #6487C2);
   border-width: 1.5px;
-  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
 }
 
 .unooria-button--light.unooria-button--variant-outline:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-hover {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
 }
 
 .unooria-button--light.unooria-button--variant-outline:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-active {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-800, #49699F);
+  border-color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-button--light.unooria-button--variant-outline:focus-visible,
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-focus {
   box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
-  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
+  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
   outline-offset: 2px;
 }
 
-/* Ghost - Light */
+/* Ghost (a "Subtle" do Figma) - Light */
 .unooria-button--light.unooria-button--variant-ghost,
 :not([data-theme="dark"]) .unooria-button--variant-ghost {
   background-color: transparent;
-  color: var(--unooria-color-brandnavy-800, #49699F);
+  color: var(--unooria-color-brandnavy-700, #6487C2);
   border-color: transparent;
 }
 
 .unooria-button--light.unooria-button--variant-ghost:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-ghost.unooria-button--state-hover {
-  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
 }
 
 .unooria-button--light.unooria-button--variant-ghost:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-ghost.unooria-button--state-active {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-button--light.unooria-button--variant-ghost:focus-visible,
 .unooria-button--light.unooria-button--variant-ghost.unooria-button--state-focus {
   box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
-  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
+  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
   outline-offset: 2px;
 }
 
@@ -253,6 +259,106 @@
   outline-offset: 2px;
 }
 
+/* Light - Light
+   Variante NOVA. Pastilha branca translúcida para uso sobre fundo escuro ou
+   foto, onde `outline` e `ghost` somem. No hover ela INVERTE: vira o azul
+   sólido com rótulo branco. */
+.unooria-button--light.unooria-button--variant-light,
+:not([data-theme="dark"]) .unooria-button--variant-light {
+  background-color: var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.90));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+  border-color: transparent;
+}
+
+.unooria-button--light.unooria-button--variant-light:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-light.unooria-button--state-hover {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: #FFFFFF;
+}
+
+.unooria-button--light.unooria-button--variant-light:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-light.unooria-button--state-active {
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
+  color: #FFFFFF;
+}
+
+/* O quadro não traz Focus. Mantida a mecânica das outras variantes, com o
+   contorno em branco: esta variante vive sobre fundo escuro, e um anel navy
+   ali não se enxerga. */
+.unooria-button--light.unooria-button--variant-light:focus-visible,
+.unooria-button--light.unooria-button--variant-light.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* AI - Light
+   Variante NOVA. Contorno roxo de 1px e o RÓTULO em gradiente roxo->azul.
+   O quadro não distingue Default de Hover e Pressed — só o Disabled muda. */
+.unooria-button--light.unooria-button--variant-ai,
+:not([data-theme="dark"]) .unooria-button--variant-ai {
+  background-color: transparent;
+  border-width: 1px;
+  border-color: var(--unooria-color-brandpurple-700, #57547D);
+  color: var(--unooria-color-brandpurple-700, #57547D);
+}
+
+.unooria-button--light.unooria-button--variant-ai:focus-visible,
+.unooria-button--light.unooria-button--variant-ai.unooria-button--state-focus {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandpurple-300, rgba(14, 16, 57, 0.30));
+  outline: 2px solid var(--unooria-color-brandpurple-700, #57547D);
+  outline-offset: 2px;
+}
+
+/*
+ * O gradiente do rótulo da `ai`.
+ *
+ * Ele vive no `__content`, NÃO no botão: `background-clip: text` exige
+ * `color: transparent`, e o ícone e o spinner desenham com `currentColor` —
+ * no botão inteiro, os dois ficariam invisíveis. Aqui o rótulo ganha o
+ * gradiente e o resto mantém o roxo da borda.
+ *
+ * O `@supports` não é zelo excessivo: sem `background-clip: text` o
+ * `color: transparent` sozinho apaga o rótulo. Fora do bloco ele fica roxo
+ * sólido, que é degradação legível.
+ *
+ * Ângulo 195deg: o Figma exporta de 194.03 a 195.24 conforme o tamanho do
+ * botão, porque calcula sobre o bounding box de cada instância. A variação é
+ * artefato de exportação, não decisão de design — um valor só, arredondado.
+ */
+.unooria-button--variant-ai .unooria-button__content {
+  color: var(--unooria-color-brandpurple-700, #57547D);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .unooria-button--variant-ai .unooria-button__content {
+    background-image: linear-gradient(
+      195deg,
+      var(--unooria-color-brandpurple-700, #57547D) 0.44%,
+      var(--unooria-color-brandpurple-600, #716C98) 5.39%,
+      var(--unooria-color-brandnavy-600, #7FA5E2) 54.13%,
+      var(--unooria-color-brandnavy-500, #8FAFE5) 71.48%,
+      var(--unooria-color-brandnavy-400, #A4BDE9) 88.33%,
+      var(--unooria-color-brandnavy-300, #BDD0EF) 99.56%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .unooria-button--variant-ai:disabled .unooria-button__content,
+  .unooria-button--variant-ai.unooria-button--disabled .unooria-button__content,
+  .unooria-button--variant-ai.unooria-button--state-disabled .unooria-button__content {
+    background-image: linear-gradient(
+      195deg,
+      var(--unooria-color-brandpurple-100, #EFEEF5) 0%,
+      var(--unooria-color-brandpurple-400, #AAA5C2) 34.47%,
+      var(--unooria-color-neutral-300, #A7B5B9) 58.81%,
+      var(--unooria-color-brandnavy-300, #BDD0EF) 83.14%
+    );
+  }
+}
+
 /* Disabled - Light */
 .unooria-button--light:disabled,
 .unooria-button--light.unooria-button--disabled,
@@ -263,12 +369,25 @@
   box-shadow: none;
 }
 
+/*
+ * Disabled por variante, tema claro.
+ *
+ * O `opacity: .7` da regra geral é anulado NESTAS variantes de propósito. O
+ * quadro do Figma passou a dar cor exata para cada desabilitado — `neutral-700`
+ * no contorno, `neutral-500` no rótulo da subtle — e são cores MAIS ESCURAS que
+ * as de antes, ou seja, ele está pedindo mais contraste no estado, não menos.
+ * Esmaecer por cima entregaria justamente o contrário do que o quadro mostra.
+ * As variantes que o quadro ainda não decidiu (`primary`, `secondary`,
+ * `danger`) seguem com o `.7` herdado — quando o Filled for resolvido, isto
+ * vira regra única.
+ */
 .unooria-button--light.unooria-button--variant-outline:disabled,
 .unooria-button--light.unooria-button--variant-outline.unooria-button--disabled,
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-disabled {
   background-color: transparent;
-  border-color: var(--unooria-color-neutral-200, #CBD4D6);
-  color: var(--unooria-color-neutral-400, #7C8E94);
+  border-color: var(--unooria-color-neutral-700, #475157);
+  color: var(--unooria-color-neutral-700, #475157);
+  opacity: 1;
 }
 
 .unooria-button--light.unooria-button--variant-ghost:disabled,
@@ -276,7 +395,26 @@
 .unooria-button--light.unooria-button--variant-ghost.unooria-button--state-disabled {
   background-color: transparent;
   border-color: transparent;
-  color: var(--unooria-color-neutral-400, #7C8E94);
+  color: var(--unooria-color-neutral-500, #617379);
+  opacity: 1;
+}
+
+.unooria-button--light.unooria-button--variant-light:disabled,
+.unooria-button--light.unooria-button--variant-light.unooria-button--disabled,
+.unooria-button--light.unooria-button--variant-light.unooria-button--state-disabled {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  border-color: transparent;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.unooria-button--light.unooria-button--variant-ai:disabled,
+.unooria-button--light.unooria-button--variant-ai.unooria-button--disabled,
+.unooria-button--light.unooria-button--variant-ai.unooria-button--state-disabled {
+  background-color: transparent;
+  border-color: var(--unooria-color-brandpurple-100, #EFEEF5);
+  color: var(--unooria-color-brandpurple-400, #AAA5C2);
+  opacity: 1;
 }
 
 /* ==========================================================================
@@ -333,23 +471,40 @@
   outline-offset: 2px;
 }
 
-/* Outline - Dark */
+/*
+ * Outline - Dark
+ *
+ * ATENÇÃO: o tema escuro NÃO está no quadro do Figma. O que segue é o análogo
+ * proposto, pendente de validação do Lucas — não é leitura do desenho.
+ *
+ * A regra que copiei do claro: o Figma unificou rótulo e borda num degrau só
+ * (antes eram dois), clareia UM degrau no hover e escurece UM no pressed. No
+ * escuro, "clarear" e "escurecer" trocam de lado porque o fundo trocou: o
+ * default unifica em `brandnavy-300` (era rótulo 300 + borda 400), o hover sobe
+ * para 200 e o pressed desce para 400. Os overlays acompanham o corte do claro
+ * (que caiu de .10/.20 para .05/.10) mantendo a proporção que o escuro já
+ * tinha, o dobro do claro: .10 e .20.
+ */
 .unooria-button--dark.unooria-button--variant-outline,
 [data-theme="dark"] .unooria-button--variant-outline {
   background-color: transparent;
   color: var(--unooria-color-brandnavy-300, #BDD0EF);
   border-width: 1.5px;
-  border-color: var(--unooria-color-brandnavy-400, #A4BDE9);
+  border-color: var(--unooria-color-brandnavy-300, #BDD0EF);
 }
 
 .unooria-button--dark.unooria-button--variant-outline:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-outline.unooria-button--state-hover {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-200, #D3E0F5);
+  border-color: var(--unooria-color-brandnavy-200, #D3E0F5);
 }
 
 .unooria-button--dark.unooria-button--variant-outline:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-outline.unooria-button--state-active {
-  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  color: var(--unooria-color-brandnavy-400, #A4BDE9);
+  border-color: var(--unooria-color-brandnavy-400, #A4BDE9);
 }
 
 .unooria-button--dark.unooria-button--variant-outline:focus-visible,
@@ -359,7 +514,7 @@
   outline-offset: 2px;
 }
 
-/* Ghost - Dark */
+/* Ghost (a "Subtle" do Figma) - Dark — também proposta, ver a nota do Outline */
 .unooria-button--dark.unooria-button--variant-ghost,
 [data-theme="dark"] .unooria-button--variant-ghost {
   background-color: transparent;
@@ -369,12 +524,14 @@
 
 .unooria-button--dark.unooria-button--variant-ghost:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-hover {
-  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
+  color: var(--unooria-color-brandnavy-200, #D3E0F5);
 }
 
 .unooria-button--dark.unooria-button--variant-ghost:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-active {
-  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  color: var(--unooria-color-brandnavy-400, #A4BDE9);
 }
 
 .unooria-button--dark.unooria-button--variant-ghost:focus-visible,
@@ -409,6 +566,54 @@
   outline-offset: 2px;
 }
 
+/* Light - Dark
+   Esta é a única variante que NÃO muda entre os temas, e isso é o ponto dela:
+   ela existe para viver sobre fundo escuro ou foto. Trocar de cor no tema
+   escuro seria desfazer a razão de ela existir. */
+.unooria-button--dark.unooria-button--variant-light,
+[data-theme="dark"] .unooria-button--variant-light {
+  background-color: var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.90));
+  color: var(--unooria-color-brandnavy-700, #6487C2);
+  border-color: transparent;
+}
+
+.unooria-button--dark.unooria-button--variant-light:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-light.unooria-button--state-hover {
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: #FFFFFF;
+}
+
+.unooria-button--dark.unooria-button--variant-light:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--dark.unooria-button--variant-light.unooria-button--state-active {
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
+  color: #FFFFFF;
+}
+
+.unooria-button--dark.unooria-button--variant-light:focus-visible,
+.unooria-button--dark.unooria-button--variant-light.unooria-button--state-focus {
+  box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* AI - Dark — proposta: só a BORDA sobe de degrau (o roxo 700 não se enxerga
+   sobre fundo escuro). O gradiente do rótulo é o mesmo nos dois temas: ele já
+   termina no azul claro, que lê bem sobre escuro. */
+.unooria-button--dark.unooria-button--variant-ai,
+[data-theme="dark"] .unooria-button--variant-ai {
+  background-color: transparent;
+  border-width: 1px;
+  border-color: var(--unooria-color-brandpurple-500, #8B85AC);
+  color: var(--unooria-color-brandpurple-400, #AAA5C2);
+}
+
+.unooria-button--dark.unooria-button--variant-ai:focus-visible,
+.unooria-button--dark.unooria-button--variant-ai.unooria-button--state-focus {
+  box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-400, rgba(127, 165, 226, 0.40));
+  outline: 2px solid var(--unooria-color-brandpurple-400, #AAA5C2);
+  outline-offset: 2px;
+}
+
 /* Disabled - Dark */
 .unooria-button--dark:disabled,
 .unooria-button--dark.unooria-button--disabled,
@@ -419,12 +624,24 @@
   box-shadow: none;
 }
 
+/*
+ * Disabled por variante, tema escuro — proposta.
+ *
+ * A escala `neutraldark` corre ao contrário da `neutral`: 50 é o mais escuro e
+ * 950 o mais claro. Então o análogo de "o Figma pediu MAIS contraste no
+ * desabilitado" sobe de degrau em vez de descer. Conferido por contraste real
+ * sobre o fundo escuro (#22272A), para ficar par a par com o claro:
+ *   outline  #A7B5B9 sobre #22272A ~ 6,9:1   (no claro, #475157 sobre branco ~ 7,0:1)
+ *   ghost    #7C8E94 sobre #22272A ~ 4,5:1   (no claro, #617379 sobre branco ~ 4,9:1)
+ * O `opacity: 1` tem a mesma razão do tema claro.
+ */
 .unooria-button--dark.unooria-button--variant-outline:disabled,
 .unooria-button--dark.unooria-button--variant-outline.unooria-button--disabled,
 .unooria-button--dark.unooria-button--variant-outline.unooria-button--state-disabled {
   background-color: transparent;
-  border-color: var(--unooria-color-neutraldark-200, #3D4448);
-  color: var(--unooria-color-neutraldark-400, #536167);
+  border-color: var(--unooria-color-neutraldark-800, #A7B5B9);
+  color: var(--unooria-color-neutraldark-800, #A7B5B9);
+  opacity: 1;
 }
 
 .unooria-button--dark.unooria-button--variant-ghost:disabled,
@@ -432,5 +649,24 @@
 .unooria-button--dark.unooria-button--variant-ghost.unooria-button--state-disabled {
   background-color: transparent;
   border-color: transparent;
-  color: var(--unooria-color-neutraldark-400, #536167);
+  color: var(--unooria-color-neutraldark-700, #7C8E94);
+  opacity: 1;
+}
+
+.unooria-button--dark.unooria-button--variant-light:disabled,
+.unooria-button--dark.unooria-button--variant-light.unooria-button--disabled,
+.unooria-button--dark.unooria-button--variant-light.unooria-button--state-disabled {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  border-color: transparent;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.unooria-button--dark.unooria-button--variant-ai:disabled,
+.unooria-button--dark.unooria-button--variant-ai.unooria-button--disabled,
+.unooria-button--dark.unooria-button--variant-ai.unooria-button--state-disabled {
+  background-color: transparent;
+  border-color: var(--unooria-color-brandpurple-700, #57547D);
+  color: var(--unooria-color-brandpurple-600, #716C98);
+  opacity: 1;
 }

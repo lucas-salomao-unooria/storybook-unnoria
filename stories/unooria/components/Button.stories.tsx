@@ -216,8 +216,8 @@ const ButtonDocumentationPage = () => {
       {/* 2. Hierarquia das Variantes */}
       <section style={{ marginBottom: '40px' }}>
         <UnooriaDocSectionHeader
-          title="2. Hierarquia das 5 Variantes"
-          description="O sistema disponibiliza 5 variantes para estabelecer uma hierarquia visual intuitiva e evitar sobrecarga cognitiva"
+          title="2. Hierarquia das 7 Variantes"
+          description="O sistema disponibiliza 7 variantes para estabelecer uma hierarquia visual intuitiva e evitar sobrecarga cognitiva"
           barColor="#1D0B36"
         />
 
@@ -283,6 +283,32 @@ const ButtonDocumentationPage = () => {
               <h4 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 600, color: '#DC2626' }}>Danger (Ação Crítica/Destrutiva)</h4>
               <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: '1.5' }}>
                 Exclusiva para operações irreversíveis ou de alto risco (ex: &quot;Excluir conta&quot;, &quot;Remover usuário&quot;, &quot;Revogar acesso&quot;).
+              </p>
+            </div>
+          </div>
+
+          {/* Light — a amostra vai sobre faixa escura, que é onde a variante existe */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '16px 20px', backgroundColor: '#22272A', border: '1px solid #3D4448', borderRadius: '12px', flexWrap: 'wrap' }}>
+            <div style={{ minWidth: '160px' }}>
+              <Button variant="light">Ver a foto</Button>
+            </div>
+            <div style={{ flex: 1 }}>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 600, color: '#FFFFFF' }}>Light (Sobre Fundo Escuro ou Foto)</h4>
+              <p style={{ margin: 0, fontSize: '14px', color: '#CBD4D6', lineHeight: '1.5' }}>
+                Pastilha branca translúcida para quando o fundo não é a superfície da plataforma: capa de vídeo, imagem, faixa escura. <strong>Regra:</strong> não use sobre fundo claro — ali ela desaparece, e <code>outline</code> ou <code>ghost</code> resolvem melhor.
+              </p>
+            </div>
+          </div>
+
+          {/* AI */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '16px 20px', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '12px', flexWrap: 'wrap' }}>
+            <div style={{ minWidth: '160px' }}>
+              <Button variant="ai">Gerar com IA</Button>
+            </div>
+            <div style={{ flex: 1 }}>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: 600, color: '#57547D' }}>AI (Ação de Inteligência Artificial)</h4>
+              <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: '1.5' }}>
+                Contorno roxo e rótulo em gradiente, reservados a ações que acionam IA (gerar, resumir, sugerir). <strong>Regra:</strong> o gradiente é a marca dessa ação — não a use para outra coisa, ou ela deixa de sinalizar o que sinaliza.
               </p>
             </div>
           </div>
@@ -404,7 +430,7 @@ const ButtonDocumentationPage = () => {
           </h4>
           <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', color: '#475569', lineHeight: '1.7' }}>
             <li>
-              <strong>Contraste Garantido:</strong> Todas as 5 variantes atendem à razão de contraste de 4.5:1 para texto e 3:1 para contornos da WCAG AA.
+              <strong>Contraste — atenção, há exceções abertas:</strong> as variantes sólidas (<code>primary</code>, <code>secondary</code>, <code>danger</code>) e o tema escuro inteiro atendem a WCAG AA (4.5:1 para texto, 3:1 para contornos). <strong>No tema claro, três casos não atendem</strong>, e vêm do desenho recebido, não da implementação: <code>outline</code> e <code>ghost</code> em repouso medem 3.63:1 (o rótulo passou de <code>brandnavy-800</code> para <code>brandnavy-700</code>, e o valor anterior era 5.52:1); os mesmos em <em>hover</em> medem 2.51:1; e o rótulo em gradiente da <code>ai</code> termina em 1.56:1 na ponta clara. Todos falham o mínimo para texto normal. Até a revisão do desenho, prefira <code>primary</code> ou <code>secondary</code> quando o rótulo precisar ser legível por si só.
             </li>
             <li>
               <strong>Anel de Foco Visível:</strong> Foco por teclado via tecla <code style={{ fontSize: '12px' }}>Tab</code> com contorno de 2px de alto contraste (<code style={{ fontSize: '12px' }}>:focus-visible</code>).
@@ -478,8 +504,9 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'danger'],
-      description: 'Variante visual do botão.',
+      options: ['primary', 'secondary', 'outline', 'ghost', 'danger', 'light', 'ai'],
+      description:
+        'Variante visual do botão. No Figma a `ghost` se chama Subtle; o nome do código não mudou para não quebrar quem já a usa.',
       table: {
         defaultValue: { summary: 'primary' },
       },
@@ -590,16 +617,39 @@ export const Playground: Story = {
 };
 
 /**
- * Todas as 5 variantes funcionais do botão (Primary, Secondary, Outline, Ghost, Danger).
+ * Todas as 7 variantes funcionais do botão (Primary, Secondary, Outline, Ghost, Danger, Light, AI).
  */
 export const TodasVariantes: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="danger" leftIcon={<TrashIcon />}>Danger</Button>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="danger" leftIcon={<TrashIcon />}>Danger</Button>
+        <Button variant="ai">AI</Button>
+      </div>
+
+      {/*
+        A `light` fica na sua própria faixa porque é branca: sobre o fundo claro
+        das outras ela não se enxergaria, e uma amostra invisível documenta
+        errado. A faixa escura é o contexto em que ela existe.
+      */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          padding: '20px',
+          borderRadius: '12px',
+          backgroundColor: '#22272A',
+        }}
+      >
+        <Button variant="light">Light</Button>
+        <Button variant="light" leftIcon={<PlusIcon />}>Sobre fundo escuro</Button>
+      </div>
     </div>
   ),
 };
@@ -628,7 +678,22 @@ export const TodosTamanhos: Story = {
  */
 export const MatrizDeEstados: Story = {
   render: () => {
-    const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', 'danger'];
+    const variants: ButtonVariant[] = [
+      'primary',
+      'secondary',
+      'outline',
+      'ghost',
+      'danger',
+      'light',
+      'ai',
+    ];
+    /*
+     * A `light` é uma pastilha branca: na linha de fundo branco do tema claro
+     * ela desapareceria, e a matriz mostraria uma linha vazia como se o
+     * componente estivesse quebrado. A célula dela ganha fundo escuro nos DOIS
+     * temas — é o contexto para o qual a variante foi desenhada.
+     */
+    const fundoDaCelula = (v: ButtonVariant) => (v === 'light' ? '#22272A' : undefined);
     const states: { label: string; stateProp?: ButtonState }[] = [
       { label: 'Default', stateProp: 'default' },
       { label: 'Hover', stateProp: 'hover' },
@@ -672,7 +737,14 @@ export const MatrizDeEstados: Story = {
                     {v}
                   </td>
                   {states.map((st) => (
-                    <td key={st.label} style={{ padding: '14px 8px', textAlign: 'center' }}>
+                    <td
+                      key={st.label}
+                      style={{
+                        padding: '14px 8px',
+                        textAlign: 'center',
+                        backgroundColor: fundoDaCelula(v),
+                      }}
+                    >
                       <Button
                         variant={v}
                         size="sm"
