@@ -177,11 +177,21 @@
   outline-offset: 2px;
 }
 
-/* Outline - Light */
+/*
+ * Outline - Light
+ *
+ * DESVIO DELIBERADO do quadro, aprovado pelo Lucas: o quadro põe rótulo e borda
+ * no MESMO degrau (700 em repouso, 600 no hover), e o rótulo ali mede 3,63:1 e
+ * 2,51:1 — abaixo dos 4,5:1 que texto normal exige. Aqui os dois se separam: a
+ * BORDA clareia como o quadro pede, e o RÓTULO fica em `brandnavy-800`, que
+ * mede 5,52:1 e devolve o AA. A intenção visual do desenho (contorno mais leve,
+ * que clareia ao passar o ponteiro) fica preservada; o que não vai junto é o
+ * rótulo, que é o que a pessoa precisa ler.
+ */
 .unooria-button--light.unooria-button--variant-outline,
 :not([data-theme="dark"]) .unooria-button--variant-outline {
   background-color: transparent;
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   border-width: 1.5px;
   border-color: var(--unooria-color-brandnavy-700, #6487C2);
 }
@@ -189,7 +199,7 @@
 .unooria-button--light.unooria-button--variant-outline:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-hover {
   background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
-  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
 }
 
@@ -203,22 +213,30 @@
 .unooria-button--light.unooria-button--variant-outline:focus-visible,
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-focus {
   box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
-  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
+  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
   outline-offset: 2px;
 }
 
-/* Ghost (a "Subtle" do Figma) - Light */
+/*
+ * Ghost (a "Subtle" do Figma) - Light
+ *
+ * Mesmo desvio do `outline`, e aqui ele é mais radical porque a `ghost` não tem
+ * borda: se o rótulo tivesse de carregar a variação de degrau do quadro, seria
+ * a ÚNICA coisa colorida do botão e mediria 3,63:1 em repouso. O rótulo fica em
+ * `brandnavy-800` nos três estados e quem responde ao ponteiro é o fundo, que é
+ * o recurso que esta variante de fato tem.
+ */
 .unooria-button--light.unooria-button--variant-ghost,
 :not([data-theme="dark"]) .unooria-button--variant-ghost {
   background-color: transparent;
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   border-color: transparent;
 }
 
 .unooria-button--light.unooria-button--variant-ghost:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-ghost.unooria-button--state-hover {
   background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
-  color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-button--light.unooria-button--variant-ghost:active:not(:disabled):not(.unooria-button--disabled),
@@ -230,7 +248,7 @@
 .unooria-button--light.unooria-button--variant-ghost:focus-visible,
 .unooria-button--light.unooria-button--variant-ghost.unooria-button--state-focus {
   box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
-  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
+  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
   outline-offset: 2px;
 }
 
@@ -262,11 +280,14 @@
 /* Light - Light
    Variante NOVA. Pastilha branca translúcida para uso sobre fundo escuro ou
    foto, onde `outline` e `ghost` somem. No hover ela INVERTE: vira o azul
-   sólido com rótulo branco. */
+   sólido com rótulo branco.
+
+   Mesmo desvio das outras duas: o quadro põe o rótulo em 700, que sobre a
+   pastilha quase branca mede 3,63:1. Aqui ele fica em `brandnavy-800`, 5,52:1. */
 .unooria-button--light.unooria-button--variant-light,
 :not([data-theme="dark"]) .unooria-button--variant-light {
   background-color: var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.90));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   border-color: transparent;
 }
 
@@ -303,6 +324,24 @@
   color: var(--unooria-color-brandpurple-700, #57547D);
 }
 
+/*
+ * Hover e pressed da `ai`: PROPOSTA, não leitura do quadro.
+ *
+ * No desenho, Default, Hover e Pressed da `ai` são idênticos — só o Disabled
+ * muda. Um controle que não responde ao ponteiro nasce defeituoso, então ela
+ * ganha aqui o mesmo overlay discreto que a `ghost` usa, no roxo da própria
+ * variante. Pendente de validação, registrado na seção 5.1 do AGENTS.md.
+ */
+.unooria-button--light.unooria-button--variant-ai:hover:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-ai.unooria-button--state-hover {
+  background-color: var(--unooria-color-opacity-brandpurple-50, rgba(14, 16, 57, 0.05));
+}
+
+.unooria-button--light.unooria-button--variant-ai:active:not(:disabled):not(.unooria-button--disabled),
+.unooria-button--light.unooria-button--variant-ai.unooria-button--state-active {
+  background-color: var(--unooria-color-opacity-brandpurple-100, rgba(14, 16, 57, 0.10));
+}
+
 .unooria-button--light.unooria-button--variant-ai:focus-visible,
 .unooria-button--light.unooria-button--variant-ai.unooria-button--state-focus {
   box-shadow: 0 0 0 3px var(--unooria-color-opacity-brandpurple-300, rgba(14, 16, 57, 0.30));
@@ -325,6 +364,17 @@
  * Ângulo 195deg: o Figma exporta de 194.03 a 195.24 conforme o tamanho do
  * botão, porque calcula sobre o bounding box de cada instância. A variação é
  * artefato de exportação, não decisão de design — um valor só, arredondado.
+ *
+ * O gradiente do quadro tinha SEIS paradas e terminava em `brandnavy-300`, que
+ * sobre branco mede 1,56:1 — a última terça parte do rótulo era ilegível. Aqui
+ * ele tem três, e a parada mais clara é `brandnavy-800` (5,52:1), a mesma que
+ * as outras variantes usam para o rótulo: TODA a extensão do texto passa o AA.
+ * O roxo->azul continua lá, e é o que faz a variante ser reconhecível.
+ *
+ * Nota de percurso: eu mesma havia sugerido parar em `brandnavy-600`, e a
+ * medição derrubou a sugestão — 600 mede 2,51:1 e não devolveria o AA que é o
+ * objetivo inteiro desta correção. Trocar para 600 é uma linha, se a decisão
+ * de design preferir o tom mais claro ao contraste.
  */
 .unooria-button--variant-ai .unooria-button__content {
   color: var(--unooria-color-brandpurple-700, #57547D);
@@ -335,11 +385,8 @@
     background-image: linear-gradient(
       195deg,
       var(--unooria-color-brandpurple-700, #57547D) 0.44%,
-      var(--unooria-color-brandpurple-600, #716C98) 5.39%,
-      var(--unooria-color-brandnavy-600, #7FA5E2) 54.13%,
-      var(--unooria-color-brandnavy-500, #8FAFE5) 71.48%,
-      var(--unooria-color-brandnavy-400, #A4BDE9) 88.33%,
-      var(--unooria-color-brandnavy-300, #BDD0EF) 99.56%
+      var(--unooria-color-brandpurple-600, #716C98) 25%,
+      var(--unooria-color-brandnavy-800, #49699F) 99.56%
     );
     -webkit-background-clip: text;
     background-clip: text;

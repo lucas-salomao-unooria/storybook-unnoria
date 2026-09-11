@@ -430,7 +430,13 @@ const ButtonDocumentationPage = () => {
           </h4>
           <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', color: '#475569', lineHeight: '1.7' }}>
             <li>
-              <strong>Contraste — atenção, há exceções abertas:</strong> as variantes sólidas (<code>primary</code>, <code>secondary</code>, <code>danger</code>) e o tema escuro inteiro atendem a WCAG AA (4.5:1 para texto, 3:1 para contornos). <strong>No tema claro, três casos não atendem</strong>, e vêm do desenho recebido, não da implementação: <code>outline</code> e <code>ghost</code> em repouso medem 3.63:1 (o rótulo passou de <code>brandnavy-800</code> para <code>brandnavy-700</code>, e o valor anterior era 5.52:1); os mesmos em <em>hover</em> medem 2.51:1; e o rótulo em gradiente da <code>ai</code> termina em 1.56:1 na ponta clara. Todos falham o mínimo para texto normal. Até a revisão do desenho, prefira <code>primary</code> ou <code>secondary</code> quando o rótulo precisar ser legível por si só.
+              <strong>Contraste:</strong> todo <strong>rótulo</strong> atende ao mínimo de 4.5:1 da WCAG AA, nos dois temas. No claro, o rótulo de <code>outline</code>, <code>ghost</code> e <code>light</code> mede <strong>5.52:1</strong> (<code>brandnavy-800</code>) e o gradiente da <code>ai</code> vai de 7.07:1 a 5.52:1 em toda a sua extensão. No escuro, 9.65:1.
+            </li>
+            <li>
+              <strong>Desvio deliberado em relação ao Figma:</strong> o quadro põe rótulo e borda no mesmo degrau, e o rótulo ali mediria 3.63:1 em repouso e 2.51:1 em <em>hover</em> — abaixo do mínimo. Aqui os dois se separam: a <strong>borda</strong> segue o degrau mais leve do desenho (<code>brandnavy-700</code>, e <code>600</code> no <em>hover</em>) e o <strong>rótulo</strong> fica no degrau legível. A intenção visual do desenho se mantém; o que não acompanha é o texto, que é o que precisa ser lido. Registrado na seção 5.1 do <code>AGENTS.md</code>.
+            </li>
+            <li>
+              <strong>Duas ressalvas que continuam abertas, nas cores que o desenho define:</strong> a borda da <code>outline</code> em <em>hover</em> mede 2.51:1, abaixo dos 3:1 que a WCAG 1.4.11 pede para contorno de componente — o rótulo continua legível, o contorno é que enfraquece ao passar o ponteiro. E o rótulo branco da <code>light</code> sobre o azul do <em>hover</em> mede 2.51:1 (no <em>pressed</em> sobe para 5.52:1). O desabilitado da <code>light</code> mede 1.28:1, tecnicamente isento pela WCAG (componente inativo), mas na prática ilegível.
             </li>
             <li>
               <strong>Anel de Foco Visível:</strong> Foco por teclado via tecla <code style={{ fontSize: '12px' }}>Tab</code> com contorno de 2px de alto contraste (<code style={{ fontSize: '12px' }}>:focus-visible</code>).
