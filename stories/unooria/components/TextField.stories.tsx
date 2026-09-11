@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { TextField } from '../../../src/unooria/components/TextField/TextField';
 import { PasswordInput } from '../../../src/unooria/components/TextField/PasswordInput';
 import { SearchInput } from '../../../src/unooria/components/TextField/SearchInput';
@@ -655,4 +656,50 @@ export const ExemploOficialFigma: Story = {
       />
     </div>
   ),
+};
+
+/**
+ * REDE CONTRA REGRESSÃO — o campo sem `value` não pode perder o que foi
+ * escrito nele por fora do React.
+ *
+ * O defeito que esta estória guarda (medido em 11/09/2026, na 0.2.1): o
+ * `<input>` recebia `value` sempre, mesmo sem o consumidor pedir, e o texto
+ * passava a viver num estado que só o `onChange` do React alimenta. Quem
+ * escreve no DOM sem disparar evento do React — o preenchimento automático do
+ * navegador e todo gerenciador de senhas — era apagado na primeira
+ * re-renderização. Na tela de entrada do LMS isso mandava a senha VAZIA ao
+ * servidor, e a pessoa via "senha incorreta" tendo preenchido certo.
+ *
+ * O teste imita exatamente isso: escreve no nó, força uma re-renderização
+ * clicando no olho, e cobra que o texto continue lá. Sem esta rede o defeito
+ * volta calado — ele não quebra nenhum outro teste.
+ */
+export const NaoControladoSobrevivePreenchimentoExterno: Story = {
+  name: 'Campo não controlado preserva texto escrito por fora',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 320 }}>
+      <TextField label="Usuário" name="usuario" autoComplete="username" />
+      <PasswordInput label="Senha" name="senha" autoComplete="current-password" />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const usuario = canvasElement.querySelector<HTMLInputElement>('input[name="usuario"]')!;
+    const senha = canvasElement.querySelector<HTMLInputElement>('input[name="senha"]')!;
+
+    /* Sem `value` vindo do consumidor, o elemento não pode carregar o
+       atributo: é isso que deixa o DOM ser o dono do texto. */
+    await expect(usuario).not.toHaveAttribute('value');
+    await expect(senha).not.toHaveAttribute('value');
+
+    /* Escrita SEM evento do React — o que o gerenciador de senhas faz. */
+    usuario.value = 'prof.horizonte';
+    senha.value = 'senha-salva-123';
+
+    /* Uma re-renderização qualquer. O olho é a mais barata de provocar. */
+    await userEvent.click(tela.getByRole('button', { name: 'Exibir senha' }));
+
+    await expect(usuario.value).toBe('prof.horizonte');
+    await expect(senha.value).toBe('senha-salva-123');
+  },
 };

@@ -34,12 +34,20 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
     ref
   ) => {
-    const [internalValue, setInternalValue] = useState<string>(
-      (value !== undefined ? value : defaultValue || '') as string
+    const isControlled = value !== undefined;
+
+    /**
+     * Mesma correção do `TextField`: em modo não controlado quem guarda o
+     * texto é o DOM. Antes o `<textarea>` recebia `value` sempre, e qualquer
+     * escrita que não passasse por evento do React era apagada na primeira
+     * re-renderização. Este estado sobrevive para alimentar o contador de
+     * caracteres — que a pessoa move digitando, então ele acompanha.
+     */
+    const [valorNaoControlado, setValorNaoControlado] = useState<string>(
+      (defaultValue ?? '') as string
     );
 
-    const isControlled = value !== undefined;
-    const currentValue = isControlled ? (value as string) : internalValue;
+    const currentValue = isControlled ? (value as string) : valorNaoControlado;
     const currentLength = currentValue ? currentValue.length : 0;
 
     const hasError = !!error;
@@ -65,7 +73,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (!isControlled) {
-        setInternalValue(e.target.value);
+        setValorNaoControlado(e.target.value);
       }
       onChange?.(e);
     };
@@ -107,7 +115,9 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         <textarea
           ref={ref}
           disabled={disabled}
-          value={currentValue}
+          /* Controlado só quando o consumidor pede — ver o comentário do
+             estado acima. */
+          {...(isControlled ? { value: value as string } : { defaultValue })}
           onChange={handleChange}
           maxLength={maxLength}
           rows={rows}

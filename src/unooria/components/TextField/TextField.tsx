@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useCallback, useRef, useState } from 'react';
 import { TextFieldProps } from './TextField.types';
 import { Icon } from '../Icon/Icon';
 import './TextField.css';
@@ -35,12 +35,46 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref
   ) => {
-    const [internalValue, setInternalValue] = useState<string>(
-      (value !== undefined ? value : defaultValue || '') as string
+    const isControlled = value !== undefined;
+
+    /**
+     * Em modo NÃO controlado quem guarda o texto é o DOM, não este estado.
+     *
+     * Antes o `<input>` recebia `value` sempre, mesmo sem o consumidor pedir:
+     * o campo virava controlado por um estado que só o `onChange` do React
+     * alimenta. Quem escreve no DOM sem passar por evento do React — o
+     * preenchimento automático do navegador e todo gerenciador de senhas —
+     * ficava invisível para esse estado, e a PRIMEIRA re-renderização
+     * reconciliava o campo de volta para `''`. Medido em 11/09/2026 na tela
+     * `/entrar` do LMS: senha injetada, um clique em "Exibir senha", e o
+     * `FormData` do formulário já ia com `senha` vazia. O sintoma que chega
+     * ao suporte é "minha senha salva não funciona".
+     *
+     * Este estado sobrevive só para decidir a visibilidade do botão "limpar".
+     * Ele pode ficar defasado quando o preenchimento vem sem evento, e isso é
+     * aceitável: o custo é um botão que demora a aparecer, não um texto que
+     * some.
+     */
+    const [valorNaoControlado, setValorNaoControlado] = useState<string>(
+      (defaultValue ?? '') as string
     );
 
-    const isControlled = value !== undefined;
-    const currentValue = isControlled ? (value as string) : internalValue;
+    const currentValue = isControlled ? (value as string) : valorNaoControlado;
+
+    /**
+     * `ref` interna casada com a que vem de fora: em modo não controlado,
+     * limpar o campo é escrever no nó do DOM — não há mais estado que o
+     * comande.
+     */
+    const inputInterno = useRef<HTMLInputElement | null>(null);
+    const guardarRef = useCallback(
+      (node: HTMLInputElement | null) => {
+        inputInterno.current = node;
+        if (typeof ref === 'function') ref(node);
+        else if (ref) (ref as React.MutableRefObject<HTMLInputElement | null>).current = node;
+      },
+      [ref]
+    );
 
     const hasError = !!error;
     const hasSuccess = !hasError && !!success;
@@ -67,14 +101,16 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!isControlled) {
-        setInternalValue(e.target.value);
+        setValorNaoControlado(e.target.value);
       }
       onChange?.(e);
     };
 
     const handleClear = () => {
       if (!isControlled) {
-        setInternalValue('');
+        // O DOM é o dono do texto: limpar o estado não limparia o campo.
+        if (inputInterno.current) inputInterno.current.value = '';
+        setValorNaoControlado('');
       }
       onClear?.();
     };
@@ -115,9 +151,11 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {leftIcon && renderIcon(leftIcon, false)}
 
           <input
-            ref={ref}
+            ref={guardarRef}
             disabled={disabled}
-            value={currentValue}
+            /* Controlado só quando o consumidor pede. Sem `value`, o campo é
+               do DOM — que é o que faz o preenchimento automático sobreviver. */
+            {...(isControlled ? { value: value as string } : { defaultValue })}
             onChange={handleChange}
             className={`unooria-textfield__input ${inputClassName}`}
             aria-invalid={hasError || undefined}

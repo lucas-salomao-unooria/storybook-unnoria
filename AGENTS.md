@@ -325,6 +325,39 @@ O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem
 - **CSS de componente é copiado para o `dist`** ao lado do módulo, porque o `import './X.css'` permanece no JS emitido.
 - **Subpath exports por marca** (`@unooria/design-system/whatsappmobile`) existem para que um app que use uma marca não arraste as outras três.
 
+### 4.5.1. Campo de entrada só é controlado quando o consumidor pede
+
+**Nenhum componente de entrada passa `value` ao elemento nativo sem que o
+consumidor tenha passado `value`.** Sem `value`, quem guarda o texto é o DOM, e
+o que vai ao elemento é `defaultValue`. A forma é esta, e não outra:
+
+```tsx
+{...(isControlled ? { value: value as string } : { defaultValue })}
+```
+
+**O que custou descobrir (medido em 11/09/2026, na 0.2.1).** `TextField` e
+`TextArea` faziam `value={currentValue}` sempre, com `currentValue` caindo num
+estado interno que só o `onChange` do React alimenta. Toda escrita que não
+passa por evento do React — o preenchimento automático do navegador e qualquer
+gerenciador de senhas — ficava invisível para esse estado, e a **primeira
+re-renderização reconciliava o campo de volta para `''`**.
+
+Reproduzido na tela `/entrar` do LMS: senha injetada no DOM, um clique em
+"Exibir senha", e o `FormData` do formulário já ia com `senha` vazia. O sintoma
+que chega ao suporte não é um aviso no console — é "minha senha salva não
+funciona", e a pessoa jura que digitou certo. O aviso intermitente de
+descasamento de hidratação era a ponta visível do mesmo defeito.
+
+**Vale para todo campo**: `TextField`, `TextArea`, e por herança
+`PasswordInput` e `SearchInput`. Um campo que perde texto é pior que um campo
+feio, e o modo de falhar é silencioso.
+
+O estado interno continua existindo, para o botão "limpar" e para o contador de
+caracteres. Ele pode ficar defasado quando o preenchimento vem sem evento — é
+aceitável: o custo é um botão que demora a aparecer, não um texto que some. Em
+modo não controlado, **limpar escreve no nó do DOM** (`ref` interna casada com
+a que vem de fora), porque não há mais estado que comande o campo.
+
 ---
 
 ## 4.6. Fontes: Opt-in, Embutidas, Fora das Folhas de Componente
