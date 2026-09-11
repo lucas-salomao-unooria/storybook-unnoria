@@ -232,6 +232,9 @@ const ButtonDocumentationPage = () => {
               <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: '1.5' }}>
                 Destinada à ação de maior relevância da tela ou modal (ex: &quot;Salvar alterações&quot;, &quot;Confirmar compra&quot;). <strong>Regra:</strong> Deve haver no máximo 1 botão Primary em foco por bloco visual.
               </p>
+              <p style={{ margin: '8px 0 0 0', fontSize: '13px', color: '#475569', lineHeight: '1.5', padding: '8px 10px', backgroundColor: '#F8FAFC', borderLeft: '3px solid #CBD4D6', borderRadius: '4px' }}>
+                <strong>Esta variante ainda está no tom anterior, e é de propósito.</strong> As outras já seguem o quadro novo do Figma; a <code>primary</code> não entrou porque o desenho se contradiz nela — a linha LG traz duas cores fixadas à mão que discordam do resto da própria linha e dos outros tamanhos. Fica como está, igual ao que já roda em produção, até a definição. Detalhe na seção 5.1 do <code>AGENTS.md</code>.
+              </p>
             </div>
           </div>
 
