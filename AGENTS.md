@@ -383,6 +383,18 @@ Antes de considerar qualquer tarefa de componente ou documentação concluída:
 6. Executar `npm test` e garantir que **todas as estórias renderizam** — a suíte Vitest monta cada estória em um Chromium real.
 7. Executar `npm run build:package` e garantir que o pacote é emitido sem falhas, com os tipos gerados pelo `tsc` (ver seção 4.5).
 
+### 5.1. Registro de Desvios em Relação ao Figma (Plataforma Unooria)
+Contraparte das seções 6.4, 7.6, 8.6, 9.6 e 10.6 para a seção `unooria`. Ela não existia: até 2026-09-11 as cinco marcas de clone tinham onde registrar desvio e a plataforma não, então divergência daqui não tinha lugar para morar. Qualquer divergência intencional em relação ao arquivo de design **DEVE** ser documentada na seção "Figma & Especificações Técnicas" da estória do componente, e a de consequência ampla, aqui. Desvios registrados até o momento, todos do quadro `buttons` (`Unooria_DS_v0.2`, node `5608-374`):
+
+- **`Button` / nome da variante `ghost`**: o quadro a chama de **Subtle**. O código mantém `ghost`. `variant` é API pública e há 107 chamadas entre este repo e o monorepo consumidor — renomear quebraria todas sem mudar um pixel, e um alias criaria duas formas de dizer a mesma coisa num componente que aceita prop inventada em silêncio. O mapeamento vive no JSDoc de `ButtonVariant`.
+- **`Button` / tema escuro**: o quadro só tem o tema claro. O escuro é **proposta por analogia**, marcada como tal em comentário no `Button.css`: unifica rótulo e borda num degrau, clareia um no hover e escurece um no pressed, com os lados trocados porque o fundo trocou. Pendente de validação.
+- **`Button` / estado Focus**: não existe no quadro. Mantida a mecânica de hoje (contorno de 2px mais realce), adaptando apenas a cor-base das variantes que mudaram de degrau.
+- **`Button` / contraste abaixo de WCAG AA no tema claro**: aplicado fiel ao quadro, com o custo medido e declarado na estória. O rótulo de `outline` e `ghost` em repouso caiu de 5,52:1 para 3,63:1; em hover mede 2,51:1; a ponta clara do gradiente da `ai` mede 1,56:1 — todos abaixo do mínimo de 4,5:1 para texto normal. Os desabilitados, ao contrário, subiram (3,41:1 para 8,13:1 e 4,96:1). **Aguardando decisão de design**; a correção sugerida é manter o degrau novo na borda e devolver o rótulo a `brandnavy-800`.
+- **`Button` / desabilitado sem o véu de opacidade**: as variantes que o quadro especificou com cor exata (`outline`, `ghost`, `light`, `ai`) anulam o `opacity: .7` da regra geral. As cores novas de desabilitado são mais escuras que as antigas, ou seja, o quadro pede mais contraste no estado — esmaecer por cima entregaria o contrário. As variantes ainda não decididas seguem com o `.7` herdado, e isto vira regra única quando o Filled for resolvido.
+- **`Button` / raio de borda e altura**: o quadro usa raio de 12px e altura de 48px em todos os tamanhos; o componente mantém 8/10/12 e 36/44/52 por tamanho. São diferenças de forma, não de cor, e ficaram fora da frente que aplicou o quadro. **Pendente.**
+- **`Button` / variante `ai` sem distinção de estado**: no quadro, Default, Hover e Pressed são visualmente idênticos — só o Disabled muda. Implementado fiel, mas um controle sem retorno visual ao ponteiro é problema de usabilidade. **Pendente.**
+- **`Button` / variante `primary` (Filled)**: **não aplicada.** A linha LG do quadro traz Default `#080922` e Pressed `#0e1039` cravados na mão, contradizendo o Hover da própria linha e as linhas MD/SM/XS, que usam variáveis. Aguardando qual vale.
+
 ---
 
 ## 6. Design System Instanooria (Seção `Instanooria` do Storybook)
