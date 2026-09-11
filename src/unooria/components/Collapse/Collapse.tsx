@@ -160,6 +160,7 @@ export const CollapseHeader = forwardRef<HTMLDivElement, CollapseHeaderProps>(
   (
     {
       title,
+      titleAs,
       subtitle,
       description,
       leadingIcon,
@@ -252,7 +253,7 @@ export const CollapseHeader = forwardRef<HTMLDivElement, CollapseHeaderProps>(
             )}
             <div className="unooria-collapse__header-text">
               {typeof title === 'string' ? (
-                <CollapseTitle>{title}</CollapseTitle>
+                <CollapseTitle as={titleAs}>{title}</CollapseTitle>
               ) : (
                 title
               )}
@@ -349,6 +350,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
   (
     {
       title,
+      titleAs,
       subtitle,
       description,
       leadingIcon,
@@ -443,6 +445,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
             <>
               <CollapseHeader
                 title={title}
+                titleAs={titleAs}
                 subtitle={subtitle || description}
                 leadingIcon={leadingIcon}
                 icon={icon || expandIcon}

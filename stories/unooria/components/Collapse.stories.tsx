@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import {
   Collapse,
   CollapseHeader,
@@ -1275,5 +1276,35 @@ export const VariantesETamanhos: Story = {
         </div>
       </div>
     );
+  },
+};
+
+/**
+ * REDE PARA A PROP `titleAs`.
+ *
+ * O atalho declarativo sai em `h4`, e isso só está certo quando a sanfona vive
+ * debaixo de um `h3`. Numa página que abre a seção com `h2` — uma lista de
+ * perguntas frequentes, que foi o caso que motivou a prop — o padrão pula um
+ * nível e verificador de acessibilidade aponta.
+ *
+ * O teste cobra as DUAS pontas: o padrão continua `h4`, para não mudar o
+ * sumário de quem já usa a sanfona, e a prop realmente troca o nível.
+ */
+export const NivelDoTituloPelaProp: Story = {
+  name: 'titleAs troca o nível do título, e o padrão segue h4',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 420 }}>
+      <Collapse theme="light" variant="bordered" title="Sem a prop: segue h4">
+        <p>Conteúdo.</p>
+      </Collapse>
+      <Collapse theme="light" variant="bordered" titleAs="h3" title="Com a prop: vira h3">
+        <p>Conteúdo.</p>
+      </Collapse>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    await expect(tela.getByText('Sem a prop: segue h4').tagName).toBe('H4');
+    await expect(tela.getByText('Com a prop: vira h3').tagName).toBe('H3');
   },
 };

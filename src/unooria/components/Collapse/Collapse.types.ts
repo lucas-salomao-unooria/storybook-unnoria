@@ -60,6 +60,11 @@ export interface CollapseHeaderProps extends Omit<React.HTMLAttributes<HTMLDivEl
    */
   title?: React.ReactNode;
   /**
+   * Nível do título no sumário da página. Ver `titleAs` em `CollapseProps`.
+   * @default 'h4'
+   */
+  titleAs?: CollapseTitleProps['as'];
+  /**
    * Subtítulo descritivo exibido abaixo do título
    */
   subtitle?: React.ReactNode;
@@ -269,6 +274,22 @@ export interface CollapseProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Título exibido no cabeçalho (atalho declarativo)
    */
   title?: React.ReactNode;
+  /**
+   * Nível do título no sumário da página.
+   *
+   * O padrão é `h4`, e ele só está certo quando a sanfona vive debaixo de um
+   * `h3`. Numa página que abre a seção com `h2` — uma lista de perguntas
+   * frequentes, por exemplo — o padrão pula um nível, e verificador de
+   * acessibilidade aponta. Compor à mão com `Collapse.Title as="h3"` resolvia,
+   * ao custo de refazer a ligação `aria-expanded`/`aria-controls` que o atalho
+   * declarativo já faz certo; por isso o nível passa a ser prop.
+   *
+   * Só vale quando `title` é texto: um `title` que já chega como elemento
+   * manda em si mesmo.
+   *
+   * @default 'h4'
+   */
+  titleAs?: CollapseTitleProps['as'];
   /**
    * Subtítulo ou descrição exibida no cabeçalho (atalho declarativo)
    */
