@@ -233,7 +233,7 @@ const ButtonDocumentationPage = () => {
                 Destinada à ação de maior relevância da tela ou modal (ex: &quot;Salvar alterações&quot;, &quot;Confirmar compra&quot;). <strong>Regra:</strong> Deve haver no máximo 1 botão Primary em foco por bloco visual.
               </p>
               <p style={{ margin: '8px 0 0 0', fontSize: '13px', color: '#475569', lineHeight: '1.5', padding: '8px 10px', backgroundColor: '#F8FAFC', borderLeft: '3px solid #CBD4D6', borderRadius: '4px' }}>
-                <strong>Esta variante ainda está no tom anterior, e é de propósito.</strong> As outras já seguem o quadro novo do Figma; a <code>primary</code> não entrou porque o desenho se contradiz nela — a linha LG traz duas cores fixadas à mão que discordam do resto da própria linha e dos outros tamanhos. Fica como está, igual ao que já roda em produção, até a definição. Detalhe na seção 5.1 do <code>AGENTS.md</code>.
+                <strong>O tom desta variante mudou, e essa era a razão de ser do quadro novo.</strong> O azul anterior (<code>brandnavy-600</code>) é quase o mesmo tom do desabilitado, e o botão principal da tela lia como desligado em vez de apertável. Agora o repouso é <code>brandnavy-700</code> e o <code>600</code> virou o realce do ponteiro — repouso e <em>hover</em> trocaram de lugar.
               </p>
             </div>
           </div>
@@ -433,7 +433,10 @@ const ButtonDocumentationPage = () => {
           </h4>
           <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', color: '#475569', lineHeight: '1.7' }}>
             <li>
-              <strong>Contraste:</strong> todo <strong>rótulo</strong> atende ao mínimo de 4.5:1 da WCAG AA, nos dois temas. No claro, o rótulo de <code>outline</code>, <code>ghost</code> e <code>light</code> mede <strong>5.52:1</strong> (<code>brandnavy-800</code>) e o gradiente da <code>ai</code> vai de 7.07:1 a 5.52:1 em toda a sua extensão. No escuro, 9.65:1.
+              <strong>Contraste:</strong> no claro, o rótulo de <code>outline</code>, <code>ghost</code> e <code>light</code> mede <strong>5.52:1</strong> (<code>brandnavy-800</code>) e o gradiente da <code>ai</code> vai de 7.07:1 a 5.52:1 em toda a sua extensão — todos acima do mínimo de 4.5:1 da WCAG AA. O tema escuro atende inteiro (rótulo 9.65:1; <code>primary</code> 6.78:1 em repouso, 7.93:1 em <em>hover</em>, 6.02:1 em <em>pressed</em>).
+            </li>
+            <li>
+              <strong>A <code>primary</code> no tema claro NÃO atende, e é o desenho, não a implementação:</strong> o rótulo branco sobre <code>brandnavy-700</code> mede <strong>3.63:1</strong> em repouso e <strong>2.51:1</strong> em <em>hover</em> (<code>brandnavy-600</code>); só o <em>pressed</em> passa, com 5.52:1. <strong>Ainda assim é uma melhora</strong>: o tom anterior media 2.51:1 em repouso, e a mudança subiu para 3.63:1. Fechar o caso exige descer o repouso para <code>brandnavy-800</code>, que daria 5.52:1 — e, por acaso feliz, deixaria o botão ainda mais claramente apertável, que é o que o quadro quis corrigir. <strong>Pendente de decisão de design.</strong>
             </li>
             <li>
               <strong>Desvio deliberado em relação ao Figma:</strong> o quadro põe rótulo e borda no mesmo degrau, e o rótulo ali mediria 3.63:1 em repouso e 2.51:1 em <em>hover</em> — abaixo do mínimo. Aqui os dois se separam: a <strong>borda</strong> segue o degrau mais leve do desenho (<code>brandnavy-700</code>, e <code>600</code> no <em>hover</em>) e o <strong>rótulo</strong> fica no degrau legível. A intenção visual do desenho se mantém; o que não acompanha é o texto, que é o que precisa ser lido. Registrado na seção 5.1 do <code>AGENTS.md</code>.

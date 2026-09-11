@@ -127,17 +127,30 @@
    TEMA LIGHT (MODO CLARO)
    ========================================================================== */
 
-/* Primary - Light */
+/*
+ * Primary - Light
+ *
+ * O quadro do Figma ERA a correção desta variante: o azul de antes
+ * (`brandnavy-600`) é praticamente o mesmo tom do desabilitado novo
+ * (`rgba(127,165,226,.3)`), e o botão principal da tela lia como desligado em
+ * vez de apertável. Default e hover INVERTERAM: o repouso desce para o 700 e o
+ * 600 passa a ser o realce do ponteiro.
+ *
+ * A linha LG do quadro traz `#080922` e `#0e1039` fixados à mão, discordando do
+ * Hover da própria linha e das linhas MD/SM/XS. Vale a variável: cor não varia
+ * por tamanho em nenhum outro lugar do quadro, e o valor cravado é meia-edição,
+ * não intenção.
+ */
 .unooria-button--light.unooria-button--variant-primary,
 :not([data-theme="dark"]) .unooria-button--variant-primary {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-brandnavy-700, #6487C2);
   color: #FFFFFF;
   border-color: transparent;
 }
 
 .unooria-button--light.unooria-button--variant-primary:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-primary.unooria-button--state-hover {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
 }
 
 .unooria-button--light.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
@@ -148,7 +161,7 @@
 .unooria-button--light.unooria-button--variant-primary:focus-visible,
 .unooria-button--light.unooria-button--variant-primary.unooria-button--state-focus {
   box-shadow: var(--unooria-elevation-brand-primary, 0px 0px 10px 0px rgba(127, 165, 226, 0.3));
-  outline: 2px solid var(--unooria-color-brandnavy-600, #7FA5E2);
+  outline: 2px solid var(--unooria-color-brandnavy-700, #6487C2);
   outline-offset: 2px;
 }
 
@@ -428,6 +441,21 @@
  * `danger`) seguem com o `.7` herdado — quando o Filled for resolvido, isto
  * vira regra única.
  */
+/*
+ * O desabilitado da `primary` é a própria cor da marca a 30%, e é ele que
+ * explica a correção da variante: a cor que o botão ATIVO tinha antes
+ * (`brandnavy-600`) e esta são quase o mesmo tom na tela. Enquanto as duas
+ * coexistiam, ligado e desligado eram indistinguíveis.
+ */
+.unooria-button--light.unooria-button--variant-primary:disabled,
+.unooria-button--light.unooria-button--variant-primary.unooria-button--disabled,
+.unooria-button--light.unooria-button--variant-primary.unooria-button--state-disabled {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+  border-color: transparent;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
 .unooria-button--light.unooria-button--variant-outline:disabled,
 .unooria-button--light.unooria-button--variant-outline.unooria-button--disabled,
 .unooria-button--light.unooria-button--variant-outline.unooria-button--state-disabled {
@@ -468,22 +496,34 @@
    TEMA DARK (MODO ESCURO)
    ========================================================================== */
 
-/* Primary - Dark */
+/*
+ * Primary - Dark — PROPOSTA, o quadro não traz o tema escuro.
+ *
+ * A queixa que originou a correção vale nos dois temas: o botão principal lia
+ * como desligado. No claro o conserto foi escurecer o repouso; no escuro é
+ * CLAREAR, porque é o que afasta o botão do fundo — os lados trocam junto com o
+ * fundo, o mesmo critério usado nas outras variantes. O repouso sobe de 600
+ * para 500, o hover clareia para 400 e o pressed escurece para 600.
+ *
+ * O desabilitado NÃO recebe o `rgba(127,165,226,.3)` do quadro: composto sobre
+ * o fundo escuro ele dá 8,61:1 com rótulo branco, contraste de botão ativo — o
+ * defeito que estamos consertando, invertido. Fica a regra geral do tema.
+ */
 .unooria-button--dark.unooria-button--variant-primary,
 [data-theme="dark"] .unooria-button--variant-primary {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
   color: var(--unooria-color-neutraldark-50, #22272A);
   border-color: transparent;
 }
 
 .unooria-button--dark.unooria-button--variant-primary:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-primary.unooria-button--state-hover {
-  background-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+  background-color: var(--unooria-color-brandnavy-400, #A4BDE9);
 }
 
 .unooria-button--dark.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-primary.unooria-button--state-active {
-  background-color: var(--unooria-color-brandnavy-400, #A4BDE9);
+  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
 }
 
 .unooria-button--dark.unooria-button--variant-primary:focus-visible,
