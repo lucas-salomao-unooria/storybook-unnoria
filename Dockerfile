@@ -11,6 +11,15 @@ RUN npm ci
 COPY . .
 RUN npm run build-storybook
 
+# Inventário de componentes para o gerador de missões, servido em
+# /ds-componentes.json ao lado do Storybook. A imagem não recebe o `.git`
+# (.dockerignore), então o commit chega por build-arg do workflow; o script
+# falha se alguma marca sair vazia, e aí a imagem nem é gerada.
+ARG DS_COMMIT=""
+ARG DS_DATA_COMMIT=""
+RUN DS_COMMIT="$DS_COMMIT" DS_DATA_COMMIT="$DS_DATA_COMMIT" \
+    node scripts/gerar-inventario-componentes.mjs storybook-static/ds-componentes.json
+
 # 2. Servidor Nginx ultra-leve para o Cloud Run
 FROM nginx:alpine AS runner
 

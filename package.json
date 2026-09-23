@@ -75,7 +75,8 @@
     "build:package": "npm run verificar:css && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist && node scripts/corrigir-specifiers.mjs && node scripts/verificar-esm.mjs",
     "prepublishOnly": "npm run build:package",
     "verificar:css": "node scripts/verificar-css-agregado.mjs",
-    "fontes": "node scripts/baixar-fontes.mjs"
+    "fontes": "node scripts/baixar-fontes.mjs",
+    "inventario": "node scripts/gerar-inventario-componentes.mjs"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
