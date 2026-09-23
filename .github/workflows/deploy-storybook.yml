@@ -41,6 +41,11 @@ jobs:
       - name: 🎨 Verificar CSS Agregado
         run: npm run verificar:css
 
+      # O mesmo script roda no build da imagem; aqui ele quebra o PR antes,
+      # se alguma marca sair sem componente.
+      - name: 🧾 Verificar Inventário de Componentes
+        run: npm run inventario -- "$RUNNER_TEMP/ds-componentes.json"
+
   # 2. Build da imagem e deploy. Só em push para master.
   deploy:
     name: Build & Deploy no Cloud Run
@@ -50,6 +55,24 @@ jobs:
     permissions:
       contents: read
       id-token: write # Obrigatório para OIDC / Workload Identity Federation
+    # A stack de dev da plataforma vive no projeto `entre-redes-dev`. Até a
+    # 0.1.19 o deploy ia para o projeto `entre-redes`, que entrou em exclusão
+    # (DELETE_REQUESTED). A API de IAM ainda descreve o pool de WIF de lá como
+    # ACTIVE, mas o STS não troca token para projeto em exclusão — os secrets
+    # GCP_WIF_PROVIDER / GCP_DEPLOYER_SA / GCP_IMAGE_BASE ainda apontam para
+    # ele, e o auth falhava com `invalid_target`. Nenhum destes valores é
+    # segredo: são nomes de recurso, os mesmos que o deploy da plataforma usa
+    # (vars do environment `dev` de plataformaunooria) e que saem de
+    # `terraform output` da Fundação (workspace dev). O repositório já está no
+    # `extra_github_repos` de lá, então o provider e o binding de
+    # workloadIdentityUser da SA de deploy o aceitam.
+    env:
+      GCP_PROJECT: entre-redes-dev
+      REGION: us-east1
+      WIF_PROVIDER: projects/250979926981/locations/global/workloadIdentityPools/plataforma-unooria-dev-gh-pool/providers/github-oidc
+      DEPLOY_SA: plataforma-unooria-dev-deploye@entre-redes-dev.iam.gserviceaccount.com
+      IMAGE_BASE: us-east1-docker.pkg.dev/entre-redes-dev/plataforma-unooria-dev
+      SERVICE: plataforma-unooria-dev-storybook
     steps:
       - name: 📥 Checkout do Repositório
         uses: actions/checkout@v4
@@ -57,28 +80,36 @@ jobs:
       - name: 🔐 Autenticar no Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
-          service_account: ${{ secrets.GCP_DEPLOYER_SA }}
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.DEPLOY_SA }}
+          project_id: ${{ env.GCP_PROJECT }}
 
       - name: ☁️ Configurar Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
       - name: 🐳 Configurar Docker Auth no Artifact Registry
-        run: gcloud auth configure-docker us-east1-docker.pkg.dev --quiet
+        run: gcloud auth configure-docker "$REGION-docker.pkg.dev" --quiet
 
+      # A imagem gera /ds-componentes.json (inventário que o gerador de
+      # missões lê) junto do Storybook; o commit vai por build-arg porque o
+      # `.git` não entra no contexto do Docker.
       - name: 🏗️ Build e Push da Imagem
         run: |
-          IMAGE="${{ secrets.GCP_IMAGE_BASE }}/storybook:${{ github.sha }}"
-          docker build -t "$IMAGE" -t "${{ secrets.GCP_IMAGE_BASE }}/storybook:latest" .
+          IMAGE="$IMAGE_BASE/storybook:${{ github.sha }}"
+          docker build \
+            --build-arg DS_COMMIT="$(git rev-parse --short HEAD)" \
+            --build-arg DS_DATA_COMMIT="$(git log -1 --format=%cs)" \
+            -t "$IMAGE" -t "$IMAGE_BASE/storybook:latest" .
           docker push "$IMAGE"
-          docker push "${{ secrets.GCP_IMAGE_BASE }}/storybook:latest"
+          docker push "$IMAGE_BASE/storybook:latest"
           echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
 
       - name: 🚀 Deploy no Cloud Run
         run: |
-          gcloud run deploy plataforma-unooria-dev-storybook \
+          gcloud run deploy "$SERVICE" \
             --image="$IMAGE" \
-            --region=us-east1 \
+            --project="$GCP_PROJECT" \
+            --region="$REGION" \
             --port=8080 \
             --min-instances=0 \
             --cpu-throttling \
