@@ -75,6 +75,43 @@ export interface InstaStoryViewerProps extends React.HTMLAttributes<HTMLElement>
   onComposerClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 
   /**
+   * Zona de toque da direita (dois terços da mídia): avança o story. Sem ela,
+   * a zona não é renderizada. É um botão — alcançável por Tab, acionável por
+   * Enter e Espaço.
+   */
+  onNext?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+  /**
+   * Zona de toque da esquerda (um terço da mídia): volta o story.
+   */
+  onPrev?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+  /**
+   * Rótulo acessível da zona de avançar.
+   * @default 'Próximo story'
+   */
+  nextLabel?: string;
+
+  /**
+   * Rótulo acessível da zona de voltar.
+   * @default 'Story anterior'
+   */
+  prevLabel?: string;
+
+  /**
+   * Conteúdo renderizado SOBRE a mídia, acima das zonas de toque — por
+   * exemplo uma `BottomSheet` não modal com a ficha técnica. A camada deixa o
+   * toque passar; cada filho direto volta a recebê-lo.
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Substitui o campo "Enviar mensagem" da barra inferior. Os botões de
+   * compartilhar e de opções continuam, se tiverem callback.
+   */
+  footer?: React.ReactNode;
+
+  /**
    * Tema visual usado para resolver as variáveis de cor.
    * @default 'dark'
    */

@@ -44,6 +44,7 @@
 
 .insta-story-viewer__progress {
   position: absolute;
+  z-index: 2;
   top: var(--insta-spacing-xs);
   left: var(--insta-spacing-xs);
   right: var(--insta-spacing-xs);
@@ -68,6 +69,7 @@
 
 .insta-story-viewer__header {
   position: absolute;
+  z-index: 2;
   top: 18px;
   left: var(--insta-spacing-m);
   right: var(--insta-spacing-m);
@@ -179,4 +181,58 @@
   outline: 2px solid var(--insta-color-action-primary);
   outline-offset: 3px;
   border-radius: var(--insta-radius-s);
+}
+
+/* ==========================================================================
+   Zonas de toque, camada sobre a mídia e rodapé — extensões
+   O quadro é estático. Como no app real, um terço à esquerda volta e o resto
+   avança; as zonas são botões transparentes, com anel de foco branco — o
+   mesmo do botão de fechar, porque ficam sobre a mídia.
+   ========================================================================== */
+
+.insta-story-viewer__tap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-story-viewer__tap--prev {
+  left: 0;
+  width: 33.333%;
+}
+
+.insta-story-viewer__tap--next {
+  right: 0;
+  width: 66.667%;
+}
+
+.insta-story-viewer__tap:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -4px;
+  border-radius: var(--insta-radius-m);
+}
+
+.insta-story-viewer__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.insta-story-viewer__overlay > * {
+  pointer-events: auto;
+}
+
+.insta-story-viewer__footer {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
 }

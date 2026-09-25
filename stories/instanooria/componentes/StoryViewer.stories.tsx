@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { StoryViewer } from '../../../src/instanooria/components/StoryViewer';
 import { PhoneFrame } from '../../../src/instanooria/components/PhoneFrame';
+import { BottomSheet } from '../../../src/instanooria/components/BottomSheet';
+import { Button } from '../../../src/instanooria/components/Button';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -9,12 +12,58 @@ import {
   InstaDocCard,
   InstaDocGrid,
   InstaDocFigmaSpecs,
+  InstaDocDeviations,
   InstaDocPractices,
   InstaDocStage,
   InstaDocThemeSwitcher,
   InstaDocPropsTable,
 } from '../../../.storybook/components';
 import { instaAvatars, instaPhotos } from '../fixtures';
+
+const MURAL = [
+  { mediaSrc: instaPhotos.coffee, mediaAlt: 'Lanche novo na cantina', local: 'Cantina da escola' },
+  { mediaSrc: instaPhotos.turbines, mediaAlt: 'Turbinas eólicas', local: 'Feira de ciências' },
+  { mediaSrc: instaPhotos.skate, mediaAlt: 'Manobra de skate', local: 'Quadra' },
+];
+
+/**
+ * O Story do Mural: zonas de toque, ficha técnica sobre a mídia e rodapé próprio.
+ */
+const StoryDoMural: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme = 'dark' }) => {
+  const [indice, setIndice] = useState(0);
+  const atual = MURAL[indice];
+
+  return (
+    <StoryViewer
+      theme={theme}
+      mediaSrc={atual.mediaSrc}
+      mediaAlt={atual.mediaAlt}
+      username="jacob_w"
+      avatarSrc={instaAvatars.jacob_w}
+      timestamp="agora"
+      segments={MURAL.length}
+      currentSegment={indice + 1}
+      segmentProgress={1}
+      onPrev={() => setIndice((valor) => Math.max(valor - 1, 0))}
+      onNext={() => setIndice((valor) => Math.min(valor + 1, MURAL.length - 1))}
+      footer={
+        <Button block theme={theme} variant="secondary">
+          Ver o Story do colega
+        </Button>
+      }
+    >
+      <BottomSheet
+        modal={false}
+        theme={theme}
+        maxHeight="45%"
+        collapsedLabel="Ver detalhes da postagem"
+        title="Ficha técnica"
+      >
+        <p style={{ margin: 0 }}>Onde: {atual.local}</p>
+      </BottomSheet>
+    </StoryViewer>
+  );
+};
 
 /**
  * Página de documentação rica do componente StoryViewer.
@@ -49,6 +98,14 @@ const StoryViewerDocumentationPage = () => (
         A barra declara <code>role=&quot;progressbar&quot;</code> com{' '}
         <code>aria-valuenow</code>, comunicando a posição no story.
       </InstaDocCard>
+      <InstaDocCard icon="👆" title="Zonas de toque (extensão)">
+        <code>onPrev</code> e <code>onNext</code> acendem as zonas do app real — um terço à
+        esquerda volta, o resto avança. São botões: Tab, Enter e Espaço funcionam.
+      </InstaDocCard>
+      <InstaDocCard icon="🗂️" title="Camada e rodapé (extensão)">
+        <code>children</code> renderiza sobre a mídia (a ficha técnica numa{' '}
+        <code>BottomSheet</code> não modal); <code>footer</code> troca o campo “Enviar mensagem”.
+      </InstaDocCard>
     </InstaDocGrid>
 
     <UnooriaDocSectionHeader
@@ -65,6 +122,27 @@ const StoryViewerDocumentationPage = () => (
         { label: 'Nome do autor', value: 'Navigation/Title · 14px' },
         { label: 'Composer', value: '271 × 43px · raio 21.5px' },
         { label: 'Barra de resposta', value: '94px de altura' },
+        { label: 'Zona de voltar', value: '1/3 à esquerda (extensão)' },
+        { label: 'Zona de avançar', value: '2/3 à direita (extensão)' },
+      ]}
+    />
+    <InstaDocDeviations
+      items={[
+        {
+          subject: 'Zonas de toque',
+          detail:
+            'o quadro é estático e não descreve navegação. As zonas de voltar e avançar reproduzem o app real e são botões transparentes, com o anel de foco branco do botão de fechar. Só aparecem com onPrev / onNext.',
+        },
+        {
+          subject: 'Camada sobre a mídia',
+          detail:
+            'children não existe no quadro. A camada deixa o toque passar para as zonas; cada filho direto volta a recebê-lo. É onde entra a ficha técnica do Mural.',
+        },
+        {
+          subject: 'Rodapé substituível',
+          detail:
+            'footer troca o campo “Enviar mensagem” (Send Message, 0:2266) por um conteúdo do produto. Compartilhar e opções continuam, se tiverem callback.',
+        },
       ]}
     />
 
@@ -119,6 +197,12 @@ const StoryViewerDocumentationPage = () => (
           <div style={{ fontSize: 12, color: '#475157', marginTop: 10 }}>{state.label}</div>
         </div>
       ))}
+    </InstaDocStage>
+
+    <InstaDocStage label="Extensões: zonas de toque, ficha técnica (BottomSheet não modal, 45%) e footer">
+      <div style={{ width: 300, height: 560, borderRadius: 12, overflow: 'hidden' }}>
+        <StoryDoMural />
+      </div>
     </InstaDocStage>
 
     <UnooriaDocSectionHeader
@@ -207,6 +291,27 @@ const StoryViewerDocumentationPage = () => (
           description: 'Callbacks das ações. Cada botão só é renderizado com seu callback.',
         },
         {
+          name: 'onNext / onPrev',
+          type: '(event: React.MouseEvent) => void',
+          description: 'Zonas de toque de avançar (2/3 à direita) e voltar (1/3 à esquerda).',
+        },
+        {
+          name: 'nextLabel / prevLabel',
+          type: 'string',
+          default: "'Próximo story' / 'Story anterior'",
+          description: 'Rótulos acessíveis das zonas de toque.',
+        },
+        {
+          name: 'children',
+          type: 'React.ReactNode',
+          description: 'Camada sobre a mídia; cada filho direto recebe o toque.',
+        },
+        {
+          name: 'footer',
+          type: 'React.ReactNode',
+          description: 'Substitui o campo “Enviar mensagem” da barra inferior.',
+        },
+        {
           name: 'theme',
           type: "'light' | 'dark'",
           default: "'dark'",
@@ -240,7 +345,11 @@ const meta: Meta<typeof StoryViewer> = {
       description: 'Progresso do segmento atual.',
     },
     composerPlaceholder: { control: 'text', description: 'Texto do campo de resposta.' },
+    nextLabel: { control: 'text', description: 'Rótulo da zona de avançar.' },
+    prevLabel: { control: 'text', description: 'Rótulo da zona de voltar.' },
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema visual.' },
+    onNext: { action: 'onNext' },
+    onPrev: { action: 'onPrev' },
   },
   args: {
     mediaSrc: instaPhotos.coffee,
@@ -252,6 +361,8 @@ const meta: Meta<typeof StoryViewer> = {
     currentSegment: 3,
     segmentProgress: 0.6,
     composerPlaceholder: 'Enviar mensagem',
+    nextLabel: 'Próximo story',
+    prevLabel: 'Story anterior',
     theme: 'light',
   },
 };
@@ -317,5 +428,35 @@ export const ExemploOficialDoFigma: Story = {
     };
 
     return <InteractiveStory />;
+  },
+};
+
+/**
+ * Extensões: as zonas de toque navegam, a ficha técnica abre sobre a mídia e o
+ * rodapé do produto substitui o campo de resposta.
+ */
+export const NavegacaoEFichaTecnica: Story = {
+  name: 'Navegação e Ficha Técnica',
+  render: () => (
+    <PhoneFrame theme="dark" ariaLabel="Mural">
+      <StoryDoMural />
+    </PhoneFrame>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const progresso = tela.getByRole('progressbar', { name: 'Progresso do story' });
+
+    await expect(tela.queryByRole('button', { name: 'Enviar mensagem' })).not.toBeInTheDocument();
+    await expect(tela.getByRole('button', { name: 'Ver o Story do colega' })).toBeInTheDocument();
+
+    await userEvent.click(tela.getByRole('button', { name: 'Próximo story' }));
+    await expect(progresso).toHaveAttribute('aria-valuenow', '2');
+    await userEvent.click(tela.getByRole('button', { name: 'Story anterior' }));
+    await expect(progresso).toHaveAttribute('aria-valuenow', '1');
+
+    const ficha = tela.getByRole('button', { name: 'Ver detalhes da postagem' });
+    await userEvent.click(ficha);
+    await expect(ficha).toHaveAttribute('aria-expanded', 'true');
+    await expect(tela.getByText('Onde: Cantina da escola')).toBeVisible();
   },
 };

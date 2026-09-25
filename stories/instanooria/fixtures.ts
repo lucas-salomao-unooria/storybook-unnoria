@@ -170,3 +170,71 @@ export const instaGridItems = [
  * Categorias de demonstração da tela Buscar.
  */
 export const instaSearchCategories = ['IGTV', 'Loja', 'Estilo', 'Esportes', 'Automóveis', 'Viagem'];
+
+/*
+ * ==========================================================================
+ * Extensões da missão "A Seleção" (25/09/2026)
+ * Conteúdo de demonstração das peças que o arquivo de origem não publica:
+ * a conversa de DM aberta, a enquete, a seleção múltipla e o Story do grêmio.
+ * ==========================================================================
+ */
+
+/**
+ * A outra pessoa da conversa de demonstração.
+ */
+export const instaThreadContact = {
+  username: 'amara.gremio',
+  avatarSrc: instaAvatars.karennne,
+  subtitle: 'Ativa agora',
+};
+
+/**
+ * Mensagens de demonstração do DirectThread, já agrupadas como no app real.
+ */
+export const instaThreadMessages = [
+  {
+    id: 'm1',
+    direction: 'incoming' as const,
+    position: 'first' as const,
+    text: 'Oi! Aqui é a Amara, do grêmio 👋',
+  },
+  {
+    id: 'm2',
+    direction: 'incoming' as const,
+    position: 'last' as const,
+    text: 'Vi que você montou os Stories da semana. Posso te fazer duas perguntas rápidas?',
+  },
+  {
+    id: 'm3',
+    direction: 'outgoing' as const,
+    position: 'first' as const,
+    text: 'Pode sim!',
+  },
+  {
+    id: 'm4',
+    direction: 'outgoing' as const,
+    position: 'last' as const,
+    text: 'Escolhi os três posts agora há pouco.',
+  },
+];
+
+/**
+ * Opções de demonstração da enquete na DM — nenhuma é "a certa".
+ */
+export const instaPollOptions = [
+  { id: 'foto', label: 'A foto era a mais bonita' },
+  { id: 'util', label: 'A informação era útil para a turma' },
+  { id: 'curtidas', label: 'Muita gente já tinha curtido' },
+  { id: 'confianca', label: 'Eu confio em quem postou' },
+];
+
+/**
+ * Blocos de demonstração da seleção múltipla (quatro colunas, como na tela de
+ * adicionar imagem).
+ */
+export const instaPickerItems = [
+  ...instaGridItems,
+  { id: '10', src: instaPhotos.street, alt: 'Rua movimentada', type: 'image' as const },
+  { id: '11', src: instaPhotos.portrait, alt: 'Retrato ao ar livre', type: 'image' as const },
+  { id: '12', src: instaPhotos.tokyo, alt: 'Cruzamento em Tóquio', type: 'image' as const },
+];

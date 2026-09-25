@@ -1,0 +1,106 @@
+/**
+ * Estilos do Componente DmPoll — Design System Instanooria
+ *
+ * Extensão sem quadro no arquivo de origem. O cartão e as pílulas usam o
+ * contorno do `Button` secundário (`--insta-color-action-secondary-border`)
+ * sobre a superfície da tela, com o raio do campo "Send Message" do Story
+ * (`--insta-radius-xl`, `0:2266`) e o alvo de toque de 44px. A pergunta usa
+ * `Title/Large`; as opções, `Title/Small` — o degrau dos rótulos de botão.
+ *
+ * A opção votada NÃO é azul: branco sobre `--insta-color-action-primary` mede
+ * 3,06:1. Ela se distingue por forma e contraste — preenchimento neutro e
+ * contorno de 2px na cor do texto —, não só por matiz.
+ */
+
+.insta-dm-poll {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 220px;
+  padding: var(--insta-spacing-l);
+  border: 1px solid var(--insta-color-action-secondary-border);
+  border-radius: var(--insta-radius-xl);
+  background-color: var(--insta-color-background-primary);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+}
+
+.insta-dm-poll__question {
+  margin: 0 0 var(--insta-spacing-m);
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-title-lg-size);
+  font-weight: var(--insta-font-title-lg-weight);
+  line-height: var(--insta-font-title-lg-line);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+}
+
+.insta-dm-poll__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--insta-spacing-xs);
+}
+
+.insta-dm-poll__option {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--insta-touch-target);
+  padding: var(--insta-spacing-s) var(--insta-spacing-l);
+  border: 1px solid var(--insta-color-action-secondary-border);
+  border-radius: var(--insta-radius-full);
+  background: none;
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1.3;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--insta-transition-fast),
+    border-color var(--insta-transition-fast), color var(--insta-transition-fast);
+}
+
+.insta-dm-poll__option:hover:not([aria-disabled='true']) {
+  background-color: var(--insta-color-background-secondary);
+}
+
+.insta-dm-poll__option:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+.insta-dm-poll__option--chosen {
+  border-color: var(--insta-color-text-primary);
+  box-shadow: inset 0 0 0 1px var(--insta-color-text-primary);
+  background-color: var(--insta-color-fill-field);
+}
+
+.insta-dm-poll__option[aria-disabled='true'] {
+  cursor: default;
+}
+
+.insta-dm-poll__option[aria-disabled='true']:not(.insta-dm-poll__option--chosen) {
+  color: var(--insta-color-text-secondary);
+}
+
+.insta-dm-poll__sent {
+  margin: var(--insta-spacing-m) 0 0;
+  color: var(--insta-color-text-secondary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+  text-align: center;
+}
+
+.insta-dm-poll__sent:empty {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insta-dm-poll__option {
+    transition: none;
+  }
+}

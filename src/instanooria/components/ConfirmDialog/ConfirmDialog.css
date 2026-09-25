@@ -1,0 +1,125 @@
+/**
+ * Estilos do Componente ConfirmDialog — Design System Instanooria
+ *
+ * Extensão sem quadro no arquivo de origem, que não publica alerta nem
+ * diálogo. A forma é a do alerta do iOS que o Instagram usa: painel de 270px
+ * centralizado, conteúdo centrado e ações empilhadas separadas por hairline.
+ * Tudo é degrau do token: a superfície de camada (`background-elevated`), o
+ * véu (`overlay-scrim`), o `Title/Large` do título, o `Label/Medium` da
+ * mensagem, a divisória de 0,33px e o alvo de toque de 44px. As duas ações são
+ * o par "Cancel" / "Next" da barra da tela de adicionar imagem (`0:3194`):
+ * cancelar em `Body/Large` regular, confirmar em `Title/Large` semibold no azul
+ * de ação. Sem sombra com desfoque (seção 2.3): o painel se separa pelo véu.
+ */
+
+.insta-confirm-dialog-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--insta-spacing-xxl);
+  background-color: var(--insta-color-overlay-scrim);
+}
+
+.insta-confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* 270px: a largura do alerta do iOS. O arquivo não publica alerta. */
+  width: min(270px, 100%);
+  max-height: 100%;
+  border-radius: var(--insta-radius-l);
+  background-color: var(--insta-color-background-elevated);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+  text-align: center;
+  outline: none;
+  overflow: hidden;
+}
+
+.insta-confirm-dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--insta-spacing-3xs);
+  padding: var(--insta-spacing-xl) var(--insta-spacing-l);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--insta-color-border-default) transparent;
+}
+
+.insta-confirm-dialog__title {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-title-lg-size);
+  font-weight: var(--insta-font-title-lg-weight);
+  line-height: var(--insta-font-title-lg-line);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+}
+
+.insta-confirm-dialog__message {
+  margin: 0;
+  color: var(--insta-color-text-secondary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-confirm-dialog__actions {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.insta-confirm-dialog__action {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--insta-touch-target);
+  padding: var(--insta-spacing-s) var(--insta-spacing-l);
+  background: none;
+  border: none;
+  box-shadow: var(--insta-elevation-hairline-top);
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-body-lg-size);
+  font-weight: var(--insta-font-body-lg-weight);
+  line-height: var(--insta-font-body-lg-line);
+  letter-spacing: var(--insta-font-body-lg-tracking);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--insta-transition-fast);
+}
+
+.insta-confirm-dialog__action:hover:not([aria-disabled='true']),
+.insta-confirm-dialog__action:active:not([aria-disabled='true']) {
+  background-color: var(--insta-color-fill-field);
+}
+
+.insta-confirm-dialog__action:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -2px;
+}
+
+.insta-confirm-dialog__action--confirm {
+  color: var(--insta-color-action-primary);
+  font-weight: var(--insta-font-title-lg-weight);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+}
+
+.insta-confirm-dialog__action--destructive {
+  color: var(--insta-color-brand-like);
+}
+
+.insta-confirm-dialog--busy .insta-confirm-dialog__action {
+  cursor: progress;
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insta-confirm-dialog__action {
+    transition: none;
+  }
+}

@@ -28,7 +28,8 @@ export interface InstaMediaItem {
 /**
  * Propriedades do componente MediaGrid do Instanooria.
  */
-export interface InstaMediaGridProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface InstaMediaGridProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'onToggle'> {
   /**
    * Blocos exibidos na grade.
    */
@@ -47,9 +48,31 @@ export interface InstaMediaGridProps extends Omit<React.HTMLAttributes<HTMLDivEl
   gap?: number;
 
   /**
-   * Callback disparado ao selecionar um bloco.
+   * Callback disparado ao selecionar um bloco. Fora do modo de seleção.
    */
   onSelect?: (item: InstaMediaItem, index: number) => void;
+
+  /**
+   * Modo de seleção múltipla, como o "SELECT MULTIPLE" da tela de adicionar
+   * imagem (`0:1366` / `0:3163`): cada bloco vira um botão com `aria-pressed`
+   * e ganha o círculo de seleção, numerado na ordem em que foi escolhido. O
+   * toque chama `onToggle`, e não `onSelect`.
+   * @default false
+   */
+  selectable?: boolean;
+
+  /**
+   * Identificadores selecionados, NA ORDEM DE SELEÇÃO — é ela que numera os
+   * círculos. Controlado: a grade não guarda seleção própria.
+   * @default []
+   */
+  selectedIds?: string[];
+
+  /**
+   * Chamado ao tocar um bloco no modo de seleção. Quem decide se o bloco entra
+   * ou sai (e o limite, se houver) é o produto, atualizando `selectedIds`.
+   */
+  onToggle?: (item: InstaMediaItem, index: number) => void;
 
   /**
    * Rótulo acessível da grade.

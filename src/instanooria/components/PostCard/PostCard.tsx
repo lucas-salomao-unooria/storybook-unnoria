@@ -3,6 +3,7 @@
 import React from 'react';
 import { Avatar } from '../Avatar';
 import { Badge } from '../Badge';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import type {
   InstaPostActionsProps,
@@ -66,6 +67,9 @@ PostCardHeader.displayName = 'PostCard.Header';
 
 /**
  * Mídia do post — retângulo de 375×375px com contador de carrossel opcional.
+ *
+ * Sem `src`, `children` é o slide. Com `src` que não carrega, entra o estado
+ * de erro com "Tentar novamente" — o quadro não publica nenhum dos dois.
  */
 const PostCardMedia: React.FC<InstaPostMediaProps> = ({
   src,
@@ -73,26 +77,93 @@ const PostCardMedia: React.FC<InstaPostMediaProps> = ({
   currentIndex,
   totalCount,
   aspectRatio = 1,
+  children,
+  onRetry,
+  onMediaError,
+  errorLabel = 'Não foi possível carregar a imagem.',
+  retryLabel = 'Tentar novamente',
   theme = 'light',
   className = '',
   style,
   ...restProps
-}) => (
-  <div
-    data-insta-theme={theme}
-    className={['insta-post-card__media', className].filter(Boolean).join(' ')}
-    style={{ aspectRatio: `${aspectRatio} / 1`, ...style }}
-    {...restProps}
-  >
-    <img className="insta-post-card__media-image" src={src} alt={alt} />
+}) => {
+  /*
+   * O erro fica preso à `src` que falhou: trocar a `src` limpa o estado sem
+   * efeito nenhum, e "Tentar novamente" remonta o <img> pela chave.
+   */
+  const [failedSrc, setFailedSrc] = React.useState<string | null>(null);
+  const [attempt, setAttempt] = React.useState(0);
+  const hasImage = src !== undefined && src !== '';
+  const hasError = hasImage && failedSrc === src;
 
-    {currentIndex !== undefined && totalCount !== undefined && totalCount > 1 && (
-      <Badge variant="counter" theme={theme} className="insta-post-card__media-counter">
-        {currentIndex}/{totalCount}
-      </Badge>
-    )}
-  </div>
-);
+  const handleError = () => {
+    if (hasImage) {
+      setFailedSrc(src);
+      onMediaError?.();
+    }
+  };
+
+  /*
+   * Uma imagem que falha antes da hidratação não dispara o `onError` do React.
+   * Ao montar, o nó já diz: completo e sem largura natural é imagem quebrada.
+   */
+  const detectBrokenImage = (node: HTMLImageElement | null) => {
+    if (node && node.complete && node.naturalWidth === 0 && node.currentSrc !== '') {
+      handleError();
+    }
+  };
+
+  const handleRetry = () => {
+    setFailedSrc(null);
+    setAttempt((value) => value + 1);
+    onRetry?.();
+  };
+
+  return (
+    <div
+      data-insta-theme={theme}
+      className={['insta-post-card__media', className].filter(Boolean).join(' ')}
+      style={{ aspectRatio: `${aspectRatio} / 1`, ...style }}
+      {...restProps}
+    >
+      {hasImage && !hasError && (
+        <img
+          key={attempt}
+          ref={detectBrokenImage}
+          className="insta-post-card__media-image"
+          src={src}
+          alt={alt ?? ''}
+          onError={handleError}
+        />
+      )}
+
+      {!hasImage && children !== undefined && (
+        <div
+          className="insta-post-card__media-slide"
+          role={alt ? 'group' : undefined}
+          aria-label={alt || undefined}
+        >
+          {children}
+        </div>
+      )}
+
+      {hasError && (
+        <div className="insta-post-card__media-error">
+          <p className="insta-post-card__media-error-label">{errorLabel}</p>
+          <Button variant="secondary" size="sm" theme={theme} onClick={handleRetry}>
+            {retryLabel}
+          </Button>
+        </div>
+      )}
+
+      {currentIndex !== undefined && totalCount !== undefined && totalCount > 1 && (
+        <Badge variant="counter" theme={theme} className="insta-post-card__media-counter">
+          {currentIndex}/{totalCount}
+        </Badge>
+      )}
+    </div>
+  );
+};
 
 PostCardMedia.displayName = 'PostCard.Media';
 

@@ -1,0 +1,143 @@
+/**
+ * Estilos do Componente StoryComposer — Design System Instanooria
+ *
+ * Extensão sem quadro no arquivo de origem, que publica só o visualizador de
+ * Story (`0:2236`). Dele vêm o palco com raio de 8px (`--insta-radius-m`), a
+ * barra inferior de 94px (`Chat Bar`, `0:2254`) e a pílula de 43px com raio de
+ * 21,5px (`Send Message`, `0:2266`), que aqui vira o botão "Seu story". O campo
+ * de legenda usa o preenchimento do `SearchField` (`--insta-color-fill-field`)
+ * e o corpo `Body/Large`. Sem sombra com desfoque (seção 2.3).
+ */
+
+.insta-story-composer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  background-color: var(--insta-color-background-primary);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+}
+
+.insta-story-composer__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: var(--insta-radius-m);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Legenda
+   ========================================================================== */
+
+.insta-story-composer__field {
+  flex-shrink: 0;
+  margin: var(--insta-spacing-m) var(--insta-spacing-m) 0;
+  padding: var(--insta-spacing-s) var(--insta-spacing-m) var(--insta-spacing-xs);
+  border-radius: var(--insta-radius-l);
+  background-color: var(--insta-color-fill-field);
+}
+
+.insta-story-composer__field:focus-within {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+.insta-story-composer__input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-body-lg-size);
+  font-weight: var(--insta-font-body-lg-weight);
+  line-height: var(--insta-font-body-lg-line);
+  letter-spacing: var(--insta-font-body-lg-tracking);
+  resize: none;
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--insta-color-border-default) transparent;
+}
+
+.insta-story-composer__input::placeholder {
+  color: var(--insta-color-text-placeholder);
+}
+
+.insta-story-composer__counter {
+  margin: var(--insta-spacing-3xs) 0 0;
+  color: var(--insta-color-text-secondary);
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+  line-height: var(--insta-font-caption-md-line);
+  letter-spacing: var(--insta-font-caption-md-tracking);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ==========================================================================
+   Barra inferior — "Seu story"
+   ========================================================================== */
+
+.insta-story-composer__bar {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--insta-spacing-l);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  height: 94px;
+  padding: var(--insta-spacing-xs) var(--insta-spacing-m) 0;
+}
+
+.insta-story-composer__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--insta-spacing-m);
+  box-sizing: border-box;
+  min-height: 43px;
+  padding: var(--insta-spacing-3xs) var(--insta-spacing-l) var(--insta-spacing-3xs)
+    var(--insta-spacing-3xs);
+  border: 1px solid var(--insta-color-action-secondary-border);
+  border-radius: var(--insta-radius-xl);
+  background-color: var(--insta-color-background-elevated);
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--insta-transition-fast), color var(--insta-transition-fast);
+}
+
+.insta-story-composer__submit:hover:not(:disabled) {
+  background-color: var(--insta-color-background-tertiary);
+}
+
+.insta-story-composer__submit:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+.insta-story-composer__submit:disabled {
+  color: var(--insta-color-text-secondary);
+  cursor: not-allowed;
+}
+
+.insta-story-composer__submit:disabled .insta-avatar {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insta-story-composer__submit {
+    transition: none;
+  }
+}

@@ -168,6 +168,42 @@ export const InstaDocFigmaSpecs: React.FC<{
 );
 
 /**
+ * Registro de desvios em relação ao arquivo de design, no molde do
+ * `WaDocDeviations`. Toda extensão — componente sem quadro no arquivo de
+ * origem — declara aqui de que nó empresta a forma e o que não veio dele.
+ */
+export const InstaDocDeviations: React.FC<{
+  items: { subject: string; detail: string }[];
+}> = ({ items }) => (
+  <div
+    style={{
+      border: `1px solid ${DOC_DANGER}`,
+      borderRadius: 12,
+      padding: 20,
+      marginBottom: 32,
+      backgroundColor: 'rgba(227, 26, 26, 0.05)',
+    }}
+  >
+    <h4 style={{ margin: '0 0 12px 0', fontSize: 15, color: DOC_DANGER }}>
+      ⚠️ Desvios registrados em relação ao Figma
+    </h4>
+    {items.length === 0 ? (
+      <p style={{ margin: 0, fontSize: 13.5, color: DOC_MUTED }}>
+        Nenhum desvio: o componente reproduz o arquivo de origem em todos os aspectos medidos.
+      </p>
+    ) : (
+      <ul style={{ margin: 0, paddingLeft: 18, color: DOC_MUTED, fontSize: 13.5, lineHeight: 1.7 }}>
+        {items.map((item) => (
+          <li key={item.subject}>
+            <strong style={{ color: DOC_TEXT }}>{item.subject}</strong> — {item.detail}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+);
+
+/**
  * Palco de demonstração com fundo neutro e legenda.
  */
 export const InstaDocStage: React.FC<{

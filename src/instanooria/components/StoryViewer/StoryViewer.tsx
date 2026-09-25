@@ -13,6 +13,10 @@ import './StoryViewer.css';
  * Figma: mídia de 375×667px com raio de 8px, os dois gradientes de leitura
  * (topo e base), a barra de progresso segmentada de 2px e o composer de 43px
  * com contorno translúcido e atalho de câmera.
+ *
+ * Extensões para a navegação real: as zonas de toque de voltar (um terço à
+ * esquerda) e avançar (o resto), que são botões alcançáveis por teclado; uma
+ * camada `children` sobre a mídia; e `footer`, que troca o campo de resposta.
  */
 export const StoryViewer = React.forwardRef<HTMLElement, InstaStoryViewerProps>(
   (
@@ -30,6 +34,12 @@ export const StoryViewer = React.forwardRef<HTMLElement, InstaStoryViewerProps>(
       onShare,
       onMore,
       onComposerClick,
+      onNext,
+      onPrev,
+      nextLabel = 'Próximo story',
+      prevLabel = 'Story anterior',
+      children,
+      footer,
       theme = 'dark',
       className = '',
       ...restProps
@@ -93,40 +103,65 @@ export const StoryViewer = React.forwardRef<HTMLElement, InstaStoryViewerProps>(
               </button>
             )}
           </div>
+
+          {onPrev && (
+            <button
+              type="button"
+              className="insta-story-viewer__tap insta-story-viewer__tap--prev"
+              onClick={onPrev}
+              aria-label={prevLabel}
+            />
+          )}
+          {onNext && (
+            <button
+              type="button"
+              className="insta-story-viewer__tap insta-story-viewer__tap--next"
+              onClick={onNext}
+              aria-label={nextLabel}
+            />
+          )}
+
+          {children && <div className="insta-story-viewer__overlay">{children}</div>}
         </div>
 
         <div className="insta-story-viewer__composer">
-          <button
-            type="button"
-            className="insta-story-viewer__composer-field"
-            onClick={onComposerClick}
-          >
-            <Icon name="cameraCircle" size={34} tone="inherit" theme={theme} />
-            {composerPlaceholder}
-          </button>
+          {footer ? (
+            <div className="insta-story-viewer__footer">{footer}</div>
+          ) : (
+            <button
+              type="button"
+              className="insta-story-viewer__composer-field"
+              onClick={onComposerClick}
+            >
+              <Icon name="cameraCircle" size={34} tone="inherit" theme={theme} />
+              {composerPlaceholder}
+            </button>
+          )}
 
-          <div className="insta-story-viewer__composer-actions">
-            {onShare && (
-              <button
-                type="button"
-                className="insta-story-viewer__composer-action"
-                onClick={onShare}
-                aria-label="Compartilhar story"
-              >
-                <Icon name="share" size={24} tone="inherit" theme={theme} />
-              </button>
-            )}
-            {onMore && (
-              <button
-                type="button"
-                className="insta-story-viewer__composer-action"
-                onClick={onMore}
-                aria-label="Opções do story"
-              >
-                <Icon name="more" size={14} tone="inherit" theme={theme} />
-              </button>
-            )}
-          </div>
+          {(!footer || onShare || onMore) && (
+            <div className="insta-story-viewer__composer-actions">
+              {onShare && (
+                <button
+                  type="button"
+                  className="insta-story-viewer__composer-action"
+                  onClick={onShare}
+                  aria-label="Compartilhar story"
+                >
+                  <Icon name="share" size={24} tone="inherit" theme={theme} />
+                </button>
+              )}
+              {onMore && (
+                <button
+                  type="button"
+                  className="insta-story-viewer__composer-action"
+                  onClick={onMore}
+                  aria-label="Opções do story"
+                >
+                  <Icon name="more" size={14} tone="inherit" theme={theme} />
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </section>
     );

@@ -1,0 +1,146 @@
+/**
+ * Estilos do Componente DirectThread — Design System Instanooria
+ *
+ * Extensão sem quadro no arquivo de origem, que publica só a lista de
+ * conversas (`0:2482`). A barra é a da lista (`0:2629`): superfície
+ * `background-secondary`, 44px de conteúdo sob os 44px da status bar e a
+ * hairline `bar-bottom`. O rodapé reproduz a barra "Camera" (`0:2614`): 50px
+ * de conteúdo e a faixa do home indicator, com a hairline no topo. Sem sombra
+ * com desfoque (seção 2.3).
+ */
+
+.insta-direct-thread {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background-color: var(--insta-color-background-primary);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+}
+
+/* ==========================================================================
+   Barra
+   ========================================================================== */
+
+.insta-direct-thread__header {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: var(--insta-color-background-secondary);
+  box-shadow: var(--insta-elevation-bar-bottom);
+}
+
+.insta-direct-thread__status-inset {
+  height: var(--insta-statusbar-height);
+}
+
+.insta-direct-thread__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-m);
+  box-sizing: border-box;
+  height: var(--insta-topbar-content-height);
+  padding: 0 var(--insta-gutter);
+}
+
+.insta-direct-thread__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--insta-icon-size-md);
+  height: var(--insta-icon-size-md);
+  margin-right: var(--insta-spacing-3xs);
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--insta-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-direct-thread__back:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--insta-radius-s);
+}
+
+.insta-direct-thread__identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.insta-direct-thread__username {
+  margin: 0;
+  overflow: hidden;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-title-lg-size);
+  font-weight: var(--insta-font-title-lg-weight);
+  line-height: var(--insta-font-title-lg-line);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insta-direct-thread__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--insta-color-text-secondary);
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+  line-height: 1.2;
+  letter-spacing: var(--insta-font-caption-md-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Mensagens
+   ========================================================================== */
+
+.insta-direct-thread__messages {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: var(--insta-spacing-l) var(--insta-gutter);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--insta-color-border-default) transparent;
+}
+
+.insta-direct-thread__messages:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+
+.insta-direct-thread__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--insta-spacing-s);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-height: var(--insta-tabbar-content-height);
+  padding: var(--insta-spacing-xs) var(--insta-gutter);
+  background-color: var(--insta-color-background-primary);
+  box-shadow: var(--insta-elevation-hairline-top);
+}
+
+.insta-direct-thread__home-inset {
+  flex-shrink: 0;
+  height: calc(var(--insta-tabbar-height) - var(--insta-tabbar-content-height));
+  background-color: var(--insta-color-background-primary);
+}

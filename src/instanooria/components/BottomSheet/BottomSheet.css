@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente BottomSheet — Design System Instanooria
+ *
+ * Extensão sem quadro no arquivo de origem, que só publica a gaveta LATERAL do
+ * menu do perfil (`0:1161` / `0:2938`). Dela vêm a superfície de camada
+ * (`--insta-color-background-elevated`, a mesma dos menus e folhas do token),
+ * o corpo `Body/Medium` e a separação por hairline de 0,33px — sem sombra com
+ * desfoque, que o arquivo não tem (seção 2.3). O véu é o `overlay-scrim` do
+ * token; o raio superior, o `--insta-radius-l`.
+ */
+
+/* ==========================================================================
+   Modal — véu e painel
+   ========================================================================== */
+
+.insta-bottom-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--insta-color-overlay-scrim);
+}
+
+.insta-bottom-sheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  border-top-left-radius: var(--insta-radius-l);
+  border-top-right-radius: var(--insta-radius-l);
+  background-color: var(--insta-color-background-elevated);
+  box-shadow: var(--insta-elevation-hairline-top);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+  outline: none;
+  overflow: hidden;
+}
+
+.insta-bottom-sheet--modal {
+  padding-bottom: var(--insta-home-indicator-height);
+}
+
+.insta-bottom-sheet__handle {
+  display: block;
+  flex-shrink: 0;
+  align-self: center;
+  width: 36px;
+  height: var(--insta-spacing-3xs);
+  margin: var(--insta-spacing-xs) auto var(--insta-spacing-s);
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-border-default);
+}
+
+.insta-bottom-sheet__title {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 var(--insta-gutter) var(--insta-spacing-m);
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-title-lg-size);
+  font-weight: var(--insta-font-title-lg-weight);
+  line-height: var(--insta-font-title-lg-line);
+  letter-spacing: var(--insta-font-title-lg-tracking);
+  text-align: center;
+}
+
+.insta-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 var(--insta-gutter) var(--insta-spacing-l);
+  overflow-y: auto;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-body-md-size);
+  font-weight: var(--insta-font-body-md-weight);
+  line-height: 1.4;
+  letter-spacing: var(--insta-font-body-md-tracking);
+  scrollbar-width: thin;
+  scrollbar-color: var(--insta-color-border-default) transparent;
+}
+
+.insta-bottom-sheet__body[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Não modal — a folha sobre o conteúdo, recolhida ou expandida
+   ========================================================================== */
+
+.insta-bottom-sheet--inline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+
+.insta-bottom-sheet__toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--insta-touch-target);
+  padding: 0 var(--insta-gutter) var(--insta-spacing-m);
+  background: none;
+  border: none;
+  color: var(--insta-color-text-primary);
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.insta-bottom-sheet__toggle:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: -2px;
+  border-radius: var(--insta-radius-l) var(--insta-radius-l) 0 0;
+}
+
+.insta-bottom-sheet__toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--insta-spacing-xxs);
+}
+
+.insta-bottom-sheet__toggle-label {
+  min-width: 0;
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1.2;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  text-align: center;
+}
+
+/*
+ * O chevron é o `chevronDown` do registro (Accounts List). Recolhida, a folha
+ * aponta para cima — "abrir"; expandida, para baixo — "recolher". O vetor é o
+ * mesmo, só girado: nenhum glifo novo.
+ */
+.insta-bottom-sheet__chevron {
+  display: inline-flex;
+  color: var(--insta-color-icon-primary);
+  transform: rotate(180deg);
+  transition: transform var(--insta-transition-base);
+}
+
+.insta-bottom-sheet--open .insta-bottom-sheet__chevron {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insta-bottom-sheet__chevron {
+    transition: none;
+  }
+}

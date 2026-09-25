@@ -112,6 +112,40 @@
   right: 14px;
 }
 
+/*
+ * Slide sem fotografia e estado de erro — extensões. O quadro publica só a
+ * fotografia; os dois ocupam a mesma caixa, sobre a mesma superfície
+ * `background-tertiary`, e o erro usa o `Button` secundário do pacote.
+ */
+.insta-post-card__media-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.insta-post-card__media-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--insta-spacing-m);
+  padding: var(--insta-gutter);
+  text-align: center;
+}
+
+.insta-post-card__media-error-label {
+  margin: 0;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-label-md-weight);
+  line-height: var(--insta-font-label-md-line);
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
 /* ==========================================================================
    Rodapé — frame "Post / Bottom"
    ========================================================================== */

@@ -48,12 +48,41 @@ export interface InstaPostHeaderProps extends React.HTMLAttributes<HTMLDivElemen
 
 /**
  * Propriedades da mídia do post (quadrado de 375×375px).
+ *
+ * Três estados:
+ * - com `src`: a imagem;
+ * - com `src` que falha ao carregar: o estado de erro, com `errorLabel` e o
+ *   botão "Tentar novamente";
+ * - sem `src`: `children` é o slide — um cartão de texto ou um desenho do
+ *   produto no lugar da fotografia.
  */
 export interface InstaPostMediaProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** URL da imagem exibida */
-  src: string;
-  /** Texto alternativo da imagem */
-  alt: string;
+  /** URL da imagem exibida. Ausente, `children` é o conteúdo do slide. */
+  src?: string;
+  /**
+   * Texto alternativo da imagem — obrigatório quando há `src`. Sem `src`,
+   * nomeia o slide (`role="group"`), cujo texto continua legível.
+   */
+  alt?: string;
+  /** Conteúdo do slide quando não há `src`. */
+  children?: React.ReactNode;
+  /**
+   * Chamado ao tocar "Tentar novamente". A mídia já refaz o carregamento; o
+   * callback serve para o produto trocar a `src` ou cair para `children`.
+   */
+  onRetry?: () => void;
+  /** Chamado quando a imagem de `src` falha ao carregar. */
+  onMediaError?: () => void;
+  /**
+   * Texto do estado de erro.
+   * @default 'Não foi possível carregar a imagem.'
+   */
+  errorLabel?: React.ReactNode;
+  /**
+   * Rótulo do botão do estado de erro.
+   * @default 'Tentar novamente'
+   */
+  retryLabel?: React.ReactNode;
   /** Índice do item atual no carrossel, começando em 1 */
   currentIndex?: number;
   /** Total de itens do carrossel */

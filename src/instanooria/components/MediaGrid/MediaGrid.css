@@ -47,3 +47,46 @@
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.35));
   pointer-events: none;
 }
+
+/* ==========================================================================
+   Modo de seleção — "SELECT MULTIPLE" (`0:3163`)
+   O quadro publica o botão de seleção múltipla, não o círculo de cada bloco.
+   O círculo é extensão: branco de 1px sobre o `overlay-scrim` quando livre, o
+   azul de ação com o número da ordem quando escolhido.
+   ========================================================================== */
+
+.insta-media-grid__cell {
+  position: relative;
+  min-width: 0;
+}
+
+.insta-media-grid--selectable .insta-media-grid__indicator {
+  top: auto;
+  bottom: var(--insta-spacing-xs);
+}
+
+.insta-media-grid__check {
+  position: absolute;
+  top: var(--insta-spacing-xs);
+  right: var(--insta-spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--insta-icon-size-md);
+  height: var(--insta-icon-size-md);
+  border: 1px solid #ffffff;
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-overlay-scrim);
+  color: #ffffff;
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-caption-lg-size);
+  font-weight: var(--insta-font-caption-lg-weight);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.insta-media-grid__check--selected {
+  background-color: var(--insta-color-action-primary);
+}

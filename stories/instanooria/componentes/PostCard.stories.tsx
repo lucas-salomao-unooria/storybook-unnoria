@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import { PostCard } from '../../../src/instanooria/components/PostCard';
 import {
   UnooriaDocShell,
@@ -8,12 +9,72 @@ import {
   InstaDocCard,
   InstaDocGrid,
   InstaDocFigmaSpecs,
+  InstaDocDeviations,
   InstaDocPractices,
   InstaDocStage,
   InstaDocThemeSwitcher,
   InstaDocPropsTable,
 } from '../../../.storybook/components';
 import { instaAvatars, instaPhotos } from '../fixtures';
+
+/** Uma `src` que não existe, para demonstrar o estado de erro. */
+const IMAGEM_QUEBRADA = '/instanooria/imagem-que-nao-existe.jpg';
+
+/**
+ * Cartão de texto usado como slide quando não há fotografia.
+ */
+const CartaoDeTexto: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div
+    style={{
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 32,
+      backgroundColor: 'var(--insta-color-background-secondary)',
+      color: 'var(--insta-color-text-primary)',
+      fontFamily: 'var(--insta-font-sans)',
+      fontSize: 22,
+      fontWeight: 590,
+      lineHeight: 1.3,
+      textAlign: 'center',
+    }}
+  >
+    {children}
+  </div>
+);
+
+/**
+ * Carrossel com um slide de texto, sem fotografia, entre duas fotografias.
+ */
+const CarrosselComCartao: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme = 'light' }) => {
+  const [indice, setIndice] = useState(2);
+
+  return (
+    <PostCard theme={theme}>
+      <PostCard.Header username="gremio.escola" avatarSrc={instaAvatars.jacob_w} theme={theme} />
+      {indice === 2 ? (
+        <PostCard.Media alt="Cartão: o grêmio abriu inscrições" currentIndex={2} totalCount={3} theme={theme}>
+          <CartaoDeTexto>O grêmio abriu inscrições para a feira de ciências!</CartaoDeTexto>
+        </PostCard.Media>
+      ) : (
+        <PostCard.Media
+          src={indice === 1 ? instaPhotos.turbines : instaPhotos.desk}
+          alt={indice === 1 ? 'Turbinas eólicas' : 'Estação de trabalho'}
+          currentIndex={indice}
+          totalCount={3}
+          theme={theme}
+        />
+      )}
+      <PostCard.Actions
+        currentIndex={indice}
+        totalCount={3}
+        theme={theme}
+        onComment={() => setIndice((valor) => (valor % 3) + 1)}
+      />
+    </PostCard>
+  );
+};
 
 /**
  * Publicação completa de demonstração, usada nas seções de documentação.
@@ -79,6 +140,14 @@ const PostCardDocumentationPage = () => (
         Informando <code>currentIndex</code> e <code>totalCount</code>, o contador aparece sobre a
         mídia e a paginação em pontos surge no centro da barra de ações.
       </InstaDocCard>
+      <InstaDocCard icon="📝" title="Slide sem fotografia (extensão)">
+        Sem <code>src</code>, <code>PostCard.Media</code> exibe <code>children</code> como o slide —
+        um cartão de texto ou o desenho do produto quando a imagem não existe.
+      </InstaDocCard>
+      <InstaDocCard icon="🔁" title="Estado de erro (extensão)">
+        Uma <code>src</code> que não carrega vira a mensagem <code>errorLabel</code> e o botão
+        “Tentar novamente”, que refaz o carregamento e chama <code>onRetry</code>.
+      </InstaDocCard>
       <InstaDocCard icon="❤️" title="Estados de interação">
         <code>liked</code> troca o coração vazado pelo preenchido em vermelho de marca;{' '}
         <code>saved</code> controla o marcador. Ambos expõem <code>aria-pressed</code>.
@@ -101,13 +170,30 @@ const PostCardDocumentationPage = () => (
         { label: 'Contador de mídia', value: '34 × 26px · top 14px' },
       ]}
     />
-    <p style={{ fontSize: 13, color: '#475157', lineHeight: 1.7, marginTop: -16, marginBottom: 32 }}>
-      <strong>Desvio documentado:</strong> no arquivo original a data de publicação está vinculada a{' '}
-      <code>color/text/primary</code>. No Instanooria ela usa{' '}
-      <code>--insta-color-text-secondary</code>, preservando a hierarquia de leitura entre legenda e
-      metadado exigida pelas diretrizes de contraste do design system. Todos os demais vínculos de
-      cor são idênticos aos do Figma.
-    </p>
+    <InstaDocDeviations
+      items={[
+        {
+          subject: 'PostCard.Timestamp',
+          detail:
+            'no arquivo original a data está vinculada a color/text/primary. No Instanooria ela usa --insta-color-text-secondary, preservando a hierarquia de leitura entre legenda e metadado (seção 6.4). Todos os demais vínculos de cor são idênticos aos do Figma.',
+        },
+        {
+          subject: 'Slide sem fotografia',
+          detail:
+            'o quadro Main (0:21 / 0:1646) só publica fotografia. Sem src, children ocupa a mesma caixa, sobre o mesmo background-tertiary, e o contador “1/3” e os pontos (Pagination, 0:1690) continuam valendo.',
+        },
+        {
+          subject: 'Estado de erro',
+          detail:
+            'o quadro não descreve imagem que falha. A mensagem usa Label/Medium em text-primary — o secundário sobre o tertiary mede 3,1:1 — e o botão é o Button secundário do pacote.',
+        },
+        {
+          subject: 'Pontos do carrossel já existentes',
+          detail:
+            'os pontos entre as ações vêm de currentIndex / totalCount do PostCard.Actions, como antes. Nenhuma prop nova foi criada para eles, para não haver duas formas de dizer a mesma coisa.',
+        },
+      ]}
+    />
 
     <UnooriaDocSectionHeader
       title="3. Anatomia do Componente"
@@ -181,6 +267,19 @@ const PostCardDocumentationPage = () => (
           <PostCard.Actions />
           <PostCard.Caption username="karennne">Sábado devagar ☕</PostCard.Caption>
           <PostCard.Timestamp>Há 2 horas</PostCard.Timestamp>
+        </PostCard>
+      </div>
+    </InstaDocStage>
+
+    <InstaDocStage label="Slide sem fotografia e estado de erro (extensões)" align="flex-start">
+      <div style={{ width: 340, border: '1px solid #E4E8E9', borderRadius: 12, overflow: 'hidden' }}>
+        <CarrosselComCartao />
+      </div>
+      <div style={{ width: 340, border: '1px solid #E4E8E9', borderRadius: 12, overflow: 'hidden' }}>
+        <PostCard>
+          <PostCard.Header username="zackjohn" avatarSrc={instaAvatars.zackjohn} />
+          <PostCard.Media src={IMAGEM_QUEBRADA} alt="Publicação que não carregou" />
+          <PostCard.Actions />
         </PostCard>
       </div>
     </InstaDocStage>
@@ -271,8 +370,31 @@ const PostCardDocumentationPage = () => (
     <InstaDocPropsTable
       title="PostCard.Media"
       rows={[
-        { name: 'src', type: 'string', description: 'URL da imagem exibida. Obrigatório.' },
-        { name: 'alt', type: 'string', description: 'Texto alternativo da imagem. Obrigatório.' },
+        { name: 'src', type: 'string', description: 'URL da imagem. Ausente, children é o slide.' },
+        {
+          name: 'alt',
+          type: 'string',
+          description: 'Texto alternativo — obrigatório com src. Sem src, nomeia o slide (role="group").',
+        },
+        { name: 'children', type: 'React.ReactNode', description: 'Conteúdo do slide quando não há src.' },
+        {
+          name: 'onRetry',
+          type: '() => void',
+          description: 'Toque em “Tentar novamente”. A mídia já refaz o carregamento.',
+        },
+        { name: 'onMediaError', type: '() => void', description: 'A imagem de src falhou ao carregar.' },
+        {
+          name: 'errorLabel',
+          type: 'React.ReactNode',
+          default: "'Não foi possível carregar a imagem.'",
+          description: 'Texto do estado de erro.',
+        },
+        {
+          name: 'retryLabel',
+          type: 'React.ReactNode',
+          default: "'Tentar novamente'",
+          description: 'Rótulo do botão do estado de erro.',
+        },
         {
           name: 'currentIndex',
           type: 'number',
@@ -557,4 +679,46 @@ export const ComposicaoModular: Story = {
       </div>
     </div>
   ),
+};
+
+/**
+ * Extensões da mídia: o slide de texto no carrossel e o estado de erro com
+ * "Tentar novamente".
+ */
+export const SlideEErro: StoryObj<{ onRetry: () => void; onMediaError: () => void }> = {
+  name: 'Slide sem Fotografia e Erro',
+  args: { onRetry: fn(), onMediaError: fn() },
+  render: (args) => (
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+      <div style={{ width: 340, border: '1px solid #E4E8E9', borderRadius: 12, overflow: 'hidden' }}>
+        <CarrosselComCartao />
+      </div>
+      <div style={{ width: 340, border: '1px solid #E4E8E9', borderRadius: 12, overflow: 'hidden' }}>
+        <PostCard>
+          <PostCard.Header username="zackjohn" avatarSrc={instaAvatars.zackjohn} />
+          <PostCard.Media
+            src={IMAGEM_QUEBRADA}
+            alt="Publicação que não carregou"
+            onRetry={args.onRetry}
+            onMediaError={args.onMediaError}
+          />
+        </PostCard>
+      </div>
+    </div>
+  ),
+  play: async ({ args, canvasElement }) => {
+    const tela = within(canvasElement);
+
+    await expect(
+      tela.getByRole('group', { name: 'Cartão: o grêmio abriu inscrições' })
+    ).toHaveTextContent('O grêmio abriu inscrições para a feira de ciências!');
+    await expect(tela.getByText('2/3')).toBeInTheDocument();
+
+    const tentar = await tela.findByRole('button', { name: 'Tentar novamente' });
+    await expect(tela.getByText('Não foi possível carregar a imagem.')).toBeInTheDocument();
+    await expect(args.onMediaError).toHaveBeenCalled();
+    await userEvent.click(tentar);
+    await expect(args.onRetry).toHaveBeenCalledTimes(1);
+    await expect(await tela.findByRole('button', { name: 'Tentar novamente' })).toBeInTheDocument();
+  },
 };

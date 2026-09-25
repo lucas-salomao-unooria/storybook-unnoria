@@ -23,3 +23,14 @@ export * from './ProfileHeader';
 export * from './MediaGrid';
 export * from './PhoneFrame';
 export * from './StoryViewer';
+
+/*
+ * Extensões — sem quadro no arquivo de origem (seção 6.2 do AGENTS.md).
+ */
+export * from './DirectThread';
+export * from './MessageBubble';
+export * from './DmPoll';
+export * from './ConfirmDialog';
+export * from './BottomSheet';
+export * from './FloatingButton';
+export * from './StoryComposer';

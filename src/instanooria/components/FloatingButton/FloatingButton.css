@@ -1,0 +1,120 @@
+/**
+ * Estilos do Componente FloatingButton — Design System Instanooria
+ *
+ * Extensão. O Instagram não tem FAB circular; tem a pílula flutuante. A medida
+ * é a da pílula "Select multiple" da tela de adicionar imagem (`0:3218`):
+ * 32px de altura, raio total, glifo, 12px de recuo e 10px entre glifo e
+ * rótulo. A variante neutra reproduz a superfície dela
+ * (`--insta-color-background-elevated`, com o contorno do botão secundário para
+ * não sumir sobre a tela branca); a primária usa o azul de ação e o branco
+ * literal do `Button` primário. Sem sombra com desfoque (seção 2.3).
+ *
+ * O rótulo sai do `Overline/Default` em caixa alta do quadro para o
+ * `Title/Small` — o dos rótulos de botão —, como na pílula "Novas publicações".
+ */
+
+.insta-floating-button {
+  position: absolute;
+  left: 50%;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--insta-spacing-s);
+  box-sizing: border-box;
+  height: 32px;
+  max-width: calc(100% - 2 * var(--insta-gutter));
+  padding: 0 var(--insta-spacing-m);
+  border: 1px solid transparent;
+  border-radius: var(--insta-radius-full);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-title-sm-size);
+  font-weight: var(--insta-font-title-sm-weight);
+  line-height: 1;
+  letter-spacing: var(--insta-font-title-sm-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%);
+  transition: opacity var(--insta-transition-base), transform var(--insta-transition-base),
+    visibility 0s linear 0s;
+}
+
+.insta-floating-button--top {
+  top: var(--insta-spacing-l);
+}
+
+.insta-floating-button--bottom {
+  bottom: var(--insta-spacing-l);
+}
+
+.insta-floating-button__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.insta-floating-button:focus-visible {
+  outline: 2px solid var(--insta-color-action-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.insta-floating-button--primary {
+  background-color: var(--insta-color-action-primary);
+  color: #ffffff;
+}
+
+.insta-floating-button--primary:hover {
+  filter: brightness(0.95);
+}
+
+.insta-floating-button--primary:active {
+  filter: brightness(0.9);
+}
+
+.insta-floating-button--neutral {
+  border-color: var(--insta-color-action-secondary-border);
+  background-color: var(--insta-color-background-elevated);
+  color: var(--insta-color-text-primary);
+}
+
+.insta-floating-button--neutral:hover {
+  background-color: var(--insta-color-background-secondary);
+}
+
+/* ==========================================================================
+   Escondida — some com transição, sai do foco e da árvore de acessibilidade
+   ========================================================================== */
+
+.insta-floating-button--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--insta-transition-base), transform var(--insta-transition-base),
+    visibility 0s linear 200ms;
+}
+
+.insta-floating-button--top.insta-floating-button--hidden {
+  transform: translate(-50%, calc(-1 * var(--insta-spacing-xs)));
+}
+
+.insta-floating-button--bottom.insta-floating-button--hidden {
+  transform: translate(-50%, var(--insta-spacing-xs));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insta-floating-button,
+  .insta-floating-button--hidden {
+    transition: none;
+  }
+
+  .insta-floating-button--top.insta-floating-button--hidden,
+  .insta-floating-button--bottom.insta-floating-button--hidden {
+    transform: translateX(-50%);
+  }
+}
