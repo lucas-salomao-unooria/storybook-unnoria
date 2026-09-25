@@ -44,7 +44,7 @@ O pacote publica **seis design systems** em um único artefato NPM:
 | Marca | Módulo | Namespace | Prefixo CSS / classes | Tema ou contexto | Componentes | Arquivo Figma de origem |
 |---|---|---|---|---|---|---|
 | Plataforma Unooria | `src/unooria/` | `UnooriaUI` + exportação na raiz | `--unooria-*` / `.unooria-*` | Light e Dark | 40 | — (design próprio) |
-| Instanooria | `src/instanooria/` | `InstanooriaUI` | `--insta-*` / `.insta-*` | `data-insta-theme="light \| dark"` | 21 | Instagram UI Screens (Community) |
+| Instanooria | `src/instanooria/` | `InstanooriaUI` | `--insta-*` / `.insta-*` | `data-insta-theme="light \| dark"` | 28 | Instagram UI Screens (Community) |
 | ChatGPT | `src/chatgpt/` | `ChatGPTUI` | `--gpt-*` / `.gpt-*` | `data-gpt-theme="light \| dark"` | 25 | ChatGPT UI Kit (AI Chat) (Community) |
 | WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 39 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
@@ -230,7 +230,7 @@ const [NomeComponente]DocumentationPage = () => (
 
 - **Kit por marca**: a moldura (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) é compartilhada, mas cada marca tem o próprio kit de seções — `InstaDocKit`, `GptDocKit`, `WaDocKit` e `TikDocKit` — com `…DocGrid`, `…DocCard`, `…DocFigmaSpecs`, `…DocAnatomy`, `…DocStage`, `…DocPractices`, `…DocPropsTable` e `…DocTokenSwatch`. Use o kit da marca do componente, **nunca o de outra**.
 - **Seção 6 quando o arquivo não publica par claro/escuro**: se a origem tem um único tema (WhatsApp Mobile) ou dois contextos de superfície em vez de dois temas (Tik Tooria), a seção "Suporte a Temas" é atendida pelo alternador de superfícies da marca (`WaDocSurfaceSwitcher`, `TikDocSurfaceSwitcher`). **É PROIBIDO simular um tema que o arquivo de design não publica.**
-- **Registro de desvios**: toda divergência intencional em relação ao arquivo de design é declarada na seção 2, com o utilitário de desvios da marca (`WaDocDeviations`, `TikDocDeviations`) ou o slot `deviations` do `GptDocFigmaSpecs`.
+- **Registro de desvios**: toda divergência intencional em relação ao arquivo de design é declarada na seção 2, com o utilitário de desvios da marca (`InstaDocDeviations`, `WaDocDeviations`, `TikDocDeviations`) ou o slot `deviations` do `GptDocFigmaSpecs`.
 
 ### 3.3. Configuração do Objeto `meta`
 O objeto `meta` **NÃO DEVE** usar `tags: ['autodocs']` (para evitar abas vazias ou redundâncias na sidebar):
@@ -314,7 +314,7 @@ export default meta;
 
 O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem (`bundle: false` em `tsup.config.ts`), preservando o grafo de módulos.
 
-- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**110 dos 204** na última medição, em 25/09/2026, na 0.2.4: 2/40 na Plataforma Unooria, 10/21 no Instanooria, 21/25 no ChatGPT, 20/39 no WhatsApp Mobile, 32/35 no Tik Tooria e 25/44 no Unootube). Para recontar depois de um `npm run build:package`:
+- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**112 dos 211** na última medição, em 25/09/2026, sobre a 0.2.4 com as extensões do Instanooria: 2/40 na Plataforma Unooria, 12/28 no Instanooria, 21/25 no ChatGPT, 20/39 no WhatsApp Mobile, 32/35 no Tik Tooria e 25/44 no Unootube). Para recontar depois de um `npm run build:package`:
   ```bash
   for d in dist/*/components/*/; do n=$(basename "$d"); f="$d$n.mjs"; \
     [ -f "$f" ] && { head -3 "$f" | grep -q 'use client' && echo client || echo server; }; \
@@ -443,18 +443,36 @@ O **Instanooria** é a rede social visual da Plataforma Unooria, implementada a 
 - **Componentes**: `Instanooria/Componentes/[NomeComponente]`.
 - **Telas compostas**: `Instanooria/Telas/Telas Compostas`.
 
-### 6.2. Componentes Oficiais (21)
+### 6.2. Componentes Oficiais (21) e Extensões (7)
 `Icon`, `Logo`, `Avatar`, `Badge`, `Button`, `Divider`, `StoryBubble`, `StoriesTray`, `TopBar`, `TabBar`, `PostCard` (composto), `TextField`, `SearchField`, `Chip`, `SegmentedTabs`, `ListItem`, `NotificationItem`, `ProfileHeader`, `MediaGrid`, `PhoneFrame` e `StoryViewer`.
+
+**Extensões** (não publicadas pelo arquivo de origem): `DirectThread`, `MessageBubble`, `DmPoll`, `ConfirmDialog`, `BottomSheet`, `FloatingButton` e `StoryComposer` — mais, no `MediaGrid`, o modo de seleção (`selectable`, `selectedIds`, `onToggle`); no `StoryViewer`, as zonas de toque (`onNext`, `onPrev`), a camada `children` sobre a mídia e o `footer`; e no `PostCard.Media`, o slide sem fotografia (`children` sem `src`) e o estado de erro (`onRetry`, `onMediaError`, `errorLabel`, `retryLabel`).
+
+- **As 19 telas × 2 temas não publicam conversa de DM aberta (só a lista), enquete, diálogo de confirmação, folha inferior (só a gaveta LATERAL do menu do perfil, `0:1161` / `0:2938`), botão flutuante nem compositor de Story.** As extensões entraram em 25/09/2026, para a missão "A Seleção" do monorepo consumidor (7º ano: o estudante salva posts, escolhe exatamente três, publica nos Stories do grêmio, compara os seus com os de um colega no Mural, com a gaveta da ficha técnica, e responde a duas enquetes numa DM com a personagem Amara). O dono do produto decidiu implementá-las "igual ao app real do Instagram", no precedente do WhatsApp Mobile (seção 8.3), em vez de cada missão compor a sua cópia.
+- **Cada uma deriva a forma de degraus que o arquivo DE FATO publica** e ancora a estória no nó de onde vem o que empresta: a barra da lista de conversas (`0:2629`) e a barra "Camera" (`0:2614`) no `DirectThread`; o campo de busca da lista (`0:2622`) e o campo "Send Message" do Story (`0:2266`, raio de 21,5px) no `MessageBubble` e na `DmPoll`; o par "Cancel" / "Next" da barra da tela de adicionar imagem (`0:3194`) nas ações do `ConfirmDialog`; a gaveta lateral (`0:2938`) na `BottomSheet`; a pílula "Select multiple" (`0:3218`, 32px) no `FloatingButton`; a `Chat Bar` de 94px (`0:2254`) e a pílula de 43px do Story no `StoryComposer`; e a tela de adicionar imagem (`0:1366` / `0:3163`) no modo de seleção do `MediaGrid`. **Nenhum token novo foi criado** (só `--insta-*` existentes) e **nenhum glifo foi desenhado**: `back`, `chevronDown` (girado 180° na alça da folha), `video` e os demais vêm de `IconPaths.tsx`. Claro e escuro, como o resto da seção.
+- **A `DmPoll` não mostra contagem nem porcentagem de votos** (o app real mostra) e não sabe se uma opção é "certa" — devolve só o `id`, a mesma decisão do `Poll` do WhatsApp Mobile. Um toque vota e trava; `value` ausente é não controlado, uma string é o voto já enviado e `null` é "ainda não votou" sob controle do produto.
+- **O balão enviado do `MessageBubble` não é azul, e a opção votada da `DmPoll` também não**: branco sobre `--insta-color-action-primary` mede 3,06:1, abaixo dos 4,5:1 de texto normal. O enviado usa o preenchimento do campo de busca (`--insta-color-fill-field`) e o recebido, a superfície com o contorno do `Button` secundário — o Direct da geração de app que o arquivo desenha. O `ConfirmDialog` e a variante `primary` do `FloatingButton` seguem no azul porque o pedido os fixa; a ressalva de contraste está na estória de cada um (ver 6.4).
+- **O `StoryComposer` só é controlado quando o consumidor passa `value`** (seção 4.5.1). O `PostCard.Actions` NÃO ganhou props de carrossel: os pontos entre as ações já saíam de `currentIndex` / `totalCount`, e um segundo par de nomes seria duas formas de dizer a mesma coisa.
+- `BottomSheet` (modo modal) e `ConfirmDialog` compartilham `BottomSheet/useModalFocus.ts` — uma CÓPIA do hook do WhatsApp Mobile, porque um módulo de marca nunca consome outro (seção 1.3), com `initialFocusRef` a mais: o alerta destrutivo abre com o foco em "Cancelar".
+- **É PROIBIDO ampliar esse grupo sem registrar o desvio na estória correspondente**, com o `InstaDocDeviations`.
 
 - Os destaques do perfil **não têm componente próprio**: são `StoriesTray` com `bordered={false}` e itens em estado `seen` / `add`. Não duplicar.
 - `PhoneFrame` é um contêiner **de documentação**, não de produção.
 
 ### 6.3. Kit de Documentação
-As estórias do Instanooria usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/InstaDocKit.tsx`: `InstaDocGrid`, `InstaDocCard`, `InstaDocFigmaSpecs`, `InstaDocStage`, `InstaDocPractices`, `InstaDocThemeSwitcher`, `InstaDocPropsTable` e `InstaDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3.
+As estórias do Instanooria usam o `UnooriaDocShell` como moldura e os utilitários de `.storybook/components/InstaDocKit.tsx`: `InstaDocGrid`, `InstaDocCard`, `InstaDocFigmaSpecs`, `InstaDocDeviations`, `InstaDocStage`, `InstaDocPractices`, `InstaDocThemeSwitcher`, `InstaDocPropsTable` e `InstaDocTokenSwatch`. Toda estória mantém as seções obrigatórias do Padrão Ouro definidas na seção 3; o `InstaDocDeviations` (no molde do `WaDocDeviations`) é obrigatório em toda extensão.
 
 ### 6.4. Registro de Desvios em Relação ao Figma
 Qualquer divergência intencional em relação ao arquivo de design **DEVE** ser documentada na seção "Figma & Especificações Técnicas" da estória do componente. Desvios registrados até o momento:
 - **PostCard.Timestamp**: o Figma vincula a data a `color/text/primary`; o Instanooria usa `--insta-color-text-secondary` para preservar a hierarquia de leitura entre legenda e metadado exigida pela seção 4.2.
+- **Sete extensões e três variantes** sem quadro no arquivo — ver 6.2. Cada estória registra o próprio desvio com o `InstaDocDeviations`.
+- **`MessageBubble` enviado em cinza**: o app atual pinta o enviado de azul-arroxeado; aqui ele é o `--insta-color-fill-field`, porque branco sobre o azul de ação mede 3,06:1. Texto primário sobre os dois preenchimentos passa de 12:1 nos dois temas.
+- **Contraste das cores de ação, ressalva aberta**: no tema claro, o azul de ação sobre a superfície mede 3,06:1 e o vermelho da marca 3,70:1 (ações do `ConfirmDialog`); branco sobre o azul de ação mede 3,06:1 (variante `primary` do `FloatingButton` e número do círculo de seleção do `MediaGrid`). São as cores que o pedido fixa e o par do `Button` primário. No `MediaGrid`, a ordem também chega ao leitor de tela pelo nome do botão ("…, 1ª na seleção").
+- **`MediaGrid` no modo de seleção**: o bloco mantém o papel de botão (`aria-pressed` não vale em `listitem`) e o item de lista passa a um invólucro; o indicador de vídeo desce para o canto inferior, onde o quadro de adicionar imagem põe a duração (`0:3182`). Fora do modo de seleção, a estrutura é a de antes.
+- **`ConfirmDialog` de 270px e sem desfoque**: a largura é a do alerta do iOS, não do arquivo; o fundo translúcido com blur do sistema virou só o véu (seção 2.3). O toque no véu não cancela, como no iOS.
+- **`BottomSheet` sem arraste**: a alça é um botão (`aria-expanded`), o que dá acesso por teclado e leitor de tela; a superfície é `background-elevated`, e não o `background-primary` da gaveta.
+- **`FloatingButton` em `Title/Small`, com contorno na neutra**: no quadro, "SELECT MULTIPLE" é `Overline/Default` em caixa alta sobre a fotografia; a pílula usa o degrau dos rótulos de botão e ganha o contorno do `Button` secundário para não sumir sobre a tela branca.
+- **Glifos que as extensões não têm**: a seta de "Novas publicações", o ícone de "Select multiple" e a seta de envio do compositor de Story não estão no registro. Não foram desenhados — o `FloatingButton` aceita só `InstaIconName`, e o `StoryComposer` tem uma ação só ("Seu story").
 
 ---
 
