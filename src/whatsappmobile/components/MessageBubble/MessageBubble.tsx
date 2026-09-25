@@ -1,29 +1,44 @@
 import React from 'react';
+import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import type {
   WaMessageBubbleProps,
   WaMessageDocumentProps,
+  WaMessageInviteProps,
+  WaMessageLinkPreviewProps,
   WaMessageMediaProps,
 } from './MessageBubble.types';
 import './MessageBubble.css';
 
 /**
  * Miniatura de mídia anexada, com raio de 5px como no frame de origem.
+ *
+ * Sem `src`, a moldura exibe os `children` — a mídia desenhada — e se anuncia
+ * como imagem pelo `alt`, para que o leitor de tela leia o mesmo que a imagem
+ * leria.
  */
 const MessageMedia: React.FC<WaMessageMediaProps> = ({
   src,
   alt,
   ratio = '16 / 9',
+  children,
   className = '',
   style,
   ...restProps
 }) => (
   <div
-    className={['wa-messagebubble__media', className].filter(Boolean).join(' ')}
+    className={[
+      'wa-messagebubble__media',
+      src ? '' : 'wa-messagebubble__media--drawn',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')}
     style={{ aspectRatio: ratio, ...style }}
+    {...(src ? {} : { role: 'img', 'aria-label': alt })}
     {...restProps}
   >
-    <img src={src} alt={alt} />
+    {src ? <img src={src} alt={alt} /> : children}
   </div>
 );
 
@@ -60,12 +75,112 @@ const MessageDocument: React.FC<WaMessageDocumentProps> = ({
 MessageDocument.displayName = 'MessageBubble.Document';
 
 /**
+ * Cartão de pré-visualização de link: miniatura opcional, manchete, resumo e
+ * domínio, sobre a faixa `--wa-color-surface-bubble-out-strip` — a mesma
+ * superfície que o arquivo usa para o documento anexado.
+ */
+const MessageLinkPreview: React.FC<WaMessageLinkPreviewProps> = ({
+  title,
+  description,
+  domain,
+  thumbnail,
+  onClick,
+  className = '',
+  ...restProps
+}) => {
+  const classes = [
+    'wa-messagebubble__link',
+    onClick ? 'wa-messagebubble__link--action' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const content = (
+    <>
+      {thumbnail && <span className="wa-messagebubble__link-thumb">{thumbnail}</span>}
+      <span className="wa-messagebubble__link-body">
+        <span className="wa-messagebubble__link-title">{title}</span>
+        {description && (
+          <span className="wa-messagebubble__link-description">{description}</span>
+        )}
+        <span className="wa-messagebubble__link-domain">{domain}</span>
+      </span>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        className={classes}
+        onClick={onClick}
+        {...(restProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div className={classes} {...(restProps as React.HTMLAttributes<HTMLDivElement>)}>
+      {content}
+    </div>
+  );
+};
+
+MessageLinkPreview.displayName = 'MessageBubble.LinkPreview';
+
+/**
+ * Convite para grupo: avatar, nome e linha de apoio sobre a faixa da mensagem,
+ * com a ação de entrar separada por um divisor — como a ação de um diálogo, em
+ * `--wa-color-accent-action`.
+ */
+const MessageInvite: React.FC<WaMessageInviteProps> = ({
+  title,
+  subtitle,
+  avatarSrc,
+  initials,
+  actionLabel,
+  onAction,
+  actionDisabled = false,
+  className = '',
+  ...restProps
+}) => (
+  <div
+    className={['wa-messagebubble__invite', className].filter(Boolean).join(' ')}
+    {...restProps}
+  >
+    <div className="wa-messagebubble__invite-head">
+      <Avatar src={avatarSrc} initials={initials} size="md" alt="" />
+      <span className="wa-messagebubble__invite-text">
+        <span className="wa-messagebubble__invite-title">{title}</span>
+        {subtitle && <span className="wa-messagebubble__invite-subtitle">{subtitle}</span>}
+      </span>
+    </div>
+    <button
+      type="button"
+      className="wa-messagebubble__invite-action"
+      onClick={onAction}
+      disabled={actionDisabled}
+    >
+      {actionLabel}
+    </button>
+  </div>
+);
+
+MessageInvite.displayName = 'MessageBubble.Invite';
+
+/**
  * Componente MessageBubble — Design System WhatsApp Mobile
  *
  * Balão de mensagem com composição modular. O balão enviado reproduz o
  * preenchimento #054640 e a cauda inferior direita do vetor original
  * (node 1:2931); o balão recebido usa `--wa-color-surface-bubble-in` — desvio
  * registrado, já que o arquivo de origem não publica esse frame.
+ *
+ * `sender` e `forwardedLabel` são extensões: o arquivo não publica conversa de
+ * grupo nem mensagem encaminhada.
  */
 const MessageBubbleRoot = React.forwardRef<HTMLDivElement, WaMessageBubbleProps>(
   (
@@ -77,6 +192,8 @@ const MessageBubbleRoot = React.forwardRef<HTMLDivElement, WaMessageBubbleProps>
       starred = false,
       tail = true,
       maxWidth = 240,
+      sender,
+      forwardedLabel,
       className = '',
       style,
       ...restProps
@@ -101,6 +218,15 @@ const MessageBubbleRoot = React.forwardRef<HTMLDivElement, WaMessageBubbleProps>
         }
         {...restProps}
       >
+        {sender && <span className="wa-messagebubble__sender">{sender}</span>}
+
+        {forwardedLabel && (
+          <span className="wa-messagebubble__forwarded">
+            <Icon name="forward" size={12} tone="inherit" aria-hidden="true" />
+            {forwardedLabel}
+          </span>
+        )}
+
         {isPlainText ? <p className="wa-messagebubble__text">{children}</p> : children}
 
         {(time || delivery !== 'none' || starred) && (
@@ -130,9 +256,12 @@ const MessageBubbleRoot = React.forwardRef<HTMLDivElement, WaMessageBubbleProps>
 MessageBubbleRoot.displayName = 'MessageBubble';
 
 /**
- * Balão de mensagem com os subcomponentes `Media` e `Document`.
+ * Balão de mensagem com os subcomponentes `Media`, `Document`, `LinkPreview` e
+ * `Invite`.
  */
 export const MessageBubble = Object.assign(MessageBubbleRoot, {
   Media: MessageMedia,
   Document: MessageDocument,
+  LinkPreview: MessageLinkPreview,
+  Invite: MessageInvite,
 });

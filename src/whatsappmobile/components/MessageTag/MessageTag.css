@@ -1,0 +1,32 @@
+/**
+ * Estilos do Componente MessageTag — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem. Cápsula na superfície elevada do menu
+ * (`--wa-color-surface-elevated`) com contorno do controle
+ * (`--wa-color-border-control`) e texto primário — neutra de propósito: a
+ * informação está no rótulo e no pictograma, não na cor.
+ */
+
+.wa-messagetag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wa-spacing-3xs);
+  box-sizing: border-box;
+  min-height: 24px;
+  padding: var(--wa-spacing-4xs) var(--wa-spacing-xs);
+  border: var(--wa-divider-width) solid var(--wa-color-border-control);
+  border-radius: var(--wa-radius-pill);
+  background-color: var(--wa-color-surface-elevated);
+  color: var(--wa-color-text-primary);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-caption-bold-size);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.wa-messagetag__icon {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}

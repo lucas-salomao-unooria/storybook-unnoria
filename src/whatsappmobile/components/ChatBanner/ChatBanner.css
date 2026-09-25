@@ -1,0 +1,34 @@
+/**
+ * Estilos do Componente ChatBanner — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem. A faixa continua a app bar
+ * (`--wa-color-surface-appbar`) e se separa da conversa pelo divisor das listas
+ * (`--wa-color-border-divider`) — plana, sem sombra, como o arquivo inteiro.
+ */
+
+.wa-chatbanner {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-m);
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: var(--wa-spacing-xs) var(--wa-spacing-l);
+  border-bottom: var(--wa-divider-width) solid var(--wa-color-border-divider);
+  background-color: var(--wa-color-surface-appbar);
+  color: var(--wa-color-text-primary);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-sm-size);
+  line-height: 1.3;
+}
+
+.wa-chatbanner__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.wa-chatbanner__trailing {
+  flex-shrink: 0;
+  color: var(--wa-color-accent);
+  font-weight: var(--wa-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+}

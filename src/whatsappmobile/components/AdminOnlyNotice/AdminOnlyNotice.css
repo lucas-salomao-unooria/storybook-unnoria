@@ -1,0 +1,24 @@
+/**
+ * Estilos do Componente AdminOnlyNotice — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem. Ocupa a faixa do compositor na superfície da
+ * app bar, com o glifo `lock` literal do arquivo e o texto secundário do
+ * horário das conversas (`--wa-color-text-secondary`).
+ */
+
+.wa-adminonlynotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wa-spacing-xs);
+  box-sizing: border-box;
+  min-height: 56px;
+  padding: var(--wa-spacing-s) var(--wa-spacing-l);
+  border-top: var(--wa-divider-width) solid var(--wa-color-border-divider);
+  background-color: var(--wa-color-surface-appbar);
+  color: var(--wa-color-text-secondary);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-sm-size);
+  line-height: 1.3;
+  text-align: center;
+}

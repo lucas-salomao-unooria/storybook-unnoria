@@ -23,11 +23,15 @@
 /* ----------------------------------------------------
  * Estilos dos Componentes (WhatsApp Mobile)
  * ---------------------------------------------------- */
+@import './whatsappmobile/components/AdminOnlyNotice/AdminOnlyNotice.css';
 @import './whatsappmobile/components/AttachmentSheet/AttachmentSheet.css';
 @import './whatsappmobile/components/Avatar/Avatar.css';
 @import './whatsappmobile/components/Badge/Badge.css';
+@import './whatsappmobile/components/BottomSheet/BottomSheet.css';
+@import './whatsappmobile/components/Button/Button.css';
 @import './whatsappmobile/components/CallListItem/CallListItem.css';
 @import './whatsappmobile/components/CallScreen/CallScreen.css';
+@import './whatsappmobile/components/ChatBanner/ChatBanner.css';
 @import './whatsappmobile/components/ChatHeader/ChatHeader.css';
 @import './whatsappmobile/components/ChatListItem/ChatListItem.css';
 @import './whatsappmobile/components/ChatWallpaper/ChatWallpaper.css';
@@ -37,18 +41,24 @@
 @import './whatsappmobile/components/EncryptionNotice/EncryptionNotice.css';
 @import './whatsappmobile/components/Fab/Fab.css';
 @import './whatsappmobile/components/FilterChip/FilterChip.css';
+@import './whatsappmobile/components/ForwardButton/ForwardButton.css';
 @import './whatsappmobile/components/Icon/Icon.css';
 @import './whatsappmobile/components/ListItem/ListItem.css';
+@import './whatsappmobile/components/MediaViewer/MediaViewer.css';
 @import './whatsappmobile/components/Menu/Menu.css';
 @import './whatsappmobile/components/MessageBubble/MessageBubble.css';
 @import './whatsappmobile/components/MessageComposer/MessageComposer.css';
+@import './whatsappmobile/components/MessageTag/MessageTag.css';
 @import './whatsappmobile/components/PhoneFrame/PhoneFrame.css';
+@import './whatsappmobile/components/Poll/Poll.css';
 @import './whatsappmobile/components/Radio/Radio.css';
 @import './whatsappmobile/components/SearchField/SearchField.css';
 @import './whatsappmobile/components/SectionLabel/SectionLabel.css';
 @import './whatsappmobile/components/SettingsItem/SettingsItem.css';
 @import './whatsappmobile/components/StatusBar/StatusBar.css';
 @import './whatsappmobile/components/StatusListItem/StatusListItem.css';
+@import './whatsappmobile/components/SystemMessage/SystemMessage.css';
 @import './whatsappmobile/components/TabBar/TabBar.css';
 @import './whatsappmobile/components/TextButton/TextButton.css';
+@import './whatsappmobile/components/Toast/Toast.css';
 @import './whatsappmobile/components/TopBar/TopBar.css';

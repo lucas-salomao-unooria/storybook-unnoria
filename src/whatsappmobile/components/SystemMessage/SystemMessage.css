@@ -1,0 +1,22 @@
+/**
+ * Estilos do Componente SystemMessage — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem. Mesma superfície, texto e raio da etiqueta de
+ * data (nodes 1:3011 e 1:3012), sem a altura fixa — o aviso quebra linha.
+ */
+
+.wa-systemmessage {
+  align-self: center;
+  box-sizing: border-box;
+  max-width: 85%;
+  margin: 0;
+  padding: var(--wa-spacing-xxs) var(--wa-spacing-s);
+  border-radius: var(--wa-radius-l);
+  background-color: var(--wa-color-surface-datechip);
+  color: var(--wa-color-text-datechip);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-label-sm-size);
+  font-weight: var(--wa-font-label-sm-weight);
+  line-height: 1.3;
+  text-align: center;
+}

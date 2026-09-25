@@ -121,3 +121,174 @@
   border-radius: var(--wa-radius-full);
   background-color: var(--wa-color-text-bubble-meta);
 }
+
+/* ==========================================================================
+   Extensões — o arquivo de origem não publica conversa de grupo, mensagem
+   encaminhada, pré-visualização de link, convite nem mídia desenhada. Cada
+   bloco abaixo usa só superfícies, textos e raios que o arquivo publica, e o
+   desvio está registrado na estória do componente.
+   ========================================================================== */
+
+/* Remetente em conversa de grupo: o verde-água da aba ativa, em negrito — a
+   hierarquia que o arquivo dá ao nome na lista de conversas. */
+.wa-messagebubble__sender {
+  color: var(--wa-color-accent);
+  font-size: var(--wa-font-caption-bold-size);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1.2;
+}
+
+/* Selo "Encaminhada": metadado do balão, em itálico como no app real, com o
+   glifo `forward` literal do arquivo. */
+.wa-messagebubble__forwarded {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wa-spacing-3xs);
+  color: var(--wa-color-text-bubble-meta);
+  font-size: var(--wa-font-caption-size);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+/* Mídia desenhada: a moldura continua a da miniatura; o conteúdo ocupa tudo. */
+.wa-messagebubble__media--drawn {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.wa-messagebubble__media--drawn > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Subcomponente de pré-visualização de link
+   ========================================================================== */
+
+.wa-messagebubble__link {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: var(--wa-radius-m);
+  background-color: var(--wa-color-surface-bubble-out-strip);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.wa-messagebubble__link--action {
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-messagebubble__link--action:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
+.wa-messagebubble__link-thumb {
+  display: flex;
+  aspect-ratio: 1.91 / 1;
+  overflow: hidden;
+}
+
+.wa-messagebubble__link-thumb > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.wa-messagebubble__link-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-spacing-4xs);
+  padding: var(--wa-spacing-xs);
+}
+
+.wa-messagebubble__link-title {
+  color: var(--wa-color-text-bubble);
+  font-size: var(--wa-font-body-sm-size);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1.25;
+}
+
+.wa-messagebubble__link-description {
+  color: var(--wa-color-text-bubble-meta);
+  font-size: var(--wa-font-caption-size);
+  line-height: 1.3;
+}
+
+.wa-messagebubble__link-domain {
+  color: var(--wa-color-text-bubble-meta);
+  font-size: var(--wa-font-caption-size);
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   Subcomponente de convite para grupo
+   ========================================================================== */
+
+.wa-messagebubble__invite {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--wa-radius-m);
+  background-color: var(--wa-color-surface-bubble-out-strip);
+}
+
+.wa-messagebubble__invite-head {
+  display: flex;
+  align-items: center;
+  gap: var(--wa-spacing-s);
+  padding: var(--wa-spacing-s);
+}
+
+.wa-messagebubble__invite-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-spacing-4xs);
+  min-width: 0;
+}
+
+.wa-messagebubble__invite-title {
+  color: var(--wa-color-text-bubble);
+  font-size: var(--wa-font-body-md-size);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1.2;
+}
+
+.wa-messagebubble__invite-subtitle {
+  color: var(--wa-color-text-bubble-meta);
+  font-size: var(--wa-font-caption-size);
+  line-height: 1.2;
+}
+
+/* A ação é a do diálogo (CANCEL / OK), com alvo de 48px: é o toque que abre o
+   grupo, e o dedo de quem usa o clone não pode errar por pouco. */
+.wa-messagebubble__invite-action {
+  min-height: 48px;
+  padding: var(--wa-spacing-xs) var(--wa-spacing-s);
+  border: 0;
+  border-top: var(--wa-divider-width) solid var(--wa-color-border-divider);
+  background: transparent;
+  color: var(--wa-color-accent-action);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-md-size);
+  font-weight: var(--wa-font-weight-bold);
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-messagebubble__invite-action:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: -2px;
+}
+
+.wa-messagebubble__invite-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

@@ -63,6 +63,19 @@ export interface WaMessageBubbleProps extends React.HTMLAttributes<HTMLDivElemen
   maxWidth?: number;
 
   /**
+   * Nome de quem escreveu, exibido no topo do balão recebido em conversa de
+   * grupo. Extensão: o arquivo de origem não publica conversa de grupo.
+   */
+  sender?: React.ReactNode;
+
+  /**
+   * Rótulo da mensagem encaminhada, exibido acima do conteúdo com o glifo
+   * `forward` — por exemplo, "Encaminhada". Ausente, o selo não aparece.
+   * Extensão: o arquivo de origem não publica mensagem encaminhada.
+   */
+  forwardedLabel?: React.ReactNode;
+
+  /**
    * Classe CSS adicional.
    */
   className?: string;
@@ -70,18 +83,64 @@ export interface WaMessageBubbleProps extends React.HTMLAttributes<HTMLDivElemen
 
 /**
  * Propriedades do subcomponente de mídia do balão.
+ *
+ * Duas formas: com `src`, a imagem anexada; sem `src`, os `children` ocupam a
+ * moldura — a mídia DESENHADA (um comunicado composto a partir do texto, uma
+ * ilustração em SVG) para o produto que não serve arquivo de imagem.
  */
 export interface WaMessageMediaProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** URL da imagem anexada */
-  src: string;
+  /** URL da imagem anexada. Ausente, a moldura exibe os `children`. */
+  src?: string;
   /**
    * Texto alternativo. Obrigatório: a mídia de uma mensagem é conteúdo, não
    * decoração. Passe `alt=""` explicitamente se a imagem for redundante em
-   * relação ao texto do balão.
+   * relação ao texto do balão. Sem `src`, vira o nome acessível da moldura.
    */
   alt: string;
   /** Proporção da miniatura, em formato CSS `aspect-ratio` */
   ratio?: string;
+  /** Conteúdo desenhado exibido na moldura quando não há `src`. */
+  children?: React.ReactNode;
+}
+
+/**
+ * Propriedades do subcomponente de pré-visualização de link.
+ */
+export interface WaMessageLinkPreviewProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'title' | 'onClick'> {
+  /** Manchete da página. */
+  title: React.ReactNode;
+  /** Resumo exibido abaixo da manchete. */
+  description?: React.ReactNode;
+  /** Domínio exibido no rodapé do cartão, como "noticiaslocais.edu.br". */
+  domain: React.ReactNode;
+  /** Miniatura desenhada ou imagem, exibida acima da manchete. */
+  thumbnail?: React.ReactNode;
+  /**
+   * Callback de toque no cartão. Quando informado, o cartão é renderizado
+   * como `<button>` — acionável por Enter e Espaço.
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+/**
+ * Propriedades do subcomponente de convite para grupo.
+ */
+export interface WaMessageInviteProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+  /** Nome do grupo. */
+  title: React.ReactNode;
+  /** Linha abaixo do nome, como "Convite para grupo de conversa". */
+  subtitle?: React.ReactNode;
+  /** Avatar do grupo. Ausente, exibe as iniciais de `initials`. */
+  avatarSrc?: string;
+  /** Iniciais usadas quando não há avatar. */
+  initials?: string;
+  /** Rótulo do botão de entrar. */
+  actionLabel: React.ReactNode;
+  /** Callback do botão de entrar. */
+  onAction?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Desabilita o botão de entrar. */
+  actionDisabled?: boolean;
 }
 
 /**

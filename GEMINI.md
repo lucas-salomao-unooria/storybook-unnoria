@@ -36,7 +36,7 @@ O pacote publica **seis design systems** em um único artefato NPM:
 | Plataforma Unooria | `src/unooria/` | `UnooriaUI` + exportação na raiz | `--unooria-*` / `.unooria-*` | Light e Dark | 40 | — (design próprio) |
 | Instanooria | `src/instanooria/` | `InstanooriaUI` | `--insta-*` / `.insta-*` | `data-insta-theme="light \| dark"` | 21 | Instagram UI Screens (Community) |
 | ChatGPT | `src/chatgpt/` | `ChatGPTUI` | `--gpt-*` / `.gpt-*` | `data-gpt-theme="light \| dark"` | 25 | ChatGPT UI Kit (AI Chat) (Community) |
-| WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 29 | WhatsApp Clone - Dark mode (Community) |
+| WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 39 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
 | Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 44 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
 
@@ -304,7 +304,7 @@ export default meta;
 
 O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem (`bundle: false` em `tsup.config.ts`), preservando o grafo de módulos.
 
-- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**101 dos 189** na última medição: 2/39 na Plataforma Unooria, 10/21 no Instanooria, 21/25 no ChatGPT, 13/29 no WhatsApp Mobile, 32/35 no Tik Tooria e 23/40 no Unootube). Para recontar depois de um `npm run build:package`:
+- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**110 dos 204** na última medição, em 25/09/2026, na 0.2.4: 2/40 na Plataforma Unooria, 10/21 no Instanooria, 21/25 no ChatGPT, 20/39 no WhatsApp Mobile, 32/35 no Tik Tooria e 25/44 no Unootube). Para recontar depois de um `npm run build:package`:
   ```bash
   for d in dist/*/components/*/; do n=$(basename "$d"); f="$d$n.mjs"; \
     [ -f "$f" ] && { head -3 "$f" | grep -q 'use client' && echo client || echo server; }; \
@@ -510,8 +510,17 @@ O **WhatsApp Mobile** é o cliente de mensagens móvel da Plataforma Unooria, im
 - **Componentes**: `Whatsapp Mobile/Componentes/[NomeComponente]`.
 - **Telas compostas**: `Whatsapp Mobile/Telas/Telas Compostas`.
 
-### 8.3. Componentes Oficiais (29)
-`Icon`, `StatusBar`, `Avatar`, `Badge`, `TopBar`, `TabBar`, `ListItem`, `ChatListItem`, `StatusListItem`, `CallListItem`, `SectionLabel`, `Fab`, `ChatHeader`, `DateChip`, `EncryptionNotice`, `MessageBubble` (composto: `.Media`, `.Document`), `MessageComposer`, `ChatWallpaper`, `Radio`, `Checkbox`, `TextButton`, `Dialog` (composto: `.Footer`), `Menu`, `SettingsItem`, `SearchField`, `FilterChip`, `AttachmentSheet`, `CallScreen` e `PhoneFrame`.
+### 8.3. Componentes Oficiais (29) e Extensões (10)
+`Icon`, `StatusBar`, `Avatar`, `Badge`, `TopBar`, `TabBar`, `ListItem`, `ChatListItem`, `StatusListItem`, `CallListItem`, `SectionLabel`, `Fab`, `ChatHeader`, `DateChip`, `EncryptionNotice`, `MessageBubble` (composto: `.Media`, `.Document`, `.LinkPreview`, `.Invite`), `MessageComposer`, `ChatWallpaper`, `Radio`, `Checkbox`, `TextButton`, `Dialog` (composto: `.Footer`), `Menu`, `SettingsItem`, `SearchField`, `FilterChip`, `AttachmentSheet`, `CallScreen` e `PhoneFrame`.
+
+**Extensões** (não publicadas pelo arquivo de origem): `Button`, `ForwardButton`, `BottomSheet`, `MediaViewer`, `ChatBanner`, `AdminOnlyNotice`, `SystemMessage`, `Poll`, `MessageTag` e `Toast` — mais, no `MessageBubble`, as props `sender` e `forwardedLabel`, os subcomponentes `.LinkPreview` e `.Invite` e a mídia desenhada (`.Media` sem `src`).
+
+- **Os 73 quadros não publicam conversa de grupo, mensagem encaminhada, enquete, convite, folha genérica, visualizador de mídia, aviso de sistema nem botão preenchido.** As extensões entraram em 25/09/2026, para a missão "Quem Mandou Isso?" do monorepo consumidor, porque a alternativa — compor localmente — deixava cada produto com a sua versão do mesmo balão. Precedente: as extensões do Unootube (seção 10.3).
+- **Cada uma deriva a forma de degraus que o arquivo DE FATO publica** e ancora a estória no nó de onde vem o token emprestado: a ação de texto do diálogo (`1:3516`) no `Button`, na ação do `Invite` e no votar do `Poll`; a folha de anexos (`1:3021`) na `BottomSheet`; a etiqueta de data (`1:3011`) na `SystemMessage`; o avatar do cabeçalho (`1:3001`) no `ForwardButton`. **Nenhum token novo foi criado** e nenhum glifo foi desenhado: `forward`, `tick`, `lock` e `back` são do registro.
+- **O `MessageTag` não tem variante de cor, de propósito**: a marca publica um vermelho de chamada e nenhum verde de sucesso, e a etiqueta que se distingue só pela cor esconde a informação de quem não enxerga cor. Quem diferencia é o rótulo e a forma do pictograma.
+- **O `Poll` não mostra contagem de votos** (o app real mostra): o caso de uso exige que quem vota não veja a escolha dos outros. E não sabe se uma opção é "certa" — devolve só o `id`.
+- `BottomSheet` e `MediaViewer` compartilham `BottomSheet/useModalFocus.ts`, o mesmo comportamento de foco do `Dialog` (foco preso, ESC, fundo `aria-hidden`, foco devolvido).
+- **É PROIBIDO ampliar esse grupo sem registrar o desvio na estória correspondente**, como no Unootube.
 
 - `ChatListItem`, `StatusListItem` e `CallListItem` são **composições sobre o `ListItem`** — não duplicar a estrutura de linha.
 - `PhoneFrame` é um contêiner **de documentação**, não de produção.
@@ -536,6 +545,7 @@ Qualquer divergência intencional **DEVE** ser documentada com o `WaDocDeviation
 - **Cores dos glifos de configuração**: o arquivo usa três cinzas quase idênticos; a biblioteca aplica `--wa-color-icon-settings` a todos.
 - **Geometria da bateria**: reconstruída como cápsula vertical, preservando cores e proporções dos três retângulos girados do arquivo.
 - **Frames não reconstruídos**: teclado, captura de câmera e editor de imagem dependem de superfícies claras de sistema e fotografias em tela cheia, sem componentes de design system associados.
+- **Dez extensões e quatro partes novas do `MessageBubble`** sem frame no arquivo — ver 8.3. Cada estória registra o próprio desvio com o `WaDocDeviations`.
 
 ---
 

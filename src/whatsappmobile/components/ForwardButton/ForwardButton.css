@@ -1,0 +1,54 @@
+/**
+ * Estilos do Componente ForwardButton — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem. Círculo de 32px — o diâmetro do avatar do
+ * cabeçalho de conversa (`--wa-avatar-sm`) — na superfície da app bar, com o
+ * glifo em `--wa-color-icon-forward`. Escolhido, o círculo passa ao verde-água
+ * do selo de não lidas (`--wa-color-accent-badge`) e o glifo ao tom sobre
+ * acento. Desabilitado, 30% de opacidade: continua visível para que a escolha
+ * esgotada se leia como esgotada, e não como sumida.
+ */
+
+.wa-forwardbutton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--wa-avatar-sm);
+  height: var(--wa-avatar-sm);
+  padding: 0;
+  border: 0;
+  border-radius: var(--wa-radius-full);
+  background-color: var(--wa-color-surface-appbar);
+  color: var(--wa-color-icon-forward);
+  cursor: pointer;
+  appearance: none;
+}
+
+/* O alvo de toque é maior que o círculo: 44px centrados, sem mudar o desenho. */
+.wa-forwardbutton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.wa-forwardbutton--selected {
+  background-color: var(--wa-color-accent-badge);
+  color: var(--wa-color-icon-on-accent);
+}
+
+.wa-forwardbutton:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
+.wa-forwardbutton:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}

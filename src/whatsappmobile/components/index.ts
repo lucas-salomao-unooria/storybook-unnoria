@@ -31,3 +31,16 @@ export * from './FilterChip';
 export * from './AttachmentSheet';
 export * from './CallScreen';
 export * from './PhoneFrame';
+
+/* Extensões — sem frame no arquivo de origem; o desvio de cada uma está na
+   estória correspondente (AGENTS.md, seção 8.3). */
+export * from './Button';
+export * from './ForwardButton';
+export * from './BottomSheet';
+export * from './MediaViewer';
+export * from './ChatBanner';
+export * from './AdminOnlyNotice';
+export * from './SystemMessage';
+export * from './Poll';
+export * from './MessageTag';
+export * from './Toast';

@@ -1,0 +1,60 @@
+/**
+ * Estilos do Componente Button — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem: a cor é a da ação de texto do diálogo
+ * (`--wa-color-accent-action`, node 1:3516), o rótulo sobre ela é o do selo
+ * verde-água (`--wa-color-text-on-accent`) e o raio é o da cápsula do chip de
+ * filtro (`--wa-radius-pill`). Plano, como todo o arquivo: sem sombra.
+ */
+
+.wa-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wa-spacing-xs);
+  box-sizing: border-box;
+  padding: 0 var(--wa-spacing-xxl);
+  border: var(--wa-divider-width) solid transparent;
+  border-radius: var(--wa-radius-pill);
+  font-family: var(--wa-font-sans);
+  font-size: var(--wa-font-body-md-size);
+  font-weight: var(--wa-font-weight-bold);
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-button--md {
+  min-height: 44px;
+}
+
+.wa-button--lg {
+  min-height: 56px;
+}
+
+.wa-button--block {
+  display: flex;
+  width: 100%;
+}
+
+.wa-button--filled {
+  background-color: var(--wa-color-accent-action);
+  color: var(--wa-color-text-on-accent);
+}
+
+.wa-button--outline {
+  border-color: var(--wa-color-accent-action);
+  background-color: transparent;
+  color: var(--wa-color-accent-action);
+}
+
+.wa-button:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
+.wa-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

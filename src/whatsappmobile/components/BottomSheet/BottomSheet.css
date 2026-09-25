@@ -1,0 +1,62 @@
+/**
+ * Estilos do Componente BottomSheet — Design System WhatsApp Mobile
+ *
+ * Extensão sem frame de origem. A superfície é a da folha de anexos
+ * (`--wa-color-surface-sheet`, node 1:3021), o véu é o do diálogo
+ * (`--wa-color-scrim`, node 1:3503) e o raio superior é o maior do arquivo
+ * (`--wa-radius-xl`). Plana: sem sombra.
+ */
+
+.wa-bottomsheet-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--wa-color-scrim);
+}
+
+.wa-bottomsheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-height: 85%;
+  padding: var(--wa-spacing-xs) 0 var(--wa-spacing-l);
+  border-top-left-radius: var(--wa-radius-xl);
+  border-top-right-radius: var(--wa-radius-xl);
+  background-color: var(--wa-color-surface-sheet);
+  font-family: var(--wa-font-sans);
+  outline: none;
+}
+
+.wa-bottomsheet__handle {
+  align-self: center;
+  width: 32px;
+  height: 4px;
+  margin-bottom: var(--wa-spacing-s);
+  border-radius: var(--wa-radius-full);
+  background-color: var(--wa-color-text-secondary);
+}
+
+.wa-bottomsheet__title {
+  margin: 0;
+  padding: 0 var(--wa-gutter) var(--wa-spacing-xs);
+  color: var(--wa-color-text-title);
+  font-size: var(--wa-font-title-sm-size);
+  font-weight: var(--wa-font-title-sm-weight);
+  line-height: 1.2;
+}
+
+.wa-bottomsheet__body {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.wa-bottomsheet__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--wa-spacing-l);
+  padding: var(--wa-spacing-m) var(--wa-gutter) 0;
+}

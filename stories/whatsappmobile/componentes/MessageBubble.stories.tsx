@@ -88,6 +88,21 @@ const MessageBubbleDocumentationPage = () => (
           detail:
             'o arquivo só desenha texto dentro do cartão de documento. O estilo do parágrafo (PT Sans 16px em #C3DDDC) foi derivado desse cartão, o único texto de balão existente.',
         },
+        {
+          subject: 'Extensões de conversa de grupo',
+          detail:
+            'sender (remetente no verde-água da aba ativa) e forwardedLabel (selo "Encaminhada" com o glifo forward, nos metadados do balão) não têm frame: o arquivo não publica conversa de grupo nem mensagem encaminhada.',
+        },
+        {
+          subject: 'Mídia desenhada',
+          detail:
+            'sem src, MessageBubble.Media exibe os children na moldura e se anuncia como imagem pelo alt. É para o produto que desenha a mídia a partir do texto em vez de servir arquivo.',
+        },
+        {
+          subject: 'LinkPreview e Invite',
+          detail:
+            'a prévia de link e o convite para grupo usam a faixa #043D36 do documento anexado; a ação do convite é a ação de texto do diálogo (#25AC9D) sobre o divisor. Nenhum dos dois tem frame no arquivo.',
+        },
       ]}
     />
 
@@ -138,6 +153,50 @@ const MessageBubbleDocumentationPage = () => (
         </MessageBubble>
         <MessageBubble direction="out" time="9:03 am" maxWidth={250}>
           <MessageBubble.Document name="Relatório anual" details={['24 pages', 'PDF']} />
+        </MessageBubble>
+      </Thread>
+    </WaDocStage>
+
+    <WaDocStage label="Extensões (conversa de grupo)" surface="base" padding={24} align="flex-start">
+      <Thread>
+        <MessageBubble direction="in" sender="Pedro Henrique" time="08:12">
+          O ônibus furou o pneu perto da praça. Já chamaram o socorro.
+        </MessageBubble>
+        <MessageBubble direction="out" forwardedLabel="Encaminhada" time="09:04" delivery="read">
+          Monitores da exposição já aguardam no saguão principal.
+        </MessageBubble>
+        <MessageBubble direction="in" sender="Coordenação Pedagógica" time="08:20" maxWidth={260}>
+          <MessageBubble.Media alt="Comunicado oficial sobre a entrada pelo portão lateral" ratio="4 / 3">
+            <div
+              style={{
+                padding: 12,
+                background: 'var(--wa-color-surface-elevated)',
+                color: 'var(--wa-color-text-primary)',
+                fontSize: 12,
+                lineHeight: 1.4,
+              }}
+            >
+              <strong style={{ display: 'block', marginBottom: 6 }}>COMUNICADO Nº 14</strong>
+              Entrada das turmas do 5º ano pelo portão lateral.
+            </div>
+          </MessageBubble.Media>
+          Orientações sobre a bilheteria do museu.
+        </MessageBubble>
+        <MessageBubble direction="in" sender="Camila Duarte" time="08:25" maxWidth={260}>
+          <MessageBubble.LinkPreview
+            title="Prefeitura suspende visitas escolares aos museus"
+            description="Medida valeria para todo o mês de outubro."
+            domain="noticiaslocais.edu.br"
+          />
+          Olhem isso!
+        </MessageBubble>
+        <MessageBubble direction="in" time="08:00" maxWidth={260}>
+          <MessageBubble.Invite
+            title="Turma 5ºB"
+            subtitle="Convite para grupo de conversa"
+            initials="5B"
+            actionLabel="Entrar no grupo"
+          />
         </MessageBubble>
       </Thread>
     </WaDocStage>
@@ -208,15 +267,40 @@ const MessageBubbleDocumentationPage = () => (
         { name: 'starred', type: 'boolean', default: 'false', description: 'Exibe a estrela de mensagem favoritada.' },
         { name: 'tail', type: 'boolean', default: 'true', description: 'Desenha a cauda triangular na base do balão.' },
         { name: 'maxWidth', type: 'number', default: '240', description: 'Largura máxima do balão em pixels.' },
+        { name: 'sender', type: 'React.ReactNode', description: 'Extensão: remetente no topo do balão, em conversa de grupo.' },
+        { name: 'forwardedLabel', type: 'React.ReactNode', description: 'Extensão: selo de mensagem encaminhada, como "Encaminhada".' },
         { name: 'className', type: 'string', description: 'Classe CSS adicional.' },
       ]}
     />
     <WaDocPropsTable
       title="MessageBubble.Media"
       rows={[
-        { name: 'src', type: 'string', description: 'URL da imagem anexada. Obrigatório.' },
-        { name: 'alt', type: 'string', default: "''", description: 'Texto alternativo da imagem.' },
+        { name: 'src', type: 'string', description: 'URL da imagem anexada. Ausente, a moldura exibe os children.' },
+        { name: 'alt', type: 'string', description: 'Texto alternativo. Obrigatório; sem src, vira o nome acessível da moldura.' },
         { name: 'ratio', type: 'string', default: "'16 / 9'", description: 'Proporção da miniatura, em formato CSS aspect-ratio.' },
+        { name: 'children', type: 'React.ReactNode', description: 'Extensão: a mídia desenhada, exibida quando não há src.' },
+      ]}
+    />
+    <WaDocPropsTable
+      title="MessageBubble.LinkPreview"
+      rows={[
+        { name: 'title', type: 'React.ReactNode', description: 'Manchete da página. Obrigatório.' },
+        { name: 'description', type: 'React.ReactNode', description: 'Resumo abaixo da manchete.' },
+        { name: 'domain', type: 'React.ReactNode', description: 'Domínio no rodapé do cartão. Obrigatório.' },
+        { name: 'thumbnail', type: 'React.ReactNode', description: 'Miniatura acima da manchete.' },
+        { name: 'onClick', type: '(event) => void', description: 'Torna o cartão um botão.' },
+      ]}
+    />
+    <WaDocPropsTable
+      title="MessageBubble.Invite"
+      rows={[
+        { name: 'title', type: 'React.ReactNode', description: 'Nome do grupo. Obrigatório.' },
+        { name: 'subtitle', type: 'React.ReactNode', description: 'Linha abaixo do nome.' },
+        { name: 'avatarSrc', type: 'string', description: 'Avatar do grupo.' },
+        { name: 'initials', type: 'string', description: 'Iniciais quando não há avatar.' },
+        { name: 'actionLabel', type: 'React.ReactNode', description: 'Rótulo do botão de entrar. Obrigatório.' },
+        { name: 'onAction', type: '(event) => void', description: 'Callback do botão de entrar.' },
+        { name: 'actionDisabled', type: 'boolean', default: 'false', description: 'Desabilita o botão de entrar.' },
       ]}
     />
     <WaDocPropsTable
@@ -241,6 +325,8 @@ const meta: Meta<typeof MessageBubble> = {
     starred: { control: 'boolean', description: 'Exibe a estrela de favorita.' },
     tail: { control: 'boolean', description: 'Desenha a cauda triangular.' },
     maxWidth: { control: { type: 'range', min: 120, max: 360, step: 5 }, description: 'Largura máxima em pixels.' },
+    sender: { control: 'text', description: 'Extensão: remetente em conversa de grupo.' },
+    forwardedLabel: { control: 'text', description: 'Extensão: selo de encaminhada.' },
   },
   args: {
     direction: 'out',
