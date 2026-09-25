@@ -1,6 +1,6 @@
 {
   "name": "@unooria/design-system",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Design System oficial da Plataforma Unooria para React e Next.js com suporte completo a temas Light/Dark",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
