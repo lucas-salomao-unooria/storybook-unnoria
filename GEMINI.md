@@ -284,6 +284,7 @@ export default meta;
 ### 4.3. Acessibilidade (a11y)
 - Semântica ARIA completa (`role="dialog"`, `role="progressbar"`, `role="button"`, `role="region"`, `aria-expanded`, `aria-controls`, `aria-labelledby`, `aria-describedby`).
 - Navegação completa por teclado (ESC para fechar modais/menus, Tab/Shift+Tab com focus trapping, Enter/Espaço para acionamento).
+- **Diálogo composto se nomeia sozinho.** Todo componente com `role="dialog"` que oferece subcomponente de título (`Modal.Title` na Plataforma Unooria, `Modal.Header` no ChatGPT e no Unootube) liga `aria-labelledby` a ele automaticamente — na composição manual E pelo atalho `title` —, e `Modal.Description` a `aria-describedby`. O título se anuncia ao diálogo pelo contexto, com o id que de fato renderizou (o `id` passado, ou o de `useId`). Precedência: `aria-labelledby` explícito manda; com `aria-label` explícito o diálogo **não** recebe `aria-labelledby`, que venceria o `aria-label` no cálculo do nome e o calaria sem aviso. Medido em 25/09/2026, na 0.2.2: o composto saía sem nome, o leitor de tela anunciava só "diálogo" e `getByRole('dialog', { name })` não achava nada — eram 34 diálogos assim no monorepo consumidor. As estórias com `play` de cada `Modal` guardam a regra.
 
 ### 4.4. Iconografia Derivada do Figma
 - **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca de ícones. Todo dado vetorial é o **export SVG literal do nó do Figma**, com o `viewBox` original preservado — **não normalizado para 24×24**.

@@ -4,7 +4,9 @@ import React, {
   forwardRef,
   useRef,
   useEffect,
+  useLayoutEffect,
   useId,
+  useState,
   useSyncExternalStore,
   createContext,
   useContext,
@@ -31,9 +33,20 @@ interface ModalContextValue {
   onClose: () => void;
   theme: ModalTheme;
   size: ModalSize;
+  /** Id que `ModalTitle` adota quando não recebe `id` próprio. */
   titleId: string;
+  /** Id que `ModalDescription` adota quando não recebe `id` próprio. */
   descriptionId: string;
   showCloseButton: boolean;
+  /**
+   * `ModalTitle` e `ModalDescription` se anunciam ao diálogo com o id que de
+   * fato renderizaram. É o que permite ao `Modal` apontar `aria-labelledby` e
+   * `aria-describedby` para eles também na composição manual, e não só pelo
+   * atalho `title=` — sem isso, o diálogo composto saía sem nome acessível.
+   * Devolvem a função que desfaz o anúncio, para o desmonte.
+   */
+  registerTitle: (id: string) => () => void;
+  registerDescription: (id: string) => () => void;
 }
 
 const ModalContext = createContext<ModalContextValue | null>(null);
@@ -41,6 +54,28 @@ const ModalContext = createContext<ModalContextValue | null>(null);
 const useModalContext = () => {
   return useContext(ModalContext);
 };
+
+/**
+ * `useLayoutEffect` no browser e `useEffect` no servidor. O anúncio do título
+ * precisa acontecer ANTES da pintura: com `useEffect`, o diálogo apareceria um
+ * quadro sem nome, e é justamente ao abrir que o leitor de tela o anuncia. No
+ * servidor não há pintura, e o `useLayoutEffect` do React 18 emite aviso.
+ */
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+/**
+ * Anuncia ao `Modal` mais próximo o id de um título ou descrição montado
+ * dentro dele. Fora de um `Modal`, não faz nada.
+ */
+function useAnnounceToModal(
+  register: ((id: string) => () => void) | undefined,
+  id: string | undefined
+) {
+  useIsomorphicLayoutEffect(() => {
+    if (!register || !id) return undefined;
+    return register(id);
+  }, [register, id]);
+}
 
 // ============================================================================
 // Ícone de Fechamento Padrão (SVG X)
@@ -110,6 +145,7 @@ export const ModalTitle = forwardRef<HTMLHeadingElement, ModalTitleProps>(
   ({ as: Component = 'h2', className = '', id, children, ...restProps }, ref) => {
     const context = useModalContext();
     const titleId = id || context?.titleId;
+    useAnnounceToModal(context?.registerTitle, titleId);
 
     return React.createElement(
       Component,
@@ -132,6 +168,7 @@ export const ModalDescription = forwardRef<HTMLParagraphElement, ModalDescriptio
   ({ as: Component = 'p', className = '', id, children, ...restProps }, ref) => {
     const context = useModalContext();
     const descriptionId = id || context?.descriptionId;
+    useAnnounceToModal(context?.registerDescription, descriptionId);
 
     return React.createElement(
       Component,
@@ -373,6 +410,24 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     const autoDescId = useId();
 
     /**
+     * Ids do `ModalTitle` e do `ModalDescription` montados dentro do diálogo,
+     * seja pela composição manual, seja pelo atalho. `null` enquanto nenhum
+     * se anunciou.
+     */
+    const [announcedTitleId, setAnnouncedTitleId] = useState<string | null>(null);
+    const [announcedDescId, setAnnouncedDescId] = useState<string | null>(null);
+
+    const registerTitle = useCallback((id: string) => {
+      setAnnouncedTitleId(id);
+      return () => setAnnouncedTitleId((current) => (current === id ? null : current));
+    }, []);
+
+    const registerDescription = useCallback((id: string) => {
+      setAnnouncedDescId(id);
+      return () => setAnnouncedDescId((current) => (current === id ? null : current));
+    }, []);
+
+    /**
      * O portal só pode ser criado no cliente. Renderizar `null` no servidor e
      * durante a hidratação mantém a árvore idêntica dos dois lados.
      */
@@ -383,8 +438,23 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
     const descText = description || subtitle;
-    const computedTitleId = ariaLabelledBy || (title ? autoTitleId : undefined);
-    const computedDescId = ariaDescribedBy || (descText ? autoDescId : undefined);
+
+    /**
+     * Precedência do nome acessível:
+     * 1. `aria-labelledby` explícito — manda sempre;
+     * 2. `aria-label` explícito — o diálogo NÃO recebe `aria-labelledby`, que
+     *    venceria o `aria-label` no cálculo do nome e o calaria sem aviso;
+     * 3. o `ModalTitle` montado dentro do diálogo, com o id que ele renderizou
+     *    (o próprio `id`, quando passado, ou o automático);
+     * 4. o atalho `title=`, pelo id automático — que cobre também o `title`
+     *    passado como elemento, como já era.
+     * A descrição segue a mesma ordem, sem o degrau do `aria-label`.
+     */
+    const computedTitleId =
+      ariaLabelledBy ||
+      (ariaLabel ? undefined : announcedTitleId || (title ? autoTitleId : undefined));
+    const computedDescId =
+      ariaDescribedBy || announcedDescId || (descText ? autoDescId : undefined);
 
     // ========================================================================
     // Fechamento com Tecla Escape
@@ -519,9 +589,14 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       onClose,
       theme,
       size,
-      titleId: computedTitleId || autoTitleId,
-      descriptionId: computedDescId || autoDescId,
+      // Um `aria-labelledby` explícito continua sendo o id que o título adota
+      // quando não tem o seu — era assim antes da ligação automática, e há
+      // quem componha `<Modal aria-labelledby="x"><ModalTitle>` contando com isso.
+      titleId: ariaLabelledBy || autoTitleId,
+      descriptionId: ariaDescribedBy || autoDescId,
       showCloseButton,
+      registerTitle,
+      registerDescription,
     };
 
     const overlayClasses = [

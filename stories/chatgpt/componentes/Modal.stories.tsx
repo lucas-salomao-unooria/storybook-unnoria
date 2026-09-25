@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import { Modal } from '../../../src/chatgpt/components/Modal';
 import { Button, Divider, Input, SettingsRow, Toggle } from '../../../src/chatgpt/components';
 import {
@@ -47,9 +48,11 @@ const ModalDocumentationPage = () => {
           prop <code>title</code> monta o cabeçalho padrão sem composição manual.
         </GptDocCard>
         <GptDocCard icon="♿" title="Acessibilidade">
-          <code>role=&quot;dialog&quot;</code> com <code>aria-modal</code>, foco inicial no primeiro elemento
-          focável, <code>Tab</code>/<code>Shift+Tab</code> circulando dentro do diálogo e{' '}
-          <code>ESC</code> fechando.
+          <code>role=&quot;dialog&quot;</code> com <code>aria-modal</code> e nome acessível pelo título do
+          cabeçalho (<code>aria-labelledby</code>, composto ou pelo atalho <code>title</code>; um{' '}
+          <code>aria-label</code> ou <code>aria-labelledby</code> explícito vence), foco inicial no
+          primeiro elemento focável, <code>Tab</code>/<code>Shift+Tab</code> circulando dentro do
+          diálogo e <code>ESC</code> fechando.
         </GptDocCard>
         <GptDocCard icon="🫥" title="Scrim">
           <code>Overlay/Black 40%</code> — o único overlay publicado que um componente da biblioteca
@@ -431,4 +434,70 @@ export const ComposicaoModular: Story = {
       </Modal.Footer>
     </Modal>
   ),
+};
+
+/**
+ * REDE PARA O NOME ACESSÍVEL DO DIÁLOGO.
+ *
+ * O defeito que esta estória guarda (medido em 25/09/2026, na 0.2.2): o
+ * título do `Modal.Header` saía num `h2` sem id, e a superfície com
+ * `role="dialog"` não tinha `aria-labelledby` — nem composta, nem pelo atalho
+ * `title=`. O leitor de tela anunciava apenas "diálogo". O mesmo defeito do
+ * `Modal` da Plataforma Unooria, aqui um degrau pior: nem o atalho nomeava.
+ *
+ * O teste cobra os DOIS caminhos que montam o cabeçalho, e que o
+ * `aria-labelledby` aponta para o nó do título.
+ */
+export const NomeAcessivelDoCabecalho: Story = {
+  name: 'O título do cabeçalho nomeia o diálogo, composto ou pelo atalho',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <Modal withOverlay={false}>
+        <Modal.Header onClose={() => undefined}>Cabeçalho composto</Modal.Header>
+        <Modal.Body>O título vem de Modal.Header.</Modal.Body>
+      </Modal>
+      <Modal withOverlay={false} title="Cabeçalho pelo atalho" onClose={() => undefined}>
+        <Modal.Body>O título vem da prop title.</Modal.Body>
+      </Modal>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    for (const nome of ['Cabeçalho composto', 'Cabeçalho pelo atalho']) {
+      const dialogo = await tela.findByRole('dialog', { name: nome });
+      const titulo = within(dialogo).getByRole('heading', { name: nome });
+      await expect(dialogo).toHaveAttribute('aria-labelledby', titulo.id);
+    }
+  },
+};
+
+/**
+ * REDE PARA A PRECEDÊNCIA DO RÓTULO EXPLÍCITO.
+ *
+ * A ligação automática é o padrão, não uma imposição. `aria-labelledby`
+ * explícito continua mandando; e, com `aria-label` explícito, o diálogo não
+ * recebe `aria-labelledby` nenhum — senão a ligação automática, que vence
+ * `aria-label` no cálculo do nome, o calaria sem aviso.
+ */
+export const RotuloExplicitoVence: Story = {
+  name: 'aria-label e aria-labelledby explícitos vencem o título',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <span id="gpt-rotulo-externo-do-dialogo">Nome vindo de fora</span>
+      <Modal withOverlay={false} aria-labelledby="gpt-rotulo-externo-do-dialogo">
+        <Modal.Header>Título interno citado por ninguém</Modal.Header>
+        <Modal.Body>O nome vem do nó citado.</Modal.Body>
+      </Modal>
+      <Modal withOverlay={false} aria-label="Rótulo escrito pelo consumidor" title="Título visível">
+        <Modal.Body>O nome é o aria-label.</Modal.Body>
+      </Modal>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const citado = await tela.findByRole('dialog', { name: 'Nome vindo de fora' });
+    await expect(citado).toHaveAttribute('aria-labelledby', 'gpt-rotulo-externo-do-dialogo');
+    const rotulado = await tela.findByRole('dialog', { name: 'Rótulo escrito pelo consumidor' });
+    await expect(rotulado).not.toHaveAttribute('aria-labelledby');
+  },
 };

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import { Modal } from '../../../src/unooria/components/Modal/Modal';
 import {
   ModalSize,
@@ -616,7 +617,7 @@ const ModalDocumentationPage = () => {
                 🏷️ Identificadores ARIA Dinâmicos
               </h4>
               <p style={{ margin: 0, fontSize: '13px', color: '#475569', lineHeight: '1.6' }}>
-                Uso nativo de <code style={{ fontSize: '12px' }}>useId()</code> do React para associar de forma transparente <code style={{ fontSize: '12px' }}>aria-labelledby</code> ao título e <code style={{ fontSize: '12px' }}>aria-describedby</code> à descrição.
+                Uso nativo de <code style={{ fontSize: '12px' }}>useId()</code> do React para associar de forma transparente <code style={{ fontSize: '12px' }}>aria-labelledby</code> ao título e <code style={{ fontSize: '12px' }}>aria-describedby</code> à descrição — pelo atalho <code style={{ fontSize: '12px' }}>title</code> e também na composição com <code style={{ fontSize: '12px' }}>Modal.Title</code> e <code style={{ fontSize: '12px' }}>Modal.Description</code>, respeitando o <code style={{ fontSize: '12px' }}>id</code> passado a eles. Um <code style={{ fontSize: '12px' }}>aria-labelledby</code> ou <code style={{ fontSize: '12px' }}>aria-label</code> explícito no <code style={{ fontSize: '12px' }}>Modal</code> sempre vence a ligação automática.
               </p>
             </div>
           </div>
@@ -1617,3 +1618,155 @@ export const ExemploOficialFigma: Story = {
   },
 };
 
+
+// ============================================================================
+// Redes de acessibilidade: o nome e a descrição do diálogo
+// ============================================================================
+
+/** O diálogo vive num portal em `document.body`, fora do `canvasElement`. */
+const telaDoPortal = (canvasElement: HTMLElement) => within(canvasElement.ownerDocument.body);
+
+/**
+ * REDE PARA O NOME ACESSÍVEL DO DIÁLOGO COMPOSTO.
+ *
+ * O defeito que esta estória guarda (medido em 25/09/2026, na 0.2.2): o
+ * `Modal` montado com `Modal.Header` + `Modal.Title` saía com `role="dialog"`
+ * e `aria-modal`, mas SEM `aria-labelledby`. O título ganhava um id
+ * automático e o diálogo não apontava para ele — só o atalho `title=` fazia a
+ * ligação. O leitor de tela anunciava apenas "diálogo", e
+ * `getByRole('dialog', { name })` não achava nada. No monorepo consumidor
+ * eram 34 diálogos compostos assim, todos sem nome. `Modal.Description` tinha
+ * a mesma lacuna com `aria-describedby`.
+ *
+ * O teste cobra o nome, a descrição e que o `aria-labelledby` aponta para o
+ * nó do título — não basta o nome bater por coincidência.
+ */
+export const NomeAcessivelDaComposicao: Story = {
+  name: 'Composição: o título nomeia o diálogo e a descrição o descreve',
+  render: () => (
+    <Modal isOpen onClose={() => undefined}>
+      <Modal.Header>
+        <Modal.Title>Excluir a turma?</Modal.Title>
+        <Modal.Description>Os estudantes perdem o acesso às missões desta turma.</Modal.Description>
+      </Modal.Header>
+      <Modal.Body>Esta ação não pode ser desfeita.</Modal.Body>
+    </Modal>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = telaDoPortal(canvasElement);
+    const dialogo = await tela.findByRole('dialog', { name: 'Excluir a turma?' });
+    await expect(dialogo).toHaveAccessibleDescription(
+      'Os estudantes perdem o acesso às missões desta turma.'
+    );
+    const titulo = tela.getByRole('heading', { name: 'Excluir a turma?' });
+    await expect(dialogo).toHaveAttribute('aria-labelledby', titulo.id);
+  },
+};
+
+/**
+ * REDE PARA O `id` EXPLÍCITO DO TÍTULO.
+ *
+ * Quem passa `id` ao `Modal.Title` (para citá-lo de fora, por exemplo) não
+ * pode perder o nome do diálogo: é esse id, e não o automático, que o
+ * `aria-labelledby` precisa citar.
+ */
+export const IdExplicitoDoTitulo: Story = {
+  name: 'Composição: o id passado ao título é o que o diálogo cita',
+  render: () => (
+    <Modal isOpen onClose={() => undefined}>
+      <Modal.Header>
+        <Modal.Title id="titulo-da-matricula">Confirmar matrícula</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>A matrícula entra na turma principal do estudante.</Modal.Body>
+    </Modal>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = telaDoPortal(canvasElement);
+    const dialogo = await tela.findByRole('dialog', { name: 'Confirmar matrícula' });
+    await expect(dialogo).toHaveAttribute('aria-labelledby', 'titulo-da-matricula');
+    await expect(tela.getByRole('heading', { name: 'Confirmar matrícula' })).toHaveAttribute(
+      'id',
+      'titulo-da-matricula'
+    );
+  },
+};
+
+/**
+ * REDE PARA A PRECEDÊNCIA DO `aria-labelledby` EXPLÍCITO.
+ *
+ * A ligação automática é o padrão, não uma imposição: quem aponta o
+ * `aria-labelledby` para outro nó continua mandando, mesmo com um
+ * `Modal.Title` montado dentro do diálogo.
+ */
+export const AriaLabelledbyExplicitoVence: Story = {
+  name: 'aria-labelledby explícito vence o título composto',
+  render: () => (
+    <>
+      <span id="rotulo-externo-do-dialogo">Nome vindo de fora</span>
+      <Modal isOpen onClose={() => undefined} aria-labelledby="rotulo-externo-do-dialogo">
+        <Modal.Header>
+          <Modal.Title id="titulo-interno-do-dialogo">Título interno</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>O nome acessível vem do nó citado, e não do título.</Modal.Body>
+      </Modal>
+    </>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = telaDoPortal(canvasElement);
+    const dialogo = await tela.findByRole('dialog', { name: 'Nome vindo de fora' });
+    await expect(dialogo).toHaveAttribute('aria-labelledby', 'rotulo-externo-do-dialogo');
+  },
+};
+
+/**
+ * REDE PARA A PRECEDÊNCIA DO `aria-label` EXPLÍCITO.
+ *
+ * `aria-labelledby` vence `aria-label` no cálculo do nome acessível. Se a
+ * ligação automática fosse posta por cima de um `aria-label` que o consumidor
+ * escreveu, ela o calaria sem aviso — então, com `aria-label`, o diálogo não
+ * recebe `aria-labelledby` nenhum.
+ */
+export const AriaLabelExplicitoVence: Story = {
+  name: 'aria-label explícito vence o título composto',
+  render: () => (
+    <Modal isOpen onClose={() => undefined} aria-label="Rótulo escrito pelo consumidor">
+      <Modal.Header>
+        <Modal.Title>Título visível</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>O nome acessível é o aria-label.</Modal.Body>
+    </Modal>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = telaDoPortal(canvasElement);
+    const dialogo = await tela.findByRole('dialog', { name: 'Rótulo escrito pelo consumidor' });
+    await expect(dialogo).not.toHaveAttribute('aria-labelledby');
+  },
+};
+
+/**
+ * REDE PARA O ATALHO `title=`.
+ *
+ * O atalho declarativo já nomeava o diálogo antes da ligação automática. O
+ * teste garante que ele continua nomeando e descrevendo, apontando para o nó
+ * do título que ele mesmo monta.
+ */
+export const AtalhoTitleSegueNomeando: Story = {
+  name: 'Atalho title= continua nomeando e descrevendo o diálogo',
+  render: () => (
+    <Modal
+      isOpen
+      onClose={() => undefined}
+      title="Salvar alterações?"
+      description="As mudanças valem para a rede inteira."
+    >
+      <p style={{ margin: 0 }}>Revise antes de confirmar.</p>
+    </Modal>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = telaDoPortal(canvasElement);
+    const dialogo = await tela.findByRole('dialog', { name: 'Salvar alterações?' });
+    await expect(dialogo).toHaveAccessibleDescription('As mudanças valem para a rede inteira.');
+    const titulo = tela.getByRole('heading', { name: 'Salvar alterações?' });
+    await expect(dialogo).toHaveAttribute('aria-labelledby', titulo.id);
+  },
+};
