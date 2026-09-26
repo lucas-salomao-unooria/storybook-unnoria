@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useId, useState } from 'react';
 import { TextAreaProps } from './TextField.types';
 import { Icon } from '../Icon/Icon';
 import './TextField.css';
@@ -35,6 +35,15 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     ref
   ) => {
     const isControlled = value !== undefined;
+
+    /**
+     * O rótulo NOMEIA o campo: `htmlFor` + `id`. Antes o `<label>` era só
+     * texto ao lado — aparecia na tela e o leitor de tela anunciava "caixa de
+     * edição" sem nome, e clicar nele não focava o campo. O `id` do consumidor,
+     * se vier, vence.
+     */
+    const idGerado = useId();
+    const campoId = rest.id ?? idGerado;
 
     /**
      * Mesma correção do `TextField`: em modo não controlado quem guarda o
@@ -96,7 +105,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       <div className={containerClassName} style={style}>
         {label && (
           <div className="unooria-textfield__label-row">
-            <label className="unooria-textfield__label">
+            <label className="unooria-textfield__label" htmlFor={campoId}>
               <span>{label}</span>
               {required && <span className="unooria-textfield__required">*</span>}
               {helperIcon && (
@@ -114,6 +123,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         <textarea
           ref={ref}
+          id={campoId}
           disabled={disabled}
           /* Controlado só quando o consumidor pede — ver o comentário do
              estado acima. */

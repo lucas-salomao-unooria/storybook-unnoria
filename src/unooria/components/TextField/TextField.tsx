@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useCallback, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useId, useRef, useState } from 'react';
 import { TextFieldProps } from './TextField.types';
 import { Icon } from '../Icon/Icon';
 import './TextField.css';
@@ -36,6 +36,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     ref
   ) => {
     const isControlled = value !== undefined;
+
+    /** O rótulo NOMEIA o campo (`htmlFor` + `id`), como no `TextArea`. O `id` do consumidor vence. */
+    const idGerado = useId();
+    const campoId = rest.id ?? idGerado;
 
     /**
      * Em modo NÃO controlado quem guarda o texto é o DOM, não este estado.
@@ -131,7 +135,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       <div className={containerClassName} style={style}>
         {label && (
           <div className="unooria-textfield__label-row">
-            <label className="unooria-textfield__label">
+            <label className="unooria-textfield__label" htmlFor={campoId}>
               <span>{label}</span>
               {required && <span className="unooria-textfield__required">*</span>}
               {helperIcon && (
@@ -152,6 +156,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
           <input
             ref={guardarRef}
+            id={campoId}
             disabled={disabled}
             /* Controlado só quando o consumidor pede. Sem `value`, o campo é
                do DOM — que é o que faz o preenchimento automático sobreviver. */

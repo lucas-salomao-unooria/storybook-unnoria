@@ -31,6 +31,7 @@
  * Estilos dos Componentes
  * ---------------------------------------------------- */
 @import './unooria/components/AlertBox/AlertBox.css';
+@import './unooria/components/AudioPlayer/AudioPlayer.css';
 @import './unooria/components/Avatar/Avatar.css';
 @import './unooria/components/Badge/Badge.css';
 @import './unooria/components/BottomBar/BottomBar.css';

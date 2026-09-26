@@ -1,0 +1,185 @@
+/**
+ * AudioPlayer - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de áudio no Figma. O botão é o
+ * `Button` primário do pacote (rótulo visível), a trilha tem a espessura da
+ * `ProgressBar` `sm` (4px) e o cartão segue o `Card`: superfície neutra, fio
+ * de 1px e raio de 12px. Cores só por token (seção 2); o raio usa o fallback
+ * dos outros componentes, porque a seção não publica token de raio.
+ */
+
+.unooria-audio-player {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xs, 12px);
+  box-sizing: border-box;
+  padding: var(--unooria-spacing-s, 16px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: var(--unooria-radius-m, 12px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+.unooria-audio-player__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+}
+
+.unooria-audio-player__title {
+  margin: 0;
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-body-m, 16px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-m, 24px);
+}
+
+.unooria-audio-player__description,
+.unooria-audio-player__reason {
+  margin: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-s, 14px);
+  line-height: var(--unooria-line-height-body-s, 20px);
+}
+
+.unooria-audio-player__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--unooria-spacing-s, 16px);
+}
+
+.unooria-audio-player__timeline {
+  display: flex;
+  flex: 1 1 220px;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  min-width: 0;
+}
+
+.unooria-audio-player__time {
+  flex-shrink: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-s, 14px);
+  font-variant-numeric: tabular-nums;
+}
+
+.unooria-audio-player__reason {
+  flex: 1 1 220px;
+}
+
+.unooria-audio-player__error {
+  display: flex;
+  flex: 1 1 220px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+.unooria-audio-player__error-label {
+  margin: 0;
+  color: var(--unooria-color-danger-700, #C11414);
+  font-size: var(--unooria-size-body-s, 14px);
+  line-height: var(--unooria-line-height-body-s, 20px);
+}
+
+/* ==========================================================================
+   A barra de posição — `input type="range"` nativo, pintado por token.
+   O trecho tocado vem de `--unooria-audio-progress`, escrito pelo componente.
+   ========================================================================== */
+
+.unooria-audio-player__seek {
+  --unooria-audio-fill: var(--unooria-color-brandpurple-950, #080922);
+  --unooria-audio-track: var(--unooria-color-neutral-150, #E4E8E9);
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 24px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.unooria-audio-player__seek:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.unooria-audio-player__seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 1000px;
+  background: linear-gradient(
+    to right,
+    var(--unooria-audio-fill) var(--unooria-audio-progress, 0%),
+    var(--unooria-audio-track) var(--unooria-audio-progress, 0%)
+  );
+}
+
+.unooria-audio-player__seek::-moz-range-track {
+  height: 4px;
+  border-radius: 1000px;
+  background: var(--unooria-audio-track);
+}
+
+.unooria-audio-player__seek::-moz-range-progress {
+  height: 4px;
+  border-radius: 1000px;
+  background: var(--unooria-audio-fill);
+}
+
+.unooria-audio-player__seek::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border: none;
+  border-radius: 50%;
+  background: var(--unooria-audio-fill);
+  -webkit-appearance: none;
+}
+
+.unooria-audio-player__seek::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  background: var(--unooria-audio-fill);
+}
+
+.unooria-audio-player__seek:focus-visible {
+  outline: 2px solid var(--unooria-color-brandpurple-950, #080922);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-audio-player--theme-dark {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+}
+
+.unooria-audio-player--theme-dark .unooria-audio-player__title {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-audio-player--theme-dark .unooria-audio-player__description,
+.unooria-audio-player--theme-dark .unooria-audio-player__reason,
+.unooria-audio-player--theme-dark .unooria-audio-player__time {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-audio-player--theme-dark .unooria-audio-player__error-label {
+  color: var(--unooria-color-danger-300, #FFA1A1);
+}
+
+.unooria-audio-player--theme-dark .unooria-audio-player__seek {
+  --unooria-audio-fill: var(--unooria-color-neutraldark-950, #F5F5F5);
+  --unooria-audio-track: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-audio-player--theme-dark .unooria-audio-player__seek:focus-visible {
+  outline-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}

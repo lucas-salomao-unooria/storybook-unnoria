@@ -703,3 +703,30 @@ export const NaoControladoSobrevivePreenchimentoExterno: Story = {
     await expect(senha.value).toBe('senha-salva-123');
   },
 };
+
+/**
+ * O rótulo NOMEIA o campo (`htmlFor` + `id`). Antes o `<label>` era texto
+ * solto ao lado do campo: aparecia na tela, o leitor de tela anunciava "caixa
+ * de edição" sem nome, e clicar nele não focava nada. Pedido da A Seleção
+ * (exp07ef1b), que compensava com `aria-label`.
+ */
+export const RotuloNomeiaOCampo: Story = {
+  name: 'O rótulo nomeia o campo',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 320 }}>
+      <TextField label="Nome da turma" name="turma" />
+      <TextArea label="Sua reflexão" name="reflexao" maxLength={500} />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const turma = tela.getByRole('textbox', { name: 'Nome da turma' });
+    const reflexao = tela.getByRole('textbox', { name: 'Sua reflexão' });
+
+    await userEvent.click(tela.getByText('Sua reflexão'));
+    await expect(reflexao).toHaveFocus();
+    await userEvent.click(tela.getByText('Nome da turma'));
+    await expect(turma).toHaveFocus();
+  },
+};
+

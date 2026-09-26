@@ -1,4 +1,5 @@
 export * from './AlertBox';
+export * from './AudioPlayer';
 export * from './Avatar';
 export * from './Badge';
 export * from './BottomBar';
