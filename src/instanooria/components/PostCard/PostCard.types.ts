@@ -79,6 +79,14 @@ export interface InstaPostMediaProps extends React.HTMLAttributes<HTMLDivElement
    */
   errorLabel?: React.ReactNode;
   /**
+   * O que a imagem mostrava, dito sob o `errorLabel` quando ela falha. Sem
+   * isto, a falha apagaria a descrição junto com o `<img>`: quem enxerga veria
+   * só "não carregou", e o leitor de tela perderia o `alt`. O padrão é o
+   * próprio `alt`; `null` esconde.
+   * @default alt
+   */
+  errorDescription?: React.ReactNode;
+  /**
    * Rótulo do botão do estado de erro.
    * @default 'Tentar novamente'
    */

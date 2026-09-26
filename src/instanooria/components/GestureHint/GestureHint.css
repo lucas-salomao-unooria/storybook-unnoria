@@ -1,0 +1,110 @@
+/**
+ * Estilos do Componente GestureHint — Design System Instanooria
+ *
+ * Extensão. O círculo tem o alvo de toque do arquivo (`--insta-touch-target`,
+ * 44px), o véu `--insta-color-overlay-scrim` e o contorno de 2px da superfície
+ * primária — a mesma leitura do anel de avatar sobre mídia. Sem sombra com
+ * desfoque (seção 2.3). Cada gesto é uma animação de 1,8s que termina
+ * transparente: com `iterations` 1, a dica aparece, mostra e vai embora.
+ */
+
+.insta-gesture-hint {
+  position: absolute;
+  z-index: 4;
+  box-sizing: border-box;
+  width: var(--insta-touch-target);
+  height: var(--insta-touch-target);
+  border: 2px solid var(--insta-color-background-primary);
+  border-radius: var(--insta-radius-full);
+  background-color: var(--insta-color-overlay-scrim);
+  pointer-events: none;
+  opacity: 0;
+  animation-duration: 1.8s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+/* ── Rolar: o dedo sobe no meio da tela ─────────────────────────────── */
+
+.insta-gesture-hint--swipe-up {
+  left: 50%;
+  bottom: 32%;
+  animation-name: insta-gesture-swipe-up;
+}
+
+@keyframes insta-gesture-swipe-up {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -140px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -160px);
+  }
+}
+
+/* ── Deslizar: da direita para a esquerda, na altura do meio ────────── */
+
+.insta-gesture-hint--swipe-left {
+  top: 50%;
+  right: 20%;
+  animation-name: insta-gesture-swipe-left;
+}
+
+@keyframes insta-gesture-swipe-left {
+  0% {
+    opacity: 0;
+    transform: translate(0, -50%);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-140px, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-160px, -50%);
+  }
+}
+
+/* ── Tocar: um pulso no lugar, no centro ────────────────────────────── */
+
+.insta-gesture-hint--tap {
+  top: 50%;
+  left: 50%;
+  animation-name: insta-gesture-tap;
+}
+
+@keyframes insta-gesture-tap {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insta-gesture-hint {
+    display: none;
+  }
+}

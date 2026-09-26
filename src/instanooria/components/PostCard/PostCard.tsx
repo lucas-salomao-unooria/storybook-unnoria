@@ -81,6 +81,7 @@ const PostCardMedia: React.FC<InstaPostMediaProps> = ({
   onRetry,
   onMediaError,
   errorLabel = 'Não foi possível carregar a imagem.',
+  errorDescription,
   retryLabel = 'Tentar novamente',
   theme = 'light',
   className = '',
@@ -95,6 +96,8 @@ const PostCardMedia: React.FC<InstaPostMediaProps> = ({
   const [attempt, setAttempt] = React.useState(0);
   const hasImage = src !== undefined && src !== '';
   const hasError = hasImage && failedSrc === src;
+  // `undefined` herda o `alt`; `null` (ou string vazia) é o consumidor pedindo silêncio.
+  const description = errorDescription === undefined ? alt : errorDescription;
 
   const handleError = () => {
     if (hasImage) {
@@ -150,6 +153,9 @@ const PostCardMedia: React.FC<InstaPostMediaProps> = ({
       {hasError && (
         <div className="insta-post-card__media-error">
           <p className="insta-post-card__media-error-label">{errorLabel}</p>
+          {description !== null && description !== undefined && description !== '' && (
+            <p className="insta-post-card__media-error-description">{description}</p>
+          )}
           <Button variant="secondary" size="sm" theme={theme} onClick={handleRetry}>
             {retryLabel}
           </Button>

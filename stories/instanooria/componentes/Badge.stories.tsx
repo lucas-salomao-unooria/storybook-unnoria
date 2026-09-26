@@ -10,6 +10,7 @@ import {
   InstaDocCard,
   InstaDocGrid,
   InstaDocFigmaSpecs,
+  InstaDocDeviations,
   InstaDocPractices,
   InstaDocStage,
   InstaDocThemeSwitcher,
@@ -50,6 +51,10 @@ const BadgeDocumentationPage = () => (
         Cápsula de apoio para rótulos curtos sobre superfícies claras, sem carga semântica de
         urgência.
       </InstaDocCard>
+      <InstaDocCard icon="↩️" title="Quebra de linha (wrap)">
+        Para etiqueta longa numa largura fixa — a ficha técnica sob um Story, uma tag de
+        classificação. O rótulo quebra dentro da largura disponível em vez de vazar da tela.
+      </InstaDocCard>
     </InstaDocGrid>
 
     <UnooriaDocSectionHeader
@@ -66,6 +71,15 @@ const BadgeDocumentationPage = () => (
         { label: 'Contador', value: '34 × 26px · raio total' },
         { label: 'Contador · tipografia', value: 'Caption/Medium · 12px' },
         { label: 'Ponto', value: '8 × 8px · #ED4956' },
+      ]}
+    />
+    <InstaDocDeviations
+      items={[
+        {
+          subject: 'Quebra de linha (wrap) é extensão',
+          detail:
+            'o arquivo só publica selos de uma linha. Com wrap, o texto quebra dentro da largura do contêiner e o raio desce da cápsula para --insta-radius-l (10px), o dos cartões: uma pílula de três linhas viraria uma bolha. Pedido da A Seleção (exp07ef1b), cujas tags da ficha técnica passavam dos 345px da folha.',
+        },
       ]}
     />
 
@@ -121,6 +135,20 @@ const BadgeDocumentationPage = () => (
       <Badge variant="live" dot />
     </InstaDocStage>
 
+    <InstaDocStage label="Quebra de linha numa largura fixa (wrap)">
+      <div style={{ width: 220, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        <Badge variant="neutral" wrap>
+          Fonte ouvida: Secretaria de Obras
+        </Badge>
+        <Badge variant="neutral" wrap>
+          Ângulo da imagem: infográfico comparativo de vagas versus visitantes
+        </Badge>
+      </div>
+      <div style={{ width: 220, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        <Badge variant="neutral">Sem wrap: o rótulo longo segue numa linha só</Badge>
+      </div>
+    </InstaDocStage>
+
     <UnooriaDocSectionHeader
       title="5. Boas Práticas"
       description="Regras de sinalização verificadas contra o arquivo de design."
@@ -131,12 +159,14 @@ const BadgeDocumentationPage = () => (
         'Usar overflowCount para truncar contagens longas como "99+".',
         'Ancorar a etiqueta LIVE sempre a um anel de avatar com ring="live".',
         'Manter o ponto de notificação em aria-hidden — a informação deve estar no rótulo do botão.',
+        'Ligar wrap quando o rótulo pode passar da largura do contêiner (texto vindo de dado, não fixo).',
       ]}
       donts={[
         'Usar a etiqueta LIVE como rótulo genérico de destaque.',
         'Aplicar a variante notification a conteúdo que não seja novidade real.',
         'Empilhar dois badges sobre o mesmo elemento.',
         'Traduzir "LIVE" — é uma marca visual fixa no arquivo de design.',
+        'Usar wrap em LIVE, contador ou notificação: são selos de uma palavra, e a cápsula é a forma deles.',
       ]}
     />
 
@@ -189,6 +219,13 @@ const BadgeDocumentationPage = () => (
           description: 'Valor máximo exibido antes de truncar como "99+".',
         },
         {
+          name: 'wrap',
+          type: 'boolean',
+          default: 'false',
+          description:
+            'Deixa o rótulo quebrar linha dentro da largura do contêiner; o raio desce para o dos cartões. Sem efeito com dot.',
+        },
+        {
           name: 'theme',
           type: "'light' | 'dark'",
           default: "'light'",
@@ -213,6 +250,7 @@ const meta: Meta<typeof Badge> = {
     dot: { control: 'boolean', description: 'Renderiza apenas o ponto de 8 × 8px.' },
     count: { control: 'number', description: 'Contagem numérica exibida.' },
     overflowCount: { control: 'number', description: 'Limite antes de truncar como "99+".' },
+    wrap: { control: 'boolean', description: 'Quebra o rótulo em várias linhas (extensão).' },
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema visual.' },
     children: { control: 'text', description: 'Conteúdo textual do selo.' },
   },
@@ -220,6 +258,7 @@ const meta: Meta<typeof Badge> = {
     variant: 'live',
     dot: false,
     overflowCount: 99,
+    wrap: false,
     theme: 'light',
     children: 'LIVE',
   },
@@ -298,6 +337,26 @@ export const ExemploOficialDoFigma: Story = {
         <Icon name="igtv" size={26} />
         <Badge variant="notification" dot style={{ position: 'absolute', top: 2, right: 0 }} />
       </div>
+    </div>
+  ),
+};
+
+/**
+ * Extensão: a etiqueta longa que quebra linha numa largura fixa.
+ */
+export const QuebraDeLinha: Story = {
+  name: 'Quebra de linha (wrap)',
+  render: () => (
+    <div style={{ width: 280, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+      <Badge variant="neutral" wrap>
+        Fonte ouvida: moradores do entorno
+      </Badge>
+      <Badge variant="neutral" wrap>
+        Ângulo da imagem: infográfico comparativo de vagas versus visitantes
+      </Badge>
+      <Badge variant="neutral" wrap>
+        Enquadramento: dados e números
+      </Badge>
     </div>
   ),
 };

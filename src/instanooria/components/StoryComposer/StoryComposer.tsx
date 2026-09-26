@@ -15,7 +15,22 @@ import './StoryComposer.css';
  * visualizador de Story (`0:2236`).
  *
  * O campo só é controlado quando o consumidor passa `value` (seção 4.5.1).
+ *
+ * **Conta CARACTERES, não unidades UTF-16.** O contador, o `minLength` e o
+ * `maxLength` medem em code points (`Array.from(texto).length`): um emoji é UM
+ * caractere, como a pessoa conta — e como o servidor que recebe a legenda
+ * costuma contar. Por isso o campo NÃO usa os atributos nativos `maxlength` e
+ * `minlength`, que medem em UTF-16 e fariam o emoji valer dois: o teto é
+ * aplicado na digitação, cortando o excesso antes do `onChange`.
  */
+
+/** Quantos caracteres o texto tem, contando cada code point como um. */
+const contarCaracteres = (texto: string): number => Array.from(texto).length;
+
+/** O texto cortado em `max` caracteres (code points), sem partir um emoji ao meio. */
+const cortarEm = (texto: string, max: number): string =>
+  contarCaracteres(texto) > max ? Array.from(texto).slice(0, max).join('') : texto;
+
 export const StoryComposer = React.forwardRef<HTMLFormElement, InstaStoryComposerProps>(
   (
     {
@@ -48,14 +63,21 @@ export const StoryComposer = React.forwardRef<HTMLFormElement, InstaStoryCompose
      * Pode ficar defasado se o texto entrar sem evento — aceitável: o custo é
      * um contador atrasado, não um texto que some (seção 4.5.1).
      */
-    const [internalLength, setInternalLength] = React.useState(defaultValue?.length ?? 0);
-    const length = isControlled ? (value as string).length : internalLength;
+    const [internalLength, setInternalLength] = React.useState(
+      contarCaracteres(defaultValue ?? '')
+    );
+    const length = isControlled ? contarCaracteres(value as string) : internalLength;
     const tooShort = minLength !== undefined && length < minLength;
     const isSubmitDisabled = submitDisabled || tooShort;
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      // O teto em caracteres, no lugar do `maxlength` nativo (que mede UTF-16).
+      const cortado = cortarEm(event.target.value, maxLength);
+      if (cortado !== event.target.value) {
+        event.target.value = cortado;
+      }
       if (!isControlled) {
-        setInternalLength(event.target.value.length);
+        setInternalLength(contarCaracteres(cortado));
       }
       onChange?.(event);
     };
@@ -87,8 +109,6 @@ export const StoryComposer = React.forwardRef<HTMLFormElement, InstaStoryCompose
             aria-label={label}
             aria-describedby={counterId}
             placeholder={placeholder}
-            maxLength={maxLength}
-            minLength={minLength}
             name={name}
             rows={3}
             onChange={handleChange}

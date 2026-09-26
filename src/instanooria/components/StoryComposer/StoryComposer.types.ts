@@ -30,13 +30,14 @@ export interface InstaStoryComposerProps
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 
   /**
-   * Máximo de caracteres. O campo não aceita além dele e o contador mostra
-   * "{n}/{maxLength}".
+   * Máximo de caracteres, contados em code points (um emoji é um). O campo
+   * corta o excesso na digitação e o contador mostra "{n}/{maxLength}".
    */
   maxLength: number;
 
   /**
-   * Mínimo de caracteres. Abaixo dele, o envio fica desabilitado.
+   * Mínimo de caracteres, contados em code points. Abaixo dele, o envio fica
+   * desabilitado.
    */
   minLength?: number;
 

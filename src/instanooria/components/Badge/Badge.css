@@ -78,6 +78,20 @@
 }
 
 /* ==========================================================================
+   Quebra de linha (extensão: o arquivo só publica rótulos de uma linha)
+   ========================================================================== */
+
+.insta-badge--wrap {
+  justify-content: flex-start;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  line-height: 1.35;
+  border-radius: var(--insta-radius-l);
+}
+
+/* ==========================================================================
    Modo Dot (8×8px)
    ========================================================================== */
 

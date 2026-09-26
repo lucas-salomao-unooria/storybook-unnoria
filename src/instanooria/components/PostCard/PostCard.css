@@ -146,6 +146,18 @@
   letter-spacing: var(--insta-font-label-md-tracking);
 }
 
+/* O que a imagem mostrava (o `alt`), sob a mensagem: a falha não apaga a
+   descrição. Texto primário pelo mesmo motivo da mensagem — o secundário sobre
+   o tertiary mede 3,1:1. */
+.insta-post-card__media-error-description {
+  margin: 0;
+  max-width: 32ch;
+  color: var(--insta-color-text-primary);
+  font-size: var(--insta-font-caption-md-size);
+  font-weight: var(--insta-font-caption-md-weight);
+  line-height: 1.4;
+}
+
 /* ==========================================================================
    Rodapé — frame "Post / Bottom"
    ========================================================================== */

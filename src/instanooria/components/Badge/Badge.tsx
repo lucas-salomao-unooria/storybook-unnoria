@@ -16,6 +16,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, InstaBadgeProps>(
       dot = false,
       count,
       overflowCount = 99,
+      wrap = false,
       theme = 'light',
       children,
       className = '',
@@ -27,6 +28,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, InstaBadgeProps>(
       'insta-badge',
       `insta-badge--${variant}`,
       dot ? 'insta-badge--dot' : '',
+      wrap && !dot ? 'insta-badge--wrap' : '',
       className,
     ]
       .filter(Boolean)

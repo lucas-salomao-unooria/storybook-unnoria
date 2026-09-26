@@ -44,6 +44,9 @@
 @import './instanooria/components/StoriesTray/StoriesTray.css';
 @import './instanooria/components/StoryBubble/StoryBubble.css';
 @import './instanooria/components/StoryComposer/StoryComposer.css';
+@import './instanooria/components/InlineHint/InlineHint.css';
+@import './instanooria/components/GestureHint/GestureHint.css';
+@import './instanooria/components/Snackbar/Snackbar.css';
 @import './instanooria/components/StoryViewer/StoryViewer.css';
 @import './instanooria/components/TabBar/TabBar.css';
 @import './instanooria/components/TextField/TextField.css';

@@ -145,7 +145,8 @@ const PostCardDocumentationPage = () => (
         um cartão de texto ou o desenho do produto quando a imagem não existe.
       </InstaDocCard>
       <InstaDocCard icon="🔁" title="Estado de erro (extensão)">
-        Uma <code>src</code> que não carrega vira a mensagem <code>errorLabel</code> e o botão
+        Uma <code>src</code> que não carrega vira a mensagem <code>errorLabel</code>, o que a
+        imagem mostrava (<code>errorDescription</code>, por padrão o <code>alt</code>) e o botão
         “Tentar novamente”, que refaz o carregamento e chama <code>onRetry</code>.
       </InstaDocCard>
       <InstaDocCard icon="❤️" title="Estados de interação">
@@ -186,6 +187,11 @@ const PostCardDocumentationPage = () => (
           subject: 'Estado de erro',
           detail:
             'o quadro não descreve imagem que falha. A mensagem usa Label/Medium em text-primary — o secundário sobre o tertiary mede 3,1:1 — e o botão é o Button secundário do pacote.',
+        },
+        {
+          subject: 'A descrição sobrevive ao erro',
+          detail:
+            'com a imagem quebrada, o <img> sai da árvore e o alt iria junto. Sob a mensagem entra errorDescription, que por padrão é o próprio alt (Caption/Medium em text-primary); null esconde. Pedido da A Seleção (exp07ef1b), que remontava a descrição dentro do errorLabel.',
         },
         {
           subject: 'Pontos do carrossel já existentes',
@@ -388,6 +394,12 @@ const PostCardDocumentationPage = () => (
           type: 'React.ReactNode',
           default: "'Não foi possível carregar a imagem.'",
           description: 'Texto do estado de erro.',
+        },
+        {
+          name: 'errorDescription',
+          type: 'React.ReactNode',
+          default: 'alt',
+          description: 'O que a imagem mostrava, sob a mensagem de erro. Padrão: o alt; null esconde.',
         },
         {
           name: 'retryLabel',
@@ -716,6 +728,8 @@ export const SlideEErro: StoryObj<{ onRetry: () => void; onMediaError: () => voi
 
     const tentar = await tela.findByRole('button', { name: 'Tentar novamente' });
     await expect(tela.getByText('Não foi possível carregar a imagem.')).toBeInTheDocument();
+    // A descrição da imagem (o alt) continua na tela depois da falha.
+    await expect(tela.getByText('Publicação que não carregou')).toBeInTheDocument();
     await expect(args.onMediaError).toHaveBeenCalled();
     await userEvent.click(tentar);
     await expect(args.onRetry).toHaveBeenCalledTimes(1);

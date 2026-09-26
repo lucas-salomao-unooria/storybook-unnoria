@@ -38,6 +38,16 @@ export interface InstaBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   overflowCount?: number;
 
   /**
+   * Deixa o rótulo QUEBRAR LINHA em vez de seguir numa linha só. Para etiqueta
+   * longa numa largura fixa (a ficha técnica sob um Story, uma tag de
+   * classificação): sem ela, a cápsula passa da borda da tela. O raio desce da
+   * cápsula para o do cartão (`--insta-radius-l`), porque uma pílula de três
+   * linhas vira uma bolha. Sem efeito com `dot`.
+   * @default false
+   */
+  wrap?: boolean;
+
+  /**
    * Tema visual usado para resolver as variáveis de cor.
    * @default 'light'
    */

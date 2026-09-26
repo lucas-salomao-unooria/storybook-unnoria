@@ -85,8 +85,9 @@ const StoryComposerDocumentationPage = () => (
         por exemplo.
       </InstaDocCard>
       <InstaDocCard icon="🔢" title="Contador">
-        “{'{n}'}/{'{max}'}” sob o campo. O campo não aceita além de <code>maxLength</code>; abaixo de{' '}
-        <code>minLength</code>, o envio fica desabilitado.
+        “{'{n}'}/{'{max}'}” sob o campo, em <strong>caracteres</strong>: um emoji conta um. O campo
+        corta o que passa de <code>maxLength</code>; abaixo de <code>minLength</code>, o envio fica
+        desabilitado.
       </InstaDocCard>
       <InstaDocCard icon="📤" title="“Seu story”">
         O envio é o botão do app real, com o avatar da pessoa. <code>onSubmit</code> recebe o texto
@@ -120,6 +121,11 @@ const StoryComposerDocumentationPage = () => (
           subject: 'Sem quadro no arquivo de origem',
           detail:
             'o arquivo publica só o visualizador de Story (0:543 / 0:2236). O compositor reaproveita o palco com raio de 8px, a barra de 94px (Chat Bar, 0:2254) e a pílula de 43px com raio de 21,5px (Send Message, 0:2266), que vira o botão “Seu story”.',
+        },
+        {
+          subject: 'Conta caracteres, não unidades UTF-16',
+          detail:
+            'contador, minLength e maxLength medem em code points (Array.from(texto).length), e o campo não usa os atributos nativos maxlength/minlength, que medem em UTF-16 e fariam o emoji valer dois. O teto é aplicado na digitação. Pedido da A Seleção (exp07ef1b): o servidor dela conta code points, e o contador visível discordava da régua com emoji.',
         },
         {
           subject: 'Legenda num campo, não sobre a mídia',
@@ -197,8 +203,8 @@ const StoryComposerDocumentationPage = () => (
         { name: 'value', type: 'string', description: 'Legenda. Informada, o campo é controlado.' },
         { name: 'defaultValue', type: 'string', description: 'Texto inicial sem value.' },
         { name: 'onChange', type: '(event: ChangeEvent<HTMLTextAreaElement>) => void', description: 'A cada alteração.' },
-        { name: 'maxLength', type: 'number', description: 'Máximo de caracteres; aparece no contador. Obrigatório.' },
-        { name: 'minLength', type: 'number', description: 'Mínimo de caracteres para enviar.' },
+        { name: 'maxLength', type: 'number', description: 'Máximo de caracteres (code points: um emoji conta um); aparece no contador. Obrigatório.' },
+        { name: 'minLength', type: 'number', description: 'Mínimo de caracteres (code points) para enviar.' },
         { name: 'placeholder', type: 'string', default: "'Escreva uma legenda…'", description: 'Texto de espera.' },
         { name: 'label', type: 'string', default: "'Legenda do story'", description: 'Nome acessível do campo.' },
         { name: 'name', type: 'string', description: 'name do campo, para o FormData.' },
@@ -325,5 +331,33 @@ export const NaoControlado: Story = {
     await expect(tela.getByText('35/80')).toBeInTheDocument();
     await userEvent.click(tela.getByRole('button', { name: 'Seu story' }));
     await expect(args.onSubmit).toHaveBeenCalledWith('Os três que mais ajudaram a turma.!');
+  },
+};
+
+/**
+ * Um emoji é UM caractere: no contador, no mínimo e no teto.
+ */
+export const ContaCaracteres: Story = {
+  name: 'Conta caracteres (emoji vale um)',
+  args: { onSubmit: fn() },
+  render: (args) => (
+    <div style={{ width: 320, height: 360 }}>
+      <StoryComposer maxLength={5} minLength={3} onSubmit={args.onSubmit} />
+    </div>
+  ),
+  play: async ({ args, canvasElement }) => {
+    const tela = within(canvasElement);
+    const campo = tela.getByRole('textbox', { name: 'Legenda do story' });
+    const enviar = tela.getByRole('button', { name: 'Seu story' });
+
+    await userEvent.type(campo, 'a🎉');
+    await expect(tela.getByText('2/5')).toBeInTheDocument();
+    await expect(enviar).toBeDisabled();
+
+    await userEvent.type(campo, 'b🎉cd');
+    await expect(tela.getByText('5/5')).toBeInTheDocument();
+    await expect(campo).toHaveValue('a🎉b🎉c');
+    await userEvent.click(enviar);
+    await expect(args.onSubmit).toHaveBeenCalledWith('a🎉b🎉c');
   },
 };

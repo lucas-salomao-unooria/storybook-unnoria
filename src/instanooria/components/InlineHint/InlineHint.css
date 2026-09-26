@@ -1,0 +1,30 @@
+/**
+ * Estilos do Componente InlineHint — Design System Instanooria
+ *
+ * Extensão. O arquivo não publica faixa de dica; a medida é a das barras do
+ * próprio arquivo — calha de 15px (`--insta-gutter`), fio de 0,33px por baixo
+ * (`--insta-elevation-hairline-bottom`), superfície secundária — e o texto é o
+ * `Label/Medium` (13px) em cor PRIMÁRIA. Sem sombra com desfoque (seção 2.3).
+ *
+ * O atrito leva a cor de alerta na BORDA esquerda, não no texto: o vermelho do
+ * app (#ED4956) sobre branco mede 3,7:1, abaixo dos 4,5:1 de texto.
+ */
+
+.insta-inline-hint {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  margin: 0;
+  padding: var(--insta-spacing-s) var(--insta-gutter);
+  background-color: var(--insta-color-background-secondary);
+  box-shadow: var(--insta-elevation-hairline-bottom);
+  color: var(--insta-color-text-primary);
+  font-family: var(--insta-font-sans);
+  font-size: var(--insta-font-label-md-size);
+  font-weight: var(--insta-font-weight-regular);
+  line-height: 1.4;
+  letter-spacing: var(--insta-font-label-md-tracking);
+}
+
+.insta-inline-hint--friction {
+  border-left: 3px solid var(--insta-color-brand-like);
+}
