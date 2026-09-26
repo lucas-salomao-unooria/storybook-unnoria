@@ -86,9 +86,10 @@ export interface WaMessageBubbleProps extends React.HTMLAttributes<HTMLDivElemen
  *
  * Duas formas: com `src`, a imagem anexada; sem `src`, os `children` ocupam a
  * moldura — a mídia DESENHADA (um comunicado composto a partir do texto, uma
- * ilustração em SVG) para o produto que não serve arquivo de imagem.
+ * ilustração em SVG) para o produto que não serve arquivo de imagem. Com
+ * `onClick`, qualquer das duas vira botão.
  */
-export interface WaMessageMediaProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface WaMessageMediaProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onClick'> {
   /** URL da imagem anexada. Ausente, a moldura exibe os `children`. */
   src?: string;
   /**
@@ -101,6 +102,17 @@ export interface WaMessageMediaProps extends React.HTMLAttributes<HTMLDivElement
   ratio?: string;
   /** Conteúdo desenhado exibido na moldura quando não há `src`. */
   children?: React.ReactNode;
+  /**
+   * Callback de toque na mídia (abrir em tela cheia). Quando informado, a
+   * moldura é renderizada como `<button>` — acionável por Enter e Espaço —,
+   * como a `LinkPreview`.
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Nome acessível da AÇÃO, quando há `onClick` — como "Abrir imagem de Pedro".
+   * Ausente, o botão se anuncia pelo `alt`.
+   */
+  actionLabel?: string;
 }
 
 /**

@@ -83,6 +83,28 @@
   object-fit: cover;
 }
 
+/* Mídia acionável (`onClick`): o <button> não muda o desenho — só o reset, o
+   cursor e o anel de foco, como a pré-visualização de link acionável. Fica
+   ANTES de `--drawn` de propósito: a moldura desenhada continua flex. */
+.wa-messagebubble__media--action {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.wa-messagebubble__media--action:focus-visible {
+  outline: 2px solid var(--wa-color-accent);
+  outline-offset: 2px;
+}
+
 /* ==========================================================================
    Subcomponente de documento
    ========================================================================== */

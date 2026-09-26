@@ -16,31 +16,59 @@ import './MessageBubble.css';
  * Sem `src`, a moldura exibe os `children` — a mídia desenhada — e se anuncia
  * como imagem pelo `alt`, para que o leitor de tela leia o mesmo que a imagem
  * leria.
+ *
+ * Com `onClick`, a moldura é um `<button>` com o mesmo desenho. Ali a mídia
+ * desenhada NÃO leva `role="img"`: os filhos de um botão são apresentacionais,
+ * e o nome dele é o `actionLabel` — ou, sem ele, o `alt`.
  */
 const MessageMedia: React.FC<WaMessageMediaProps> = ({
   src,
   alt,
   ratio = '16 / 9',
   children,
+  onClick,
+  actionLabel,
   className = '',
   style,
   ...restProps
-}) => (
-  <div
-    className={[
-      'wa-messagebubble__media',
-      src ? '' : 'wa-messagebubble__media--drawn',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')}
-    style={{ aspectRatio: ratio, ...style }}
-    {...(src ? {} : { role: 'img', 'aria-label': alt })}
-    {...restProps}
-  >
-    {src ? <img src={src} alt={alt} /> : children}
-  </div>
-);
+}) => {
+  const classes = [
+    'wa-messagebubble__media',
+    src ? '' : 'wa-messagebubble__media--drawn',
+    onClick ? 'wa-messagebubble__media--action' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+  const estilo = { aspectRatio: ratio, ...style };
+  const conteudo = src ? <img src={src} alt={alt} /> : children;
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        className={classes}
+        style={estilo}
+        onClick={onClick}
+        aria-label={actionLabel ?? (src ? undefined : alt)}
+        {...(restProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
+        {conteudo}
+      </button>
+    );
+  }
+
+  return (
+    <div
+      className={classes}
+      style={estilo}
+      {...(src ? {} : { role: 'img', 'aria-label': alt })}
+      {...(restProps as React.HTMLAttributes<HTMLDivElement>)}
+    >
+      {conteudo}
+    </div>
+  );
+};
 
 MessageMedia.displayName = 'MessageBubble.Media';
 

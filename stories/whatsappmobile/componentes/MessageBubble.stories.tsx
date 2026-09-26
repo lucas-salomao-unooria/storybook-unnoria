@@ -15,6 +15,7 @@ import {
   WaDocSurfaceSwitcher,
 } from '../../../.storybook/components';
 import { MessageBubble, ChatWallpaper, DateChip } from '../../../src/whatsappmobile';
+import { expect, userEvent, within } from 'storybook/test';
 import { waWallpaper, waSamplePhoto } from '../fixtures';
 
 const BAR = '#0CA996';
@@ -97,6 +98,11 @@ const MessageBubbleDocumentationPage = () => (
           subject: 'Mídia desenhada',
           detail:
             'sem src, MessageBubble.Media exibe os children na moldura e se anuncia como imagem pelo alt. É para o produto que desenha a mídia a partir do texto em vez de servir arquivo.',
+        },
+        {
+          subject: 'Mídia acionável',
+          detail:
+            'o arquivo não publica o toque na mídia. Com onClick, a moldura vira um <button> com o mesmo desenho, como a LinkPreview acionável, e o nome dele é o actionLabel (ou o alt).',
         },
         {
           subject: 'LinkPreview e Invite',
@@ -279,6 +285,8 @@ const MessageBubbleDocumentationPage = () => (
         { name: 'alt', type: 'string', description: 'Texto alternativo. Obrigatório; sem src, vira o nome acessível da moldura.' },
         { name: 'ratio', type: 'string', default: "'16 / 9'", description: 'Proporção da miniatura, em formato CSS aspect-ratio.' },
         { name: 'children', type: 'React.ReactNode', description: 'Extensão: a mídia desenhada, exibida quando não há src.' },
+        { name: 'onClick', type: '(event) => void', description: 'Extensão: torna a moldura um botão (abrir em tela cheia).' },
+        { name: 'actionLabel', type: 'string', description: 'Nome acessível da ação quando há onClick. Ausente, vale o alt.' },
       ]}
     />
     <WaDocPropsTable
@@ -487,4 +495,69 @@ export const ComposicaoModular: Story = {
       </Thread>
     </WaDocStage>
   ),
+};
+
+/**
+ * A mídia com `onClick`: o comunicado desenhado e a fotografia abrem por toque,
+ * Enter e Espaço, sem mudar o desenho.
+ */
+const MidiaQueAbre: React.FC = () => {
+  const [aberturas, setAberturas] = React.useState(0);
+  const abrir = () => setAberturas((n) => n + 1);
+
+  return (
+    <WaDocStage surface="base" padding={24} align="flex-start">
+      <Thread>
+        <MessageBubble direction="in" sender="Coordenação Pedagógica" time="08:20" maxWidth={260}>
+          <MessageBubble.Media
+            alt="Comunicado oficial sobre a entrada pelo portão lateral"
+            ratio="4 / 3"
+            actionLabel="Abrir imagem de Coordenação Pedagógica"
+            onClick={abrir}
+          >
+            <div
+              style={{
+                padding: 12,
+                background: 'var(--wa-color-surface-elevated)',
+                color: 'var(--wa-color-text-primary)',
+                fontSize: 12,
+                lineHeight: 1.4,
+              }}
+            >
+              <strong style={{ display: 'block', marginBottom: 6 }}>COMUNICADO Nº 14</strong>
+              Entrada das turmas do 5º ano pelo portão lateral.
+            </div>
+          </MessageBubble.Media>
+          Toque no comunicado para abrir.
+        </MessageBubble>
+        <MessageBubble direction="in" sender="Camila Duarte" time="08:22" maxWidth={260}>
+          <MessageBubble.Media src={waSamplePhoto} alt="Fotografia enviada" onClick={abrir} />
+        </MessageBubble>
+      </Thread>
+      <p role="status" style={{ margin: 0, color: 'var(--wa-color-text-footnote)', fontSize: 12 }}>
+        Aberturas: {aberturas}
+      </p>
+    </WaDocStage>
+  );
+};
+
+/**
+ * Mídia acionável: com onClick a moldura vira botão, e o leitor de tela a
+ * anuncia pelo actionLabel.
+ */
+export const MidiaAcionavel: Story = {
+  render: () => <MidiaQueAbre />,
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const comunicado = tela.getByRole('button', { name: 'Abrir imagem de Coordenação Pedagógica' });
+    const contador = tela.getByRole('status');
+
+    await userEvent.click(comunicado);
+    await expect(contador).toHaveTextContent('Aberturas: 1');
+    comunicado.focus();
+    await userEvent.keyboard('{Enter}');
+    await expect(contador).toHaveTextContent('Aberturas: 2');
+    await userEvent.click(tela.getByRole('button', { name: 'Fotografia enviada' }));
+    await expect(contador).toHaveTextContent('Aberturas: 3');
+  },
 };

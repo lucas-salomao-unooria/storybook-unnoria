@@ -15,13 +15,14 @@ import {
   WaDocStage,
   WaDocSurfaceSwitcher,
 } from '../../../.storybook/components';
-import { ChatWallpaper, ForwardButton, MessageBubble } from '../../../src/whatsappmobile';
+import { ChatWallpaper, ForwardButton, MessageBubble, SystemMessage } from '../../../src/whatsappmobile';
 import { waWallpaper } from '../fixtures';
 
 const BAR = '#0CA996';
 
 /**
  * Um balão recebido com o atalho de encaminhar ao lado, alternando a escolha.
+ * Esgotado, o toque não escolhe: explica a recusa.
  */
 const BalaoComAtalho: React.FC<{ texto: string; remetente: string; esgotado?: boolean }> = ({
   texto,
@@ -29,18 +30,22 @@ const BalaoComAtalho: React.FC<{ texto: string; remetente: string; esgotado?: bo
   esgotado = false,
 }) => {
   const [escolhida, setEscolhida] = useState(false);
+  const [aviso, setAviso] = useState(false);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      <MessageBubble direction="in" sender={remetente} time="08:12" maxWidth={250}>
-        {texto}
-      </MessageBubble>
-      <ForwardButton
-        label={`Encaminhar mensagem de ${remetente}`}
-        selected={escolhida}
-        disabled={esgotado && !escolhida}
-        onClick={() => setEscolhida((valor) => !valor)}
-      />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <MessageBubble direction="in" sender={remetente} time="08:12" maxWidth={250}>
+          {texto}
+        </MessageBubble>
+        <ForwardButton
+          label={`Encaminhar mensagem de ${remetente}`}
+          selected={escolhida}
+          exhausted={esgotado}
+          onClick={() => (esgotado && !escolhida ? setAviso(true) : setEscolhida((valor) => !valor))}
+        />
+      </div>
+      <div role="status">{aviso && <SystemMessage>Limite de 3 mensagens atingido.</SystemMessage>}</div>
     </div>
   );
 };
@@ -68,8 +73,9 @@ const ForwardButtonDocumentationPage = () => (
         estado é lido, não só visto.
       </WaDocCard>
       <WaDocCard icon="🚫" title="Cota esgotada">
-        Desabilitado a 30%: a opção que não cabe mais continua visível, para ser lida como esgotada
-        e não como sumida.
+        <code>exhausted</code> esmaece a 30% e anuncia <code>aria-disabled</code>, mas o toque
+        continua chegando: é ele que explica a recusa. <code>disabled</code>, que engole o toque, fica
+        para quando não há o que explicar.
       </WaDocCard>
     </WaDocGrid>
 
@@ -83,6 +89,7 @@ const ForwardButtonDocumentationPage = () => (
         { label: 'Repouso', value: '--wa-color-surface-appbar · glifo --wa-color-icon-forward' },
         { label: 'Escolhido', value: '--wa-color-accent-badge · glifo --wa-color-icon-on-accent' },
         { label: 'Desabilitado', value: 'opacidade 30%' },
+        { label: 'Esgotado', value: 'opacidade 30% · aria-disabled · continua acionável' },
       ]}
     />
     <WaDocDeviations
@@ -91,6 +98,11 @@ const ForwardButtonDocumentationPage = () => (
           subject: 'Componente sem frame',
           detail:
             'o arquivo não desenha o atalho de encaminhar. O diâmetro é o do avatar do cabeçalho de conversa; as cores são a app bar, o glifo de encaminhar e o selo verde-água. Os glifos forward e tick são literais do registro.',
+        },
+        {
+          subject: 'Estado esgotado',
+          detail:
+            'o app real não tem cota de encaminhamento. O estado existe para o produto que limita a escolha e precisa dizer por quê: o mesmo esmaecimento do desabilitado, sem engolir o toque.',
         },
       ]}
     />
@@ -107,7 +119,8 @@ const ForwardButtonDocumentationPage = () => (
     <WaDocStage surface="canvas" padding={28} gap={24}>
       <ForwardButton label="Encaminhar (repouso)" />
       <ForwardButton label="Encaminhar (escolhida)" selected />
-      <ForwardButton label="Encaminhar (esgotada)" disabled />
+      <ForwardButton label="Encaminhar (esgotada, explica)" exhausted />
+      <ForwardButton label="Encaminhar (desabilitada)" disabled />
     </WaDocStage>
 
     <UnooriaDocSectionHeader barColor={BAR} title="5. Em contexto" description="Toque no atalho para escolher e desfazer." />
@@ -125,12 +138,14 @@ const ForwardButtonDocumentationPage = () => (
       dos={[
         'Dar um label que diga QUAL mensagem é encaminhada.',
         'Posicionar ao lado do balão, alinhado ao centro dele.',
-        'Desabilitar, e não esconder, quando a cota acabar.',
+        'Esmaecer, e não esconder, quando a cota acabar.',
+        'Usar exhausted quando o toque precisa explicar a recusa; disabled só quando não há o que explicar.',
       ]}
       donts={[
         'Usar sem label: o botão é só um glifo.',
         'Trocar o tique por outro glifo desenhado à mão.',
         'Remover o atalho escolhido quando a cota acaba — ele precisa continuar desfazível.',
+        'Usar disabled na cota que pede aviso: o toque some e a recusa fica muda.',
       ]}
     />
 
@@ -154,7 +169,8 @@ const ForwardButtonDocumentationPage = () => (
       rows={[
         { name: 'label', type: 'string', description: 'Nome acessível. Obrigatório.' },
         { name: 'selected', type: 'boolean', default: 'false', description: 'Mensagem escolhida: mostra o tique e anuncia aria-pressed.' },
-        { name: 'disabled', type: 'boolean', default: 'false', description: 'Desabilita o atalho (30% de opacidade).' },
+        { name: 'exhausted', type: 'boolean', default: 'false', description: 'Cota esgotada: 30% de opacidade e aria-disabled, mas o toque continua chegando. Ignorado quando selected.' },
+        { name: 'disabled', type: 'boolean', default: 'false', description: 'Desabilita o atalho (30% de opacidade) e engole o toque.' },
         { name: '...rest', type: 'React.ButtonHTMLAttributes<HTMLButtonElement>', description: 'Demais atributos nativos, como onClick.' },
       ]}
     />
@@ -168,10 +184,11 @@ const meta: Meta<typeof ForwardButton> = {
   argTypes: {
     label: { control: 'text', description: 'Nome acessível.' },
     selected: { control: 'boolean', description: 'Mensagem escolhida.' },
-    disabled: { control: 'boolean', description: 'Cota esgotada.' },
+    exhausted: { control: 'boolean', description: 'Cota esgotada, o toque explica a recusa.' },
+    disabled: { control: 'boolean', description: 'Desabilitado, sem toque.' },
     onClick: { action: 'onClick' },
   },
-  args: { label: 'Encaminhar mensagem', selected: false, disabled: false },
+  args: { label: 'Encaminhar mensagem', selected: false, exhausted: false, disabled: false },
 };
 
 export default meta;
@@ -219,6 +236,32 @@ export const Estados: Story = {
     await userEvent.click(atalho);
     await expect(atalho).toHaveAttribute('aria-pressed', 'true');
     await userEvent.click(atalho);
+    await expect(atalho).toHaveAttribute('aria-pressed', 'false');
+  },
+};
+
+/**
+ * Esgotado: o atalho esmaece e se anuncia desabilitado, mas o toque chega — e
+ * é ele que diz por que a mensagem não entra.
+ */
+export const Esgotado: Story = {
+  render: () => (
+    <div style={{ width: 411 }}>
+      <ChatWallpaper src={waWallpaper}>
+        <div style={{ padding: '18px 12px' }}>
+          <BalaoComAtalho remetente="Mariana Souza" texto="O lanche foi antecipado para antes da visita." esgotado />
+        </div>
+      </ChatWallpaper>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const atalho = tela.getByRole('button', { name: 'Encaminhar mensagem de Mariana Souza' });
+
+    await expect(atalho).toHaveAttribute('aria-disabled', 'true');
+    await expect(atalho).toBeEnabled();
+    await userEvent.click(atalho);
+    await expect(tela.getByRole('status')).toHaveTextContent('Limite de 3 mensagens atingido.');
     await expect(atalho).toHaveAttribute('aria-pressed', 'false');
   },
 };

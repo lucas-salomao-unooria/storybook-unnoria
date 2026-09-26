@@ -6,7 +6,9 @@
  * glifo em `--wa-color-icon-forward`. Escolhido, o círculo passa ao verde-água
  * do selo de não lidas (`--wa-color-accent-badge`) e o glifo ao tom sobre
  * acento. Desabilitado, 30% de opacidade: continua visível para que a escolha
- * esgotada se leia como esgotada, e não como sumida.
+ * esgotada se leia como esgotada, e não como sumida. Esgotado (`exhausted`) é o
+ * mesmo esmaecimento, mas o botão continua acionável: é o toque que dispara a
+ * explicação da recusa, e `:disabled` o engoliria.
  */
 
 .wa-forwardbutton {
@@ -48,7 +50,8 @@
   outline-offset: 2px;
 }
 
-.wa-forwardbutton:disabled {
+.wa-forwardbutton:disabled,
+.wa-forwardbutton--exhausted {
   cursor: not-allowed;
   opacity: 0.3;
 }

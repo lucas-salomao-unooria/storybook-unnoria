@@ -20,6 +20,15 @@ export interface WaForwardButtonProps
    */
   selected?: boolean;
   /**
+   * A cota acabou e esta mensagem ficou de fora: o botão esmaece como o
+   * desabilitado, mas CONTINUA recebendo o toque e anuncia
+   * `aria-disabled="true"`. É o estado de quando o toque precisa explicar a
+   * recusa (o aviso de limite): `disabled` engole o clique, e a recusa ficaria
+   * muda. Ignorado quando `selected` — a escolhida continua desfazível.
+   * @default false
+   */
+  exhausted?: boolean;
+  /**
    * Classe CSS adicional.
    */
   className?: string;
