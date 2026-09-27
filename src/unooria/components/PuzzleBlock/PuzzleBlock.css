@@ -1,0 +1,342 @@
+/**
+ * PuzzleBlock - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de quebra-cabeça no Figma. As medidas
+ * vêm do próprio pacote — raio de 12px e rótulo semibold do `Button` `lg`, fio
+ * de 1px e recuo de 16px do `Card`, e o aviso de `returned` é uma pastilha com
+ * as medidas da `Tag` (14px, raio de 8px). Cores só por token (seção 2); o raio
+ * usa o fallback dos outros componentes, porque a seção não publica token de
+ * raio.
+ *
+ * A forma de peça sai de três camadas, sem imagem:
+ *   - `__shape` é o corpo: fundo e fio. Uma MÁSCARA recorta o encaixe da
+ *     esquerda, então o buraco mostra a superfície de trás, seja ela qual for
+ *     (bandeja, vaga, cartão) — pintar o buraco com uma cor fixa só daria certo
+ *     sobre um fundo conhecido.
+ *   - `::before` desenha o fio do recorte (a metade direita de um anel).
+ *   - `::after` é a saliência da direita: metade de um círculo com o mesmo fundo
+ *     e fio, que cobre o trecho do fio do corpo por onde passa.
+ * A máscara fica no `__shape`, e não no botão, porque ela recortaria também a
+ * saliência, que mora FORA da caixa do botão.
+ */
+
+.unooria-puzzle-block {
+  /* Geometria: raio do encaixe (com o fio) e espessura do fio. */
+  --unooria-puzzle-block-knob: 9px;
+  --unooria-puzzle-block-stroke: 1px;
+
+  /* Cores do estado — cada estado e o tema escuro só trocam estas variáveis. */
+  --unooria-puzzle-block-fill: var(--unooria-color-neutral-50, #FFFFFF);
+  --unooria-puzzle-block-tint: transparent;
+  --unooria-puzzle-block-border: var(--unooria-color-neutral-400, #7C8E94);
+  --unooria-puzzle-block-label: var(--unooria-color-neutral-950, #22272A);
+  --unooria-puzzle-block-text: var(--unooria-color-neutral-700, #475157);
+  --unooria-puzzle-block-icon: var(--unooria-color-brandnavy-800, #49699F);
+  --unooria-puzzle-block-focus: var(--unooria-color-brandpurple-950, #080922);
+
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 64px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: var(--unooria-radius-m, 12px);
+  background: transparent;
+  color: var(--unooria-puzzle-block-label);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* O corpo da peça, com o recorte da esquerda feito por máscara. */
+.unooria-puzzle-block__shape {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  box-sizing: border-box;
+  border: var(--unooria-puzzle-block-stroke) solid var(--unooria-puzzle-block-border);
+  border-radius: inherit;
+  background:
+    linear-gradient(var(--unooria-puzzle-block-tint), var(--unooria-puzzle-block-tint)),
+    var(--unooria-puzzle-block-fill);
+  -webkit-mask: radial-gradient(
+    circle at 0 50%,
+    transparent calc(var(--unooria-puzzle-block-knob) - 0.5px),
+    black var(--unooria-puzzle-block-knob)
+  );
+  mask: radial-gradient(
+    circle at 0 50%,
+    transparent calc(var(--unooria-puzzle-block-knob) - 0.5px),
+    black var(--unooria-puzzle-block-knob)
+  );
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+/* O fio do recorte (::before) e a saliência (::after): meio círculo cada. */
+.unooria-puzzle-block::before,
+.unooria-puzzle-block::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  box-sizing: border-box;
+  width: calc(var(--unooria-puzzle-block-knob) * 2);
+  height: calc(var(--unooria-puzzle-block-knob) * 2);
+  border: var(--unooria-puzzle-block-stroke) solid var(--unooria-puzzle-block-border);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  clip-path: inset(0 0 0 50%);
+  pointer-events: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+/* Centro na borda esquerda: a metade que sobra desenha a curva do recorte. */
+.unooria-puzzle-block::before {
+  left: calc(var(--unooria-puzzle-block-knob) * -1);
+  background: transparent;
+}
+
+/* Centro sobre o fio da direita: a metade que sobra cobre o fio e sai da peça. */
+.unooria-puzzle-block::after {
+  right: calc(var(--unooria-puzzle-block-stroke) - var(--unooria-puzzle-block-knob));
+  background:
+    linear-gradient(var(--unooria-puzzle-block-tint), var(--unooria-puzzle-block-tint)),
+    var(--unooria-puzzle-block-fill);
+}
+
+.unooria-puzzle-block__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  min-width: 0;
+  /* À esquerda, o recuo do Card mais o espaço do recorte. */
+  padding: var(--unooria-spacing-xs, 12px) var(--unooria-spacing-s, 16px) var(--unooria-spacing-xs, 12px)
+    var(--unooria-spacing-m, 24px);
+}
+
+.unooria-puzzle-block__icon,
+.unooria-puzzle-block__lock {
+  flex-shrink: 0;
+  color: var(--unooria-puzzle-block-icon);
+}
+
+.unooria-puzzle-block__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-4xs, 2px);
+  min-width: 0;
+}
+
+.unooria-puzzle-block__label {
+  max-width: 100%;
+  color: var(--unooria-puzzle-block-label);
+  font-size: var(--unooria-size-body-m, 16px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-s, 20px);
+  letter-spacing: var(--unooria-letter-spacing-wide, 0.02em);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.unooria-puzzle-block__description {
+  max-width: 100%;
+  color: var(--unooria-puzzle-block-text);
+  font-size: var(--unooria-size-body-s, 14px);
+  font-weight: var(--unooria-weight-regular, 400);
+  line-height: var(--unooria-line-height-body-s, 20px);
+  overflow-wrap: anywhere;
+}
+
+/* O aviso de `returned`: pastilha com as medidas da Tag, texto e glifo — não só cor. */
+.unooria-puzzle-block__returned {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: var(--unooria-spacing-xxxs, 4px);
+  padding: var(--unooria-spacing-4xs, 2px) var(--unooria-spacing-xxs, 8px);
+  border-radius: var(--unooria-radius-s, 8px);
+  background-color: var(--unooria-color-warning-100, #FFEBC6);
+  color: var(--unooria-color-warning-800, #94280C);
+  font-size: 14px;
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: 20px;
+}
+
+.unooria-puzzle-block__returned-icon {
+  flex-shrink: 0;
+}
+
+.unooria-puzzle-block:focus-visible {
+  outline: 2px solid var(--unooria-puzzle-block-focus);
+  outline-offset: 2px;
+}
+
+.unooria-puzzle-block:active:not(.unooria-puzzle-block--locked):not(:disabled) {
+  transform: translateY(1px);
+}
+
+.unooria-puzzle-block:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Estados (tema claro)
+   ========================================================================== */
+
+/* Encaixado: o destaque de marca (`brandnavy-600`, a cor de destaque da seção 2.1). */
+.unooria-puzzle-block--placed {
+  --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-600, #7FA5E2);
+  --unooria-puzzle-block-border: var(--unooria-color-brandnavy-800, #49699F);
+  --unooria-puzzle-block-label: var(--unooria-color-brandpurple-950, #080922);
+  --unooria-puzzle-block-text: var(--unooria-color-brandpurple-900, #0E1039);
+  --unooria-puzzle-block-icon: var(--unooria-color-brandpurple-950, #080922);
+}
+
+/* Voltou: acento de aviso, a pastilha escrita e uma tremida curta. */
+.unooria-puzzle-block--returned {
+  --unooria-puzzle-block-fill: var(--unooria-color-warning-50, #FFF8EB);
+  --unooria-puzzle-block-border: var(--unooria-color-warning-600, #DD5202);
+  --unooria-puzzle-block-icon: var(--unooria-color-warning-700, #B73506);
+  animation: unooria-puzzle-block-shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Travado: a chave formada. Fundo de sucesso, cadeado, e nenhum retorno ao ponteiro.
+   Um degrau acima do `success-50` da calha completa, para a peça não sumir nela. */
+.unooria-puzzle-block--locked {
+  --unooria-puzzle-block-fill: var(--unooria-color-success-100, #CDFEE4);
+  --unooria-puzzle-block-border: var(--unooria-color-success-700, #008257);
+  --unooria-puzzle-block-icon: var(--unooria-color-success-700, #008257);
+  cursor: default;
+}
+
+/* Hover só onde há ponteiro: no toque, o hover "gruda" depois do toque e o
+   bloco pareceria selecionado sem estar. */
+@media (hover: hover) {
+  .unooria-puzzle-block--idle:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-50, #F5F8FC);
+    --unooria-puzzle-block-border: var(--unooria-color-brandnavy-800, #49699F);
+  }
+
+  .unooria-puzzle-block--placed:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-500, #8FAFE5);
+  }
+
+  .unooria-puzzle-block--returned:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-warning-100, #FFEBC6);
+  }
+}
+
+@keyframes unooria-puzzle-block-shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-puzzle-block--theme-dark {
+  --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-50, #22272A);
+  --unooria-puzzle-block-border: var(--unooria-color-neutraldark-700, #7C8E94);
+  --unooria-puzzle-block-label: var(--unooria-color-neutraldark-950, #F5F5F5);
+  --unooria-puzzle-block-text: var(--unooria-color-neutraldark-900, #CBD4D6);
+  --unooria-puzzle-block-icon: var(--unooria-color-brandnavy-400, #A4BDE9);
+  --unooria-puzzle-block-focus: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-puzzle-block--theme-dark.unooria-puzzle-block--placed {
+  --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-900, #2F4F7F);
+  --unooria-puzzle-block-border: var(--unooria-color-brandnavy-500, #8FAFE5);
+  --unooria-puzzle-block-label: var(--unooria-color-neutraldark-950, #F5F5F5);
+  --unooria-puzzle-block-text: var(--unooria-color-brandnavy-100, #E8EFFA);
+  --unooria-puzzle-block-icon: var(--unooria-color-brandnavy-200, #D3E0F5);
+}
+
+/* No escuro o acento é uma camada translúcida sobre a superfície OPACA: a
+   saliência precisa cobrir o fio do corpo, e um fundo translúcido o deixaria
+   aparecer através dela. */
+.unooria-puzzle-block--theme-dark.unooria-puzzle-block--returned {
+  --unooria-puzzle-block-tint: var(--unooria-color-opacity-warning-200, rgba(249, 118, 7, 0.20));
+  --unooria-puzzle-block-border: var(--unooria-color-warning-400, #FF9C20);
+  --unooria-puzzle-block-icon: var(--unooria-color-warning-300, #FFB74A);
+}
+
+.unooria-puzzle-block--theme-dark .unooria-puzzle-block__returned {
+  background-color: var(--unooria-color-opacity-warning-200, rgba(249, 118, 7, 0.20));
+  color: var(--unooria-color-warning-200, #FFD388);
+}
+
+.unooria-puzzle-block--theme-dark.unooria-puzzle-block--locked {
+  --unooria-puzzle-block-tint: var(--unooria-color-opacity-success-200, rgba(1, 181, 116, 0.20));
+  --unooria-puzzle-block-border: var(--unooria-color-success-400, #26E197);
+  --unooria-puzzle-block-icon: var(--unooria-color-success-300, #63F2B5);
+}
+
+@media (hover: hover) {
+  .unooria-puzzle-block--theme-dark.unooria-puzzle-block--idle:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-200, #3D4448);
+    --unooria-puzzle-block-border: var(--unooria-color-neutraldark-800, #A7B5B9);
+  }
+
+  .unooria-puzzle-block--theme-dark.unooria-puzzle-block--placed:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-800, #49699F);
+  }
+
+  .unooria-puzzle-block--theme-dark.unooria-puzzle-block--returned:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-50, #22272A);
+    --unooria-puzzle-block-tint: var(--unooria-color-opacity-warning-300, rgba(249, 118, 7, 0.30));
+  }
+}
+
+/* ==========================================================================
+   Movimento reduzido: sem tremida, sem transição, sem o "afundar" do toque.
+   O aviso de `returned` continua — ele é escrito, não depende do movimento.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-puzzle-block,
+  .unooria-puzzle-block::before,
+  .unooria-puzzle-block::after,
+  .unooria-puzzle-block__shape {
+    transition: none;
+  }
+
+  .unooria-puzzle-block--returned {
+    animation: none;
+  }
+
+  .unooria-puzzle-block:active:not(.unooria-puzzle-block--locked):not(:disabled) {
+    transform: none;
+  }
+}

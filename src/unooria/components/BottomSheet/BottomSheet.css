@@ -1,0 +1,278 @@
+/**
+ * BottomSheet - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de folha inferior no Figma. As
+ * medidas vêm do pacote:
+ * - véu na cor do `Modal` (`opacity-neutraldark-400`, o "Overlay/Dark 300"),
+ *   SEM o desfoque dele — `backdrop-filter` custa caro no Chromebook de
+ *   entrada das redes, e a gaveta abre e fecha o tempo todo na mesa;
+ * - raio de 16px nos cantos de cima, o raio do `Modal`;
+ * - cabeçalho com título em `title-l` (o do `Modal`) e o X com 48px, alvo de
+ *   toque para criança (o do `Modal` tem 32px, pensado para ponteiro);
+ * - corpo em `body-m` (16px no celular) e fio de 1px no rodapé, como o
+ *   divisor do `Modal.Footer`.
+ * Largura 100% até 560px, centralizada: cabe em 375px e não vira faixa em
+ * tela larga. Cores só por token (seção 2); o raio usa o fallback dos outros
+ * componentes, porque a seção não publica token de raio.
+ */
+
+/* ==========================================================================
+   Véu
+   ========================================================================== */
+
+.unooria-bottom-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: var(--unooria-spacing-s, 16px);
+  background-color: var(--unooria-color-opacity-neutraldark-400, rgba(34, 39, 42, 0.4));
+  animation: unooria-bottom-sheet-veil-in 160ms ease-out;
+}
+
+/*
+ * No escuro, o véu neutro (a mesma cor da página) não escureceria nada. O
+ * `Modal` usa preto a 65%, que a seção não publica como token; o degrau mais
+ * escuro disponível é o marinho da marca a 70%.
+ */
+.unooria-bottom-sheet-overlay--theme-dark {
+  background-color: var(--unooria-color-opacity-brandpurple-700, rgba(14, 16, 57, 0.7));
+}
+
+/* ==========================================================================
+   Folha
+   ========================================================================== */
+
+.unooria-bottom-sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  /* `max-height` vem da prop `maxHeight` (padrão 85%), relativa ao véu. */
+  border-radius: var(--unooria-radius-lg, 16px) var(--unooria-radius-lg, 16px) 0 0;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  box-shadow: var(--unooria-elevation-brand-secondary, 0 0 10px 0 rgba(14, 16, 57, 0.3));
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  outline: none;
+  overflow: hidden;
+  animation: unooria-bottom-sheet-slide-in 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* A alça: só um sinal visual de "isto é uma gaveta". Não arrasta nada. */
+.unooria-bottom-sheet__handle {
+  flex-shrink: 0;
+  width: 40px;
+  height: 4px;
+  margin: var(--unooria-spacing-xxs, 8px) auto 0;
+  border-radius: var(--unooria-radius-full, 1000px);
+  background-color: var(--unooria-color-neutral-200, #CBD4D6);
+}
+
+/* ==========================================================================
+   Cabeçalho
+   ========================================================================== */
+
+.unooria-bottom-sheet__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-s, 16px);
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-s, 16px) var(--unooria-spacing-s, 16px)
+    var(--unooria-spacing-m, 24px);
+}
+
+.unooria-bottom-sheet__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  min-width: 0;
+  /* Centra a primeira linha do título na altura do X (48px). */
+  padding-top: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-bottom-sheet__title {
+  margin: 0;
+  font-size: var(--unooria-size-title-l, 20px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-title-l, 30px);
+  overflow-wrap: anywhere;
+}
+
+.unooria-bottom-sheet__description {
+  margin: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+  overflow-wrap: anywhere;
+}
+
+.unooria-bottom-sheet__close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: var(--unooria-radius-m, 12px);
+  background-color: transparent;
+  color: var(--unooria-color-neutral-700, #475157);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.unooria-bottom-sheet__close:hover {
+  background-color: var(--unooria-color-opacity-neutraldark-100, rgba(34, 39, 42, 0.1));
+  color: var(--unooria-color-neutral-950, #22272A);
+}
+
+.unooria-bottom-sheet__close:active {
+  background-color: var(--unooria-color-opacity-neutraldark-200, rgba(34, 39, 42, 0.2));
+}
+
+.unooria-bottom-sheet__close:focus-visible {
+  outline: 2px solid var(--unooria-color-brandpurple-950, #080922);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Corpo (rola por dentro) e rodapé (fixo)
+   ========================================================================== */
+
+.unooria-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 var(--unooria-spacing-m, 24px) var(--unooria-spacing-m, 24px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--unooria-scrollbar-thumb, rgba(34, 39, 42, 0.3)) transparent;
+}
+
+/* Sem cabeçalho, o corpo não encosta na alça. */
+.unooria-bottom-sheet__handle + .unooria-bottom-sheet__body {
+  padding-top: var(--unooria-spacing-s, 16px);
+}
+
+/* Sem rodapé, o corpo é quem respeita a área segura do aparelho. */
+.unooria-bottom-sheet__body:last-child {
+  padding-bottom: calc(var(--unooria-spacing-m, 24px) + env(safe-area-inset-bottom, 0px));
+}
+
+.unooria-bottom-sheet__footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--unooria-spacing-xs, 12px);
+  padding: var(--unooria-spacing-s, 16px) var(--unooria-spacing-m, 24px)
+    calc(var(--unooria-spacing-s, 16px) + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+}
+
+/* ==========================================================================
+   Aparelho estreito: recuos de 16px
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .unooria-bottom-sheet__header {
+    padding-left: var(--unooria-spacing-s, 16px);
+    padding-right: var(--unooria-spacing-xxs, 8px);
+  }
+
+  .unooria-bottom-sheet__body {
+    padding-left: var(--unooria-spacing-s, 16px);
+    padding-right: var(--unooria-spacing-s, 16px);
+  }
+
+  .unooria-bottom-sheet__footer {
+    padding-left: var(--unooria-spacing-s, 16px);
+    padding-right: var(--unooria-spacing-s, 16px);
+  }
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-bottom-sheet--theme-dark {
+  border: 1px solid var(--unooria-color-neutraldark-200, #3D4448);
+  border-bottom: none;
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  color-scheme: dark;
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__handle {
+  background-color: var(--unooria-color-neutraldark-400, #536167);
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__description {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__close {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__close:hover {
+  background-color: var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.1));
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__close:active {
+  background-color: var(--unooria-color-opacity-neutrallight-200, rgba(255, 255, 255, 0.2));
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__close:focus-visible {
+  outline-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__body {
+  scrollbar-color: var(--unooria-scrollbar-dark-thumb, rgba(255, 255, 255, 0.3)) transparent;
+}
+
+.unooria-bottom-sheet--theme-dark .unooria-bottom-sheet__footer {
+  border-top-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+/* ==========================================================================
+   Entrada curta (sem esmaecer a folha: o conteúdo é legível desde o 1º quadro)
+   ========================================================================== */
+
+@keyframes unooria-bottom-sheet-veil-in {
+  from {
+    background-color: transparent;
+  }
+}
+
+@keyframes unooria-bottom-sheet-slide-in {
+  from {
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-bottom-sheet-overlay,
+  .unooria-bottom-sheet {
+    animation: none;
+  }
+
+  .unooria-bottom-sheet__close {
+    transition: none;
+  }
+}

@@ -1,0 +1,612 @@
+/**
+ * NewspaperPage - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de jornal no Figma. A folha segue o
+ * `Card` (fio de 1px, raio de 16px, recuo de 16px); a faixa do marcador segue o
+ * `Tag` (altura mínima de 28px, recuo de 4px 8px, raio de 8px, texto 14/20);
+ * a ação de cada vaga é o `Button` do pacote, entregue por quem usa. Cores só
+ * por token (seção 2); os raios usam o fallback dos outros componentes, porque
+ * a seção não publica token de raio.
+ *
+ * O LAYOUT E A TIPOGRAFIA SÃO POR CONTÊINER. A raiz é um contêiner de consulta
+ * (`container: unooria-newspaper / inline-size`) e tudo o que muda com a
+ * largura consulta a PÁGINA, não a janela: os tamanhos de título usam `cqi` com
+ * `clamp()`, e os layouts se reorganizam por `@container`. Os tokens de
+ * tamanho de texto (`--unooria-size-*`) trocam de degrau em 768px de VIEWPORT,
+ * e isso não serve aqui — a miniatura do comparativo é estreita mesmo numa
+ * tela larga, e a página inteira é larga na tela do professor mesmo quando a
+ * janela é pequena. Por isso os tamanhos de texto são literais.
+ *
+ * Os limiares medem a caixa de conteúdo da página (sem o recuo):
+ *   - 300px: as duas secundárias do `classic` ficam lado a lado. É o que cabe
+ *     no aparelho de 375px e mantém o `classic` reconhecível ali;
+ *   - 540px: a tela larga da página inteira (imagem ao lado no `classic`,
+ *     secundárias lado a lado no `hero-image`, as duas colunas do `columns`).
+ *     A miniatura chega lá já em 300px, porque tudo nela é menor.
+ */
+
+.unooria-newspaper-page {
+  /* O fio entre as vagas. Numa variável porque ele muda de lado (em cima, à
+     esquerda) em cada layout e de cor no tema escuro: com a cor numa só
+     declaração, o tema não precisa vencer a especificidade de cada layout. */
+  --unooria-newspaper-rule: var(--unooria-color-neutral-150, #E4E8E9);
+  container: unooria-newspaper / inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-s, 16px);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--unooria-spacing-s, 16px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 16px;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* ==========================================================================
+   Cabeçalho: o nome do jornal, o fio duplo, a edição e a data
+   ========================================================================== */
+
+.unooria-newspaper-page__masthead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+  text-align: center;
+}
+
+.unooria-newspaper-page__nameplate {
+  margin: 0;
+  padding-bottom: var(--unooria-spacing-xxs, 8px);
+  border-bottom: 4px double var(--unooria-color-neutral-950, #22272A);
+  font-size: clamp(20px, 7.5cqi, 44px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.unooria-newspaper-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-xs, 12px);
+  margin: 0;
+  padding-bottom: var(--unooria-spacing-xxs, 8px);
+  border-bottom: 1px solid var(--unooria-color-neutral-950, #22272A);
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: left;
+}
+
+.unooria-newspaper-page__edition {
+  font-weight: var(--unooria-weight-semibold, 600);
+}
+
+/* ==========================================================================
+   As vagas
+   ========================================================================== */
+
+.unooria-newspaper-page__slots {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-s, 16px);
+}
+
+.unooria-newspaper-page__secondaries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-s, 16px);
+  padding-top: var(--unooria-spacing-s, 16px);
+  border-top: 1px solid var(--unooria-newspaper-rule);
+}
+
+.unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot {
+  padding-top: var(--unooria-spacing-s, 16px);
+  border-top: 1px solid var(--unooria-newspaper-rule);
+}
+
+/* Cada vaga empilha imagem, texto e ação. A ordem visual é por `order`, e não
+   por áreas de grade: área vazia de grade ainda soma o espaçamento, e quase
+   tudo aqui é opcional (marcador, resumo, imagem, ação). */
+.unooria-newspaper-page__slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xs, 12px);
+  min-width: 0;
+}
+
+.unooria-newspaper-page__image {
+  order: -1;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+}
+
+.unooria-newspaper-page__story {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+  min-width: 0;
+}
+
+.unooria-newspaper-page__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs, 4px);
+}
+
+.unooria-newspaper-page__headline {
+  margin: 0;
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: clamp(16px, 5cqi, 20px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+
+.unooria-newspaper-page__slot--lead .unooria-newspaper-page__headline {
+  font-size: clamp(22px, 7.5cqi, 34px);
+  line-height: 1.2;
+}
+
+/* O meio vem depois da manchete no DOM e aparece acima dela, como um chapéu. */
+.unooria-newspaper-page__medium {
+  order: -1;
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  margin: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: 12px;
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: 16px;
+}
+
+.unooria-newspaper-page__summary {
+  margin: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.unooria-newspaper-page__action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+/* ==========================================================================
+   O marcador da revisão — faixa com as medidas do `Tag`, ícone e texto.
+   O tom nunca é só cor: o ícone muda de forma e tem nome acessível.
+   ========================================================================== */
+
+.unooria-newspaper-page__marker {
+  order: -1;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-xxs, 8px);
+  box-sizing: border-box;
+  min-height: 28px;
+  margin: 0;
+  padding: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-xxs, 8px);
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: 20px;
+}
+
+/* danger-800 sobre danger-50 mede 7,37:1; success-800 sobre success-50, 6,61:1. */
+.unooria-newspaper-page__marker--alert {
+  border-left-color: var(--unooria-color-danger-600, #E31A1A);
+  background-color: var(--unooria-color-danger-50, #FFF1F1);
+  color: var(--unooria-color-danger-800, #9F1515);
+}
+
+.unooria-newspaper-page__marker--ok {
+  border-left-color: var(--unooria-color-success-600, #00A369);
+  background-color: var(--unooria-color-success-50, #EBFEF4);
+  color: var(--unooria-color-success-800, #006746);
+}
+
+.unooria-newspaper-page__marker-label {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+   A vaga vazia — caixa tracejada com o rótulo e o ícone de acrescentar.
+   O tracejado em neutral-400 mede 3,41:1 contra o branco (WCAG 1.4.11).
+   ========================================================================== */
+
+.unooria-newspaper-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  box-sizing: border-box;
+  min-height: 96px;
+  padding: var(--unooria-spacing-s, 16px);
+  border: 2px dashed var(--unooria-color-neutral-400, #7C8E94);
+  border-radius: 12px;
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: 14px;
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: 20px;
+  text-align: center;
+}
+
+.unooria-newspaper-page__slot--lead .unooria-newspaper-page__empty {
+  min-height: 160px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Publicada, a vaga vazia não convida: sem tracejado, sem ícone, sem peso. */
+.unooria-newspaper-page--read-only .unooria-newspaper-page__empty {
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  background-color: transparent;
+  font-weight: var(--unooria-weight-regular, 400);
+}
+
+/* ==========================================================================
+   Layout `classic` — manchete em largura total, texto primeiro
+   ========================================================================== */
+
+.unooria-newspaper-page--layout-classic .unooria-newspaper-page__slot--lead .unooria-newspaper-page__image {
+  order: 1;
+}
+
+.unooria-newspaper-page--layout-classic .unooria-newspaper-page__slot--lead .unooria-newspaper-page__action {
+  order: 2;
+}
+
+/* ==========================================================================
+   Layout `hero-image` — a imagem grande no topo e a manchete numa faixa sólida
+   ========================================================================== */
+
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead {
+  gap: 0;
+}
+
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__image {
+  border-radius: 12px 12px 0 0;
+}
+
+/* Na faixa, o marcador vem DEPOIS da manchete: acima dela, partiria a imagem
+   da faixa em dois blocos. */
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__marker {
+  order: 0;
+}
+
+/* brandpurple-950 com texto neutral-50 mede 19,58:1 — o par do `Button` primário. */
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__heading {
+  padding: var(--unooria-spacing-xs, 12px) var(--unooria-spacing-s, 16px) var(--unooria-spacing-s, 16px);
+  border-radius: 12px;
+  background-color: var(--unooria-color-brandpurple-950, #080922);
+}
+
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead.unooria-newspaper-page__slot--has-image .unooria-newspaper-page__heading {
+  border-radius: 0 0 12px 12px;
+}
+
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__headline {
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+}
+
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__medium {
+  color: var(--unooria-color-brandpurple-200, #DFDDEB);
+}
+
+.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__action {
+  margin-top: var(--unooria-spacing-xs, 12px);
+}
+
+/* ==========================================================================
+   Tamanho `thumbnail` — a miniatura do comparativo
+   ========================================================================== */
+
+.unooria-newspaper-page--size-thumbnail {
+  gap: var(--unooria-spacing-xxs, 8px);
+  padding: var(--unooria-spacing-xxs, 8px);
+  border-radius: 8px;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__masthead {
+  gap: var(--unooria-spacing-xxxs, 4px);
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__nameplate {
+  padding-bottom: var(--unooria-spacing-xxxs, 4px);
+  border-bottom-width: 3px;
+  font-size: clamp(11px, 7.5cqi, 22px);
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__meta {
+  padding-bottom: var(--unooria-spacing-xxxs, 4px);
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__slots,
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__secondaries {
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__secondaries {
+  padding-top: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot {
+  padding-top: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__slot,
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__story {
+  gap: var(--unooria-spacing-xxxs, 4px);
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__image {
+  border-radius: 6px;
+}
+
+.unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__image {
+  border-radius: 6px 6px 0 0;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__headline {
+  font-size: clamp(11px, 4.5cqi, 15px);
+  line-height: 1.25;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__slot--lead .unooria-newspaper-page__headline {
+  font-size: clamp(13px, 6cqi, 20px);
+}
+
+.unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__heading {
+  padding: var(--unooria-spacing-xxs, 8px);
+  border-radius: 6px;
+}
+
+.unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead.unooria-newspaper-page__slot--has-image .unooria-newspaper-page__heading {
+  border-radius: 0 0 6px 6px;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__medium {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__marker {
+  gap: var(--unooria-spacing-xxxs, 4px);
+  min-height: 0;
+  padding: 2px 6px;
+  border-left-width: 3px;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__empty,
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__slot--lead .unooria-newspaper-page__empty {
+  min-height: 48px;
+  padding: var(--unooria-spacing-xxs, 8px);
+  border-width: 1.5px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.unooria-newspaper-page--size-thumbnail .unooria-newspaper-page__slot--lead .unooria-newspaper-page__empty {
+  min-height: 72px;
+}
+
+.unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--read-only .unooria-newspaper-page__empty {
+  border-width: 1px;
+}
+
+/* ==========================================================================
+   Consultas de contêiner
+   ========================================================================== */
+
+/* A partir de 300px: as secundárias do `classic` lado a lado, com fio de
+   coluna entre elas. No aparelho de 375px, cada uma fica com ~135px de texto. */
+@container unooria-newspaper (min-width: 300px) {
+  .unooria-newspaper-page--layout-classic .unooria-newspaper-page__secondaries,
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .unooria-newspaper-page--layout-classic .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot:first-child,
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot:first-child {
+    padding-right: var(--unooria-spacing-xs, 12px);
+  }
+
+  .unooria-newspaper-page--layout-classic .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot,
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot {
+    padding-top: 0;
+    padding-left: var(--unooria-spacing-xs, 12px);
+    border-top: 0;
+    border-left: 1px solid var(--unooria-newspaper-rule);
+  }
+
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-classic .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot:first-child,
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot:first-child {
+    padding-right: var(--unooria-spacing-xxs, 8px);
+  }
+
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-classic .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot,
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot {
+    padding-left: var(--unooria-spacing-xxs, 8px);
+  }
+
+  /* A miniatura já é "larga" aqui: as duas colunas do `columns`… */
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-columns .unooria-newspaper-page__slots {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-columns .unooria-newspaper-page__slot--lead {
+    padding-right: var(--unooria-spacing-xxs, 8px);
+  }
+
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-columns .unooria-newspaper-page__secondaries {
+    padding-top: 0;
+    padding-left: var(--unooria-spacing-xxs, 8px);
+    border-top: 0;
+    border-left: 1px solid var(--unooria-newspaper-rule);
+  }
+
+  /* …e a imagem ao lado do texto no `classic`. */
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-classic .unooria-newspaper-page__slot--lead.unooria-newspaper-page__slot--has-image {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+    gap: 0 var(--unooria-spacing-xxs, 8px);
+  }
+
+  .unooria-newspaper-page--size-thumbnail.unooria-newspaper-page--layout-classic .unooria-newspaper-page__slot--lead.unooria-newspaper-page__slot--has-image .unooria-newspaper-page__action {
+    grid-column: 1 / -1;
+  }
+}
+
+/* A partir de 540px: a tela larga da página inteira. */
+@container unooria-newspaper (min-width: 540px) {
+  /* `classic`: o texto da manchete à esquerda e a imagem à direita. O grid tem
+     só duas linhas reais (texto+imagem, ação), então nenhuma área vazia soma
+     espaçamento. */
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-classic .unooria-newspaper-page__slot--lead.unooria-newspaper-page__slot--has-image {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+    gap: var(--unooria-spacing-xs, 12px) var(--unooria-spacing-m, 24px);
+  }
+
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-classic .unooria-newspaper-page__slot--lead.unooria-newspaper-page__slot--has-image .unooria-newspaper-page__action {
+    grid-column: 1 / -1;
+  }
+
+  /* `hero-image`: as secundárias lado a lado. */
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot:first-child {
+    padding-right: var(--unooria-spacing-s, 16px);
+  }
+
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__secondaries > .unooria-newspaper-page__slot + .unooria-newspaper-page__slot {
+    padding-top: 0;
+    padding-left: var(--unooria-spacing-s, 16px);
+    border-top: 0;
+    border-left: 1px solid var(--unooria-newspaper-rule);
+  }
+
+  /* `columns`: a manchete na coluna larga, as secundárias na estreita, com o
+     fio de coluna entre as duas. */
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-columns .unooria-newspaper-page__slots {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-columns .unooria-newspaper-page__slot--lead {
+    padding-right: var(--unooria-spacing-m, 24px);
+  }
+
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-columns .unooria-newspaper-page__secondaries {
+    padding-top: 0;
+    padding-left: var(--unooria-spacing-m, 24px);
+    border-top: 0;
+    border-left: 1px solid var(--unooria-newspaper-rule);
+  }
+
+  .unooria-newspaper-page--size-full.unooria-newspaper-page--layout-columns .unooria-newspaper-page__secondaries .unooria-newspaper-page__headline {
+    font-size: 18px;
+  }
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-newspaper-page--theme-dark {
+  --unooria-newspaper-rule: var(--unooria-color-neutraldark-200, #3D4448);
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__nameplate,
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__meta {
+  border-bottom-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__meta,
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__medium,
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__summary {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__headline {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__image {
+  background-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+/* Sobre o fundo escuro, o véu de 20% do tom com o texto no degrau 200:
+   9,1:1 no perigo e 8,9:1 no sucesso. */
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__marker--alert {
+  border-left-color: var(--unooria-color-danger-400, #FF6A6A);
+  background-color: var(--unooria-color-opacity-danger-200, rgba(227, 26, 26, 0.2));
+  color: var(--unooria-color-danger-200, #FFC7C7);
+}
+
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__marker--ok {
+  border-left-color: var(--unooria-color-success-400, #26E197);
+  background-color: var(--unooria-color-opacity-success-200, rgba(1, 181, 116, 0.2));
+  color: var(--unooria-color-success-200, #A0FACE);
+}
+
+/* neutraldark-700 mede 4,4:1 contra a superfície escura. */
+.unooria-newspaper-page--theme-dark .unooria-newspaper-page__empty {
+  border-color: var(--unooria-color-neutraldark-700, #7C8E94);
+  background-color: var(--unooria-color-opacity-neutrallight-50, rgba(255, 255, 255, 0.05));
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-newspaper-page--theme-dark.unooria-newspaper-page--read-only .unooria-newspaper-page__empty {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: transparent;
+}
+
+/* A faixa do `hero-image` espelha o `Button` primário no escuro: o extremo
+   claro da escala roxa com o texto no tom da superfície (12,1:1). */
+.unooria-newspaper-page--theme-dark.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__heading {
+  background-color: var(--unooria-color-brandpurple-300, #CCC9DE);
+}
+
+.unooria-newspaper-page--theme-dark.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__headline {
+  color: var(--unooria-color-brandpurple-950, #080922);
+}
+
+.unooria-newspaper-page--theme-dark.unooria-newspaper-page--layout-hero-image .unooria-newspaper-page__slot--lead .unooria-newspaper-page__medium {
+  color: var(--unooria-color-brandpurple-800, #34375C);
+}

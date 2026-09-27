@@ -1,0 +1,455 @@
+/**
+ * NewsArticle - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de notícia no Figma. A folha segue o
+ * `Card` (fio de 1px, raio de 12px), com recuo de 24px — é leitura longa, não
+ * cartão compacto. Cada meio se reconhece pela FORMA (recorte, selo "No ar",
+ * tarja, barra, alfinete), feita só com tokens e com a fonte da seção: não há
+ * token de fonte serifada, e uma serifa inventada seria cor avulsa em forma de
+ * letra. Os raios usam o fallback dos outros componentes, porque a seção não
+ * publica token de raio.
+ *
+ * `--unooria-news-article-pad` é o recuo da folha; a barra do portal o usa em
+ * negativo para encostar nas bordas.
+ */
+
+.unooria-news-article {
+  --unooria-news-article-pad: var(--unooria-spacing-m, 24px);
+  --unooria-news-article-edge: var(--unooria-color-neutral-300, #A7B5B9);
+  position: relative;
+  box-sizing: border-box;
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+.unooria-news-article__sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-s, 16px);
+  box-sizing: border-box;
+  padding: var(--unooria-news-article-pad);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: var(--unooria-radius-m, 12px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+}
+
+.unooria-news-article__headline {
+  margin: 0;
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-title-xl, 24px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-title-xl, 34px);
+  overflow-wrap: break-word;
+}
+
+.unooria-news-article__body,
+.unooria-news-article__quote {
+  color: var(--unooria-color-neutral-900, #383E41);
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  overflow-wrap: break-word;
+}
+
+.unooria-news-article__body > p,
+.unooria-news-article__quote > p {
+  margin: 0 0 var(--unooria-spacing-xs, 12px);
+}
+
+.unooria-news-article__body > :last-child,
+.unooria-news-article__quote > :last-child {
+  margin-bottom: 0;
+}
+
+.unooria-news-article__masthead {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Quadro da imagem — a foto, ou o desenho pelo meio (nunca um buraco)
+   ========================================================================== */
+
+.unooria-news-article__frame {
+  position: relative;
+  margin: 0;
+}
+
+.unooria-news-article__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--unooria-radius-s, 8px);
+  background-color: var(--unooria-color-brandnavy-100, #E8EFFA);
+}
+
+.unooria-news-article__media--illustration {
+  color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-news-article__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.unooria-news-article__caption {
+  margin-top: var(--unooria-spacing-xxs, 8px);
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+}
+
+/* ==========================================================================
+   newspaper — recorte de jornal
+   Os cantos cortados a tesoura vêm do clip-path da folha; o contorno de 1px
+   que acompanha o corte vem de quatro drop-shadow sem desfoque na raiz (uma
+   borda comum seria recortada junto e sumiria nos cantos).
+   ========================================================================== */
+
+.unooria-news-article--newspaper {
+  filter: drop-shadow(1px 0 0 var(--unooria-news-article-edge))
+    drop-shadow(-1px 0 0 var(--unooria-news-article-edge))
+    drop-shadow(0 1px 0 var(--unooria-news-article-edge))
+    drop-shadow(0 -1px 0 var(--unooria-news-article-edge));
+}
+
+.unooria-news-article--newspaper .unooria-news-article__sheet {
+  border: 0;
+  border-radius: 0;
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  clip-path: polygon(
+    0 7px,
+    13px 0,
+    calc(100% - 5px) 2px,
+    100% 15px,
+    calc(100% - 2px) calc(100% - 9px),
+    calc(100% - 17px) 100%,
+    6px calc(100% - 3px),
+    0 calc(100% - 19px)
+  );
+}
+
+.unooria-news-article--newspaper .unooria-news-article__masthead {
+  padding: var(--unooria-spacing-xxs, 8px) 0;
+  border-top: 1px solid var(--unooria-color-neutral-950, #22272A);
+  border-bottom: 4px double var(--unooria-color-neutral-950, #22272A);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-title-l, 20px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-title-l, 30px);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.unooria-news-article--newspaper .unooria-news-article__masthead--empty {
+  display: block;
+  height: 10px;
+  padding: 0;
+}
+
+.unooria-news-article--newspaper .unooria-news-article__headline {
+  font-size: var(--unooria-size-heading-xxl, 34px);
+  line-height: var(--unooria-line-height-heading-xxl, 48px);
+  letter-spacing: var(--unooria-letter-spacing-tight, -0.01em);
+}
+
+/* Duas colunas quando cabem (240px cada); numa gaveta estreita, uma só. */
+.unooria-news-article--newspaper .unooria-news-article__body {
+  columns: 2 240px;
+  column-gap: var(--unooria-spacing-m, 24px);
+  column-rule: 1px solid var(--unooria-color-neutral-200, #CBD4D6);
+}
+
+/* ==========================================================================
+   radio — boletim transcrito
+   ========================================================================== */
+
+.unooria-news-article__on-air-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+}
+
+.unooria-news-article__on-air {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-xs, 12px);
+  border-radius: var(--unooria-radius-full, 1000px);
+  background-color: var(--unooria-color-brandorange-700, #BF340F);
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-size: var(--unooria-size-body-xs, 14px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  letter-spacing: var(--unooria-letter-spacing-wide, 0.02em);
+  text-transform: uppercase;
+}
+
+.unooria-news-article--radio .unooria-news-article__masthead {
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-xs, 14px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+}
+
+.unooria-news-article__speech {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+  margin: 0;
+}
+
+.unooria-news-article__speaker {
+  color: var(--unooria-color-brandnavy-800, #49699F);
+  font-size: var(--unooria-size-body-xs, 14px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  letter-spacing: var(--unooria-letter-spacing-wide, 0.02em);
+  text-transform: uppercase;
+}
+
+.unooria-news-article__quote {
+  margin: 0;
+  padding: var(--unooria-spacing-s, 16px);
+  border-left: 4px solid var(--unooria-color-brandorange-700, #BF340F);
+  border-radius: 0 var(--unooria-radius-s, 8px) var(--unooria-radius-s, 8px) 0;
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+}
+
+/* ==========================================================================
+   tv — quadro de telejornal
+   A tarja tem fundo SÓLIDO de token e texto claro: o contraste não depende da
+   foto que estiver por baixo.
+   ========================================================================== */
+
+.unooria-news-article--tv .unooria-news-article__media--illustration {
+  background-color: var(--unooria-color-brandpurple-900, #0E1039);
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+}
+
+.unooria-news-article--tv .unooria-news-article__caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-xs, 12px);
+  border-left: 4px solid var(--unooria-color-brandorange-600, #E84910);
+  border-radius: 0 0 var(--unooria-radius-s, 8px) var(--unooria-radius-s, 8px);
+  background-color: var(--unooria-color-brandpurple-950, #080922);
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-size: var(--unooria-size-body-s, 16px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-s, 24px);
+}
+
+.unooria-news-article--tv .unooria-news-article__masthead,
+.unooria-news-article--blog .unooria-news-article__masthead {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  font-size: var(--unooria-size-body-xs, 14px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+}
+
+.unooria-news-article--tv .unooria-news-article__masthead {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+.unooria-news-article__transcript {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-news-article__label {
+  margin: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-xs, 14px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  letter-spacing: var(--unooria-letter-spacing-wide, 0.02em);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   blog — post, com espaçamento de leitura
+   ========================================================================== */
+
+.unooria-news-article--blog .unooria-news-article__masthead {
+  color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-news-article--blog .unooria-news-article__body {
+  max-width: 65ch;
+  line-height: var(--unooria-line-height-body-m, 28px);
+}
+
+.unooria-news-article--blog .unooria-news-article__body > p {
+  margin-bottom: var(--unooria-spacing-s, 16px);
+}
+
+/* ==========================================================================
+   portal — barra do veículo encostada nas bordas da folha
+   ========================================================================== */
+
+.unooria-news-article__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  min-height: 48px;
+  margin: calc(-1 * var(--unooria-news-article-pad)) calc(-1 * var(--unooria-news-article-pad)) 0;
+  padding: var(--unooria-spacing-xs, 12px) var(--unooria-news-article-pad);
+  border-radius: calc(var(--unooria-radius-m, 12px) - 1px) calc(var(--unooria-radius-m, 12px) - 1px) 0 0;
+  background-color: var(--unooria-color-brandnavy-900, #2F4F7F);
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+}
+
+.unooria-news-article--portal .unooria-news-article__masthead {
+  font-size: var(--unooria-size-body-m, 18px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-body-m, 28px);
+}
+
+/* ==========================================================================
+   bulletin — aviso do mural, com alfinete
+   ========================================================================== */
+
+/* O alfinete (40px) atravessa a borda de cima do papel pela metade. */
+.unooria-news-article--bulletin {
+  padding-top: 20px;
+}
+
+.unooria-news-article__pin {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  color: var(--unooria-color-brandorange-700, #BF340F);
+  transform: translateX(-50%);
+}
+
+.unooria-news-article--bulletin .unooria-news-article__sheet {
+  padding-top: calc(var(--unooria-news-article-pad) + var(--unooria-spacing-xxs, 8px));
+  border-color: var(--unooria-color-brandorange-200, #FDD1AB);
+  border-radius: 4px; /* papel: canto quase reto */
+  background-color: var(--unooria-color-brandorange-50, #FFF6ED);
+  box-shadow: 0 2px 8px var(--unooria-color-opacity-neutraldark-200, rgba(34, 39, 42, 0.2));
+}
+
+.unooria-news-article--bulletin .unooria-news-article__masthead {
+  color: var(--unooria-color-brandorange-800, #982B14);
+  font-size: var(--unooria-size-body-xs, 14px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+  letter-spacing: var(--unooria-letter-spacing-wide, 0.02em);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.unooria-news-article--bulletin .unooria-news-article__headline {
+  text-align: center;
+}
+
+/* Gaveta estreita (celular): recuo menor, o texto ganha a largura. */
+@media (max-width: 480px) {
+  .unooria-news-article {
+    --unooria-news-article-pad: var(--unooria-spacing-s, 16px);
+  }
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-news-article--theme-dark {
+  --unooria-news-article-edge: var(--unooria-color-neutraldark-700, #7C8E94);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__sheet {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__headline {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__body {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__caption,
+.unooria-news-article--theme-dark .unooria-news-article__label,
+.unooria-news-article--theme-dark.unooria-news-article--radio .unooria-news-article__masthead,
+.unooria-news-article--theme-dark.unooria-news-article--tv .unooria-news-article__masthead {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__media {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.2));
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__media--illustration {
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+}
+
+.unooria-news-article--theme-dark.unooria-news-article--newspaper .unooria-news-article__sheet {
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+}
+
+.unooria-news-article--theme-dark.unooria-news-article--newspaper .unooria-news-article__masthead {
+  border-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-news-article--theme-dark.unooria-news-article--newspaper .unooria-news-article__body {
+  column-rule-color: var(--unooria-color-neutraldark-200, #3D4448);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__speaker,
+.unooria-news-article--theme-dark.unooria-news-article--blog .unooria-news-article__masthead {
+  color: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__quote {
+  background-color: var(--unooria-color-opacity-neutrallight-50, rgba(255, 255, 255, 0.05));
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+/* A tela da TV continua escura; a tarja também — o par já tem contraste. */
+.unooria-news-article--theme-dark.unooria-news-article--tv .unooria-news-article__media--illustration {
+  background-color: var(--unooria-color-brandpurple-900, #0E1039);
+}
+
+.unooria-news-article--theme-dark.unooria-news-article--tv .unooria-news-article__caption {
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+}
+
+.unooria-news-article--theme-dark.unooria-news-article--bulletin .unooria-news-article__sheet {
+  border-color: var(--unooria-color-opacity-brandorange-300, rgba(232, 73, 16, 0.3));
+  background-image: linear-gradient(
+    var(--unooria-color-opacity-brandorange-100, rgba(232, 73, 16, 0.1)),
+    var(--unooria-color-opacity-brandorange-100, rgba(232, 73, 16, 0.1))
+  );
+  box-shadow: 0 2px 8px var(--unooria-color-opacity-neutraldark-900, rgba(34, 39, 42, 0.9));
+}
+
+.unooria-news-article--theme-dark.unooria-news-article--bulletin .unooria-news-article__masthead {
+  color: var(--unooria-color-brandorange-300, #FBB076);
+}
+
+.unooria-news-article--theme-dark .unooria-news-article__pin {
+  color: var(--unooria-color-brandorange-400, #F8833F);
+}

@@ -1,0 +1,218 @@
+/**
+ * SpeechBubble - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de balão no Figma. O avatar é o
+ * `Avatar` `sm` (40px) do pacote; o balão tem o raio de 16px e o fio de 1px do
+ * `Card`; a fala é 16/24 e o nome 14/20 semibold. Cores só por token (seção 2).
+ *
+ * Os tamanhos de texto são LITERAIS: o token `--unooria-size-body-s` cai de
+ * 16px para 14px abaixo de 768px de viewport, e a fala é lida por uma criança
+ * de 9 anos justamente no aparelho de 375px.
+ *
+ * A raiz é uma grade, e o balão não é um elemento. A `<figcaption>` precisa ser
+ * filha direta da `<figure>`, então nome, humor, ação e fala são irmãos, e o
+ * balão é o `::before` estendido sobre as células deles. A ponta é o `::after`:
+ * um quadrado girado de 45° com o fundo do balão e o fio em dois lados, com
+ * metade para dentro do balão — é essa metade que apaga o fio no ponto em que a
+ * ponta sai. Por isso as cores do balão são OPACAS: um fundo translúcido
+ * somaria duas camadas na metade de dentro e a emenda apareceria.
+ */
+
+.unooria-speech-bubble {
+  --unooria-speech-bg: var(--unooria-color-neutral-100, #F5F5F5);
+  --unooria-speech-border: var(--unooria-color-neutral-150, #E4E8E9);
+  --unooria-speech-border-width: 1px;
+  --unooria-speech-name: var(--unooria-color-neutral-950, #22272A);
+  --unooria-speech-text: var(--unooria-color-neutral-950, #22272A);
+  --unooria-speech-mood: currentColor;
+
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'avatar speaker mood action'
+    'avatar speech speech speech';
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* O balão. */
+.unooria-speech-bubble::before {
+  content: '';
+  grid-column: 2 / -1;
+  grid-row: 1 / -1;
+  box-sizing: border-box;
+  border: var(--unooria-speech-border-width) solid var(--unooria-speech-border);
+  border-radius: 16px;
+  background-color: var(--unooria-speech-bg);
+}
+
+/* A ponta: o centro fica na borda do balão, à altura do centro do avatar
+   (40px / 2 = 20px; 14px de margem + metade dos 12px do quadrado). */
+.unooria-speech-bubble::after {
+  content: '';
+  grid-column: 2 / -1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  margin-top: 14px;
+  margin-left: -6px;
+  border-bottom: var(--unooria-speech-border-width) solid var(--unooria-speech-border);
+  border-left: var(--unooria-speech-border-width) solid var(--unooria-speech-border);
+  background-color: var(--unooria-speech-bg);
+  transform: rotate(45deg);
+}
+
+.unooria-speech-bubble__avatar {
+  grid-area: avatar;
+  align-self: start;
+  display: inline-flex;
+  margin-right: var(--unooria-spacing-xs, 12px);
+}
+
+.unooria-speech-bubble__speaker {
+  grid-area: speaker;
+  align-self: start;
+  min-width: 0;
+  padding: var(--unooria-spacing-xs, 12px) 0 0 var(--unooria-spacing-s, 16px);
+  color: var(--unooria-speech-name);
+  font-size: 14px;
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: 20px;
+  overflow-wrap: break-word;
+}
+
+.unooria-speech-bubble__mood {
+  grid-area: mood;
+  align-self: start;
+  justify-self: start;
+  display: inline-flex;
+  /* 12px de recuo + 1px: o ícone de 18px centrado na linha de 20px do nome. */
+  padding: 13px 0 0 var(--unooria-spacing-xxs, 8px);
+  color: var(--unooria-speech-mood);
+}
+
+.unooria-speech-bubble__speech {
+  grid-area: speech;
+  min-width: 0;
+  margin: 0;
+  padding: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-s, 16px) var(--unooria-spacing-xs, 12px);
+  color: var(--unooria-speech-text);
+  font-size: 16px;
+  line-height: 24px;
+  overflow-wrap: break-word;
+}
+
+.unooria-speech-bubble__speech > :first-child {
+  margin-top: 0;
+}
+
+.unooria-speech-bubble__speech > :last-child {
+  margin-bottom: 0;
+}
+
+/* A ação fica à direita do nome; o `Button` `sm` (36px) centra com a linha
+   do nome com 6px de recuo no topo. */
+.unooria-speech-bubble__action {
+  grid-area: action;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  padding: 6px var(--unooria-spacing-xxs, 8px) 0 var(--unooria-spacing-xs, 12px);
+}
+
+/* ==========================================================================
+   Lado `end` — o avatar e a ponta à direita; o texto segue no início
+   ========================================================================== */
+
+.unooria-speech-bubble--side-end {
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    'speaker mood action avatar'
+    'speech speech speech avatar';
+  margin-left: auto;
+}
+
+.unooria-speech-bubble--side-end::before {
+  grid-column: 1 / -2;
+}
+
+.unooria-speech-bubble--side-end::after {
+  grid-column: 1 / -2;
+  justify-self: end;
+  margin-right: -6px;
+  margin-left: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-top: var(--unooria-speech-border-width) solid var(--unooria-speech-border);
+  border-right: var(--unooria-speech-border-width) solid var(--unooria-speech-border);
+}
+
+.unooria-speech-bubble--side-end .unooria-speech-bubble__avatar {
+  margin-right: 0;
+  margin-left: var(--unooria-spacing-xs, 12px);
+}
+
+/* ==========================================================================
+   Tom — o guia com destaque de marca
+   ========================================================================== */
+
+.unooria-speech-bubble--tone-guide {
+  --unooria-speech-bg: var(--unooria-color-brandnavy-100, #E8EFFA);
+  --unooria-speech-border: var(--unooria-color-brandnavy-300, #BDD0EF);
+  --unooria-speech-name: var(--unooria-color-brandpurple-900, #0E1039);
+}
+
+/* ==========================================================================
+   Humor do leitor — acento de 2px no fio e a cor do ícone.
+   warning-600 mede 3,65:1 e success-700 4,45:1 contra o balão neutro
+   (WCAG 1.4.11); o ícone em warning-700 mede 5,47:1.
+   ========================================================================== */
+
+.unooria-speech-bubble--mood-upset {
+  --unooria-speech-border: var(--unooria-color-warning-600, #DD5202);
+  --unooria-speech-border-width: 2px;
+  --unooria-speech-mood: var(--unooria-color-warning-700, #B73506);
+}
+
+.unooria-speech-bubble--mood-happy {
+  --unooria-speech-border: var(--unooria-color-success-700, #008257);
+  --unooria-speech-border-width: 2px;
+  --unooria-speech-mood: var(--unooria-color-success-700, #008257);
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-speech-bubble--theme-dark {
+  --unooria-speech-bg: var(--unooria-color-neutraldark-200, #3D4448);
+  --unooria-speech-border: var(--unooria-color-neutraldark-300, #475157);
+  --unooria-speech-name: var(--unooria-color-neutraldark-950, #F5F5F5);
+  --unooria-speech-text: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+/* brandnavy-900 com texto neutraldark-950 mede 7,57:1. */
+.unooria-speech-bubble--theme-dark.unooria-speech-bubble--tone-guide {
+  --unooria-speech-bg: var(--unooria-color-brandnavy-900, #2F4F7F);
+  --unooria-speech-border: var(--unooria-color-brandnavy-700, #6487C2);
+  --unooria-speech-name: var(--unooria-color-brandnavy-200, #D3E0F5);
+}
+
+/* warning-400 mede 4,73:1 contra o balão escuro; success-400, mais ainda. */
+.unooria-speech-bubble--theme-dark.unooria-speech-bubble--mood-upset {
+  --unooria-speech-border: var(--unooria-color-warning-400, #FF9C20);
+  --unooria-speech-mood: var(--unooria-color-warning-400, #FF9C20);
+}
+
+.unooria-speech-bubble--theme-dark.unooria-speech-bubble--mood-happy {
+  --unooria-speech-border: var(--unooria-color-success-400, #26E197);
+  --unooria-speech-mood: var(--unooria-color-success-400, #26E197);
+}

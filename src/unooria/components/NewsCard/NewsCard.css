@@ -1,0 +1,241 @@
+/**
+ * NewsCard - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de notícia no Figma. O cartão segue o
+ * `Card` (superfície neutra, fio de 1px, raio de 12px, recuo de 16px); a faixa
+ * do meio e o selo "Na capa" têm as medidas da `Tag` `md` (28px de altura,
+ * recuo de 4px/8px, raio de 8px, texto de 14/20px); o foco é o contorno de 2px
+ * do `Button` primário. Cores só por token (seção 2); os raios usam o fallback
+ * dos outros componentes, porque a seção não publica token de raio.
+ *
+ * Um só tom para o desenho de TODOS os meios, de propósito: cor por meio seria
+ * lida pela criança como pista de confiabilidade (verde = verdadeira). O meio
+ * se distingue pelo ícone e pelo rótulo, nunca pela cor.
+ */
+
+.unooria-news-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xs, 12px);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--unooria-spacing-s, 16px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: var(--unooria-radius-m, 12px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.unooria-news-card:hover:not(:disabled) {
+  border-color: var(--unooria-color-brandnavy-300, #BDD0EF);
+  background-color: var(--unooria-color-brandnavy-50, #F5F8FC);
+}
+
+.unooria-news-card:active:not(:disabled) {
+  background-color: var(--unooria-color-brandnavy-100, #E8EFFA);
+}
+
+.unooria-news-card:focus-visible {
+  outline: 2px solid var(--unooria-color-brandpurple-950, #080922);
+  outline-offset: 2px;
+}
+
+.unooria-news-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Na capa: borda de destaque. O anel externo de 1px soma 2px de borda sem
+   empurrar o conteúdo — a grade da mesa não pula quando o estado muda. */
+.unooria-news-card--front-page,
+.unooria-news-card--front-page:hover:not(:disabled) {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  box-shadow: 0 0 0 1px var(--unooria-color-brandnavy-700, #6487C2);
+}
+
+/* ==========================================================================
+   Faixa do meio e selo "Na capa" — a medida da Tag `md`, sem ser clicável
+   ========================================================================== */
+
+.unooria-news-card__band {
+  display: flex;
+  align-items: center;
+}
+
+.unooria-news-card__medium,
+.unooria-news-card__front-page {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px);
+  box-sizing: border-box;
+  min-height: 28px;
+  padding: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-xxs, 8px);
+  border-radius: var(--unooria-radius-s, 8px);
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-xs, 20px);
+}
+
+.unooria-news-card__medium {
+  background-color: var(--unooria-color-opacity-neutraldark-50, rgba(34, 39, 42, 0.05));
+  color: var(--unooria-color-neutral-900, #383E41);
+  font-weight: var(--unooria-weight-regular, 400);
+}
+
+.unooria-news-card__medium-icon {
+  color: var(--unooria-color-neutral-700, #475157);
+}
+
+/* O selo fica no canto da área 16:9, com fundo SÓLIDO: o contraste não
+   depende da foto que estiver por baixo, e ele não empurra a grade. */
+.unooria-news-card__front-page {
+  position: absolute;
+  top: var(--unooria-spacing-xxs, 8px);
+  right: var(--unooria-spacing-xxs, 8px);
+  background-color: var(--unooria-color-brandnavy-900, #2F4F7F);
+  color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-weight: var(--unooria-weight-semibold, 600);
+}
+
+/* ==========================================================================
+   Área 16:9 — a imagem, ou o desenho pelo meio (nunca um buraco)
+   ========================================================================== */
+
+.unooria-news-card__media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--unooria-radius-s, 8px);
+  background-color: var(--unooria-color-brandnavy-100, #E8EFFA);
+}
+
+.unooria-news-card__media--illustration {
+  color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-news-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Manchete e resumo — quebram linha, nunca reticências
+   ========================================================================== */
+
+.unooria-news-card__headline {
+  display: block;
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-body-m, 18px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-m, 28px);
+  overflow-wrap: break-word;
+}
+
+.unooria-news-card__summary {
+  display: block;
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-s, 16px);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  overflow-wrap: break-word;
+}
+
+/* O sufixo ", na capa": só para o nome acessível. */
+.unooria-news-card__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-news-card--theme-dark {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+/* Véu claro por cima da superfície: o fundo continua o do tema. */
+.unooria-news-card--theme-dark:hover:not(:disabled) {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  background-image: linear-gradient(
+    var(--unooria-color-opacity-neutrallight-50, rgba(255, 255, 255, 0.05)),
+    var(--unooria-color-opacity-neutrallight-50, rgba(255, 255, 255, 0.05))
+  );
+}
+
+.unooria-news-card--theme-dark:active:not(:disabled) {
+  background-image: linear-gradient(
+    var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.1)),
+    var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.1))
+  );
+}
+
+.unooria-news-card--theme-dark:focus-visible {
+  outline-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-news-card--theme-dark.unooria-news-card--front-page,
+.unooria-news-card--theme-dark.unooria-news-card--front-page:hover:not(:disabled) {
+  border-color: var(--unooria-color-brandnavy-500, #8FAFE5);
+  box-shadow: 0 0 0 1px var(--unooria-color-brandnavy-500, #8FAFE5);
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__medium {
+  background-color: var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.1));
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__medium-icon {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__front-page {
+  background-color: var(--unooria-color-brandnavy-200, #D3E0F5);
+  color: var(--unooria-color-brandnavy-950, #0E1039);
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__media {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.2));
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__media--illustration {
+  color: var(--unooria-color-brandnavy-300, #BDD0EF);
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__headline {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-news-card--theme-dark .unooria-news-card__summary {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-news-card {
+    transition: none;
+  }
+}

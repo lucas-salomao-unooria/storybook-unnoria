@@ -1,0 +1,203 @@
+/**
+ * RevealClue - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de pista no Figma. O botão é um
+ * "chip grande" com altura mínima de 64px — acima dos 52px do `Button` `lg`,
+ * porque o alvo é o dedo de uma criança de 9 anos num aparelho de 375px. Fio
+ * de 1px e raio de 12px, como o `Card`; foco de 2px, como o `Button`. Cores só
+ * por token (seção 2); o raio usa o fallback dos outros componentes, porque a
+ * seção não publica token de raio.
+ *
+ * Tipografia em `body-m`: 16px no celular (o token é responsivo e desce de
+ * 18px para 16px abaixo de 768px). O conteúdo revelado é para ser LIDO por
+ * quem está aprendendo a ler notícia — nada abaixo de 16px no aparelho.
+ */
+
+.unooria-reveal-clue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs, 8px);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+/* ==========================================================================
+   O botão (o "chip grande")
+   ========================================================================== */
+
+.unooria-reveal-clue__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xs, 12px);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 64px;
+  margin: 0;
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-s, 16px) var(--unooria-spacing-xxs, 8px)
+    var(--unooria-spacing-xs, 12px);
+  border: 1px solid var(--unooria-color-neutral-200, #CBD4D6);
+  border-radius: var(--unooria-radius-m, 12px);
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.unooria-reveal-clue__trigger:hover {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-opacity-brandnavy-50, rgba(127, 165, 226, 0.05));
+}
+
+.unooria-reveal-clue__trigger:focus-visible {
+  outline: 2px solid var(--unooria-color-brandpurple-950, #080922);
+  outline-offset: 2px;
+}
+
+/* Aberta: o destaque suave diz "esta pista está à mostra" sem precisar de cor forte. */
+.unooria-reveal-clue--open .unooria-reveal-clue__trigger {
+  border-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.1));
+}
+
+.unooria-reveal-clue--open .unooria-reveal-clue__trigger:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.2));
+}
+
+.unooria-reveal-clue__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--unooria-radius-s, 8px);
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.1));
+  color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-reveal-clue--open .unooria-reveal-clue__icon {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.2));
+}
+
+.unooria-reveal-clue__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.unooria-reveal-clue__label,
+.unooria-reveal-clue__question {
+  display: block;
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+  overflow-wrap: anywhere;
+}
+
+.unooria-reveal-clue__label {
+  font-weight: var(--unooria-weight-semibold, 600);
+}
+
+.unooria-reveal-clue__question {
+  color: var(--unooria-color-neutral-700, #475157);
+  font-weight: var(--unooria-weight-regular, 400);
+}
+
+/* Dois seletores de classe: vence a transição genérica de `.unooria-icon-component`. */
+.unooria-reveal-clue__trigger .unooria-reveal-clue__chevron {
+  flex-shrink: 0;
+  color: var(--unooria-color-neutral-700, #475157);
+  transition: transform 150ms ease;
+}
+
+.unooria-reveal-clue--open .unooria-reveal-clue__trigger .unooria-reveal-clue__chevron {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   O painel revelado
+   ========================================================================== */
+
+.unooria-reveal-clue__panel {
+  box-sizing: border-box;
+  padding: var(--unooria-spacing-xs, 12px) var(--unooria-spacing-s, 16px);
+  border-radius: var(--unooria-radius-m, 12px);
+  background-color: var(--unooria-color-neutral-100, #F5F5F5);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-body-m, 18px);
+  line-height: var(--unooria-line-height-body-m, 28px);
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Fechado é FECHADO: `display: none` tira o conteúdo da ordem do Tab e da
+ * árvore de acessibilidade. A regra é explícita para que nenhum `display`
+ * vindo de fora (uma classe utilitária no painel) ressuscite o conteúdo.
+ */
+.unooria-reveal-clue__panel[hidden] {
+  display: none;
+}
+
+.unooria-reveal-clue__panel > :first-child {
+  margin-top: 0;
+}
+
+.unooria-reveal-clue__panel > :last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__trigger {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__trigger:hover {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.1));
+}
+
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__trigger:focus-visible {
+  outline-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-reveal-clue--theme-dark.unooria-reveal-clue--open .unooria-reveal-clue__trigger {
+  border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.2));
+}
+
+.unooria-reveal-clue--theme-dark.unooria-reveal-clue--open .unooria-reveal-clue__trigger:hover {
+  background-color: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.3));
+}
+
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__icon {
+  background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.2));
+  color: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__question,
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__trigger .unooria-reveal-clue__chevron {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-reveal-clue--theme-dark .unooria-reveal-clue__panel {
+  background-color: var(--unooria-color-opacity-neutrallight-100, rgba(255, 255, 255, 0.1));
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+/* ==========================================================================
+   Movimento reduzido: a pista abre igual, só sem o giro da seta
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-reveal-clue__trigger,
+  .unooria-reveal-clue__trigger .unooria-reveal-clue__chevron {
+    transition: none;
+  }
+}

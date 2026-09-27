@@ -1,0 +1,249 @@
+/**
+ * PuzzleTrack - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de quebra-cabeça no Figma. O contêiner
+ * segue o `Card` (fio de 1px, raio de 16px, recuo de 16px); cada vaga vazia tem
+ * a silhueta exata do `PuzzleBlock` — mesmo raio de 12px, mesma altura mínima de
+ * 64px, mesmo encaixe de 9px — para a peça "caber" no buraco que a espera. O
+ * tracejado de 2px diz "vazio" sem depender de cor. Cores só por token (seção 2).
+ */
+
+.unooria-puzzle-track {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  /* À direita, espaço para a saliência da última peça, que sai 8px da vaga. */
+  padding: var(--unooria-spacing-s, 16px) var(--unooria-spacing-m, 24px) var(--unooria-spacing-s, 16px)
+    var(--unooria-spacing-s, 16px);
+  border: 1px solid var(--unooria-color-neutral-150, #E4E8E9);
+  border-radius: 16px;
+  background-color: var(--unooria-color-neutral-50, #FFFFFF);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  transition: background-color 0.24s ease, border-color 0.24s ease;
+}
+
+.unooria-puzzle-track__label {
+  margin: 0 0 var(--unooria-spacing-xs, 12px);
+  color: var(--unooria-color-neutral-950, #22272A);
+  font-size: var(--unooria-size-body-m, 16px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-m, 24px);
+}
+
+/* ==========================================================================
+   A fileira de vagas.
+
+   Ou as vagas cabem TODAS lado a lado, ou empilham TODAS — nunca 2 em cima e 1
+   embaixo, que quebraria a leitura da calha como uma fileira só. É a técnica
+   "albatross": abaixo do limite, a base de cada vaga fica enorme e cada uma
+   ganha a própria linha; acima, fica negativa (vale zero) e todas dividem a
+   linha. O limite cresce com o número de vagas: 14rem por vaga, o mínimo para
+   "REPASSOU" e "responsabiliza" caberem sem quebrar a palavra. Em 375px,
+   empilham; a partir de 672px (3 vagas), ficam lado a lado.
+   ========================================================================== */
+
+.unooria-puzzle-track__slots {
+  --unooria-puzzle-track-threshold: calc(var(--unooria-puzzle-track-count, 3) * 14rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--unooria-spacing-s, 16px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: gap 0.24s ease;
+}
+
+.unooria-puzzle-track__slot {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: calc((var(--unooria-puzzle-track-threshold) - 100%) * 999);
+  min-width: 0;
+}
+
+/* O bloco encaixado ocupa a vaga inteira, na altura da mais alta da fileira. */
+.unooria-puzzle-track__slot > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   A vaga vazia: a silhueta do PuzzleBlock, tracejada, com o número.
+   Mesma construção em três camadas do bloco (ver PuzzleBlock.css).
+   ========================================================================== */
+
+.unooria-puzzle-track__socket {
+  --unooria-puzzle-track-knob: 9px;
+  --unooria-puzzle-track-stroke: 2px;
+  --unooria-puzzle-track-fill: var(--unooria-color-neutral-100, #F5F5F5);
+  --unooria-puzzle-track-border: var(--unooria-color-neutral-400, #7C8E94);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 64px;
+  border-radius: var(--unooria-radius-m, 12px);
+}
+
+.unooria-puzzle-track__socket-shape {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  box-sizing: border-box;
+  border: var(--unooria-puzzle-track-stroke) dashed var(--unooria-puzzle-track-border);
+  border-radius: inherit;
+  background-color: var(--unooria-puzzle-track-fill);
+  -webkit-mask: radial-gradient(
+    circle at 0 50%,
+    transparent calc(var(--unooria-puzzle-track-knob) - 0.5px),
+    black var(--unooria-puzzle-track-knob)
+  );
+  mask: radial-gradient(
+    circle at 0 50%,
+    transparent calc(var(--unooria-puzzle-track-knob) - 0.5px),
+    black var(--unooria-puzzle-track-knob)
+  );
+}
+
+.unooria-puzzle-track__socket::before,
+.unooria-puzzle-track__socket::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  box-sizing: border-box;
+  width: calc(var(--unooria-puzzle-track-knob) * 2);
+  height: calc(var(--unooria-puzzle-track-knob) * 2);
+  border: var(--unooria-puzzle-track-stroke) dashed var(--unooria-puzzle-track-border);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  clip-path: inset(0 0 0 50%);
+  pointer-events: none;
+}
+
+.unooria-puzzle-track__socket::before {
+  left: calc(var(--unooria-puzzle-track-knob) * -1);
+  background: transparent;
+}
+
+.unooria-puzzle-track__socket::after {
+  right: calc(var(--unooria-puzzle-track-stroke) - var(--unooria-puzzle-track-knob));
+  background-color: var(--unooria-puzzle-track-fill);
+}
+
+.unooria-puzzle-track__socket-number {
+  position: relative;
+  z-index: 2;
+  color: var(--unooria-color-neutral-500, #617379);
+  font-size: var(--unooria-size-title-xl, 20px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.unooria-puzzle-track__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   A linha de status (aria-live). Sem texto, não ocupa espaço — mas continua
+   no DOM, que é o que faz a primeira mensagem ser anunciada.
+   ========================================================================== */
+
+.unooria-puzzle-track__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs, 4px) var(--unooria-spacing-xs, 12px);
+  margin-top: var(--unooria-spacing-xs, 12px);
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-s, 14px);
+  line-height: var(--unooria-line-height-body-s, 20px);
+}
+
+.unooria-puzzle-track__status:empty {
+  margin-top: 0;
+}
+
+.unooria-puzzle-track__complete {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  color: var(--unooria-color-success-800, #006746);
+  font-weight: var(--unooria-weight-semibold, 600);
+}
+
+.unooria-puzzle-track__complete-icon {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Chave formada: o contêiner vira sucesso e as vagas se juntam — sem vão, a
+   saliência de cada peça entra no recorte da seguinte.
+   ========================================================================== */
+
+.unooria-puzzle-track--complete {
+  border-color: var(--unooria-color-success-700, #008257);
+  background-color: var(--unooria-color-success-50, #EBFEF4);
+}
+
+.unooria-puzzle-track--complete .unooria-puzzle-track__slots {
+  gap: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-puzzle-track--theme-dark {
+  border-color: var(--unooria-color-neutraldark-200, #3D4448);
+  background-color: var(--unooria-color-neutraldark-50, #22272A);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__label {
+  color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__status {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket {
+  --unooria-puzzle-track-fill: var(--unooria-color-neutraldark-200, #3D4448);
+  --unooria-puzzle-track-border: var(--unooria-color-neutraldark-800, #A7B5B9);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket-number {
+  color: var(--unooria-color-neutraldark-900, #CBD4D6);
+}
+
+.unooria-puzzle-track--theme-dark.unooria-puzzle-track--complete {
+  border-color: var(--unooria-color-success-400, #26E197);
+  background:
+    linear-gradient(
+      var(--unooria-color-opacity-success-100, rgba(1, 181, 116, 0.10)),
+      var(--unooria-color-opacity-success-100, rgba(1, 181, 116, 0.10))
+    ),
+    var(--unooria-color-neutraldark-50, #22272A);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__complete {
+  color: var(--unooria-color-success-300, #63F2B5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-puzzle-track,
+  .unooria-puzzle-track__slots {
+    transition: none;
+  }
+}
