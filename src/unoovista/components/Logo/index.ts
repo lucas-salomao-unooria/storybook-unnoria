@@ -5,7 +5,7 @@ export {
   unvLogoWidth,
   unvLogoHeight,
   unvLogoSymbolPath,
-  unvLogoWordmarkOffset,
+  unvLogoSymbolLockupTransform,
   unvLogoMarkViewBox,
   unvLogoMarkWidth,
   unvLogoMarkHeight,

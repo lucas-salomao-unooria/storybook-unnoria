@@ -5,9 +5,7 @@ import {
   unvLogoViewBox,
   unvLogoWidth,
   unvLogoHeight,
-  unvLogoWordmarkOffset,
-  unvLogoSymbolLockupHeight,
-  unvLogoSymbolLockupTop,
+  unvLogoSymbolLockupTransform,
   unvLogoMarkViewBox,
   unvLogoMarkWidth,
   unvLogoMarkHeight,
@@ -18,8 +16,9 @@ import './Logo.css';
 /**
  * Componente Logo — Design System Unoovista
  *
- * Marca do produto: o símbolo da Plataforma Unooria (o infinito orgânico, vetor
- * literal) e o logotipo tipográfico “Unoovista”, contornado de Open Sans Bold. Exibida no início da barra superior e nas telas de autenticação.
+ * Marca do produto, montada como a da Plataforma Unooria: o símbolo (o anel em
+ * forma de amendoim, traçado do PNG oficial) é o “oo” de “Un∞vista”, e as demais
+ * letras são contornos de Open Sans Bold. Exibida no início da barra superior e nas telas de autenticação.
  * O vetor não usa `<text>`: uma fonte ausente não deforma a marca.
  */
 export const Logo = React.forwardRef<SVGSVGElement, UnvLogoProps>(
@@ -65,23 +64,11 @@ export const Logo = React.forwardRef<SVGSVGElement, UnvLogoProps>(
       >
         {!decorative && <title>{title}</title>}
 
-        <g
-          transform={
-            isMark
-              ? undefined
-              : `translate(0 ${unvLogoSymbolLockupTop}) scale(${unvLogoSymbolLockupHeight / unvLogoMarkHeight})`
-          }
-        >
+        <g transform={isMark ? undefined : unvLogoSymbolLockupTransform}>
           <path className="unv-logo__symbol" d={unvLogoSymbolPath} fillRule="evenodd" clipRule="evenodd" />
         </g>
 
-        {!isMark && (
-          <path
-            className="unv-logo__wordmark"
-            d={unvLogoPath}
-            transform={`translate(${unvLogoWordmarkOffset} 0)`}
-          />
-        )}
+        {!isMark && <path className="unv-logo__wordmark" d={unvLogoPath} />}
       </svg>
     );
   }

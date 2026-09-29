@@ -70,7 +70,7 @@ const LogoDocumentationPage = () => (
       badgeBrand="Unoovista"
       category="Componentes • Marca"
       title="Logo"
-      description="Marca do Unoovista: o símbolo da Plataforma Unooria — o infinito orgânico, o mesmo vetor da marca-mãe — e o logotipo tipográfico “Unoovista”, contornado de Open Sans Bold. Os dois são vetores, sem texto: nenhuma fonte ausente deforma a marca. O símbolo usa o roxo de ação e acompanha o tema."
+      description="Marca do Unoovista, montada como a da Plataforma Unooria: o símbolo — o anel em forma de amendoim da marca-mãe — é o “oo” de “Un∞vista”, e as demais letras são contornos de Open Sans Bold. Tudo é vetor, sem texto: nenhuma fonte ausente deforma a marca. O símbolo usa o roxo de ação e acompanha o tema."
     />
 
     <UnooriaDocSectionHeader
@@ -80,9 +80,9 @@ const LogoDocumentationPage = () => (
     />
     <UnvDocGrid>
       <UnvDocCard icon="♾️" title="O símbolo da Unooria">
-        O infinito orgânico da marca-mãe: dois lóbulos fundidos, com o miolo vazado. É o caminho
-        literal <code>SYMBOL_PATH_FILL</code> da Plataforma Unooria (viewBox 100×54), sem nenhuma
-        coordenada redesenhada — o Unoovista é um produto da Unooria e usa o mesmo elemento.
+        O anel espesso em forma de amendoim da marca-mãe, com um único miolo. A fonte é o PNG oficial{' '}
+        <code>unooria_symbol_navy_fill.png</code>; o vetor foi traçado dele e coincide em 99,6% dos
+        pixels. O Unoovista é um produto da Unooria e usa o mesmo elemento — aqui, no lugar do “oo”.
       </UnvDocCard>
       <UnvDocCard icon="🔤" title="Contornos, não texto">
         O logotipo é Open Sans Bold convertido em caminhos. Uma fonte que não carrega não muda a marca,
@@ -93,7 +93,7 @@ const LogoDocumentationPage = () => (
         <code>--unv-color-text-primary</code>. No tom <code>inverse</code>, tudo em branco sobre mídia.
       </UnvDocCard>
       <UnvDocCard icon="📐" title="Proporção travada">
-        A largura sai da altura pelo <code>viewBox</code>: 158,84 × 24 no lockup e 100 × 54 no símbolo. A
+        A largura sai da altura pelo <code>viewBox</code>: 122,6 × 24 no lockup e 100 × 49,13 no símbolo. A
         API só expõe <code>height</code>.
       </UnvDocCard>
       <UnvDocCard icon="♿" title="Acessível por padrão">
@@ -105,14 +105,14 @@ const LogoDocumentationPage = () => (
     <UnooriaDocSectionHeader barColor={BAR} title="2. Especificações técnicas" />
     <UnvDocSpecs
       component="Logo"
-      layout="Vetor · lockup 158,84 × 24"
+      layout="Vetor · lockup 122,6 × 24"
       specs={[
         { label: 'viewBox do lockup', value: unvLogoViewBox },
         { label: 'Proporção do lockup', value: `${unvLogoWidth} ÷ ${unvLogoHeight}` },
         { label: 'viewBox do símbolo', value: unvLogoMarkViewBox },
-        { label: 'Símbolo', value: 'SYMBOL_PATH_FILL da Unooria · evenodd · escala 18/54 no lockup' },
+        { label: 'Símbolo', value: 'traçado do PNG oficial da Unooria · evenodd · 28,8 × 14,15 no lockup' },
         { label: 'Logotipo', value: 'Open Sans Bold · corpo 25px · linha de base y = 21' },
-        { label: 'Respiro símbolo → logotipo', value: '3px' },
+        { label: 'Lugar do símbolo', value: 'no lugar dos dois “o” de Unoovista' },
         { label: 'Altura padrão', value: '28px' },
       ]}
     />
@@ -129,9 +129,14 @@ const LogoDocumentationPage = () => (
             'Open Sans Bold, o .woff2 embutido em src/fonts/open-sans/. Técnica: eixo wght fixado em 700; texto posicionado com HarfBuzz (kern ligado, sem tracking); cada contorno transformado uma única vez por (x, y) → (x·s + tx, −y·s + 21), com s = 25/2048. Nenhuma coordenada foi redesenhada à mão. É proibido reescrever como <text>.',
         },
         {
-          subject: 'Símbolo literal da marca-mãe',
+          subject: 'Símbolo traçado do PNG oficial',
           detail:
-            'o símbolo é o SYMBOL_PATH_FILL de src/unooria/components/Logo/LogoVectors.tsx, copiado por script: viewBox 0 0 100 54, preenchimento evenodd, nenhuma coordenada tocada. No lockup ele é escalado por 18/54 e apoiado na linha de base do texto; o logotipo é deslocado por translate, não reescrito. A cor vem de uma classe CSS que cita token: o vetor não tem preenchimento literal.',
+            'a fonte da verdade é o PNG public/brand/unooria_symbol_navy_fill.png, o mesmo que o LogoSymbol da plataforma renderiza. O vetor foi traçado dele com o potrace (2 subcaminhos, sem cantos) e, renderizado na resolução do PNG, coincide em IoU 0,9962. O SYMBOL_PATH_FILL de LogoVectors.tsx não serve: é outro desenho, com dois miolos. A cor vem de uma classe CSS que cita token: o vetor não tem preenchimento literal.',
+        },
+        {
+          subject: 'O símbolo é o “oo” da palavra',
+          detail:
+            'como no logotipo da Unooria (“Un∞ria”), o símbolo ocupa o lugar dos dois “o”: tem a altura de tinta do “o” de Open Sans Bold (14,15px) e a proporção do PNG, portanto 28,8px de largura contra os 28,71px que os dois “o” ocupavam. “vista” se desloca 0,09px, na própria transformação do gerador.',
         },
         {
           subject: 'Uma tinta só no símbolo',
@@ -155,12 +160,12 @@ const LogoDocumentationPage = () => (
       zones={[
         {
           name: 'Símbolo',
-          role: 'Infinito orgânico da Unooria, no roxo de ação, escalado por 18/54 no lockup.',
+          role: 'Anel em forma de amendoim da Unooria, no roxo de ação, no lugar do “oo”.',
           token: '--unv-color-action-primary',
         },
         {
-          name: 'Respiro',
-          role: 'Distância de 3px entre a tinta do símbolo e a do “U”. A base do símbolo coincide com a linha de base do texto.',
+          name: 'Encaixe',
+          role: 'O símbolo ocupa o vão dos dois “o”: sua base e seu topo coincidem com os do “o” da fonte, na mesma linha de base do texto.',
         },
         {
           name: 'Logotipo tipográfico',
@@ -277,7 +282,7 @@ const LogoDocumentationPage = () => (
           name: 'height',
           type: 'number',
           default: '28',
-          description: 'Altura em pixels. A largura é derivada do viewBox (lockup 158,84 × 24; símbolo 100 × 54).',
+          description: 'Altura em pixels. A largura é derivada do viewBox (lockup 122,6 × 24; símbolo 100 × 49,13).',
         },
         {
           name: 'variant',
