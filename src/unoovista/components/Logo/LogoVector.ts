@@ -1,87 +1,81 @@
 /**
  * Vetores do logotipo do Design System Unoovista.
  *
- * A marca tem duas metades:
+ * A marca é montada como a da Plataforma Unooria: **o símbolo é o "oo" da
+ * palavra** — “Un” + símbolo + “vista”.
  *
- * 1. **Símbolo** — o isótipo da Plataforma Unooria, o infinito orgânico (dois
- *    lóbulos fundidos, com o miolo vazado). É o **caminho literal**
- *    `SYMBOL_PATH_FILL` de `src/unooria/components/Logo/LogoVectors.tsx`,
- *    `viewBox` 0 0 100 54, preenchimento `evenodd`, copiado por script e sem
- *    nenhuma coordenada redesenhada: o Unoovista é um produto da Unooria e
- *    carrega o mesmo elemento de marca. No lockup ele é escalado por `18 / 54`
- *    (33,33 × 18) e apoiado em `y = 3`, de modo que a base coincide com a linha
- *    de base do texto (`y = 21`) e o topo com a altura de maiúscula. A cor vem
- *    de token (`--unv-color-action-primary`), aplicada por classe no CSS; nada
- *    aqui é hexadecimal.
- * 2. **Logotipo tipográfico** — “Unoovista”, contornado a partir da própria
- *    família da marca (Open Sans Bold, `--unv-font-weight-bold`, o `.woff2`
- *    embutido em `src/fonts/open-sans/`). Técnica, aplicada uma única vez por
- *    glifo, sem nenhuma coordenada redesenhada à mão:
+ * 1. **Símbolo** — o isótipo oficial da Unooria: um anel espesso em forma de
+ *    amendoim, com um único miolo. A fonte da verdade é o PNG
+ *    `public/brand/unooria_symbol_navy_fill.png` (o mesmo que o `LogoSymbol` da
+ *    plataforma renderiza); o caminho vetorial foi **traçado desse PNG** com o
+ *    `potrace` (2 subcaminhos, nenhum canto; `alphamax` 1,0, tolerância 0,2), sobre
+ *    a máscara alfa da caixa de tinta de 975 × 479 px, normalizado para
+ *    largura 100. Medido: renderizado no Chromium na resolução do PNG, o vetor
+ *    coincide com ele em IoU 0,9962 (0,19% dos pixels divergem, todos na borda
+ *    antialiasada). O `SYMBOL_PATH_FILL` de `LogoVectors.tsx` **não** foi usado: é
+ *    outro desenho (dois miolos separados). `viewBox` do símbolo isolado:
+ *    `0 0 100 49.13`, preenchimento `evenodd`. A cor vem de token
+ *    (`--unv-color-action-primary`), por classe no CSS; nada aqui é hexadecimal.
+ * 2. **Logotipo tipográfico** — “Un” e “vista” contornados da família da marca
+ *    (Open Sans Bold, `--unv-font-weight-bold`, o `.woff2` embutido em
+ *    `src/fonts/open-sans/`). Técnica, aplicada uma única vez por glifo, sem
+ *    nenhuma coordenada redesenhada à mão:
  *      a. o eixo `wght` da fonte variável foi fixado em 700 pelo
  *         módulo `varLib` do fontTools;
- *      b. o texto foi posicionado com o HarfBuzz (`uharfbuzz`), com `kern`
- *         ligado e ligaduras desligadas, e sem tracking — coerente com o
+ *      b. o texto “Unoovista” foi posicionado com o HarfBuzz (`uharfbuzz`), com
+ *         `kern` ligado e ligaduras desligadas, e sem tracking — coerente com o
  *         `letter-spacing` zero de toda a escala tipográfica do módulo;
  *      c. cada contorno foi lido do `glyf` e transformado por
  *         `(x, y) → (x·s + tx, −y·s + 21)`, com `s = 25 / 2048` (corpo de
- *         25px sobre `unitsPerEm` 2048: altura de maiúscula de 17,85px e
- *         altura de x de 13,38px), inversão do eixo Y e translação até a
- *         linha de base em `y = 21`; `tx` acumula os avanços do HarfBuzz, com
- *         a origem da pena em `x = 27,88`.
- *    O caminho foi contornado com o símbolo de 27px de largura; como o símbolo
- *    agora tem 33,33px, o logotipo é deslocado por `translate` de
- *    `unvLogoWordmarkOffset` (6,33) — o deslocamento é aplicado no elemento, e
- *    nenhuma coordenada do caminho foi reescrita. A tinta do “U” começa 3px
- *    depois do símbolo.
+ *         25px sobre `unitsPerEm` 2048: altura de maiúscula de 17.85px e
+ *         altura de x de 13.38px), inversão do eixo Y e translação até a
+ *         linha de base em `y = 21`; `tx` acumula os avanços do HarfBuzz, com a
+ *         tinta do “U” começando em `x = 0`;
+ *      d. os dois “o” **não** são desenhados: o símbolo ocupa o lugar deles. Ele
+ *         tem a altura de tinta do “o” (14.15px, do topo do arco à base) e a
+ *         proporção do PNG, portanto 28.8px de largura contra os
+ *         28.711px que os dois “o” ocupavam — “vista” foi deslocado
+ *         0.086px na própria transformação do passo c, e o símbolo
+ *         é posto por `translate(34.326 7.096) scale(0.28797)`.
  *    É PROIBIDO reescrever como `<text>`: o fallback de fonte deformaria a
- *    marca. Para regerar, repita as etapas a a c com outra `SRC` e atualize este bloco.
+ *    marca. Para regerar, repita as etapas a a d com outra `SRC` e atualize este bloco.
  *
- * `viewBox` do lockup: `0 0 158.84 24` (símbolo de 33,33px, respiro de 3px e o
- * wordmark de 122,51px). O componente deriva a largura do `viewBox`, de modo
- * que quem informa só `height` acompanha a proporção.
+ * `viewBox` do lockup: `0 0 122.6 24`. O componente deriva a largura do
+ * `viewBox`, de modo que quem informa só `height` acompanha a proporção.
  */
 
-/** `viewBox` do lockup completo (símbolo + logotipo tipográfico). */
-export const unvLogoViewBox = '0 0 158.84 24';
+/** `viewBox` do lockup completo (“Un” + símbolo + “vista”). */
+export const unvLogoViewBox = '0 0 122.6 24';
 
 /** Largura nominal do lockup no `viewBox`. */
-export const unvLogoWidth = 158.84;
+export const unvLogoWidth = 122.6;
 
 /** Altura nominal do lockup no `viewBox`. */
 export const unvLogoHeight = 24;
 
 /**
- * Deslocamento horizontal do logotipo tipográfico no lockup: a diferença entre a
- * largura do símbolo no lockup (18 × 100 / 54) e os 27px com que o caminho foi
- * contornado.
- */
-export const unvLogoWordmarkOffset = 6.33;
-
-/**
- * Contornos de “Unoovista” em Open Sans Bold — um único caminho com um
+ * Contornos de “Un” e “vista” em Open Sans Bold — um único caminho com um
  * subcaminho por contorno de letra (o preenchimento é `nonzero`, como na fonte).
+ * Os dois “o” não estão aqui: o símbolo os substitui.
  */
 export const unvLogoPath =
-  'M44.65 3.15V14.7Q44.65 16.54 43.84 18.03Q43.02 19.51 41.38 20.38Q39.74 21.24 37.25 21.24Q33.71 21.24 31.86 19.44Q30 17.63 30 14.65V3.15H33.77V14.08Q33.77 16.29 34.68 17.18Q35.58 18.07 37.35 18.07Q38.59 18.07 39.37 17.64Q40.14 17.22 40.51 16.32Q40.88 15.43 40.88 14.05V3.15ZM56.48 7.1Q58.66 7.1 59.99 8.29Q61.32 9.48 61.32 12.1V21H57.6V13.03Q57.6 11.56 57.07 10.82Q56.54 10.07 55.4 10.07Q53.69 10.07 53.07 11.23Q52.45 12.39 52.45 14.58V21H48.73V7.35H51.57L52.07 9.1H52.28Q52.72 8.39 53.37 7.95Q54.02 7.51 54.82 7.3Q55.62 7.1 56.48 7.1ZM77.56 14.15Q77.56 15.86 77.1 17.18Q76.64 18.5 75.77 19.41Q74.9 20.32 73.67 20.78Q72.44 21.24 70.91 21.24Q69.47 21.24 68.26 20.78Q67.06 20.32 66.18 19.41Q65.29 18.5 64.81 17.18Q64.33 15.86 64.33 14.15Q64.33 11.88 65.13 10.31Q65.94 8.73 67.43 7.91Q68.92 7.1 70.98 7.1Q72.9 7.1 74.38 7.91Q75.86 8.73 76.71 10.31Q77.56 11.88 77.56 14.15ZM68.12 14.15Q68.12 15.49 68.42 16.41Q68.71 17.33 69.33 17.79Q69.95 18.25 70.95 18.25Q71.94 18.25 72.56 17.79Q73.18 17.33 73.46 16.41Q73.75 15.49 73.75 14.15Q73.75 12.8 73.46 11.9Q73.18 11 72.55 10.55Q71.93 10.1 70.93 10.1Q69.45 10.1 68.79 11.11Q68.12 12.13 68.12 14.15ZM93.04 14.15Q93.04 15.86 92.58 17.18Q92.12 18.5 91.25 19.41Q90.38 20.32 89.15 20.78Q87.92 21.24 86.38 21.24Q84.94 21.24 83.74 20.78Q82.54 20.32 81.65 19.41Q80.77 18.5 80.29 17.18Q79.8 15.86 79.8 14.15Q79.8 11.88 80.61 10.31Q81.42 8.73 82.91 7.91Q84.39 7.1 86.46 7.1Q88.37 7.1 89.86 7.91Q91.34 8.73 92.19 10.31Q93.04 11.88 93.04 14.15ZM83.6 14.15Q83.6 15.49 83.89 16.41Q84.19 17.33 84.81 17.79Q85.43 18.25 86.43 18.25Q87.42 18.25 88.04 17.79Q88.65 17.33 88.94 16.41Q89.23 15.49 89.23 14.15Q89.23 12.8 88.94 11.9Q88.65 11 88.03 10.55Q87.41 10.1 86.41 10.1Q84.93 10.1 84.27 11.11Q83.6 12.13 83.6 14.15ZM99.36 21 94.16 7.35H98.05L100.69 15.13Q100.91 15.81 101.04 16.57Q101.17 17.33 101.22 17.92H101.31Q101.35 17.28 101.49 16.54Q101.63 15.81 101.86 15.13L104.49 7.35H108.38L103.18 21ZM114.06 7.35V21H110.33V7.35ZM112.2 2.01Q113.03 2.01 113.63 2.39Q114.23 2.77 114.23 3.82Q114.23 4.86 113.63 5.26Q113.03 5.66 112.2 5.66Q111.36 5.66 110.77 5.26Q110.18 4.86 110.18 3.82Q110.18 2.77 110.77 2.39Q111.36 2.01 112.2 2.01ZM127.49 16.95Q127.49 18.34 126.83 19.3Q126.18 20.26 124.89 20.75Q123.59 21.24 121.66 21.24Q120.23 21.24 119.22 21.06Q118.2 20.88 117.16 20.45V17.37Q118.27 17.88 119.54 18.2Q120.82 18.52 121.78 18.52Q122.87 18.52 123.34 18.2Q123.81 17.88 123.81 17.35Q123.81 17.01 123.62 16.73Q123.43 16.46 122.81 16.11Q122.19 15.76 120.86 15.2Q119.58 14.66 118.75 14.12Q117.93 13.57 117.53 12.82Q117.13 12.06 117.13 10.9Q117.13 9.01 118.6 8.05Q120.08 7.1 122.54 7.1Q123.81 7.1 124.96 7.35Q126.12 7.61 127.34 8.17L126.22 10.86Q125.2 10.42 124.31 10.14Q123.41 9.85 122.48 9.85Q121.66 9.85 121.25 10.07Q120.83 10.29 120.83 10.75Q120.83 11.08 121.05 11.33Q121.26 11.59 121.88 11.9Q122.49 12.21 123.69 12.7Q124.85 13.18 125.7 13.69Q126.56 14.21 127.02 14.98Q127.49 15.74 127.49 16.95ZM136.14 18.28Q136.75 18.28 137.33 18.16Q137.91 18.03 138.48 17.85V20.62Q137.89 20.89 137 21.07Q136.12 21.24 135.07 21.24Q133.85 21.24 132.87 20.85Q131.9 20.45 131.35 19.47Q130.79 18.49 130.79 16.73V10.15H129.01V8.57L131.06 7.33L132.14 4.45H134.52V7.35H138.34V10.15H134.52V16.73Q134.52 17.51 134.96 17.89Q135.41 18.28 136.14 18.28ZM146.83 7.07Q149.58 7.07 151.04 8.27Q152.51 9.46 152.51 11.91V21H149.91L149.19 19.14H149.09Q148.51 19.88 147.9 20.34Q147.29 20.8 146.49 21.02Q145.7 21.24 144.56 21.24Q143.35 21.24 142.4 20.78Q141.44 20.32 140.89 19.36Q140.34 18.4 140.34 16.92Q140.34 14.75 141.87 13.72Q143.39 12.69 146.44 12.58L148.81 12.5V11.91Q148.81 10.83 148.25 10.33Q147.69 9.83 146.69 9.83Q145.7 9.83 144.75 10.11Q143.79 10.39 142.84 10.82L141.61 8.3Q142.7 7.73 144.04 7.4Q145.39 7.07 146.83 7.07ZM148.81 14.68 147.37 14.73Q145.56 14.77 144.86 15.37Q144.16 15.97 144.16 16.95Q144.16 17.8 144.66 18.16Q145.16 18.52 145.97 18.52Q147.16 18.52 147.99 17.81Q148.81 17.11 148.81 15.8Z';
+  'M14.65 3.15V14.7Q14.65 16.54 13.84 18.03Q13.02 19.51 11.38 20.38Q9.74 21.24 7.25 21.24Q3.71 21.24 1.86 19.44Q0 17.63 0 14.65V3.15H3.77V14.08Q3.77 16.29 4.68 17.18Q5.58 18.07 7.35 18.07Q8.59 18.07 9.37 17.64Q10.14 17.22 10.51 16.32Q10.88 15.43 10.88 14.05V3.15ZM26.48 7.1Q28.66 7.1 29.99 8.29Q31.32 9.48 31.32 12.1V21H27.6V13.03Q27.6 11.56 27.07 10.82Q26.54 10.07 25.4 10.07Q23.69 10.07 23.07 11.23Q22.45 12.39 22.45 14.58V21H18.73V7.35H21.57L22.07 9.1H22.28Q22.72 8.39 23.37 7.95Q24.02 7.51 24.82 7.3Q25.62 7.1 26.48 7.1ZM69.45 21 64.25 7.35H68.14L70.78 15.13Q71 15.81 71.12 16.57Q71.25 17.33 71.3 17.92H71.4Q71.44 17.28 71.58 16.54Q71.72 15.81 71.95 15.13L74.57 7.35H78.47L73.27 21ZM84.14 7.35V21H80.42V7.35ZM82.29 2.01Q83.12 2.01 83.72 2.39Q84.31 2.77 84.31 3.82Q84.31 4.86 83.72 5.26Q83.12 5.66 82.29 5.66Q81.45 5.66 80.85 5.26Q80.26 4.86 80.26 3.82Q80.26 2.77 80.85 2.39Q81.45 2.01 82.29 2.01ZM97.57 16.95Q97.57 18.34 96.92 19.3Q96.27 20.26 94.97 20.75Q93.68 21.24 91.75 21.24Q90.32 21.24 89.3 21.06Q88.28 20.88 87.24 20.45V17.37Q88.36 17.88 89.63 18.2Q90.91 18.52 91.87 18.52Q92.96 18.52 93.43 18.2Q93.9 17.88 93.9 17.35Q93.9 17.01 93.71 16.73Q93.52 16.46 92.9 16.11Q92.27 15.76 90.94 15.2Q89.66 14.66 88.84 14.12Q88.01 13.57 87.62 12.82Q87.22 12.06 87.22 10.9Q87.22 9.01 88.69 8.05Q90.16 7.1 92.63 7.1Q93.9 7.1 95.05 7.35Q96.2 7.61 97.42 8.17L96.3 10.86Q95.29 10.42 94.39 10.14Q93.49 9.85 92.57 9.85Q91.75 9.85 91.33 10.07Q90.92 10.29 90.92 10.75Q90.92 11.08 91.13 11.33Q91.35 11.59 91.96 11.9Q92.58 12.21 93.77 12.7Q94.93 13.18 95.79 13.69Q96.64 14.21 97.11 14.98Q97.57 15.74 97.57 16.95ZM106.23 18.28Q106.84 18.28 107.42 18.16Q108 18.03 108.57 17.85V20.62Q107.97 20.89 107.09 21.07Q106.2 21.24 105.15 21.24Q103.93 21.24 102.96 20.85Q101.99 20.45 101.43 19.47Q100.88 18.49 100.88 16.73V10.15H99.1V8.57L101.15 7.33L102.22 4.45H104.6V7.35H108.42V10.15H104.6V16.73Q104.6 17.51 105.05 17.89Q105.49 18.28 106.23 18.28ZM116.92 7.07Q119.67 7.07 121.13 8.27Q122.6 9.46 122.6 11.91V21H120L119.28 19.14H119.18Q118.59 19.88 117.98 20.34Q117.37 20.8 116.58 21.02Q115.78 21.24 114.65 21.24Q113.44 21.24 112.48 20.78Q111.52 20.32 110.97 19.36Q110.43 18.4 110.43 16.92Q110.43 14.75 111.95 13.72Q113.48 12.69 116.53 12.58L118.9 12.5V11.91Q118.9 10.83 118.34 10.33Q117.77 9.83 116.77 9.83Q115.78 9.83 114.83 10.11Q113.88 10.39 112.93 10.82L111.69 8.3Q112.78 7.73 114.13 7.4Q115.48 7.07 116.92 7.07ZM118.9 14.68 117.46 14.73Q115.65 14.77 114.95 15.37Q114.25 15.97 114.25 16.95Q114.25 17.8 114.75 18.16Q115.25 18.52 116.05 18.52Q117.25 18.52 118.07 17.81Q118.9 17.11 118.9 15.8Z';
 
 /**
- * Símbolo da Unooria (infinito orgânico), literal de `SYMBOL_PATH_FILL`.
- * `viewBox` 0 0 100 54; preenchimento `evenodd`.
+ * Símbolo da Unooria, traçado do PNG oficial. `viewBox` 0 0 100 49.13;
+ * preenchimento `evenodd`.
  */
 export const unvLogoSymbolPath =
-  'M27 0C12.0883 0 0 12.0883 0 27C0 41.9117 12.0883 54 27 54C34.4259 54 41.1396 50.0051 44.9756 43.6064C47.0117 40.2104 50 38 50 38C50 38 52.9883 40.2104 55.0244 43.6064C58.8604 50.0051 65.5741 54 73 54C87.9117 54 100 41.9117 100 27C100 12.0883 87.9117 0 73 0C65.5741 0 58.8604 3.99487 55.0244 10.3936C52.9883 13.7896 50 16 50 16C50 16 47.0117 13.7896 44.9756 10.3936C41.1396 3.99487 34.4259 0 27 0ZM27 12C32.1887 12 36.8576 14.887 39.2979 19.3496C42.2741 24.7924 47.3826 27 50 27C52.6174 27 57.7259 24.7924 60.7021 19.3496C63.1424 14.887 67.8113 12 73 12C81.2843 12 88 18.7157 88 27C88 35.2843 81.2843 42 73 42C67.8113 42 63.1424 39.113 60.7021 34.6504C57.7259 29.2076 52.6174 27 50 27C47.3826 27 42.2741 29.2076 39.2979 34.6504C36.8576 39.113 32.1887 42 27 42C18.7157 42 12 35.2843 12 27C12 18.7157 18.7157 12 27 12Z';
+  'M21.33 49.02C16.94 48.48 12.98 46.86 9.38 44.12C8.45 43.41 6.33 41.3 5.45 40.21C2.99 37.16 1.22 33.34 0.47 29.46C0.08 27.42 -0.04 25.93 0.03 23.74C0.13 20.75 0.57 18.43 1.55 15.81C2.9 12.2 4.8 9.31 7.6 6.62C9.48 4.8 11.2 3.59 13.59 2.41C16.04 1.19 18.71 0.42 21.53 0.1C22.91 -0.06 26.39 0.03 27.69 0.25C31.27 0.86 33.36 1.73 38.05 4.52C42.51 7.17 44.89 8.3 47.28 8.9C48.23 9.14 48.57 9.17 50.1 9.17C52.26 9.18 52.76 9.06 55.48 7.88C58.29 6.67 60 5.75 62.41 4.16C65.57 2.07 68.66 0.87 72.46 0.24C74.06 -0.02 77.83 -0.02 79.49 0.24C84.46 1.03 88.77 3.19 92.4 6.71C94.6 8.85 95.99 10.75 97.32 13.44C100.78 20.39 100.78 28.72 97.34 35.65C95.99 38.38 94.62 40.26 92.4 42.42C88.9 45.83 84.72 47.96 79.85 48.83C78.29 49.11 75.18 49.21 73.52 49.03C69.97 48.67 66.38 47.42 63.35 45.51C56.94 41.48 53.73 40.1 50.31 39.93C48.99 39.87 47.49 40.06 46.33 40.45C45.33 40.79 41.98 42.32 40.68 43.04C39.72 43.57 39.14 43.93 36.82 45.41C34.29 47.03 31.04 48.27 27.85 48.83C26.45 49.08 22.68 49.19 21.33 49.02ZM26.56 37.84C28.59 37.44 29.89 36.86 32.25 35.33C35.04 33.52 37.37 32.29 40.67 30.89C44.31 29.35 46.64 28.82 49.79 28.82C55.03 28.82 59.46 30.43 67.6 35.26C70.85 37.19 71.49 37.48 73.49 37.9C74.63 38.15 77.08 38.16 78.28 37.92C82.9 37 86.68 33.77 88.3 29.35C88.93 27.65 89.08 26.7 89.07 24.51C89.07 22.66 89.05 22.43 88.79 21.41C88.05 18.54 86.85 16.45 84.88 14.59C82.39 12.23 79.47 11.08 76.01 11.08C73.22 11.08 70.65 11.84 68.36 13.34C64.06 16.16 61.01 17.74 57.67 18.87C54.67 19.9 52.67 20.25 49.79 20.25C46.66 20.25 44.69 19.85 41.41 18.55C38.98 17.58 35.29 15.73 33.54 14.6C30.29 12.51 29.57 12.13 27.85 11.62C25.3 10.87 22.35 10.89 19.87 11.69C15.99 12.94 12.76 16.22 11.44 20.25C10.96 21.72 10.83 22.68 10.82 24.62C10.82 26.13 10.86 26.58 11.06 27.49C11.82 30.92 13.89 34 16.67 35.84C19.72 37.87 23.07 38.55 26.56 37.84Z';
 
 /** `viewBox` do símbolo isolado (`variant="mark"`). */
-export const unvLogoMarkViewBox = '0 0 100 54';
+export const unvLogoMarkViewBox = '0 0 100 49.13';
 
 /** Largura do símbolo isolado no `viewBox`. */
 export const unvLogoMarkWidth = 100;
 
 /** Altura do símbolo isolado no `viewBox`. */
-export const unvLogoMarkHeight = 54;
+export const unvLogoMarkHeight = 49.13;
 
-/** Altura do símbolo dentro do lockup, em unidades do `viewBox` do lockup. */
-export const unvLogoSymbolLockupHeight = 18;
-
-/** Posição vertical do topo do símbolo dentro do lockup. */
-export const unvLogoSymbolLockupTop = 3;
+/** Posição e escala do símbolo dentro do lockup (no lugar dos dois “o”). */
+export const unvLogoSymbolLockupTransform = 'translate(34.326 7.096) scale(0.28797)';
