@@ -1,10 +1,13 @@
 import React from 'react';
 import {
   unvLogoPath,
+  unvLogoSymbolPath,
   unvLogoViewBox,
   unvLogoWidth,
   unvLogoHeight,
-  unvLogoMark,
+  unvLogoWordmarkOffset,
+  unvLogoSymbolLockupHeight,
+  unvLogoSymbolLockupTop,
   unvLogoMarkViewBox,
   unvLogoMarkWidth,
   unvLogoMarkHeight,
@@ -15,9 +18,8 @@ import './Logo.css';
 /**
  * Componente Logo — Design System Unoovista
  *
- * Marca do produto: o emblema (duas circunferências entrelaçadas que formam o
- * "oo" da Unooria) e o logotipo tipográfico “Unoovista”, contornado de Open
- * Sans Bold. Exibida no início da barra superior e nas telas de autenticação.
+ * Marca do produto: o símbolo da Plataforma Unooria (o infinito orgânico, vetor
+ * literal) e o logotipo tipográfico “Unoovista”, contornado de Open Sans Bold. Exibida no início da barra superior e nas telas de autenticação.
  * O vetor não usa `<text>`: uma fonte ausente não deforma a marca.
  */
 export const Logo = React.forwardRef<SVGSVGElement, UnvLogoProps>(
@@ -63,23 +65,23 @@ export const Logo = React.forwardRef<SVGSVGElement, UnvLogoProps>(
       >
         {!decorative && <title>{title}</title>}
 
-        <g fill="none" strokeWidth={unvLogoMark.strokeWidth}>
-          <circle
-            className="unv-logo__ring-b"
-            cx={unvLogoMark.ringB.cx}
-            cy={unvLogoMark.ringB.cy}
-            r={unvLogoMark.radius}
-          />
-          <circle
-            className="unv-logo__ring-a"
-            cx={unvLogoMark.ringA.cx}
-            cy={unvLogoMark.ringA.cy}
-            r={unvLogoMark.radius}
-          />
-          <path className="unv-logo__ring-b" d={unvLogoMark.overlap} />
+        <g
+          transform={
+            isMark
+              ? undefined
+              : `translate(0 ${unvLogoSymbolLockupTop}) scale(${unvLogoSymbolLockupHeight / unvLogoMarkHeight})`
+          }
+        >
+          <path className="unv-logo__symbol" d={unvLogoSymbolPath} fillRule="evenodd" clipRule="evenodd" />
         </g>
 
-        {!isMark && <path className="unv-logo__wordmark" d={unvLogoPath} />}
+        {!isMark && (
+          <path
+            className="unv-logo__wordmark"
+            d={unvLogoPath}
+            transform={`translate(${unvLogoWordmarkOffset} 0)`}
+          />
+        )}
       </svg>
     );
   }

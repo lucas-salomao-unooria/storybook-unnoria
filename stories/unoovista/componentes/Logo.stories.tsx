@@ -70,7 +70,7 @@ const LogoDocumentationPage = () => (
       badgeBrand="Unoovista"
       category="Componentes • Marca"
       title="Logo"
-      description="Marca original do Unoovista: um emblema de duas circunferências entrelaçadas — o “oo” da Unooria — e o logotipo tipográfico “Unoovista”, contornado de Open Sans Bold. Os dois são vetores, sem texto: nenhuma fonte ausente deforma a marca. O emblema usa dois roxos de ação e acompanha o tema."
+      description="Marca do Unoovista: o símbolo da Plataforma Unooria — o infinito orgânico, o mesmo vetor da marca-mãe — e o logotipo tipográfico “Unoovista”, contornado de Open Sans Bold. Os dois são vetores, sem texto: nenhuma fonte ausente deforma a marca. O símbolo usa o roxo de ação e acompanha o tema."
     />
 
     <UnooriaDocSectionHeader
@@ -79,21 +79,21 @@ const LogoDocumentationPage = () => (
       description="Onde a marca aparece e como ela se comporta em cada superfície."
     />
     <UnvDocGrid>
-      <UnvDocCard icon="⭕" title="O “oo” da Unooria">
-        Duas circunferências de mesmo raio que se entrelaçam: uma passa por cima da outra em um
-        cruzamento e por baixo no outro. Nada de letra desenhada — a marca se lê como forma.
+      <UnvDocCard icon="♾️" title="O símbolo da Unooria">
+        O infinito orgânico da marca-mãe: dois lóbulos fundidos, com o miolo vazado. É o caminho
+        literal <code>SYMBOL_PATH_FILL</code> da Plataforma Unooria (viewBox 100×54), sem nenhuma
+        coordenada redesenhada — o Unoovista é um produto da Unooria e usa o mesmo elemento.
       </UnvDocCard>
       <UnvDocCard icon="🔤" title="Contornos, não texto">
         O logotipo é Open Sans Bold convertido em caminhos. Uma fonte que não carrega não muda a marca,
         e o corte é idêntico em qualquer plataforma.
       </UnvDocCard>
-      <UnvDocCard icon="🎨" title="Dois roxos e o texto do tema">
-        Anel A em <code>--unv-color-action-primary</code>, anel B em <code>--unv-color-action-pressed</code>{' '}
-        e o logotipo em <code>--unv-color-text-primary</code>. No tom <code>inverse</code>, tudo em branco
-        sobre mídia.
+      <UnvDocCard icon="🎨" title="Roxo de ação e o texto do tema">
+        O símbolo em <code>--unv-color-action-primary</code> e o logotipo em{' '}
+        <code>--unv-color-text-primary</code>. No tom <code>inverse</code>, tudo em branco sobre mídia.
       </UnvDocCard>
       <UnvDocCard icon="📐" title="Proporção travada">
-        A largura sai da altura pelo <code>viewBox</code>: 152,51 × 24 no lockup e 27 × 18 no emblema. A
+        A largura sai da altura pelo <code>viewBox</code>: 158,84 × 24 no lockup e 100 × 54 no símbolo. A
         API só expõe <code>height</code>.
       </UnvDocCard>
       <UnvDocCard icon="♿" title="Acessível por padrão">
@@ -105,14 +105,14 @@ const LogoDocumentationPage = () => (
     <UnooriaDocSectionHeader barColor={BAR} title="2. Especificações técnicas" />
     <UnvDocSpecs
       component="Logo"
-      layout="Vetor · lockup 152,51 × 24"
+      layout="Vetor · lockup 158,84 × 24"
       specs={[
         { label: 'viewBox do lockup', value: unvLogoViewBox },
         { label: 'Proporção do lockup', value: `${unvLogoWidth} ÷ ${unvLogoHeight}` },
-        { label: 'viewBox do emblema', value: unvLogoMarkViewBox },
-        { label: 'Emblema', value: 'raio 7,2 · traço 3,6 · centros a 9 de distância' },
+        { label: 'viewBox do símbolo', value: unvLogoMarkViewBox },
+        { label: 'Símbolo', value: 'SYMBOL_PATH_FILL da Unooria · evenodd · escala 18/54 no lockup' },
         { label: 'Logotipo', value: 'Open Sans Bold · corpo 25px · linha de base y = 21' },
-        { label: 'Respiro emblema → logotipo', value: '3px' },
+        { label: 'Respiro símbolo → logotipo', value: '3px' },
         { label: 'Altura padrão', value: '28px' },
       ]}
     />
@@ -121,7 +121,7 @@ const LogoDocumentationPage = () => (
         {
           subject: 'Marca original, sem herança',
           detail:
-            'o logotipo anterior era uma assinatura manuscrita de terceiros e foi removido do pacote. O emblema (dois anéis) e o logotipo tipográfico são desenhados aqui, com geometria simples.',
+            'o logotipo anterior era uma assinatura manuscrita de terceiros e foi removido do pacote. O símbolo é o da Unooria (vetor literal) e o logotipo tipográfico é contornado de Open Sans Bold.',
         },
         {
           subject: 'Logotipo contornado da fonte da marca',
@@ -129,14 +129,14 @@ const LogoDocumentationPage = () => (
             'Open Sans Bold, o .woff2 embutido em src/fonts/open-sans/. Técnica: eixo wght fixado em 700; texto posicionado com HarfBuzz (kern ligado, sem tracking); cada contorno transformado uma única vez por (x, y) → (x·s + tx, −y·s + 21), com s = 25/2048. Nenhuma coordenada foi redesenhada à mão. É proibido reescrever como <text>.',
         },
         {
-          subject: 'Entrelaçamento dos anéis',
+          subject: 'Símbolo literal da marca-mãe',
           detail:
-            'o anel B passa por cima do A no cruzamento inferior e por baixo no superior, por um arco de 108° a 180° redesenhado sobre o A. As cores vêm de classes CSS que citam tokens: o vetor não tem preenchimento literal.',
+            'o símbolo é o SYMBOL_PATH_FILL de src/unooria/components/Logo/LogoVectors.tsx, copiado por script: viewBox 0 0 100 54, preenchimento evenodd, nenhuma coordenada tocada. No lockup ele é escalado por 18/54 e apoiado na linha de base do texto; o logotipo é deslocado por translate, não reescrito. A cor vem de uma classe CSS que cita token: o vetor não tem preenchimento literal.',
         },
         {
-          subject: 'Tom inverse sem entrelaçamento visível',
+          subject: 'Uma tinta só no símbolo',
           detail:
-            'sobre mídia, os dois anéis e o logotipo ficam em --unv-color-text-on-media; como a cor é a mesma, o entrelaçamento deixa de aparecer e o emblema se lê como “oo”.',
+            'o símbolo tem uma única cor (action-primary, 4,88:1 no claro e 7,70:1 no escuro sobre a tela). No tom inverse sobre mídia fica em --unv-color-text-on-media, como o logotipo.',
         },
         {
           subject: 'Prop variant e altura padrão',
@@ -149,23 +149,18 @@ const LogoDocumentationPage = () => (
     <UnooriaDocSectionHeader
       barColor={BAR}
       title="3. Anatomia do componente"
-      description="O emblema, o respiro e o logotipo compartilham uma linha de base."
+      description="O símbolo, o respiro e o logotipo compartilham uma linha de base."
     />
     <UnvDocAnatomy
       zones={[
         {
-          name: 'Anel A',
-          role: 'Circunferência da esquerda, no roxo de ação. Passa por baixo do anel B no cruzamento inferior.',
+          name: 'Símbolo',
+          role: 'Infinito orgânico da Unooria, no roxo de ação, escalado por 18/54 no lockup.',
           token: '--unv-color-action-primary',
         },
         {
-          name: 'Anel B',
-          role: 'Circunferência da direita, no roxo do estado pressionado. Passa por cima do A embaixo e por baixo em cima.',
-          token: '--unv-color-action-pressed',
-        },
-        {
           name: 'Respiro',
-          role: 'Distância de 3px entre a tinta do emblema e a do “U”. A base do emblema coincide com a linha de base do texto.',
+          role: 'Distância de 3px entre a tinta do símbolo e a do “U”. A base do símbolo coincide com a linha de base do texto.',
         },
         {
           name: 'Logotipo tipográfico',
@@ -174,7 +169,7 @@ const LogoDocumentationPage = () => (
         },
       ]}
     />
-    <UnvDocStage label="Emblema isolado (variant=&quot;mark&quot;) e lockup" gap={40}>
+    <UnvDocStage label="Símbolo isolado (variant=&quot;mark&quot;) e lockup" gap={40}>
       <div style={{ textAlign: 'center' }}>
         <Logo variant="mark" height={54} />
         <div style={CAPTION}>mark · 54px</div>
@@ -248,14 +243,14 @@ const LogoDocumentationPage = () => (
         'Aplicar gradiente, sombra ou contorno sobre a marca.',
         'Rotacionar, inclinar ou espelhar o vetor.',
         'Recriar o logotipo com <text> ou com outra fonte.',
-        'Trocar as cores dos anéis por hexadecimais avulsos.',
+        'Trocar a cor do símbolo por hexadecimal avulso.',
       ]}
     />
 
     <UnooriaDocSectionHeader
       barColor={BAR}
       title="6. Suporte a temas"
-      description="Os anéis e o logotipo acompanham os tokens: no escuro, os roxos clareiam e o texto passa a claro."
+      description="O símbolo e o logotipo acompanham os tokens: no escuro, o roxo clareia e o texto passa a claro."
     />
     <UnvDocThemeSwitcher>
       {() => (
@@ -282,13 +277,13 @@ const LogoDocumentationPage = () => (
           name: 'height',
           type: 'number',
           default: '28',
-          description: 'Altura em pixels. A largura é derivada do viewBox (lockup 152,51 × 24; emblema 27 × 18).',
+          description: 'Altura em pixels. A largura é derivada do viewBox (lockup 158,84 × 24; símbolo 100 × 54).',
         },
         {
           name: 'variant',
           type: "'lockup' | 'mark'",
           default: "'lockup'",
-          description: 'Lockup completo ou só o emblema.',
+          description: 'Lockup completo ou só o símbolo.',
         },
         {
           name: 'tone',
@@ -331,7 +326,7 @@ const meta: Meta<typeof Logo> = {
     variant: {
       control: 'radio',
       options: ['lockup', 'mark'],
-      description: 'Lockup completo ou só o emblema.',
+      description: 'Lockup completo ou só o símbolo.',
     },
     tone: {
       control: 'radio',
@@ -381,10 +376,10 @@ export const Playground: Story = {
 };
 
 /**
- * Emblema, lockup e o uso nos dois temas.
+ * Símbolo, lockup e o uso nos dois temas.
  */
-export const EmblemaLockupEDoisTemas: Story = {
-  name: '🎨 Emblema, lockup e os dois temas',
+export const SimboloLockupEDoisTemas: Story = {
+  name: '🎨 Símbolo, lockup e os dois temas',
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
       <UnvDocStage label="Tema claro" theme="light" padding={40} direction="column" gap={24}>
