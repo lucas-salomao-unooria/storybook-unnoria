@@ -16,6 +16,7 @@ import '../src/tiktooria/tokens/fonts.css';
 import '../src/unootube/tokens/fonts.css';
 import '../src/unoochat/tokens/fonts.css';
 import '../src/unoovista/tokens/fonts.css';
+import '../src/unooriaai/tokens/fonts.css';
 
 /* WhatsApp Mobile Tokens */
 import '../src/whatsappmobile/tokens/typography.css';
@@ -31,6 +32,12 @@ import '../src/unoochat/tokens/spacing.css';
 import '../src/unoovista/tokens/typography.css';
 import '../src/unoovista/tokens/colors.css';
 import '../src/unoovista/tokens/spacing.css';
+
+/* UnooriaAI Tokens */
+import '../src/unooriaai/tokens/typography.css';
+import '../src/unooriaai/tokens/colors.css';
+import '../src/unooriaai/tokens/spacing.css';
+import '../src/unooriaai/tokens/elevation.css';
 
 /* Instanooria Tokens */
 import '../src/instanooria/tokens/colors.css';

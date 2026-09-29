@@ -1,0 +1,117 @@
+/**
+ * Estilos do Componente Sidebar — Design System UnooriaAI
+ *
+ * Medidas: 260 × 800 (`--uai-size-sidebar`), padding 12/8, gap 4 e superfície
+ * `--uai-bg-secondary`.
+ *   NewChatButton · padding 10/12 · gap 8 · raio 8 · rótulo Medium 14
+ *   SectionLabel  · Semi Bold 12 em `--uai-text-soft-40`
+ *   FooterItem    · padding 8/12 · rótulo Regular 14 em `--uai-text-soft-70`
+ *
+ * O padding vertical de 10px do botão de nova conversa é uma medida própria da
+ * barra, sem degrau equivalente na escala de espaçamento.
+ */
+
+.uai-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uai-spacing-2);
+  box-sizing: border-box;
+  width: var(--uai-size-sidebar);
+  padding: var(--uai-spacing-5) var(--uai-spacing-4);
+  background-color: var(--uai-bg-secondary);
+  font-family: var(--uai-font-sans);
+}
+
+/* ==========================================================================
+   Botão de nova conversa
+   ========================================================================== */
+
+.uai-sidebar__new-chat {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px var(--uai-spacing-5);
+  border: none;
+  border-radius: var(--uai-radius-md);
+  background-color: var(--uai-bg-inverse);
+  color: var(--uai-text-inverse);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-medium);
+  line-height: var(--uai-font-body-sm-line);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--uai-transition-fast);
+}
+
+.uai-sidebar__new-chat:hover {
+  background-color: var(--uai-bg-inverse-hover);
+}
+
+.uai-sidebar__new-chat:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-sidebar__new-chat-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Rótulo de seção
+   ========================================================================== */
+
+.uai-sidebar__section-label {
+  padding: var(--uai-spacing-4) var(--uai-spacing-5) var(--uai-spacing-1);
+  font-size: var(--uai-font-label-sm-size);
+  font-weight: var(--uai-font-weight-semibold);
+  line-height: var(--uai-font-label-sm-line);
+  color: var(--uai-text-soft-40);
+}
+
+/* ==========================================================================
+   Espaçador e rodapé
+   ========================================================================== */
+
+.uai-sidebar__spacer {
+  flex: 1 1 auto;
+}
+
+.uai-sidebar__footer-item {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--uai-spacing-4) var(--uai-spacing-5);
+  border: none;
+  border-radius: var(--uai-radius-md);
+  background-color: transparent;
+  color: var(--uai-text-soft-70);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--uai-transition-fast), color var(--uai-transition-fast);
+}
+
+.uai-sidebar__footer-item:hover {
+  background-color: var(--uai-fill-2);
+  color: var(--uai-text-primary);
+}
+
+.uai-sidebar__footer-item:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}

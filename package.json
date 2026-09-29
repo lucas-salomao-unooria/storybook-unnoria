@@ -51,6 +51,11 @@
       "import": "./dist/unoovista/index.mjs",
       "require": "./dist/unoovista/index.cjs"
     },
+    "./unooriaai": {
+      "types": "./dist/unooriaai/index.d.ts",
+      "import": "./dist/unooriaai/index.mjs",
+      "require": "./dist/unooriaai/index.cjs"
+    },
     "./styles.css": "./dist/styles.css",
     "./unooria.css": "./dist/styles-unooria.css",
     "./instanooria.css": "./dist/styles-instanooria.css",
@@ -60,6 +65,7 @@
     "./unootube.css": "./dist/styles-unootube.css",
     "./unoochat.css": "./dist/styles-unoochat.css",
     "./unoovista.css": "./dist/styles-unoovista.css",
+    "./unooriaai.css": "./dist/styles-unooriaai.css",
     "./fonts/unooria.css": "./dist/fonts/unooria.css",
     "./fonts/chatgpt.css": "./dist/fonts/chatgpt.css",
     "./fonts/whatsappmobile.css": "./dist/fonts/whatsappmobile.css",
@@ -67,6 +73,7 @@
     "./fonts/unootube.css": "./dist/fonts/unootube.css",
     "./fonts/unoochat.css": "./dist/fonts/unoochat.css",
     "./fonts/unoovista.css": "./dist/fonts/unoovista.css",
+    "./fonts/unooriaai.css": "./dist/fonts/unooriaai.css",
     "./dist/*": "./dist/*"
   },
   "files": [
@@ -86,13 +93,14 @@
     "test": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "build:package": "npm run verificar:css && npm run verificar:paridade-unoochat && npm run verificar:paridade-unoovista && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist && node scripts/corrigir-specifiers.mjs && node scripts/verificar-esm.mjs",
+    "build:package": "npm run verificar:css && npm run verificar:paridade-unoochat && npm run verificar:paridade-unoovista && npm run verificar:paridade-unooriaai && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist && node scripts/corrigir-specifiers.mjs && node scripts/verificar-esm.mjs",
     "prepublishOnly": "npm run build:package",
     "verificar:css": "node scripts/verificar-css-agregado.mjs",
     "fontes": "node scripts/baixar-fontes.mjs",
     "inventario": "node scripts/gerar-inventario-componentes.mjs",
     "verificar:paridade-unoochat": "node scripts/verificar-paridade-unoochat.mjs",
-    "verificar:paridade-unoovista": "node scripts/verificar-paridade-unoovista.mjs"
+    "verificar:paridade-unoovista": "node scripts/verificar-paridade-unoovista.mjs",
+    "verificar:paridade-unooriaai": "node scripts/verificar-paridade-unooriaai.mjs"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

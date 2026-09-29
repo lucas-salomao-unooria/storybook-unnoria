@@ -1,0 +1,70 @@
+/**
+ * Estilos do Componente Input — Design System UnooriaAI
+ *
+ * Medidas: 320 × 44 (`--uai-size-input-height`), padding 10/12, raio 8,
+ * contorno interno de 1px e texto Open Sans 400 de 14px (`body-sm`).
+ *
+ * O padding vertical de 10px é literal do módulo — a escala de espaçamento
+ * salta de 8 para 12.
+ */
+
+.uai-input {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 320px;
+  height: var(--uai-size-input-height);
+  padding: 10px var(--uai-spacing-5);
+  border: 1px solid var(--uai-border-control);
+  border-radius: var(--uai-radius-md);
+  background-color: var(--uai-bg-primary);
+  transition: border-color var(--uai-transition-fast);
+}
+
+.uai-input--block {
+  width: 100%;
+}
+
+.uai-input__field {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  color: var(--uai-text-primary);
+}
+
+.uai-input__field::placeholder {
+  color: var(--uai-text-soft-40);
+}
+
+/* ==========================================================================
+   Estados
+   ========================================================================== */
+
+.uai-input:focus-within,
+.uai-input--focus {
+  border-color: var(--uai-border-brand);
+}
+
+.uai-input--error,
+.uai-input--error:focus-within {
+  border-color: var(--uai-status-error);
+}
+
+.uai-input--disabled {
+  border-color: var(--uai-border-default);
+}
+
+.uai-input--disabled .uai-input__field {
+  color: var(--uai-text-soft-30);
+  cursor: not-allowed;
+}
+
+.uai-input--disabled .uai-input__field::placeholder {
+  color: var(--uai-text-soft-30);
+}

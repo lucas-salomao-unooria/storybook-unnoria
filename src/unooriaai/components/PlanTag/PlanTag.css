@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente PlanTag — Design System UnooriaAI
+ *
+ * Medidas: padding 2/4 (`--uai-spacing-1` e `-2`), raio 4 (`--uai-radius-sm`)
+ * e rótulo de `Body/XS` (Open Sans 12/18).
+ *
+ * A superfície e o rótulo vêm de tokens próprios da cápsula, definidos por tema
+ * (`--uai-color-plan-tag-fill` e `--uai-color-plan-tag-text`): `brandpurple-600`
+ * com rótulo branco no claro (5,0:1) e `brandpurple-400` com rótulo
+ * `brandpurple-950` no escuro (8,3:1). O limite da cápsula passa de 3:1 sobre a
+ * tela nos dois temas.
+ */
+
+.uai-plan-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--uai-spacing-1) var(--uai-spacing-2);
+  border-radius: var(--uai-radius-sm);
+  background-color: var(--uai-color-plan-tag-fill);
+  color: var(--uai-color-plan-tag-text);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-xs-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-xs-line);
+  white-space: nowrap;
+}

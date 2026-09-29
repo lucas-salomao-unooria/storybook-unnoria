@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System UnooriaAI
+   Família e escala da Plataforma Unooria (`src/unooria/tokens/typography.css`):
+   Open Sans, com tamanhos e alturas de linha nos degraus inteiros da escala
+   Unooria (60, 48, 34, 24, 18, 16, 14 e 12px). O comentário de cada linha nomeia
+   o token de origem. Sem letter-spacing, como na escala da plataforma: as
+   variáveis `-tracking` existem apenas para que o componente nunca invente um
+   valor. Nenhum corpo abaixo de 12px.
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --uai-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* --unooria-font-sans */
+
+  /* Biblioteca de ícones da Plataforma Unooria (Material Symbols Rounded) */
+  --uai-icon-font-family: 'Material Symbols Rounded', sans-serif; /* --unooria-icon-font-family */
+
+  /* Pesos */
+  --uai-font-weight-regular: 400; /* --unooria-weight-regular */
+  --uai-font-weight-medium: 500; /* --unooria-weight-medium */
+  --uai-font-weight-semibold: 600; /* --unooria-weight-semibold */
+  --uai-font-weight-bold: 700; /* --unooria-weight-bold */
+
+  /* Display/XL — Título de boas-vindas em tela cheia */
+  --uai-font-display-xl-size: 60px; /* --unooria-size-heading-4xl */
+  --uai-font-display-xl-weight: 700; /* --unooria-weight-bold */
+  --uai-font-display-xl-line: 78px; /* --unooria-line-height-heading-4xl */
+  --uai-font-display-xl-tracking: 0px;
+
+  /* Display/LG — Título de destaque */
+  --uai-font-display-lg-size: 48px; /* --unooria-size-heading-xxxl */
+  --uai-font-display-lg-weight: 700; /* --unooria-weight-bold */
+  --uai-font-display-lg-line: 64px; /* --unooria-line-height-heading-xxxl */
+  --uai-font-display-lg-tracking: 0px;
+
+  /* Heading/H1 — Título de página */
+  --uai-font-heading-h1-size: 34px; /* --unooria-size-heading-xxl */
+  --uai-font-heading-h1-weight: 700; /* --unooria-weight-bold */
+  --uai-font-heading-h1-line: 48px; /* --unooria-line-height-heading-xxl */
+  --uai-font-heading-h1-tracking: 0px;
+
+  /* Heading/H2 — Título de diálogo e de seção */
+  --uai-font-heading-h2-size: 24px; /* --unooria-size-title-xl */
+  --uai-font-heading-h2-weight: 600; /* --unooria-weight-semibold */
+  --uai-font-heading-h2-line: 34px; /* --unooria-line-height-title-xl */
+  --uai-font-heading-h2-tracking: 0px;
+
+  /* Heading/H3 — Subtítulo e título de coluna */
+  --uai-font-heading-h3-size: 18px; /* --unooria-size-body-m */
+  --uai-font-heading-h3-weight: 600; /* --unooria-weight-semibold */
+  --uai-font-heading-h3-line: 28px; /* --unooria-line-height-body-m */
+  --uai-font-heading-h3-tracking: 0px;
+
+  /* Body/LG — Texto de leitura ampliado */
+  --uai-font-body-lg-size: 18px; /* --unooria-size-body-m */
+  --uai-font-body-lg-weight: 400; /* --unooria-weight-regular */
+  --uai-font-body-lg-line: 28px; /* --unooria-line-height-body-m */
+  --uai-font-body-lg-tracking: 0px;
+
+  /* Body/MD — Texto de leitura */
+  --uai-font-body-md-size: 16px; /* --unooria-size-body-s */
+  --uai-font-body-md-weight: 400; /* --unooria-weight-regular */
+  --uai-font-body-md-line: 24px; /* --unooria-line-height-body-s */
+  --uai-font-body-md-tracking: 0px;
+
+  /* Body/SM — Corpo padrão da interface */
+  --uai-font-body-sm-size: 14px; /* --unooria-size-body-xs */
+  --uai-font-body-sm-weight: 400; /* --unooria-weight-regular */
+  --uai-font-body-sm-line: 20px; /* --unooria-line-height-body-xs */
+  --uai-font-body-sm-tracking: 0px;
+
+  /* Body/XS — Texto auxiliar */
+  --uai-font-body-xs-size: 12px; /* --unooria-size-body-xxs */
+  --uai-font-body-xs-weight: 400; /* --unooria-weight-regular */
+  --uai-font-body-xs-line: 18px; /* --unooria-line-height-body-xxs */
+  --uai-font-body-xs-tracking: 0px;
+
+  /* Label/LG — Rótulo de botão grande */
+  --uai-font-label-lg-size: 16px; /* --unooria-size-body-s */
+  --uai-font-label-lg-weight: 600; /* --unooria-weight-semibold */
+  --uai-font-label-lg-line: 24px; /* --unooria-line-height-body-s */
+  --uai-font-label-lg-tracking: 0px;
+
+  /* Label/MD — Rótulo de botão e de campo */
+  --uai-font-label-md-size: 14px; /* --unooria-size-body-xs */
+  --uai-font-label-md-weight: 600; /* --unooria-weight-semibold */
+  --uai-font-label-md-line: 20px; /* --unooria-line-height-body-xs */
+  --uai-font-label-md-tracking: 0px;
+
+  /* Label/SM — Rótulo de selo e de seção */
+  --uai-font-label-sm-size: 12px; /* --unooria-size-body-xxs */
+  --uai-font-label-sm-weight: 600; /* --unooria-weight-semibold */
+  --uai-font-label-sm-line: 18px; /* --unooria-line-height-body-xxs */
+  --uai-font-label-sm-tracking: 0px;
+
+  /* Caption — Legenda e texto de ajuda */
+  --uai-font-caption-size: 12px; /* --unooria-size-body-xxs */
+  --uai-font-caption-weight: 400; /* --unooria-weight-regular */
+  --uai-font-caption-line: 18px; /* --unooria-line-height-body-xxs */
+  --uai-font-caption-tracking: 0px;
+}

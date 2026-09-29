@@ -1,0 +1,65 @@
+/**
+ * Estilos do Componente SidebarRow — Design System UnooriaAI
+ *
+ * Medidas: 242 × 48, padding 12 (`--uai-spacing-5`), intervalo 8
+ * (`--uai-spacing-4`), raio 12 (`--uai-radius-lg`), ícone de 24px
+ * (`--uai-size-icon-lg`) e rótulo de 14/20 (`--uai-font-body-sm-*`).
+ *
+ * A linha não tem preenchimento em repouso — a separação vem do fio das
+ * seções, não de uma superfície por linha.
+ */
+
+.uai-sidebar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--uai-spacing-5);
+  border: none;
+  border-radius: var(--uai-radius-lg);
+  background-color: transparent;
+  color: var(--uai-text-primary);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--uai-transition-fast);
+}
+
+.uai-sidebar-row:hover:not(:disabled) {
+  background-color: var(--uai-fill-4);
+}
+
+.uai-sidebar-row:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-sidebar-row:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uai-sidebar-row--active {
+  background-color: var(--uai-fill-8);
+}
+
+.uai-sidebar-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.uai-sidebar-row__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

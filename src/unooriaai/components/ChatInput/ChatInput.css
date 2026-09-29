@@ -1,0 +1,82 @@
+/**
+ * Estilos do Componente ChatInput — Design System UnooriaAI
+ *
+ * Medidas: 600 × 48, padding 8/8/8/16, gap 8, raio 24 (`--uai-radius-3xl`),
+ * contorno de 1px em `--uai-border-control` e botão de envio circular de 32px
+ * (`--uai-size-icon-xl`) com glifo de 20px.
+ */
+
+.uai-chat-input {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 600px;
+  height: var(--uai-spacing-12);
+  padding: var(--uai-spacing-4) var(--uai-spacing-4) var(--uai-spacing-4) var(--uai-spacing-6);
+  border: 1px solid var(--uai-border-control);
+  border-radius: var(--uai-radius-3xl);
+  background-color: var(--uai-bg-primary);
+  transition: border-color var(--uai-transition-fast);
+}
+
+.uai-chat-input--block {
+  width: 100%;
+}
+
+.uai-chat-input:focus-within {
+  border-color: var(--uai-border-brand);
+}
+
+.uai-chat-input__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  color: var(--uai-text-primary);
+}
+
+.uai-chat-input__field::placeholder {
+  color: var(--uai-text-soft-40);
+}
+
+.uai-chat-input__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--uai-size-icon-xl);
+  height: var(--uai-size-icon-xl);
+  padding: 0;
+  border: none;
+  border-radius: var(--uai-radius-full);
+  background-color: var(--uai-bg-inverse);
+  color: var(--uai-text-inverse);
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity var(--uai-transition-fast);
+}
+
+.uai-chat-input__send-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.uai-chat-input__send:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-chat-input__send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

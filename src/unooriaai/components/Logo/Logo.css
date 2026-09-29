@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente Logo — Design System UnooriaAI
+ * Símbolo da Unooria e “AI” na tinta de destaque; “Unooria” na cor do texto.
+ * Todas as cores são tokens; o vetor não tem preenchimento literal.
+ */
+
+.uai-logo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.uai-logo__symbol,
+.uai-logo__ai {
+  fill: var(--uai-text-brand);
+}
+
+.uai-logo__wordmark {
+  fill: var(--uai-text-primary);
+}
+
+/* Herda a cor do elemento pai: uma tinta só */
+.uai-logo--tone-inherit .uai-logo__symbol,
+.uai-logo--tone-inherit .uai-logo__ai,
+.uai-logo--tone-inherit .uai-logo__wordmark {
+  fill: currentColor;
+}

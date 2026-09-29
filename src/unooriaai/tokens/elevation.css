@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Tokens de Elevação — Design System UnooriaAI
+   A superfície é plana e se organiza por camadas e por fios de 1px. A única
+   sombra é de sobreposição — diálogos, menus, avisos e o botão deslizante do
+   controle liga/desliga —, e é definida por tema com os degraus de elevação da
+   Plataforma Unooria (`src/unooria/tokens/elevation.css`): sombra escura
+   `brand-secondary` no claro e halo claro `neutral-*` no escuro, onde uma
+   sombra escura não se veria. Não há sombras com desfoque em outro alvo.
+   ========================================================================== */
+
+:root,
+[data-uai-theme='light'] {
+  /** Diálogos, menus e avisos */
+  --uai-elevation-overlay: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+  /** Superfície do diálogo */
+  --uai-elevation-modal: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+  /** Botão deslizante do controle liga/desliga */
+  --uai-elevation-knob: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+}
+
+[data-uai-theme='dark'] {
+  /** Diálogos, menus e avisos */
+  --uai-elevation-overlay: 0px 0px 8px 4px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-2 */
+  /** Superfície do diálogo */
+  --uai-elevation-modal: 0px 0px 8px 4px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-2 */
+  /** Botão deslizante do controle liga/desliga */
+  --uai-elevation-knob: 0px 0px 5px 1px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-1 */
+}
+
+/*
+ * Fios de 1px. Compostos com `var()` de cor, então declarados em todo
+ * `[data-uai-theme]` (ver o comentário de `colors.css`): declarados só em
+ * `:root`, o fio ficaria com a cor do tema claro dentro de um contêiner escuro.
+ */
+:root,
+[data-uai-theme] {
+  --uai-elevation-hairline-bottom: 0 1px 0 0 var(--uai-border-default);
+  --uai-elevation-hairline-top: 0 -1px 0 0 var(--uai-border-default);
+}

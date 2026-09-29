@@ -2,7 +2,7 @@
 
 Este documento estabelece as regras e padrões arquiteturais obrigatórios para desenvolvimento, criação de componentes, consumo de tokens e documentação no Storybook para a Plataforma Unooria.
 
-> **Paridade obrigatória**: `GEMINI.md` e `AGENTS.md` compartilham o mesmo corpo normativo (seções 1 a 12) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
+> **Paridade obrigatória**: `GEMINI.md` e `AGENTS.md` compartilham o mesmo corpo normativo (seções 1 a 13) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
 
 ---
 
@@ -23,13 +23,13 @@ Este documento estabelece as regras e padrões arquiteturais obrigatórios para 
 - Reservado para todas as estórias, documentações interativas e playgrounds do Storybook.
 - **REGRA CRÍTICA / PROIBIDO**: nenhum arquivo `.stories.tsx` vive em `src/`, e nenhum componente de produção vive em `stories/`.
 - **Plataforma Unooria**: `stories/unooria/components/[NomeComponente].stories.tsx` e `stories/unooria/fundamentos/` (`Colors`, `Typography`, `Spacing`, `Elevation`, `Blur`, `Grids`, `GridsWidgets`, `Icons`, `Logo`).
-- **Marcas**: cada uma usa o mesmo trio de subpastas — `stories/[marca]/fundamentos/`, `stories/[marca]/componentes/` e `stories/[marca]/telas/` — mais um `stories/[marca]/fixtures.ts` com o conteúdo de demonstração compartilhado. Vale para `instanooria`, `chatgpt`, `whatsappmobile`, `tiktooria`, `unootube`, `unoochat` e `unoovista`.
+- **Marcas**: cada uma usa o mesmo trio de subpastas — `stories/[marca]/fundamentos/`, `stories/[marca]/componentes/` e `stories/[marca]/telas/` — mais um `stories/[marca]/fixtures.ts` com o conteúdo de demonstração compartilhado. Vale para `instanooria`, `chatgpt`, `whatsappmobile`, `tiktooria`, `unootube`, `unoochat`, `unoovista` e `unooriaai`.
 - **Inconsistência conhecida**: a Plataforma Unooria usa `components/` (em inglês) e as marcas usam `componentes/`. É assim no repositório; ao criar uma estória, siga a convenção da pasta que já existe.
 - **Recursos rasterizados** exportados do Figma ficam em `public/[marca]/` e são sempre informados por prop (`src`, `avatarSrc`, `coverSrc`, `portraitSrc`), **nunca embutidos no pacote**.
-- **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`, `UniDocKit`, `UncDocKit`, `UnvDocKit`).
+- **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`, `UniDocKit`, `UncDocKit`, `UnvDocKit`, `UaiDocKit`).
 
 ### 1.3. Módulos Multimarca (`src/whatsappmobile/`, `src/instanooria/`, `src/chatgpt/`, `src/tiktooria/`)
-O pacote publica **oito design systems** em um único artefato NPM:
+O pacote publica **nove design systems** em um único artefato NPM:
 
 | Marca | Módulo | Namespace | Prefixo CSS / classes | Tema ou contexto | Componentes | Arquivo Figma de origem |
 |---|---|---|---|---|---|---|
@@ -41,8 +41,9 @@ O pacote publica **oito design systems** em um único artefato NPM:
 | Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 44 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
 | Unoochat | `src/unoochat/` | `UnoochatUI` | `--unc-*` / `.unc-*` | `data-unc-theme="light \| dark"` | 39 | — (estrutura de `src/whatsappmobile/`; identidade da Plataforma Unooria) |
 | Unoovista | `src/unoovista/` | `UnoovistaUI` | `--unv-*` / `.unv-*` | `data-unv-theme="light \| dark"` | 31 | — (estrutura de `src/instanooria/`; identidade da Plataforma Unooria) |
+| UnooriaAI | `src/unooriaai/` | `UnooriaAIUI` | `--uai-*` / `.uai-*` | `data-uai-theme="light \| dark"` | 25 | — (estrutura de `src/chatgpt/`; identidade da Plataforma Unooria) |
 
-- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`, `UnoochatUI`, `UnoovistaUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
+- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`, `UnoochatUI`, `UnoovistaUI`, `UnooriaAIUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
 - **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
   - Código de produção: `src/chatgpt/tokens/` e `src/chatgpt/components/[NomeComponente]/`.
   - Estórias: `stories/chatgpt/fundamentos/`, `stories/chatgpt/componentes/` e `stories/chatgpt/telas/`.
@@ -84,7 +85,13 @@ O pacote publica **oito design systems** em um único artefato NPM:
   - Conteúdo de demonstração compartilhado: `stories/unoovista/fixtures.ts`. Ilustrações SVG geradas a partir da paleta da Unooria: `public/unoovista/`.
   - **Sem arquivo Figma de origem.** Os tokens de cor e de tipografia são literais copiados de `src/unooria/tokens/`, com o token de origem no comentário; `scripts/verificar-paridade-unoovista.mjs` guarda a paridade.
   - Prefixo de variáveis CSS: `--unv-*`. Prefixo de classes: `.unv-*`. Atributo de tema: `data-unv-theme="light | dark"`.
-- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. **O Unoochat e o Unoovista também não leem `--unooria-*` em tempo de execução**: eles copiam os literais (seções 2.8 e 2.9), e a paridade é guardada por script. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube e `var(--unc-*)` fora do Unoochat e `var(--unv-*)` fora do Unoovista — são marcas com hierarquias cromáticas distintas.
+- **UnooriaAI** (cliente de conversa com IA com identidade da Plataforma Unooria, criado como cópia estrutural de `src/chatgpt/` — ver seção 13):
+  - Código de produção: `src/unooriaai/tokens/` e `src/unooriaai/components/[NomeComponente]/`.
+  - Estórias: `stories/unooriaai/fundamentos/`, `stories/unooriaai/componentes/` e `stories/unooriaai/telas/`.
+  - Conteúdo de demonstração compartilhado: `stories/unooriaai/fixtures.ts`. Ilustrações SVG geradas a partir da paleta da Unooria: `public/unooriaai/`.
+  - **Sem arquivo Figma de origem.** Os tokens de cor, de tipografia e de elevação são literais copiados de `src/unooria/tokens/`, com o token de origem no comentário; `scripts/verificar-paridade-unooriaai.mjs` guarda a paridade.
+  - Prefixo de variáveis CSS: `--uai-*`. Prefixo de classes: `.uai-*`. Atributo de tema: `data-uai-theme="light | dark"`.
+- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. **O Unoochat, o Unoovista e o UnooriaAI também não leem `--unooria-*` em tempo de execução**: eles copiam os literais (seções 2.8, 2.9 e 2.10), e a paridade é guardada por script. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube e `var(--unc-*)` fora do Unoochat e `var(--unv-*)` fora do Unoovista e `var(--uai-*)` fora do UnooriaAI — são marcas com hierarquias cromáticas distintas.
 
 ---
 
@@ -222,6 +229,20 @@ Todo componente, estilo ou documentação do Unoovista **DEVE** consumir exclusi
 - **Token composto com `var()` se declara em todo `[data-unv-theme]`, nunca só em `:root`.** Uma propriedade personalizada cujo valor usa `var(--unv-color-…)` é resolvida NO elemento em que é declarada. Os gradientes de anel e os fios de 1px (`--unv-elevation-hairline-*`, `-bar-*`, `-drawer`) declarados apenas em `:root` congelavam os valores do tema claro e os herdavam já calculados para dentro de um contêiner escuro: no primeiro build o fio entre conversas saiu lavanda forte no tema escuro, e o gradiente do anel de story usava as paradas do claro — nenhum teste acusou, só a inspeção visual (medido em 2026-09-29). Por isso `colors.css` e `spacing.css` repetem esses blocos em `:root, [data-unv-theme]`.
 - **Elevação**: a superfície é plana e se organiza por camadas. A única sombra é **`--unv-elevation-overlay`**, definida por tema (`--unooria-elevation-brand-secondary` no claro, `--unooria-elevation-neutral-2` no escuro), aplicada **apenas** à doca de navegação, a menus, diálogos, folhas, avisos, ao botão flutuante e à pílula de ações da publicação. Os fios são de 1px (`--unv-elevation-hairline-*` e `-bar-*`).
 
+
+### 2.10. Tokens do UnooriaAI (`src/unooriaai/tokens/`)
+Todo componente, estilo ou documentação do UnooriaAI **DEVE** consumir exclusivamente as variáveis `--uai-*`. Como o Unoochat e o Unoovista, o UnooriaAI **não tem arquivo de design de origem**: a identidade é a da **Plataforma Unooria** — paleta roxa, Open Sans e Material Symbols — e cada token de cor, de tipografia e de elevação é uma **cópia literal** do valor da plataforma, com o nome do token de origem no comentário da linha. **O módulo nunca lê `--unooria-*` em tempo de execução** (seção 1.3): `scripts/verificar-paridade-unooriaai.mjs` (encadeado no `build:package`) reprova o build se um literal divergir da origem ou se o token citado deixar de existir. `colors.css` e `colors.ts` saem da mesma tabela, então não divergem entre si.
+
+- **Dois temas, ambos medidos sobre a escala `brandpurple`**: `:root, [data-uai-theme='light']` e `[data-uai-theme='dark']`. Claro: superfícies em branco e lavanda, acento `brandpurple-600` (`#716C98`). Escuro: superfícies em `brandpurple-900`, `-950` e `-800`, acento `brandpurple-400` (`#AAA5C2`). **É PROIBIDO derivar um tema por cálculo** (inverter, clarear, `color-mix`, opacidade calculada): cada valor de cada tema é um degrau nomeado da Unooria. **Não há primitivas de cor no CSS** — os componentes só consomem semânticos.
+- **Superfícies**: `--uai-bg-primary|secondary|tertiary|inverse|inverse-hover|brand`. **Texto**: `--uai-text-primary|secondary|tertiary|inverse|brand|link`. **Bordas**: `--uai-border-default|strong|brand|control`; o contorno de campo e de controle usa `-control`, que passa de 3:1. **Ações e estados**: `--uai-interactive-*`, `--uai-status-success|error|warning|info` (mais `-error-hover`) e `--uai-fill-brand|success|error|warning|info` (preenchimento do selo, em opacidade nomeada da Unooria, nunca `color-mix`).
+- **Escadas translúcidas**: `--uai-fill-2|4|8|10` e `--uai-text-soft-30|40|50|60|70|80` usam os tokens `--unooria-color-opacity-*` (tinta `brandpurple` no claro, `neutrallight` no escuro). Onde dois degraus caem no mesmo token de origem (`text-soft-40` e `-50` no claro; `-40`, `-50` e `-60` no escuro), isso é decisão de contraste, documentada no cabeçalho de `colors.css`.
+- **Superfícies do cliente web** (`--uai-web-*`): `canvas`, `suggestion`, `composer-fill`, `composer-border`, `composer-placeholder`, `veil`, `hairline` e `accent`, também literais da Unooria. A cápsula de plano (`--uai-color-plan-tag-fill|text`) **varia com o tema**: `brandpurple-600` com rótulo `neutral-50` no claro, `brandpurple-400` com rótulo `brandpurple-950` no escuro.
+- **Contraste medido, nos dois temas**: texto ≥ 4,5:1 e gráfico ≥ 3:1 em **85 pares de uso real** (menor razão de texto 4,62:1 no claro e 4,84:1 no escuro; menor razão gráfica 4,02:1 e 4,80:1). A tabela é o export `uaiContrastPairs` de `colors.ts` e aparece em `UnooriaAI/Fundamentos/Cores`; o script que a gera recusa gravar se algum par ficar abaixo do mínimo. **Ressalva de uso**: o selo `info` do `Badge` sobre `--uai-bg-tertiary` mede 4,4:1 no claro e 4,2:1 no escuro e **não deve ser usado nessa camada**; sobre a superfície primária e a secundária todos os selos passam. `error`, `success` e `warning` passam também sobre a terciária. O texto desabilitado (`text-soft-30`) é isento pela WCAG e fica fora da tabela.
+- **Tokens compostos com `var()` se declaram em todo `[data-uai-theme]`, nunca só em `:root`** (a lição da seção 2.9): vale para `--uai-elevation-hairline-*`.
+- **Tipografia**: Open Sans via `--uai-font-sans` e Material Symbols via `--uai-icon-font-family`; escala de **13 estilos** (`--uai-font-display-xl|lg-*`, `heading-h1|h2|h3-*`, `body-lg|md|sm|xs-*`, `label-*`, `caption-*`) nos degraus e alturas de linha da Unooria (12, 14, 16, 18, 24, 34, 48 e 60px), pesos 400/500/600/700, cada estilo citando o `--unooria-size-*` de origem. **Sem `letter-spacing`**: as variáveis `-tracking` valem `0px` só para que nenhum componente invente um valor.
+- **Medidas**: escala `--uai-spacing-*` em grade de 4px (com os degraus finos de 2px e 6px), raios `--uai-radius-*` e dimensões estruturais (`--uai-size-icon-*`, `-avatar-*`, `-button-*`, `-sidebar`, `-input-height`) são **próprias do módulo**, definidas pela estrutura de componentes do módulo para que os layouts não se desloquem; só `--uai-size-icon-*` cita origem na Unooria (`--unooria-icon-size-*`).
+- **Elevação**: a superfície é plana. **`--uai-elevation-overlay`**, **`-modal`** e **`-knob`** são definidas por tema (`--unooria-elevation-brand-secondary` no claro; `--unooria-elevation-neutral-2` e `-1` no escuro) e se aplicam **apenas** a sobreposições (diálogo, botão deslizante do `Toggle`). Os degraus `sm|md|lg|xl` e os overlays pretos e brancos da origem estrutural **não existem** aqui. Véu de diálogo: `--uai-overlay-scrim`.
+
 ---
 
 ## 3. Convenção Oficial de Documentação em Componentes (Padrão Ouro)
@@ -325,7 +346,7 @@ export default meta;
 ### 4.3. Acessibilidade (a11y)
 - Semântica ARIA completa (`role="dialog"`, `role="progressbar"`, `role="button"`, `role="region"`, `aria-expanded`, `aria-controls`, `aria-labelledby`, `aria-describedby`).
 - Navegação completa por teclado (ESC para fechar modais/menus, Tab/Shift+Tab com focus trapping, Enter/Espaço para acionamento).
-- **Diálogo composto se nomeia sozinho.** Todo componente com `role="dialog"` que oferece subcomponente de título (`Modal.Title` na Plataforma Unooria, `Modal.Header` no ChatGPT e no Unootube) liga `aria-labelledby` a ele automaticamente — na composição manual E pelo atalho `title` —, e `Modal.Description` a `aria-describedby`. O título se anuncia ao diálogo pelo contexto, com o id que de fato renderizou (o `id` passado, ou o de `useId`). Precedência: `aria-labelledby` explícito manda; com `aria-label` explícito o diálogo **não** recebe `aria-labelledby`, que venceria o `aria-label` no cálculo do nome e o calaria sem aviso. Medido em 25/09/2026, na 0.2.2: o composto saía sem nome, o leitor de tela anunciava só "diálogo" e `getByRole('dialog', { name })` não achava nada — eram 34 diálogos assim no monorepo consumidor. As estórias com `play` de cada `Modal` guardam a regra.
+- **Diálogo composto se nomeia sozinho.** Todo componente com `role="dialog"` que oferece subcomponente de título (`Modal.Title` na Plataforma Unooria, `Modal.Header` no ChatGPT, no Unootube e no UnooriaAI) liga `aria-labelledby` a ele automaticamente — na composição manual E pelo atalho `title` —, e `Modal.Description` a `aria-describedby`. O título se anuncia ao diálogo pelo contexto, com o id que de fato renderizou (o `id` passado, ou o de `useId`). Precedência: `aria-labelledby` explícito manda; com `aria-label` explícito o diálogo **não** recebe `aria-labelledby`, que venceria o `aria-label` no cálculo do nome e o calaria sem aviso. Medido em 25/09/2026, na 0.2.2: o composto saía sem nome, o leitor de tela anunciava só "diálogo" e `getByRole('dialog', { name })` não achava nada — eram 34 diálogos assim no monorepo consumidor. As estórias com `play` de cada `Modal` guardam a regra.
 
 ### 4.4. Iconografia Derivada do Figma
 - **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca de ícones. Todo dado vetorial é o **export SVG literal do nó do Figma**, com o `viewBox` original preservado — **não normalizado para 24×24**.
@@ -335,6 +356,7 @@ export default meta;
   - **Tik Tooria**: `src/tiktooria/components/Icon/IconPaths.tsx` (`tikIcons`), mais os logotipos de terceiros em `SocialLogo/LogoVectors.ts`.
   - **Unoovista**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unoovista/components/Icon/IconGlyphs.ts` (ver seção 12.4). O logotipo é marca original, em contornos de Open Sans Bold.
   - **Unoochat**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unoochat/components/Icon/IconGlyphs.ts` (ver seção 11.4).
+  - **UnooriaAI**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unooriaai/components/Icon/IconGlyphs.ts` (ver seção 13.4). O logotipo é marca original, em contornos de Open Sans Bold.
   - **ChatGPT**: **não tem biblioteca vetorial** — o arquivo de origem usa caracteres tipográficos, registrados em `src/chatgpt/tokens/glyphs.ts` (ver seção 7.4).
 - Ao adicionar um glifo novo, exporte o SVG do Figma, copie os atributos (`d`, `cx/cy/r`, `x/y/width/height`) **sem edição** e preencha `figmaName`, `viewBox` e `usage` — mais `figmaNode` nos registros que o preveem.
 - Quando o arquivo reaproveita o mesmo vetor girado ou espelhado, use as props `rotate` / `flipX` / `flipY` em vez de duplicar o caminho com coordenadas reescritas.
@@ -419,7 +441,7 @@ componente não oferece nada disso e ainda concorre com o que o `next/font`
 declara. Sendo opt-in, um app que resolva a tipografia por lá simplesmente não
 escreve a linha.
 
-- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*`, `--unc-*`, `--unv-*` e `--unooria-*` têm folha de
+- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*`, `--unc-*`, `--unv-*`, `--uai-*` e `--unooria-*` têm folha de
   fonte.** O Instanooria não: usa SF Pro, fonte de sistema da Apple.
 - **A Plataforma Unooria e o Unoochat são os casos críticos.** O Unoochat usa a mesma fonte de ligadura (Material Symbols Rounded, 5,1 MB) — os `.woff2` não são duplicados (`src/fonts/material-symbols-rounded/` é compartilhado).
 - **A Plataforma Unooria é o caso crítico.** Os ícones dela são uma **fonte de
@@ -443,13 +465,13 @@ escreve a linha.
 ## 5. Validação Obrigatória e Critérios de Aceite
 Antes de considerar qualquer tarefa de componente ou documentação concluída:
 0. Ao tocar no Unootube, conferir **antes de registrar um glifo novo** se ele já existe: os dois arquivos de origem redesenham vários dos mesmos vetores, apenas transladados ou escalados. A análise de repetição vive no bloco `shorts` de `IconPaths.ts`.
-1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube, `src/unoochat/tokens/` para o Unoochat, `src/unoovista/tokens/` para o Unoovista), sem hexadecimais avulsos e sem mistura entre marcas.
+1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube, `src/unoochat/tokens/` para o Unoochat, `src/unoovista/tokens/` para o Unoovista, `src/unooriaai/tokens/` para o UnooriaAI), sem hexadecimais avulsos e sem mistura entre marcas.
 2. Executar `npx tsc --noEmit` e garantir **0 erros de compilação TypeScript**.
-3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`, `src/styles-unoochat.css`, `src/styles-unoovista.css`).
+3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`, `src/styles-unoochat.css`, `src/styles-unoovista.css`, `src/styles-unooriaai.css`).
 4. Executar `npm run build-storybook` e validar o **build sem falhas do Storybook**.
 5. Executar `npm run lint` e garantir **0 erros e 0 warnings**.
 6. Executar `npm test` e garantir que **todas as estórias renderizam** — a suíte Vitest monta cada estória em um Chromium real.
-7. Ao tocar no Unoochat, executar `npm run verificar:paridade-unoochat`; ao tocar no Unoovista, `npm run verificar:paridade-unoovista`. Garanta que todo literal com origem na Plataforma Unooria continua igual a ela.
+7. Ao tocar no Unoochat, executar `npm run verificar:paridade-unoochat`; ao tocar no Unoovista, `npm run verificar:paridade-unoovista`; ao tocar no UnooriaAI, `npm run verificar:paridade-unooriaai`. Garanta que todo literal com origem na Plataforma Unooria continua igual a ela.
 8. Executar `npm run build:package` e garantir que o pacote é emitido sem falhas, com os tipos gerados pelo `tsc` (ver seção 4.5).
 
 ### 5.1. Registro de Desvios em Relação ao Figma (Plataforma Unooria)
@@ -934,3 +956,54 @@ Não há "desvios em relação ao Figma", porque não há arquivo. O que se regi
 - **Contraste por decisão**: o `SegmentedTabs` usa traço deslizante de 3px (um segmento elevado sobre a trilha mediria 1,15:1); o `Snackbar` usa cores invertidas e ação em botão contornado (link sobre fundo invertido mediria 2,1:1); o `StoryComposer` fica em `background-primary` (é conteúdo da tela; `elevated` é reservado às camadas flutuantes); o anel "visto" do `Avatar` usa `border-control`, não `highlight-ring` (que reprova 3:1).
 - **Ressalvas abertas**: nenhuma de contraste. O `SearchField` e o `MessageBubble` têm contorno de 1px em `border-control` (≥ 4,3:1) e o anel "visto" usa `highlight-ring`, hoje `neutral-500`/`neutraldark-800`; o símbolo do `Logo` é uma tinta só (`action-primary`, 4,88:1 no claro e 7,70:1 no escuro sobre a tela).
 - **Tokens locais** (custom properties dentro do CSS do componente, sem token global): `--unv-post-card-*` (pílula de ações), `--unv-story-bubble-*`, `--unv-avatar-shape` e `-gap-color`, `--unv-badge-notification-size`, `--unv-phone-frame-gesture-*`, `--unv-dm-poll-mark-size`, `--unv-confirm-dialog-width`, `--unv-gesture-hint-travel`, `--unv-snackbar-inset-*`.
+
+---
+
+## 13. Design System UnooriaAI (Seção `UnooriaAI` do Storybook)
+
+O **UnooriaAI** é o cliente de conversa com IA da Plataforma Unooria com identidade própria: **paleta roxa, Open Sans e Material Symbols da Plataforma Unooria, em tema claro e escuro**. Foi criado em 2026-09-29 como **cópia estrutural** do módulo `src/chatgpt/` — mesmos 25 componentes, mesmas props, mesmas medidas de layout — com cores, tipografia, ícones e logotipo trocados. **O módulo `src/chatgpt/` continua no repositório, intacto**, e as duas marcas coexistem: nenhuma edição de um deles se propaga ao outro (cada um tem tokens e classes exclusivos, seção 1.3).
+
+### 13.1. Origem, Motivo e Regras
+- **Origem**: não há arquivo Figma. A estrutura de componentes vem de `src/chatgpt/` (seção 7); a identidade vem da Plataforma Unooria (seção 2.10). Componentes que a origem já tinha continuam com o mesmo nome, as mesmas props e as mesmas medidas de layout, com as diferenças de 13.3.
+- **Motivo**: o produto precisa de uma interface de conversa com IA que **não reproduza a identidade visual do aplicativo de terceiros** que serviu de referência ao módulo `chatgpt`. Por isso, **no código, nos comentários, nas estórias, nas fixtures e nos textos padrão do UnooriaAI é PROIBIDO citar** o aplicativo de origem, a empresa dele, o arquivo Figma comunitário ou seus nós, e usar o vocabulário de marca dele (o nome do aplicativo e da empresa, "GPT", "GPTs", nomes de modelos e de planos). A referência à estrutura de `src/chatgpt/` vive **apenas** nesta seção e em 1.3.
+- **Sem bitmap de terceiros**: as imagens de demonstração são ilustrações SVG geradas a partir da paleta da Unooria, em `public/unooriaai/` (`avatar-lucas.svg`, `avatar-ana.svg` e `avatar-rafael.svg`); nenhuma fotografia. Todas entram por prop (`src`). **Não copiar** `public/` de outra marca.
+- **Idioma**: todo texto padrão de componente e de estória é pt-BR (o módulo de origem usava inglês). Nomes de demonstração são fictícios e vivem em `stories/unooriaai/fixtures.ts`.
+
+### 13.2. Títulos das Estórias
+- **Fundamentos**: `UnooriaAI/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação | Ícones]`.
+- **Componentes**: `UnooriaAI/Componentes/[NomeComponente]`.
+- **Telas compostas**: `UnooriaAI/Telas/Telas Compostas`.
+
+### 13.3. Componentes Oficiais (25) e Diferenças em Relação ao `chatgpt`
+`Button`, `IconButton`, `Avatar`, `Badge`, `Tag`, `Toggle`, `Divider`, `Input`, `ChatInput`, `SearchInput`, `NavItem`, `ChatBubble`, `AssistantCard`, `SettingsRow`, `Sidebar` (composto: `.NewChatButton`, `.SectionLabel`, `.Spacer`, `.FooterItem`), `FeatureCard`, `Modal` (composto: `.Header`, `.Body`, `.Footer`), `Icon`, `Logo`, `PlanTag`, `PromptSuggestion`, `TopicColumn`, `SidebarRow`, `Composer` (composto: `.Dock`) e `WebSidebar` (composto: `.Section`, `.NewChat`).
+- **REGRA CRÍTICA, herdada da seção 7.3**: um componente **NUNCA** substitui o seu equivalente do outro grupo — `SidebarRow` não é `NavItem`, `WebSidebar` não é `Sidebar`, `Composer` não é `ChatInput`, `PlanTag` não é `Badge`. As medidas são distintas.
+- **Diferenças de API em relação a `chatgpt`** (as únicas): `GPTCard` virou **`AssistantCard`** (`GPT` é vocabulário de terceiro); `Icon` renderiza um `<span>` de ligadura, não um `<svg>`, e aceita `filled`, `rotate`, `flipX` e `flipY`; `Logo` tem `variant` (`horizontal`, `mark`, `wordmark`) e `tone` (`primary`, `inherit`) e o `height` padrão é 32; `NavItem` ganhou `icon?: UaiIconName` (o `glyph` continua `ReactNode` e tem precedência); `ChatInput` ganhou `defaultValue` (ver abaixo); `PlanTag` e o rótulo padrão dos componentes estão em pt-BR ("Pro" no lugar do nome de plano de terceiro; "Nova conversa", "Escreva uma mensagem", "Buscar conversas"). O tipo `UaiCardProps` chama-se `UaiAssistantCardProps`. Nenhuma prop foi removida.
+- **Diferenças de medida** (todas por tokens da Unooria): as alturas do `Button` passaram de 28/34/44 para **30/36/48px** (linha de rótulo dos estilos `label-md` e `label-lg`); o corpo de 13px do `FeatureCard` e o de 11px dos rótulos e legendas passaram para o degrau de 12/18; o `caption` é 12px; as iniciais do `Avatar` são 10/12/16/18px. Nenhuma outra medida de layout mudou.
+- **Correção herdada**: o `ChatInput` do módulo de origem passava `value` ao elemento nativo mesmo sem o consumidor pedir, contra a regra 4.5.1. No UnooriaAI ele só é controlado quando recebe `value`; sem ele usa `defaultValue`, lê o texto do nó no envio e limpa o próprio nó. A estória `Estados` guarda a regra com `play`. Vale registrar que o módulo `chatgpt` **continua com o defeito** (fora do escopo desta cópia).
+- **É PROIBIDO ampliar esse conjunto sem registrar a decisão** na estória correspondente, com o `UaiDocDecisions`.
+- **Fronteira cliente/servidor** (seção 4.5): 21 dos 25 componentes rodam como Server Components (medido em 2026-09-29 sobre a 0.2.8); são `'use client'` apenas `ChatInput`, `Composer`, `Modal` e `Toggle`. `Icon` e `Logo` são Server Components.
+
+### 13.4. Iconografia: Biblioteca da Unooria
+- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou trazido de outra biblioteca. O registro `src/unooriaai/components/Icon/IconGlyphs.ts` (`uaiIcons`) aponta cada nome do módulo para uma **ligadura do Material Symbols Rounded, peso 300, sem preenchimento** (com `filled` quando o estado exige) — a biblioteca do quadro `6024:2923` da Plataforma Unooria. **Todo nome do registro existe nesse quadro**; ao acrescentar um glifo, confira-o em `src/unooria/tokens/figma_icons_node_6024_2923.json` antes.
+- **A fonte é de ligadura**: sem `@unooria/design-system/fonts/unooriaai.css` (ou o Material Symbols carregado pelo app), o **nome do ícone aparece como texto** — o mesmo modo de falha da Plataforma Unooria (seção 4.6). O `Icon` corta o excedente à caixa quadrada. `size` governa a aresta da caixa; o glifo Material ocupa cerca de 83% dela.
+- **Vocabulário**: os treze nomes do módulo de origem foram mantidos (`microphone`, `image`, `paperPlaneRight`, `add`, `chatText`, `trash`, `sun`, `user`, `arrowSquareOut`, `signOut`, `chats`, `stars`, `shieldWarning`) e acrescentaram-se seis, no lugar dos glifos tipográficos da origem: `close`, `arrowForward`, `arrowUpward`, `sparkle`, `search` e `chatBubble`. **Os caracteres tipográficos (✕ → ↑ ✦ ⌕ + e o emoji) deixaram de existir** — não há `glyphs.ts` nem estória de glifos; toda prop de glifo continua aceitando `ReactNode`, com `Icon` por padrão.
+- **Substitutos, porque o quadro `6024:2923` não publica o glifo**: `image` → `photo`, `sun` → `wb_sunny`, `stars` → `stars` preenchido, `sparkle` → `flare` (a explosão de quatro pontas mais próxima). Cada um está registrado como decisão na estória `Ícones`.
+- **Logotipo (`Logo/LogoVector.ts`)**: marca original, montada como a do Unoovista (seção 12.4). O **símbolo é o isótipo oficial da Unooria** — o anel em forma de amendoim, com um único miolo —, traçado do PNG `public/brand/unooria_symbol_navy_fill.png` (o mesmo vetor do `Logo` do Unoovista, copiado como literal, o que não viola a regra 1.3), e o texto "UnooriaAI" são **contornos de Open Sans Bold** gerados por transformação única da curva da fonte (nunca `<text>`, cujo fallback deformaria a marca). O símbolo ocupa o vão do "oo" ("Un∞riaAI"); o símbolo e o "AI" usam `--uai-text-brand` e "Unooria" usa `--uai-text-primary`. `viewBox` horizontal `0 0 121.61 24`. A técnica está no comentário de `Logo/LogoVector.ts`.
+
+### 13.5. Kit de Documentação
+As estórias do UnooriaAI usam o `UnooriaDocShell` como moldura e `.storybook/components/UaiDocKit.tsx`: `UaiDocGrid`, `UaiDocCard`, `UaiDocSpecs` (substitui o bloco "especificações do Figma"), `UaiDocDecisions` (substitui o registro de desvios), `UaiDocAnatomy`, `UaiDocStage` (props `theme` e `surface`), `UaiDocPractices`, **`UaiDocThemeSwitcher`**, `UaiDocPropsTable` e `UaiDocTokenSwatch` (metade clara, metade escura, com o token de origem na Unooria). Toda estória mantém as seções obrigatórias do Padrão Ouro (seção 3), com a seção 2 intitulada "Especificações técnicas".
+- **Seção 6 ("Suporte a Temas")**: atendida pelo `UaiDocThemeSwitcher`, que alterna `data-uai-theme` entre `light` e `dark` exatamente como um produto faz.
+- A cor das barras de seção nas estórias é `#716C98` (`brandpurple-600`).
+- A moldura de janela e o cabeçalho de área usados em `UnooriaAI/Telas` são **andaimes de documentação**, restritos a `stories/`, e não integram o pacote.
+
+### 13.6. Registro de Decisões de Design
+Não há "desvios em relação ao Figma", porque não há arquivo. O que se registra, com o `UaiDocDecisions` em cada estória, é toda escolha que não seja mera aplicação de um token da Unooria a um componente herdado. Decisões de 2026-09-29:
+- **Sem primitivas**: os componentes consomem só semânticos; a escada de primitivas e os overlays pretos e brancos da origem estrutural foram removidos, e o selo passou a `--uai-fill-*` em opacidade nomeada (nada de `color-mix`).
+- **Contorno de 1px no `Composer`**: a origem estrutural usava 0,5px. O traço de 1px mede 4,96:1 no claro e 8,64:1 no escuro; a diferença foi descontada do padding vertical, e a caixa continua com 56 × 760.
+- **Anel de foco do `SearchInput`**: o foco não escurece mais o fundo (o placeholder caía a ~3:1); passou a anel de 2px em `--uai-border-brand` sobre `--uai-fill-4`.
+- **Alvo do fechar do `Modal`**: 24px (WCAG 2.5.8), com o ícone `close` em 20px.
+- **Cápsula do `PlanTag` por tema**: o degrau claro da origem media 2,37:1 de limite sobre a tela; a cápsula passou a `brandpurple-600` (claro) e `brandpurple-400` (escuro), com limite ≥ 3:1 nos dois.
+- **Vermelho de estado no tema escuro**: `danger-300` (e `-200` no hover); o `danger-400` fazia o selo de erro medir 4,0:1 sobre a camada terciária.
+- **Botão de nova conversa e botão primário são de cores diferentes, de propósito**: `Sidebar.NewChatButton` e `WebSidebar.NewChat` usam `--uai-bg-inverse` (o extremo escuro da escala roxa no claro, lilás no escuro), como na estrutura de origem; `Button variant="primary"` usa `--uai-interactive-primary` (`brandpurple-600` no claro). Os dois convivem em `Telas/Explorar assistentes`.
+- **Peso 300 dos ícones**: o traço é fino em tamanhos de 16px (a cor mede 6,4:1, só o traço é fino); onde o glifo aparece isolado, o `Icon` usa a caixa de 20px.
+- **Renomeações de estória**: `ExemploOficialDoFigma` virou `ExemploOficial` ou `ExemploDeComposicao` (o id da estória muda); `ExplorarGPTs` virou `ExplorarAssistentes` e `ModoDark`, `ModoEscuro`.

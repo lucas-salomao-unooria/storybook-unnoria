@@ -1,0 +1,68 @@
+/**
+ * Estilos do Componente SearchInput — Design System UnooriaAI
+ *
+ * Medidas: 260 × 36, padding 8/12, gap 8, raio 8 e superfície `--uai-fill-4`.
+ * Glifo e espaço reservado compartilham `--uai-text-soft-40`.
+ */
+
+.uai-search-input {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 260px;
+  height: 36px;
+  padding: var(--uai-spacing-4) var(--uai-spacing-5);
+  border-radius: var(--uai-radius-md);
+  background-color: var(--uai-fill-4);
+  transition: background-color var(--uai-transition-fast);
+}
+
+.uai-search-input--block {
+  width: 100%;
+}
+
+/*
+ * Foco por anel, não por escurecer o preenchimento: com `--uai-fill-10` o
+ * espaço reservado e o glifo caíam a ~3:1 nos dois temas (texto exige 4,5:1).
+ * O preenchimento fica em `--uai-fill-4` e o anel de 2px em `--uai-border-brand`
+ * (4,9:1 no claro e 7,7:1 no escuro) marca o campo focado.
+ */
+.uai-search-input:focus-within {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 0;
+}
+
+.uai-search-input__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  line-height: 1;
+  color: var(--uai-text-soft-40);
+}
+
+.uai-search-input__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  color: var(--uai-text-primary);
+  appearance: none;
+}
+
+.uai-search-input__field::placeholder {
+  color: var(--uai-text-soft-40);
+}
+
+.uai-search-input__field::-webkit-search-cancel-button {
+  appearance: none;
+}

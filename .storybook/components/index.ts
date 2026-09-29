@@ -8,3 +8,4 @@ export * from './TikDocKit';
 export * from './UniDocKit';
 export * from './UncDocKit';
 export * from './UnvDocKit';
+export * from './UaiDocKit';

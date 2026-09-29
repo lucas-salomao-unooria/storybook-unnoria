@@ -1,0 +1,73 @@
+/**
+ * Estilos do Componente NavItem — Design System UnooriaAI
+ *
+ * Medidas: 240 × 36, padding 8/12, gap 8, raio 8, glifo de 16px e rótulo
+ * Open Sans 400 de 14px (`body-sm`) truncado em uma linha.
+ */
+
+.uai-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--uai-spacing-4) var(--uai-spacing-5);
+  border: none;
+  border-radius: var(--uai-radius-md);
+  background-color: transparent;
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--uai-transition-fast), color var(--uai-transition-fast);
+}
+
+.uai-nav-item:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-nav-item__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: var(--uai-font-body-sm-size);
+  line-height: 1;
+}
+
+.uai-nav-item__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Estados
+   ========================================================================== */
+
+.uai-nav-item--default {
+  background-color: transparent;
+  color: var(--uai-text-soft-60);
+}
+
+.uai-nav-item--default:hover {
+  background-color: var(--uai-fill-2);
+  color: var(--uai-text-soft-80);
+}
+
+.uai-nav-item--hover {
+  background-color: var(--uai-fill-2);
+  color: var(--uai-text-soft-80);
+}
+
+.uai-nav-item--active {
+  background-color: var(--uai-fill-4);
+  color: var(--uai-text-primary);
+}

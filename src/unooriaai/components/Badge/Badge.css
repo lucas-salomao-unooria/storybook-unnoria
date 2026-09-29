@@ -1,0 +1,49 @@
+/**
+ * Estilos do Componente Badge — Design System UnooriaAI
+ *
+ * Medidas: padding 2/8, raio 4, altura 22 (linha de 18px do degrau Caption
+ * mais o recuo) e rótulo Open Sans medium de 12px (peso 500, sem estilo de
+ * texto próprio — o degrau Caption usa peso 400).
+ *
+ * As superfícies são os preenchimentos `--uai-fill-*` da variante (10% de
+ * opacidade, tokens de opacidade da Unooria), que acompanham a troca de tema.
+ */
+
+.uai-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--uai-spacing-1) var(--uai-spacing-4);
+  border-radius: var(--uai-radius-sm);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-caption-size);
+  font-weight: var(--uai-font-weight-medium);
+  line-height: var(--uai-font-caption-line);
+  white-space: nowrap;
+}
+
+.uai-badge--default {
+  background-color: var(--uai-fill-4);
+  color: var(--uai-text-primary);
+}
+
+.uai-badge--primary {
+  background-color: var(--uai-fill-brand);
+  color: var(--uai-text-brand);
+}
+
+.uai-badge--success {
+  background-color: var(--uai-fill-success);
+  color: var(--uai-status-success);
+}
+
+.uai-badge--error {
+  background-color: var(--uai-fill-error);
+  color: var(--uai-status-error);
+}
+
+.uai-badge--warning {
+  background-color: var(--uai-fill-warning);
+  color: var(--uai-status-warning);
+}

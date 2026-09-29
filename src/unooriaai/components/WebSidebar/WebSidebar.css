@@ -1,0 +1,83 @@
+/**
+ * Estilos do Componente WebSidebar — Design System UnooriaAI
+ *
+ * Coluna de 282 × 1024, sem preenchimento, com as seções distribuídas por
+ * `space-between` e 20px de intervalo mínimo entre elas. Cada seção tem
+ * padding 20 (`--uai-spacing-7`) e 4px entre as linhas (`--uai-spacing-2`).
+ *
+ * A coluna não pinta fundo: ela mostra a mesma superfície da conversa, e a
+ * separação vem dos fios de 1px em `--uai-web-hairline`, que tem um valor
+ * nomeado em cada tema.
+ */
+
+.uai-web-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--uai-spacing-7);
+  box-sizing: border-box;
+  width: 282px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--uai-web-hairline);
+  background-color: transparent;
+  font-family: var(--uai-font-sans);
+  overflow-y: auto;
+}
+
+.uai-web-sidebar__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uai-spacing-2);
+  box-sizing: border-box;
+  padding: var(--uai-spacing-7);
+}
+
+.uai-web-sidebar__section--bordered {
+  border-top: 1px solid var(--uai-web-hairline);
+}
+
+/* ==========================================================================
+   Botão de nova conversa
+   ========================================================================== */
+
+.uai-web-sidebar__new-chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--uai-spacing-4) var(--uai-spacing-6);
+  border: none;
+  border-radius: var(--uai-radius-lg);
+  background-color: var(--uai-web-accent);
+  color: var(--uai-text-inverse);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  cursor: pointer;
+  appearance: none;
+  transition: opacity var(--uai-transition-fast);
+}
+
+.uai-web-sidebar__new-chat:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.uai-web-sidebar__new-chat:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-web-sidebar__new-chat:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uai-web-sidebar__new-chat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

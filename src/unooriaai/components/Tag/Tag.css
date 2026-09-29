@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente Tag — Design System UnooriaAI
+ *
+ * Medidas: padding 8/16, gap 6, raio 20 (`--uai-radius-2xl`), altura 36 e
+ * tipografia Open Sans regular de 14/20px (`Body/SM`). O ícone opcional deve
+ * ter 16px (o glifo Material ocupa cerca de 83% da caixa).
+ */
+
+.uai-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uai-spacing-3);
+  box-sizing: border-box;
+  padding: var(--uai-spacing-4) var(--uai-spacing-6);
+  border: none;
+  border-radius: var(--uai-radius-2xl);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--uai-transition-fast), color var(--uai-transition-fast);
+}
+
+.uai-tag:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-tag:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uai-tag__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.uai-tag--default {
+  background-color: var(--uai-fill-4);
+  color: var(--uai-text-primary);
+}
+
+.uai-tag--default:hover:not(:disabled) {
+  background-color: var(--uai-fill-10);
+}
+
+.uai-tag--selected {
+  background-color: var(--uai-bg-inverse);
+  color: var(--uai-text-inverse);
+}

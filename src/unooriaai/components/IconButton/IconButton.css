@@ -1,0 +1,105 @@
+/**
+ * Estilos do Componente IconButton — Design System UnooriaAI
+ *
+ * Medidas de cada tamanho:
+ *   SM · 28px · raio 6 · ícone 16px (`--uai-size-icon-sm`)
+ *   MD · 36px · raio 8 · ícone 20px (`--uai-size-icon-md`)
+ *   LG · 44px · raio 12 · ícone 24px (`--uai-size-icon-lg`)
+ *
+ * As alturas 28/36/44 e o raio de 6px são medidas próprias do módulo, sem
+ * degrau equivalente nas escalas de espaçamento e de raio. Elas não seguem a
+ * régua `--uai-size-button-*` (32/40/48), que pertence ao `Button`. O glifo
+ * Material ocupa cerca de 83% da caixa do `Icon`; o `font-size` abaixo vale
+ * para filhos textuais e acompanha os mesmos degraus.
+ */
+
+.uai-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-family: var(--uai-font-sans);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+  flex-shrink: 0;
+  transition: background-color var(--uai-transition-fast), color var(--uai-transition-fast),
+    opacity var(--uai-transition-fast);
+}
+
+.uai-icon-button:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uai-icon-button__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.uai-icon-button--sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: var(--uai-size-icon-sm);
+}
+
+.uai-icon-button--md {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--uai-radius-md);
+  font-size: var(--uai-size-icon-md);
+}
+
+.uai-icon-button--lg {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--uai-radius-lg);
+  font-size: var(--uai-size-icon-lg);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.uai-icon-button--default {
+  background-color: transparent;
+  color: var(--uai-text-primary);
+}
+
+.uai-icon-button--default:hover:not(:disabled) {
+  background-color: var(--uai-fill-4);
+}
+
+.uai-icon-button--filled {
+  background-color: var(--uai-fill-4);
+  color: var(--uai-text-primary);
+}
+
+.uai-icon-button--filled:hover:not(:disabled) {
+  background-color: var(--uai-fill-10);
+}
+
+.uai-icon-button--primary {
+  background-color: var(--uai-interactive-primary);
+  color: var(--uai-text-inverse);
+}
+
+.uai-icon-button--primary:hover:not(:disabled) {
+  background-color: var(--uai-interactive-hover);
+}

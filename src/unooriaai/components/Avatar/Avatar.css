@@ -1,0 +1,76 @@
+/**
+ * Estilos do Componente Avatar — Design System UnooriaAI
+ *
+ * Diâmetros 24/32/40/48 (`--uai-size-avatar-sm..xl`), raio total e iniciais em
+ * Open Sans semibold. Os corpos das iniciais acompanham os degraus da escala
+ * tipográfica da Unooria: 10px (`--unooria-size-caption-xxxs`, literal aqui
+ * porque a escala do módulo não o publica e ele só existe neste selo e no
+ * `Badge`), 12px, 16px e 18px.
+ */
+
+.uai-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: var(--uai-radius-full);
+  font-family: var(--uai-font-sans);
+  font-weight: var(--uai-font-weight-semibold);
+  line-height: 1;
+  user-select: none;
+}
+
+.uai-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.uai-avatar__initials {
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.uai-avatar--sm {
+  width: var(--uai-size-avatar-sm);
+  height: var(--uai-size-avatar-sm);
+  font-size: 10px;
+}
+
+.uai-avatar--md {
+  width: var(--uai-size-avatar-md);
+  height: var(--uai-size-avatar-md);
+  font-size: var(--uai-font-label-sm-size);
+}
+
+.uai-avatar--lg {
+  width: var(--uai-size-avatar-lg);
+  height: var(--uai-size-avatar-lg);
+  font-size: var(--uai-font-label-lg-size);
+}
+
+.uai-avatar--xl {
+  width: var(--uai-size-avatar-xl);
+  height: var(--uai-size-avatar-xl);
+  font-size: var(--uai-font-heading-h3-size);
+}
+
+/* ==========================================================================
+   Tons de superfície
+   ========================================================================== */
+
+.uai-avatar--brand {
+  background-color: var(--uai-bg-brand);
+  color: var(--uai-text-inverse);
+}
+
+.uai-avatar--inverse {
+  background-color: var(--uai-bg-inverse);
+  color: var(--uai-text-inverse);
+}

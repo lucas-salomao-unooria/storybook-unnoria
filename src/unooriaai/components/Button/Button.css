@@ -1,0 +1,128 @@
+/**
+ * Estilos do Componente Button — Design System UnooriaAI
+ *
+ * Medidas de cada tamanho (a altura é o padding somado à altura de linha do
+ * degrau de rótulo, nunca uma altura fixa):
+ *   SM · padding 6/12 · raio 8 · rótulo Label/SM 12/18 · altura 30
+ *   MD · padding 8/16 · raio 8 · rótulo Label/MD 14/20 · altura 36
+ *   LG · padding 12/24 · raio 12 · rótulo Label/LG 16/24 · altura 48
+ *
+ * Tamanho de ícone recomendado nos slots: 16 (SM), 20 (MD) e 24 (LG), a
+ * altura de linha do rótulo — o glifo Material ocupa cerca de 83% da caixa.
+ */
+
+.uai-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uai-spacing-3);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  font-family: var(--uai-font-sans);
+  font-weight: var(--uai-font-weight-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--uai-transition-fast),
+    border-color var(--uai-transition-fast), color var(--uai-transition-fast),
+    opacity var(--uai-transition-fast);
+}
+
+.uai-button:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-button:disabled,
+.uai-button[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uai-button--block {
+  width: 100%;
+}
+
+.uai-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.uai-button--sm {
+  padding: var(--uai-spacing-3) var(--uai-spacing-5);
+  border-radius: var(--uai-radius-md);
+  font-size: var(--uai-font-label-sm-size);
+  line-height: var(--uai-font-label-sm-line);
+}
+
+.uai-button--md {
+  padding: var(--uai-spacing-4) var(--uai-spacing-6);
+  border-radius: var(--uai-radius-md);
+  font-size: var(--uai-font-label-md-size);
+  line-height: var(--uai-font-label-md-line);
+}
+
+.uai-button--lg {
+  padding: var(--uai-spacing-5) var(--uai-spacing-8);
+  border-radius: var(--uai-radius-lg);
+  font-size: var(--uai-font-label-lg-size);
+  line-height: var(--uai-font-label-lg-line);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.uai-button--primary {
+  background-color: var(--uai-interactive-primary);
+  color: var(--uai-text-inverse);
+}
+
+.uai-button--primary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--uai-interactive-hover);
+}
+
+.uai-button--secondary {
+  background-color: var(--uai-bg-inverse);
+  color: var(--uai-text-inverse);
+}
+
+.uai-button--secondary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--uai-bg-inverse-hover);
+}
+
+.uai-button--outline {
+  background-color: var(--uai-bg-primary);
+  border-color: var(--uai-border-control);
+  color: var(--uai-text-primary);
+}
+
+.uai-button--outline:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--uai-fill-4);
+}
+
+.uai-button--ghost {
+  background-color: transparent;
+  color: var(--uai-text-primary);
+}
+
+.uai-button--ghost:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--uai-fill-4);
+}
+
+.uai-button--destructive {
+  background-color: var(--uai-status-error);
+  color: var(--uai-text-inverse);
+}
+
+.uai-button--destructive:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--uai-status-error-hover);
+}

@@ -1,0 +1,50 @@
+/**
+ * Estilos do Componente TopicColumn — Design System UnooriaAI
+ *
+ * Coluna de 280px, cabeçalho com padding vertical de 8, intervalo de 8 entre o
+ * ícone de 32px e o título, e título Open Sans semibold de 18/28
+ * (`--uai-font-heading-h3-*`), tudo centralizado.
+ *
+ * O intervalo de 16px entre o cabeçalho e o primeiro cartão é o mesmo que
+ * separa os cartões entre si.
+ */
+
+.uai-topic-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uai-spacing-6);
+  box-sizing: border-box;
+  width: 280px;
+  font-family: var(--uai-font-sans);
+}
+
+.uai-topic-column__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  padding: var(--uai-spacing-4) 0;
+}
+
+.uai-topic-column__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--uai-text-primary);
+}
+
+.uai-topic-column__title {
+  margin: 0;
+  font-size: var(--uai-font-heading-h3-size);
+  font-weight: var(--uai-font-weight-semibold);
+  line-height: var(--uai-font-heading-h3-line);
+  color: var(--uai-text-primary);
+  text-align: center;
+}
+
+.uai-topic-column__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uai-spacing-6);
+  align-items: center;
+}

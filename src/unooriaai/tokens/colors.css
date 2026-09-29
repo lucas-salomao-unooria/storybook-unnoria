@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Tokens de Cores — Design System UnooriaAI
+   Todo valor é um literal copiado da paleta da Plataforma Unooria
+   (`src/unooria/tokens/colors.css`); o comentário ao lado de cada linha nomeia
+   o token de origem. O módulo NÃO consome `--unooria-*` em tempo de execução —
+   um módulo de marca nunca lê tokens de outro (AGENTS.md, 1.3) —, e
+   `scripts/verificar-paridade-unooriaai.mjs` falha o build se um literal se
+   afastar da origem.
+
+   Dois temas, ambos sobre a escala roxa (`brandpurple`):
+   - claro: superfícies em branco e lavanda (50–100), acento em 600;
+   - escuro: superfícies em roxo profundo (800–950), acento em 400.
+
+   O tema escuro NÃO é derivado do claro por cálculo (inverter, clarear, aplicar
+   opacidade): cada valor de cada tema é um degrau nomeado da Unooria. As
+   escadas translúcidas usam os tokens `--unooria-color-opacity-*`: tinta
+   `brandpurple` no claro e branco (`neutrallight`) no escuro. Onde um degrau
+   translúcido não tem par exato, a escolha foi o degrau nomeado mais próximo
+   que passa o contraste (texto ≥ 4,5:1; gráfico ≥ 3:1 — ver
+   `uaiContrastPairs`, em `colors.ts`).
+
+   Nomes semânticos (`--uai-bg-*`, `--uai-text-*`…) são a superfície que os
+   componentes consomem: nenhuma primitiva é aplicada direto em componente.
+   ========================================================================== */
+
+:root,
+[data-uai-theme='light'] {
+  /** Área de conversa, cartões, campos e diálogos */
+  --uai-bg-primary: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Barra lateral, trilhos e o documento atrás das superfícies */
+  --uai-bg-secondary: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Blocos sutis, código e mídia ainda não carregada */
+  --uai-bg-tertiary: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Botão sólido, avatar do usuário, marcador ativo e botão de envio */
+  --uai-bg-inverse: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Botão sólido sob o ponteiro */
+  --uai-bg-inverse-hover: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Avatar do assistente e superfícies de marca */
+  --uai-bg-brand: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Títulos, mensagens e rótulos de alto contraste */
+  --uai-text-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Metadados e texto de apoio */
+  --uai-text-secondary: #475157; /* --unooria-color-neutral-700 */
+  /** Texto de menor ênfase (legendas e ajudas) */
+  --uai-text-tertiary: #536167; /* --unooria-color-neutral-600 */
+  /** Rótulo e glifo sobre superfície invertida, de marca, de ação e de erro */
+  --uai-text-inverse: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Texto de marca (selo primário) */
+  --uai-text-brand: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Links e ações de texto */
+  --uai-text-link: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Divisores e contornos decorativos */
+  --uai-border-default: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Contorno de alto contraste */
+  --uai-border-strong: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Contorno de campo, controle e trilho desligado (gráfico ≥ 3:1) */
+  --uai-border-control: #617379; /* --unooria-color-neutral-500 */
+  /** Anel de foco e campo focado (gráfico ≥ 3:1) */
+  --uai-border-brand: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Botão primário, controle ligado e ação principal */
+  --uai-interactive-primary: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Ação primária sob o ponteiro */
+  --uai-interactive-hover: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Ação secundária em azul da marca */
+  --uai-interactive-secondary: #49699F; /* --unooria-color-brandnavy-800 */
+  /** Sucesso (texto ≥ 4,5:1 sobre a superfície e sobre o seu preenchimento) */
+  --uai-status-success: #006746; /* --unooria-color-success-800 */
+  /** Erro e ação destrutiva */
+  --uai-status-error: #C11414; /* --unooria-color-danger-700 */
+  /** Ação destrutiva sob o ponteiro */
+  --uai-status-error-hover: #9F1515; /* --unooria-color-danger-800 */
+  /** Atenção */
+  --uai-status-warning: #B73506; /* --unooria-color-warning-700 */
+  /** Informação */
+  --uai-status-info: #005CE6; /* --unooria-color-info-700 */
+  /** Preenchimento do selo primário */
+  --uai-fill-brand: rgba(14, 16, 57, 0.10); /* --unooria-color-opacity-brandpurple-100 */
+  /** Preenchimento do selo de sucesso */
+  --uai-fill-success: rgba(1, 181, 116, 0.10); /* --unooria-color-opacity-success-100 */
+  /** Preenchimento do selo de erro */
+  --uai-fill-error: rgba(227, 26, 26, 0.10); /* --unooria-color-opacity-danger-100 */
+  /** Preenchimento do selo de atenção */
+  --uai-fill-warning: rgba(249, 118, 7, 0.10); /* --unooria-color-opacity-warning-100 */
+  /** Preenchimento do selo de informação */
+  --uai-fill-info: rgba(0, 134, 255, 0.10); /* --unooria-color-opacity-info-100 */
+  /** Item em hover (NavItem, cartões) */
+  --uai-fill-2: rgba(14, 16, 57, 0.05); /* --unooria-color-opacity-brandpurple-50 */
+  /** Item ativo, selo padrão, etiqueta, campo de busca e balão do usuário */
+  --uai-fill-4: rgba(14, 16, 57, 0.10); /* --unooria-color-opacity-brandpurple-100 */
+  /** Hover de sugestão, do compositor e da linha lateral */
+  --uai-fill-8: rgba(14, 16, 57, 0.20); /* --unooria-color-opacity-brandpurple-200 */
+  /** Divisor, botão de ícone pressionado e etiqueta em hover */
+  --uai-fill-10: rgba(14, 16, 57, 0.30); /* --unooria-color-opacity-brandpurple-300 */
+  /** Texto de campo desabilitado (isento de contraste) */
+  --uai-text-soft-30: #7C8E94; /* --unooria-color-neutral-400 */
+  /** Espaço reservado, rótulo de seção e glifos de campo */
+  --uai-text-soft-40: #536167; /* --unooria-color-neutral-600 */
+  /** Descrição de cartão, valor de configuração e fechar do diálogo */
+  --uai-text-soft-50: #536167; /* --unooria-color-neutral-600 */
+  /** Item de navegação em repouso */
+  --uai-text-soft-60: #475157; /* --unooria-color-neutral-700 */
+  /** Corpo do diálogo e itens de rodapé da barra lateral */
+  --uai-text-soft-70: #3D4448; /* --unooria-color-neutral-800 */
+  /** Item de navegação em hover */
+  --uai-text-soft-80: #383E41; /* --unooria-color-neutral-900 */
+  /** Fundo da área de conversa */
+  --uai-web-canvas: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Cartão de sugestão de prompt */
+  --uai-web-suggestion: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Preenchimento translúcido do compositor */
+  --uai-web-composer-fill: rgba(255, 255, 255, 0.80); /* --unooria-color-opacity-neutrallight-800 */
+  /** Contorno do compositor (gráfico ≥ 3:1) */
+  --uai-web-composer-border: #617379; /* --unooria-color-neutral-500 */
+  /** Espaço reservado do compositor */
+  --uai-web-composer-placeholder: #536167; /* --unooria-color-neutral-600 */
+  /** Véu com desfoque atrás da doca do compositor */
+  --uai-web-veil: rgba(255, 255, 255, 0.10); /* --unooria-color-opacity-neutrallight-100 */
+  /** Fio que separa as seções da barra lateral */
+  --uai-web-hairline: rgba(14, 16, 57, 0.20); /* --unooria-color-opacity-brandpurple-200 */
+  /** Botão de nova conversa */
+  --uai-web-accent: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Cápsula de plano */
+  --uai-color-plan-tag-fill: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Rótulo da cápsula de plano */
+  --uai-color-plan-tag-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Véu atrás de diálogos */
+  --uai-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+}
+
+[data-uai-theme='dark'] {
+  /** Área de conversa, cartões, campos e diálogos */
+  --uai-bg-primary: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Barra lateral, trilhos e o documento atrás das superfícies */
+  --uai-bg-secondary: #080922; /* --unooria-color-brandpurple-950 */
+  /** Blocos sutis, código e mídia ainda não carregada */
+  --uai-bg-tertiary: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Botão sólido, avatar do usuário, marcador ativo e botão de envio */
+  --uai-bg-inverse: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Botão sólido sob o ponteiro */
+  --uai-bg-inverse-hover: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Avatar do assistente e superfícies de marca */
+  --uai-bg-brand: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Títulos, mensagens e rótulos de alto contraste */
+  --uai-text-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Metadados e texto de apoio */
+  --uai-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Texto de menor ênfase (legendas e ajudas) */
+  --uai-text-tertiary: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Rótulo e glifo sobre superfície invertida, de marca, de ação e de erro */
+  --uai-text-inverse: #080922; /* --unooria-color-brandpurple-950 */
+  /** Texto de marca (selo primário) */
+  --uai-text-brand: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Links e ações de texto */
+  --uai-text-link: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Divisores e contornos decorativos */
+  --uai-border-default: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno de alto contraste */
+  --uai-border-strong: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Contorno de campo, controle e trilho desligado (gráfico ≥ 3:1) */
+  --uai-border-control: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Anel de foco e campo focado (gráfico ≥ 3:1) */
+  --uai-border-brand: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Botão primário, controle ligado e ação principal */
+  --uai-interactive-primary: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Ação primária sob o ponteiro */
+  --uai-interactive-hover: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Ação secundária em azul da marca */
+  --uai-interactive-secondary: #7FA5E2; /* --unooria-color-brandnavy-600 */
+  /** Sucesso (texto ≥ 4,5:1 sobre a superfície e sobre o seu preenchimento) */
+  --uai-status-success: #26E197; /* --unooria-color-success-400 */
+  /** Erro e ação destrutiva */
+  --uai-status-error: #FFA1A1; /* --unooria-color-danger-300 */
+  /** Ação destrutiva sob o ponteiro */
+  --uai-status-error-hover: #FFC7C7; /* --unooria-color-danger-200 */
+  /** Atenção */
+  --uai-status-warning: #FF9C20; /* --unooria-color-warning-400 */
+  /** Informação */
+  --uai-status-info: #00B0FF; /* --unooria-color-info-400 */
+  /** Preenchimento do selo primário */
+  --uai-fill-brand: rgba(255, 255, 255, 0.10); /* --unooria-color-opacity-neutrallight-100 */
+  /** Preenchimento do selo de sucesso */
+  --uai-fill-success: rgba(1, 181, 116, 0.10); /* --unooria-color-opacity-success-100 */
+  /** Preenchimento do selo de erro */
+  --uai-fill-error: rgba(227, 26, 26, 0.10); /* --unooria-color-opacity-danger-100 */
+  /** Preenchimento do selo de atenção */
+  --uai-fill-warning: rgba(249, 118, 7, 0.10); /* --unooria-color-opacity-warning-100 */
+  /** Preenchimento do selo de informação */
+  --uai-fill-info: rgba(0, 134, 255, 0.10); /* --unooria-color-opacity-info-100 */
+  /** Item em hover (NavItem, cartões) */
+  --uai-fill-2: rgba(255, 255, 255, 0.05); /* --unooria-color-opacity-neutrallight-50 */
+  /** Item ativo, selo padrão, etiqueta, campo de busca e balão do usuário */
+  --uai-fill-4: rgba(255, 255, 255, 0.10); /* --unooria-color-opacity-neutrallight-100 */
+  /** Hover de sugestão, do compositor e da linha lateral */
+  --uai-fill-8: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Divisor, botão de ícone pressionado e etiqueta em hover */
+  --uai-fill-10: rgba(255, 255, 255, 0.30); /* --unooria-color-opacity-neutrallight-300 */
+  /** Texto de campo desabilitado (isento de contraste) */
+  --uai-text-soft-30: #7C8E94; /* --unooria-color-neutraldark-700 */
+  /** Espaço reservado, rótulo de seção e glifos de campo */
+  --uai-text-soft-40: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Descrição de cartão, valor de configuração e fechar do diálogo */
+  --uai-text-soft-50: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Item de navegação em repouso */
+  --uai-text-soft-60: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Corpo do diálogo e itens de rodapé da barra lateral */
+  --uai-text-soft-70: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Item de navegação em hover */
+  --uai-text-soft-80: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Fundo da área de conversa */
+  --uai-web-canvas: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Cartão de sugestão de prompt */
+  --uai-web-suggestion: rgba(255, 255, 255, 0.05); /* --unooria-color-opacity-neutrallight-50 */
+  /** Preenchimento translúcido do compositor */
+  --uai-web-composer-fill: rgba(255, 255, 255, 0.05); /* --unooria-color-opacity-neutrallight-50 */
+  /** Contorno do compositor (gráfico ≥ 3:1) */
+  --uai-web-composer-border: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Espaço reservado do compositor */
+  --uai-web-composer-placeholder: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Véu com desfoque atrás da doca do compositor */
+  --uai-web-veil: rgba(14, 16, 57, 0.10); /* --unooria-color-opacity-brandpurple-100 */
+  /** Fio que separa as seções da barra lateral */
+  --uai-web-hairline: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Botão de nova conversa */
+  --uai-web-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Cápsula de plano */
+  --uai-color-plan-tag-fill: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Rótulo da cápsula de plano */
+  --uai-color-plan-tag-text: #080922; /* --unooria-color-brandpurple-950 */
+  /** Véu atrás de diálogos */
+  --uai-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+}
+
+/* ==========================================================================
+   Invariantes entre temas
+
+   A cápsula de plano é a mesma nos dois temas (lilás `brandpurple-400` com
+   rótulo `brandpurple-950`, 8,3:1). Declarada em todo `[data-uai-theme]` por
+   simetria com os blocos acima; nenhum destes valores usa `var()`.
+   ========================================================================== */
+
+:root,
+[data-uai-theme] {
+
+}

@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Tokens de Medida — Design System UnooriaAI
+   Medidas PRÓPRIAS do módulo: escala de espaçamento em grade de 4px (com os
+   degraus finos de 2px e 6px), raios e dimensões estruturais definidos pela
+   estrutura de componentes do módulo, para que os layouts não se
+   desloquem. Não são a escala de espaçamento da Plataforma Unooria (4/8px),
+   que deslocaria as linhas de altura fixa; por isso não citam origem, com uma
+   exceção: os degraus de ícone (`--uai-size-icon-*`) são degraus de
+   `--unooria-icon-size-*`.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --uai-spacing-0: 0px;
+  --uai-spacing-1: 2px;
+  --uai-spacing-2: 4px;
+  --uai-spacing-3: 6px;
+  --uai-spacing-4: 8px;
+  --uai-spacing-5: 12px;
+  --uai-spacing-6: 16px;
+  --uai-spacing-7: 20px;
+  --uai-spacing-8: 24px;
+  --uai-spacing-9: 28px;
+  --uai-spacing-10: 32px;
+  --uai-spacing-11: 40px;
+  --uai-spacing-12: 48px;
+  --uai-spacing-13: 56px;
+  --uai-spacing-14: 64px;
+  --uai-spacing-15: 80px;
+  --uai-spacing-16: 96px;
+  --uai-spacing-17: 120px;
+  --uai-spacing-18: 160px;
+
+  /* Raios de borda */
+  --uai-radius-none: 0px;
+  --uai-radius-xs: 2px;
+  --uai-radius-sm: 4px;
+  --uai-radius-md: 8px;
+  --uai-radius-lg: 12px;
+  --uai-radius-xl: 16px;
+  --uai-radius-2xl: 20px;
+  --uai-radius-3xl: 24px;
+  --uai-radius-4xl: 32px;
+  --uai-radius-full: 9999px;
+
+  /* Dimensões estruturais (ícones: degraus de --unooria-icon-size-*) */
+  --uai-size-icon-xs: 12px; /* --unooria-icon-size-4xs */
+  --uai-size-icon-sm: 16px; /* --unooria-icon-size-3xs */
+  --uai-size-icon-md: 20px; /* --unooria-icon-size-xs */
+  --uai-size-icon-lg: 24px; /* --unooria-icon-size-s */
+  --uai-size-icon-xl: 32px; /* --unooria-icon-size-m */
+
+  --uai-size-avatar-sm: 24px;
+  --uai-size-avatar-md: 32px;
+  --uai-size-avatar-lg: 40px;
+  --uai-size-avatar-xl: 48px;
+
+  --uai-size-button-sm: 32px;
+  --uai-size-button-md: 40px;
+  --uai-size-button-lg: 48px;
+
+  --uai-size-sidebar: 260px;
+  --uai-size-input-height: 44px;
+
+  /* Transição padrão de estados interativos */
+  --uai-transition-fast: 150ms ease;
+}

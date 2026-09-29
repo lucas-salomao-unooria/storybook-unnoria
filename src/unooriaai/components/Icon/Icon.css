@@ -1,0 +1,33 @@
+/**
+ * Estilos do Componente Icon — Design System UnooriaAI
+ * Glifos do Material Symbols Rounded (peso 300), a biblioteca de ícones da
+ * Plataforma Unooria. O glifo é texto de ligadura: a caixa é quadrada (a aresta
+ * vem de `size`, em linha) e o excedente é cortado, para que a fonte ausente
+ * não vaze o nome do ícone.
+ */
+
+.uai-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--uai-size-icon-lg);
+  height: var(--uai-size-icon-lg);
+  overflow: hidden;
+  vertical-align: middle;
+  font-family: var(--uai-icon-font-family, 'Material Symbols Rounded', sans-serif);
+  font-size: var(--uai-size-icon-lg);
+  font-style: normal;
+  font-weight: normal;
+  font-optical-sizing: auto;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-transform: none;
+  word-wrap: normal;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  color: inherit;
+}
