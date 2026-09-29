@@ -1,0 +1,40 @@
+/**
+ * Estilos do Componente CallListItem — Design System Unoochat
+ *
+ * Linha da aba Chamadas: seta de direção, contagem e botão de rediscagem.
+ */
+
+.unc-calllistitem__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-3xs);
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-label-md-size);
+}
+
+.unc-calllistitem__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-calllistitem__action:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 1px;
+  border-radius: var(--unc-radius-full);
+}
+
+.unc-calllistitem__action--voice {
+  color: var(--unc-color-accent);
+}
+
+.unc-calllistitem__action--video {
+  color: var(--unc-color-accent);
+}

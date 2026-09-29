@@ -1,0 +1,128 @@
+/**
+ * Estilos do Componente StatusBar — Design System Unoochat
+ *
+ * Barra de status do Android, de largura total, nas telas de 411×823.
+ */
+
+.unc-statusbar {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: var(--unc-statusbar-height);
+  box-sizing: border-box;
+  font-family: var(--unc-font-statusbar);
+  color: var(--unc-color-statusbar-fg);
+  user-select: none;
+  overflow: hidden;
+}
+
+.unc-statusbar--app {
+  background-color: var(--unc-color-surface-canvas);
+}
+
+.unc-statusbar--call {
+  background-color: var(--unc-color-call-statusbar);
+}
+
+.unc-statusbar--transparent {
+  background-color: transparent;
+}
+
+/* ==========================================================================
+   Grupo à esquerda — relógio e indicadores do sistema
+   ========================================================================== */
+
+.unc-statusbar__left {
+  position: absolute;
+  left: var(--unc-gutter-appbar);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-s);
+}
+
+.unc-statusbar__clock {
+  font-family: var(--unc-font-statusbar);
+  font-size: var(--unc-font-statusbar-clock-size);
+  font-weight: var(--unc-font-statusbar-clock-weight);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Grupo à direita — rede, bateria e percentual
+   ========================================================================== */
+
+.unc-statusbar__right {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-xxs);
+}
+
+.unc-statusbar__signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+
+.unc-statusbar__signal-bar {
+  width: 3.006px;
+  background-color: var(--unc-color-statusbar-fg);
+  border-radius: 0.5px;
+}
+
+.unc-statusbar__signal-bar--off {
+  opacity: 0.3;
+}
+
+.unc-statusbar__network {
+  font-family: var(--unc-font-statusbar);
+  font-size: var(--unc-font-statusbar-network-size);
+  font-weight: var(--unc-font-statusbar-network-weight);
+  line-height: 1;
+}
+
+/* Bateria — corpo de 6,5×11,5px com polo superior de 3,46px */
+.unc-statusbar__battery {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 7px;
+  height: 12.5px;
+  box-sizing: border-box;
+  border: 0.949px solid var(--unc-color-statusbar-fg);
+  border-radius: 2.848px;
+  margin-left: 2px;
+  padding: 0.9px;
+}
+
+.unc-statusbar__battery::before {
+  content: '';
+  position: absolute;
+  top: -2.4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.462px;
+  height: 1.6px;
+  border-radius: 1px;
+  background-color: var(--unc-color-statusbar-fg);
+}
+
+.unc-statusbar__battery-fill {
+  width: 100%;
+  border-radius: 0.949px;
+  background-color: var(--unc-color-warning-battery);
+}
+
+.unc-statusbar__battery-label {
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-statusbar-battery-size);
+  font-weight: var(--unc-font-statusbar-battery-weight);
+  line-height: 1;
+}

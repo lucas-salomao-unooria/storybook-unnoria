@@ -1,0 +1,34 @@
+/**
+ * Estilos do Componente ChatBanner — Design System Unoochat
+ *
+ * Extensão. A faixa continua a app bar (`--unc-color-surface-appbar`) e se
+ * separa da conversa pelo divisor das listas (`--unc-color-border-divider`) —
+ * plana, sem sombra.
+ */
+
+.unc-chatbanner {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-m);
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: var(--unc-spacing-xs) var(--unc-spacing-l);
+  border-bottom: var(--unc-divider-width) solid var(--unc-color-border-divider);
+  background-color: var(--unc-color-surface-appbar);
+  color: var(--unc-color-text-primary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1.3;
+}
+
+.unc-chatbanner__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.unc-chatbanner__trailing {
+  flex-shrink: 0;
+  color: var(--unc-color-accent);
+  font-weight: var(--unc-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+}

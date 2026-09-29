@@ -110,6 +110,7 @@ export default defineConfig([
       'styles-whatsappmobile': 'src/styles-whatsappmobile.css',
       'styles-tiktooria': 'src/styles-tiktooria.css',
       'styles-unootube': 'src/styles-unootube.css',
+      'styles-unoochat': 'src/styles-unoochat.css',
 
       /*
        * Folhas de fonte, opt-in. Ficam separadas das folhas de componente para
@@ -122,6 +123,7 @@ export default defineConfig([
       'fonts/whatsappmobile': 'src/fonts-whatsappmobile.css',
       'fonts/tiktooria': 'src/fonts-tiktooria.css',
       'fonts/unootube': 'src/fonts-unootube.css',
+      'fonts/unoochat': 'src/fonts-unoochat.css',
     },
     esbuildOptions(options) {
       /* Os arquivos de fonte ao lado das folhas que os declaram. */

@@ -1,0 +1,136 @@
+/**
+ * Estilos do Componente Icon — Design System Unoochat
+ * Glifos do Material Symbols Rounded (peso 300), a biblioteca de ícones da
+ * Plataforma Unooria. O glifo é texto de ligadura: a caixa é quadrada e o
+ * excedente é cortado, para que a fonte ausente não vaze o nome do ícone.
+ */
+
+.unc-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--unc-icon-size-md);
+  height: var(--unc-icon-size-md);
+  overflow: hidden;
+  vertical-align: middle;
+  font-family: var(--unc-icon-font-family);
+  font-size: var(--unc-icon-size-md);
+  font-style: normal;
+  font-weight: normal;
+  font-optical-sizing: auto;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-transform: none;
+  word-wrap: normal;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  color: var(--unc-color-icon-appbar);
+  transition: color var(--unc-transition-fast);
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.unc-icon--size-xs {
+  width: var(--unc-icon-size-xs);
+  height: var(--unc-icon-size-xs);
+  font-size: var(--unc-icon-size-xs);
+}
+
+.unc-icon--size-sm {
+  width: var(--unc-icon-size-sm);
+  height: var(--unc-icon-size-sm);
+  font-size: var(--unc-icon-size-sm);
+}
+
+.unc-icon--size-md {
+  width: var(--unc-icon-size-md);
+  height: var(--unc-icon-size-md);
+  font-size: var(--unc-icon-size-md);
+}
+
+.unc-icon--size-lg {
+  width: var(--unc-icon-size-lg);
+  height: var(--unc-icon-size-lg);
+  font-size: var(--unc-icon-size-lg);
+}
+
+.unc-icon--size-xl {
+  width: var(--unc-icon-size-xl);
+  height: var(--unc-icon-size-xl);
+  font-size: var(--unc-icon-size-xl);
+}
+
+/* ==========================================================================
+   Tons semânticos
+   ========================================================================== */
+
+.unc-icon--tone-appbar,
+.unc-icon--tone-settingsQr,
+.unc-icon--tone-forward {
+  color: var(--unc-color-icon-appbar);
+}
+
+.unc-icon--tone-camera,
+.unc-icon--tone-back,
+.unc-icon--tone-composerEmoji,
+.unc-icon--tone-composerAttach,
+.unc-icon--tone-composerCamera,
+.unc-icon--tone-settings,
+.unc-icon--tone-settingsHelp,
+.unc-icon--tone-pin {
+  color: var(--unc-color-icon-muted);
+}
+
+.unc-icon--tone-onAccent {
+  color: var(--unc-color-icon-on-accent);
+}
+
+.unc-icon--tone-accent {
+  color: var(--unc-color-accent);
+}
+
+.unc-icon--tone-tick {
+  color: var(--unc-color-icon-tick);
+}
+
+.unc-icon--tone-star {
+  color: var(--unc-color-icon-star);
+}
+
+.unc-icon--tone-callIcon {
+  color: var(--unc-color-call-icon);
+}
+
+.unc-icon--tone-callIconMuted {
+  color: var(--unc-color-call-icon-muted);
+}
+
+.unc-icon--tone-callOut {
+  color: var(--unc-color-accent-call-out);
+}
+
+.unc-icon--tone-callIn {
+  color: var(--unc-color-danger-call-in);
+}
+
+.unc-icon--tone-statusBar {
+  color: var(--unc-color-statusbar-fg);
+}
+
+.unc-icon--tone-notice {
+  color: var(--unc-color-text-notice);
+}
+
+.unc-icon--tone-ring {
+  color: var(--unc-color-border-status-ring);
+}
+
+.unc-icon--tone-inherit {
+  color: inherit;
+}

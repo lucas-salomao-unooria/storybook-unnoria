@@ -1,0 +1,68 @@
+/**
+ * Estilos do Componente Radio — Design System Unoochat
+ * Controle de 20px desenhado em CSS: contorno de 2px em
+ * `--unc-color-border-control`; selecionado, anel e ponto de 10px em
+ * `--unc-color-accent`.
+ */
+
+.unc-radio {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  box-sizing: border-box;
+  min-height: 44px;
+  cursor: pointer;
+  font-family: var(--unc-font-sans);
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-body-lg-size);
+  line-height: 1;
+}
+
+.unc-radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.unc-radio__control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--unc-color-border-control);
+  border-radius: var(--unc-radius-full);
+  transition: border-color var(--unc-transition-fast);
+}
+
+.unc-radio__control--on {
+  border-color: var(--unc-color-accent);
+}
+
+.unc-radio__control--on::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-accent);
+}
+
+.unc-radio__input:focus-visible + .unc-radio__control {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+  border-radius: var(--unc-radius-full);
+}
+
+.unc-radio--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

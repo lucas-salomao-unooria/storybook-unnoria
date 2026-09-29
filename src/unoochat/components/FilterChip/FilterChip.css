@@ -1,0 +1,39 @@
+/**
+ * Estilos do Componente FilterChip — Design System Unoochat
+ * Chips de filtro da busca em conversas: cápsula em
+ * `--unc-color-surface-sheet` com rótulo de 15px.
+ */
+
+.unc-filterchip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-xs);
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 var(--unc-spacing-m);
+  border: none;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-surface-sheet);
+  color: var(--unc-color-text-primary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-filterchip:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}
+
+.unc-filterchip--selected {
+  background-color: var(--unc-color-accent);
+  color: var(--unc-color-text-on-accent);
+}
+
+.unc-filterchip:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

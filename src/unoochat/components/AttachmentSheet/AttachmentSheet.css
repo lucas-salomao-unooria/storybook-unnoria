@@ -1,0 +1,73 @@
+/**
+ * Estilos do Componente AttachmentSheet — Design System Unoochat
+ *
+ * Folha de anexos: superfície `--unc-color-surface-sheet` com grade de três
+ * colunas e círculos de 56px nas seis cores de ação.
+ */
+
+.unc-attachmentsheet {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--unc-spacing-xl) var(--unc-spacing-xs);
+  box-sizing: border-box;
+  padding: var(--unc-spacing-xxl) var(--unc-spacing-l);
+  border-radius: var(--unc-radius-xl);
+  background-color: var(--unc-color-surface-sheet);
+  font-family: var(--unc-font-sans);
+}
+
+.unc-attachmentsheet__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unc-spacing-xs);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--unc-color-text-primary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-attachmentsheet__action:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 4px;
+  border-radius: var(--unc-radius-s);
+}
+
+.unc-attachmentsheet__circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--unc-radius-full);
+  color: var(--unc-color-icon-on-accent);
+}
+
+.unc-attachmentsheet__circle--document {
+  background-color: var(--unc-color-attach-document);
+}
+
+.unc-attachmentsheet__circle--camera {
+  background-color: var(--unc-color-attach-camera);
+}
+
+.unc-attachmentsheet__circle--gallery {
+  background-color: var(--unc-color-attach-gallery);
+}
+
+.unc-attachmentsheet__circle--audio {
+  background-color: var(--unc-color-attach-audio);
+}
+
+.unc-attachmentsheet__circle--location {
+  background-color: var(--unc-color-attach-location);
+}
+
+.unc-attachmentsheet__circle--contact {
+  background-color: var(--unc-color-attach-contact);
+}

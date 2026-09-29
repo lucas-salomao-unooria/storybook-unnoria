@@ -1,0 +1,125 @@
+/**
+ * Estilos do Componente Avatar — Design System Unoochat
+ *
+ * Recorte de 45px dentro do anel de 56px nas linhas de status (folga de
+ * 3,4px) e recortes sem anel de 23px, 32px e 50px.
+ */
+
+.unc-avatar {
+  --unc-avatar-size: var(--unc-avatar-lg);
+  --unc-avatar-ring-color: transparent;
+  --unc-avatar-ring-thickness: 0px;
+  --unc-avatar-gap-thickness: 0px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  flex-shrink: 0;
+  font-family: var(--unc-font-sans);
+  line-height: 0;
+}
+
+.unc-avatar__ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: var(--unc-radius-full);
+  padding: var(--unc-avatar-ring-thickness);
+  background: var(--unc-avatar-ring-color);
+}
+
+.unc-avatar__gap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  border-radius: var(--unc-radius-full);
+  padding: var(--unc-avatar-gap-thickness);
+  background: transparent;
+}
+
+.unc-avatar__image,
+.unc-avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unc-avatar-size);
+  height: var(--unc-avatar-size);
+  border-radius: var(--unc-radius-full);
+  object-fit: cover;
+  background-color: var(--unc-color-surface-appbar);
+}
+
+.unc-avatar__fallback {
+  color: var(--unc-color-text-primary);
+  font-weight: var(--unc-font-weight-bold);
+  font-size: calc(var(--unc-avatar-size) * 0.36);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.unc-avatar__glyph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--unc-color-icon-on-accent);
+}
+
+/* ==========================================================================
+   Tamanhos nomeados
+   ========================================================================== */
+
+.unc-avatar--size-xs {
+  --unc-avatar-size: var(--unc-avatar-xs);
+}
+
+.unc-avatar--size-sm {
+  --unc-avatar-size: var(--unc-avatar-sm);
+}
+
+.unc-avatar--size-md {
+  --unc-avatar-size: var(--unc-avatar-md);
+}
+
+.unc-avatar--size-lg {
+  --unc-avatar-size: var(--unc-avatar-lg);
+}
+
+/* ==========================================================================
+   Anel de status
+   ========================================================================== */
+
+/* Caixa externa de 56px (`--unc-avatar-ring`) = recorte de 45px + folga de
+   3,4px + traço de 2,12px em cada lado. */
+.unc-avatar--ring-status {
+  --unc-avatar-ring-color: var(--unc-color-border-status-ring);
+  --unc-avatar-ring-thickness: var(--unc-status-ring-width);
+  --unc-avatar-gap-thickness: max(
+    0px,
+    calc((var(--unc-avatar-ring) - var(--unc-avatar-size) - 2 * var(--unc-status-ring-width)) / 2)
+  );
+}
+
+/* ==========================================================================
+   Interação
+   ========================================================================== */
+
+.unc-avatar--interactive {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  appearance: none;
+}
+
+.unc-avatar--interactive:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+  border-radius: var(--unc-radius-full);
+}

@@ -2,7 +2,7 @@
 
 Este documento estabelece as regras e padrões arquiteturais obrigatórios para desenvolvimento, criação de componentes, consumo de tokens e documentação no Storybook para a Plataforma Unooria.
 
-> **Paridade obrigatória**: `GEMINI.md` e `AGENTS.md` compartilham o mesmo corpo normativo (seções 1 a 10) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
+> **Paridade obrigatória**: `GEMINI.md` e `AGENTS.md` compartilham o mesmo corpo normativo (seções 1 a 11) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
 
 ---
 
@@ -23,13 +23,13 @@ Este documento estabelece as regras e padrões arquiteturais obrigatórios para 
 - Reservado para todas as estórias, documentações interativas e playgrounds do Storybook.
 - **REGRA CRÍTICA / PROIBIDO**: nenhum arquivo `.stories.tsx` vive em `src/`, e nenhum componente de produção vive em `stories/`.
 - **Plataforma Unooria**: `stories/unooria/components/[NomeComponente].stories.tsx` e `stories/unooria/fundamentos/` (`Colors`, `Typography`, `Spacing`, `Elevation`, `Blur`, `Grids`, `GridsWidgets`, `Icons`, `Logo`).
-- **Marcas**: cada uma usa o mesmo trio de subpastas — `stories/[marca]/fundamentos/`, `stories/[marca]/componentes/` e `stories/[marca]/telas/` — mais um `stories/[marca]/fixtures.ts` com o conteúdo de demonstração compartilhado. Vale para `instanooria`, `chatgpt`, `whatsappmobile` e `tiktooria`.
+- **Marcas**: cada uma usa o mesmo trio de subpastas — `stories/[marca]/fundamentos/`, `stories/[marca]/componentes/` e `stories/[marca]/telas/` — mais um `stories/[marca]/fixtures.ts` com o conteúdo de demonstração compartilhado. Vale para `instanooria`, `chatgpt`, `whatsappmobile`, `tiktooria`, `unootube` e `unoochat`.
 - **Inconsistência conhecida**: a Plataforma Unooria usa `components/` (em inglês) e as marcas usam `componentes/`. É assim no repositório; ao criar uma estória, siga a convenção da pasta que já existe.
 - **Recursos rasterizados** exportados do Figma ficam em `public/[marca]/` e são sempre informados por prop (`src`, `avatarSrc`, `coverSrc`, `portraitSrc`), **nunca embutidos no pacote**.
-- **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`).
+- **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`, `UniDocKit`, `UncDocKit`).
 
 ### 1.3. Módulos Multimarca (`src/whatsappmobile/`, `src/instanooria/`, `src/chatgpt/`, `src/tiktooria/`)
-O pacote publica **seis design systems** em um único artefato NPM:
+O pacote publica **sete design systems** em um único artefato NPM:
 
 | Marca | Módulo | Namespace | Prefixo CSS / classes | Tema ou contexto | Componentes | Arquivo Figma de origem |
 |---|---|---|---|---|---|---|
@@ -39,8 +39,9 @@ O pacote publica **seis design systems** em um único artefato NPM:
 | WhatsApp Mobile | `src/whatsappmobile/` | `WhatsAppMobileUI` | `--wa-*` / `.wa-*` | `data-wa-theme="dark"` — só escuro | 39 | WhatsApp Clone - Dark mode (Community) |
 | Tik Tooria | `src/tiktooria/` | `TikTooriaUI` | `--tik-*` / `.tik-*` | `data-tik-surface="chrome \| immersive"` — dois contextos, não dois temas | 35 | TikTok UI Screens (Community) |
 | Unootube | `src/unootube/` | `UnootubeUI` | `--uni-*` / `.uni-*` | `data-uni-theme="light \| dark"` | 44 | YouTube UI Clone Design (Community) + Free YouTube Shorts Mockups (Community) |
+| Unoochat | `src/unoochat/` | `UnoochatUI` | `--unc-*` / `.unc-*` | `data-unc-theme="light \| dark"` | 39 | — (estrutura de `src/whatsappmobile/`; identidade da Plataforma Unooria) |
 
-- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
+- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`, `UnoochatUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
 - **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
   - Código de produção: `src/chatgpt/tokens/` e `src/chatgpt/components/[NomeComponente]/`.
   - Estórias: `stories/chatgpt/fundamentos/`, `stories/chatgpt/componentes/` e `stories/chatgpt/telas/`.
@@ -70,7 +71,13 @@ O pacote publica **seis design systems** em um único artefato NPM:
   - **Dois arquivos de origem**: além do arquivo original, o módulo consome "Free YouTube Shorts Mockups (Community)" (`fileKey FlqnnoY0Mqdjic53twLAC1`), origem do Shorts, do cromo móvel e do **tema claro**.
   - Prefixo de variáveis CSS: `--uni-*`. Prefixo de classes: `.uni-*`. Atributo de tema: `data-uni-theme="light | dark"`. O tema claro **não é derivado** do arquivo original — vem medido do segundo arquivo, que publica as mesmas telas nas duas versões.
   - **Nenhum bitmap integra o pacote**: as miniaturas do primeiro arquivo são logotipos de terceiros e as do segundo são fotografias de banco de imagens. Nenhuma foi redistribuída; todas as imagens entram por prop.
-- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube — são marcas com hierarquias cromáticas distintas.
+- **Unoochat** (mensageria móvel com identidade da Plataforma Unooria, criada como cópia estrutural de `src/whatsappmobile/` — ver seção 11):
+  - Código de produção: `src/unoochat/tokens/` e `src/unoochat/components/[NomeComponente]/`.
+  - Estórias: `stories/unoochat/fundamentos/`, `stories/unoochat/componentes/` e `stories/unoochat/telas/`.
+  - Conteúdo de demonstração compartilhado: `stories/unoochat/fixtures.ts`. Ilustrações SVG geradas a partir da paleta da Unooria: `public/unoochat/`.
+  - **Sem arquivo Figma de origem.** Os tokens são literais copiados de `src/unooria/tokens/`, com o token de origem no comentário; `scripts/verificar-paridade-unoochat.mjs` guarda a paridade.
+  - Prefixo de variáveis CSS: `--unc-*`. Prefixo de classes: `.unc-*`. Atributo de tema: `data-unc-theme="light | dark"`.
+- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. **O Unoochat também não lê `--unooria-*` em tempo de execução**: ele copia os literais (seção 2.8), e a paridade é guardada por script. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube e `var(--unc-*)` fora do Unoochat — são marcas com hierarquias cromáticas distintas.
 
 ---
 
@@ -181,6 +188,19 @@ Todo componente, estilo ou documentação do Unootube **DEVE** consumir exclusiv
 - **Tokens do Shorts e do cromo móvel** (segundo arquivo, todos lidos do preenchimento literal do nó): `--uni-color-shorts-ink` (`#161722`, a tinta do arquivo), `--uni-color-brand-shorts` (`#FF0000`, o corpo do raio), `-shorts-chrome`, `-shorts-cell`, `-shorts-veil` (preto a 32%), `-shorts-sound-fill` (preto a 20%) e `--uni-gradient-shorts-bottom` (véu de 194px com as paradas literais 37,188% e 48,296%). Dois tokens nasceram de divergências que só aparecem no tema claro: `--uni-color-surface-selected`, porque a linha selecionada (`#E4E4E4`) e a pílula de filtro (`#ECECEC`) divergem ali ainda que coincidam no escuro; e `--uni-color-surface-chrome`, porque o arquivo pinta o cromo **móvel** de branco puro e o de 1440px de `#F6F6F6`. Nos dois casos a divergência é do próprio arquivo e foi preservada em token próprio, em vez de consolidada no degrau mais próximo.
 - **Degraus que o primeiro arquivo não publica**: o peso `--uni-font-weight-medium` (Roboto Medium 500, usado em quase todo o Shorts e o cromo móvel) e o raio `--uni-radius-control` (4px, do botão de inscrição, do botão de som e da pílula de filtro móvel). Ambos são literais do segundo arquivo — a coleção `Radius` do primeiro salta de 2px para 8px, e a escala tipográfica declara apenas 400 e 700.
 - **Medidas móveis**: quadros `--uni-phone-width|height` (390×844) e `--uni-phone-android-width|height` (360×800), alturas `--uni-mobile-topbar-height` (50px), `-tabbar-height` (58px) e `-header-height` (47px), e a família `--uni-shorts-*` (razão 9:16, quadro de 488px, faixa de 44px, cartão de 150×266, célula de 119×200, trilha de 36px, botão de 54px). Os diâmetros de avatar de **38px** e **77px** que o segundo arquivo acrescenta entram por `size` numérico, e não como degraus nomeados: a escala nomeada continua refletindo apenas o primeiro arquivo.
+### 2.8. Tokens do Unoochat (`src/unoochat/tokens/`)
+Todo componente, estilo ou documentação do Unoochat **DEVE** consumir exclusivamente as variáveis `--unc-*`. Ao contrário das outras marcas, o Unoochat **não tem arquivo de design de origem**: a identidade é a da **Plataforma Unooria** — paleta roxa, Open Sans e Material Symbols — e cada token é uma **cópia literal** do valor da plataforma, com o nome do token de origem no comentário da linha. **O módulo nunca lê `--unooria-*` em tempo de execução** (seção 1.3): o que se copia é o literal, e `scripts/verificar-paridade-unoochat.mjs` (encadeado no `build:package`) reprova o build se um literal divergir da origem ou se o token citado deixar de existir.
+
+- **Dois temas, ambos medidos sobre a escala `brandpurple`**: `:root, [data-unc-theme='light']` e `[data-unc-theme='dark']`. Claro: superfícies em branco e lavanda (`brandpurple-50` a `-300`), acento `brandpurple-600` (`#716C98`). Escuro: superfícies em roxo profundo (`brandpurple-700` a `-950`), acento `brandpurple-400` (`#AAA5C2`). **É PROIBIDO derivar um tema por cálculo** (inverter, clarear, aplicar opacidade): cada valor de cada tema é um degrau nomeado da Unooria.
+- **Superfícies (escada de luminância)**: `--unc-color-surface-base`, `-canvas`, `-appbar`, `-elevated`, `-dialog`, `-sheet`, `-datechip`, `-notice`, `-bubble-out`, `-bubble-out-strip`, `-bubble-in`, mais `--unc-color-scrim` (`--unooria-color-opacity-brandpurple-600`, invariante).
+- **Acento único**: `--unc-color-accent` cobre aba ativa, FABs, selo de não lidas, ações de texto do diálogo, sublinhado do campo e controle selecionado. Permanece só `--unc-color-accent-call-out` (chamada efetuada, `success`). **Não reintroduzir** variantes de acento por componente: a origem do módulo tinha onze tons e a decisão foi consolidar.
+- **Texto (7)**: `--unc-color-text-primary`, `-secondary`, `-placeholder`, `-notice`, `-bubble`, `-bubble-meta`, `-on-accent`, mais `-inverse` (tela de chamada, invariante). **Ícones (5)**: `--unc-color-icon-appbar`, `-muted`, `-on-accent`, `-tick`, `-star`, mais `--unc-color-statusbar-fg`. **Bordas (4)**: `--unc-color-border-divider`, `-dialog`, `-control`, `-status-ring`.
+- **Invariantes entre temas**: tela de chamada (`--unc-color-call-*`, `--unc-color-text-inverse`), botão de encerrar (`--unc-color-danger-endcall`), bateria (`--unc-color-warning-battery`) e as seis ações da folha de anexos (`--unc-color-attach-*`, família `brandpurple`, `danger`, `brandnavy`, `warning`, `success` e `info`, todas com glifo branco ≥ 3:1). **Não reaproveitar** `attach-*` fora da folha de anexos.
+- **Contraste medido, nos dois temas**: texto ≥ 4,5:1 e gráfico ≥ 3:1 para todos os pares texto/superfície e acento/superfície de uso real (primário e secundário sobre canvas, appbar e sheet; `text-on-accent` sobre acento; texto do balão sobre os dois balões; acento sobre canvas, appbar e dialog). A tabela está em `Unoochat/Fundamentos/Cores`.
+- **Tipografia**: família Open Sans via `--unc-font-sans` (e `--unc-font-statusbar`, que a repete); escala de **18 estilos** nos degraus da Unooria (10, 12, 14, 16, 18, 20 e 24px) com as alturas de linha da Unooria (14, 18, 20, 24, 28, 30 e 34px); pesos 400/600/700 (mais o 500, tokenizado). **Sem `letter-spacing`**, como na escala da plataforma. Cada estilo cita o token `--unooria-size-*` de origem.
+- **Medidas**: escala `--unc-spacing-4xs` (2px) a `--unc-spacing-4xl` (48px), calhas `--unc-gutter` (19px) e `--unc-gutter-appbar` (24px), raios, dimensões estruturais (`--unc-device-width` 411px, `--unc-device-height` 823px, `--unc-appbar-height` 100px etc.), diâmetros de avatar e de FAB — **próprios do módulo**, herdados da estrutura de `src/whatsappmobile/`, e não da escala de espaçamento da Unooria (que é de 4/8px e deslocaria as linhas de altura fixa). Ícones: `--unc-icon-size-xs|sm|md|lg|xl` = 16/18/20/24/32px, degraus de `--unooria-icon-size-*`.
+- **Elevação**: a superfície é plana; **`--unc-elevation-overlay`**, definido por tema (`--unooria-elevation-brand-secondary` no claro, `--unooria-elevation-neutral-2` no escuro), se aplica **apenas** a Menu, Dialog, BottomSheet, Toast e Fab. A origem do módulo era plana e sem sombra alguma; esta é uma decisão nova, registrada em 11.6.
+
 ---
 
 ## 3. Convenção Oficial de Documentação em Componentes (Padrão Ouro)
@@ -292,6 +312,7 @@ export default meta;
   - **Instanooria**: `src/instanooria/components/Icon/IconPaths.tsx` (`instaIcons`), mais o logotipo em `Logo/LogoVector.ts` e os glifos de sistema do iPhone X em `PhoneFrame/DeviceGlyphs.tsx`.
   - **WhatsApp Mobile**: `src/whatsappmobile/components/Icon/IconPaths.tsx` (`waIcons`).
   - **Tik Tooria**: `src/tiktooria/components/Icon/IconPaths.tsx` (`tikIcons`), mais os logotipos de terceiros em `SocialLogo/LogoVectors.ts`.
+  - **Unoochat**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unoochat/components/Icon/IconGlyphs.ts` (ver seção 11.4).
   - **ChatGPT**: **não tem biblioteca vetorial** — o arquivo de origem usa caracteres tipográficos, registrados em `src/chatgpt/tokens/glyphs.ts` (ver seção 7.4).
 - Ao adicionar um glifo novo, exporte o SVG do Figma, copie os atributos (`d`, `cx/cy/r`, `x/y/width/height`) **sem edição** e preencha `figmaName`, `viewBox` e `usage` — mais `figmaNode` nos registros que o preveem.
 - Quando o arquivo reaproveita o mesmo vetor girado ou espelhado, use as props `rotate` / `flipX` / `flipY` em vez de duplicar o caminho com coordenadas reescritas.
@@ -343,8 +364,9 @@ componente não oferece nada disso e ainda concorre com o que o `next/font`
 declara. Sendo opt-in, um app que resolva a tipografia por lá simplesmente não
 escreve a linha.
 
-- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*` e `--unooria-*` têm folha de
+- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*`, `--unc-*` e `--unooria-*` têm folha de
   fonte.** O Instanooria não: usa SF Pro, fonte de sistema da Apple.
+- **A Plataforma Unooria e o Unoochat são os casos críticos.** O Unoochat usa a mesma fonte de ligadura (Material Symbols Rounded, 5,1 MB) — os `.woff2` não são duplicados (`src/fonts/material-symbols-rounded/` é compartilhado).
 - **A Plataforma Unooria é o caso crítico.** Os ícones dela são uma **fonte de
   ligadura** (Material Symbols Rounded): sem a família carregada, `.unooria-icon`
   renderiza o **nome do ícone como texto**. Um app que consuma
@@ -366,13 +388,14 @@ escreve a linha.
 ## 5. Validação Obrigatória e Critérios de Aceite
 Antes de considerar qualquer tarefa de componente ou documentação concluída:
 0. Ao tocar no Unootube, conferir **antes de registrar um glifo novo** se ele já existe: os dois arquivos de origem redesenham vários dos mesmos vetores, apenas transladados ou escalados. A análise de repetição vive no bloco `shorts` de `IconPaths.ts`.
-1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube), sem hexadecimais avulsos e sem mistura entre marcas.
+1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube, `src/unoochat/tokens/` para o Unoochat), sem hexadecimais avulsos e sem mistura entre marcas.
 2. Executar `npx tsc --noEmit` e garantir **0 erros de compilação TypeScript**.
-3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`).
+3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`, `src/styles-unoochat.css`).
 4. Executar `npm run build-storybook` e validar o **build sem falhas do Storybook**.
 5. Executar `npm run lint` e garantir **0 erros e 0 warnings**.
 6. Executar `npm test` e garantir que **todas as estórias renderizam** — a suíte Vitest monta cada estória em um Chromium real.
-7. Executar `npm run build:package` e garantir que o pacote é emitido sem falhas, com os tipos gerados pelo `tsc` (ver seção 4.5).
+7. Ao tocar no Unoochat, executar `npm run verificar:paridade-unoochat` e garantir que todo literal com origem na Plataforma Unooria continua igual a ela.
+8. Executar `npm run build:package` e garantir que o pacote é emitido sem falhas, com os tipos gerados pelo `tsc` (ver seção 4.5).
 
 ---
 
@@ -740,3 +763,49 @@ Qualquer divergência intencional **DEVE** ser documentada com o `UniDocDeviatio
 - **Capa de canal sem bitmap**: o arquivo mede `#F8F8F8` atrás da capa (`17:2796`), mas ali o bitmap sempre a cobre — a laje nunca aparece. Em produto sem capa, aparecia: eram 192px de branco no meio de uma tela escura. O literal virou o valor do **tema claro** e o escuro recebeu a superfície interativa, no token `--uni-color-cover-placeholder`.
 - **`--uni-color-text-on-media`**: texto e glifo desenhados sobre vídeo ou miniatura não entram no par claro/escuro — o arquivo os pinta de branco nos dois temas, porque o fundo é a mídia e não a superfície da página. O token existe para deixar essa invariância explícita e para que nenhum componente precise citar a primitiva `--uni-color-white`.
 - **Frames não reconstruídos**: nenhum. As três telas da página `Screen` do primeiro arquivo e as seis composições do segundo (três telas × móvel e área de trabalho) foram todas reconstruídas. Os quadros do segundo arquivo se repetem em iPhone e Android com as mesmas composições e recuos ligeiramente diferentes; o `PhoneFrame` publica as duas medidas.
+
+---
+
+## 11. Design System Unoochat (Seção `Unoochat` do Storybook)
+
+O **Unoochat** é o cliente de mensagens móvel da Plataforma Unooria com identidade própria: **paleta roxa, Open Sans e Material Symbols da Plataforma Unooria, em tema claro e escuro**. Foi criado em 2026-09-29 como **cópia estrutural** do módulo `src/whatsappmobile/` — mesmos 39 componentes, mesmas props, mesmas medidas de layout — com cores, tipografia e ícones trocados. **O módulo `src/whatsappmobile/` continua no repositório, intacto**, e as duas marcas coexistem: nenhuma edição de um deles se propaga ao outro (cada um tem tokens e classes exclusivos, seção 1.3).
+
+### 11.1. Origem, Motivo e Regras
+- **Origem**: não há arquivo Figma. A estrutura de componentes vem de `src/whatsappmobile/` (seção 8); a identidade vem da Plataforma Unooria (seção 2.8). Componentes que a origem já tinha continuam com o mesmo nome, as mesmas props e as mesmas medidas de layout.
+- **Motivo**: o produto precisa de uma interface de mensageria que **não reproduza a identidade visual do aplicativo de terceiros** que serviu de referência ao módulo `whatsappmobile`. Por isso, **nas estórias, nos comentários e nos textos padrão do Unoochat é PROIBIDO citar** o aplicativo de origem, a empresa dele, o arquivo Figma comunitário ou seus nós, e usar o vocabulário de marca dele (o logotipo, o nome "WhatsApp", "Facebook", "Meta"). A referência à estrutura de `src/whatsappmobile/` vive **apenas** nesta seção e em 1.3.
+- **Sem bitmap de terceiros**: as imagens de demonstração são ilustrações SVG geradas a partir da paleta da Unooria, em `public/unoochat/` (retratos, retrato de chamada, fotografia de exemplo e dois ladrilhos de 320px de textura de conversa, um por tema). Nenhuma foi exportada de arquivo de design alheio, e todas entram por prop (`src`, `avatarSrc`, `portraitSrc`). **Não copiar** `public/whatsappmobile/` para cá.
+- **Idioma**: todo texto padrão de componente e de estória é pt-BR (o módulo de origem usava inglês). Nomes de demonstração são fictícios e vivem em `stories/unoochat/fixtures.ts`.
+
+### 11.2. Títulos das Estórias
+- **Fundamentos**: `Unoochat/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação | Ícones]`.
+- **Componentes**: `Unoochat/Componentes/[NomeComponente]`.
+- **Telas compostas**: `Unoochat/Telas/Telas Compostas`.
+
+### 11.3. Componentes Oficiais (29) e Extensões (10)
+Os mesmos da seção 8.3: `Icon`, `StatusBar`, `Avatar`, `Badge`, `TopBar`, `TabBar`, `ListItem`, `ChatListItem`, `StatusListItem`, `CallListItem`, `SectionLabel`, `Fab`, `ChatHeader`, `DateChip`, `EncryptionNotice`, `MessageBubble` (composto: `.Media`, `.Document`, `.LinkPreview`, `.Invite`), `MessageComposer`, `ChatWallpaper`, `Radio`, `Checkbox`, `TextButton`, `Dialog` (composto: `.Footer`), `Menu`, `SettingsItem`, `SearchField`, `FilterChip`, `AttachmentSheet`, `CallScreen` e `PhoneFrame`; extensões `Button`, `ForwardButton`, `BottomSheet`, `MediaViewer`, `ChatBanner`, `AdminOnlyNotice`, `SystemMessage`, `Poll`, `MessageTag` e `Toast`.
+- **Diferenças de API em relação a `whatsappmobile`** (as únicas): `TabBar.tone` só aceita `'accent'` (o segundo tom era uma divergência de cor do arquivo de origem que aqui não existe); `Icon` renderiza um `<span>` de ligadura, não um `<svg>`, aceita `filled` e seus nomes mudaram (ver 11.4); `EncryptionNotice`, `MessageComposer` e demais textos padrão estão em pt-BR; `ChatWallpaper` repete um ladrilho de 320px em vez de cobrir com uma imagem. Nenhuma outra prop mudou.
+- **É PROIBIDO ampliar esse conjunto sem registrar a decisão** na estória correspondente, com o `UncDocDecisions`.
+- **Fronteira cliente/servidor** (seção 4.5): 20 dos 39 componentes rodam como Server Components (medido em 2026-09-29 sobre a 0.2.8 com o Unoochat, ao lado dos 20/39 do WhatsApp Mobile). O `Icon` do Unoochat é Server Component — renderiza um `<span>` sem hooks.
+
+### 11.4. Iconografia: Biblioteca da Unooria
+- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou trazido de outra biblioteca. O registro `src/unoochat/components/Icon/IconGlyphs.ts` (`uncIcons`) aponta cada nome do módulo para uma **ligadura do Material Symbols Rounded, peso 300, sem preenchimento** — a biblioteca do quadro `6024:2923` da Plataforma Unooria (seção 5.1). Não há `d`, `viewBox` nem `figmaName`: o dado é o nome da ligadura, mais `filled` e `flipX` quando o glifo precisa deles.
+- **A fonte é de ligadura**: sem `@unooria/design-system/fonts/unoochat.css` (ou o Material Symbols carregado pelo app), o **nome do ícone aparece como texto** — o mesmo modo de falha da Plataforma Unooria (seção 4.6). A folha de fonte do Unoochat é, na prática, obrigatória. O `Icon` corta o excedente à caixa quadrada para que a fonte ausente não vaze o nome inteiro.
+- **`size` governa a aresta da caixa**; o glifo Material ocupa cerca de 83% dela, e o eixo óptico (`opsz`) acompanha o tamanho, entre 20 e 48. Por isso os tamanhos de uso são de caixa (24px para a barra superior, 16px para a barra de status), e não os do vetor de origem.
+- **Substitutos, porque o quadro `6024:2923` não publica o glifo**: `star` → `star_rate` (preenchido), `videocam` → `video_call`, `forward` → `reply` espelhado (`flipX` no registro), `push_pin` → `keep`, e `radio_button_*` → **desenhado em CSS** pelo componente `Radio`. Ao acrescentar um glifo, confira primeiro o quadro; só use ligadura fora dele com registro da decisão.
+- Nomes que **existem** no registro e não existiam em `whatsappmobile`: `callEnd`, `tickDouble`, `pin`, `document`, `gallery`, `audio`, `location`, `contact`, `poll`. Nomes que **deixaram de existir**: `micBody`, `micStand` (o microfone do `Fab` é o `mic`), `radioOn`, `radioOff`, `statusRing`. `overflow` é `more_horiz`; girado 90° (`rotate`) vira o menu vertical das barras. `phone`, `callIn` e `callOut` não precisam mais de rotação.
+
+### 11.5. Kit de Documentação
+As estórias do Unoochat usam o `UnooriaDocShell` como moldura e `.storybook/components/UncDocKit.tsx`: `UncDocGrid`, `UncDocCard`, `UncDocSpecs` (`component`, `layout`, `specs` — substitui o bloco de "especificações do Figma"), `UncDocDecisions` (substitui o registro de desvios), `UncDocAnatomy`, `UncDocStage` (prop `theme`), `UncDocPractices`, **`UncDocThemeSwitcher`**, `UncDocPropsTable` e `UncDocTokenSwatch` (metade clara, metade escura, com o token de origem na Unooria). Toda estória mantém as seções obrigatórias do Padrão Ouro (seção 3), com a seção 2 intitulada "Especificações técnicas".
+- **Seção 6 ("Suporte a Temas")**: atendida pelo `UncDocThemeSwitcher`, que alterna `data-unc-theme` entre `light` e `dark` exatamente como um produto faz. Ao contrário do WhatsApp Mobile e do Tik Tooria, o Unoochat **tem** par claro/escuro, e ele é legítimo porque cada valor é um degrau nomeado da Unooria (seção 2.8).
+- A cor das barras de seção nas estórias é `#716C98` (`brandpurple-600`).
+
+### 11.6. Registro de Decisões de Design
+Não há "desvios em relação ao Figma", porque não há arquivo. O que se registra, com o `UncDocDecisions`, é toda escolha que não seja mera aplicação de um token da Unooria a um componente herdado. Decisões registradas até o momento, todas de 2026-09-29:
+- **Onze acentos viram um**: os tons de verde-água do módulo de origem foram consolidados em `--unc-color-accent`; do mesmo modo, os 25 tokens de texto viraram 8, e os de ícone, 5 (seção 2.8). A justificativa é que os tons distintos eram divergências do arquivo de origem, e não hierarquia.
+- **Cor por contraste, não por analogia**: acento `brandpurple-600` no claro (5,0:1 com branco) e `brandpurple-400` no escuro (com `text-on-accent` em `brandpurple-950`); balão enviado em `brandpurple-200` (claro) e `-700` (escuro); texto secundário em `neutral-700` / `neutraldark-900`. `brandpurple-500` **não** serve de texto sobre branco (contraste abaixo de 4,5:1) e não é usado como tal.
+- **Título da marca na barra superior em `--unc-color-accent`** (variante `home` do `TopBar`), e títulos de página em `--unc-color-text-primary`. É onde a identidade roxa aparece no cromo do aplicativo.
+- **Tela de chamada roxa e invariante**: `--unc-color-call-surface` é `brandpurple-800` nos dois temas, como imersivo de marca; o mesmo vale para as ações da folha de anexos.
+- **Elevação de sobreposição**: Menu, Dialog, BottomSheet, Toast e Fab recebem `--unc-elevation-overlay`. Em superfície roxa escura a sombra escura não se vê, por isso o escuro usa o halo claro `--unooria-elevation-neutral-2`; a separação continua principalmente pela escada de luminância.
+- **Escala tipográfica encaixada na da Unooria**: os degraus fracionários da origem (18,54px, 15,54px, 14,54px, 16,544px…) viraram os degraus inteiros mais próximos da escala da plataforma, e o corpo do placeholder do compositor passou de 20 para 16px. Alturas de linha passaram de `normal` para as da Unooria.
+- **`Radio` desenhado em CSS** (ver 11.4); **`ChatWallpaper` em ladrilho** de 320px, por tema; **`TabBar.tone`** reduzido a `'accent'`.
+- **Medidas herdadas**: espaçamento, raios, alturas de barra, avatares e FABs seguem os do módulo de origem (seção 2.8) — é a razão de a estrutura ser "a mesma" e o motivo de os pares de tamanho de ícone (24px na barra, 16px na status) terem sido reajustados à caixa do glifo Material.

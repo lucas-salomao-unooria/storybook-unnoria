@@ -1,0 +1,45 @@
+/**
+ * Estilos do Componente Menu — Design System Unoochat
+ *
+ * Menu suspenso de 240px em `--unc-color-surface-elevated` com itens de 44px de
+ * passo, recuo esquerdo de 24px e texto em `--unc-font-subtitle-*`.
+ */
+
+.unc-menu {
+  box-sizing: border-box;
+  width: var(--unc-menu-width, 240px);
+  padding: var(--unc-spacing-m) 0;
+  background-color: var(--unc-color-surface-elevated);
+  box-shadow: var(--unc-elevation-overlay);
+  font-family: var(--unc-font-sans);
+}
+
+.unc-menu__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  height: 44px;
+  padding: 0 var(--unc-spacing-m) 0 var(--unc-gutter-appbar);
+  border: none;
+  background: transparent;
+  color: var(--unc-color-text-primary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-subtitle-size);
+  font-weight: var(--unc-font-subtitle-weight);
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-menu__item:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: -2px;
+}
+
+.unc-menu__item:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

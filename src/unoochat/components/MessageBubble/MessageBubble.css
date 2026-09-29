@@ -1,0 +1,317 @@
+/**
+ * Estilos do Componente MessageBubble — Design System Unoochat
+ *
+ * Balão de mensagem: fundo `--unc-color-surface-bubble-out` (enviada) ou
+ * `--unc-color-surface-bubble-in` (recebida), miniatura com raio de 5px, faixa
+ * de documento `--unc-color-surface-bubble-out-strip` com raio de 2px e rodapé
+ * de metadados em `--unc-font-caption-*`.
+ */
+
+.unc-messagebubble {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-xxs);
+  box-sizing: border-box;
+  max-width: var(--unc-messagebubble-max-width, 240px);
+  padding: var(--unc-spacing-xs);
+  border-radius: var(--unc-radius-xl);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-md-size);
+  line-height: 1.3;
+  color: var(--unc-color-text-bubble);
+}
+
+.unc-messagebubble--out {
+  align-self: flex-end;
+  background-color: var(--unc-color-surface-bubble-out);
+}
+
+.unc-messagebubble--in {
+  align-self: flex-start;
+  background-color: var(--unc-color-surface-bubble-in);
+}
+
+/* Cauda triangular de 8px na base do balão */
+.unc-messagebubble__tail {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.unc-messagebubble--out .unc-messagebubble__tail {
+  right: -6px;
+  border-width: 0 0 10px 8px;
+  border-color: transparent transparent var(--unc-color-surface-bubble-out) transparent;
+}
+
+.unc-messagebubble--in .unc-messagebubble__tail {
+  left: -6px;
+  border-width: 0 8px 10px 0;
+  border-color: transparent var(--unc-color-surface-bubble-in) transparent transparent;
+}
+
+.unc-messagebubble__text {
+  margin: 0;
+  word-break: break-word;
+}
+
+.unc-messagebubble__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--unc-spacing-3xs);
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Subcomponente de mídia
+   ========================================================================== */
+
+.unc-messagebubble__media {
+  overflow: hidden;
+  border-radius: var(--unc-radius-m);
+  background-color: var(--unc-color-surface-bubble-out-strip);
+}
+
+.unc-messagebubble__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mídia acionável (`onClick`): o <button> não muda o desenho — só o reset, o
+   cursor e o anel de foco, como a pré-visualização de link acionável. Fica
+   ANTES de `--drawn` de propósito: a moldura desenhada continua flex. */
+.unc-messagebubble__media--action {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-messagebubble__media--action:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Subcomponente de documento
+   ========================================================================== */
+
+.unc-messagebubble__document {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-xs);
+  box-sizing: border-box;
+  padding: var(--unc-spacing-xxs) var(--unc-spacing-xs);
+  border-radius: var(--unc-radius-xs);
+  background-color: var(--unc-color-surface-bubble-out-strip);
+}
+
+.unc-messagebubble__document-name {
+  flex: 1;
+  min-width: 0;
+  color: var(--unc-color-text-bubble);
+  font-size: var(--unc-font-body-md-size);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unc-messagebubble__document-details {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-xxs);
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+}
+
+.unc-messagebubble__document-separator {
+  width: 2px;
+  height: 2px;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-text-bubble-meta);
+}
+
+/* ==========================================================================
+   Extensões — conversa de grupo, mensagem encaminhada, pré-visualização de
+   link, convite e mídia desenhada. Cada bloco abaixo usa só superfícies,
+   textos e raios do módulo, e o desvio está registrado na estória do
+   componente.
+   ========================================================================== */
+
+/* Remetente em conversa de grupo: o acento da aba ativa, em negrito — a
+   hierarquia do nome na lista de conversas. */
+.unc-messagebubble__sender {
+  color: var(--unc-color-accent);
+  font-size: var(--unc-font-caption-bold-size);
+  font-weight: var(--unc-font-weight-bold);
+  line-height: 1.2;
+}
+
+/* Selo "Encaminhada": metadado do balão, em itálico, com o glifo `forward`. */
+.unc-messagebubble__forwarded {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-3xs);
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+/* Mídia desenhada: a moldura continua a da miniatura; o conteúdo ocupa tudo. */
+.unc-messagebubble__media--drawn {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.unc-messagebubble__media--drawn > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Subcomponente de pré-visualização de link
+   ========================================================================== */
+
+.unc-messagebubble__link {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: var(--unc-radius-m);
+  background-color: var(--unc-color-surface-bubble-out-strip);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.unc-messagebubble__link--action {
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-messagebubble__link--action:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}
+
+.unc-messagebubble__link-thumb {
+  display: flex;
+  aspect-ratio: 1.91 / 1;
+  overflow: hidden;
+}
+
+.unc-messagebubble__link-thumb > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.unc-messagebubble__link-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-4xs);
+  padding: var(--unc-spacing-xs);
+}
+
+.unc-messagebubble__link-title {
+  color: var(--unc-color-text-bubble);
+  font-size: var(--unc-font-body-sm-size);
+  font-weight: var(--unc-font-weight-bold);
+  line-height: 1.25;
+}
+
+.unc-messagebubble__link-description {
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1.3;
+}
+
+.unc-messagebubble__link-domain {
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   Subcomponente de convite para grupo
+   ========================================================================== */
+
+.unc-messagebubble__invite {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--unc-radius-m);
+  background-color: var(--unc-color-surface-bubble-out-strip);
+}
+
+.unc-messagebubble__invite-head {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-s);
+  padding: var(--unc-spacing-s);
+}
+
+.unc-messagebubble__invite-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-4xs);
+  min-width: 0;
+}
+
+.unc-messagebubble__invite-title {
+  color: var(--unc-color-text-bubble);
+  font-size: var(--unc-font-body-md-size);
+  font-weight: var(--unc-font-weight-bold);
+  line-height: 1.2;
+}
+
+.unc-messagebubble__invite-subtitle {
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1.2;
+}
+
+/* A ação é a do diálogo (CANCEL / OK), com alvo de 48px: é o toque que abre o
+   grupo, e o dedo de quem usa o clone não pode errar por pouco. */
+.unc-messagebubble__invite-action {
+  min-height: 48px;
+  padding: var(--unc-spacing-xs) var(--unc-spacing-s);
+  border: 0;
+  border-top: var(--unc-divider-width) solid var(--unc-color-border-divider);
+  background: transparent;
+  color: var(--unc-color-accent);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-md-size);
+  font-weight: var(--unc-font-weight-bold);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-messagebubble__invite-action:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: -2px;
+}
+
+.unc-messagebubble__invite-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

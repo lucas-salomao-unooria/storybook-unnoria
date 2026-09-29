@@ -1,0 +1,45 @@
+/**
+ * Estilos do Componente EncryptionNotice — Design System Unoochat
+ *
+ * Cartão de 347px com raio de 5px, cadeado de 11×14px e texto centralizado em
+ * `--unc-color-text-notice`.
+ */
+
+.unc-encryptionnotice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unc-spacing-s);
+  box-sizing: border-box;
+  max-width: 347px;
+  padding: var(--unc-spacing-s) var(--unc-spacing-m);
+  border-radius: var(--unc-radius-m);
+  background-color: var(--unc-color-surface-notice);
+  color: var(--unc-color-text-notice);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-label-sm-size);
+  font-weight: var(--unc-font-label-sm-weight);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.unc-encryptionnotice__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--unc-color-text-notice);
+}
+
+.unc-encryptionnotice__text {
+  flex: 1;
+}
+
+/* Reset e foco visível para a variante acionável (renderizada como <button>). */
+button.unc-encryptionnotice {
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button.unc-encryptionnotice:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}

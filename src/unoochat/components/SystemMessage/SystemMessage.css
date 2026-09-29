@@ -1,0 +1,22 @@
+/**
+ * Estilos do Componente SystemMessage — Design System Unoochat
+ *
+ * Extensão. Mesma superfície, texto e raio da etiqueta de data, sem a altura
+ * fixa — o aviso quebra linha.
+ */
+
+.unc-systemmessage {
+  align-self: center;
+  box-sizing: border-box;
+  max-width: 85%;
+  margin: 0;
+  padding: var(--unc-spacing-xxs) var(--unc-spacing-s);
+  border-radius: var(--unc-radius-l);
+  background-color: var(--unc-color-surface-datechip);
+  color: var(--unc-color-text-secondary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-label-sm-size);
+  font-weight: var(--unc-font-label-sm-weight);
+  line-height: 1.3;
+  text-align: center;
+}

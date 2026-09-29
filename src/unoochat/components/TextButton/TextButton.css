@@ -1,0 +1,33 @@
+/**
+ * Estilos do Componente TextButton — Design System Unoochat
+ *
+ * Botões de texto do diálogo modal (CANCELAR e OK), em `--unc-font-body-sm-*`
+ * na cor `--unc-color-accent`.
+ */
+
+.unc-textbutton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unc-spacing-xs) var(--unc-spacing-s);
+  border: none;
+  border-radius: var(--unc-radius-s);
+  background: transparent;
+  color: var(--unc-color-accent);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-sm-size);
+  font-weight: var(--unc-font-body-sm-weight);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-textbutton:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 1px;
+}
+
+.unc-textbutton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

@@ -1,0 +1,32 @@
+/**
+ * Estilos do Componente MessageTag — Design System Unoochat
+ *
+ * Extensão. Cápsula na superfície elevada do menu
+ * (`--unc-color-surface-elevated`) com contorno do controle
+ * (`--unc-color-border-control`) e texto primário — neutra de propósito: a
+ * informação está no rótulo e no pictograma, não na cor.
+ */
+
+.unc-messagetag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-3xs);
+  box-sizing: border-box;
+  min-height: 24px;
+  padding: var(--unc-spacing-4xs) var(--unc-spacing-xs);
+  border: var(--unc-divider-width) solid var(--unc-color-border-control);
+  border-radius: var(--unc-radius-pill);
+  background-color: var(--unc-color-surface-elevated);
+  color: var(--unc-color-text-primary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-caption-bold-size);
+  font-weight: var(--unc-font-weight-bold);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.unc-messagetag__icon {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}

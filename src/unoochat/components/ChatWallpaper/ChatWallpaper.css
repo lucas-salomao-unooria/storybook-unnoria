@@ -1,0 +1,26 @@
+/**
+ * Estilos do Componente ChatWallpaper — Design System Unoochat
+ * Fundo da conversa. A cor de base é `--unc-color-surface-base`; a textura,
+ * quando informada por `src`, é um ladrilho de 320px que se repete.
+ */
+
+.unc-chatwallpaper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  background-color: var(--unc-color-surface-base);
+  background-position: top left;
+  background-size: 320px 320px;
+  background-repeat: repeat;
+}
+
+.unc-chatwallpaper__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
