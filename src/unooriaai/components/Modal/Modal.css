@@ -1,0 +1,106 @@
+/**
+ * Estilos do Componente Modal — Design System UnooriaAI
+ *
+ * Medidas: 480px de largura, padding 24, gap 16, raio 16 (`--uai-radius-xl`),
+ * superfície `--uai-bg-primary` e a sombra `--uai-elevation-modal`, definida
+ * por tema.
+ *
+ * O scrim usa `--uai-overlay-scrim`, igual nos dois temas.
+ */
+
+.uai-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--uai-spacing-8);
+  background-color: var(--uai-overlay-scrim);
+}
+
+.uai-modal-overlay__inner {
+  display: contents;
+}
+
+.uai-modal-root {
+  display: inline-flex;
+}
+
+.uai-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uai-spacing-6);
+  box-sizing: border-box;
+  width: 480px;
+  max-width: 100%;
+  padding: var(--uai-spacing-8);
+  border-radius: var(--uai-radius-xl);
+  background-color: var(--uai-bg-primary);
+  box-shadow: var(--uai-elevation-modal);
+  font-family: var(--uai-font-sans);
+}
+
+.uai-modal:focus {
+  outline: none;
+}
+
+.uai-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--uai-spacing-5);
+}
+
+.uai-modal__title {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--uai-font-heading-h3-size);
+  font-weight: var(--uai-font-weight-semibold);
+  line-height: var(--uai-font-heading-h3-line);
+  color: var(--uai-text-primary);
+}
+
+.uai-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  /* alvo mínimo de 24px (WCAG 2.5.8) em volta do glifo de 20px */
+  width: var(--uai-size-icon-lg);
+  height: var(--uai-size-icon-lg);
+  padding: 0;
+  border: none;
+  border-radius: var(--uai-radius-sm);
+  background: transparent;
+  line-height: 1;
+  color: var(--uai-text-soft-50);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color var(--uai-transition-fast);
+}
+
+.uai-modal__close:hover {
+  color: var(--uai-text-primary);
+}
+
+.uai-modal__close:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-modal__body {
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  color: var(--uai-text-soft-70);
+}
+
+.uai-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--uai-spacing-5);
+  margin-top: auto;
+}

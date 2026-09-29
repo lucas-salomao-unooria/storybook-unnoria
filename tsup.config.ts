@@ -112,6 +112,7 @@ export default defineConfig([
       'styles-unootube': 'src/styles-unootube.css',
       'styles-unoochat': 'src/styles-unoochat.css',
       'styles-unoovista': 'src/styles-unoovista.css',
+      'styles-unooriaai': 'src/styles-unooriaai.css',
 
       /*
        * Folhas de fonte, opt-in. Ficam separadas das folhas de componente para
@@ -126,6 +127,7 @@ export default defineConfig([
       'fonts/unootube': 'src/fonts-unootube.css',
       'fonts/unoochat': 'src/fonts-unoochat.css',
       'fonts/unoovista': 'src/fonts-unoovista.css',
+      'fonts/unooriaai': 'src/fonts-unooriaai.css',
     },
     esbuildOptions(options) {
       /* Os arquivos de fonte ao lado das folhas que os declaram. */

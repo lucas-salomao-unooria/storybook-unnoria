@@ -1,0 +1,25 @@
+/**
+ * Estilos do Componente Divider — Design System UnooriaAI
+ *
+ * Traço de 1px preenchido com a escada translúcida `--uai-fill-10`. A largura
+ * não é fixada aqui — o traço acompanha o contêiner, como nas listas de
+ * configurações.
+ */
+
+.uai-divider {
+  border: none;
+  margin: 0;
+  background-color: var(--uai-fill-10);
+  flex-shrink: 0;
+}
+
+.uai-divider--horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.uai-divider--vertical {
+  width: 1px;
+  height: 100%;
+  align-self: stretch;
+}

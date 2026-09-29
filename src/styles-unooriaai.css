@@ -1,0 +1,51 @@
+/**
+ * Folha de estilos do Design System UnooriaAI.
+ *
+ * Importe este arquivo para registrar os tokens `--uai-*` e os estilos dos
+ * componentes do módulo `src/unooriaai/`.
+ *
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--uai-font-sans)`, com pilha de fallback. A família é opt-in:
+ *
+ *     import '@unooria/design-system/fonts/unooriaai.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md.
+ */
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (UnooriaAI)
+ * ---------------------------------------------------- */
+@import './unooriaai/tokens/typography.css';
+@import './unooriaai/tokens/colors.css';
+@import './unooriaai/tokens/spacing.css';
+@import './unooriaai/tokens/elevation.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (UnooriaAI)
+ * ---------------------------------------------------- */
+@import './unooriaai/components/AssistantCard/AssistantCard.css';
+@import './unooriaai/components/Avatar/Avatar.css';
+@import './unooriaai/components/Badge/Badge.css';
+@import './unooriaai/components/Button/Button.css';
+@import './unooriaai/components/ChatBubble/ChatBubble.css';
+@import './unooriaai/components/ChatInput/ChatInput.css';
+@import './unooriaai/components/Composer/Composer.css';
+@import './unooriaai/components/Divider/Divider.css';
+@import './unooriaai/components/FeatureCard/FeatureCard.css';
+@import './unooriaai/components/Icon/Icon.css';
+@import './unooriaai/components/IconButton/IconButton.css';
+@import './unooriaai/components/Input/Input.css';
+@import './unooriaai/components/Logo/Logo.css';
+@import './unooriaai/components/Modal/Modal.css';
+@import './unooriaai/components/NavItem/NavItem.css';
+@import './unooriaai/components/PlanTag/PlanTag.css';
+@import './unooriaai/components/PromptSuggestion/PromptSuggestion.css';
+@import './unooriaai/components/SearchInput/SearchInput.css';
+@import './unooriaai/components/SettingsRow/SettingsRow.css';
+@import './unooriaai/components/Sidebar/Sidebar.css';
+@import './unooriaai/components/SidebarRow/SidebarRow.css';
+@import './unooriaai/components/Tag/Tag.css';
+@import './unooriaai/components/Toggle/Toggle.css';
+@import './unooriaai/components/TopicColumn/TopicColumn.css';
+@import './unooriaai/components/WebSidebar/WebSidebar.css';

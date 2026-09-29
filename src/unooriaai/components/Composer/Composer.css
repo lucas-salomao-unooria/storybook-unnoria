@@ -1,0 +1,131 @@
+/**
+ * Estilos do Componente Composer — Design System UnooriaAI
+ *
+ * Medidas: 760 × 56, padding 16/20 (`--uai-spacing-6` e `--uai-spacing-7`),
+ * raio 16 (`--uai-radius-xl`), contorno de 1px e trilha interna de quatro
+ * alvos com 8px de intervalo.
+ *
+ * O contorno é de 1px (e não de meio pixel) para que o limite do campo seja
+ * legível em qualquer densidade de tela: `--uai-web-composer-border` mede
+ * mais de 3:1 sobre a tela nos dois temas. O pixel do contorno é descontado do
+ * padding vertical, para que a caixa continue com 56px.
+ *
+ * Os alvos medem 24 × 24 com raio 12 e o glifo de 20px dentro (o Material
+ * Symbols ocupa cerca de 83% da caixa, então o traço visível é de ~16px). São
+ * menores que o `IconButton` (28px), o que é próprio da trilha do compositor.
+ *
+ * A doca é a faixa de 116px da base da tela: padding 20/0/40, véu translúcido
+ * (`--uai-web-veil`) e `backdrop-filter: blur(40px)`.
+ */
+
+.uai-composer {
+  display: flex;
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 760px;
+  max-width: 100%;
+  padding: calc(var(--uai-spacing-6) - 1px) var(--uai-spacing-7);
+  border: 1px solid var(--uai-web-composer-border);
+  border-radius: var(--uai-radius-xl);
+  background-color: var(--uai-web-composer-fill);
+  font-family: var(--uai-font-sans);
+  transition: border-color var(--uai-transition-fast);
+}
+
+.uai-composer--block {
+  width: 100%;
+}
+
+.uai-composer:focus-within {
+  border-color: var(--uai-border-brand);
+}
+
+.uai-composer__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 var(--uai-spacing-4);
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  color: var(--uai-text-primary);
+}
+
+.uai-composer__field::placeholder {
+  color: var(--uai-web-composer-placeholder);
+}
+
+.uai-composer__field:disabled {
+  cursor: not-allowed;
+}
+
+.uai-composer__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--uai-size-icon-lg);
+  height: var(--uai-size-icon-lg);
+  padding: var(--uai-spacing-1);
+  border: none;
+  border-radius: var(--uai-radius-lg);
+  background-color: transparent;
+  color: var(--uai-text-primary);
+  cursor: pointer;
+  appearance: none;
+  flex-shrink: 0;
+  transition: background-color var(--uai-transition-fast), opacity var(--uai-transition-fast);
+}
+
+.uai-composer__action:hover:not(:disabled) {
+  background-color: var(--uai-fill-8);
+}
+
+.uai-composer__action:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-composer__action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/**
+ * O alvo de envio fica num tom mais suave em repouso e volta ao texto primário
+ * no hover e no foco.
+ */
+.uai-composer__action--send {
+  color: var(--uai-text-soft-40);
+}
+
+.uai-composer__action--send:hover:not(:disabled),
+.uai-composer__action--send:focus-visible {
+  color: var(--uai-text-primary);
+}
+
+/* ==========================================================================
+   Doca
+   ========================================================================== */
+
+.uai-composer-dock {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--uai-spacing-7) var(--uai-spacing-6) var(--uai-spacing-11);
+  background-color: var(--uai-web-veil);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+@media (max-width: 800px) {
+  .uai-composer {
+    width: 100%;
+  }
+}

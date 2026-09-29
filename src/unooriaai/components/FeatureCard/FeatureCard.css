@@ -1,0 +1,64 @@
+/**
+ * Estilos do Componente FeatureCard — Design System UnooriaAI
+ *
+ * Medidas: 240 × 120, padding 16, gap 8, raio 12, contorno de 1px em
+ * `--uai-fill-8` e conteúdo centralizado nos dois eixos. A descrição usa o
+ * degrau `Body/XS` (12/18) da escala da Plataforma Unooria, o mesmo da
+ * descrição do `AssistantCard`.
+ */
+
+.uai-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 240px;
+  height: 120px;
+  padding: var(--uai-spacing-6);
+  border: 1px solid var(--uai-fill-8);
+  border-radius: var(--uai-radius-lg);
+  background-color: var(--uai-bg-primary);
+  font-family: var(--uai-font-sans);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--uai-transition-fast), border-color var(--uai-transition-fast);
+}
+
+.uai-feature-card--block {
+  width: 100%;
+  height: auto;
+}
+
+button.uai-feature-card,
+a.uai-feature-card {
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Estados de interação: realce em `--uai-fill-2` e anel de foco de 2px. */
+button.uai-feature-card:hover,
+a.uai-feature-card:hover {
+  background-color: var(--uai-fill-2);
+}
+
+button.uai-feature-card:focus-visible,
+a.uai-feature-card:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-feature-card__title {
+  font-size: var(--uai-font-label-md-size);
+  font-weight: var(--uai-font-weight-semibold);
+  line-height: var(--uai-font-label-md-line);
+  color: var(--uai-text-primary);
+}
+
+.uai-feature-card__description {
+  font-size: var(--uai-font-body-xs-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-xs-line);
+  color: var(--uai-text-soft-50);
+}

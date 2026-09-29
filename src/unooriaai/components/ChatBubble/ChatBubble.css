@@ -1,0 +1,39 @@
+/**
+ * Estilos do Componente ChatBubble — Design System UnooriaAI
+ *
+ * Medidas: padding 12/16, gap 12 e texto de `Body/SM` (Open Sans 14/20) nos
+ * dois papéis. `role="user"` adiciona a superfície translúcida `--uai-fill-4`
+ * com raio 16 (`--uai-radius-xl`); `role="assistant"` herda a superfície
+ * `--uai-bg-primary` da conversa.
+ */
+
+.uai-chat-bubble {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--uai-spacing-5);
+  box-sizing: border-box;
+  padding: var(--uai-spacing-5) var(--uai-spacing-6);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  color: var(--uai-text-primary);
+}
+
+.uai-chat-bubble__avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.uai-chat-bubble__message {
+  min-width: 0;
+}
+
+.uai-chat-bubble--user {
+  background-color: var(--uai-fill-4);
+  border-radius: var(--uai-radius-xl);
+}
+
+.uai-chat-bubble--assistant {
+  background-color: var(--uai-bg-primary);
+}

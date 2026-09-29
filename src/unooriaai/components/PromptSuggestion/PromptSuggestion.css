@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente PromptSuggestion — Design System UnooriaAI
+ *
+ * Medidas do cartão: 280 × 48, padding 4/8 (`--uai-spacing-2` e
+ * `--uai-spacing-4`), raio 8 (`--uai-radius-md`) e texto de 14/20
+ * (`--uai-font-body-sm-*`).
+ *
+ * A altura de 48px é o que cabem duas linhas de 20px mais o padding. Ela é
+ * `min-height`, para que um texto de uma linha continue com a mesma caixa e um
+ * texto mais longo cresça em vez de vazar.
+ */
+
+.uai-prompt-suggestion {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 280px;
+  min-height: 48px;
+  margin: 0;
+  padding: var(--uai-spacing-2) var(--uai-spacing-4);
+  border: none;
+  border-radius: var(--uai-radius-md);
+  background-color: var(--uai-web-suggestion);
+  color: var(--uai-text-primary);
+  font-family: var(--uai-font-sans);
+  font-size: var(--uai-font-body-sm-size);
+  font-weight: var(--uai-font-weight-regular);
+  line-height: var(--uai-font-body-sm-line);
+  text-align: left;
+  text-decoration: none;
+  transition: background-color var(--uai-transition-fast);
+}
+
+.uai-prompt-suggestion--block {
+  width: 100%;
+}
+
+button.uai-prompt-suggestion,
+a.uai-prompt-suggestion {
+  cursor: pointer;
+  appearance: none;
+}
+
+button.uai-prompt-suggestion:hover:not(:disabled),
+a.uai-prompt-suggestion:hover {
+  background-color: var(--uai-fill-8);
+}
+
+button.uai-prompt-suggestion:focus-visible,
+a.uai-prompt-suggestion:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+button.uai-prompt-suggestion:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

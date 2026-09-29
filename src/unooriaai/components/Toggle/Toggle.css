@@ -1,0 +1,59 @@
+/**
+ * Estilos do Componente Toggle — Design System UnooriaAI
+ *
+ * Medidas: trilho 44 × 24 com raio 12 (`--uai-radius-lg`), botão deslizante de
+ * 20px com folga de 2px (`--uai-spacing-1`) e sombra `--uai-elevation-knob`
+ * (definida por tema). O botão usa `--uai-text-inverse`: branco no tema claro
+ * e roxo profundo no escuro, o que o mantém legível sobre o trilho nos dois
+ * estados e nos dois temas.
+ */
+
+.uai-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 44px;
+  height: var(--uai-spacing-8);
+  padding: 0;
+  border: none;
+  border-radius: var(--uai-radius-lg);
+  cursor: pointer;
+  appearance: none;
+  flex-shrink: 0;
+  transition: background-color var(--uai-transition-fast);
+}
+
+.uai-toggle:focus-visible {
+  outline: 2px solid var(--uai-border-brand);
+  outline-offset: 2px;
+}
+
+.uai-toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.uai-toggle__knob {
+  position: absolute;
+  top: var(--uai-spacing-1);
+  left: var(--uai-spacing-1);
+  width: var(--uai-spacing-7);
+  height: var(--uai-spacing-7);
+  border-radius: var(--uai-radius-full);
+  background-color: var(--uai-text-inverse);
+  box-shadow: var(--uai-elevation-knob);
+  transition: transform var(--uai-transition-fast);
+}
+
+.uai-toggle--off {
+  background-color: var(--uai-border-control);
+}
+
+.uai-toggle--on {
+  background-color: var(--uai-interactive-primary);
+}
+
+.uai-toggle--on .uai-toggle__knob {
+  transform: translateX(var(--uai-spacing-7));
+}

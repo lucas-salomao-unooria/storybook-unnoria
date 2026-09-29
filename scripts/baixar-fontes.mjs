@@ -106,6 +106,19 @@ const MARCAS = {
       },
     ],
   },
+  unooriaai: {
+    prefixo: '--uai',
+    familias: [
+      { nome: 'Open Sans', slug: 'open-sans', query: 'Open+Sans:ital,wght@0,300..800;1,300..800' },
+      {
+        nome: 'Material Symbols Rounded',
+        slug: 'material-symbols-rounded',
+        query:
+          'Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+        todosOsSubsets: true,
+      },
+    ],
+  },
   unootube: {
     prefixo: '--uni',
     familias: [{ nome: 'Roboto', slug: 'roboto', query: 'Roboto:wght@400;500;700' }],
