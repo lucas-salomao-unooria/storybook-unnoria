@@ -3,16 +3,15 @@ import type { UnvTheme } from '../../tokens';
 
 /**
  * Composição da marca.
- * - 'lockup': emblema + logotipo tipográfico “Unoovista”
- * - 'mark': só o emblema (duas circunferências entrelaçadas), para espaços
+ * - 'lockup': símbolo + logotipo tipográfico “Unoovista”
+ * - 'mark': só o símbolo (o infinito orgânico da Unooria), para espaços
  *   estreitos como o ícone do aplicativo e o avatar da marca
  */
 export type UnvLogoVariant = 'lockup' | 'mark';
 
 /**
  * Tons aplicáveis ao logotipo Unoovista.
- * - 'primary': emblema em dois roxos de ação (`--unv-color-action-primary` e
- *   `-pressed`) e logotipo em `--unv-color-text-primary`; acompanha o tema
+ * - 'primary': símbolo em `--unv-color-action-primary` e logotipo em `--unv-color-text-primary`; acompanha o tema
  * - 'inverse': tudo em `--unv-color-text-on-media` (branco), para uso sobre mídia
  * - 'inherit': herda `currentColor` do elemento pai, numa tinta só
  */
@@ -24,13 +23,13 @@ export type UnvLogoTone = 'primary' | 'inverse' | 'inherit';
 export interface UnvLogoProps extends Omit<React.SVGProps<SVGSVGElement>, 'ref'> {
   /**
    * Altura do logotipo em pixels. A largura é derivada da proporção do
-   * `viewBox` (lockup 152,51 × 24; emblema 27 × 18).
+   * `viewBox` (lockup 158,84 × 24; símbolo 100 × 54).
    * @default 28
    */
   height?: number;
 
   /**
-   * Composição da marca: lockup completo ou só o emblema.
+   * Composição da marca: lockup completo ou só o símbolo.
    * @default 'lockup'
    */
   variant?: UnvLogoVariant;

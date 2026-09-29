@@ -1,7 +1,6 @@
 /**
  * Estilos do Componente Logo — Design System Unoovista
- * Emblema em dois tons de roxo (anéis A e B) e logotipo tipográfico na cor do
- * texto. Todas as cores são tokens; o vetor não tem preenchimento literal.
+ * Símbolo da Unooria no roxo de ação e logotipo tipográfico na cor do texto. Todas as cores são tokens; o vetor não tem preenchimento literal.
  */
 
 .unv-logo {
@@ -11,12 +10,8 @@
   overflow: visible;
 }
 
-.unv-logo__ring-a {
-  stroke: var(--unv-color-action-primary);
-}
-
-.unv-logo__ring-b {
-  stroke: var(--unv-color-action-pressed);
+.unv-logo__symbol {
+  fill: var(--unv-color-action-primary);
 }
 
 .unv-logo__wordmark {
@@ -24,9 +19,8 @@
 }
 
 /* Sobre mídia: marca inteira em branco, nos dois temas */
-.unv-logo--tone-inverse .unv-logo__ring-a,
-.unv-logo--tone-inverse .unv-logo__ring-b {
-  stroke: var(--unv-color-text-on-media);
+.unv-logo--tone-inverse .unv-logo__symbol {
+  fill: var(--unv-color-text-on-media);
 }
 
 .unv-logo--tone-inverse .unv-logo__wordmark {
@@ -34,9 +28,8 @@
 }
 
 /* Herda a cor do elemento pai: uma tinta só */
-.unv-logo--tone-inherit .unv-logo__ring-a,
-.unv-logo--tone-inherit .unv-logo__ring-b {
-  stroke: currentColor;
+.unv-logo--tone-inherit .unv-logo__symbol {
+  fill: currentColor;
 }
 
 .unv-logo--tone-inherit .unv-logo__wordmark {
