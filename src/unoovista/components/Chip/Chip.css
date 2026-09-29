@@ -1,0 +1,76 @@
+/**
+ * Estilos do Componente Chip — Design System Unoovista
+ * Cápsula de filtro e de categoria. Em repouso, fundo de conteúdo com contorno
+ * suave; selecionado, preenchimento `action-primary` com rótulo
+ * `text-on-action`. Altura de 32px, alvo de toque de 44px.
+ */
+
+.unv-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unv-spacing-xxs);
+  box-sizing: border-box;
+  height: var(--unv-spacing-3xl);
+  padding: 0 var(--unv-spacing-m);
+  background-color: var(--unv-color-background-primary);
+  border: 1px solid var(--unv-color-action-secondary-border);
+  border-radius: var(--unv-radius-full);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast), color var(--unv-transition-fast),
+    border-color var(--unv-transition-fast);
+}
+
+/* Alvo de toque de 44px: a área extra é invisível e só cresce no eixo vertical */
+.unv-chip::before {
+  content: '';
+  position: absolute;
+  inset: min(0px, calc((100% - var(--unv-touch-target)) / 2)) 0;
+}
+
+.unv-chip:hover:not(:disabled) {
+  background-color: var(--unv-color-fill-field);
+}
+
+.unv-chip:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-chip--selected {
+  background-color: var(--unv-color-action-primary);
+  border-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+}
+
+.unv-chip--selected:hover:not(:disabled) {
+  background-color: var(--unv-color-action-pressed);
+  border-color: var(--unv-color-action-pressed);
+}
+
+.unv-chip:disabled {
+  border-color: var(--unv-color-border-subtle);
+  color: var(--unv-color-text-placeholder);
+  cursor: not-allowed;
+}
+
+.unv-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-chip {
+    transition: none;
+  }
+}

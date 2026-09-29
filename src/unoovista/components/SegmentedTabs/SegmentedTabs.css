@@ -1,0 +1,81 @@
+/**
+ * Estilos do Componente SegmentedTabs — Design System Unoovista
+ * Faixa de segmentos iguais de 44px sobre um fio de 1px; o indicador é um
+ * traço de 3px em `action-primary`, com pontas arredondadas, que desliza entre
+ * os segmentos. A posição vem das variáveis `--unv-segmented-count` e
+ * `--unv-segmented-index`, escritas pelo componente.
+ */
+
+.unv-segmented-tabs {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--unv-touch-target);
+  background-color: transparent;
+  box-shadow: var(--unv-elevation-hairline-bottom);
+}
+
+.unv-segmented-tabs__item {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  padding: 0 var(--unv-spacing-m);
+  background: none;
+  border: none;
+  border-radius: var(--unv-radius-s) var(--unv-radius-s) 0 0;
+  color: var(--unv-color-text-secondary);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  cursor: pointer;
+  appearance: none;
+  transition: color var(--unv-transition-fast);
+}
+
+.unv-segmented-tabs__item:hover {
+  background-color: var(--unv-color-fill-field);
+  color: var(--unv-color-text-primary);
+}
+
+.unv-segmented-tabs__item:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: -2px;
+}
+
+.unv-segmented-tabs__item--active {
+  color: var(--unv-color-text-primary);
+}
+
+.unv-segmented-tabs__indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: calc(100% / var(--unv-segmented-count));
+  transform: translateX(calc(var(--unv-segmented-index) * 100%));
+  transition: transform var(--unv-transition-base);
+  pointer-events: none;
+}
+
+/* Recuo lateral: o traço não encosta nas bordas do segmento */
+.unv-segmented-tabs__indicator::after {
+  content: '';
+  width: calc(100% - var(--unv-spacing-xl) * 2);
+  height: var(--unv-spacing-3xs);
+  background-color: var(--unv-color-action-primary);
+  border-radius: var(--unv-radius-full);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-segmented-tabs__item,
+  .unv-segmented-tabs__indicator {
+    transition: none;
+  }
+}

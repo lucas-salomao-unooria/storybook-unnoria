@@ -1,0 +1,186 @@
+/**
+ * Estilos do Componente TextField — Design System Unoovista
+ * `filled`: caixa de 48px, raio 12px, preenchimento `fill-field` e contorno de
+ * controle (3:1). `underline`: linha com rótulo à esquerda e traço inferior de
+ * controle. O erro engrossa o contorno para 2px e acrescenta glifo e texto.
+ */
+
+.unv-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  font-family: var(--unv-font-sans);
+}
+
+.unv-text-field--block {
+  width: 100%;
+}
+
+.unv-text-field__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.unv-text-field__label {
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+}
+
+/* ==========================================================================
+   Variante Filled
+   ========================================================================== */
+
+.unv-text-field--filled .unv-text-field__control {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--unv-spacing-l);
+  background-color: var(--unv-color-fill-field);
+  border: 1px solid var(--unv-color-border-control);
+  border-radius: var(--unv-radius-m);
+  color: var(--unv-color-text-primary);
+  font-family: inherit;
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+  appearance: none;
+  transition: border-color var(--unv-transition-fast);
+}
+
+.unv-text-field--filled .unv-text-field__control::placeholder {
+  color: var(--unv-color-text-placeholder);
+}
+
+.unv-text-field--filled .unv-text-field__control:focus {
+  border-color: var(--unv-color-action-primary);
+}
+
+.unv-text-field--filled .unv-text-field__control:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-text-field--filled .unv-text-field__control:disabled {
+  border-color: var(--unv-color-border-default);
+  color: var(--unv-color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Variante Underline
+   ========================================================================== */
+
+.unv-text-field--underline .unv-text-field__row {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-l);
+  box-sizing: border-box;
+  min-height: 48px;
+  border-bottom: 1px solid var(--unv-color-border-control);
+  transition: border-color var(--unv-transition-fast);
+}
+
+.unv-text-field--underline .unv-text-field__row:focus-within {
+  border-bottom-color: var(--unv-color-action-primary);
+}
+
+.unv-text-field--underline .unv-text-field__label {
+  flex: 0 0 96px;
+}
+
+.unv-text-field--underline .unv-text-field__control {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--unv-color-text-primary);
+  font-family: inherit;
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+  appearance: none;
+}
+
+.unv-text-field--underline .unv-text-field__control::placeholder {
+  color: var(--unv-color-text-placeholder);
+}
+
+.unv-text-field--underline .unv-text-field__control:focus {
+  outline: none;
+}
+
+.unv-text-field--underline .unv-text-field__row:has(.unv-text-field__control:focus-visible) {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--unv-radius-xs);
+}
+
+.unv-text-field--underline .unv-text-field__control:disabled {
+  color: var(--unv-color-text-secondary);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Estados e mensagens
+   ========================================================================== */
+
+/* Erro: contorno de 2px (o padding compensa a diferença para não mexer no layout) */
+.unv-text-field--error.unv-text-field--filled .unv-text-field__control {
+  padding: 0 calc(var(--unv-spacing-l) - 1px);
+  border-width: 2px;
+  border-color: var(--unv-color-brand-like);
+}
+
+.unv-text-field--error.unv-text-field--underline .unv-text-field__row {
+  border-bottom-width: 2px;
+  border-bottom-color: var(--unv-color-brand-like);
+}
+
+.unv-text-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unv-spacing-3xs);
+  margin: 0;
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+  color: var(--unv-color-text-secondary);
+}
+
+/* O texto do erro fica em texto primário (4,5:1); a cor de alerta vai no glifo e no contorno */
+.unv-text-field__message--error {
+  color: var(--unv-color-text-primary);
+}
+
+.unv-text-field__message-icon {
+  flex-shrink: 0;
+  margin-top: var(--unv-spacing-4xs);
+}
+
+.unv-text-field__trailing {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-text-field--filled .unv-text-field__control,
+  .unv-text-field--underline .unv-text-field__row {
+    transition: none;
+  }
+}

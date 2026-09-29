@@ -1,0 +1,387 @@
+/**
+ * Estilos do Componente PostCard — Design System Unoovista
+ *
+ * Um cartão único de superfície primária (raio de 16px, recuo de 16px). A
+ * mídia tem raio de 12px e a barra de ações é uma pílula sobreposta à base
+ * dela: quando `PostCard.Actions` vem logo depois de `PostCard.Media`, um
+ * margem negativa a puxa para dentro da mídia; solta, é uma linha simples.
+ * Nenhum fio de largura total: a separação é feita por espaço e por superfície.
+ */
+
+.unv-post-card {
+  /* Medidas da pílula de ações sobreposta (locais ao cartão) */
+  --unv-post-card-gap: var(--unv-spacing-xs);
+  --unv-post-card-pill-pad: var(--unv-spacing-3xs);
+  --unv-post-card-pill-height: calc(var(--unv-touch-target) + 2 * var(--unv-post-card-pill-pad));
+  --unv-post-card-pill-inset: var(--unv-spacing-m);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--unv-post-card-gap);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--unv-spacing-l);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-primary);
+  font-family: var(--unv-font-sans);
+}
+
+/* ==========================================================================
+   Cabeçalho
+   ========================================================================== */
+
+.unv-post-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+  padding-bottom: var(--unv-spacing-3xs);
+}
+
+.unv-post-card__identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--unv-spacing-4xs);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unv-post-card__username-row {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+  min-width: 0;
+}
+
+.unv-post-card__username {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-lg-size);
+  font-weight: var(--unv-font-label-lg-weight);
+  line-height: var(--unv-font-label-lg-line);
+  letter-spacing: var(--unv-font-label-lg-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unv-post-card__verified {
+  color: var(--unv-color-brand-verified);
+}
+
+.unv-post-card__location {
+  margin: 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unv-post-card__more {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  padding: 0;
+  background-color: var(--unv-color-fill-field);
+  border: none;
+  border-radius: var(--unv-radius-full);
+  color: var(--unv-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-post-card__more:hover {
+  background-color: var(--unv-color-background-tertiary);
+}
+
+.unv-post-card__more:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Mídia
+   ========================================================================== */
+
+.unv-post-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--unv-radius-m);
+  background-color: var(--unv-color-background-tertiary);
+  overflow: hidden;
+}
+
+.unv-post-card__media-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.unv-post-card__media-counter {
+  position: absolute;
+  top: var(--unv-spacing-m);
+  right: var(--unv-spacing-m);
+}
+
+/*
+ * Pontos do carrossel: cápsula na base da mídia. Com a pílula de ações logo
+ * depois, sobem para acima dela. O ponto ativo é mais comprido que os outros,
+ * o que dá a posição a quem não distingue a cor.
+ */
+.unv-post-card__media-dots {
+  position: absolute;
+  left: 50%;
+  bottom: var(--unv-post-card-pill-inset);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+  padding: var(--unv-spacing-xs) var(--unv-spacing-m);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-background-elevated);
+  box-shadow: var(--unv-elevation-overlay);
+  pointer-events: none;
+}
+
+.unv-post-card__media:has(+ .unv-post-card__actions) .unv-post-card__media-dots {
+  bottom: calc(
+    var(--unv-post-card-pill-inset) + var(--unv-post-card-pill-height) + var(--unv-spacing-xs)
+  );
+}
+
+.unv-post-card__dot {
+  width: var(--unv-spacing-xs);
+  height: var(--unv-spacing-xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-icon-secondary);
+  transition: width var(--unv-transition-base), background-color var(--unv-transition-base);
+}
+
+.unv-post-card__dot--active {
+  width: var(--unv-spacing-xl);
+  background-color: var(--unv-color-icon-primary);
+}
+
+/*
+ * Slide sem fotografia e estado de erro: ocupam a mesma caixa da fotografia,
+ * sobre a mesma superfície `background-tertiary`; o erro usa o `Button`
+ * secundário do pacote. Com a pílula de ações por cima, o conteúdo ganha
+ * folga na base para não ficar sob ela.
+ */
+.unv-post-card__media-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.unv-post-card__media-error {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unv-spacing-m);
+  padding: var(--unv-gutter);
+  text-align: center;
+}
+
+.unv-post-card__media:has(+ .unv-post-card__actions) .unv-post-card__media-error {
+  padding-bottom: calc(var(--unv-post-card-pill-height) + 2 * var(--unv-post-card-pill-inset));
+}
+
+.unv-post-card__media-error-label {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+/* O que a imagem mostrava (o `alt`), sob a mensagem: a falha não apaga a
+   descrição. Texto primário sobre o tertiary (13:1); o secundário também
+   passaria, mas a descrição é o conteúdo que sobrou da publicação. */
+.unv-post-card__media-error-description {
+  margin: 0;
+  max-width: 32ch;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+}
+
+/* ==========================================================================
+   Barra de ações
+   Solta: uma linha de botões circulares. Logo depois da mídia: pílula
+   sobreposta à base dela, em `background-elevated` com a elevação de
+   sobreposição.
+   ========================================================================== */
+
+.unv-post-card__actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+}
+
+.unv-post-card__actions-group {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+}
+
+.unv-post-card__media + .unv-post-card__actions {
+  z-index: 1;
+  min-height: var(--unv-post-card-pill-height);
+  margin: calc(
+      -1 * (var(--unv-post-card-pill-height) + var(--unv-post-card-pill-inset) + var(--unv-post-card-gap))
+    )
+    var(--unv-post-card-pill-inset) var(--unv-post-card-pill-inset);
+  padding: var(--unv-post-card-pill-pad);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-background-elevated);
+  box-shadow: var(--unv-elevation-overlay);
+}
+
+.unv-post-card__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--unv-radius-full);
+  color: var(--unv-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast), transform var(--unv-transition-fast);
+}
+
+.unv-post-card__action:hover {
+  background-color: var(--unv-color-background-tertiary);
+}
+
+.unv-post-card__action:active {
+  transform: scale(0.92);
+}
+
+.unv-post-card__action:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+/*
+ * Curtido e salvo: o glifo preenchido, sobre um círculo de fundo. Solta, a
+ * linha usa a superfície terciária; sobre a pílula elevada, a secundária — a
+ * terciária coincide com a elevada no tema escuro e o círculo sumiria. O
+ * mesmo vale para o realce sob o ponteiro.
+ */
+.unv-post-card__action--liked,
+.unv-post-card__action--saved {
+  background-color: var(--unv-color-background-tertiary);
+}
+
+.unv-post-card__media + .unv-post-card__actions .unv-post-card__action:hover,
+.unv-post-card__media + .unv-post-card__actions .unv-post-card__action--liked,
+.unv-post-card__media + .unv-post-card__actions .unv-post-card__action--saved {
+  background-color: var(--unv-color-background-secondary);
+}
+
+.unv-post-card__action--liked {
+  color: var(--unv-color-brand-like);
+}
+
+.unv-post-card__pagination {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+  pointer-events: none;
+}
+
+/* Com pontos na mídia, a barra de ações não os repete. */
+.unv-post-card__media:has(.unv-post-card__media-dots) + .unv-post-card__actions .unv-post-card__pagination {
+  display: none;
+}
+
+/* ==========================================================================
+   Curtidas, legenda e data
+   ========================================================================== */
+
+.unv-post-card__likes {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  padding-top: var(--unv-spacing-3xs);
+}
+
+.unv-post-card__likes-text {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-post-card__caption {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-post-card__caption-author {
+  font-weight: var(--unv-font-label-lg-weight);
+}
+
+.unv-post-card__strong {
+  font-weight: var(--unv-font-label-lg-weight);
+}
+
+.unv-post-card__timestamp {
+  margin: 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-post-card__more,
+  .unv-post-card__action,
+  .unv-post-card__dot {
+    transition: none;
+  }
+
+  .unv-post-card__action:active {
+    transform: none;
+  }
+}

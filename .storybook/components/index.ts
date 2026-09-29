@@ -7,3 +7,4 @@ export * from './WaDocKit';
 export * from './TikDocKit';
 export * from './UniDocKit';
 export * from './UncDocKit';
+export * from './UnvDocKit';

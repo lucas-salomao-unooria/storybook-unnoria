@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente BottomSheet — Design System Unoovista
+ *
+ * Decisões do módulo (registradas na estória):
+ * - superfície de camada `--unv-color-background-elevated`, separada do fundo
+ *   pelo véu (`overlay-scrim`, no modal) e por `--unv-elevation-overlay`;
+ * - cantos `--unv-radius-l` só no topo; alça de 40 × 4px em `border-control`;
+ * - título `title-lg` alinhado à esquerda, corpo `body-md`;
+ * - foco em `text-primary`, que mede 15,1:1 (claro) e 10,4:1 (escuro) sobre a
+ *   superfície elevada (`action-primary` mede 4,80:1 no escuro).
+ */
+
+/* ==========================================================================
+   Modal — véu e painel
+   ========================================================================== */
+
+.unv-bottom-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--unv-color-overlay-scrim);
+}
+
+.unv-bottom-sheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  border-top-left-radius: var(--unv-radius-l);
+  border-top-right-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-elevated);
+  box-shadow: var(--unv-elevation-overlay);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  outline: none;
+  overflow: hidden;
+}
+
+.unv-bottom-sheet--modal {
+  padding-bottom: var(--unv-home-indicator-height);
+}
+
+.unv-bottom-sheet__handle {
+  display: block;
+  flex-shrink: 0;
+  align-self: center;
+  width: 40px;
+  height: var(--unv-spacing-3xs);
+  margin: var(--unv-spacing-s) auto var(--unv-spacing-m);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-border-control);
+}
+
+.unv-bottom-sheet__title {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 var(--unv-gutter) var(--unv-spacing-m);
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-lg-size);
+  font-weight: var(--unv-font-title-lg-weight);
+  line-height: var(--unv-font-title-lg-line);
+  letter-spacing: var(--unv-font-title-lg-tracking);
+}
+
+.unv-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 var(--unv-gutter) var(--unv-spacing-l);
+  overflow-y: auto;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-body-md-size);
+  font-weight: var(--unv-font-body-md-weight);
+  line-height: var(--unv-font-body-md-line);
+  letter-spacing: var(--unv-font-body-md-tracking);
+  scrollbar-width: thin;
+  scrollbar-color: var(--unv-color-border-default) transparent;
+}
+
+.unv-bottom-sheet__body[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Não modal — a folha sobre o conteúdo, recolhida ou expandida
+   ========================================================================== */
+
+.unv-bottom-sheet--inline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+
+.unv-bottom-sheet__toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--unv-touch-target);
+  padding: 0 var(--unv-gutter) var(--unv-spacing-m);
+  background: none;
+  border: none;
+  color: var(--unv-color-text-primary);
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unv-bottom-sheet__toggle:focus-visible {
+  outline: 2px solid var(--unv-color-text-primary);
+  outline-offset: -2px;
+  border-radius: var(--unv-radius-l) var(--unv-radius-l) 0 0;
+}
+
+.unv-bottom-sheet__toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unv-spacing-xs);
+}
+
+.unv-bottom-sheet__toggle-label {
+  min-width: 0;
+  font-size: var(--unv-font-title-md-size);
+  font-weight: var(--unv-font-title-md-weight);
+  line-height: var(--unv-font-title-md-line);
+  letter-spacing: var(--unv-font-title-md-tracking);
+  text-align: left;
+}
+
+/*
+ * O chevron é o `chevronDown` do registro. Recolhida, a folha aponta para
+ * cima — "abrir"; expandida, para baixo — "recolher". O glifo é o mesmo, só
+ * girado: nenhum glifo novo.
+ */
+.unv-bottom-sheet__chevron {
+  display: inline-flex;
+  color: var(--unv-color-icon-primary);
+  transform: rotate(180deg);
+  transition: transform var(--unv-transition-base);
+}
+
+.unv-bottom-sheet--open .unv-bottom-sheet__chevron {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-bottom-sheet__chevron {
+    transition: none;
+  }
+}

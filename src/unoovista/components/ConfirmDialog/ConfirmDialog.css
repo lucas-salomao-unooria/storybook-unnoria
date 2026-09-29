@@ -1,0 +1,145 @@
+/**
+ * Estilos do Componente ConfirmDialog — Design System Unoovista
+ *
+ * Decisões do módulo (registradas na estória):
+ * - painel de 300px em `background-elevated` com `--unv-radius-l` e
+ *   `--unv-elevation-overlay`, sobre o véu `overlay-scrim`; sem desfoque;
+ * - título `title-lg`, mensagem `body-md` em `text-secondary`;
+ * - duas cápsulas lado a lado de 44px: cancelar em contorno (`border-control`,
+ *   5,39:1 sobre a superfície escura) e confirmar preenchida — `action-primary`
+ *   com `text-on-action` (4,88:1 claro, 8,27:1 escuro) ou `brand-like` com
+ *   `text-on-notification` (4,74:1 claro, 7,01:1 escuro);
+ * - a ação de confirmar NÃO é texto colorido: `action-primary` como texto sobre
+ *   a superfície escura elevada mede 4,80:1 e `brand-like`, 4,07:1 (< 4,5:1);
+ * - o foco usa `text-primary` (15,1:1 claro, 10,4:1 escuro), o maior contraste
+ *   sobre a superfície elevada (`action-primary` mede 4,80:1 no escuro).
+ */
+
+.unv-confirm-dialog-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--unv-spacing-xxl);
+  background-color: var(--unv-color-overlay-scrim);
+}
+
+.unv-confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unv-spacing-xl);
+  box-sizing: border-box;
+  width: min(var(--unv-confirm-dialog-width), 100%);
+  max-height: 100%;
+  padding: var(--unv-spacing-xl);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-elevated);
+  box-shadow: var(--unv-elevation-overlay);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  outline: none;
+  overflow: hidden;
+  --unv-confirm-dialog-width: 300px; /* largura do diálogo; encolhe em contêineres menores */
+}
+
+.unv-confirm-dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unv-spacing-xs);
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--unv-color-border-default) transparent;
+}
+
+.unv-confirm-dialog__title {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-lg-size);
+  font-weight: var(--unv-font-title-lg-weight);
+  line-height: var(--unv-font-title-lg-line);
+  letter-spacing: var(--unv-font-title-lg-tracking);
+}
+
+.unv-confirm-dialog__message {
+  margin: 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-body-md-size);
+  font-weight: var(--unv-font-body-md-weight);
+  line-height: var(--unv-font-body-md-line);
+  letter-spacing: var(--unv-font-body-md-tracking);
+}
+
+.unv-confirm-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--unv-spacing-xs);
+  flex-shrink: 0;
+}
+
+.unv-confirm-dialog__action {
+  flex: 1 1 0;
+  box-sizing: border-box;
+  min-width: max-content;
+  min-height: var(--unv-touch-target);
+  padding: var(--unv-spacing-xs) var(--unv-spacing-l);
+  border: 1px solid transparent;
+  border-radius: var(--unv-radius-full);
+  background: none;
+  color: var(--unv-color-text-primary);
+  font-family: inherit;
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast),
+    border-color var(--unv-transition-fast);
+}
+
+.unv-confirm-dialog__action:focus-visible {
+  outline: 2px solid var(--unv-color-text-primary);
+  outline-offset: 2px;
+}
+
+.unv-confirm-dialog__action--cancel {
+  border-color: var(--unv-color-border-control);
+}
+
+.unv-confirm-dialog__action--cancel:hover:not([aria-disabled='true']) {
+  background-color: var(--unv-color-fill-field);
+}
+
+.unv-confirm-dialog__action--confirm {
+  border-color: var(--unv-color-action-primary);
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+}
+
+.unv-confirm-dialog__action--confirm:hover:not([aria-disabled='true']) {
+  border-color: var(--unv-color-action-pressed);
+  background-color: var(--unv-color-action-pressed);
+}
+
+.unv-confirm-dialog__action--destructive,
+.unv-confirm-dialog__action--destructive:hover:not([aria-disabled='true']) {
+  border-color: var(--unv-color-brand-like);
+  background-color: var(--unv-color-brand-like);
+  color: var(--unv-color-text-on-notification);
+}
+
+.unv-confirm-dialog--busy .unv-confirm-dialog__action {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-confirm-dialog__action {
+    transition: none;
+  }
+}

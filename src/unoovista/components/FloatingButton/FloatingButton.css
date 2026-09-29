@@ -1,0 +1,120 @@
+/**
+ * Estilos do Componente FloatingButton — Design System Unoovista
+ *
+ * Pílula flutuante de 44px (`--unv-touch-target`), com glifo, 16px de recuo e
+ * 8px entre glifo e rótulo. A variante primária é o roxo de ação com contorno
+ * de 2px na cor da superfície elevada, para se destacar sobre fotografia; a
+ * neutra é a própria superfície elevada com contorno fino. As duas usam a
+ * elevação de sobreposição do tema.
+ */
+
+.unv-floating-button {
+  position: absolute;
+  left: 50%;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  height: var(--unv-touch-target);
+  max-width: calc(100% - 2 * var(--unv-gutter));
+  padding: 0 var(--unv-spacing-l);
+  border: 2px solid transparent;
+  border-radius: var(--unv-radius-full);
+  box-shadow: var(--unv-elevation-overlay);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%);
+  transition:
+    opacity var(--unv-transition-base),
+    transform var(--unv-transition-base),
+    background-color var(--unv-transition-fast),
+    visibility 0s linear 0s;
+}
+
+.unv-floating-button--top {
+  top: var(--unv-spacing-l);
+}
+
+.unv-floating-button--bottom {
+  bottom: var(--unv-spacing-l);
+}
+
+.unv-floating-button__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unv-floating-button:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.unv-floating-button--primary {
+  border-color: var(--unv-color-background-elevated);
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+}
+
+.unv-floating-button--primary:hover,
+.unv-floating-button--primary:active {
+  background-color: var(--unv-color-action-pressed);
+}
+
+.unv-floating-button--neutral {
+  border-color: var(--unv-color-border-default);
+  background-color: var(--unv-color-background-elevated);
+  color: var(--unv-color-text-primary);
+}
+
+.unv-floating-button--neutral:hover,
+.unv-floating-button--neutral:active {
+  background-color: var(--unv-color-background-secondary);
+}
+
+/* ==========================================================================
+   Escondida — some com transição, sai do foco e da árvore de acessibilidade
+   ========================================================================== */
+
+.unv-floating-button--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--unv-transition-base),
+    transform var(--unv-transition-base),
+    visibility 0s linear 200ms;
+}
+
+.unv-floating-button--top.unv-floating-button--hidden {
+  transform: translate(-50%, calc(-1 * var(--unv-spacing-xs)));
+}
+
+.unv-floating-button--bottom.unv-floating-button--hidden {
+  transform: translate(-50%, var(--unv-spacing-xs));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-floating-button,
+  .unv-floating-button--hidden {
+    transition: none;
+  }
+
+  .unv-floating-button--top.unv-floating-button--hidden,
+  .unv-floating-button--bottom.unv-floating-button--hidden {
+    transform: translateX(-50%);
+  }
+}

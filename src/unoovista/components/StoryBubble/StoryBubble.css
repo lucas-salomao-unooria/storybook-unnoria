@@ -1,0 +1,190 @@
+/**
+ * Estilos do Componente StoryBubble — Design System Unoovista
+ *
+ * Célula da bandeja de histórias: avatar em squircle (raio de 32%) com anel,
+ * folga e rótulo abaixo. O squircle é a pista não cromática de "tem história".
+ * A folga entre anel e imagem usa `--unv-color-ring-inner`; um contêiner cuja
+ * superfície seja outra redefine `--unv-story-bubble-gap` para casar o recorte.
+ */
+
+.unv-story-bubble {
+  --unv-story-bubble-size: var(--unv-avatar-lg);
+  --unv-story-bubble-ring: 2px;
+  --unv-story-bubble-gap-width: 2px;
+  --unv-story-bubble-ring-fill: transparent;
+  --unv-story-bubble-squircle: 32%;
+
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unv-spacing-xxs);
+  box-sizing: border-box;
+  min-width: 72px;
+  max-width: calc(var(--unv-story-bubble-size) + 24px);
+  min-height: var(--unv-touch-target);
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--unv-font-sans);
+  cursor: pointer;
+  appearance: none;
+  transition: transform var(--unv-transition-fast);
+}
+
+.unv-story-bubble:active {
+  transform: scale(0.96);
+}
+
+.unv-story-bubble:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--unv-radius-m);
+}
+
+/* ==========================================================================
+   Quadro: anel, folga e imagem
+   ========================================================================== */
+
+.unv-story-bubble__frame {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.unv-story-bubble__ring {
+  display: flex;
+  box-sizing: content-box;
+  padding: var(--unv-story-bubble-ring);
+  border-radius: var(--unv-story-bubble-squircle);
+  background: var(--unv-story-bubble-ring-fill);
+}
+
+.unv-story-bubble__gap {
+  display: flex;
+  box-sizing: content-box;
+  padding: var(--unv-story-bubble-gap-width);
+  border-radius: var(--unv-story-bubble-squircle);
+  background: var(--unv-story-bubble-gap, var(--unv-color-ring-inner));
+}
+
+.unv-story-bubble__media {
+  display: block;
+  box-sizing: border-box;
+  width: var(--unv-story-bubble-size);
+  height: var(--unv-story-bubble-size);
+  border-radius: var(--unv-story-bubble-squircle);
+  object-fit: cover;
+  background-color: var(--unv-color-background-tertiary);
+}
+
+.unv-story-bubble__media--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--unv-color-text-secondary);
+  font-size: calc(var(--unv-story-bubble-size) * 0.36);
+  font-weight: var(--unv-font-weight-semibold);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* ==========================================================================
+   Estados
+   ========================================================================== */
+
+.unv-story-bubble--unseen {
+  --unv-story-bubble-ring-fill: var(--unv-gradient-story);
+}
+
+.unv-story-bubble--live {
+  --unv-story-bubble-ring-fill: var(--unv-gradient-live);
+}
+
+/* Vista: anel fino e neutro; a folga cresce para manter a caixa externa. */
+.unv-story-bubble--seen {
+  --unv-story-bubble-ring: 1px;
+  --unv-story-bubble-gap-width: 3px;
+  --unv-story-bubble-ring-fill: var(--unv-color-highlight-ring);
+}
+
+/* Adicionar: sem anel; sem imagem, o espaço vazio é tracejado. */
+.unv-story-bubble--add .unv-story-bubble__gap {
+  background: none;
+}
+
+.unv-story-bubble__media--empty {
+  border: 2px dashed var(--unv-color-border-control);
+  background-color: var(--unv-color-background-tertiary);
+}
+
+/* ==========================================================================
+   Selos
+   ========================================================================== */
+
+.unv-story-bubble__live {
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * var(--unv-spacing-xxs));
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unv-spacing-4xs) var(--unv-spacing-xxs);
+  border: 2px solid var(--unv-story-bubble-gap, var(--unv-color-ring-inner));
+  border-radius: var(--unv-radius-full);
+  background: var(--unv-gradient-livebadge);
+  color: var(--unv-color-text-on-media);
+  font-size: var(--unv-font-nav-badge-size);
+  font-weight: var(--unv-font-nav-badge-weight);
+  line-height: var(--unv-font-nav-badge-line);
+  letter-spacing: var(--unv-font-nav-badge-tracking);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.unv-story-bubble__add {
+  position: absolute;
+  right: calc(-1 * var(--unv-spacing-3xs));
+  bottom: calc(-1 * var(--unv-spacing-3xs));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--unv-icon-size-md);
+  height: var(--unv-icon-size-md);
+  border: 2px solid var(--unv-story-bubble-gap, var(--unv-color-ring-inner));
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Rótulo
+   ========================================================================== */
+
+.unv-story-bubble__label {
+  max-width: 100%;
+  /* mesma folga em todos os estados (6px do gap + 2px): o selo AO VIVO desce 6px abaixo do anel e não pode tocar o nome */
+  margin: var(--unv-spacing-4xs) 0 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-story-bubble {
+    transition: none;
+  }
+
+  .unv-story-bubble:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,55 @@
+/**
+ * Estilos do Componente InlineHint — Design System Unoovista
+ *
+ * Cartão macio sobre a tela: `background-tertiary`, raio `--unv-radius-m`, glifo
+ * à esquerda e texto primário (`label-md`). Sem fio nem sombra. O atrito troca a
+ * superfície por `background-primary` e ganha contorno de controle (≥ 3:1),
+ * glifo de atenção em `brand-like` e o prefixo lido por leitor de tela.
+ */
+
+.unv-inline-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  margin: 0;
+  padding: var(--unv-spacing-m) var(--unv-spacing-l);
+  border: 1px solid transparent;
+  border-radius: var(--unv-radius-m);
+  background-color: var(--unv-color-background-tertiary);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-inline-hint > .unv-icon {
+  margin-top: calc((var(--unv-font-label-md-line) - var(--unv-icon-size-md)) / 2);
+}
+
+.unv-inline-hint__text {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unv-inline-hint--friction {
+  border-color: var(--unv-color-border-control);
+  background-color: var(--unv-color-background-primary);
+}
+
+/* Só para leitor de tela: o tom dito em texto. */
+.unv-inline-hint__prefix {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

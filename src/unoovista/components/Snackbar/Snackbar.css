@@ -1,0 +1,92 @@
+/**
+ * Estilos do Componente Snackbar — Design System Unoovista
+ *
+ * Cores invertidas: fundo `--unv-color-text-primary`, texto e contorno da ação
+ * em `--unv-color-background-primary`. Contraste medido: claro 15,1:1
+ * (`background-primary` sobre `text-primary`) e escuro 16,7:1. A cápsula
+ * leva `--unv-elevation-overlay`, como a doca e os menus. A ação é um botão
+ * contornado de 44px: um texto solto não teria contraste como link sobre o
+ * fundo invertido (`text-link` mede 2,1:1 sobre o fundo invertido do claro).
+ */
+
+.unv-snackbar {
+  --unv-snackbar-inset-bottom: calc(var(--unv-tabbar-height) + var(--unv-spacing-xl));
+  --unv-snackbar-inset-top: calc(var(--unv-topbar-height) + var(--unv-spacing-m));
+
+  position: absolute;
+  left: var(--unv-gutter);
+  right: var(--unv-gutter);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.unv-snackbar--bottom {
+  bottom: var(--unv-snackbar-inset-bottom);
+}
+
+.unv-snackbar--top {
+  top: var(--unv-snackbar-inset-top);
+}
+
+.unv-snackbar__body {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  min-height: calc(var(--unv-touch-target) + 2 * var(--unv-spacing-3xs));
+  padding: var(--unv-spacing-3xs) var(--unv-spacing-3xs) var(--unv-spacing-3xs) var(--unv-spacing-xl);
+  border-radius: var(--unv-radius-xl);
+  background-color: var(--unv-color-text-primary);
+  box-shadow: var(--unv-elevation-overlay);
+  color: var(--unv-color-background-primary);
+  font-family: var(--unv-font-sans);
+  animation: unv-snackbar-in var(--unv-transition-base) both;
+}
+
+.unv-snackbar__message {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: var(--unv-spacing-xs) 0;
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-snackbar__action {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+  padding: 0 var(--unv-spacing-l);
+  border: 1px solid currentColor;
+  border-radius: var(--unv-radius-full);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.unv-snackbar__action:focus-visible {
+  outline: 2px solid var(--unv-color-background-primary);
+  outline-offset: 2px;
+}
+
+@keyframes unv-snackbar-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-snackbar__body {
+    animation: none;
+  }
+}

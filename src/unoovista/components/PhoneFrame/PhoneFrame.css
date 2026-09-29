@@ -1,0 +1,81 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System Unoovista
+ * Quadro de 375×812px com cromo de sistema genérico: barra de status de 44px e
+ * barra de gesto de 34px. Contêiner de documentação, não de produção.
+ */
+
+.unv-phone-frame {
+  /* Medidas da barra de gesto: próprias do cromo genérico, sem token equivalente */
+  --unv-phone-frame-gesture-width: 128px;
+  --unv-phone-frame-gesture-height: 4px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--unv-screen-width);
+  height: var(--unv-screen-height);
+  background-color: var(--unv-color-background-secondary);
+  font-family: var(--unv-font-sans);
+  overflow: hidden;
+}
+
+/* Cantos generosos (36px) e um fio de 1px: o quadro lê como aparelho no painel */
+.unv-phone-frame--framed {
+  border-radius: calc(var(--unv-radius-xl) + var(--unv-radius-m));
+  box-shadow: 0 0 0 1px var(--unv-color-border-default);
+}
+
+.unv-phone-frame__status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  height: var(--unv-statusbar-height);
+  padding: 0 var(--unv-spacing-xl);
+  color: var(--unv-color-text-primary);
+}
+
+.unv-phone-frame__time {
+  font-size: var(--unv-font-title-md-size);
+  font-weight: var(--unv-font-title-md-weight);
+  line-height: var(--unv-font-title-md-line);
+  letter-spacing: var(--unv-font-title-md-tracking);
+}
+
+.unv-phone-frame__indicators {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+}
+
+.unv-phone-frame__screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.unv-phone-frame__gesture-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: var(--unv-home-indicator-height);
+  padding-bottom: var(--unv-spacing-xs);
+  pointer-events: none;
+}
+
+.unv-phone-frame__gesture-bar::after {
+  content: '';
+  display: block;
+  width: var(--unv-phone-frame-gesture-width);
+  height: var(--unv-phone-frame-gesture-height);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-text-primary);
+}

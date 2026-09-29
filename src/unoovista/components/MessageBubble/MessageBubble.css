@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente MessageBubble — Design System Unoovista
+ *
+ * Decisões do módulo (registradas na estória):
+ * - enviado: `--unv-color-background-tertiary` com texto primário; recebido:
+ *   `--unv-color-background-primary` com contorno de 1px em `border-control`;
+ * - raio `--unv-radius-l`; o canto do "rabo" (inferior, do lado do autor) é
+ *   `--unv-radius-xs` no balão isolado e no último do grupo, e os cantos
+ *   voltados para o autor entre balões do mesmo grupo são `--unv-radius-s`;
+ * - corpo `body-lg` (16/24) para o texto e `caption-md` para o carimbo.
+ *
+ * O balão NÃO usa `action-primary` como fundo: o roxo de ação é reservado a
+ * controles (botão, aba ativa, voto), e um balão cheio o confundiria com um
+ * botão. Texto primário sobre os dois preenchimentos mede de 10,4:1 a 16,7:1
+ * nos dois temas.
+ */
+
+.unv-message-bubble {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: var(--unv-spacing-4xs);
+  font-family: var(--unv-font-sans);
+}
+
+.unv-message-bubble--single,
+.unv-message-bubble--first {
+  margin-top: var(--unv-spacing-m);
+}
+
+.unv-message-bubble:first-child {
+  margin-top: 0;
+}
+
+.unv-message-bubble--outgoing {
+  justify-content: flex-end;
+}
+
+/* Coluna do avatar: reservada em todo recebido, preenchida só no último. */
+.unv-message-bubble__avatar {
+  display: flex;
+  flex: 0 0 var(--unv-avatar-sm);
+  width: var(--unv-avatar-sm);
+  min-height: 1px;
+}
+
+.unv-message-bubble__column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  max-width: 78%;
+}
+
+.unv-message-bubble--outgoing .unv-message-bubble__column {
+  align-items: flex-end;
+}
+
+.unv-message-bubble__bubble {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--unv-spacing-s) var(--unv-spacing-l);
+  border: 1px solid var(--unv-color-border-control);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-primary);
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* O enviado leva o mesmo contorno de controle; o que o distingue é o preenchimento e o lado. */
+.unv-message-bubble--outgoing .unv-message-bubble__bubble {
+  background-color: var(--unv-color-background-tertiary);
+}
+
+/* "Rabo": o canto inferior do lado do autor, no balão isolado e no último. */
+.unv-message-bubble--incoming.unv-message-bubble--single .unv-message-bubble__bubble,
+.unv-message-bubble--incoming.unv-message-bubble--last .unv-message-bubble__bubble {
+  border-bottom-left-radius: var(--unv-radius-xs);
+}
+
+.unv-message-bubble--outgoing.unv-message-bubble--single .unv-message-bubble__bubble,
+.unv-message-bubble--outgoing.unv-message-bubble--last .unv-message-bubble__bubble {
+  border-bottom-right-radius: var(--unv-radius-xs);
+}
+
+/* Agrupamento — recebido: os cantos da esquerda encolhem. */
+.unv-message-bubble--incoming.unv-message-bubble--first .unv-message-bubble__bubble {
+  border-bottom-left-radius: var(--unv-radius-s);
+}
+
+.unv-message-bubble--incoming.unv-message-bubble--middle .unv-message-bubble__bubble {
+  border-top-left-radius: var(--unv-radius-s);
+  border-bottom-left-radius: var(--unv-radius-s);
+}
+
+.unv-message-bubble--incoming.unv-message-bubble--last .unv-message-bubble__bubble {
+  border-top-left-radius: var(--unv-radius-s);
+}
+
+/* Agrupamento — enviado: os cantos da direita encolhem. */
+.unv-message-bubble--outgoing.unv-message-bubble--first .unv-message-bubble__bubble {
+  border-bottom-right-radius: var(--unv-radius-s);
+}
+
+.unv-message-bubble--outgoing.unv-message-bubble--middle .unv-message-bubble__bubble {
+  border-top-right-radius: var(--unv-radius-s);
+  border-bottom-right-radius: var(--unv-radius-s);
+}
+
+.unv-message-bubble--outgoing.unv-message-bubble--last .unv-message-bubble__bubble {
+  border-top-right-radius: var(--unv-radius-s);
+}
+
+/* Sem balão: o conteúdo já é um cartão (a enquete). */
+.unv-message-bubble--bare .unv-message-bubble__column {
+  width: 78%;
+}
+
+.unv-message-bubble--bare .unv-message-bubble__bubble,
+.unv-message-bubble--bare.unv-message-bubble--outgoing .unv-message-bubble__bubble {
+  align-self: stretch;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  white-space: normal;
+}
+
+.unv-message-bubble__meta {
+  margin-top: var(--unv-spacing-3xs);
+  padding: 0 var(--unv-spacing-xs);
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+/* Autor anunciado só ao leitor de tela. */
+.unv-message-bubble__sender {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

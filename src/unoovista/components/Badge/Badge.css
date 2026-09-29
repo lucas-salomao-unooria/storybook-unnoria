@@ -1,0 +1,119 @@
+/**
+ * Estilos do Componente Badge — Design System Unoovista
+ * Tudo em cápsula: etiqueta LIVE em gradiente, contador de mídia, selo de
+ * notificação e cápsula neutra. Cores só por tokens.
+ */
+
+.unv-badge {
+  /* Selo de notificação: 18px cabem dois dígitos no corpo de 10px do módulo */
+  --unv-badge-notification-size: 18px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: var(--unv-font-sans);
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Variante LIVE
+   ========================================================================== */
+
+.unv-badge--live {
+  padding: var(--unv-spacing-4xs) var(--unv-spacing-xxs);
+  border: 2px solid var(--unv-color-ring-inner);
+  border-radius: var(--unv-radius-full);
+  background: var(--unv-gradient-livebadge);
+  color: var(--unv-color-text-on-media);
+  font-size: var(--unv-font-nav-badge-size);
+  font-weight: var(--unv-font-nav-badge-weight);
+  line-height: var(--unv-font-nav-badge-line);
+  letter-spacing: var(--unv-font-nav-badge-tracking);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Variante Contador de mídia
+   ========================================================================== */
+
+.unv-badge--counter {
+  min-width: var(--unv-spacing-3xl);
+  height: var(--unv-spacing-xxl);
+  padding: 0 var(--unv-spacing-xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-background-tertiary);
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-weight-semibold);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+/* ==========================================================================
+   Variante Notificação
+   ========================================================================== */
+
+.unv-badge--notification {
+  min-width: var(--unv-badge-notification-size);
+  height: var(--unv-badge-notification-size);
+  padding: 0 var(--unv-spacing-3xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-brand-notification);
+  color: var(--unv-color-text-on-notification);
+  font-size: var(--unv-font-nav-badge-size);
+  font-weight: var(--unv-font-nav-badge-weight);
+  line-height: var(--unv-font-nav-badge-line);
+  letter-spacing: var(--unv-font-nav-badge-tracking);
+}
+
+/* ==========================================================================
+   Variante Neutra
+   ========================================================================== */
+
+.unv-badge--neutral {
+  padding: var(--unv-spacing-4xs) var(--unv-spacing-xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-background-tertiary);
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-weight-semibold);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+/* ==========================================================================
+   Quebra de linha — para rótulos longos numa largura fixa
+   ========================================================================== */
+
+.unv-badge--wrap {
+  justify-content: flex-start;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  border-radius: var(--unv-radius-l);
+}
+
+/* ==========================================================================
+   Modo Dot (8×8px)
+   ========================================================================== */
+
+.unv-badge--dot {
+  width: var(--unv-spacing-xs);
+  min-width: var(--unv-spacing-xs);
+  height: var(--unv-spacing-xs);
+  padding: 0;
+  border: none;
+  border-radius: var(--unv-radius-full);
+}
+
+.unv-badge--dot.unv-badge--notification {
+  background-color: var(--unv-color-brand-notification);
+}
+
+.unv-badge--dot.unv-badge--live {
+  background: var(--unv-gradient-livebadge);
+}
