@@ -1,0 +1,160 @@
+/**
+ * Estilos do Componente Button — Design System Unoovista
+ * Ações em cápsula. Primário: `action-primary` com rótulo `text-on-action`;
+ * secundário: contorno `action-secondary-border`; link e social: tom de link,
+ * sem contêiner. Alturas 30/36/44px; o alvo de toque é sempre de 44px.
+ */
+
+.unv-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: var(--unv-radius-full);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast),
+    border-color var(--unv-transition-fast), color var(--unv-transition-fast),
+    transform var(--unv-transition-fast);
+}
+
+/* Alvo de toque de 44px: a área extra é invisível e só cresce no eixo vertical */
+.unv-button::before {
+  content: '';
+  position: absolute;
+  inset: min(0px, calc((100% - var(--unv-touch-target)) / 2)) 0;
+}
+
+.unv-button:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-button:active:not(:disabled, [aria-disabled='true']) {
+  transform: scale(0.98);
+}
+
+.unv-button--block {
+  width: 100%;
+}
+
+.unv-button:disabled,
+.unv-button[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.unv-button--size-sm {
+  height: 30px;
+  padding: 0 var(--unv-spacing-m);
+}
+
+.unv-button--size-md {
+  height: 36px;
+  padding: 0 var(--unv-spacing-l);
+}
+
+.unv-button--size-lg {
+  height: 44px;
+  padding: 0 var(--unv-spacing-xl);
+}
+
+/* ==========================================================================
+   Variante Primária
+   ========================================================================== */
+
+.unv-button--primary {
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+}
+
+.unv-button--primary:hover:not(:disabled, [aria-disabled='true']),
+.unv-button--primary:active:not(:disabled, [aria-disabled='true']) {
+  background-color: var(--unv-color-action-pressed);
+}
+
+.unv-button--primary:disabled,
+.unv-button--primary[aria-disabled='true'] {
+  background-color: var(--unv-color-action-disabled);
+  color: var(--unv-color-text-secondary);
+}
+
+/* ==========================================================================
+   Variante Secundária
+   ========================================================================== */
+
+.unv-button--secondary {
+  background-color: transparent;
+  border-color: var(--unv-color-action-secondary-border);
+  color: var(--unv-color-text-primary);
+}
+
+.unv-button--secondary:hover:not(:disabled, [aria-disabled='true']) {
+  background-color: var(--unv-color-fill-field);
+}
+
+.unv-button--secondary:active:not(:disabled, [aria-disabled='true']) {
+  background-color: var(--unv-color-background-tertiary);
+}
+
+.unv-button--secondary:disabled,
+.unv-button--secondary[aria-disabled='true'] {
+  border-color: var(--unv-color-border-subtle);
+  color: var(--unv-color-text-placeholder);
+}
+
+/* ==========================================================================
+   Variantes Link e Social (tom de link, sem contêiner)
+   ========================================================================== */
+
+.unv-button--link,
+.unv-button--social {
+  height: auto;
+  padding: 0;
+  background: none;
+  border-color: transparent;
+  border-radius: var(--unv-radius-xs);
+  color: var(--unv-color-text-link);
+}
+
+.unv-button--link:hover:not(:disabled, [aria-disabled='true']),
+.unv-button--social:hover:not(:disabled, [aria-disabled='true']) {
+  text-decoration: underline;
+}
+
+.unv-button--link:disabled,
+.unv-button--link[aria-disabled='true'],
+.unv-button--social:disabled,
+.unv-button--social[aria-disabled='true'] {
+  color: var(--unv-color-text-placeholder);
+}
+
+.unv-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-button {
+    transition: none;
+  }
+
+  .unv-button:active:not(:disabled, [aria-disabled='true']) {
+    transform: none;
+  }
+}

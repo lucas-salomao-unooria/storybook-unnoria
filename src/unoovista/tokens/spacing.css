@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos e Elevação — Unoovista
+   Medidas do módulo, sobre a estrutura de tela de 375×812. Os degraus de
+   espaçamento seguem a régua fina que as linhas de altura fixa exigem (não a
+   escala de 4/8px da Plataforma Unooria, que as deslocaria); os raios, mais
+   generosos que os do módulo de origem, são degraus de 4px.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --unv-spacing-4xs: 2px;
+  --unv-spacing-3xs: 4px;
+  --unv-spacing-xxs: 6px;
+  --unv-spacing-xs: 8px;
+  --unv-spacing-s: 10px;
+  --unv-spacing-m: 12px;
+  --unv-spacing-l: 16px;
+  --unv-spacing-xl: 20px;
+  --unv-spacing-xxl: 24px;
+  --unv-spacing-3xl: 32px;
+  --unv-spacing-4xl: 48px;
+
+  /* Margem lateral padrão das telas */
+  --unv-gutter: 16px;
+
+  /* Raios de borda */
+  --unv-radius-xs: 4px;
+  --unv-radius-s: 8px;
+  --unv-radius-m: 12px;
+  --unv-radius-l: 16px;
+  --unv-radius-xl: 24px;
+  --unv-radius-full: 1000px;
+
+  /* Dimensões estruturais das telas */
+  --unv-screen-width: 375px;
+  --unv-screen-height: 812px;
+  --unv-statusbar-height: 44px;
+  --unv-topbar-height: 88px;
+  --unv-topbar-content-height: 44px;
+  --unv-tabbar-height: 79px;
+  --unv-tabbar-content-height: 50px;
+  --unv-home-indicator-height: 34px;
+
+  /* Dimensões de avatares (diâmetro do recorte interno) */
+  --unv-avatar-xs: 20px;
+  --unv-avatar-sm: 24px;
+  --unv-avatar-md: 32px;
+  --unv-avatar-lg: 56px;
+  --unv-avatar-xl: 80px;
+  --unv-avatar-ring-width: 2px;
+  --unv-avatar-ring-gap: 3px;
+
+  /* Alvos mínimos de toque e ícones (degraus de --unooria-icon-size-*) */
+  --unv-icon-size-sm: 16px;
+  --unv-icon-size-md: 24px;
+  --unv-icon-size-lg: 32px;
+  --unv-touch-target: 44px;
+
+  /* Movimento */
+  --unv-transition-fast: 120ms ease;
+  --unv-transition-base: 200ms ease;
+}
+
+/*
+ * Fios de 1px. Compostos com `var()` de cor, então declarados em todo
+ * `[data-unv-theme]` (ver o comentário de `colors.css`): declarados só em
+ * `:root`, o fio ficaria com a cor do tema claro dentro de um contêiner escuro.
+ */
+:root,
+[data-unv-theme] {
+  --unv-elevation-hairline-bottom: 0 1px 0 0 var(--unv-color-border-subtle);
+  --unv-elevation-hairline-top: 0 -1px 0 0 var(--unv-color-border-subtle);
+  --unv-elevation-bar-bottom: 0 1px 0 0 var(--unv-color-border-bar);
+  --unv-elevation-bar-top: 0 -1px 0 0 var(--unv-color-border-bar);
+  --unv-elevation-drawer: -1px 0 0 0 var(--unv-color-border-subtle);
+}

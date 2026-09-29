@@ -1,0 +1,147 @@
+/**
+ * Estilos do Componente StoryComposer — Design System Unoovista
+ *
+ * Camadas: a tela é `background-secondary`; a prévia fica num palco de raio
+ * `--unv-radius-l`; a legenda é um cartão `background-primary` com contorno de
+ * controle (`border-control`, ≥ 3:1); o envio é uma cápsula de `action-primary`.
+ * O cartão da legenda é conteúdo da tela e fica em `background-primary`;
+ * `background-elevated` é reservado às camadas flutuantes. O placeholder passa
+ * de 4,5:1 nos dois temas. Sem sombra: a separação é por superfície e contorno.
+ */
+
+.unv-story-composer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  background-color: var(--unv-color-background-secondary);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+}
+
+.unv-story-composer__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: var(--unv-spacing-m) var(--unv-gutter) 0;
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-tertiary);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Legenda
+   ========================================================================== */
+
+.unv-story-composer__field {
+  flex-shrink: 0;
+  margin: var(--unv-spacing-m) var(--unv-gutter) 0;
+  padding: var(--unv-spacing-m) var(--unv-spacing-l) var(--unv-spacing-xs);
+  border: 1px solid var(--unv-color-border-control);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-primary);
+}
+
+.unv-story-composer__field:focus-within {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-story-composer__input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--unv-color-text-primary);
+  font-family: inherit;
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+  resize: none;
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--unv-color-border-default) transparent;
+}
+
+.unv-story-composer__input::placeholder {
+  color: var(--unv-color-text-placeholder);
+}
+
+.unv-story-composer__counter {
+  margin: var(--unv-spacing-3xs) 0 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ==========================================================================
+   Barra inferior — envio em cápsula
+   ========================================================================== */
+
+.unv-story-composer__bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  /* o recuo inferior cobre o indicador de gesto do aparelho */
+  padding: var(--unv-spacing-m) var(--unv-gutter) var(--unv-home-indicator-height);
+}
+
+.unv-story-composer__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+  padding: var(--unv-spacing-3xs) var(--unv-spacing-l) var(--unv-spacing-3xs)
+    var(--unv-spacing-3xs);
+  border: none;
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+  font-family: inherit;
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-story-composer__submit:hover:not(:disabled) {
+  background-color: var(--unv-color-action-pressed);
+}
+
+.unv-story-composer__submit:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-story-composer__submit:disabled {
+  background-color: var(--unv-color-action-disabled);
+  color: var(--unv-color-text-secondary);
+  cursor: not-allowed;
+}
+
+.unv-story-composer__submit:disabled .unv-avatar {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-story-composer__submit {
+    transition: none;
+  }
+}

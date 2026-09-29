@@ -1,0 +1,128 @@
+/**
+ * Estilos do Componente ListItem — Design System Unoovista
+ * Linha `md` de 64px (avatar, título, subtítulo) e linha `sm` de 48px (menu).
+ * Transparente: assenta na camada em que estiver.
+ */
+
+.unv-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 var(--unv-spacing-l);
+  background-color: transparent;
+  border-radius: var(--unv-radius-m);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  text-align: left;
+  list-style: none;
+}
+
+.unv-list-item--size-sm {
+  min-height: 48px;
+  gap: var(--unv-spacing-l);
+}
+
+.unv-list-item--size-md {
+  min-height: 64px;
+}
+
+.unv-list-item--bordered {
+  border-radius: 0;
+  box-shadow: var(--unv-elevation-hairline-bottom);
+}
+
+.unv-list-item--interactive {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-list-item--interactive:hover {
+  background-color: var(--unv-color-fill-field);
+}
+
+.unv-list-item--interactive:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: -2px;
+}
+
+.unv-list-item__leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--unv-color-icon-primary);
+}
+
+.unv-list-item__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unv-list-item__title {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-md-size);
+  font-weight: var(--unv-font-title-md-weight);
+  line-height: var(--unv-font-title-md-line);
+  letter-spacing: var(--unv-font-title-md-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unv-list-item--size-sm .unv-list-item__title {
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+}
+
+.unv-list-item__subtitle-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--unv-spacing-3xs);
+  min-width: 0;
+}
+
+.unv-list-item__subtitle {
+  margin: 0;
+  min-width: 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unv-list-item__meta {
+  flex-shrink: 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-list-item__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  flex-shrink: 0;
+  color: var(--unv-color-icon-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-list-item--interactive {
+    transition: none;
+  }
+}

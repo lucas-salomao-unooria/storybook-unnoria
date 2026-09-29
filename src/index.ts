@@ -15,4 +15,5 @@ export * as ChatGPTUI from './chatgpt';
 export * as TikTooriaUI from './tiktooria';
 export * as UnootubeUI from './unootube';
 export * as UnoochatUI from './unoochat';
+export * as UnoovistaUI from './unoovista';
 export * from './unooria';

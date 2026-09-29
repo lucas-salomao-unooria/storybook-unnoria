@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Unoovista
+   Todo valor é um literal copiado da paleta da Plataforma Unooria
+   (`src/unooria/tokens/colors.css` e `elevation.css`); o comentário ao lado de
+   cada linha nomeia o token de origem. O módulo NÃO consome `--unooria-*` em
+   tempo de execução — um módulo de marca nunca lê tokens de outro (AGENTS.md,
+   1.3) —, e `scripts/verificar-paridade-unoovista.mjs` falha o build se um
+   literal se afastar da origem.
+
+   Dois temas, ambos sobre a escala roxa (`brandpurple`):
+   - claro: superfícies em branco e lavanda (50–300), acento em 600;
+   - escuro: superfícies em roxo profundo (700–950), acento em 400.
+
+   O tema escuro NÃO é derivado do claro por cálculo (inverter, clarear, aplicar
+   opacidade): cada valor de cada tema é um degrau nomeado da Unooria. Marca,
+   gradientes e selos variam com o tema para preservar o contraste sobre a
+   superfície; só a etiqueta LIVE e o texto sobre mídia são invariantes.
+   ========================================================================== */
+
+:root,
+[data-unv-theme='light'] {
+  /** Fundo das telas: feed, perfil, busca, notificações e mensagens */
+  --unv-color-background-primary: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Fundo do documento atrás das telas e dos cartões de publicação */
+  --unv-color-background-secondary: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Cápsulas, contadores, blocos sutis e mídia ainda não carregada */
+  --unv-color-background-tertiary: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Menus, folhas inferiores, diálogos e a doca de navegação */
+  --unv-color-background-elevated: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Nomes, títulos, legendas e rótulos de alto contraste */
+  --unv-color-text-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Horários, metadados, localização, contadores e abas inativas */
+  --unv-color-text-secondary: #475157; /* --unooria-color-neutral-700 */
+  /** Menções, hashtags e ações de texto */
+  --unv-color-text-link: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Texto de espaço reservado dos campos */
+  --unv-color-text-placeholder: #536167; /* --unooria-color-neutral-600 */
+  /** Rótulo e glifo sobre o preenchimento de ação (botão primário, círculo de seleção) */
+  --unv-color-text-on-action: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Numeral sobre o selo de notificação */
+  --unv-color-text-on-notification: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Glifos ativos das barras e das ações da publicação */
+  --unv-color-icon-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Glifos inativos e de apoio */
+  --unv-color-icon-secondary: #617379; /* --unooria-color-neutral-500 */
+  /** Contorno de cartões, botões secundários e divisores fortes */
+  --unv-color-border-default: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Divisor entre linhas de lista e fios de barra */
+  --unv-color-border-subtle: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Fio de barras e da doca de navegação */
+  --unv-color-border-bar: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Contorno de campo, seleção e controles (gráfico ≥ 3:1) */
+  --unv-color-border-control: #617379; /* --unooria-color-neutral-500 */
+  /** Botão primário, aba ativa, foco e controle selecionado */
+  --unv-color-action-primary: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Estado pressionado da ação primária */
+  --unv-color-action-pressed: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Ação primária desabilitada */
+  --unv-color-action-disabled: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Contorno do botão secundário */
+  --unv-color-action-secondary-border: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Preenchimento de campos de busca e de mensagem */
+  --unv-color-fill-field: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Véu atrás de diálogos e folhas */
+  --unv-color-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+  /** Traço translúcido sobre mídia (barras de progresso do story) */
+  --unv-color-overlay-onmedia: rgba(255, 255, 255, 0.40); /* --unooria-color-opacity-neutrallight-400 */
+  /** Coração curtido */
+  --unv-color-brand-like: #E31A1A; /* --unooria-color-danger-600 */
+  /** Selo de conta oficial */
+  --unv-color-brand-verified: #6487C2; /* --unooria-color-brandnavy-700 */
+  /** Selo de notificação */
+  --unv-color-brand-notification: #E31A1A; /* --unooria-color-danger-600 */
+  /** Anel neutro dos destaques e das histórias já vistas (≥ 3:1 sobre a tela) */
+  --unv-color-highlight-ring: #617379; /* --unooria-color-neutral-500 */
+  /** Recorte interno dos anéis, igual ao fundo da tela */
+  --unv-color-ring-inner: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Anel de story não visto — início */
+  --unv-color-story-gradient-start: #6487C2; /* --unooria-color-brandnavy-700 */
+  /** Anel de story não visto — meio */
+  --unv-color-story-gradient-mid: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Anel de story não visto — fim */
+  --unv-color-story-gradient-end: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Anel de transmissão ao vivo — início */
+  --unv-color-live-gradient-start: #E31A1A; /* --unooria-color-danger-600 */
+  /** Anel de transmissão ao vivo — meio */
+  --unv-color-live-gradient-mid: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Anel de transmissão ao vivo — fim */
+  --unv-color-live-gradient-end: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Doca, menus, diálogos, folhas e avisos */
+  --unv-elevation-overlay: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+}
+
+[data-unv-theme='dark'] {
+  /** Fundo das telas: feed, perfil, busca, notificações e mensagens */
+  --unv-color-background-primary: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Fundo do documento atrás das telas e dos cartões de publicação */
+  --unv-color-background-secondary: #080922; /* --unooria-color-brandpurple-950 */
+  /** Cápsulas, contadores, blocos sutis e mídia ainda não carregada */
+  --unv-color-background-tertiary: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Menus, folhas inferiores, diálogos e a doca de navegação */
+  --unv-color-background-elevated: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Nomes, títulos, legendas e rótulos de alto contraste */
+  --unv-color-text-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Horários, metadados, localização, contadores e abas inativas */
+  --unv-color-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Menções, hashtags e ações de texto */
+  --unv-color-text-link: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Texto de espaço reservado dos campos */
+  --unv-color-text-placeholder: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Rótulo e glifo sobre o preenchimento de ação (botão primário, círculo de seleção) */
+  --unv-color-text-on-action: #080922; /* --unooria-color-brandpurple-950 */
+  /** Numeral sobre o selo de notificação */
+  --unv-color-text-on-notification: #080922; /* --unooria-color-brandpurple-950 */
+  /** Glifos ativos das barras e das ações da publicação */
+  --unv-color-icon-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Glifos inativos e de apoio */
+  --unv-color-icon-secondary: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Contorno de cartões, botões secundários e divisores fortes */
+  --unv-color-border-default: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Divisor entre linhas de lista e fios de barra */
+  --unv-color-border-subtle: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Fio de barras e da doca de navegação */
+  --unv-color-border-bar: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Contorno de campo, seleção e controles (gráfico ≥ 3:1) */
+  --unv-color-border-control: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Botão primário, aba ativa, foco e controle selecionado */
+  --unv-color-action-primary: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Estado pressionado da ação primária */
+  --unv-color-action-pressed: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Ação primária desabilitada */
+  --unv-color-action-disabled: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno do botão secundário */
+  --unv-color-action-secondary-border: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Preenchimento de campos de busca e de mensagem */
+  --unv-color-fill-field: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Véu atrás de diálogos e folhas */
+  --unv-color-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+  /** Traço translúcido sobre mídia (barras de progresso do story) */
+  --unv-color-overlay-onmedia: rgba(255, 255, 255, 0.40); /* --unooria-color-opacity-neutrallight-400 */
+  /** Coração curtido */
+  --unv-color-brand-like: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Selo de conta oficial */
+  --unv-color-brand-verified: #7FA5E2; /* --unooria-color-brandnavy-600 */
+  /** Selo de notificação */
+  --unv-color-brand-notification: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Anel neutro dos destaques e das histórias já vistas (≥ 3:1 sobre a tela) */
+  --unv-color-highlight-ring: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Recorte interno dos anéis, igual ao fundo da tela */
+  --unv-color-ring-inner: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Anel de story não visto — início */
+  --unv-color-story-gradient-start: #7FA5E2; /* --unooria-color-brandnavy-600 */
+  /** Anel de story não visto — meio */
+  --unv-color-story-gradient-mid: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Anel de story não visto — fim */
+  --unv-color-story-gradient-end: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Anel de transmissão ao vivo — início */
+  --unv-color-live-gradient-start: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Anel de transmissão ao vivo — meio */
+  --unv-color-live-gradient-mid: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Anel de transmissão ao vivo — fim */
+  --unv-color-live-gradient-end: #7FA5E2; /* --unooria-color-brandnavy-600 */
+  /** Doca, menus, diálogos, folhas e avisos */
+  --unv-elevation-overlay: 0px 0px 8px 4px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-2 */
+}
+
+/* ==========================================================================
+   Invariantes entre temas e gradientes compostos
+
+   Os gradientes usam `var()` sobre as paradas que variam com o tema. Uma
+   propriedade personalizada com `var()` é resolvida NO elemento em que é
+   declarada; declarada só em `:root`, ela congelaria as paradas do tema claro e
+   as herdaria já calculadas para dentro de um contêiner escuro. Por isso o
+   bloco se repete em todo `[data-unv-theme]`.
+   ========================================================================== */
+
+:root,
+[data-unv-theme] {
+  /** Etiqueta LIVE — início (texto branco ≥ 4,5:1 nas duas pontas) */
+  --unv-color-livebadge-gradient-start: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Etiqueta LIVE — fim */
+  --unv-color-livebadge-gradient-end: #E31A1A; /* --unooria-color-danger-600 */
+  /** Texto e glifo desenhados sobre fotografia ou vídeo (sempre branco) */
+  --unv-color-text-on-media: #FFFFFF; /* --unooria-color-neutral-50 */
+
+  /** Anel de story não visto */
+  --unv-gradient-story: linear-gradient(
+    204deg,
+    var(--unv-color-story-gradient-start) 0%,
+    var(--unv-color-story-gradient-mid) 52%,
+    var(--unv-color-story-gradient-end) 100%
+  );
+
+  /** Anel de transmissão ao vivo */
+  --unv-gradient-live: linear-gradient(
+    136deg,
+    var(--unv-color-live-gradient-start) 0%,
+    var(--unv-color-live-gradient-mid) 52%,
+    var(--unv-color-live-gradient-end) 100%
+  );
+
+  /** Etiqueta LIVE */
+  --unv-gradient-livebadge: linear-gradient(
+    140deg,
+    var(--unv-color-livebadge-gradient-start) 0%,
+    var(--unv-color-livebadge-gradient-end) 100%
+  );
+}

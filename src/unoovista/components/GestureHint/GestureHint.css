@@ -1,0 +1,142 @@
+/**
+ * Estilos do Componente GestureHint — Design System Unoovista
+ *
+ * O círculo tem o alvo de toque do módulo (`--unv-touch-target`), o véu
+ * `--unv-color-overlay-scrim` e o contorno de 2px em `--unv-color-text-on-media`
+ * (branco nos dois temas: legível sobre o véu roxo em qualquer superfície). Uma
+ * onda (`::after`) se expande a partir do contorno. Cada gesto é uma animação
+ * de 1,8s que termina transparente: com `iterations` 1, a dica aparece, mostra
+ * e vai embora.
+ */
+
+.unv-gesture-hint {
+  --unv-gesture-hint-travel: 140px;
+
+  position: absolute;
+  z-index: 4;
+  box-sizing: border-box;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  border: 2px solid var(--unv-color-text-on-media);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-overlay-scrim);
+  pointer-events: none;
+  opacity: 0;
+  animation-duration: 1.8s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.unv-gesture-hint::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--unv-color-text-on-media);
+  border-radius: var(--unv-radius-full);
+  opacity: 0;
+  animation-name: unv-gesture-wave;
+  animation-duration: 1.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: inherit;
+}
+
+@keyframes unv-gesture-wave {
+  0%,
+  40% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  55% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+/* ── Rolar: o dedo sobe no meio da tela ─────────────────────────────── */
+
+.unv-gesture-hint--swipe-up {
+  left: 50%;
+  bottom: 32%;
+  animation-name: unv-gesture-swipe-up;
+}
+
+@keyframes unv-gesture-swipe-up {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, calc(-1 * var(--unv-gesture-hint-travel)));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-1 * var(--unv-gesture-hint-travel) - 20px));
+  }
+}
+
+/* ── Deslizar: da direita para a esquerda, na altura do meio ────────── */
+
+.unv-gesture-hint--swipe-left {
+  top: 50%;
+  right: 20%;
+  animation-name: unv-gesture-swipe-left;
+}
+
+@keyframes unv-gesture-swipe-left {
+  0% {
+    opacity: 0;
+    transform: translate(0, -50%);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    transform: translate(calc(-1 * var(--unv-gesture-hint-travel)), -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-1 * var(--unv-gesture-hint-travel) - 20px), -50%);
+  }
+}
+
+/* ── Tocar: um pulso no lugar, no centro ────────────────────────────── */
+
+.unv-gesture-hint--tap {
+  top: 50%;
+  left: 50%;
+  animation-name: unv-gesture-tap;
+}
+
+@keyframes unv-gesture-tap {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-gesture-hint {
+    display: none;
+  }
+}

@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente ProfileHeader — Design System Unoovista
+ * Composição centralizada em cartão: avatar, nome, biografia, três
+ * cartões-pílula de estatística e ações em largura total.
+ */
+
+.unv-profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unv-spacing-l);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--unv-spacing-xl) var(--unv-spacing-l) var(--unv-spacing-l);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-primary);
+  font-family: var(--unv-font-sans);
+  text-align: center;
+}
+
+.unv-profile-header__bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+  max-width: 100%;
+}
+
+.unv-profile-header__name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unv-spacing-3xs);
+  min-width: 0;
+}
+
+.unv-profile-header__name {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-lg-size);
+  font-weight: var(--unv-font-title-lg-weight);
+  line-height: var(--unv-font-title-lg-line);
+  letter-spacing: var(--unv-font-title-lg-tracking);
+}
+
+.unv-profile-header__verified {
+  color: var(--unv-color-brand-verified);
+}
+
+.unv-profile-header__description {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+  overflow-wrap: anywhere;
+}
+
+.unv-profile-header__website {
+  color: var(--unv-color-text-link);
+  font-size: var(--unv-font-label-lg-size);
+  font-weight: var(--unv-font-label-lg-weight);
+  line-height: var(--unv-font-label-lg-line);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.unv-profile-header__website:hover {
+  text-decoration: underline;
+}
+
+.unv-profile-header__website:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+  border-radius: var(--unv-radius-xs);
+}
+
+/* ==========================================================================
+   Estatísticas: três cartões-pílula lado a lado
+   ========================================================================== */
+
+.unv-profile-header__stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--unv-spacing-xs);
+  width: 100%;
+}
+
+.unv-profile-header__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unv-spacing-4xs);
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+  padding: var(--unv-spacing-m) var(--unv-spacing-xs);
+  border: none;
+  border-radius: var(--unv-radius-xl);
+  background-color: var(--unv-color-background-tertiary);
+  color: inherit;
+  font-family: inherit;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-profile-header__stat--interactive {
+  cursor: pointer;
+}
+
+.unv-profile-header__stat--interactive:hover {
+  background-color: var(--unv-color-background-secondary);
+}
+
+.unv-profile-header__stat--interactive:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-profile-header__stat-value {
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-lg-size);
+  font-weight: var(--unv-font-title-lg-weight);
+  line-height: var(--unv-font-title-lg-line);
+  letter-spacing: var(--unv-font-title-lg-tracking);
+}
+
+.unv-profile-header__stat-label {
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+/* ==========================================================================
+   Ações: largura total
+   ========================================================================== */
+
+.unv-profile-header__actions {
+  display: flex;
+  gap: var(--unv-spacing-xs);
+  width: 100%;
+}
+
+.unv-profile-header__actions > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-profile-header__stat {
+    transition: none;
+  }
+}

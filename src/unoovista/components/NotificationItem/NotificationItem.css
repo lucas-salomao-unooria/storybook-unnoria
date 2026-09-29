@@ -1,0 +1,126 @@
+/**
+ * Estilos do Componente NotificationItem — Design System Unoovista
+ * Linha da tela de atividade em cartão suave: avatar de 40px, frase com nome em
+ * negrito, horário em texto secundário e miniatura de 44px (`--unv-touch-target`) ou botão de ação à
+ * direita. O ponto de não lida marca o canto do avatar.
+ */
+
+.unv-notification-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--unv-spacing-m);
+  border-radius: var(--unv-radius-m);
+  background-color: var(--unv-color-background-primary);
+  font-family: var(--unv-font-sans);
+  text-align: left;
+}
+
+.unv-notification-item--interactive {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-notification-item--interactive:hover {
+  background-color: var(--unv-color-background-secondary);
+}
+
+.unv-notification-item--interactive:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-notification-item__avatar {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Ponto de não lida: `brand-notification` com recorte na cor do cartão. */
+.unv-notification-item__dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  width: var(--unv-spacing-m);
+  height: var(--unv-spacing-m);
+  border: 2px solid var(--unv-color-background-primary);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-brand-notification);
+}
+
+.unv-notification-item--interactive:hover .unv-notification-item__dot {
+  border-color: var(--unv-color-background-secondary);
+}
+
+.unv-notification-item__content {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-top: var(--unv-spacing-4xs);
+}
+
+.unv-notification-item__text {
+  margin: 0;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-notification-item__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.unv-notification-item__username {
+  font-weight: var(--unv-font-label-lg-weight);
+}
+
+.unv-notification-item__timestamp {
+  margin-left: var(--unv-spacing-3xs);
+  color: var(--unv-color-text-secondary);
+}
+
+.unv-notification-item__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  margin-top: var(--unv-spacing-xs);
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-lg-weight);
+}
+
+.unv-notification-item__trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: var(--unv-spacing-4xs);
+}
+
+.unv-notification-item__thumbnail {
+  display: block;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  border-radius: var(--unv-radius-s);
+  object-fit: cover;
+  background-color: var(--unv-color-background-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-notification-item--interactive {
+    transition: none;
+  }
+}

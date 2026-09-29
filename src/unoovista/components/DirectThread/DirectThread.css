@@ -1,0 +1,182 @@
+/**
+ * Estilos do Componente DirectThread — Design System Unoovista
+ *
+ * Decisões do módulo (registradas na estória):
+ * - camadas: a tela é `background-secondary`; o cabeçalho e o compositor são
+ *   cartões em `background-primary` com fio de 1px em `border-subtle` — a
+ *   separação vem da mudança de superfície e do espaço, não de um fio de
+ *   largura total;
+ * - o cabeçalho é um cartão com `--unv-radius-l`, afastado das bordas pela
+ *   calha do módulo; voltar em botão circular de 44px em `fill-field`;
+ * - o compositor é uma cápsula (`--unv-radius-full`) que abriga o campo ou a
+ *   ação recebida em `footer`;
+ * - rolagem fina, com trilho transparente.
+ * Sem sombra: a conversa fica sob as camadas de sobreposição.
+ */
+
+.unv-direct-thread {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background-color: var(--unv-color-background-secondary);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+}
+
+/* ==========================================================================
+   Cabeçalho em cartão
+   ========================================================================== */
+
+.unv-direct-thread__header {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: var(--unv-color-background-secondary);
+}
+
+.unv-direct-thread__status-inset {
+  height: var(--unv-statusbar-height);
+}
+
+.unv-direct-thread__card {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  margin: var(--unv-spacing-m) var(--unv-gutter) 0;
+  padding: var(--unv-spacing-xs) var(--unv-spacing-l) var(--unv-spacing-xs) var(--unv-spacing-xs);
+  border: 1px solid var(--unv-color-border-subtle);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-primary);
+}
+
+.unv-direct-thread__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  padding: 0;
+  border: none;
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-fill-field);
+  color: var(--unv-color-icon-primary);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unv-direct-thread__back:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-direct-thread__identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unv-direct-thread__username {
+  margin: 0;
+  overflow: hidden;
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-md-size);
+  font-weight: var(--unv-font-title-md-weight);
+  line-height: var(--unv-font-title-md-line);
+  letter-spacing: var(--unv-font-title-md-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unv-direct-thread__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Mensagens
+   ========================================================================== */
+
+.unv-direct-thread__messages {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: var(--unv-spacing-l) var(--unv-gutter);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--unv-color-border-default) transparent;
+}
+
+.unv-direct-thread__messages:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Compositor em cápsula
+   ========================================================================== */
+
+.unv-direct-thread__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-s);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+  margin: 0 var(--unv-gutter) var(--unv-spacing-m);
+  padding: var(--unv-spacing-3xs);
+  border: 1px solid var(--unv-color-border-subtle);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-background-primary);
+}
+
+.unv-direct-thread__footer > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/*
+ * Um `TextField` no rodapé já tem contorno próprio; dentro da cápsula do
+ * compositor ele o perderia em favor dela, senão o campo mostra borda dupla.
+ * O anel de foco continua (2px em `action-primary`).
+ */
+.unv-direct-thread__footer .unv-text-field__control {
+  height: var(--unv-touch-target);
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: var(--unv-radius-full);
+}
+
+.unv-direct-thread__footer .unv-text-field__control:focus {
+  border-color: transparent;
+}
+
+.unv-direct-thread__footer .unv-text-field__control:focus-visible {
+  outline-offset: 0;
+}
+
+.unv-direct-thread__footer .unv-text-field__control:disabled {
+  border-color: transparent;
+}
+
+.unv-direct-thread__home-inset {
+  flex-shrink: 0;
+  height: calc(var(--unv-tabbar-height) - var(--unv-tabbar-content-height));
+  background-color: var(--unv-color-background-secondary);
+}

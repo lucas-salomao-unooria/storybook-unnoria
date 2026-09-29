@@ -1,0 +1,119 @@
+/**
+ * Estilos do Componente TabBar — Design System Unoovista
+ * Doca flutuante em cápsula: margem de 16px nas laterais e na base, superfície
+ * elevada com a sombra de sobreposição, aba ativa em cápsula de ação.
+ */
+
+.unv-tab-bar {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 var(--unv-spacing-l) var(--unv-spacing-l);
+  /* A moldura ocupa a largura toda, mas só a doca recebe o ponteiro */
+  pointer-events: none;
+}
+
+.unv-tab-bar__dock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unv-spacing-3xs);
+  box-sizing: border-box;
+  padding: var(--unv-spacing-xxs);
+  background-color: var(--unv-color-background-elevated);
+  border-radius: var(--unv-radius-full);
+  box-shadow: var(--unv-elevation-overlay);
+  pointer-events: auto;
+}
+
+/* Recuo do indicador de início, descontada a margem que a doca já tem */
+.unv-tab-bar__home-inset {
+  height: calc(var(--unv-home-indicator-height) - var(--unv-spacing-l));
+  flex-shrink: 0;
+}
+
+.unv-tab-bar__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+  min-width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--unv-radius-full);
+  color: var(--unv-color-icon-secondary);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition:
+    background-color var(--unv-transition-fast),
+    color var(--unv-transition-fast);
+}
+
+.unv-tab-bar__item:hover {
+  background-color: var(--unv-color-fill-field);
+  color: var(--unv-color-icon-primary);
+}
+
+.unv-tab-bar__item:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-tab-bar__item--active,
+.unv-tab-bar__item--active:hover {
+  padding: 0 var(--unv-spacing-l) 0 var(--unv-spacing-m);
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+}
+
+.unv-tab-bar__item--active:active {
+  background-color: var(--unv-color-action-pressed);
+}
+
+.unv-tab-bar__label {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unv-tab-bar__notification {
+  position: absolute;
+  top: var(--unv-spacing-xs);
+  right: var(--unv-spacing-xs);
+  outline: 2px solid var(--unv-color-background-elevated);
+}
+
+.unv-tab-bar__item--active .unv-tab-bar__notification {
+  top: var(--unv-spacing-3xs);
+  right: var(--unv-spacing-3xs);
+  outline-color: var(--unv-color-action-primary);
+}
+
+.unv-tab-bar__notice {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-tab-bar__item {
+    transition: none;
+  }
+}

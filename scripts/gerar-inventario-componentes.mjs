@@ -30,7 +30,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const raiz = process.cwd();
-const MARCAS = ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube', 'unoochat'];
+const MARCAS = ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube', 'unoochat', 'unoovista'];
 /** Nome da seção na esteira do gerador (`secao_ds`) → pasta da marca aqui. */
 const SECAO_PARA_MARCA = { unitube: 'unootube' };
 

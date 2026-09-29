@@ -1,0 +1,39 @@
+/**
+ * Estilos do Componente StoriesTray — Design System Unoovista
+ *
+ * Faixa horizontal com encaixe de rolagem, recuo lateral de `--unv-gutter` e
+ * sem barra visível nem fio. Como cartão em camada (padrão) usa a superfície
+ * primária e o raio `--unv-radius-l`; plana (`bordered={false}`) é transparente.
+ */
+
+.unv-stories-tray {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--unv-spacing-xs) var(--unv-gutter);
+  background-color: transparent;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--unv-gutter);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.unv-stories-tray::-webkit-scrollbar {
+  display: none;
+}
+
+.unv-stories-tray--card {
+  padding-block: var(--unv-spacing-l);
+  border-radius: var(--unv-radius-l);
+  background-color: var(--unv-color-background-primary);
+}
+
+.unv-stories-tray > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}

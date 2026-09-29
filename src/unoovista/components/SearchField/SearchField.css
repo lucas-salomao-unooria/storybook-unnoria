@@ -1,0 +1,111 @@
+/**
+ * Estilos do Componente SearchField — Design System Unoovista
+ * Cápsula de 44px com preenchimento `fill-field`, lupa, botão de limpar de
+ * 44px de alvo e anel de foco de 2px em `action-primary`.
+ */
+
+.unv-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  box-sizing: border-box;
+}
+
+.unv-search-field--block {
+  width: 100%;
+}
+
+.unv-search-field__box {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  height: var(--unv-touch-target);
+  padding: 0 var(--unv-spacing-l);
+  background-color: var(--unv-color-fill-field);
+  /* contorno de controle: a cápsula precisa de 3:1 contra a tela (WCAG 1.4.11) */
+  border: 1px solid var(--unv-color-border-control);
+  border-radius: var(--unv-radius-full);
+}
+
+.unv-search-field__icon {
+  flex-shrink: 0;
+  color: var(--unv-color-text-secondary);
+}
+
+.unv-search-field__control {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+  appearance: none;
+}
+
+.unv-search-field__control::placeholder {
+  color: var(--unv-color-text-placeholder);
+}
+
+/* O botão de limpar é o do componente; o nativo do navegador some */
+.unv-search-field__control::-webkit-search-cancel-button,
+.unv-search-field__control::-webkit-search-decoration {
+  display: none;
+  appearance: none;
+}
+
+.unv-search-field__control:focus {
+  outline: none;
+}
+
+.unv-search-field__box:focus-within {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-search-field__control:disabled {
+  color: var(--unv-color-text-secondary);
+  cursor: not-allowed;
+}
+
+.unv-search-field__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  /* O alvo de 44px invade o recuo da cápsula, sem aumentar a altura dela */
+  margin: 0 calc(var(--unv-spacing-xs) * -1) 0 calc(var(--unv-spacing-xs) * -1);
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--unv-radius-full);
+  color: var(--unv-color-text-secondary);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unv-search-field__clear:hover {
+  color: var(--unv-color-text-primary);
+}
+
+.unv-search-field__clear:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: -2px;
+}
+
+.unv-search-field__trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--unv-color-icon-primary);
+}

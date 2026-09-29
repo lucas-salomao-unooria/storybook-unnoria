@@ -1,0 +1,111 @@
+/**
+ * Estilos do Componente MediaGrid — Design System Unoovista
+ * Grade de blocos quadrados com espaço de 4px entre eles e cantos de 8px. A
+ * grade não tem fundo próprio: os espaços mostram a superfície da tela.
+ */
+
+.unv-media-grid {
+  display: grid;
+  gap: var(--unv-spacing-3xs);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.unv-media-grid__tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  background-color: var(--unv-color-background-tertiary);
+  border: none;
+  border-radius: var(--unv-radius-s);
+  overflow: hidden;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unv-media-grid__tile:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-media-grid__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+ * Indicador de vídeo: cápsula de véu translúcido no canto inferior, com o
+ * glifo em branco de mídia. O véu mantém o glifo acima de 3:1 mesmo sobre uma
+ * fotografia branca (3,5:1).
+ */
+.unv-media-grid__indicator {
+  position: absolute;
+  bottom: var(--unv-spacing-xs);
+  left: var(--unv-spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--unv-spacing-4xs) var(--unv-spacing-3xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-overlay-scrim);
+  color: var(--unv-color-text-on-media);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Modo de seleção
+   O círculo é branco de mídia sobre o véu quando livre; escolhido, vira o
+   preenchimento de ação com o número da ordem em `text-on-action`, e o bloco
+   ganha um contorno de destaque.
+   ========================================================================== */
+
+.unv-media-grid__cell {
+  position: relative;
+  min-width: 0;
+}
+
+.unv-media-grid__tile--selected {
+  outline: 3px solid var(--unv-color-action-primary);
+  outline-offset: -3px;
+}
+
+.unv-media-grid__tile--selected:focus-visible {
+  outline-offset: 2px;
+}
+
+.unv-media-grid__check {
+  position: absolute;
+  top: var(--unv-spacing-xs);
+  right: var(--unv-spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--unv-icon-size-md);
+  height: var(--unv-icon-size-md);
+  border: 2px solid var(--unv-color-text-on-media);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-overlay-scrim);
+  color: var(--unv-color-text-on-action);
+  font-family: var(--unv-font-sans);
+  font-size: var(--unv-font-caption-lg-size);
+  font-weight: var(--unv-font-caption-lg-weight);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-media-grid__check--selected {
+  background-color: var(--unv-color-action-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-media-grid__check {
+    transition: none;
+  }
+}

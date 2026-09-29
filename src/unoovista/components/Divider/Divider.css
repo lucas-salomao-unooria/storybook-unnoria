@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente Divider — Design System Unoovista
+ * Fio de 1px com pontas arredondadas. O tom `hairline` (padrão) usa
+ * `--unv-color-border-subtle`; `solid` usa o contorno mais forte,
+ * `--unv-color-border-default`. Separação por espaço e por superfície vem
+ * antes de fio: use o divisor só quando a mudança de camada não bastar.
+ */
+
+.unv-divider {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-border-subtle);
+}
+
+.unv-divider--horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.unv-divider--vertical {
+  width: 1px;
+  height: 100%;
+}
+
+.unv-divider--solid {
+  background-color: var(--unv-color-border-default);
+}

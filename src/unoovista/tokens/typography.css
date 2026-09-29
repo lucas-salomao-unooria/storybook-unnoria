@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System Unoovista
+   Família e escala da Plataforma Unooria (`src/unooria/tokens/typography.css`):
+   Open Sans, com tamanhos e alturas de linha nos degraus da escala Unooria
+   (10, 12, 14, 16, 18 e 20px). O comentário de cada linha nomeia o token de
+   origem. Sem letter-spacing, como na escala da plataforma: as variáveis
+   `-tracking` existem apenas para que o componente nunca invente um valor.
+   Nenhum corpo abaixo de 12px, exceto o selo LIVE (10px, em negrito).
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --unv-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Biblioteca de ícones da Plataforma Unooria (--unooria-icon-font-family) */
+  --unv-icon-font-family: 'Material Symbols Rounded', sans-serif;
+
+  /* Pesos */
+  --unv-font-weight-regular: 400; /* --unooria-weight-regular */
+  --unv-font-weight-medium: 500; /* --unooria-weight-medium */
+  --unv-font-weight-semibold: 600; /* --unooria-weight-semibold */
+  --unv-font-weight-bold: 700; /* --unooria-weight-bold */
+
+  /* Heading/H3 — Títulos de seção e de estado vazio */
+  --unv-font-heading-h3-size: 20px; /* --unooria-size-title-l */
+  --unv-font-heading-h3-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-heading-h3-line: 30px; /* --unooria-line-height-title-l */
+  --unv-font-heading-h3-tracking: 0px;
+
+  /* Title/Large — Título da barra superior e nome no perfil */
+  --unv-font-title-lg-size: 18px; /* --unooria-size-body-m */
+  --unv-font-title-lg-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-title-lg-line: 28px; /* --unooria-line-height-body-m */
+  --unv-font-title-lg-tracking: 0px;
+
+  /* Title/Medium — Números das estatísticas do perfil e títulos de agrupamento */
+  --unv-font-title-md-size: 16px; /* --unooria-size-body-s */
+  --unv-font-title-md-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-title-md-line: 24px; /* --unooria-line-height-body-s */
+  --unv-font-title-md-tracking: 0px;
+
+  /* Title/Small — Rótulos de botões, abas segmentadas e chips */
+  --unv-font-title-sm-size: 14px; /* --unooria-size-body-xs */
+  --unv-font-title-sm-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-title-sm-line: 20px; /* --unooria-line-height-body-xs */
+  --unv-font-title-sm-tracking: 0px;
+
+  /* Body/Large — Campos de entrada e textos longos de formulário */
+  --unv-font-body-lg-size: 16px; /* --unooria-size-body-s */
+  --unv-font-body-lg-weight: 400; /* --unooria-weight-regular */
+  --unv-font-body-lg-line: 24px; /* --unooria-line-height-body-s */
+  --unv-font-body-lg-tracking: 0px;
+
+  /* Body/Medium — Itens de menu, linhas de lista e compositor de story */
+  --unv-font-body-md-size: 14px; /* --unooria-size-body-xs */
+  --unv-font-body-md-weight: 400; /* --unooria-weight-regular */
+  --unv-font-body-md-line: 20px; /* --unooria-line-height-body-xs */
+  --unv-font-body-md-tracking: 0px;
+
+  /* Label/Large — Nome de usuário no cabeçalho da publicação e termos em destaque */
+  --unv-font-label-lg-size: 14px; /* --unooria-size-body-xs */
+  --unv-font-label-lg-weight: 700; /* --unooria-weight-bold */
+  --unv-font-label-lg-line: 20px; /* --unooria-line-height-body-xs */
+  --unv-font-label-lg-tracking: 0px;
+
+  /* Label/Medium — Legendas, prévia de mensagens e notificações */
+  --unv-font-label-md-size: 14px; /* --unooria-size-body-xs */
+  --unv-font-label-md-weight: 400; /* --unooria-weight-regular */
+  --unv-font-label-md-line: 20px; /* --unooria-line-height-body-xs */
+  --unv-font-label-md-tracking: 0px;
+
+  /* Caption/Large — Rótulos curtos em negrito e ações inline */
+  --unv-font-caption-lg-size: 12px; /* --unooria-size-body-xxs */
+  --unv-font-caption-lg-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-caption-lg-line: 18px; /* --unooria-line-height-body-xxs */
+  --unv-font-caption-lg-tracking: 0px;
+
+  /* Caption/Medium — Nome sob o story, contador de mídia e rótulos de destaque */
+  --unv-font-caption-md-size: 12px; /* --unooria-size-body-xxs */
+  --unv-font-caption-md-weight: 400; /* --unooria-weight-regular */
+  --unv-font-caption-md-line: 18px; /* --unooria-line-height-body-xxs */
+  --unv-font-caption-md-tracking: 0px;
+
+  /* Overline/Default — Rótulos auxiliares em negrito (separadores, seções) */
+  --unv-font-overline-size: 12px; /* --unooria-size-body-xxs */
+  --unv-font-overline-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-overline-line: 18px; /* --unooria-line-height-body-xxs */
+  --unv-font-overline-tracking: 0px;
+
+  /* Overline/Small — Localização e data de publicação */
+  --unv-font-overline-sm-size: 12px; /* --unooria-size-body-xxs */
+  --unv-font-overline-sm-weight: 400; /* --unooria-weight-regular */
+  --unv-font-overline-sm-line: 18px; /* --unooria-line-height-body-xxs */
+  --unv-font-overline-sm-tracking: 0px;
+
+  /* Navigation/Title — Nome do autor em overlays sobre mídia (Story, Live) */
+  --unv-font-nav-title-size: 14px; /* --unooria-size-body-xs */
+  --unv-font-nav-title-weight: 600; /* --unooria-weight-semibold */
+  --unv-font-nav-title-line: 20px; /* --unooria-line-height-body-xs */
+  --unv-font-nav-title-tracking: 0px;
+
+  /* Navigation/Badge — Etiqueta LIVE e selos minúsculos */
+  --unv-font-nav-badge-size: 10px; /* --unooria-size-caption-xxxs */
+  --unv-font-nav-badge-weight: 700; /* --unooria-weight-bold */
+  --unv-font-nav-badge-line: 14px; /* --unooria-line-height-caption-xxxs */
+  --unv-font-nav-badge-tracking: 0px;
+}
+
+/* ==========================================================================
+   Classes utilitárias de tipografia
+   ========================================================================== */
+
+.unv-text {
+  font-family: var(--unv-font-sans);
+  color: var(--unv-color-text-primary);
+  margin: 0;
+}
+
+.unv-text--heading-h3 {
+  font-size: var(--unv-font-heading-h3-size);
+  font-weight: var(--unv-font-heading-h3-weight);
+  line-height: var(--unv-font-heading-h3-line);
+  letter-spacing: var(--unv-font-heading-h3-tracking);
+}
+
+.unv-text--title-lg {
+  font-size: var(--unv-font-title-lg-size);
+  font-weight: var(--unv-font-title-lg-weight);
+  line-height: var(--unv-font-title-lg-line);
+  letter-spacing: var(--unv-font-title-lg-tracking);
+}
+
+.unv-text--title-md {
+  font-size: var(--unv-font-title-md-size);
+  font-weight: var(--unv-font-title-md-weight);
+  line-height: var(--unv-font-title-md-line);
+  letter-spacing: var(--unv-font-title-md-tracking);
+}
+
+.unv-text--title-sm {
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+}
+
+.unv-text--body-lg {
+  font-size: var(--unv-font-body-lg-size);
+  font-weight: var(--unv-font-body-lg-weight);
+  line-height: var(--unv-font-body-lg-line);
+  letter-spacing: var(--unv-font-body-lg-tracking);
+}
+
+.unv-text--body-md {
+  font-size: var(--unv-font-body-md-size);
+  font-weight: var(--unv-font-body-md-weight);
+  line-height: var(--unv-font-body-md-line);
+  letter-spacing: var(--unv-font-body-md-tracking);
+}
+
+.unv-text--label-lg {
+  font-size: var(--unv-font-label-lg-size);
+  font-weight: var(--unv-font-label-lg-weight);
+  line-height: var(--unv-font-label-lg-line);
+  letter-spacing: var(--unv-font-label-lg-tracking);
+}
+
+.unv-text--label-md {
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+}
+
+.unv-text--caption-lg {
+  font-size: var(--unv-font-caption-lg-size);
+  font-weight: var(--unv-font-caption-lg-weight);
+  line-height: var(--unv-font-caption-lg-line);
+  letter-spacing: var(--unv-font-caption-lg-tracking);
+}
+
+.unv-text--caption-md {
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+.unv-text--overline {
+  font-size: var(--unv-font-overline-size);
+  font-weight: var(--unv-font-overline-weight);
+  line-height: var(--unv-font-overline-line);
+  letter-spacing: var(--unv-font-overline-tracking);
+}
+
+.unv-text--overline-sm {
+  font-size: var(--unv-font-overline-sm-size);
+  font-weight: var(--unv-font-overline-sm-weight);
+  line-height: var(--unv-font-overline-sm-line);
+  letter-spacing: var(--unv-font-overline-sm-tracking);
+}
+
+.unv-text--nav-title {
+  font-size: var(--unv-font-nav-title-size);
+  font-weight: var(--unv-font-nav-title-weight);
+  line-height: var(--unv-font-nav-title-line);
+  letter-spacing: var(--unv-font-nav-title-tracking);
+}
+
+.unv-text--nav-badge {
+  font-size: var(--unv-font-nav-badge-size);
+  font-weight: var(--unv-font-nav-badge-weight);
+  line-height: var(--unv-font-nav-badge-line);
+  letter-spacing: var(--unv-font-nav-badge-tracking);
+}
+
+.unv-text--secondary {
+  color: var(--unv-color-text-secondary);
+}
+
+.unv-text--link {
+  color: var(--unv-color-text-link);
+}

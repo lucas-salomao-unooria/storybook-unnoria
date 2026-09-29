@@ -363,3 +363,44 @@
 @import './unootube/components/VideoPlayer/VideoPlayer.css';
 @import './unootube/components/VideoPlayerFull/VideoPlayerFull.css';
 
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unoovista)
+ * ---------------------------------------------------- */
+@import './unoovista/tokens/typography.css';
+@import './unoovista/tokens/colors.css';
+@import './unoovista/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unoovista)
+ * ---------------------------------------------------- */
+@import './unoovista/components/Avatar/Avatar.css';
+@import './unoovista/components/Badge/Badge.css';
+@import './unoovista/components/BottomSheet/BottomSheet.css';
+@import './unoovista/components/Button/Button.css';
+@import './unoovista/components/Chip/Chip.css';
+@import './unoovista/components/ConfirmDialog/ConfirmDialog.css';
+@import './unoovista/components/DirectThread/DirectThread.css';
+@import './unoovista/components/Divider/Divider.css';
+@import './unoovista/components/DmPoll/DmPoll.css';
+@import './unoovista/components/FloatingButton/FloatingButton.css';
+@import './unoovista/components/GestureHint/GestureHint.css';
+@import './unoovista/components/Icon/Icon.css';
+@import './unoovista/components/InlineHint/InlineHint.css';
+@import './unoovista/components/ListItem/ListItem.css';
+@import './unoovista/components/Logo/Logo.css';
+@import './unoovista/components/MediaGrid/MediaGrid.css';
+@import './unoovista/components/MessageBubble/MessageBubble.css';
+@import './unoovista/components/NotificationItem/NotificationItem.css';
+@import './unoovista/components/PhoneFrame/PhoneFrame.css';
+@import './unoovista/components/PostCard/PostCard.css';
+@import './unoovista/components/ProfileHeader/ProfileHeader.css';
+@import './unoovista/components/SearchField/SearchField.css';
+@import './unoovista/components/SegmentedTabs/SegmentedTabs.css';
+@import './unoovista/components/Snackbar/Snackbar.css';
+@import './unoovista/components/StoriesTray/StoriesTray.css';
+@import './unoovista/components/StoryBubble/StoryBubble.css';
+@import './unoovista/components/StoryComposer/StoryComposer.css';
+@import './unoovista/components/StoryViewer/StoryViewer.css';
+@import './unoovista/components/TabBar/TabBar.css';
+@import './unoovista/components/TextField/TextField.css';
+@import './unoovista/components/TopBar/TopBar.css';

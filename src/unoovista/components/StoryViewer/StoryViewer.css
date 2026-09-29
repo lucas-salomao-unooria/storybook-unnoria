@@ -1,0 +1,295 @@
+/**
+ * Estilos do Componente StoryViewer — Design System Unoovista
+ *
+ * Camadas: a tela é `background-secondary`; a mídia ocupa um palco de cantos
+ * inferiores arredondados; a doca de resposta é uma cápsula `background-elevated`
+ * com `--unv-elevation-overlay`. Tudo o que fica sobre a mídia (progresso,
+ * cabeçalho, botão de fechar) é `text-on-media`, sobre um véu de leitura feito
+ * com `--unv-color-overlay-scrim`. O foco sobre a mídia é branco: o anel de
+ * `action-primary` não se distingue de uma fotografia escura.
+ */
+
+.unv-story-viewer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: var(--unv-color-background-secondary);
+  font-family: var(--unv-font-sans);
+}
+
+.unv-story-viewer__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: 0 0 var(--unv-radius-xl) var(--unv-radius-xl);
+  background-color: var(--unv-color-background-tertiary);
+  overflow: hidden;
+}
+
+.unv-story-viewer__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+ * Véu de leitura. O topo empilha duas camadas do mesmo token (cerca de 75% de
+ * opacidade) até 96px, onde estão as barras e o cabeçalho: branco sobre uma
+ * fotografia clara ainda passa de 4,5:1. A base leva uma camada só.
+ */
+.unv-story-viewer__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--unv-color-overlay-scrim) 0,
+      var(--unv-color-overlay-scrim) 96px,
+      transparent 200px
+    ),
+    linear-gradient(
+      180deg,
+      var(--unv-color-overlay-scrim) 0,
+      var(--unv-color-overlay-scrim) 96px,
+      transparent 200px
+    ),
+    linear-gradient(0deg, var(--unv-color-overlay-scrim) 0, transparent 30%);
+}
+
+/* ==========================================================================
+   Progresso em cápsulas
+   ========================================================================== */
+
+.unv-story-viewer__progress {
+  position: absolute;
+  z-index: 2;
+  top: var(--unv-spacing-m);
+  left: var(--unv-spacing-m);
+  right: var(--unv-spacing-m);
+  display: flex;
+  gap: var(--unv-spacing-3xs);
+}
+
+.unv-story-viewer__segment {
+  flex: 1 1 0;
+  height: var(--unv-spacing-3xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-overlay-onmedia);
+  overflow: hidden;
+}
+
+.unv-story-viewer__segment-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-text-on-media);
+}
+
+/* ==========================================================================
+   Cabeçalho
+   ========================================================================== */
+
+.unv-story-viewer__header {
+  position: absolute;
+  z-index: 2;
+  top: var(--unv-spacing-xxl);
+  left: var(--unv-spacing-m);
+  right: var(--unv-spacing-m);
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  color: var(--unv-color-text-on-media);
+}
+
+.unv-story-viewer__identity {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unv-story-viewer__username {
+  margin: 0;
+  overflow: hidden;
+  color: var(--unv-color-text-on-media);
+  font-size: var(--unv-font-label-lg-size);
+  font-weight: var(--unv-font-label-lg-weight);
+  line-height: var(--unv-font-label-lg-line);
+  letter-spacing: var(--unv-font-label-lg-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unv-story-viewer__timestamp {
+  color: var(--unv-color-text-on-media);
+  font-size: var(--unv-font-caption-md-size);
+  font-weight: var(--unv-font-caption-md-weight);
+  line-height: var(--unv-font-caption-md-line);
+  letter-spacing: var(--unv-font-caption-md-tracking);
+}
+
+.unv-story-viewer__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  padding: 0;
+  border: none;
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-overlay-scrim);
+  color: var(--unv-color-text-on-media);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-story-viewer__icon-button:focus-visible {
+  outline: 2px solid var(--unv-color-text-on-media);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Doca de resposta — cápsula elevada sob o palco
+   ========================================================================== */
+
+.unv-story-viewer__composer {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: var(--unv-spacing-m) var(--unv-gutter) var(--unv-spacing-l);
+  padding: var(--unv-spacing-3xs);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-background-elevated);
+  box-shadow: var(--unv-elevation-overlay);
+}
+
+.unv-story-viewer__composer-field {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-xs);
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  min-height: var(--unv-touch-target);
+  padding: 0 var(--unv-spacing-l) 0 var(--unv-spacing-m);
+  background-color: var(--unv-color-fill-field);
+  border: none;
+  border-radius: var(--unv-radius-full);
+  color: var(--unv-color-text-secondary);
+  font-family: inherit;
+  font-size: var(--unv-font-body-md-size);
+  font-weight: var(--unv-font-body-md-weight);
+  line-height: var(--unv-font-body-md-line);
+  letter-spacing: var(--unv-font-body-md-tracking);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unv-story-viewer__composer-field:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-story-viewer__composer-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-3xs);
+  flex-shrink: 0;
+  color: var(--unv-color-icon-primary);
+}
+
+.unv-story-viewer__composer-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--unv-touch-target);
+  height: var(--unv-touch-target);
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--unv-radius-full);
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast);
+}
+
+.unv-story-viewer__composer-action:hover {
+  background-color: var(--unv-color-fill-field);
+}
+
+.unv-story-viewer__composer-action:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Zonas de toque, camada sobre a mídia e rodapé
+   Um terço à esquerda volta e o resto avança; as zonas são botões
+   transparentes com anel de foco branco, porque ficam sobre a mídia.
+   ========================================================================== */
+
+.unv-story-viewer__tap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.unv-story-viewer__tap--prev {
+  left: 0;
+  width: 33.333%;
+}
+
+.unv-story-viewer__tap--next {
+  right: 0;
+  width: 66.667%;
+}
+
+.unv-story-viewer__tap:focus-visible {
+  outline: 2px solid var(--unv-color-text-on-media);
+  outline-offset: -4px;
+  border-radius: var(--unv-radius-l);
+}
+
+.unv-story-viewer__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.unv-story-viewer__overlay > * {
+  pointer-events: auto;
+}
+
+.unv-story-viewer__footer {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-story-viewer__icon-button,
+  .unv-story-viewer__composer-action {
+    transition: none;
+  }
+}
