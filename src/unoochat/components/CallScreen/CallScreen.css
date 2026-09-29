@@ -1,0 +1,114 @@
+/**
+ * Estilos do Componente CallScreen — Design System Unoochat
+ *
+ * Tela de chamada: cabeçalho de 133px e barra de controles de 87px em
+ * `--unc-color-call-surface`, retrato ao centro e botão de encerramento de
+ * 58px em `--unc-color-danger-endcall`.
+ */
+
+.unc-callscreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  background-color: var(--unc-color-call-surface);
+  font-family: var(--unc-font-sans);
+}
+
+.unc-callscreen__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unc-spacing-s);
+  box-sizing: border-box;
+  min-height: var(--unc-callheader-height);
+  padding: var(--unc-spacing-s) var(--unc-spacing-xl);
+  background-color: var(--unc-color-call-surface);
+  text-align: center;
+}
+
+.unc-callscreen__encryption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-xxs);
+  color: var(--unc-color-call-text-encrypted);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1;
+}
+
+.unc-callscreen__name {
+  margin: 0;
+  color: var(--unc-color-text-inverse);
+  font-size: var(--unc-font-display-size);
+  font-weight: var(--unc-font-display-weight);
+  line-height: 1.1;
+}
+
+.unc-callscreen__state {
+  margin: 0;
+  color: var(--unc-color-text-inverse);
+  font-size: var(--unc-font-subtitle-size);
+  font-weight: var(--unc-font-subtitle-weight);
+  line-height: 1;
+}
+
+.unc-callscreen__stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: var(--unc-spacing-4xl);
+  background-color: var(--unc-color-surface-base);
+  overflow: hidden;
+}
+
+.unc-callscreen__portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.unc-callscreen__endcall {
+  position: relative;
+}
+
+.unc-callscreen__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  height: var(--unc-callbar-height);
+  padding: 0 var(--unc-spacing-4xl);
+  background-color: var(--unc-color-call-surface);
+}
+
+.unc-callscreen__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: var(--unc-radius-full);
+  background: transparent;
+  color: var(--unc-color-call-icon);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-callscreen__control:focus-visible {
+  outline: 2px solid var(--unc-color-text-inverse);
+  outline-offset: 2px;
+}
+
+.unc-callscreen__control--off {
+  color: var(--unc-color-call-icon-muted);
+}

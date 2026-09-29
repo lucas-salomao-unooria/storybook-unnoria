@@ -1,0 +1,24 @@
+/**
+ * Estilos do Componente AdminOnlyNotice — Design System Unoochat
+ *
+ * Extensão. Ocupa a faixa do compositor na superfície da app bar, com o glifo
+ * `lock` e o texto secundário do horário das conversas
+ * (`--unc-color-text-secondary`).
+ */
+
+.unc-adminonlynotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unc-spacing-xs);
+  box-sizing: border-box;
+  min-height: 56px;
+  padding: var(--unc-spacing-s) var(--unc-spacing-l);
+  border-top: var(--unc-divider-width) solid var(--unc-color-border-divider);
+  background-color: var(--unc-color-surface-appbar);
+  color: var(--unc-color-text-secondary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1.3;
+  text-align: center;
+}

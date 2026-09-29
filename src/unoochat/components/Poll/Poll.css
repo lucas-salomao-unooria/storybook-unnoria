@@ -1,0 +1,86 @@
+/**
+ * Estilos do Componente Poll — Design System Unoochat
+ *
+ * Extensão. Vive dentro de um `MessageBubble`: herda o texto do balão
+ * (`--unc-color-text-bubble`), usa o `Radio` do diálogo e fecha com a ação de
+ * texto do diálogo (`--unc-color-accent`) sobre o divisor.
+ * O rótulo do `Radio` é reajustado para o balão: a cor do diálogo e a altura de
+ * linha 1 do rótulo curto não servem a uma opção de duas linhas.
+ */
+
+.unc-poll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-xxs);
+  min-width: 220px;
+  font-family: var(--unc-font-sans);
+}
+
+.unc-poll__question {
+  margin: 0;
+  color: var(--unc-color-text-bubble);
+  font-size: var(--unc-font-body-md-size);
+  font-weight: var(--unc-font-weight-bold);
+  line-height: 1.3;
+}
+
+.unc-poll__hint {
+  margin: 0;
+  color: var(--unc-color-text-bubble-meta);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1.2;
+}
+
+.unc-poll__options {
+  display: flex;
+  flex-direction: column;
+}
+
+.unc-poll .unc-poll__option {
+  gap: var(--unc-spacing-m);
+  color: var(--unc-color-text-bubble);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1.3;
+}
+
+.unc-poll__vote {
+  min-height: 44px;
+  margin-top: var(--unc-spacing-3xs);
+  padding: var(--unc-spacing-xs);
+  border: 0;
+  border-top: var(--unc-divider-width) solid var(--unc-color-border-divider);
+  background: transparent;
+  color: var(--unc-color-accent);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-body-md-size);
+  font-weight: var(--unc-font-weight-bold);
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Sobre o balão enviado o acento não passa em 4,5:1: o rótulo usa o texto do balão. */
+.unc-messagebubble--out .unc-poll__vote {
+  color: var(--unc-color-text-bubble);
+}
+
+.unc-poll__vote:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: -2px;
+}
+
+.unc-poll__vote:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.unc-poll__voted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--unc-spacing-3xs);
+  min-height: 44px;
+  margin: var(--unc-spacing-3xs) 0 0;
+  border-top: var(--unc-divider-width) solid var(--unc-color-border-divider);
+  color: var(--unc-color-icon-tick);
+  font-size: var(--unc-font-body-sm-size);
+}

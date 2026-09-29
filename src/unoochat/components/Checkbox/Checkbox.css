@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente Checkbox — Design System Unoochat
+ * Caixa de 18px com raio de 3px, preenchimento `--unc-color-surface-dialog` e
+ * contorno de 2px em `--unc-color-border-control`.
+ */
+
+.unc-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-l);
+  cursor: pointer;
+  font-family: var(--unc-font-sans);
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1;
+}
+
+.unc-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.unc-checkbox__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--unc-color-border-control);
+  border-radius: 3px;
+  background-color: var(--unc-color-surface-dialog);
+  color: var(--unc-color-text-primary);
+}
+
+.unc-checkbox__input:checked + .unc-checkbox__control {
+  border-color: var(--unc-color-accent);
+  background-color: var(--unc-color-accent);
+  color: var(--unc-color-icon-on-accent);
+}
+
+.unc-checkbox__input:focus-visible + .unc-checkbox__control {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}
+
+.unc-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

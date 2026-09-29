@@ -1,0 +1,15 @@
+/**
+ * Estilos do Componente SectionLabel — Design System Unoochat
+ * Rótulo de agrupamento da aba Status.
+ */
+
+.unc-sectionlabel {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--unc-spacing-l) var(--unc-gutter) var(--unc-spacing-xs);
+  color: var(--unc-color-text-secondary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-section-size);
+  font-weight: var(--unc-font-section-weight);
+  line-height: var(--unc-font-section-line);
+}

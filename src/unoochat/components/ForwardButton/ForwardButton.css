@@ -1,0 +1,56 @@
+/**
+ * Estilos do Componente ForwardButton — Design System Unoochat
+ *
+ * Extensão. Círculo de 32px — o diâmetro do avatar do cabeçalho de conversa
+ * (`--unc-avatar-sm`) — na superfície da app bar, com o glifo em
+ * `--unc-color-icon-appbar`. Escolhido, o círculo passa ao acento do selo de
+ * não lidas (`--unc-color-accent`) e o glifo ao tom sobre acento. Desabilitado, 30% de opacidade: continua visível para que a escolha
+ * esgotada se leia como esgotada, e não como sumida. Esgotado (`exhausted`) é o
+ * mesmo esmaecimento, mas o botão continua acionável: é o toque que dispara a
+ * explicação da recusa, e `:disabled` o engoliria.
+ */
+
+.unc-forwardbutton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--unc-avatar-sm);
+  height: var(--unc-avatar-sm);
+  padding: 0;
+  border: 0;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-surface-appbar);
+  color: var(--unc-color-icon-appbar);
+  cursor: pointer;
+  appearance: none;
+}
+
+/* O alvo de toque é maior que o círculo: 44px centrados, sem mudar o desenho. */
+.unc-forwardbutton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.unc-forwardbutton--selected {
+  background-color: var(--unc-color-accent);
+  color: var(--unc-color-icon-on-accent);
+}
+
+.unc-forwardbutton:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}
+
+.unc-forwardbutton:disabled,
+.unc-forwardbutton--exhausted {
+  cursor: not-allowed;
+  opacity: 0.3;
+}

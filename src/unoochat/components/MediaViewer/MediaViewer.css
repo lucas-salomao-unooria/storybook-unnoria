@@ -1,0 +1,101 @@
+/**
+ * Estilos do Componente MediaViewer — Design System Unoochat
+ *
+ * Extensão. Fundo no degrau mais baixo da escada de superfícies
+ * (`--unc-color-surface-base`), barra na superfície da app bar com a altura do
+ * título (`--unc-appbar-title-height`) e a seta em `--unc-color-icon-muted`.
+ */
+
+.unc-mediaviewer-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.unc-mediaviewer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: var(--unc-color-surface-base);
+  font-family: var(--unc-font-sans);
+  outline: none;
+}
+
+.unc-mediaviewer__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-s);
+  box-sizing: border-box;
+  min-height: var(--unc-appbar-title-height);
+  padding: 0 var(--unc-spacing-l) 0 var(--unc-spacing-xs);
+  background-color: var(--unc-color-surface-appbar);
+}
+
+.unc-mediaviewer__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--unc-radius-full);
+  background: transparent;
+  color: var(--unc-color-icon-muted);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-mediaviewer__back:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: -2px;
+}
+
+.unc-mediaviewer__titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-4xs);
+  min-width: 0;
+}
+
+.unc-mediaviewer__title {
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-title-sm-size);
+  font-weight: var(--unc-font-title-sm-weight);
+  line-height: 1.2;
+}
+
+.unc-mediaviewer__subtitle {
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1.2;
+}
+
+.unc-mediaviewer__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--unc-spacing-l);
+  min-height: 0;
+  padding: var(--unc-spacing-l);
+  overflow-y: auto;
+}
+
+.unc-mediaviewer__media {
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--unc-radius-m);
+}
+
+.unc-mediaviewer__media > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.unc-mediaviewer__caption {
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-body-sm-size);
+  line-height: 1.45;
+}

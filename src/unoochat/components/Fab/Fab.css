@@ -1,0 +1,81 @@
+/**
+ * Estilos do Componente Fab — Design System Unoochat
+ * Botões de ação flutuantes circulares, com a elevação de sobreposição do
+ * tema (`--unc-elevation-overlay`).
+ */
+
+.unc-fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--unc-fab-diameter);
+  height: var(--unc-fab-diameter);
+  padding: 0;
+  border: none;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-fab-background);
+  color: var(--unc-color-icon-on-accent);
+  box-shadow: var(--unc-elevation-overlay);
+  cursor: pointer;
+  appearance: none;
+  font-family: var(--unc-font-sans);
+}
+
+.unc-fab:focus-visible {
+  outline: 2px solid var(--unc-color-icon-appbar);
+  outline-offset: 2px;
+}
+
+.unc-fab:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.unc-fab__glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.unc-fab--chat {
+  --unc-fab-diameter: var(--unc-fab-chat);
+  --unc-fab-background: var(--unc-color-accent);
+}
+
+.unc-fab--camera {
+  --unc-fab-diameter: var(--unc-fab-lg);
+  --unc-fab-background: var(--unc-color-accent);
+}
+
+.unc-fab--call {
+  --unc-fab-diameter: var(--unc-fab-lg);
+  --unc-fab-background: var(--unc-color-accent);
+}
+
+.unc-fab--mic {
+  --unc-fab-diameter: var(--unc-fab-mic);
+  --unc-fab-background: var(--unc-color-accent);
+}
+
+.unc-fab--edit {
+  --unc-fab-diameter: var(--unc-fab-sm);
+  --unc-fab-background: var(--unc-color-surface-elevated);
+  /* Fundo elevado (branco no claro): o glifo usa a tinta principal, não a de acento. */
+  color: var(--unc-color-icon-appbar);
+}
+
+.unc-fab--endCall {
+  --unc-fab-diameter: var(--unc-fab-endcall);
+  --unc-fab-background: var(--unc-color-danger-endcall);
+  /* Invariante entre temas, como a tela de chamada: glifo branco sobre o vermelho. */
+  color: var(--unc-color-text-inverse);
+}

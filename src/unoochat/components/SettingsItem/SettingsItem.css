@@ -1,0 +1,65 @@
+/**
+ * Estilos do Componente SettingsItem — Design System Unoochat
+ *
+ * Linha da tela de Ajustes: glifo de 19px na calha de 41px, título em
+ * `--unc-font-body-lg-*` na cor `--unc-color-text-primary` e descrição em
+ * `--unc-font-body-sm-*` na cor `--unc-color-text-secondary`.
+ */
+
+.unc-settingsitem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 72px;
+  padding: 0 var(--unc-gutter-appbar) 0 41px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--unc-font-sans);
+  list-style: none;
+}
+
+.unc-settingsitem--interactive {
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-settingsitem--interactive:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: -2px;
+}
+
+.unc-settingsitem__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  color: var(--unc-color-icon-muted);
+}
+
+.unc-settingsitem__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-3xs);
+  min-width: 0;
+}
+
+.unc-settingsitem__title {
+  margin: 0;
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-body-lg-size);
+  font-weight: var(--unc-font-body-lg-weight);
+  line-height: 1.1;
+}
+
+.unc-settingsitem__description {
+  margin: 0;
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-body-sm-size);
+  font-weight: var(--unc-font-body-sm-weight);
+  line-height: 1.1;
+}

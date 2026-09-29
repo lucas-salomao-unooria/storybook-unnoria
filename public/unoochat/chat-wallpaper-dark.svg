@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none" stroke="#57547D" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(24 28)"><rect x="0" y="0" width="44" height="30" rx="10"/><path d="M12 30v10l10-10"/></g>
+  <g transform="translate(150 22)"><circle cx="16" cy="16" r="14"/><path d="M16 8v16M8 16h16"/></g>
+  <g transform="translate(250 60)"><path d="M18 2l4 12h13L24 22l4 13-10-8-10 8 4-13L1 14h13z"/></g>
+  <g transform="translate(70 120)"><path d="M0 8h30M0 18h22M0 28h26"/><rect x="-6" y="-6" width="42" height="46" rx="8"/></g>
+  <g transform="translate(200 130)"><path d="M18 0l18 18-18 18L0 18z"/></g>
+  <g transform="translate(20 226)"><circle cx="18" cy="18" r="16"/><circle cx="18" cy="18" r="6"/></g>
+  <g transform="translate(130 240)"><rect x="0" y="0" width="52" height="34" rx="10"/><path d="M40 34v10l-12-10"/></g>
+  <g transform="translate(246 238)"><path d="M0 26q14-30 28 0t28 0"/></g>
+  <g transform="translate(280 150)"><path d="M0 0l10 10M10 0L0 10"/></g>
+  <g transform="translate(10 160)"><path d="M0 0l10 10M10 0L0 10"/></g>
+</svg>

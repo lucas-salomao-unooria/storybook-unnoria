@@ -1,0 +1,62 @@
+/**
+ * Estilos do Componente BottomSheet — Design System Unoochat
+ *
+ * Extensão. A superfície é a da folha de anexos (`--unc-color-surface-sheet`),
+ * o véu é o do diálogo (`--unc-color-scrim`) e o raio superior é o maior da
+ * escala (`--unc-radius-xl`). Plana: sem sombra.
+ */
+
+.unc-bottomsheet-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--unc-color-scrim);
+}
+
+.unc-bottomsheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-height: 85%;
+  padding: var(--unc-spacing-xs) 0 var(--unc-spacing-l);
+  border-top-left-radius: var(--unc-radius-xl);
+  border-top-right-radius: var(--unc-radius-xl);
+  background-color: var(--unc-color-surface-sheet);
+  box-shadow: var(--unc-elevation-overlay);
+  font-family: var(--unc-font-sans);
+  outline: none;
+}
+
+.unc-bottomsheet__handle {
+  align-self: center;
+  width: 32px;
+  height: 4px;
+  margin-bottom: var(--unc-spacing-s);
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-text-secondary);
+}
+
+.unc-bottomsheet__title {
+  margin: 0;
+  padding: 0 var(--unc-gutter) var(--unc-spacing-xs);
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-title-sm-size);
+  font-weight: var(--unc-font-title-sm-weight);
+  line-height: 1.2;
+}
+
+.unc-bottomsheet__body {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.unc-bottomsheet__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--unc-spacing-l);
+  padding: var(--unc-spacing-m) var(--unc-gutter) 0;
+}

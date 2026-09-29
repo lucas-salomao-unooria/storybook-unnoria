@@ -1,0 +1,101 @@
+/**
+ * Estilos do Componente ChatHeader — Design System Unoochat
+ *
+ * Faixa de 52px: seta de voltar, avatar de 32px, nome em
+ * `--unc-font-title-lg-*` e as três ações de vídeo, voz e menu com
+ * espaçamento de 24px.
+ */
+
+.unc-chatheader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--unc-appbar-title-height);
+  padding: 0 var(--unc-spacing-l) 0 var(--unc-spacing-4xs);
+  background-color: var(--unc-color-surface-appbar);
+  font-family: var(--unc-font-sans);
+}
+
+.unc-chatheader__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 36px;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--unc-color-icon-muted);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-chatheader__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-s);
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  font-family: inherit;
+}
+
+.unc-chatheader__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.unc-chatheader__name {
+  margin: 0;
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-title-lg-size);
+  font-weight: var(--unc-font-title-lg-weight);
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unc-chatheader__presence {
+  margin: 0;
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-caption-size);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unc-chatheader__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-xxl);
+  flex-shrink: 0;
+}
+
+.unc-chatheader__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--unc-color-icon-appbar);
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-chatheader__back:focus-visible,
+.unc-chatheader__identity:focus-visible,
+.unc-chatheader__action:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: 2px;
+}

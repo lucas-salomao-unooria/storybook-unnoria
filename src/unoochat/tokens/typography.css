@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System Unoochat
+   Família e escala da Plataforma Unooria (`src/unooria/tokens/typography.css`):
+   Open Sans, com tamanhos e alturas de linha nos degraus da escala Unooria
+   (10, 12, 14, 16, 18, 20 e 24px). O comentário de cada estilo nomeia o degrau
+   de origem. Sem letter-spacing, como na escala da plataforma.
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --unc-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --unc-font-statusbar: var(--unc-font-sans);
+
+  /* Biblioteca de ícones da Plataforma Unooria (--unooria-icon-font-family) */
+  --unc-icon-font-family: 'Material Symbols Rounded', sans-serif;
+
+  /* Pesos (--unooria-weight-*) */
+  --unc-font-weight-regular: 400;
+  --unc-font-weight-medium: 500;
+  --unc-font-weight-semibold: 600;
+  --unc-font-weight-bold: 700;
+
+  /* Display/Call — Nome do contato na tela de chamada (--unooria-size-title-xl) */
+  --unc-font-display-size: 24px;
+  --unc-font-display-weight: 400;
+  --unc-font-display-line: 34px;
+
+  /* Title/Large — Nome de contato em listas e cabeçalho de conversa (--unooria-size-title-l) */
+  --unc-font-title-lg-size: 20px;
+  --unc-font-title-lg-weight: 400;
+  --unc-font-title-lg-line: 30px;
+
+  /* Title/Medium — Título da marca e títulos de sub app bar (--unooria-size-title-l) */
+  --unc-font-title-md-size: 20px;
+  --unc-font-title-md-weight: 600;
+  --unc-font-title-md-line: 30px;
+
+  /* Subtitle/Call — Estado da chamada ("Chamando") (--unooria-size-body-m) */
+  --unc-font-subtitle-size: 18px;
+  --unc-font-subtitle-weight: 400;
+  --unc-font-subtitle-line: 28px;
+
+  /* Title/Small — Status já visualizado e "Meu status" (--unooria-size-body-m) */
+  --unc-font-title-sm-size: 18px;
+  --unc-font-title-sm-weight: 600;
+  --unc-font-title-sm-line: 28px;
+
+  /* Placeholder — Texto de espaço reservado do compositor (--unooria-size-body-s) */
+  --unc-font-placeholder-size: 16px;
+  --unc-font-placeholder-weight: 400;
+  --unc-font-placeholder-line: 24px;
+
+  /* Body/Large — Título de linha de configuração (--unooria-size-body-s) */
+  --unc-font-body-lg-size: 16px;
+  --unc-font-body-lg-weight: 400;
+  --unc-font-body-lg-line: 24px;
+
+  /* Body/Medium — Abas, texto de balão e nomes compactos (--unooria-size-body-s) */
+  --unc-font-body-md-size: 16px;
+  --unc-font-body-md-weight: 400;
+  --unc-font-body-md-line: 24px;
+
+  /* Section — Rótulos de seção ("Atualizações recentes") (--unooria-size-body-xs) */
+  --unc-font-section-size: 14px;
+  --unc-font-section-weight: 600;
+  --unc-font-section-line: 20px;
+
+  /* Body/Small — Opções de diálogo e descrições curtas (--unooria-size-body-xs) */
+  --unc-font-body-sm-size: 14px;
+  --unc-font-body-sm-weight: 400;
+  --unc-font-body-sm-line: 20px;
+
+  /* Label/Medium — Metadados de status e chamadas (--unooria-size-body-xs) */
+  --unc-font-label-md-size: 14px;
+  --unc-font-label-md-weight: 400;
+  --unc-font-label-md-line: 20px;
+
+  /* Label/Small — Etiqueta de data e aviso de criptografia (--unooria-size-body-xxs) */
+  --unc-font-label-sm-size: 12px;
+  --unc-font-label-sm-weight: 400;
+  --unc-font-label-sm-line: 18px;
+
+  /* Caption — Metadados dentro do balão (--unooria-size-body-xxs) */
+  --unc-font-caption-size: 12px;
+  --unc-font-caption-weight: 400;
+  --unc-font-caption-line: 18px;
+
+  /* Caption/Bold — Horário nas linhas de conversa (--unooria-size-body-xxs) */
+  --unc-font-caption-bold-size: 12px;
+  --unc-font-caption-bold-weight: 600;
+  --unc-font-caption-bold-line: 18px;
+
+  /* Badge — Numeral dentro do selo de não lidas (--unooria-size-caption-xxxs) */
+  --unc-font-badge-size: 10px;
+  --unc-font-badge-weight: 700;
+  --unc-font-badge-line: 14px;
+
+  /* Statusbar/Clock — Relógio da barra de status (--unooria-size-body-xs) */
+  --unc-font-statusbar-clock-size: 14px;
+  --unc-font-statusbar-clock-weight: 600;
+  --unc-font-statusbar-clock-line: 20px;
+
+  /* Statusbar/Network — Rede da barra de status (--unooria-size-body-xxs) */
+  --unc-font-statusbar-network-size: 12px;
+  --unc-font-statusbar-network-weight: 600;
+  --unc-font-statusbar-network-line: 18px;
+
+  /* Statusbar/Battery — Percentual de bateria da barra de status (--unooria-size-body-xxs) */
+  --unc-font-statusbar-battery-size: 12px;
+  --unc-font-statusbar-battery-weight: 600;
+  --unc-font-statusbar-battery-line: 18px;
+}

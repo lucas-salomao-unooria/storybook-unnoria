@@ -1,0 +1,27 @@
+/**
+ * Estilos do Componente ChatListItem — Design System Unoochat
+ *
+ * Linha da lista de conversas: avatar, nome, horário, prévia e estados.
+ */
+
+.unc-chatlistitem--compact .unc-listitem__title {
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-title-sm-size);
+  font-weight: var(--unc-font-title-sm-weight);
+}
+
+.unc-chatlistitem__preview {
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-body-md-size);
+}
+
+.unc-chatlistitem__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-surface-sheet);
+  color: var(--unc-color-icon-muted);
+}

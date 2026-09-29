@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 411 823" width="411" height="823" role="img" aria-label="Retrato ilustrado da chamada">
+  <defs><linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#57547D"/><stop offset="1" stop-color="#0E1039"/></linearGradient></defs>
+  <rect width="411" height="823" fill="url(#c)"/>
+  <circle cx="205" cy="330" r="92" fill="#CCC9DE" fill-opacity="0.85"/>
+  <path d="M40 823c0-150 74-260 165-260s166 110 166 260z" fill="#CCC9DE" fill-opacity="0.85"/>
+</svg>

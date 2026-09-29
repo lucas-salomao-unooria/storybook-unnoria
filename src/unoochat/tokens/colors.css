@@ -1,0 +1,212 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Unoochat
+   Todo valor é um literal copiado da paleta da Plataforma Unooria
+   (`src/unooria/tokens/colors.css`); o comentário ao lado de cada linha
+   nomeia o token de origem. O módulo NÃO consome `--unooria-*` em tempo de
+   execução — um módulo de marca nunca lê tokens de outro (AGENTS.md, 1.3) —,
+   e `scripts/verificar-paridade-unoochat.mjs` falha o build se um literal
+   se afastar da origem.
+
+   Dois temas, ambos sobre a escala roxa (`brandpurple`):
+   - claro: superfícies em branco e lavanda (50–300), acento em 600;
+   - escuro: superfícies em roxo profundo (700–950), acento em 400.
+
+   Invariantes entre temas: tela de chamada, ações da folha de anexos,
+   botão de encerrar chamada e bateria.
+   ========================================================================== */
+
+:root,
+[data-unc-theme='light'] {
+  /** Fundo do documento, atrás das telas */
+  --unc-color-surface-base: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Fundo das telas de listagem (Conversas, Status, Chamadas, Ajustes) */
+  --unc-color-surface-canvas: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Barra superior, sub app bar e faixa de abas */
+  --unc-color-surface-appbar: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Menu suspenso e FAB secundário */
+  --unc-color-surface-elevated: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Caixa de diálogo modal */
+  --unc-color-surface-dialog: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Folha de anexos, campo do compositor e chips de filtro */
+  --unc-color-surface-sheet: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Etiqueta de data na conversa */
+  --unc-color-surface-datechip: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Aviso de criptografia ponta a ponta */
+  --unc-color-surface-notice: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Balão de mensagem enviada */
+  --unc-color-surface-bubble-out: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Faixa de documento dentro do balão enviado */
+  --unc-color-surface-bubble-out-strip: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Balão de mensagem recebida */
+  --unc-color-surface-bubble-in: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Aba ativa, FABs, selo de não lidas, ações de texto do diálogo, sublinhado do campo e controle selecionado */
+  --unc-color-accent: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Seta de chamada efetuada */
+  --unc-color-accent-call-out: #00A369; /* --unooria-color-success-600 */
+  /** Seta de chamada recebida ou perdida */
+  --unc-color-danger-call-in: #E31A1A; /* --unooria-color-danger-600 */
+  /** Botão de encerrar chamada */
+  --unc-color-danger-endcall: #E31A1A; /* --unooria-color-danger-600 */
+  /** Bateria na barra de status */
+  --unc-color-warning-battery: #F97607; /* --unooria-color-warning-500 */
+  /** Barra de status da tela de chamada */
+  --unc-color-call-statusbar: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Fundo da tela de chamada */
+  --unc-color-call-surface: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Aviso de criptografia na chamada */
+  --unc-color-call-text-encrypted: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Ícones dos controles da chamada */
+  --unc-color-call-icon: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Ícones dos controles da chamada, silenciados */
+  --unc-color-call-icon-muted: #8B85AC; /* --unooria-color-brandpurple-500 */
+  /** Nomes, títulos, opções de diálogo e itens de menu */
+  --unc-color-text-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Horários, metadados, descrições, abas inativas e rodapés */
+  --unc-color-text-secondary: #475157; /* --unooria-color-neutral-700 */
+  /** Placeholder do compositor e dos campos */
+  --unc-color-text-placeholder: #536167; /* --unooria-color-neutral-600 */
+  /** Texto do aviso de criptografia */
+  --unc-color-text-notice: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Texto dentro do balão de mensagem */
+  --unc-color-text-bubble: #22272A; /* --unooria-color-neutral-950 */
+  /** Metadados dentro do balão (tamanho, hora) */
+  --unc-color-text-bubble-meta: #475157; /* --unooria-color-neutral-700 */
+  /** Numeral sobre o selo de acento */
+  --unc-color-text-on-accent: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Texto sobre a tela de chamada (invariante entre temas) */
+  --unc-color-text-inverse: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Busca, menu e glifos principais da barra superior */
+  --unc-color-icon-appbar: #22272A; /* --unooria-color-neutral-950 */
+  /** Câmera da barra de abas, voltar, glifos do compositor e das configurações, fixada */
+  --unc-color-icon-muted: #475157; /* --unooria-color-neutral-700 */
+  /** Glifos sobre FAB e selos de acento */
+  --unc-color-icon-on-accent: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Confirmação de leitura no balão */
+  --unc-color-icon-tick: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Estrela de mensagem favoritada */
+  --unc-color-icon-star: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Relógio e glifos da barra de status */
+  --unc-color-statusbar-fg: #22272A; /* --unooria-color-neutral-950 */
+  /** Divisor entre linhas de lista */
+  --unc-color-border-divider: #E4E8E9; /* --unooria-color-neutral-150 */
+  /** Contorno e divisor interno do diálogo */
+  --unc-color-border-dialog: #E4E8E9; /* --unooria-color-neutral-150 */
+  /** Contorno de caixa de seleção e de rádio */
+  --unc-color-border-control: #617379; /* --unooria-color-neutral-500 */
+  /** Anel do avatar de status já visto */
+  --unc-color-border-status-ring: #A7B5B9; /* --unooria-color-neutral-300 */
+  /** Ação de documento da folha de anexos */
+  --unc-color-attach-document: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Ação de câmera da folha de anexos */
+  --unc-color-attach-camera: #F83B3B; /* --unooria-color-danger-500 */
+  /** Ação de galeria da folha de anexos */
+  --unc-color-attach-gallery: #6487C2; /* --unooria-color-brandnavy-700 */
+  /** Ação de áudio da folha de anexos */
+  --unc-color-attach-audio: #DD5202; /* --unooria-color-warning-600 */
+  /** Ação de localização da folha de anexos */
+  --unc-color-attach-location: #00A369; /* --unooria-color-success-600 */
+  /** Ação de contato da folha de anexos */
+  --unc-color-attach-contact: #0086FF; /* --unooria-color-info-500 */
+
+  /** Véu atrás de diálogos e folhas (--unooria-color-opacity-brandpurple-600) */
+  --unc-color-scrim: rgba(14, 16, 57, 0.60);
+  /** Elevação de menus, diálogos e folhas (--unooria-elevation-brand-secondary) */
+  --unc-elevation-overlay: 0px 0px 10px 0px rgba(14, 16, 57, 0.3);
+}
+
+[data-unc-theme='dark'] {
+  /** Fundo do documento, atrás das telas */
+  --unc-color-surface-base: #080922; /* --unooria-color-brandpurple-950 */
+  /** Fundo das telas de listagem (Conversas, Status, Chamadas, Ajustes) */
+  --unc-color-surface-canvas: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Barra superior, sub app bar e faixa de abas */
+  --unc-color-surface-appbar: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Menu suspenso e FAB secundário */
+  --unc-color-surface-elevated: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Caixa de diálogo modal */
+  --unc-color-surface-dialog: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Folha de anexos, campo do compositor e chips de filtro */
+  --unc-color-surface-sheet: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Etiqueta de data na conversa */
+  --unc-color-surface-datechip: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Aviso de criptografia ponta a ponta */
+  --unc-color-surface-notice: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Balão de mensagem enviada */
+  --unc-color-surface-bubble-out: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Faixa de documento dentro do balão enviado */
+  --unc-color-surface-bubble-out-strip: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Balão de mensagem recebida */
+  --unc-color-surface-bubble-in: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Aba ativa, FABs, selo de não lidas, ações de texto do diálogo, sublinhado do campo e controle selecionado */
+  --unc-color-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Seta de chamada efetuada */
+  --unc-color-accent-call-out: #26E197; /* --unooria-color-success-400 */
+  /** Seta de chamada recebida ou perdida */
+  --unc-color-danger-call-in: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Botão de encerrar chamada */
+  --unc-color-danger-endcall: #E31A1A; /* --unooria-color-danger-600 */
+  /** Bateria na barra de status */
+  --unc-color-warning-battery: #F97607; /* --unooria-color-warning-500 */
+  /** Barra de status da tela de chamada */
+  --unc-color-call-statusbar: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Fundo da tela de chamada */
+  --unc-color-call-surface: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Aviso de criptografia na chamada */
+  --unc-color-call-text-encrypted: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Ícones dos controles da chamada */
+  --unc-color-call-icon: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Ícones dos controles da chamada, silenciados */
+  --unc-color-call-icon-muted: #8B85AC; /* --unooria-color-brandpurple-500 */
+  /** Nomes, títulos, opções de diálogo e itens de menu */
+  --unc-color-text-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Horários, metadados, descrições, abas inativas e rodapés */
+  --unc-color-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Placeholder do compositor e dos campos */
+  --unc-color-text-placeholder: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Texto do aviso de criptografia */
+  --unc-color-text-notice: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Texto dentro do balão de mensagem */
+  --unc-color-text-bubble: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Metadados dentro do balão (tamanho, hora) */
+  --unc-color-text-bubble-meta: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Numeral sobre o selo de acento */
+  --unc-color-text-on-accent: #080922; /* --unooria-color-brandpurple-950 */
+  /** Texto sobre a tela de chamada (invariante entre temas) */
+  --unc-color-text-inverse: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Busca, menu e glifos principais da barra superior */
+  --unc-color-icon-appbar: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Câmera da barra de abas, voltar, glifos do compositor e das configurações, fixada */
+  --unc-color-icon-muted: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Glifos sobre FAB e selos de acento */
+  --unc-color-icon-on-accent: #080922; /* --unooria-color-brandpurple-950 */
+  /** Confirmação de leitura no balão */
+  --unc-color-icon-tick: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Estrela de mensagem favoritada */
+  --unc-color-icon-star: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Relógio e glifos da barra de status */
+  --unc-color-statusbar-fg: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Divisor entre linhas de lista */
+  --unc-color-border-divider: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Contorno e divisor interno do diálogo */
+  --unc-color-border-dialog: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno de caixa de seleção e de rádio */
+  --unc-color-border-control: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Anel do avatar de status já visto */
+  --unc-color-border-status-ring: #7C8E94; /* --unooria-color-neutraldark-700 */
+  /** Ação de documento da folha de anexos */
+  --unc-color-attach-document: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Ação de câmera da folha de anexos */
+  --unc-color-attach-camera: #F83B3B; /* --unooria-color-danger-500 */
+  /** Ação de galeria da folha de anexos */
+  --unc-color-attach-gallery: #6487C2; /* --unooria-color-brandnavy-700 */
+  /** Ação de áudio da folha de anexos */
+  --unc-color-attach-audio: #DD5202; /* --unooria-color-warning-600 */
+  /** Ação de localização da folha de anexos */
+  --unc-color-attach-location: #00A369; /* --unooria-color-success-600 */
+  /** Ação de contato da folha de anexos */
+  --unc-color-attach-contact: #0086FF; /* --unooria-color-info-500 */
+
+  --unc-color-scrim: rgba(14, 16, 57, 0.60);
+  /** (--unooria-elevation-neutral-2) */
+  --unc-elevation-overlay: 0px 0px 8px 4px rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,38 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System Unoochat
+ *
+ * Contêiner de documentação com as medidas de tela do módulo: 411×823. Não é
+ * um componente de produção.
+ */
+
+.unc-phoneframe {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unc-spacing-s);
+}
+
+.unc-phoneframe__device {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--unc-device-width);
+  height: var(--unc-device-height);
+  overflow: hidden;
+  background-color: var(--unc-color-surface-canvas);
+  font-family: var(--unc-font-sans);
+  transform-origin: top center;
+}
+
+.unc-phoneframe--bordered .unc-phoneframe__device {
+  border: 1px solid var(--unc-color-border-divider);
+  border-radius: var(--unc-radius-xl);
+}
+
+.unc-phoneframe__caption {
+  color: var(--unc-color-text-secondary);
+  font-family: var(--unc-font-sans);
+  font-size: var(--unc-font-caption-size);
+  text-align: center;
+}

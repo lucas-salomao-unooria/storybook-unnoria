@@ -1,0 +1,56 @@
+/**
+ * Estilos do Componente Dialog — Design System Unoochat
+ *
+ * Diálogo modal de 331px com raio de 4px em `--unc-color-surface-dialog`,
+ * sobre véu `--unc-color-scrim`.
+ */
+
+.unc-dialog-scrim {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--unc-color-scrim);
+  z-index: 10;
+}
+
+.unc-dialog {
+  box-sizing: border-box;
+  width: var(--unc-dialog-width, 331px);
+  max-width: calc(100% - 2 * var(--unc-spacing-xl));
+  padding: var(--unc-spacing-xl) var(--unc-spacing-xxl) var(--unc-spacing-m);
+  border-radius: var(--unc-radius-s);
+  background-color: var(--unc-color-surface-dialog);
+  box-shadow: var(--unc-elevation-overlay);
+  font-family: var(--unc-font-sans);
+}
+
+.unc-dialog__title {
+  margin: 0 0 var(--unc-spacing-l);
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-title-lg-size);
+  font-weight: var(--unc-font-title-lg-weight);
+  line-height: 1.2;
+}
+
+.unc-dialog__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.unc-dialog__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-m);
+  margin-top: var(--unc-spacing-m);
+  padding-top: var(--unc-spacing-l);
+  border-top: var(--unc-divider-width) solid var(--unc-color-border-dialog);
+}
+
+.unc-dialog__footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--unc-spacing-l);
+}

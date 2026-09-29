@@ -14,11 +14,17 @@ import '../src/chatgpt/tokens/fonts.css';
 import '../src/whatsappmobile/tokens/fonts.css';
 import '../src/tiktooria/tokens/fonts.css';
 import '../src/unootube/tokens/fonts.css';
+import '../src/unoochat/tokens/fonts.css';
 
 /* WhatsApp Mobile Tokens */
 import '../src/whatsappmobile/tokens/typography.css';
 import '../src/whatsappmobile/tokens/colors.css';
 import '../src/whatsappmobile/tokens/spacing.css';
+
+/* Unoochat Tokens */
+import '../src/unoochat/tokens/typography.css';
+import '../src/unoochat/tokens/colors.css';
+import '../src/unoochat/tokens/spacing.css';
 
 /* Instanooria Tokens */
 import '../src/instanooria/tokens/colors.css';

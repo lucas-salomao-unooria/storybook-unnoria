@@ -1,0 +1,64 @@
+/**
+ * Folha de estilos do Design System Unoochat.
+ *
+ * Importe este arquivo para registrar os tokens `--wa-*` e os estilos dos
+ * componentes do módulo `src/unoochat/`.
+ *
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--wa-font-sans)`, com pilha de fallback. A família é opt-in:
+ *
+ *     import '@unooria/design-system/fonts/unoochat.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md.
+ */
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unoochat)
+ * ---------------------------------------------------- */
+@import './unoochat/tokens/typography.css';
+@import './unoochat/tokens/colors.css';
+@import './unoochat/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unoochat)
+ * ---------------------------------------------------- */
+@import './unoochat/components/AdminOnlyNotice/AdminOnlyNotice.css';
+@import './unoochat/components/AttachmentSheet/AttachmentSheet.css';
+@import './unoochat/components/Avatar/Avatar.css';
+@import './unoochat/components/Badge/Badge.css';
+@import './unoochat/components/BottomSheet/BottomSheet.css';
+@import './unoochat/components/Button/Button.css';
+@import './unoochat/components/CallListItem/CallListItem.css';
+@import './unoochat/components/CallScreen/CallScreen.css';
+@import './unoochat/components/ChatBanner/ChatBanner.css';
+@import './unoochat/components/ChatHeader/ChatHeader.css';
+@import './unoochat/components/ChatListItem/ChatListItem.css';
+@import './unoochat/components/ChatWallpaper/ChatWallpaper.css';
+@import './unoochat/components/Checkbox/Checkbox.css';
+@import './unoochat/components/DateChip/DateChip.css';
+@import './unoochat/components/Dialog/Dialog.css';
+@import './unoochat/components/EncryptionNotice/EncryptionNotice.css';
+@import './unoochat/components/Fab/Fab.css';
+@import './unoochat/components/FilterChip/FilterChip.css';
+@import './unoochat/components/ForwardButton/ForwardButton.css';
+@import './unoochat/components/Icon/Icon.css';
+@import './unoochat/components/ListItem/ListItem.css';
+@import './unoochat/components/MediaViewer/MediaViewer.css';
+@import './unoochat/components/Menu/Menu.css';
+@import './unoochat/components/MessageBubble/MessageBubble.css';
+@import './unoochat/components/MessageComposer/MessageComposer.css';
+@import './unoochat/components/MessageTag/MessageTag.css';
+@import './unoochat/components/PhoneFrame/PhoneFrame.css';
+@import './unoochat/components/Poll/Poll.css';
+@import './unoochat/components/Radio/Radio.css';
+@import './unoochat/components/SearchField/SearchField.css';
+@import './unoochat/components/SectionLabel/SectionLabel.css';
+@import './unoochat/components/SettingsItem/SettingsItem.css';
+@import './unoochat/components/StatusBar/StatusBar.css';
+@import './unoochat/components/StatusListItem/StatusListItem.css';
+@import './unoochat/components/SystemMessage/SystemMessage.css';
+@import './unoochat/components/TabBar/TabBar.css';
+@import './unoochat/components/TextButton/TextButton.css';
+@import './unoochat/components/Toast/Toast.css';
+@import './unoochat/components/TopBar/TopBar.css';

@@ -32,13 +32,14 @@ const FONTE = 'fonts.css';
 
 /** Folhas publicadas e as seções que cada uma deve cobrir. */
 const AGREGADOS = [
-  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube'], excluir: [FONTE] },
+  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube', 'unoochat'], excluir: [FONTE] },
   { arquivo: 'styles-unooria.css', secoes: ['unooria'], excluir: [FONTE] },
   { arquivo: 'styles-instanooria.css', secoes: ['instanooria'], excluir: [FONTE] },
   { arquivo: 'styles-chatgpt.css', secoes: ['chatgpt'], excluir: [FONTE] },
   { arquivo: 'styles-whatsappmobile.css', secoes: ['whatsappmobile'], excluir: [FONTE] },
   { arquivo: 'styles-tiktooria.css', secoes: ['tiktooria'], excluir: [FONTE] },
   { arquivo: 'styles-unootube.css', secoes: ['unootube'], excluir: [FONTE] },
+  { arquivo: 'styles-unoochat.css', secoes: ['unoochat'], excluir: [FONTE] },
 
   /*
    * As folhas de fonte, do outro lado: cada uma cobre exatamente o `fonts.css`
@@ -49,6 +50,7 @@ const AGREGADOS = [
   { arquivo: 'fonts-whatsappmobile.css', secoes: ['whatsappmobile'], apenas: [FONTE] },
   { arquivo: 'fonts-tiktooria.css', secoes: ['tiktooria'], apenas: [FONTE] },
   { arquivo: 'fonts-unootube.css', secoes: ['unootube'], apenas: [FONTE] },
+  { arquivo: 'fonts-unoochat.css', secoes: ['unoochat'], apenas: [FONTE] },
 ];
 
 /** Todo `*.css` de tokens e de componentes de uma seção, como caminho relativo. */

@@ -1,0 +1,137 @@
+/**
+ * Estilos do Componente ListItem — Design System Unoochat
+ * Estrutura comum às listas de conversas, status, chamadas e contatos:
+ * calha de 19px, avatar, coluna de texto com recuo de 21px e coluna direita.
+ */
+
+.unc-listitem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--unc-gutter);
+  margin: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--unc-font-sans);
+  list-style: none;
+}
+
+.unc-listitem--density-chat {
+  min-height: 70px;
+}
+
+.unc-listitem--density-status {
+  min-height: 68px;
+}
+
+.unc-listitem--density-call {
+  min-height: 69px;
+}
+
+.unc-listitem--density-contact {
+  min-height: 63px;
+}
+
+.unc-listitem--density-settings {
+  min-height: 72px;
+}
+
+/* Alvo principal da linha. É um <button> quando há `onClick`, e um <span>
+   caso contrário — assim os controles do slot `trailing` continuam sendo
+   irmãos focalizáveis, nunca botões aninhados. */
+.unc-listitem__main {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.unc-listitem--interactive .unc-listitem__main {
+  cursor: pointer;
+  appearance: none;
+}
+
+.unc-listitem--interactive .unc-listitem__main:focus-visible {
+  outline: 2px solid var(--unc-color-accent);
+  outline-offset: -2px;
+}
+
+.unc-listitem__leading {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.unc-listitem__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unc-spacing-4xs);
+}
+
+.unc-listitem__title {
+  margin: 0;
+  color: var(--unc-color-text-primary);
+  font-size: var(--unc-font-title-lg-size);
+  font-weight: var(--unc-font-title-lg-weight);
+  line-height: var(--unc-font-title-lg-line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unc-listitem__subtitle {
+  margin: 0;
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-label-md-size);
+  font-weight: var(--unc-font-label-md-weight);
+  line-height: var(--unc-font-label-md-line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unc-listitem__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--unc-spacing-xs);
+  flex-shrink: 0;
+}
+
+.unc-listitem__meta {
+  color: var(--unc-color-text-secondary);
+  font-size: var(--unc-font-caption-bold-size);
+  font-weight: var(--unc-font-caption-bold-weight);
+  line-height: var(--unc-font-caption-bold-line);
+  white-space: nowrap;
+}
+
+.unc-listitem__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--unc-spacing-xxs);
+}
+
+.unc-listitem__divider {
+  position: absolute;
+  left: var(--unc-listitem-divider-inset, 71px);
+  right: var(--unc-gutter);
+  bottom: 0;
+  height: var(--unc-divider-width);
+  background-color: var(--unc-color-border-divider);
+}

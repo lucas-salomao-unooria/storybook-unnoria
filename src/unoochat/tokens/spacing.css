@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos e Elevação — Unoochat
+   Medidas de tela para um aparelho de 411×823. A escala de espaçamento, os
+   raios e as dimensões estruturais são próprios do módulo; a escala de ícones
+   segue a da Plataforma Unooria (--unooria-icon-size-*).
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --unc-spacing-4xs: 2px;
+  --unc-spacing-3xs: 4px;
+  --unc-spacing-xxs: 6px;
+  --unc-spacing-xs: 8px;
+  --unc-spacing-s: 10px;
+  --unc-spacing-m: 12px;
+  --unc-spacing-l: 16px;
+  --unc-spacing-xl: 20px;
+  --unc-spacing-xxl: 24px;
+  --unc-spacing-3xl: 32px;
+  --unc-spacing-4xl: 48px;
+
+  /* Calha lateral padrão das telas de listagem */
+  --unc-gutter: 19px;
+  /* Calha das barras superiores */
+  --unc-gutter-appbar: 24px;
+
+  /* Raios de borda */
+  --unc-radius-xs: 2px;
+  --unc-radius-s: 4px;
+  --unc-radius-m: 5px;
+  --unc-radius-l: 6px;
+  --unc-radius-xl: 8px;
+  --unc-radius-pill: 20px;
+  --unc-radius-full: 1000px;
+
+  /* Dimensões do dispositivo de referência */
+  --unc-device-width: 411px;
+  --unc-device-height: 823px;
+
+  /* Alturas estruturais */
+  --unc-statusbar-height: 21px;
+  --unc-appbar-height: 100px;      /* barra principal com abas */
+  --unc-appbar-title-height: 52px; /* cabeçalho de conversa */
+  --unc-subappbar-height: 57px;    /* Settings / Starred messages */
+  --unc-tabrow-height: 44px;
+  --unc-callbar-height: 87px;      /* barra de controles da chamada */
+  --unc-callheader-height: 133px;  /* cabeçalho da chamada */
+
+  /* Avatares */
+  --unc-avatar-xs: 23px;  /* linha de mensagem favoritada */
+  --unc-avatar-sm: 32px;  /* cabeçalho de conversa */
+  --unc-avatar-md: 45px;  /* linhas de status */
+  --unc-avatar-lg: 50px;  /* linhas de conversa e chamadas */
+  --unc-avatar-ring: 56px;/* anel de status */
+
+  /* Botões de ação flutuantes */
+  --unc-fab-lg: 54px;  /* câmera de status / nova chamada */
+  --unc-fab-chat: 52px;/* nova conversa */
+  --unc-fab-mic: 43px; /* microfone do compositor */
+  --unc-fab-sm: 41px;  /* editar status */
+  --unc-fab-endcall: 58px; /* encerrar chamada */
+
+  /* Ícones — degraus da escala de ícones da Plataforma Unooria */
+  --unc-icon-size-xs: 16px; /* --unooria-icon-size-3xs */
+  --unc-icon-size-sm: 18px; /* --unooria-icon-size-xxs */
+  --unc-icon-size-md: 20px; /* --unooria-icon-size-xs */
+  --unc-icon-size-lg: 24px; /* --unooria-icon-size-s */
+  --unc-icon-size-xl: 32px; /* --unooria-icon-size-m */
+
+  /* Espessuras */
+  --unc-divider-width: 1px;
+  --unc-tab-indicator-width: 3px;
+  --unc-status-ring-width: 2.12px;
+
+  /* Elevação — a superfície é plana; menus, diálogos, folhas e FABs recebem
+     `--unc-elevation-overlay` (definida por tema em colors.css). */
+  --unc-elevation-none: none;
+
+  /* Transições */
+  --unc-transition-fast: 120ms ease;
+  --unc-transition-base: 200ms ease;
+}
