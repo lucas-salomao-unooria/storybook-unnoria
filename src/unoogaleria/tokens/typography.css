@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System Unoogaleria
+   Família e escala da Plataforma Unooria (`src/unooria/tokens/typography.css`):
+   Open Sans, com tamanhos e alturas de linha nos degraus da escala Unooria
+   (12, 14, 16, 18, 20, 24 e 34px). O comentário de cada linha nomeia o token de
+   origem. Sem letter-spacing, como na escala da plataforma: as variáveis
+   `-tracking` existem apenas para que o componente nunca invente um valor.
+   Nenhum corpo abaixo de 12px.
+
+   ARQUIVO GERADO da mesma tabela que `typography.ts`.
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --ugl-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Biblioteca de ícones da Plataforma Unooria (--unooria-icon-font-family) */
+  --ugl-icon-font-family: 'Material Symbols Rounded', sans-serif;
+
+  /* Pesos */
+  --ugl-font-weight-regular: 400; /* --unooria-weight-regular */
+  --ugl-font-weight-medium: 500; /* --unooria-weight-medium */
+  --ugl-font-weight-semibold: 600; /* --unooria-weight-semibold */
+  --ugl-font-weight-bold: 700; /* --unooria-weight-bold */
+
+  /* Display — Título grande das telas: Biblioteca, Álbuns e Busca. */
+  --ugl-font-display-size: 34px; /* --unooria-size-heading-xxl */
+  --ugl-font-display-weight: 700; /* --unooria-weight-bold */
+  --ugl-font-display-line: 48px; /* --unooria-line-height-heading-xxl */
+  --ugl-font-display-tracking: 0px;
+
+  /* Heading — Título de álbum aberto e de memória sobre a capa. */
+  --ugl-font-heading-size: 24px; /* --unooria-size-title-xl */
+  --ugl-font-heading-weight: 700; /* --unooria-weight-bold */
+  --ugl-font-heading-line: 34px; /* --unooria-line-height-title-xl */
+  --ugl-font-heading-tracking: 0px;
+
+  /* Title/Large — Título de seção: "Meus álbuns", "Hoje", "Tipos de mídia". */
+  --ugl-font-title-lg-size: 20px; /* --unooria-size-title-l */
+  --ugl-font-title-lg-weight: 600; /* --unooria-weight-semibold */
+  --ugl-font-title-lg-line: 30px; /* --unooria-line-height-title-l */
+  --ugl-font-title-lg-tracking: 0px;
+
+  /* Title/Medium — Título da barra compacta, de diálogos e do visualizador. */
+  --ugl-font-title-md-size: 18px; /* --unooria-size-body-m */
+  --ugl-font-title-md-weight: 600; /* --unooria-weight-semibold */
+  --ugl-font-title-md-line: 28px; /* --unooria-line-height-body-m */
+  --ugl-font-title-md-tracking: 0px;
+
+  /* Title/Small — Título de linha de lista, de folha inferior e botão grande. */
+  --ugl-font-title-sm-size: 16px; /* --unooria-size-body-s */
+  --ugl-font-title-sm-weight: 600; /* --unooria-weight-semibold */
+  --ugl-font-title-sm-line: 24px; /* --unooria-line-height-body-s */
+  --ugl-font-title-sm-tracking: 0px;
+
+  /* Label — Rótulos de botão, chip, segmento e ações de texto. */
+  --ugl-font-label-size: 14px; /* --unooria-size-body-xs */
+  --ugl-font-label-weight: 600; /* --unooria-weight-semibold */
+  --ugl-font-label-line: 20px; /* --unooria-line-height-body-xs */
+  --ugl-font-label-tracking: 0px;
+
+  /* Body/Large — Campos, legenda da foto e descrição de estado vazio. */
+  --ugl-font-body-lg-size: 16px; /* --unooria-size-body-s */
+  --ugl-font-body-lg-weight: 400; /* --unooria-weight-regular */
+  --ugl-font-body-lg-line: 24px; /* --unooria-line-height-body-s */
+  --ugl-font-body-lg-tracking: 0px;
+
+  /* Body/Medium — Itens de menu, metadados do painel de informações e textos de apoio. */
+  --ugl-font-body-md-size: 14px; /* --unooria-size-body-xs */
+  --ugl-font-body-md-weight: 400; /* --unooria-weight-regular */
+  --ugl-font-body-md-line: 20px; /* --unooria-line-height-body-xs */
+  --ugl-font-body-md-tracking: 0px;
+
+  /* Caption/Strong — Rótulos da barra de abas, duração do vídeo e contagem da seleção. */
+  --ugl-font-caption-strong-size: 12px; /* --unooria-size-body-xxs */
+  --ugl-font-caption-strong-weight: 600; /* --unooria-weight-semibold */
+  --ugl-font-caption-strong-line: 18px; /* --unooria-line-height-body-xxs */
+  --ugl-font-caption-strong-tracking: 0px;
+
+  /* Caption — Contagem de itens do álbum, hora e rótulo dos filtros do editor. */
+  --ugl-font-caption-size: 12px; /* --unooria-size-body-xxs */
+  --ugl-font-caption-weight: 400; /* --unooria-weight-regular */
+  --ugl-font-caption-line: 18px; /* --unooria-line-height-body-xxs */
+  --ugl-font-caption-tracking: 0px;
+
+}
+
+/* ==========================================================================
+   Classes utilitárias
+   ========================================================================== */
+
+.ugl-text {
+  font-family: var(--ugl-font-sans);
+  color: var(--ugl-color-text-primary);
+  margin: 0;
+}
+
+.ugl-text--display {
+  font-size: var(--ugl-font-display-size);
+  font-weight: var(--ugl-font-display-weight);
+  line-height: var(--ugl-font-display-line);
+  letter-spacing: var(--ugl-font-display-tracking);
+}
+
+.ugl-text--heading {
+  font-size: var(--ugl-font-heading-size);
+  font-weight: var(--ugl-font-heading-weight);
+  line-height: var(--ugl-font-heading-line);
+  letter-spacing: var(--ugl-font-heading-tracking);
+}
+
+.ugl-text--title-lg {
+  font-size: var(--ugl-font-title-lg-size);
+  font-weight: var(--ugl-font-title-lg-weight);
+  line-height: var(--ugl-font-title-lg-line);
+  letter-spacing: var(--ugl-font-title-lg-tracking);
+}
+
+.ugl-text--title-md {
+  font-size: var(--ugl-font-title-md-size);
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: var(--ugl-font-title-md-line);
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-text--title-sm {
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+}
+
+.ugl-text--label {
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+}
+
+.ugl-text--body-lg {
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+}
+
+.ugl-text--body-md {
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+.ugl-text--caption-strong {
+  font-size: var(--ugl-font-caption-strong-size);
+  font-weight: var(--ugl-font-caption-strong-weight);
+  line-height: var(--ugl-font-caption-strong-line);
+  letter-spacing: var(--ugl-font-caption-strong-tracking);
+}
+
+.ugl-text--caption {
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+}
+
+.ugl-text--secondary {
+  color: var(--ugl-color-text-secondary);
+}
+
+.ugl-text--accent {
+  color: var(--ugl-color-text-accent);
+}
