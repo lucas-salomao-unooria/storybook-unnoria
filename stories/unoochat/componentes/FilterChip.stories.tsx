@@ -122,9 +122,9 @@ const FilterChipDocumentationPage = () => (
             'o glifo usa `tone="inherit"`: acompanha o texto primário no chip inativo e o texto sobre acento no chip aplicado, sem token próprio.',
         },
         {
-          subject: 'Sem estilo de desabilitado',
+          subject: 'Desabilitado a 50% de opacidade',
           detail:
-            'a prop `disabled` desativa o botão nativo, mas o módulo ainda não define aparência para o estado (opacidade ou cor); a matriz de estados mostra o chip como está.',
+            'a prop `disabled` desativa o botão nativo e o chip fica a 50% de opacidade, com cursor `not-allowed`, sem cor nova: o estado é apagado sobre a mesma superfície. Componente inativo é isento do contraste mínimo de texto, mas o chip continua legível.',
         },
       ]}
     />

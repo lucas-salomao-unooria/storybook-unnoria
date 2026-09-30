@@ -27,8 +27,9 @@ import { uncChats, uncMenuItems, uncTabs } from '../fixtures';
 const BAR = '#716C98';
 
 /**
- * Largura de demonstração. Com Open Sans em 18px, os rótulos em português (como
- * "Mensagens favoritadas") não cabem nos 190px padrão do componente.
+ * Largura padrão do componente, repetida nas demonstrações. Com Open Sans em
+ * 18px, os rótulos em português (como "Mensagens favoritadas") não cabem em
+ * 190px, por isso o padrão é 240px.
  */
 const MENU_WIDTH = 240;
 
@@ -137,9 +138,9 @@ const MenuDocumentationPage = () => (
     <UnooriaDocSectionHeader barColor={BAR} title="2. Especificações técnicas" />
     <UncDocSpecs
       component="Menu"
-      layout="Painel · 190px de largura padrão"
+      layout="Painel · 240px de largura padrão"
       specs={[
-        { label: 'Largura padrão', value: '190 px (prop width)' },
+        { label: 'Largura padrão', value: '240 px (prop width)' },
         { label: 'Passo dos itens', value: '44 px' },
         { label: 'Recuo esquerdo', value: '24 px (--unc-gutter-appbar)' },
         { label: 'Padding vertical', value: '12 px (--unc-spacing-m)' },
@@ -158,7 +159,7 @@ const MenuDocumentationPage = () => (
         {
           subject: 'Largura dos rótulos em português',
           detail:
-            'os 190px padrão vêm do desenho original do módulo, com texto menor. Em Open Sans 18px, rótulos como "Mensagens favoritadas" excedem essa largura e não quebram linha; as demonstrações usam `width={240}`.',
+            'um painel de 190px serve a rótulos curtos e de corpo menor. Em Open Sans 18px, rótulos como "Mensagens favoritadas" excedem essa largura e não quebram linha; por isso o padrão é 240px (`width` continua ajustável).',
         },
         {
           subject: 'Altura do painel',
@@ -176,7 +177,7 @@ const MenuDocumentationPage = () => (
     <UnooriaDocSectionHeader barColor={BAR} title="3. Anatomia do componente" />
     <UncDocAnatomy
       zones={[
-        { name: 'Painel', role: 'Painel de 190px (largura ajustável) sem raio, com a elevação de sobreposição.', token: '--unc-color-surface-elevated · --unc-elevation-overlay' },
+        { name: 'Painel', role: 'Painel de 240px (largura ajustável) sem raio, com a elevação de sobreposição.', token: '--unc-color-surface-elevated · --unc-elevation-overlay' },
         { name: 'Item', role: 'Linha de 44px com recuo esquerdo de 24px.', token: '--unc-font-subtitle-* (18px) · --unc-color-text-primary' },
         { name: 'Anel de foco', role: 'Contorno visível na navegação por teclado.', token: '--unc-color-accent' },
       ]}
@@ -238,7 +239,7 @@ const MenuDocumentationPage = () => (
         { name: 'items', type: 'UncMenuItemData[]', description: 'Itens exibidos no menu. Obrigatório.' },
         { name: 'onSelect', type: '(id: string) => void', description: 'Callback disparado ao escolher um item.' },
         { name: 'onClose', type: '() => void', description: 'Callback de ESC.' },
-        { name: 'width', type: 'number', default: '190', description: 'Largura do menu em pixels.' },
+        { name: 'width', type: 'number', default: '240', description: 'Largura do menu em pixels.' },
         { name: 'label', type: 'string', default: "'Mais opções'", description: 'Rótulo acessível do menu.' },
         { name: 'className', type: 'string', description: 'Classe CSS adicional.' },
       ]}

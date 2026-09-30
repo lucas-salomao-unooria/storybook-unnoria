@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { WebSidebar } from '../../../src/unooriaai/components/WebSidebar';
 import { SidebarRow } from '../../../src/unooriaai/components/SidebarRow';
 import {
@@ -344,5 +345,22 @@ export const ComposicaoModular: Story = {
         </WebSidebar>
       </UaiDocStage>
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // A barra é um <nav>, e só a linha ativa se anuncia como página corrente.
+    await expect(canvas.getByRole('navigation')).toBeInTheDocument();
+    const primeira = canvas.getByRole('button', { name: uaiWebHistory[0] });
+    const segunda = canvas.getByRole('button', { name: uaiWebHistory[1] });
+    await expect(primeira).toHaveAttribute('aria-current', 'page');
+    await expect(segunda).not.toHaveAttribute('aria-current');
+
+    await userEvent.click(segunda);
+    await expect(segunda).toHaveAttribute('aria-current', 'page');
+    await expect(primeira).not.toHaveAttribute('aria-current');
+
+    // "Nova conversa" é também o título do último item do histórico de demonstração.
+    await expect(canvas.getAllByRole('button', { name: 'Nova conversa' })[0]).toBeInTheDocument();
   },
 };

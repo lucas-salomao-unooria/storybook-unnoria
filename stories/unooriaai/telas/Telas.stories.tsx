@@ -441,7 +441,7 @@ const TelaConfiguracoes: React.FC<{ theme?: UaiTheme }> = ({ theme }) => {
               }
             />
             <Divider />
-            <SettingsRow label="Plano" block value={<Badge variant="primary">Plus</Badge>} />
+            <SettingsRow label="Plano" block value={<Badge variant="primary">Pro</Badge>} />
           </div>
 
           <div>
@@ -562,7 +562,7 @@ const TelaClienteWeb: React.FC<{ theme?: UaiTheme }> = ({ theme = 'light' }) => 
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--uai-spacing-6)' }}>
             <Logo variant="horizontal" height={64} />
-            <PlanTag>Plus</PlanTag>
+            <PlanTag>Pro</PlanTag>
           </div>
 
           <div

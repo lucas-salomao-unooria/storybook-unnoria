@@ -22,7 +22,7 @@ const VARIANTES = ['default', 'primary', 'success', 'error', 'warning'] as const
 
 const SEMANTICA: Record<(typeof VARIANTES)[number], string> = {
   default: 'Rótulo neutro — categoria, contagem, tipo de arquivo',
-  primary: 'Recurso da marca — "Beta", "Novo", "Plus"',
+  primary: 'Recurso da marca — "Beta", "Novo", "Pro"',
   success: 'Operação concluída — "Sincronizado", "Ativo"',
   error: 'Falha ou bloqueio — "Expirado", "Limite atingido"',
   warning: 'Atenção sem bloqueio — "Prévia", "Descontinuado"',
@@ -166,7 +166,7 @@ const BadgeDocumentationPage = () => (
         <Badge variant="primary">Beta</Badge>
       </div>
       <div style={{ width: 400 }}>
-        <SettingsRow label="Plano" value={<Badge variant="primary">Plus</Badge>} block />
+        <SettingsRow label="Plano" value={<Badge variant="primary">Pro</Badge>} block />
         <SettingsRow label="Sessão" value={<Badge variant="success">Ativa</Badge>} block />
       </div>
     </UaiDocStage>
