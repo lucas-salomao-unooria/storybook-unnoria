@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import { Avatar } from '../../../src/unoovista/components/Avatar';
 import {
   UnooriaDocShell,
@@ -448,6 +449,16 @@ export const Tamanhos: Story = {
  * Estados de selo, retrato ausente e interação.
  */
 export const Estados: Story = {
+  /**
+   * Guarda: o selo de transmissão fala em pt-BR, o avatar clicável vira botão
+   * com nome acessível e o retrato ausente cai nas iniciais.
+   */
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText('AO VIVO')).toBeVisible();
+    await expect(canvas.getByRole('button', { name: 'Abrir história' })).toBeVisible();
+    await expect(canvas.getByText('LS')).toBeVisible();
+  },
   render: () => (
     <UnvDocStage gap={32}>
       <div style={{ textAlign: 'center' }}>

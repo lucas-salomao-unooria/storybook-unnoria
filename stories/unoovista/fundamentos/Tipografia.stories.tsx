@@ -21,6 +21,9 @@ import {
   unvFontWeights,
 } from '../../../src/unoovista/tokens';
 import type { UnvTypographyStyle, UnvTypographyToken } from '../../../src/unoovista/tokens';
+import { Avatar } from '../../../src/unoovista/components/Avatar';
+import { ListItem } from '../../../src/unoovista/components/ListItem';
+import { unvAvatars } from '../fixtures';
 
 const BAR = '#716C98';
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, monospace';
@@ -488,6 +491,48 @@ export const Simulador: Story = {
     <UnooriaDocShell>
       <UnooriaDocSectionHeader barColor={BAR} title="Simulador de estilos" />
       <TypeSimulator />
+    </UnooriaDocShell>
+  ),
+};
+
+/**
+ * Pares tipográficos aplicados a componentes reais de produção: a linha de
+ * lista usa `title-md` no nome, `body-lg` na prévia e `label-md` no horário.
+ */
+export const ParesAplicados: Story = {
+  name: '🎨 Pares aplicados',
+  render: () => (
+    <UnooriaDocShell>
+      <UnooriaDocSectionHeader
+        barColor={BAR}
+        title="Pares aplicados"
+        description="A escala em uso: o mesmo par de estilos, renderizado pelo ListItem real, nos dois temas."
+      />
+      <UnvDocGrid min={360}>
+        {THEMES.map((theme) => (
+          <UnvDocStage key={theme} theme={theme} surface="primary" padding={0} align="stretch">
+            <div style={{ width: '100%' }}>
+              <ListItem
+                leading={<Avatar src={unvAvatars.caioDev} alt="" size="lg" ring="story" />}
+                title="caio_dev"
+                subtitle="Ouvi dizer que esse filme é bom, você viu?"
+                meta="· agora"
+                bordered
+              />
+              <ListItem
+                leading={<Avatar src={unvAvatars.marinaLuz} alt="" size="lg" />}
+                title="marina.luz"
+                subtitle="O novo design ficou incrível"
+                meta="· 1 min"
+              />
+            </div>
+          </UnvDocStage>
+        ))}
+      </UnvDocGrid>
+      <p style={{ fontSize: 13, color: DOC_MUTED, margin: 0, lineHeight: 1.6 }}>
+        Linha de lista: <strong>title-md</strong> no nome, <strong>body-lg</strong> na prévia da
+        mensagem e <strong>label-md</strong> no horário, em <code>--unv-color-text-secondary</code>.
+      </p>
     </UnooriaDocShell>
   ),
 };

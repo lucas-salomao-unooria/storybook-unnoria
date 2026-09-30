@@ -111,7 +111,8 @@
   border-color: var(--unv-color-border-control);
 }
 
-.unv-confirm-dialog__action--cancel:hover:not([aria-disabled='true']) {
+.unv-confirm-dialog__action--cancel:hover:not([aria-disabled='true']),
+.unv-confirm-dialog__action--cancel:active:not([aria-disabled='true']) {
   background-color: var(--unv-color-fill-field);
 }
 
@@ -121,13 +122,15 @@
   color: var(--unv-color-text-on-action);
 }
 
-.unv-confirm-dialog__action--confirm:hover:not([aria-disabled='true']) {
+.unv-confirm-dialog__action--confirm:hover:not([aria-disabled='true']),
+.unv-confirm-dialog__action--confirm:active:not([aria-disabled='true']) {
   border-color: var(--unv-color-action-pressed);
   background-color: var(--unv-color-action-pressed);
 }
 
 .unv-confirm-dialog__action--destructive,
-.unv-confirm-dialog__action--destructive:hover:not([aria-disabled='true']) {
+.unv-confirm-dialog__action--destructive:hover:not([aria-disabled='true']),
+.unv-confirm-dialog__action--destructive:active:not([aria-disabled='true']) {
   border-color: var(--unv-color-brand-like);
   background-color: var(--unv-color-brand-like);
   color: var(--unv-color-text-on-notification);
