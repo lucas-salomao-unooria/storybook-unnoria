@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="Asa do avião vista da janela, acima das nuvens">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#49699F"/><stop offset="0.6" stop-color="#8FAFE5"/><stop offset="1" stop-color="#E8EFFA"/></linearGradient>
+<linearGradient id="wing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E4E8E9"/><stop offset="1" stop-color="#A7B5B9"/></linearGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFF8EB"/><stop offset="1" stop-color="#FFF8EB" stop-opacity="0"/></radialGradient>
+<clipPath id="win"><rect x="170" y="210" width="560" height="780" rx="250"/></clipPath></defs>
+<rect width="900" height="1200" fill="#DFDDEB"/>
+<rect x="60" y="100" width="780" height="1000" rx="340" fill="#CCC9DE"/>
+<rect x="110" y="150" width="680" height="900" rx="300" fill="#EFEEF5"/>
+<rect x="150" y="190" width="600" height="820" rx="270" fill="#F7F6FA"/>
+<rect x="170" y="210" width="560" height="780" rx="250" fill="url(#sky)"/>
+<g clip-path="url(#win)">
+<circle cx="640" cy="330" r="260" fill="url(#sun)"/><circle cx="640" cy="330" r="40" fill="#FFF8EB"/>
+<path d="M170 760Q230 700 310 740Q350 680 440 720Q520 670 590 730Q660 700 730 760V990H170Z" fill="#FFFFFF"/>
+<path d="M170 820Q250 780 330 820Q410 770 500 820Q600 780 730 830V990H170Z" fill="#E8EFFA"/>
+<path d="M170 900Q300 860 420 900T730 890V990H170Z" fill="#D3E0F5"/>
+<ellipse cx="300" cy="420" rx="110" ry="24" fill="#FFFFFF" opacity=".8"/><ellipse cx="380" cy="400" rx="60" ry="20" fill="#FFFFFF" opacity=".8"/><ellipse cx="560" cy="560" rx="100" ry="20" fill="#FFFFFF" opacity=".6"/>
+<path d="M170 760L170 930L730 1000L730 860Q520 780 170 760Z" fill="url(#wing)"/>
+<path d="M170 760Q520 780 730 860" fill="none" stroke="#F7F6FA" stroke-width="10"/>
+<path d="M170 800Q520 820 730 900" fill="none" stroke="#7C8E94" stroke-width="3" opacity=".6"/>
+<path d="M260 790L250 940M380 800L380 960M520 815L530 980M650 850L670 1000" stroke="#7C8E94" stroke-width="3" opacity=".5"/>
+<g fill="#E31A1A"><path d="M220 770L300 778L300 794L224 788Z" opacity=".9"/></g>
+<rect x="600" y="840" width="110" height="10" rx="5" fill="#F7F6FA" opacity=".5" transform="rotate(10 600 840)"/>
+<path d="M690 870L730 850L730 1000L706 990Z" fill="#CBD4D6"/>
+</g>
+<rect x="170" y="210" width="560" height="780" rx="250" fill="none" stroke="#CBD4D6" stroke-width="10"/>
+<path d="M170 210H730V330H170Z" fill="#E4E8E9" clip-path="url(#win)"/><path d="M170 330H730" stroke="#A7B5B9" stroke-width="6" clip-path="url(#win)"/><rect x="410" y="318" width="80" height="28" rx="14" fill="#F7F6FA" stroke="#A7B5B9" stroke-width="4"/>
+<g fill="#CBD4D6"><circle cx="110" cy="600" r="14"/><circle cx="790" cy="600" r="14"/></g>
+<rect x="330" y="1070" width="240" height="18" rx="9" fill="#AAA5C2" opacity=".6"/>
+</svg>

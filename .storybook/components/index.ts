@@ -9,3 +9,4 @@ export * from './UniDocKit';
 export * from './UncDocKit';
 export * from './UnvDocKit';
 export * from './UaiDocKit';
+export * from './UglDocKit';

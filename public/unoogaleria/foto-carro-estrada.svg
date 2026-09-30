@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Carro na estrada que corta o campo">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FA5E2"/><stop offset="1" stop-color="#E9FAFF"/></linearGradient>
+<linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C8E94"/><stop offset="1" stop-color="#383E41"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1260" cy="180" r="56" fill="#FFF8EB"/><ellipse cx="300" cy="170" rx="200" ry="34" fill="#FFFFFF"/><ellipse cx="430" cy="142" rx="120" ry="30" fill="#FFFFFF"/><ellipse cx="900" cy="250" rx="150" ry="26" fill="#FFFFFF" opacity=".9"/>
+<path d="M0 420Q300 360 600 410T1200 400T1600 380V900H0Z" fill="#63F2B5"/>
+<path d="M0 440L800 400L0 560Z" fill="#26E197"/><path d="M0 560L800 410L0 720Z" fill="#FFD388"/><path d="M0 720L800 420L0 900Z" fill="#26E197"/>
+<path d="M1600 440L800 400L1600 560Z" fill="#FFD388"/><path d="M1600 560L800 410L1600 720Z" fill="#00A369"/><path d="M1600 720L800 420L1600 900Z" fill="#63F2B5"/>
+<g fill="#008257"><path d="M0 410Q200 340 420 405L400 420H0Z"/><path d="M1600 400Q1400 340 1180 405L1200 420H1600Z"/></g>
+<g><rect x="200" y="350" width="10" height="60" fill="#7A2614"/><circle cx="205" cy="340" r="36" fill="#006746"/><rect x="1380" y="340" width="10" height="64" fill="#7A2614"/><circle cx="1385" cy="330" r="38" fill="#006746"/><rect x="1300" y="360" width="8" height="50" fill="#7A2614"/><circle cx="1304" cy="352" r="28" fill="#00543C"/></g>
+<path d="M780 410H820L1250 900H350Z" fill="url(#road)"/>
+<path d="M786 412L380 900H360L784 412Z" fill="#F7F6FA"/><path d="M814 412L1240 900H1220L816 412Z" fill="#F7F6FA"/>
+<g fill="#FFD388"><path d="M798 420H802L804 450H796Z"/><path d="M796 470H804L808 530H792Z"/><path d="M794 560H806L814 660H786Z"/><path d="M788 720H812L830 880H770Z"/></g>
+<g fill="#7A2614"><rect x="700" y="400" width="6" height="40"/><rect x="900" y="400" width="6" height="40"/></g>
+<g transform="translate(800 720)"><ellipse cx="0" cy="110" rx="190" ry="26" fill="#080922" opacity=".5"/><rect x="-186" y="10" width="26" height="100" rx="8" fill="#22272A"/><rect x="160" y="10" width="26" height="100" rx="8" fill="#22272A"/>
+<path d="M-180 100V-30Q-180 -56 -150 -60L-100 -110Q-92 -120 -76 -120H76Q92 -120 100 -110L150 -60Q180 -56 180 -30V100Z" fill="#F83B3B"/>
+<path d="M-180 40H180V100H-180Z" fill="#C11414"/>
+<path d="M-86 -100Q-78 -106 -70 -106H70Q78 -106 86 -100L120 -60H-120Z" fill="#383E41"/><path d="M-82 -96L-110 -62H-4V-100Z" fill="#6487C2" opacity=".55"/><path d="M8 -100V-62H110L82 -96Z" fill="#6487C2" opacity=".35"/>
+<rect x="-164" y="-28" width="64" height="34" rx="10" fill="#9F1515"/><rect x="100" y="-28" width="64" height="34" rx="10" fill="#9F1515"/><rect x="-156" y="-22" width="48" height="22" rx="8" fill="#FF6A6A"/><rect x="108" y="-22" width="48" height="22" rx="8" fill="#FF6A6A"/>
+<rect x="-50" y="16" width="100" height="36" rx="6" fill="#FFFFFF"/><rect x="-42" y="26" width="84" height="6" rx="3" fill="#A7B5B9"/><rect x="-30" y="38" width="60" height="6" rx="3" fill="#A7B5B9"/>
+<rect x="-100" y="92" width="200" height="14" rx="6" fill="#841818"/>
+</g>
+<g fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".5"><path d="M300 800H520M1100 780H1320M200 700H340"/></g>
+<g fill="none" stroke="#34375C" stroke-width="4" stroke-linecap="round"><path d="M600 240Q612 226 624 240Q636 226 648 240"/><path d="M680 270Q690 258 700 270Q710 258 720 270"/></g>
+</svg>

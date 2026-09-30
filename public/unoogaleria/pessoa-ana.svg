@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Retrato de Ana">
+<rect width="256" height="256" fill="#DFDDEB"/>
+<circle cx="200" cy="60" r="40" fill="#EFEEF5"/><circle cx="40" cy="190" r="34" fill="#CCC9DE" opacity=".6"/>
+<path d="M50 170Q38 230 60 256H196Q218 230 206 170Q196 60 128 56Q60 60 50 170Z" fill="#421008"/>
+<path d="M20 256Q22 214 82 204L128 218L174 204Q234 214 236 256Z" fill="#716C98"/>
+<rect x="110" y="170" width="36" height="46" rx="14" fill="#F8833F"/>
+<ellipse cx="128" cy="128" rx="58" ry="68" fill="#FBB076"/>
+<path d="M70 124Q72 66 128 62Q186 66 186 124Q172 88 140 82Q108 100 88 92Q76 104 70 124Z" fill="#421008"/>
+<circle cx="71" cy="140" r="8" fill="#FFB74A"/><circle cx="185" cy="140" r="8" fill="#FFB74A"/>
+<circle cx="108" cy="130" r="6" fill="#421008"/><circle cx="148" cy="130" r="6" fill="#421008"/><circle cx="110" cy="128" r="2" fill="#FFFFFF"/><circle cx="150" cy="128" r="2" fill="#FFFFFF"/>
+<path d="M98 116Q108 110 118 115M138 115Q148 110 158 116" stroke="#421008" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="96" cy="150" rx="10" ry="6" fill="#FF6A6A" opacity=".5"/><ellipse cx="160" cy="150" rx="10" ry="6" fill="#FF6A6A" opacity=".5"/>
+<path d="M106 160Q128 182 150 160Q128 168 106 160Z" fill="#841818"/><path d="M110 162Q128 172 146 162Q128 166 110 162Z" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="Rua de pedra com casarões coloridos">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FAFE5"/><stop offset="1" stop-color="#E8EFFA"/></linearGradient>
+<linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CBD4D6"/><stop offset="1" stop-color="#7C8E94"/></linearGradient>
+<g id="jan"><rect width="52" height="76" fill="#22272A"/><rect x="6" y="6" width="40" height="64" fill="#6487C2"/><path d="M26 6V70M6 38H46" stroke="#F7F6FA" stroke-width="4"/></g></defs>
+<rect width="900" height="1200" fill="url(#sky)"/><ellipse cx="640" cy="200" rx="130" ry="30" fill="#FFFFFF"/><ellipse cx="560" cy="180" rx="70" ry="28" fill="#FFFFFF"/>
+<path d="M0 560H900V1200H0Z" fill="url(#road)"/>
+<path d="M450 600L-100 1200H1000Z" fill="url(#road)"/>
+<g stroke="#617379" stroke-width="4" fill="none" opacity=".7"><path d="M300 700H600M240 790H660M170 900H730M80 1040H820M440 600L330 1200M460 600L570 1200M445 600L100 1200M455 600L800 1200"/></g>
+<g fill="#A7B5B9" opacity=".6"><rect x="360" y="740" width="36" height="14" rx="6"/><rect x="510" y="830" width="44" height="16" rx="6"/><rect x="250" y="960" width="60" height="20" rx="8"/><rect x="600" y="1080" width="70" height="22" rx="8"/></g>
+<path d="M0 240L330 360V700L0 940Z" fill="#FFA1A1"/><path d="M0 240L330 360L330 330L0 190Z" fill="#DD5202"/>
+<g transform="translate(40 340) skewY(17)"><use href="#jan"/></g><g transform="translate(40 540) skewY(17)"><use href="#jan"/></g><g transform="translate(180 424) skewY(9)"><use href="#jan" transform="scale(.8)"/></g><g transform="translate(180 580) skewY(9)"><use href="#jan" transform="scale(.8)"/></g>
+<path d="M330 360L460 420V640L330 700Z" fill="#FFD388"/><path d="M330 360L460 420L460 396L330 334Z" fill="#B73506"/>
+<g transform="translate(350 470) skewY(24)"><use href="#jan" transform="scale(.55)"/></g><path d="M380 600L430 580V640L380 650Z" fill="#7A2614"/>
+<path d="M900 200L570 340V700L900 960Z" fill="#63F2B5"/><path d="M900 200L570 340V312L900 150Z" fill="#B73506"/>
+<g transform="translate(800 330) skewY(-17) scale(-1 1)"><use href="#jan"/></g><g transform="translate(800 540) skewY(-17) scale(-1 1)"><use href="#jan"/></g><g transform="translate(660 424) skewY(-9) scale(-1 1)"><use href="#jan" transform="scale(.8)"/></g>
+<path d="M600 740V600L660 570V730Z" fill="#7A2614"/><circle cx="645" cy="660" r="4" fill="#FFD388"/>
+<path d="M570 340L450 420V640L570 700Z" fill="#AAA5C2"/><path d="M570 340L450 420V396L570 312Z" fill="#7A230D"/>
+<g transform="translate(470 470) skewY(-24) scale(-.55 .55)"><use href="#jan"/></g>
+<path d="M460 420L450 410L440 420V640H460Z" fill="#8B85AC" opacity=".0"/>
+<path d="M0 700L330 700L330 700L0 960Z" fill="none"/>
+<path d="M0 300Q200 400 430 470Q670 400 900 280" fill="none" stroke="#22272A" stroke-width="3"/>
+<g><path d="M60 332L100 362L60 378Z" fill="#F83B3B"/><path d="M130 352L170 380L130 394Z" fill="#FFD388"/><path d="M200 372L236 396L200 408Z" fill="#26D4FF"/><path d="M270 392L300 414L270 424Z" fill="#63F2B5"/><path d="M350 424L376 440L350 446Z" fill="#F83B3B"/><path d="M540 440L560 424L566 446Z" fill="#FFD388"/><path d="M620 414L646 392L650 422Z" fill="#26D4FF"/><path d="M700 392L740 362L740 408Z" fill="#F83B3B"/><path d="M780 372L820 338L820 388Z" fill="#63F2B5"/><path d="M850 350L890 310L890 372Z" fill="#FFD388"/></g>
+<g></g>
+<path d="M0 900L330 690V850L0 1130Z" fill="#CBD4D6" opacity=".35"/><path d="M900 910L570 700V850L900 1120Z" fill="#CBD4D6" opacity=".35"/>
+<g><rect x="60" y="1040" width="60" height="70" rx="6" fill="#DD5202"/><circle cx="90" cy="1020" r="30" fill="#00A369"/><circle cx="70" cy="1000" r="12" fill="#FF6A6A"/><circle cx="110" cy="1010" r="12" fill="#FFD388"/></g>
+<g><rect x="780" y="1030" width="64" height="76" rx="6" fill="#DD5202"/><circle cx="812" cy="1010" r="32" fill="#00A369"/><circle cx="794" cy="992" r="12" fill="#AAA5C2"/><circle cx="830" cy="1000" r="12" fill="#FF6A6A"/></g>
+<g><circle cx="450" cy="560" r="36" fill="#CDFEE4" opacity=".0"/></g>
+</svg>

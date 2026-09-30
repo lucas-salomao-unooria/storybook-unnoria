@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Retrato de Elisa">
+<rect width="256" height="256" fill="#E9FAFF"/>
+<circle cx="208" cy="54" r="40" fill="#A7EEFF" opacity=".6"/><circle cx="44" cy="200" r="34" fill="#6BE7FF" opacity=".4"/>
+<circle cx="128" cy="100" r="82" fill="#080922"/><circle cx="62" cy="130" r="26" fill="#080922"/><circle cx="194" cy="130" r="26" fill="#080922"/>
+<path d="M20 256Q22 214 84 204L128 218L172 204Q234 214 236 256Z" fill="#0086FF"/>
+<rect x="110" y="172" width="36" height="46" rx="14" fill="#7A230D"/>
+<ellipse cx="128" cy="132" rx="50" ry="60" fill="#982B14"/>
+<path d="M82 112Q92 84 128 82Q166 84 174 112Q154 98 128 98Q102 98 82 112Z" fill="#080922"/>
+<circle cx="78" cy="146" r="7" fill="#982B14"/><circle cx="178" cy="146" r="7" fill="#982B14"/>
+<circle cx="78" cy="158" r="8" fill="#FFB74A"/><circle cx="178" cy="158" r="8" fill="#FFB74A"/>
+<circle cx="110" cy="134" r="5.5" fill="#080922"/><circle cx="146" cy="134" r="5.5" fill="#080922"/><circle cx="112" cy="132" r="2" fill="#FFFFFF"/><circle cx="148" cy="132" r="2" fill="#FFFFFF"/>
+<path d="M99 120Q110 114 121 119M135 119Q146 114 157 120" stroke="#080922" stroke-width="4" fill="none" stroke-linecap="round"/>
+<ellipse cx="96" cy="154" rx="10" ry="6" fill="#E84910" opacity=".5"/><ellipse cx="160" cy="154" rx="10" ry="6" fill="#E84910" opacity=".5"/>
+<path d="M124 146Q120 154 114 156Q128 160 142 156Q136 154 132 146" stroke="#421008" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M104 166Q128 188 152 166Q128 174 104 166Z" fill="#421008"/><path d="M108 168Q128 180 148 168Q128 172 108 168Z" fill="#FFFFFF"/>
+</svg>

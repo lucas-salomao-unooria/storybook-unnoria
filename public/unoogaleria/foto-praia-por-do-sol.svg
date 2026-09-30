@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Pôr do sol na praia com o mar calmo">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#57547D"/><stop offset="0.35" stop-color="#AAA5C2"/><stop offset="0.6" stop-color="#F8833F"/><stop offset="1" stop-color="#FFD388"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFEBC6"/><stop offset="1" stop-color="#FFEBC6" stop-opacity="0"/></radialGradient>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8833F"/><stop offset="0.25" stop-color="#8B85AC"/><stop offset="1" stop-color="#34375C"/></linearGradient>
+<linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBB076"/><stop offset="1" stop-color="#FDD1AB"/></linearGradient></defs>
+<rect width="1200" height="900" fill="url(#sky)"/>
+<circle cx="600" cy="500" r="330" fill="url(#glow)"/>
+<path d="M130 300Q260 270 420 300Q300 330 130 300Z" fill="#FBB076" opacity=".6"/><path d="M780 240Q940 210 1120 250Q960 290 780 240Z" fill="#FEEAD6" opacity=".55"/><path d="M60 400Q200 380 360 404Q220 430 60 400Z" fill="#FFD388" opacity=".6"/><path d="M860 380Q980 360 1160 386Q1000 412 860 380Z" fill="#FDD1AB" opacity=".6"/>
+<circle cx="600" cy="510" r="100" fill="#FFEBC6"/>
+<rect y="510" width="1200" height="300" fill="url(#sea)"/>
+<g fill="#FFD388"><rect x="470" y="526" width="260" height="8" rx="4" opacity=".9"/><rect x="510" y="550" width="180" height="8" rx="4" opacity=".8"/><rect x="430" y="574" width="340" height="8" rx="4" opacity=".7"/><rect x="520" y="602" width="160" height="8" rx="4" opacity=".6"/><rect x="450" y="634" width="300" height="8" rx="4" opacity=".5"/><rect x="540" y="670" width="120" height="8" rx="4" opacity=".4"/></g>
+<path d="M0 512H1200" stroke="#FFF8EB" stroke-width="3" opacity=".5"/>
+<g fill="#080922"><path d="M880 506L900 480L940 506Z"/><path d="M910 500L912 440L918 440L920 500Z"/><path d="M912 440L940 506H912Z" fill="#FFEBC6" opacity=".6"/></g>
+<path d="M0 760Q220 720 420 760T820 750T1200 740V900H0Z" fill="url(#sand)"/>
+<path d="M0 744Q220 704 420 744T820 734T1200 724" fill="none" stroke="#FFF8EB" stroke-width="10" opacity=".7"/>
+<path d="M0 790Q240 752 440 790T840 780T1200 770V800Q1000 820 840 806T440 816T0 812Z" fill="#FBB076" opacity=".55"/>
+<g fill="#080922"><path d="M1040 900Q1050 700 1000 560" fill="none" stroke="#080922" stroke-width="14" stroke-linecap="round"/><path d="M1000 560Q940 520 880 560Q950 540 1000 560Z"/><path d="M1000 560Q1040 500 1110 510Q1050 520 1000 560Z"/><path d="M1000 560Q980 500 920 480Q980 500 1000 560Z"/><path d="M1000 560Q1070 560 1100 620Q1050 580 1000 560Z"/></g>
+<g><path d="M200 850Q300 830 400 850" fill="none" stroke="#DD5202" stroke-width="6" stroke-linecap="round" opacity=".6"/><ellipse cx="250" cy="800" rx="26" ry="8" fill="#F8833F" opacity=".4"/><path d="M130 870l30 -8l12 18l-34 4z" fill="#FFEBC6"/></g>
+<g fill="none" stroke="#34375C" stroke-width="3" stroke-linecap="round"><path d="M330 250Q340 238 350 250Q360 238 370 250"/><path d="M390 220Q398 210 406 220Q414 210 422 220"/></g>
+</svg>

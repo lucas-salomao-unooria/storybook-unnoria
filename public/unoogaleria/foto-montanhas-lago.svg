@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Montanhas refletidas em um lago">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FA5E2"/><stop offset="1" stop-color="#E8EFFA"/></linearGradient>
+<linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FAFE5"/><stop offset="1" stop-color="#2F4F7F"/></linearGradient>
+<clipPath id="lk"><rect y="520" width="1200" height="380"/></clipPath>
+<g id="mt"><path d="M-40 520L160 360L260 420L430 200L600 400L700 330L880 480L1000 380L1240 520Z" fill="#6487C2"/><path d="M430 200L380 268L420 252L440 290L460 246L500 270Z" fill="#F5F8FC"/><path d="M160 360L126 400L158 390L174 410L190 386L214 400Z" fill="#F5F8FC"/><path d="M-40 520L100 440L220 500L360 400L520 520L660 450L800 530L960 460L1240 520Z" fill="#49699F"/><path d="M-40 520L220 500L400 470L700 500L1000 480L1240 520Z" fill="#2F4F7F"/></g></defs>
+<rect width="1200" height="900" fill="url(#sky)"/>
+<circle cx="980" cy="160" r="50" fill="#FFF8EB"/><ellipse cx="260" cy="150" rx="150" ry="30" fill="#FFFFFF"/><ellipse cx="380" cy="126" rx="90" ry="26" fill="#FFFFFF"/><ellipse cx="760" cy="230" rx="130" ry="24" fill="#FFFFFF" opacity=".9"/>
+<use href="#mt"/>
+<rect y="520" width="1200" height="380" fill="url(#lake)"/>
+<g clip-path="url(#lk)"><use href="#mt" transform="translate(0 1040) scale(1 -1)" opacity=".55"/></g>
+<g fill="none" stroke-linecap="round"><path d="M80 600Q200 590 330 602M500 640Q640 628 780 642M200 720Q360 706 520 722M700 780Q860 768 1000 782M840 580Q940 572 1040 584" stroke="#E8EFFA" stroke-width="5" opacity=".6"/><path d="M300 560Q400 552 500 562M640 680Q760 670 880 682" stroke="#2F4F7F" stroke-width="4" opacity=".5"/></g>
+<path d="M0 520Q200 500 400 520T800 510T1200 520V540H0Z" fill="#006746"/>
+<g fill="#00543C"><path d="M20 520L60 400L100 520Z"/><path d="M80 520L130 370L180 520Z"/><path d="M150 520L190 420L230 520Z"/><path d="M960 520L1000 410L1040 520Z"/><path d="M1020 520L1070 370L1120 520Z"/><path d="M1100 520L1140 420L1180 520Z"/></g>
+<g fill="#006746"><path d="M50 520L80 430L110 520Z"/><path d="M1060 520L1090 440L1120 520Z"/></g>
+<path d="M0 900V810Q200 780 340 830Q400 870 360 900Z" fill="#008257"/><path d="M1200 900V800Q1020 770 880 830Q820 870 860 900Z" fill="#008257"/>
+<g fill="#00543C"><path d="M40 900L90 740L140 900Z"/><path d="M120 900L170 700L220 900Z"/><path d="M1000 900L1050 720L1100 900Z"/><path d="M1080 900L1130 690L1180 900Z"/></g>
+<g fill="#FFB74A"><circle cx="280" cy="880" r="8"/><circle cx="940" cy="875" r="8"/></g>
+</svg>

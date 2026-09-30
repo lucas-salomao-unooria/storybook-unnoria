@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Retrato de Felipe">
+<rect width="256" height="256" fill="#F5F5F5"/>
+<circle cx="54" cy="56" r="38" fill="#E4E8E9"/><circle cx="208" cy="198" r="36" fill="#CBD4D6" opacity=".6"/>
+<path d="M20 256Q22 212 82 202L128 216L174 202Q234 212 236 256Z" fill="#E31A1A"/>
+<path d="M98 204Q128 232 158 204L150 212Q128 232 106 212Z" fill="#9F1515"/>
+<rect x="110" y="172" width="36" height="44" rx="14" fill="#FBB076"/>
+<ellipse cx="128" cy="128" rx="54" ry="64" fill="#FDD1AB"/>
+<path d="M76 104Q72 68 100 60Q128 52 156 60Q184 68 180 104Q170 88 152 88Q130 98 110 88Q88 92 76 104Z" fill="#FFB74A"/>
+<path d="M68 96Q72 40 128 38Q184 40 188 96Z" fill="#716C98"/><rect x="60" y="92" width="136" height="14" rx="7" fill="#57547D"/><circle cx="128" cy="34" r="8" fill="#AAA5C2"/>
+<circle cx="74" cy="138" r="8" fill="#FBB076"/><circle cx="182" cy="138" r="8" fill="#FBB076"/>
+<circle cx="108" cy="130" r="6" fill="#0052B3"/><circle cx="148" cy="130" r="6" fill="#0052B3"/><circle cx="110" cy="128" r="2" fill="#FFFFFF"/><circle cx="150" cy="128" r="2" fill="#FFFFFF"/>
+<path d="M97 118Q108 113 119 117M137 117Q148 113 159 118" stroke="#B73506" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<g fill="#F8833F" opacity=".5"><circle cx="100" cy="144" r="2"/><circle cx="108" cy="148" r="2"/><circle cx="148" cy="148" r="2"/><circle cx="156" cy="144" r="2"/><circle cx="92" cy="150" r="2"/><circle cx="164" cy="150" r="2"/></g>
+<ellipse cx="94" cy="152" rx="10" ry="6" fill="#FF6A6A" opacity=".4"/><ellipse cx="162" cy="152" rx="10" ry="6" fill="#FF6A6A" opacity=".4"/>
+<path d="M102 160Q128 186 154 160Q128 168 102 160Z" fill="#841818"/><path d="M106 162Q128 176 150 162Q128 166 106 162Z" fill="#FFFFFF"/>
+</svg>

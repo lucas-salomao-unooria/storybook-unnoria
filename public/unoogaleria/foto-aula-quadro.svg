@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Quadro da sala de aula com a matéria de frações">
+<defs><linearGradient id="board" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#006746"/><stop offset="1" stop-color="#00543C"/></linearGradient>
+<g id="pizza"><circle r="110" fill="none" stroke="#F7F6FA" stroke-width="7"/><path d="M0 0L0 -110A110 110 0 0 1 0 110Z" fill="#F7F6FA" opacity=".85"/><path d="M0 -110V110" stroke="#F7F6FA" stroke-width="7"/></g></defs>
+<rect width="1200" height="900" fill="#DFDDEB"/><rect y="700" width="1200" height="200" fill="#AAA5C2"/><path d="M0 700H1200" stroke="#8B85AC" stroke-width="6"/>
+<rect x="70" y="60" width="1060" height="640" rx="14" fill="#B73506"/><rect x="92" y="82" width="1016" height="596" rx="6" fill="url(#board)"/>
+<path d="M92 600Q400 560 700 610T1108 570V678H92Z" fill="#F7F6FA" opacity=".06"/>
+<g fill="none" stroke="#F7F6FA" stroke-linecap="round">
+<g transform="translate(250 290)"><use href="#pizza"/></g>
+<g transform="translate(550 290)"><circle r="110" stroke-width="7"/><path d="M0 0L0 -110A110 110 0 0 1 95 55Z" fill="#FFD388" stroke="none" opacity=".9"/><path d="M0 -110V0L95 55M0 0L-95 55" stroke-width="7"/></g>
+<g transform="translate(850 290)"><circle r="110" stroke-width="7"/><path d="M0 0L0 -110A110 110 0 0 1 110 0Z" fill="#7FA5E2" stroke="none" opacity=".9"/><path d="M0 -110V110M-110 0H110" stroke-width="7"/></g>
+<g stroke-width="7"><path d="M210 500H290M250 470V470" /><path d="M520 500H600"/><path d="M810 500H890"/></g>
+<g fill="#F7F6FA" stroke="none"><rect x="230" y="450" width="40" height="8" rx="4"/><rect x="230" y="525" width="40" height="8" rx="4"/><rect x="540" y="450" width="40" height="8" rx="4"/><rect x="530" y="525" width="20" height="8" rx="4"/><rect x="560" y="525" width="20" height="8" rx="4"/><rect x="830" y="450" width="40" height="8" rx="4"/><rect x="830" y="525" width="40" height="8" rx="4"/></g>
+<g stroke-width="7"><rect x="150" y="590" width="300" height="56" rx="6" stroke="#F7F6FA"/><path d="M200 590V646M250 590V646M300 590V646M350 590V646M400 590V646"/><rect x="150" y="590" width="100" height="56" fill="#FFD388" stroke="none" opacity=".9"/></g>
+<g stroke-width="7"><rect x="500" y="590" width="300" height="56" rx="6" stroke="#F7F6FA"/><path d="M600 590V646M700 590V646"/><rect x="500" y="590" width="200" height="56" fill="#7FA5E2" stroke="none" opacity=".9"/></g>
+<g stroke-width="7"><rect x="850" y="590" width="240" height="56" rx="6" stroke="#F7F6FA"/><path d="M890 590V646M930 590V646M970 590V646M1010 590V646M1050 590V646"/><rect x="850" y="590" width="120" height="56" fill="#FF9C20" stroke="none" opacity=".9"/></g>
+</g>
+<g fill="none" stroke="#F7F6FA" stroke-width="7" stroke-linecap="round"><path d="M150 140H420M150 184H330" opacity=".85"/><path d="M700 146L740 146M720 126V166" opacity=".0"/><path d="M700 140H740M700 160H740"/><path d="M780 140H1010" opacity=".85"/></g>
+<rect x="70" y="700" width="1060" height="26" rx="8" fill="#7A2614"/><rect x="100" y="690" width="60" height="12" rx="3" fill="#F7F6FA"/><rect x="180" y="694" width="40" height="8" rx="3" fill="#FFB74A"/><rect x="900" y="676" width="100" height="26" rx="6" fill="#383E41"/><rect x="900" y="676" width="100" height="10" rx="5" fill="#CBD4D6"/>
+<g><rect x="60" y="780" width="280" height="22" rx="8" fill="#B73506"/><rect x="80" y="802" width="14" height="98" fill="#7A2614"/><rect x="306" y="802" width="14" height="98" fill="#7A2614"/><rect x="100" y="720" width="190" height="60" rx="12" fill="#6487C2"/></g>
+<g><rect x="860" y="780" width="280" height="22" rx="8" fill="#B73506"/><rect x="880" y="802" width="14" height="98" fill="#7A2614"/><rect x="1106" y="802" width="14" height="98" fill="#7A2614"/><path d="M930 780V730Q930 715 945 715H1060Q1075 715 1075 730V780Z" fill="#F7F6FA"/></g>
+<g><path d="M600 0V30" stroke="#8B85AC" stroke-width="4"/><circle cx="600" cy="36" r="30" fill="#F7F6FA" stroke="#383E41" stroke-width="5"/><path d="M600 36V18M600 36L612 42" stroke="#22272A" stroke-width="4" stroke-linecap="round"/></g>
+</svg>
