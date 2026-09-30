@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Prato de arroz, feijão e salada">
+<defs><linearGradient id="table" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B85AC"/><stop offset="1" stop-color="#57547D"/></linearGradient>
+<radialGradient id="beans" cx="0.4" cy="0.35" r="0.8"><stop offset="0" stop-color="#7A230D"/><stop offset="1" stop-color="#421008"/></radialGradient>
+<g id="tom"><circle r="46" fill="#E31A1A"/><circle r="30" fill="#F83B3B"/><path d="M0 -30V30M-30 0H30" stroke="#FF6A6A" stroke-width="5"/><ellipse cx="-14" cy="-18" rx="10" ry="6" fill="#FFC7C7" opacity=".6"/></g>
+<g id="pepino"><circle r="40" fill="#00A369"/><circle r="30" fill="#CDFEE4"/><g fill="#63F2B5"><circle cx="0" cy="-14" r="5"/><circle cx="13" cy="8" r="5"/><circle cx="-13" cy="8" r="5"/></g></g></defs>
+<rect width="1080" height="1080" fill="url(#table)"/>
+<path d="M0 200H1080M0 540H1080M0 880H1080" stroke="#716C98" stroke-width="6" opacity=".35"/>
+<ellipse cx="560" cy="570" rx="440" ry="430" fill="#080922" opacity=".3"/>
+<circle cx="540" cy="540" r="440" fill="#F7F6FA"/><circle cx="540" cy="540" r="440" fill="none" stroke="#DFDDEB" stroke-width="10"/><circle cx="540" cy="540" r="340" fill="#EFEEF5"/><circle cx="540" cy="540" r="340" fill="none" stroke="#EFEEF5" stroke-width="6"/>
+<path d="M320 420Q300 300 420 260Q540 240 580 340Q600 420 520 500Q400 540 320 420Z" fill="#FFFFFF"/>
+<path d="M320 420Q300 300 420 260Q540 240 580 340Q600 420 520 500Q400 540 320 420Z" fill="none" stroke="#CBD4D6" stroke-width="6"/>
+<g fill="#E4E8E9"><rect x="380" y="300" width="22" height="8" rx="4" transform="rotate(30 380 300)"/><rect x="470" y="290" width="22" height="8" rx="4" transform="rotate(-20 470 290)"/><rect x="430" y="370" width="22" height="8" rx="4" transform="rotate(60 430 370)"/><rect x="520" y="380" width="22" height="8" rx="4" transform="rotate(10 520 380)"/><rect x="360" y="400" width="22" height="8" rx="4" transform="rotate(-50 360 400)"/></g>
+<path d="M440 480Q420 560 500 640Q600 690 720 620Q780 540 720 470Q640 440 560 480Q500 500 440 480Z" fill="url(#beans)"/>
+<g fill="#A7B5B9" opacity=".0"><circle cx="500" cy="560" r="8"/></g>
+<g fill="#982B14"><ellipse cx="500" cy="560" rx="22" ry="13" transform="rotate(30 500 560)"/><ellipse cx="580" cy="590" rx="22" ry="13" transform="rotate(-20 580 590)"/><ellipse cx="650" cy="540" rx="22" ry="13" transform="rotate(50 650 540)"/><ellipse cx="620" cy="630" rx="22" ry="13"/><ellipse cx="540" cy="620" rx="20" ry="12" transform="rotate(-40 540 620)"/><ellipse cx="700" cy="590" rx="20" ry="12" transform="rotate(20 700 590)"/></g>
+<path d="M480 550Q520 530 550 550" stroke="#B73506" stroke-width="5" fill="none" opacity=".6"/>
+<path d="M400 580Q330 660 400 760Q500 800 560 720Q500 680 440 620Z" fill="#26E197"/><path d="M400 580Q330 660 400 760" fill="none" stroke="#008257" stroke-width="6"/>
+<path d="M440 620Q400 690 440 740" fill="none" stroke="#008257" stroke-width="5" opacity=".7"/>
+<path d="M640 330Q740 300 800 380Q830 460 760 480Q740 400 640 330Z" fill="#26E197"/><path d="M640 330Q740 300 800 380" fill="none" stroke="#008257" stroke-width="6"/>
+<use href="#tom" x="660" y="740" transform="translate(660 740) scale(1.1) translate(-660 -740)"/><use href="#tom" x="590" y="800"/><use href="#pepino" x="720" y="820"/><use href="#pepino" x="560" y="910" transform="translate(560 910) scale(.9) translate(-560 -910)"/>
+<g fill="#FFB74A"><circle cx="800" cy="600" r="6"/><circle cx="830" cy="640" r="5"/><circle cx="790" cy="660" r="6"/><circle cx="840" cy="580" r="5"/><circle cx="820" cy="690" r="5"/><circle cx="780" cy="620" r="5"/></g>
+<g fill="#FF9C20"><circle cx="810" cy="620" r="5"/><circle cx="850" cy="620" r="5"/><circle cx="800" cy="570" r="4"/></g>
+<g><rect x="60" y="230" width="24" height="220" rx="12" fill="#CBD4D6" transform="rotate(-8 72 340)"/><path d="M40 160H110L120 250H30Z" fill="#CBD4D6" transform="rotate(-8 72 340)"/><path d="M50 160V240M72 160V240M94 160V240" stroke="#7C8E94" stroke-width="4" transform="rotate(-8 72 340)"/></g>
+<g><rect x="985" y="250" width="24" height="380" rx="12" fill="#CBD4D6" transform="rotate(6 1000 440)"/><path d="M985 250Q1050 300 1010 480H985Z" fill="#E4E8E9" transform="rotate(6 1000 440)"/></g>
+</svg>

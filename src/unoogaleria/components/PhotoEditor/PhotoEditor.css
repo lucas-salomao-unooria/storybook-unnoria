@@ -1,0 +1,574 @@
+/**
+ * Estilos do Componente PhotoEditor — Design System Unoogaleria
+ * Camada em tela cheia sobre a superfície imersiva, posicionada no contêiner (a
+ * tela do aparelho), nunca na janela. De cima para baixo: barra (Cancelar,
+ * título, Concluído), histórico, pré-visualização, painel da ferramenta e abas.
+ * A barra de cima e as abas somam as áreas seguras ao próprio recuo.
+ */
+
+.ugl-photo-editor {
+  /* Altura fixa do painel da ferramenta: a foto não pula ao trocar de aba */
+  --ugl-photo-editor-panel-height: 196px;
+  /* Cantos da moldura de corte: comprimento e espessura do "L" */
+  --ugl-photo-editor-corner: 20px;
+  --ugl-photo-editor-corner-weight: 3px;
+  /* Largura de cada opção de ajuste (círculo de 44px mais o rótulo) */
+  --ugl-photo-editor-adjustment-width: 72px;
+  /* Altura visual das pílulas de proporção; o alvo de toque vai a 44px */
+  --ugl-photo-editor-pill-height: 32px;
+  /* Proporção do quadro, redefinida em linha a cada renderização */
+  --ugl-photo-editor-ratio: 1;
+
+  position: absolute;
+  inset: 0;
+  z-index: var(--ugl-z-viewer);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ugl-color-immersive-surface);
+  color: var(--ugl-color-immersive-text);
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-photo-editor__panel {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  box-sizing: border-box;
+  padding-top: var(--ugl-safe-area-top);
+  padding-bottom: var(--ugl-safe-area-bottom);
+  outline: none;
+}
+
+/* ==========================================================================
+   Barra superior
+   ========================================================================== */
+
+.ugl-photo-editor__bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: var(--ugl-topbar-height);
+  padding: 0 var(--ugl-spacing-xs);
+}
+
+.ugl-photo-editor__text-button {
+  justify-self: start;
+  min-height: var(--ugl-touch-target);
+  margin: 0;
+  padding: 0 var(--ugl-spacing-xs);
+  border: none;
+  border-radius: var(--ugl-radius-s);
+  background: none;
+  color: var(--ugl-color-immersive-text);
+  font-family: inherit;
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-photo-editor__text-button--done {
+  justify-self: end;
+  color: var(--ugl-color-immersive-accent);
+  font-weight: var(--ugl-font-title-sm-weight);
+}
+
+.ugl-photo-editor__text-button:hover {
+  background-color: var(--ugl-color-immersive-control);
+}
+
+.ugl-photo-editor__text-button:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: 2px;
+}
+
+.ugl-photo-editor__heading {
+  min-width: 0;
+  text-align: center;
+}
+
+.ugl-photo-editor__title {
+  margin: 0;
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+}
+
+.ugl-photo-editor__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ugl-color-immersive-text-secondary);
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Histórico
+   ========================================================================== */
+
+.ugl-photo-editor__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: var(--ugl-spacing-xxl);
+  min-height: var(--ugl-toolbar-height);
+}
+
+/* ==========================================================================
+   Pré-visualização
+   ========================================================================== */
+
+.ugl-photo-editor__stage {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: var(--ugl-spacing-l) var(--ugl-gutter);
+  container-type: size;
+}
+
+.ugl-photo-editor__frame {
+  position: relative;
+  width: min(100cqw, 100cqh * var(--ugl-photo-editor-ratio));
+  aspect-ratio: var(--ugl-photo-editor-ratio);
+  flex-shrink: 0;
+}
+
+.ugl-photo-editor__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--ugl-color-immersive-control);
+}
+
+.ugl-photo-editor__canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: transform var(--ugl-transition-slow);
+}
+
+.ugl-photo-editor__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ugl-photo-editor__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, var(--ugl-color-immersive-surface) 100%);
+  pointer-events: none;
+}
+
+/* Moldura de corte: borda, grade de terços e cantos em "L" */
+.ugl-photo-editor__crop {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px var(--ugl-color-immersive-text);
+  pointer-events: none;
+}
+
+.ugl-photo-editor__grid {
+  position: absolute;
+  background-color: var(--ugl-color-immersive-border);
+}
+
+.ugl-photo-editor__grid--v1,
+.ugl-photo-editor__grid--v2 {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.ugl-photo-editor__grid--v1 {
+  left: 33.333%;
+}
+
+.ugl-photo-editor__grid--v2 {
+  left: 66.667%;
+}
+
+.ugl-photo-editor__grid--h1,
+.ugl-photo-editor__grid--h2 {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.ugl-photo-editor__grid--h1 {
+  top: 33.333%;
+}
+
+.ugl-photo-editor__grid--h2 {
+  top: 66.667%;
+}
+
+.ugl-photo-editor__corner {
+  position: absolute;
+  width: var(--ugl-photo-editor-corner);
+  height: var(--ugl-photo-editor-corner);
+  border: 0 solid var(--ugl-color-immersive-text);
+}
+
+.ugl-photo-editor__corner--tl {
+  top: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  left: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  border-top-width: var(--ugl-photo-editor-corner-weight);
+  border-left-width: var(--ugl-photo-editor-corner-weight);
+}
+
+.ugl-photo-editor__corner--tr {
+  top: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  right: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  border-top-width: var(--ugl-photo-editor-corner-weight);
+  border-right-width: var(--ugl-photo-editor-corner-weight);
+}
+
+.ugl-photo-editor__corner--bl {
+  bottom: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  left: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  border-bottom-width: var(--ugl-photo-editor-corner-weight);
+  border-left-width: var(--ugl-photo-editor-corner-weight);
+}
+
+.ugl-photo-editor__corner--br {
+  right: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  bottom: calc(-1 * var(--ugl-photo-editor-corner-weight));
+  border-right-width: var(--ugl-photo-editor-corner-weight);
+  border-bottom-width: var(--ugl-photo-editor-corner-weight);
+}
+
+/* Selo "Original" durante a comparação (também é a região de status) */
+.ugl-photo-editor__badge {
+  position: absolute;
+  top: var(--ugl-spacing-xs);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--ugl-spacing-4xs) var(--ugl-spacing-s);
+  border-radius: var(--ugl-radius-full);
+  font-size: var(--ugl-font-caption-strong-size);
+  font-weight: var(--ugl-font-caption-strong-weight);
+  line-height: var(--ugl-font-caption-strong-line);
+  letter-spacing: var(--ugl-font-caption-strong-tracking);
+  pointer-events: none;
+}
+
+.ugl-photo-editor__badge--visible {
+  background-color: var(--ugl-color-immersive-bar);
+  color: var(--ugl-color-immersive-text);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+}
+
+/* ==========================================================================
+   Painel da ferramenta
+   ========================================================================== */
+
+.ugl-photo-editor__tools {
+  flex-shrink: 0;
+}
+
+.ugl-photo-editor__tool-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ugl-spacing-xs);
+  box-sizing: border-box;
+  height: var(--ugl-photo-editor-panel-height);
+  padding: var(--ugl-spacing-xs) var(--ugl-gutter);
+}
+
+/* Tiras roláveis correm até a borda da tela, com o recuo dentro delas */
+.ugl-photo-editor .ugl-photo-editor__bleed {
+  box-sizing: border-box;
+  width: calc(100% + 2 * var(--ugl-gutter));
+  margin-right: calc(-1 * var(--ugl-gutter));
+  margin-left: calc(-1 * var(--ugl-gutter));
+}
+
+.ugl-photo-editor__row {
+  display: flex;
+  justify-content: center;
+  gap: var(--ugl-spacing-m);
+}
+
+.ugl-photo-editor__hint {
+  margin: 0;
+  color: var(--ugl-color-immersive-text-secondary);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+  text-align: center;
+}
+
+/* Pílulas de proporção */
+.ugl-photo-editor__pills {
+  display: flex;
+  gap: var(--ugl-spacing-xs);
+  padding: var(--ugl-spacing-xs) var(--ugl-gutter);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-immersive-track) transparent;
+}
+
+.ugl-photo-editor__pill {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: var(--ugl-photo-editor-pill-height);
+  margin: 0;
+  padding: 0 var(--ugl-spacing-m);
+  border: none;
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+  font-family: inherit;
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Alvo de toque de 44px sem engordar a pílula */
+.ugl-photo-editor__pill::after {
+  content: '';
+  position: absolute;
+  top: calc((var(--ugl-photo-editor-pill-height) - var(--ugl-touch-target)) / 2);
+  bottom: calc((var(--ugl-photo-editor-pill-height) - var(--ugl-touch-target)) / 2);
+  left: 0;
+  right: 0;
+}
+
+.ugl-photo-editor__pill:hover {
+  background-color: var(--ugl-color-immersive-control-pressed);
+}
+
+.ugl-photo-editor__pill--checked,
+.ugl-photo-editor__pill--checked:hover {
+  background-color: var(--ugl-color-immersive-accent);
+  color: var(--ugl-color-immersive-text-on-accent);
+}
+
+.ugl-photo-editor__pill:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: 2px;
+}
+
+/* Escolha do ajuste */
+.ugl-photo-editor__adjustments {
+  display: flex;
+  gap: var(--ugl-spacing-4xs);
+  padding: 0 var(--ugl-gutter);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-immersive-track) transparent;
+}
+
+.ugl-photo-editor__adjustment {
+  display: flex;
+  flex: 0 0 var(--ugl-photo-editor-adjustment-width);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  margin: 0;
+  padding: var(--ugl-spacing-3xs) 0;
+  border: none;
+  border-radius: var(--ugl-radius-s);
+  background: none;
+  color: var(--ugl-color-immersive-text-secondary);
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-photo-editor__adjustment:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: 0;
+}
+
+.ugl-photo-editor__adjustment-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ugl-touch-target);
+  height: var(--ugl-touch-target);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-photo-editor__adjustment--checked .ugl-photo-editor__adjustment-icon {
+  background-color: var(--ugl-color-immersive-accent);
+  color: var(--ugl-color-immersive-text-on-accent);
+}
+
+/* Ponto de "alterado": acento com anel da superfície, visível até sobre o acento */
+.ugl-photo-editor__dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--ugl-spacing-xs);
+  height: var(--ugl-spacing-xs);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-immersive-accent);
+  box-shadow: 0 0 0 2px var(--ugl-color-immersive-surface);
+}
+
+.ugl-photo-editor__adjustment-label {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ugl-photo-editor__adjustment--checked .ugl-photo-editor__adjustment-label {
+  color: var(--ugl-color-immersive-text);
+  font-weight: var(--ugl-font-caption-strong-weight);
+}
+
+/* ==========================================================================
+   Abas
+   ========================================================================== */
+
+.ugl-photo-editor__tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  box-shadow: 0 -1px 0 0 var(--ugl-color-immersive-border);
+}
+
+.ugl-photo-editor__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ugl-spacing-4xs);
+  min-height: var(--ugl-toolbar-height);
+  margin: 0;
+  padding: var(--ugl-spacing-3xs) 0;
+  border: none;
+  background: none;
+  color: var(--ugl-color-immersive-text-secondary);
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-photo-editor__tab--selected {
+  color: var(--ugl-color-immersive-accent);
+}
+
+.ugl-photo-editor__tab:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: -2px;
+  border-radius: var(--ugl-radius-s);
+}
+
+.ugl-photo-editor__tab-label {
+  font-size: var(--ugl-font-caption-strong-size);
+  font-weight: var(--ugl-font-caption-strong-weight);
+  line-height: var(--ugl-font-caption-strong-line);
+  letter-spacing: var(--ugl-font-caption-strong-tracking);
+}
+
+/* ==========================================================================
+   Confirmação de descarte
+   ========================================================================== */
+
+.ugl-photo-editor__confirm-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ugl-z-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ugl-gutter);
+  background-color: var(--ugl-color-overlay-scrim);
+}
+
+.ugl-photo-editor__confirm {
+  /* Largura do alerta, a mesma do diálogo de confirmação da galeria */
+  --ugl-photo-editor-confirm-width: 300px;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ugl-photo-editor-confirm-width);
+  padding: var(--ugl-spacing-xl);
+  border-radius: var(--ugl-radius-l);
+  background-color: var(--ugl-color-background-elevated);
+  box-shadow: var(--ugl-elevation-overlay);
+  color: var(--ugl-color-text-primary);
+  text-align: center;
+  outline: none;
+  animation: ugl-photo-editor-confirm-in var(--ugl-transition-base);
+}
+
+.ugl-photo-editor__confirm-title {
+  margin: 0;
+  font-size: var(--ugl-font-title-md-size);
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: var(--ugl-font-title-md-line);
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-photo-editor__confirm-description {
+  margin: var(--ugl-spacing-xs) 0 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+.ugl-photo-editor__confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xs);
+  margin-top: var(--ugl-spacing-xl);
+}
+
+@keyframes ugl-photo-editor-confirm-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-photo-editor__canvas,
+  .ugl-photo-editor__adjustment-icon {
+    transition: none;
+  }
+
+  .ugl-photo-editor__confirm {
+    animation: none;
+  }
+}

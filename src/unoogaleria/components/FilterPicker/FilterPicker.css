@@ -1,0 +1,116 @@
+/**
+ * Estilos do Componente FilterPicker — Design System Unoogaleria
+ * Tira horizontal de amostras quadradas sobre a superfície imersiva. A amostra
+ * escolhida ganha um anel duplo — a superfície e, por fora, o acento —, que se
+ * lê como forma, e não só como cor; o rótulo dela sobe para o branco.
+ */
+
+.ugl-filter-picker {
+  /* Aresta da amostra: medida do componente, sem token equivalente */
+  --ugl-filter-picker-swatch: 64px;
+
+  display: flex;
+  gap: var(--ugl-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ugl-spacing-3xs) var(--ugl-gutter);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-immersive-track) transparent;
+  font-family: var(--ugl-font-sans);
+  -webkit-overflow-scrolling: touch;
+}
+
+.ugl-filter-picker__description {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ugl-filter-picker__option {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ugl-spacing-xxs);
+  margin: 0;
+  padding: var(--ugl-spacing-3xs);
+  border: none;
+  border-radius: var(--ugl-radius-s);
+  background: none;
+  color: var(--ugl-color-immersive-text-secondary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-filter-picker__option:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: 0;
+}
+
+.ugl-filter-picker__swatch {
+  position: relative;
+  display: block;
+  width: var(--ugl-filter-picker-swatch);
+  height: var(--ugl-filter-picker-swatch);
+  overflow: hidden;
+  border-radius: var(--ugl-radius-s);
+  background-color: var(--ugl-color-immersive-control);
+  transition: box-shadow var(--ugl-transition-fast), transform var(--ugl-transition-fast);
+}
+
+.ugl-filter-picker__option:active .ugl-filter-picker__swatch {
+  transform: scale(0.96);
+}
+
+.ugl-filter-picker__option--checked .ugl-filter-picker__swatch {
+  box-shadow:
+    0 0 0 2px var(--ugl-color-immersive-surface),
+    0 0 0 4px var(--ugl-color-immersive-accent);
+}
+
+.ugl-filter-picker__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ugl-filter-picker__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, var(--ugl-color-immersive-surface) 100%);
+  pointer-events: none;
+}
+
+.ugl-filter-picker__label {
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+  white-space: nowrap;
+}
+
+.ugl-filter-picker__option--checked .ugl-filter-picker__label {
+  color: var(--ugl-color-immersive-text);
+  font-weight: var(--ugl-font-caption-strong-weight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-filter-picker__swatch {
+    transition: none;
+  }
+
+  .ugl-filter-picker__option:active .ugl-filter-picker__swatch {
+    transform: none;
+  }
+}

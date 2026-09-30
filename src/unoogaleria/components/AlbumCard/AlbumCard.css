@@ -1,0 +1,167 @@
+/**
+ * Estilos do Componente AlbumCard — Design System Unoogaleria
+ * Capa quadrada `radius-m`, título `title-sm` e contagem `caption` abaixo. O
+ * selo sobre a capa usa o véu e o branco invariantes da mídia.
+ */
+
+.ugl-album-card {
+  /* Medidas próprias do cartão, sem token equivalente */
+  /** Largura do cartão de prateleira */
+  --ugl-album-card-width: 160px;
+  /** Diâmetro do selo sobre a capa */
+  --ugl-album-card-badge-size: 24px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--ugl-album-card-width);
+  min-width: 0;
+  font-family: var(--ugl-font-sans);
+  color: var(--ugl-color-text-primary);
+}
+
+.ugl-album-card--lg {
+  --ugl-album-card-width: 100%;
+}
+
+.ugl-album-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xs);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--ugl-radius-m);
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-album-card--interactive .ugl-album-card__main {
+  cursor: pointer;
+}
+
+.ugl-album-card__main:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Capa
+   ========================================================================== */
+
+.ugl-album-card__cover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--ugl-radius-m);
+  background-color: var(--ugl-color-background-tertiary);
+  transition: transform var(--ugl-transition-fast);
+}
+
+.ugl-album-card__cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-album-card--interactive .ugl-album-card__main:hover .ugl-album-card__cover::after {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-album-card--interactive .ugl-album-card__main:active .ugl-album-card__cover {
+  transform: scale(0.98);
+}
+
+.ugl-album-card--interactive .ugl-album-card__main:active .ugl-album-card__cover::after {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-album-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+.ugl-album-card__badge {
+  position: absolute;
+  right: var(--ugl-spacing-xxs);
+  bottom: var(--ugl-spacing-xxs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ugl-album-card-badge-size);
+  height: var(--ugl-album-card-badge-size);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-media-scrim);
+}
+
+/* ==========================================================================
+   Título e contagem
+   ========================================================================== */
+
+.ugl-album-card__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ugl-album-card--with-menu .ugl-album-card__text {
+  padding-right: var(--ugl-touch-target);
+}
+
+.ugl-album-card__title {
+  overflow: hidden;
+  color: var(--ugl-color-text-primary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+}
+
+.ugl-album-card__count {
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+/* O menu fica na linha do texto, à direita, fora do botão principal */
+.ugl-album-card__menu {
+  position: absolute;
+  right: calc(-1 * var(--ugl-spacing-s));
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-album-card__cover,
+  .ugl-album-card__cover::after {
+    transition: none;
+  }
+
+  .ugl-album-card--interactive .ugl-album-card__main:active .ugl-album-card__cover {
+    transform: none;
+  }
+}

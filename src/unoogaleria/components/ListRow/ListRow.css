@@ -1,0 +1,210 @@
+/**
+ * Estilos dos Componentes ListRow e ListGroup — Design System Unoogaleria
+ * Linha de 52px com o fio divisor recuado até o texto e o cartão agrupado que
+ * as reúne. O realce de hover e de pressionado é a camada `state-*`.
+ */
+
+/* ==========================================================================
+   ListRow
+   ========================================================================== */
+
+.ugl-list-row {
+  /* Altura mínima da linha: uma linha de título de 24px com 14px de respiro */
+  --ugl-list-row-min-height: 52px;
+  /* Largura da coluna do glifo (24px mais o espaço até o texto) */
+  --ugl-list-row-icon-column: 36px;
+
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ugl-list-row-min-height);
+  margin: 0;
+  padding: 0 0 0 var(--ugl-gutter);
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--ugl-color-text-primary);
+  font-family: var(--ugl-font-sans);
+  text-align: left;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-list-row--interactive {
+  cursor: pointer;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-list-row--interactive:hover:not(.ugl-list-row--disabled) {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-list-row--interactive:active:not(.ugl-list-row--disabled) {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-list-row:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.ugl-list-row--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.ugl-list-row__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: var(--ugl-list-row-icon-column);
+}
+
+.ugl-list-row__body {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--ugl-spacing-m);
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--ugl-spacing-xs) var(--ugl-gutter) var(--ugl-spacing-xs) 0;
+  border-bottom: 1px solid transparent;
+}
+
+.ugl-list-row--divider .ugl-list-row__body {
+  border-bottom-color: var(--ugl-color-border-subtle);
+}
+
+.ugl-list-row__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ugl-list-row__title {
+  overflow: hidden;
+  color: inherit;
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ugl-list-row__subtitle {
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+.ugl-list-row--destructive .ugl-list-row__title {
+  color: var(--ugl-color-text-danger);
+}
+
+.ugl-list-row__end {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  color: var(--ugl-color-text-secondary);
+}
+
+.ugl-list-row__detail {
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  font-variant-numeric: tabular-nums;
+}
+
+.ugl-list-row__trailing {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ugl-list-row__chevron {
+  margin-right: calc(-1 * var(--ugl-spacing-3xs));
+}
+
+.ugl-list-row__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   ListGroup
+   ========================================================================== */
+
+.ugl-list-group {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-list-group--inset {
+  padding: 0 var(--ugl-gutter);
+}
+
+.ugl-list-group__title {
+  margin: 0 0 var(--ugl-spacing-xs);
+  padding: 0 var(--ugl-gutter);
+  color: var(--ugl-color-text-primary);
+  font-size: var(--ugl-font-title-lg-size);
+  font-weight: var(--ugl-font-title-lg-weight);
+  line-height: var(--ugl-font-title-lg-line);
+  letter-spacing: var(--ugl-font-title-lg-tracking);
+}
+
+.ugl-list-group--inset .ugl-list-group__title {
+  padding: 0;
+}
+
+.ugl-list-group__list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  background-color: var(--ugl-color-background-primary);
+}
+
+.ugl-list-group--inset .ugl-list-group__list {
+  border-radius: var(--ugl-radius-m);
+}
+
+.ugl-list-group__item {
+  margin: 0;
+  padding: 0;
+}
+
+/* O último item nunca desenha o fio: a borda do cartão fecha a lista */
+.ugl-list-group__item:last-child .ugl-list-row__body {
+  border-bottom-color: transparent;
+}
+
+.ugl-list-group__footer {
+  margin: var(--ugl-spacing-xs) 0 0;
+  padding: 0 var(--ugl-gutter);
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-list-row--interactive {
+    transition: none;
+  }
+}

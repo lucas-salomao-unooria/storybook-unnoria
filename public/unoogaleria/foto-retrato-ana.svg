@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="Retrato de Ana sorrindo com fundo lilás">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DFDDEB"/><stop offset="1" stop-color="#AAA5C2"/></linearGradient>
+<radialGradient id="skin" cx="0.4" cy="0.35" r="0.8"><stop offset="0" stop-color="#FBB076"/><stop offset="1" stop-color="#F8833F"/></radialGradient></defs>
+<rect width="900" height="1200" fill="url(#bg)"/>
+<g fill="#F7F6FA" opacity=".35"><circle cx="150" cy="200" r="110"/><circle cx="770" cy="340" r="80"/><circle cx="700" cy="120" r="50"/><circle cx="120" cy="560" r="60"/></g><g fill="#8B85AC" opacity=".3"><circle cx="800" cy="700" r="120"/><circle cx="80" cy="900" r="90"/></g>
+<path d="M170 560Q130 820 200 1000L250 1040L650 1040L700 1000Q770 820 730 560Q700 300 450 280Q200 300 170 560Z" fill="#421008"/>
+<path d="M60 1200Q60 1010 250 960L450 1010L650 960Q840 1010 840 1200Z" fill="#34375C"/>
+<path d="M330 990Q450 1070 570 990L600 1040Q450 1120 300 1040Z" fill="#57547D"/>
+<rect x="385" y="840" width="130" height="170" rx="40" fill="#F8833F"/><path d="M385 930Q450 990 515 930V980Q450 1040 385 980Z" fill="#DD5202" opacity=".5"/>
+<ellipse cx="450" cy="640" rx="200" ry="240" fill="url(#skin)"/>
+<path d="M240 560Q250 350 450 340Q650 350 660 560Q620 440 520 410Q420 480 330 450Q270 480 240 560Z" fill="#421008"/>
+<path d="M240 560Q270 470 340 450Q330 520 290 600Z" fill="#7A230D"/>
+<g fill="#F8833F"><ellipse cx="250" cy="660" rx="22" ry="44"/><ellipse cx="650" cy="660" rx="22" ry="44"/></g>
+<circle cx="250" cy="720" r="14" fill="#FFB74A"/><circle cx="650" cy="720" r="14" fill="#FFB74A"/>
+<path d="M340 600Q375 580 410 600M490 600Q525 580 560 600" stroke="#421008" stroke-width="12" fill="none" stroke-linecap="round"/>
+<g><ellipse cx="375" cy="650" rx="26" ry="20" fill="#FFFFFF"/><ellipse cx="525" cy="650" rx="26" ry="20" fill="#FFFFFF"/><circle cx="378" cy="652" r="15" fill="#421008"/><circle cx="522" cy="652" r="15" fill="#421008"/><circle cx="384" cy="646" r="5" fill="#FFFFFF"/><circle cx="528" cy="646" r="5" fill="#FFFFFF"/><path d="M344 640Q375 622 406 640M494 640Q525 622 556 640" stroke="#22272A" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+<path d="M450 660Q438 720 420 740Q450 756 480 740" stroke="#DD5202" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<ellipse cx="330" cy="740" rx="36" ry="22" fill="#FF6A6A" opacity=".45"/><ellipse cx="570" cy="740" rx="36" ry="22" fill="#FF6A6A" opacity=".45"/>
+<path d="M350 790Q450 900 550 790Q450 820 350 790Z" fill="#841818"/><path d="M366 796Q450 860 534 796Q450 814 366 796Z" fill="#FFFFFF"/>
+<path d="M350 790Q450 830 550 790" stroke="#841818" stroke-width="8" fill="none" stroke-linecap="round"/>
+</svg>

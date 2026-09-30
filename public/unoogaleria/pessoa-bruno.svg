@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Retrato de Bruno">
+<rect width="256" height="256" fill="#D3E0F5"/>
+<circle cx="56" cy="60" r="38" fill="#E8EFFA"/><circle cx="214" cy="200" r="36" fill="#BDD0EF" opacity=".6"/>
+<path d="M18 256Q20 212 80 202L128 216L176 202Q236 212 238 256Z" fill="#49699F"/>
+<path d="M104 206L128 232L152 206L152 214L128 240L104 214Z" fill="#E8EFFA"/>
+<rect x="110" y="172" width="36" height="44" rx="14" fill="#982B14"/>
+<ellipse cx="128" cy="126" rx="56" ry="66" fill="#B73506"/>
+<ellipse cx="128" cy="126" rx="56" ry="66" fill="#982B14" opacity=".55"/>
+<path d="M68 118Q66 58 128 54Q190 58 188 118Q180 82 128 80Q76 82 68 118Z" fill="#080922"/>
+<circle cx="71" cy="138" r="8" fill="#982B14"/><circle cx="185" cy="138" r="8" fill="#982B14"/>
+<circle cx="108" cy="128" r="6" fill="#080922"/><circle cx="148" cy="128" r="6" fill="#080922"/><circle cx="110" cy="126" r="2" fill="#FFFFFF"/><circle cx="150" cy="126" r="2" fill="#FFFFFF"/>
+<path d="M96 114Q108 107 120 113M136 113Q148 107 160 114" stroke="#080922" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+<path d="M124 134Q120 150 114 152Q128 158 142 152Q136 150 132 134" stroke="#7A230D" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+<path d="M84 150Q90 196 128 198Q166 196 172 150Q160 176 128 178Q96 176 84 150Z" fill="#080922" opacity=".9"/>
+<path d="M106 164Q128 182 150 164Q128 172 106 164Z" fill="#FFFFFF"/>
+</svg>

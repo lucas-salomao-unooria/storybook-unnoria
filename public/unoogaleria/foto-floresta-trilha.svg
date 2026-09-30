@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="Trilha de terra no meio da floresta">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#63F2B5"/><stop offset="0.5" stop-color="#CDFEE4"/><stop offset="1" stop-color="#26E197"/></linearGradient>
+<linearGradient id="path" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FEEAD6"/><stop offset="1" stop-color="#FBB076"/></linearGradient>
+<radialGradient id="mist" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFF8EB" stop-opacity=".95"/><stop offset="1" stop-color="#FFF8EB" stop-opacity="0"/></radialGradient></defs>
+<rect width="900" height="1200" fill="url(#bg)"/>
+<circle cx="450" cy="540" r="300" fill="url(#mist)"/>
+<g fill="#00A369"><rect x="380" y="500" width="14" height="110"/><rect x="510" y="490" width="12" height="120"/><rect x="330" y="520" width="10" height="90"/><rect x="560" y="510" width="10" height="100"/></g>
+<g fill="#008257"><path d="M387 420L330 560H444Z"/><path d="M516 400L470 560H562Z"/><path d="M335 450L300 560H370Z"/><path d="M565 450L530 560H600Z"/></g>
+<path d="M0 640Q300 560 450 600Q600 560 900 640V1200H0Z" fill="#00A369"/>
+<path d="M430 600H470L900 1200H0Z" fill="url(#path)"/>
+<path d="M440 620L380 1200M460 620L520 1200" stroke="#F8833F" stroke-width="10" opacity=".25"/><path d="M450 700V1200" stroke="#FDD1AB" stroke-width="30" opacity=".5"/>
+<g fill="#B73506" opacity=".5"><ellipse cx="420" cy="760" rx="12" ry="4"/><ellipse cx="500" cy="860" rx="18" ry="6"/><ellipse cx="380" cy="960" rx="24" ry="7"/><ellipse cx="560" cy="1080" rx="34" ry="9"/><ellipse cx="300" cy="1120" rx="30" ry="8"/></g>
+<g><rect x="0" y="0" width="150" height="1200" fill="#421008"/><rect x="40" y="0" width="14" height="1200" fill="#7A2614" opacity=".6"/><rect x="110" y="0" width="10" height="1200" fill="#7A230D" opacity=".6"/></g>
+<g><rect x="190" y="200" width="70" height="1000" fill="#7A230D"/><path d="M190 200Q230 250 260 200" fill="none"/><rect x="210" y="200" width="10" height="1000" fill="#982B14" opacity=".6"/></g>
+<g><rect x="790" y="0" width="110" height="1200" fill="#421008"/><rect x="820" y="0" width="12" height="1200" fill="#7A2614" opacity=".6"/></g>
+<g><rect x="660" y="260" width="56" height="940" fill="#7A230D"/><rect x="674" y="260" width="8" height="940" fill="#982B14" opacity=".6"/></g>
+<path d="M0 0H900V210Q740 280 600 180Q450 290 300 190Q150 280 0 200Z" fill="#006746"/>
+<path d="M0 0H900V120Q740 190 600 100Q450 200 300 110Q150 190 0 120Z" fill="#00543C"/>
+<g fill="#008257"><circle cx="140" cy="230" r="70"/><circle cx="250" cy="260" r="56"/><circle cx="760" cy="230" r="70"/><circle cx="650" cy="270" r="56"/></g>
+<g fill="#00543C"><circle cx="60" cy="180" r="60"/><circle cx="840" cy="170" r="60"/></g>
+<g stroke="#FFF8EB" stroke-width="40" opacity=".18"><path d="M330 0L130 1200"/><path d="M450 0L330 1200"/><path d="M580 0L560 1200"/></g>
+<g fill="#26E197"><path d="M0 1200V1040Q80 1000 160 1060Q200 1100 140 1200Z"/><path d="M900 1200V1020Q820 990 740 1060Q700 1110 760 1200Z"/></g>
+<g fill="#008257"><path d="M20 1200L40 1100L70 1200Z"/><path d="M60 1200L100 1080L120 1200Z"/><path d="M880 1200L860 1100L830 1200Z"/><path d="M840 1200L800 1070L780 1200Z"/></g>
+<g fill="#FF6A6A"><circle cx="100" cy="1070" r="9"/><circle cx="60" cy="1120" r="8"/><circle cx="820" cy="1080" r="9"/></g><g fill="#FFD388"><circle cx="140" cy="1120" r="7"/><circle cx="780" cy="1130" r="8"/></g>
+</svg>

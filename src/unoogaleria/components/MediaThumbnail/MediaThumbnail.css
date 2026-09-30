@@ -1,0 +1,233 @@
+/**
+ * Estilos do Componente MediaThumbnail — Design System Unoogaleria
+ * Miniatura de mídia com selos sobre a imagem. Os selos usam o véu e o branco
+ * invariantes da mídia (`--ugl-color-media-*`), legíveis sobre qualquer foto
+ * nos dois temas; o círculo de seleção marcado usa o roxo de ação do tema.
+ */
+
+.ugl-media-thumbnail {
+  /* Medidas próprias da miniatura, sem token equivalente */
+  /** Diâmetro do círculo de seleção */
+  --ugl-media-thumbnail-check-size: 24px;
+  /** Escala da mídia selecionada: recua o bastante para a borda da célula aparecer */
+  --ugl-media-thumbnail-selected-scale: 0.9;
+  /** Altura da cápsula de duração e de prazo: a linha de `caption-strong` */
+  --ugl-media-thumbnail-pill-height: var(--ugl-font-caption-strong-line);
+
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--ugl-color-media-text);
+  font-family: var(--ugl-font-sans);
+  text-align: left;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-media-thumbnail--square {
+  aspect-ratio: 1;
+}
+
+.ugl-media-thumbnail--interactive {
+  cursor: pointer;
+}
+
+.ugl-media-thumbnail--interactive:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.ugl-media-thumbnail--interactive:focus-visible .ugl-media-thumbnail__media::after {
+  /* Anel interno claro: o foco se lê sobre foto clara e escura */
+  box-shadow: inset 0 0 0 var(--ugl-spacing-3xs) var(--ugl-color-media-text);
+}
+
+/* ==========================================================================
+   Moldura (mídia e selos, que recuam juntos na seleção)
+   ========================================================================== */
+
+.ugl-media-thumbnail__frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  transition: transform var(--ugl-transition-fast);
+}
+
+/* ==========================================================================
+   Mídia
+   ========================================================================== */
+
+.ugl-media-thumbnail__media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  background-color: var(--ugl-color-background-tertiary);
+  transition: opacity var(--ugl-transition-fast);
+}
+
+.ugl-media-thumbnail__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ugl-media-thumbnail--interactive:hover .ugl-media-thumbnail__media::after {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-media-thumbnail--interactive:active .ugl-media-thumbnail__media::after {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-media-thumbnail__image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.ugl-media-thumbnail__broken {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ugl-media-thumbnail__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, var(--ugl-color-immersive-surface) 100%);
+  pointer-events: none;
+}
+
+.ugl-media-thumbnail--dimmed .ugl-media-thumbnail__media {
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   Selos sobre a mídia
+   ========================================================================== */
+
+.ugl-media-thumbnail__shade {
+  position: absolute;
+  inset: 0;
+  background: var(--ugl-gradient-media-bottom);
+  pointer-events: none;
+}
+
+.ugl-media-thumbnail__subtypes {
+  position: absolute;
+  top: var(--ugl-spacing-3xs);
+  left: var(--ugl-spacing-3xs);
+  display: flex;
+  gap: var(--ugl-spacing-4xs);
+}
+
+.ugl-media-thumbnail__subtype {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ugl-media-thumbnail-pill-height);
+  height: var(--ugl-media-thumbnail-pill-height);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-media-scrim);
+}
+
+.ugl-media-thumbnail__favorite {
+  position: absolute;
+  left: var(--ugl-spacing-3xs);
+  bottom: var(--ugl-spacing-3xs);
+}
+
+.ugl-media-thumbnail__pill {
+  position: absolute;
+  bottom: var(--ugl-spacing-3xs);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ugl-spacing-4xs);
+  box-sizing: border-box;
+  height: var(--ugl-media-thumbnail-pill-height);
+  padding: 0 var(--ugl-spacing-xxs);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-media-scrim);
+  color: var(--ugl-color-media-text);
+  font-size: var(--ugl-font-caption-strong-size);
+  font-weight: var(--ugl-font-caption-strong-weight);
+  line-height: var(--ugl-font-caption-strong-line);
+  letter-spacing: var(--ugl-font-caption-strong-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ugl-media-thumbnail__duration {
+  right: var(--ugl-spacing-3xs);
+}
+
+.ugl-media-thumbnail__days {
+  left: var(--ugl-spacing-3xs);
+}
+
+/* ==========================================================================
+   Seleção
+   ========================================================================== */
+
+.ugl-media-thumbnail__veil {
+  position: absolute;
+  inset: 0;
+  background-color: var(--ugl-color-media-veil-selected);
+  pointer-events: none;
+}
+
+.ugl-media-thumbnail__check {
+  position: absolute;
+  top: var(--ugl-spacing-xxs);
+  right: var(--ugl-spacing-xxs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ugl-media-thumbnail-check-size);
+  height: var(--ugl-media-thumbnail-check-size);
+  border: 2px solid var(--ugl-color-media-text);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-media-scrim);
+  color: var(--ugl-color-text-on-action);
+  transition:
+    background-color var(--ugl-transition-fast),
+    transform var(--ugl-transition-fast);
+}
+
+.ugl-media-thumbnail--selected .ugl-media-thumbnail__frame {
+  transform: scale(var(--ugl-media-thumbnail-selected-scale));
+}
+
+.ugl-media-thumbnail--selected .ugl-media-thumbnail__check {
+  background-color: var(--ugl-color-action-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-media-thumbnail__frame,
+  .ugl-media-thumbnail__media,
+  .ugl-media-thumbnail__check {
+    transition: none;
+  }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Bolo de aniversário com velas acesas">
+<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34375C"/><stop offset="1" stop-color="#57547D"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFD388" stop-opacity=".9"/><stop offset="1" stop-color="#FFD388" stop-opacity="0"/></radialGradient>
+<g id="vela"><rect x="-14" y="0" width="28" height="120" rx="6" fill="#FFFFFF"/><path d="M-14 26L14 10M-14 56L14 40M-14 86L14 70M-14 116L14 100" stroke="#FF6A6A" stroke-width="10"/><path d="M0 -4Q-22 -34 0 -74Q22 -34 0 -4Z" fill="#FFB74A"/><path d="M0 -6Q-10 -28 0 -50Q10 -28 0 -6Z" fill="#FFEBC6"/></g></defs>
+<rect width="1200" height="900" fill="url(#wall)"/>
+<circle cx="600" cy="360" r="380" fill="url(#glow)"/>
+<path d="M0 110L150 200L300 110L450 200L600 110L750 200L900 110L1050 200L1200 110" fill="none" stroke="#AAA5C2" stroke-width="4"/>
+<path d="M60 130L120 130L90 200Z" fill="#FF6A6A"/><path d="M210 130L270 130L240 200Z" fill="#FFD388"/><path d="M360 130L420 130L390 200Z" fill="#63F2B5"/><path d="M510 130L570 130L540 200Z" fill="#7FA5E2"/><path d="M660 130L720 130L690 200Z" fill="#FF6A6A"/><path d="M810 130L870 130L840 200Z" fill="#FFD388"/><path d="M960 130L1020 130L990 200Z" fill="#63F2B5"/><path d="M1110 130L1170 130L1140 200Z" fill="#7FA5E2"/>
+<g><ellipse cx="170" cy="340" rx="60" ry="78" fill="#F83B3B"/><path d="M170 418L160 440L180 440Z" fill="#F83B3B"/><path d="M170 440Q150 520 180 600" fill="none" stroke="#CCC9DE" stroke-width="3"/><ellipse cx="150" cy="310" rx="14" ry="22" fill="#FFFFFF" opacity=".35"/></g>
+<g><ellipse cx="1030" cy="300" rx="60" ry="78" fill="#26D4FF"/><path d="M1030 378L1020 400L1040 400Z" fill="#26D4FF"/><path d="M1030 400Q1050 500 1020 580" fill="none" stroke="#CCC9DE" stroke-width="3"/><ellipse cx="1010" cy="270" rx="14" ry="22" fill="#FFFFFF" opacity=".35"/></g>
+<rect y="700" width="1200" height="200" fill="#716C98"/><path d="M0 700H1200" stroke="#8B85AC" stroke-width="6"/><path d="M0 760Q150 790 300 760T600 760T900 760T1200 760" stroke="#8B85AC" stroke-width="4" fill="none"/>
+<ellipse cx="600" cy="760" rx="330" ry="56" fill="#080922" opacity=".3"/>
+<ellipse cx="600" cy="730" rx="330" ry="52" fill="#F7F6FA"/><ellipse cx="600" cy="722" rx="300" ry="42" fill="#FFFFFF"/>
+<path d="M360 560H840V690Q840 730 600 730Q360 730 360 690Z" fill="#FFC7C7"/><ellipse cx="600" cy="560" rx="240" ry="40" fill="#FFE1E1"/>
+<path d="M360 560Q360 600 384 600Q408 600 408 570Q420 640 444 640Q468 640 468 590Q480 620 504 620Q528 620 528 580Q540 650 566 650Q592 650 592 590Q604 630 630 630Q656 630 656 580Q668 640 694 640Q720 640 720 590Q732 620 756 620Q780 620 780 570Q792 610 816 610Q840 610 840 560Z" fill="#FFFFFF"/>
+<path d="M400 690Q600 716 800 690" fill="none" stroke="#FF6A6A" stroke-width="10" stroke-linecap="round"/><g fill="#FFD388"><circle cx="430" cy="670" r="8"/><circle cx="520" cy="684" r="8"/><circle cx="640" cy="690" r="8"/><circle cx="740" cy="676" r="8"/><circle cx="790" cy="660" r="8"/></g>
+<path d="M440 420H760V540Q760 560 600 560Q440 560 440 540Z" fill="#FFE1E1"/><ellipse cx="600" cy="420" rx="160" ry="30" fill="#FFF1F1"/>
+<path d="M440 420Q440 470 464 470Q488 470 488 440Q500 500 524 500Q548 500 548 450Q560 490 584 490Q608 490 608 450Q620 510 644 510Q668 510 668 450Q680 490 704 490Q728 490 728 440Q740 470 760 450V420Z" fill="#FFFFFF"/>
+<g fill="#F83B3B"><circle cx="480" cy="530" r="9"/><circle cx="560" cy="540" r="9"/><circle cx="640" cy="538" r="9"/><circle cx="720" cy="528" r="9"/></g><g fill="#26D4FF"><circle cx="520" cy="524" r="9"/><circle cx="600" cy="532" r="9"/><circle cx="680" cy="530" r="9"/></g>
+<use href="#vela" x="500" y="300"/><use href="#vela" x="560" y="290"/><use href="#vela" x="620" y="290"/><use href="#vela" x="680" y="300"/><use href="#vela" x="590" y="320" transform="translate(0 0)"/>
+<circle cx="590" cy="250" r="100" fill="url(#glow)" opacity=".8"/>
+</svg>

@@ -1,0 +1,212 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System Unoogaleria
+ * Aparelho genérico de 390×844px: corpo, aro, botões laterais, ilha da câmera,
+ * barra de status e barra de gesto, nas cores invariantes do módulo. A tela é o
+ * bloco de contenção de todas as sobreposições da galeria.
+ */
+
+.ugl-phone-frame {
+  /* Medidas do aparelho: próprias do cromo genérico, sem token equivalente */
+  --ugl-phone-frame-bezel: 12px;
+  --ugl-phone-frame-radius: 62px;
+  --ugl-phone-frame-screen-radius: 50px;
+  --ugl-phone-frame-island-width: 124px;
+  --ugl-phone-frame-island-height: 36px;
+  --ugl-phone-frame-lens: 12px;
+  --ugl-phone-frame-button-width: 3px;
+  --ugl-phone-frame-indicator-width: 134px;
+  --ugl-phone-frame-indicator-height: 5px;
+
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  font-family: var(--ugl-font-sans);
+}
+
+/* ==========================================================================
+   Corpo do aparelho
+   ========================================================================== */
+
+.ugl-phone-frame--bezel {
+  width: calc(var(--ugl-screen-width) + 2 * var(--ugl-phone-frame-bezel));
+  height: calc(var(--ugl-screen-height) + 2 * var(--ugl-phone-frame-bezel));
+  padding: var(--ugl-phone-frame-bezel);
+  border-radius: var(--ugl-phone-frame-radius);
+  background-color: var(--ugl-color-device-body);
+  box-shadow:
+    0 0 0 2px var(--ugl-color-device-edge),
+    var(--ugl-elevation-overlay);
+}
+
+.ugl-phone-frame--screen {
+  width: var(--ugl-screen-width);
+  height: var(--ugl-screen-height);
+}
+
+.ugl-phone-frame__button {
+  position: absolute;
+  width: var(--ugl-phone-frame-button-width);
+  border-radius: var(--ugl-radius-xs);
+  background-color: var(--ugl-color-device-button);
+}
+
+.ugl-phone-frame__button--action {
+  top: 150px;
+  left: calc(-1 * var(--ugl-phone-frame-button-width));
+  height: 32px;
+}
+
+.ugl-phone-frame__button--volume-up {
+  top: 210px;
+  left: calc(-1 * var(--ugl-phone-frame-button-width));
+  height: 62px;
+}
+
+.ugl-phone-frame__button--volume-down {
+  top: 286px;
+  left: calc(-1 * var(--ugl-phone-frame-button-width));
+  height: 62px;
+}
+
+.ugl-phone-frame__button--power {
+  top: 240px;
+  right: calc(-1 * var(--ugl-phone-frame-button-width));
+  height: 100px;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
+.ugl-phone-frame__screen {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--ugl-screen-width);
+  height: var(--ugl-screen-height);
+  overflow: hidden;
+  border-radius: var(--ugl-phone-frame-screen-radius);
+  background-color: var(--ugl-color-background-primary);
+  color: var(--ugl-color-text-primary);
+  /* Torna a tela o bloco de contenção até de `position: fixed` */
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+.ugl-phone-frame--screen .ugl-phone-frame__screen {
+  box-shadow: 0 0 0 1px var(--ugl-color-border-default);
+}
+
+.ugl-phone-frame__screen--status-bar {
+  --ugl-safe-area-top: var(--ugl-statusbar-height);
+}
+
+.ugl-phone-frame__screen--home-indicator {
+  --ugl-safe-area-bottom: var(--ugl-home-indicator-height);
+}
+
+.ugl-phone-frame__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Barra de status e ilha da câmera
+   ========================================================================== */
+
+.ugl-phone-frame__status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--ugl-z-statusbar);
+  display: grid;
+  grid-template-columns: 1fr var(--ugl-phone-frame-island-width) 1fr;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--ugl-statusbar-height);
+  padding: 0 var(--ugl-spacing-xxl);
+  color: var(--ugl-color-text-primary);
+  pointer-events: none;
+  transition: color var(--ugl-transition-base);
+}
+
+.ugl-phone-frame__time {
+  justify-self: center;
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ugl-phone-frame__island {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  height: var(--ugl-phone-frame-island-height);
+  padding-right: var(--ugl-spacing-m);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-device-body);
+}
+
+.ugl-phone-frame__lens {
+  width: var(--ugl-phone-frame-lens);
+  height: var(--ugl-phone-frame-lens);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-device-lens);
+}
+
+.ugl-phone-frame__indicators {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+}
+
+/* ==========================================================================
+   Barra de gesto
+   ========================================================================== */
+
+.ugl-phone-frame__home-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: var(--ugl-spacing-xs);
+  z-index: var(--ugl-z-statusbar);
+  width: var(--ugl-phone-frame-indicator-width);
+  height: var(--ugl-phone-frame-indicator-height);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-text-primary);
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: background-color var(--ugl-transition-base);
+}
+
+/* Quando algo imersivo abre na tela, o cromo de sistema passa a branco */
+.ugl-phone-frame__screen:has([data-ugl-immersive]) .ugl-phone-frame__status-bar {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-phone-frame__screen:has([data-ugl-immersive]) .ugl-phone-frame__home-indicator {
+  background-color: var(--ugl-color-immersive-text);
+}
+
+/* ==========================================================================
+   Escala de exibição
+   ========================================================================== */
+
+.ugl-phone-frame-scaler {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ugl-phone-frame-scaler__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}

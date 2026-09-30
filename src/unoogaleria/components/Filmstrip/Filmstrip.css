@@ -1,0 +1,94 @@
+/**
+ * Estilos do Componente Filmstrip — Design System Unoogaleria
+ * Tira horizontal de miniaturas sobre a superfície imersiva. A ativa se alarga
+ * e ganha contorno de acento; o recuo de meia tira nas pontas deixa a primeira
+ * e a última chegarem ao centro.
+ */
+
+.ugl-filmstrip {
+  /* Miniatura: 36×44, mais estreita que alta, como a tira de um rolo de filme */
+  --ugl-filmstrip-thumb-width: 36px;
+  --ugl-filmstrip-thumb-height: 44px;
+  /* A ativa vai de 44px (quadrada) a 64px, conforme a proporção da mídia */
+  --ugl-filmstrip-active-min-width: 44px;
+  --ugl-filmstrip-active-max-width: 64px;
+  /* Espaço vertical para o contorno e o anel de foco não serem cortados */
+  --ugl-filmstrip-block-padding: var(--ugl-spacing-3xs);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-4xs);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ugl-filmstrip-block-padding) calc(50% - var(--ugl-filmstrip-thumb-width) / 2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ugl-filmstrip::-webkit-scrollbar {
+  display: none;
+}
+
+.ugl-filmstrip:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: -2px;
+}
+
+.ugl-filmstrip__item {
+  position: relative;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: var(--ugl-filmstrip-thumb-width);
+  height: var(--ugl-filmstrip-thumb-height);
+  overflow: hidden;
+  border-radius: var(--ugl-radius-xs);
+  background-color: var(--ugl-color-immersive-control);
+  cursor: pointer;
+  container-type: size;
+  -webkit-tap-highlight-color: transparent;
+  transition: width var(--ugl-transition-base);
+}
+
+.ugl-filmstrip__item:focus {
+  outline: none;
+}
+
+.ugl-filmstrip__item:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: 2px;
+}
+
+.ugl-filmstrip__item--active {
+  min-width: var(--ugl-filmstrip-active-min-width);
+  max-width: var(--ugl-filmstrip-active-max-width);
+}
+
+/* Contorno da ativa por dentro, para não somar largura nem ser cortado */
+.ugl-filmstrip__item--active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 2px var(--ugl-color-immersive-accent);
+  pointer-events: none;
+}
+
+.ugl-filmstrip__image {
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-filmstrip {
+    scroll-behavior: auto;
+  }
+
+  .ugl-filmstrip__item {
+    transition: none;
+  }
+}

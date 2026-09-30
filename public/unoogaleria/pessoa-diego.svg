@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Retrato de Diego">
+<rect width="256" height="256" fill="#FFF6ED"/>
+<circle cx="52" cy="58" r="38" fill="#FEEAD6"/><circle cx="210" cy="196" r="36" fill="#FDD1AB" opacity=".6"/>
+<path d="M20 256Q22 212 82 202L128 216L174 202Q234 212 236 256Z" fill="#383E41"/>
+<path d="M96 204L128 226L160 204L150 256H106Z" fill="#F5F5F5"/>
+<rect x="110" y="172" width="36" height="44" rx="14" fill="#DD5202"/>
+<ellipse cx="128" cy="128" rx="55" ry="66" fill="#F8833F"/>
+<path d="M70 116Q70 58 128 56Q188 58 186 116Q180 84 150 80Q130 92 100 82Q76 92 70 116Z" fill="#22272A"/>
+<circle cx="72" cy="140" r="8" fill="#DD5202"/><circle cx="184" cy="140" r="8" fill="#DD5202"/>
+<circle cx="108" cy="132" r="5.5" fill="#22272A"/><circle cx="148" cy="132" r="5.5" fill="#22272A"/><circle cx="110" cy="130" r="2" fill="#FFFFFF"/><circle cx="150" cy="130" r="2" fill="#FFFFFF"/>
+<path d="M96 118Q108 113 120 118M136 118Q148 113 160 118" stroke="#22272A" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g fill="none" stroke="#0052B3" stroke-width="5"><rect x="88" y="118" width="40" height="30" rx="12"/><rect x="128" y="118" width="40" height="30" rx="12"/><path d="M128 130H128M122 128Q128 124 134 128"/></g>
+<g fill="#FFFFFF" opacity=".25"><rect x="92" y="122" width="14" height="8" rx="4"/><rect x="132" y="122" width="14" height="8" rx="4"/></g>
+<path d="M124 152Q120 160 114 162Q128 166 142 162Q136 160 132 152" stroke="#B73506" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M108 168Q128 182 148 168Q128 174 108 168Z" fill="#841818"/>
+</svg>

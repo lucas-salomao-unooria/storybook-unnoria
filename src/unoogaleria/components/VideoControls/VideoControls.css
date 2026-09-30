@@ -1,0 +1,147 @@
+/**
+ * Estilos do Componente VideoControls — Design System Unoogaleria
+ * Tocar/pausar, linha do tempo, tempos e som, sobre a superfície imersiva. As
+ * cores são os invariantes imersivos: os controles se leem sobre vídeo nos dois
+ * temas.
+ */
+
+.ugl-video-controls {
+  /* Espessura da trilha: fina o bastante para não competir com o vídeo */
+  --ugl-video-controls-track: 4px;
+  /* Punho: 14px sobre um alvo de 44px de altura (o input inteiro é o alvo) */
+  --ugl-video-controls-thumb: 14px;
+  /* Largura mínima dos tempos, para "0:32" e "12:05" não empurrarem a trilha */
+  --ugl-video-controls-time-width: 36px;
+
+  --ugl-video-controls-progress: 0%;
+  --ugl-video-controls-buffered: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ugl-touch-target);
+  padding: 0 var(--ugl-spacing-3xs);
+  font-family: var(--ugl-font-sans);
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-video-controls--overlay {
+  padding: 0 var(--ugl-spacing-xs);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-immersive-bar);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+}
+
+.ugl-video-controls__time {
+  flex-shrink: 0;
+  min-width: var(--ugl-video-controls-time-width);
+  text-align: center;
+  font-size: var(--ugl-font-caption-strong-size);
+  font-weight: var(--ugl-font-caption-strong-weight);
+  line-height: var(--ugl-font-caption-strong-line);
+  letter-spacing: var(--ugl-font-caption-strong-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ugl-color-immersive-text);
+}
+
+/* ==========================================================================
+   Linha do tempo (input range nativo, trilha desenhada)
+   ========================================================================== */
+
+.ugl-video-controls__range {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--ugl-touch-target);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: none;
+}
+
+.ugl-video-controls__range:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.ugl-video-controls__range:focus {
+  outline: none;
+}
+
+.ugl-video-controls__range:focus-visible {
+  outline: 2px solid var(--ugl-color-immersive-accent);
+  outline-offset: 2px;
+  border-radius: var(--ugl-radius-full);
+}
+
+/* Reproduzido em acento, carregado na trilha, o resto no controle translúcido */
+.ugl-video-controls__range::-webkit-slider-runnable-track {
+  height: var(--ugl-video-controls-track);
+  border-radius: var(--ugl-radius-full);
+  background: linear-gradient(
+    to right,
+    var(--ugl-color-immersive-accent) 0 var(--ugl-video-controls-progress),
+    var(--ugl-color-immersive-track) var(--ugl-video-controls-progress) var(--ugl-video-controls-buffered),
+    var(--ugl-color-immersive-control) var(--ugl-video-controls-buffered) 100%
+  );
+}
+
+.ugl-video-controls__range::-moz-range-track {
+  height: var(--ugl-video-controls-track);
+  border-radius: var(--ugl-radius-full);
+  background: linear-gradient(
+    to right,
+    var(--ugl-color-immersive-accent) 0 var(--ugl-video-controls-progress),
+    var(--ugl-color-immersive-track) var(--ugl-video-controls-progress) var(--ugl-video-controls-buffered),
+    var(--ugl-color-immersive-control) var(--ugl-video-controls-buffered) 100%
+  );
+}
+
+.ugl-video-controls__range::-webkit-slider-thumb {
+  width: var(--ugl-video-controls-thumb);
+  height: var(--ugl-video-controls-thumb);
+  margin-top: calc((var(--ugl-video-controls-track) - var(--ugl-video-controls-thumb)) / 2);
+  border: none;
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-immersive-text);
+  appearance: none;
+  -webkit-appearance: none;
+  transition: transform var(--ugl-transition-fast);
+}
+
+.ugl-video-controls__range::-moz-range-thumb {
+  width: var(--ugl-video-controls-thumb);
+  height: var(--ugl-video-controls-thumb);
+  border: none;
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-immersive-text);
+  transition: transform var(--ugl-transition-fast);
+}
+
+.ugl-video-controls__range:active::-webkit-slider-thumb {
+  transform: scale(1.3);
+}
+
+.ugl-video-controls__range:active::-moz-range-thumb {
+  transform: scale(1.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-video-controls__range::-webkit-slider-thumb,
+  .ugl-video-controls__range::-moz-range-thumb {
+    transition: none;
+  }
+
+  .ugl-video-controls__range:active::-webkit-slider-thumb {
+    transform: none;
+  }
+
+  .ugl-video-controls__range:active::-moz-range-thumb {
+    transform: none;
+  }
+}

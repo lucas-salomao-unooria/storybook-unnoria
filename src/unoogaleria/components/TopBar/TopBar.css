@@ -1,0 +1,222 @@
+/**
+ * Estilos do Componente TopBar — Design System Unoogaleria
+ * Barra superior que começa abaixo da barra de status (`--ugl-safe-area-top`).
+ * Em repouso é transparente e herda a superfície da tela; colante ou
+ * sobreposta, vira a barra translúcida com desfoque.
+ */
+
+.ugl-top-bar {
+  /* Medida própria da barra, sem token equivalente */
+  /** Largura máxima do nome da tela anterior ao lado do voltar */
+  --ugl-top-bar-back-text-max: 120px;
+
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 100%;
+  padding-top: var(--ugl-safe-area-top, 0px);
+  font-family: var(--ugl-font-sans);
+  color: var(--ugl-color-text-primary);
+}
+
+.ugl-top-bar--bordered {
+  box-shadow: var(--ugl-elevation-hairline-bottom);
+}
+
+.ugl-top-bar--sticky,
+.ugl-top-bar--overlay {
+  z-index: var(--ugl-z-bar);
+  background-color: var(--ugl-color-surface-bar);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+}
+
+.ugl-top-bar--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.ugl-top-bar--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* ==========================================================================
+   Título e linha de apoio
+   ========================================================================== */
+
+.ugl-top-bar__heading {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ugl-top-bar__title {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ugl-color-text-primary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--ugl-font-title-md-size);
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: var(--ugl-font-title-md-line);
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-top-bar__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ugl-color-text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+}
+
+/* ==========================================================================
+   Grande
+   ========================================================================== */
+
+.ugl-top-bar--large {
+  padding-right: var(--ugl-spacing-xs);
+  padding-bottom: var(--ugl-spacing-xs);
+  padding-left: var(--ugl-gutter);
+}
+
+.ugl-top-bar__nav {
+  display: flex;
+  align-items: center;
+  min-height: var(--ugl-topbar-height);
+  /* O voltar alinha o glifo, e não a caixa de 44px, à margem da tela */
+  margin-left: calc(-1 * var(--ugl-spacing-s));
+}
+
+.ugl-top-bar__title-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ugl-spacing-xs);
+  padding-top: var(--ugl-spacing-xs);
+}
+
+.ugl-top-bar--large .ugl-top-bar__heading {
+  flex: 1 1 auto;
+}
+
+.ugl-top-bar--large .ugl-top-bar__title {
+  font-size: var(--ugl-font-display-size);
+  font-weight: var(--ugl-font-display-weight);
+  line-height: var(--ugl-font-display-line);
+  letter-spacing: var(--ugl-font-display-tracking);
+}
+
+.ugl-top-bar--large .ugl-top-bar__subtitle {
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+}
+
+.ugl-top-bar__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  /* A caixa de 44px centra no corpo de 48px da linha do título */
+  padding-bottom: var(--ugl-spacing-4xs);
+}
+
+/* ==========================================================================
+   Compacta e sobreposta
+   ========================================================================== */
+
+.ugl-top-bar__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  box-sizing: border-box;
+  min-height: var(--ugl-topbar-height);
+  padding: 0 var(--ugl-spacing-3xs);
+}
+
+/* Os dois lados crescem por igual: o título fica no centro da barra */
+.ugl-top-bar__side {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: var(--ugl-spacing-4xs);
+}
+
+.ugl-top-bar__side--end {
+  justify-content: flex-end;
+}
+
+.ugl-top-bar__heading--center {
+  flex: 0 1 auto;
+  align-items: center;
+  text-align: center;
+}
+
+/*
+ * Numa coluna com `align-items: center` o filho assume a largura do próprio
+ * conteúdo, e o `text-overflow` nunca chegava a valer: um título longo
+ * ("Excluídos recentemente") passava por cima do voltar e das ações.
+ */
+.ugl-top-bar__heading--center > * {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Voltar com texto
+   ========================================================================== */
+
+.ugl-top-bar__back {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: var(--ugl-touch-target);
+  min-height: var(--ugl-touch-target);
+  margin: 0;
+  padding: 0 var(--ugl-spacing-xs) 0 var(--ugl-spacing-3xs);
+  border: none;
+  border-radius: var(--ugl-radius-full);
+  background: none;
+  color: var(--ugl-color-text-accent);
+  font-family: inherit;
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-top-bar__back:hover {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-top-bar__back:active {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-top-bar__back:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ugl-top-bar__back-text {
+  max-width: var(--ugl-top-bar-back-text-max);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-top-bar__back {
+    transition: none;
+  }
+}

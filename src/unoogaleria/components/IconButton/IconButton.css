@@ -1,0 +1,142 @@
+/**
+ * Estilos do Componente IconButton — Design System Unoogaleria
+ * Alvo quadrado e redondo só com glifo. As variantes 'immersive' e 'bar' usam
+ * os tokens invariantes do visualizador, legíveis sobre mídia em qualquer tema.
+ */
+
+.ugl-icon-button {
+  /* Arestas do pequeno e do grande: sem token (o médio é --ugl-touch-target) */
+  --ugl-icon-button-size-sm: 32px;
+  --ugl-icon-button-size-lg: 56px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--ugl-radius-full);
+  background: none;
+  color: var(--ugl-color-icon-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ugl-transition-fast),
+    color var(--ugl-transition-fast),
+    transform var(--ugl-transition-fast);
+}
+
+.ugl-icon-button:hover:not(:disabled) {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-icon-button:active:not(:disabled) {
+  background-color: var(--ugl-color-state-pressed);
+  transform: scale(0.94);
+}
+
+.ugl-icon-button:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ugl-icon-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ugl-icon-button--sm {
+  width: var(--ugl-icon-button-size-sm);
+  height: var(--ugl-icon-button-size-sm);
+}
+
+/* O pequeno desenha 32px, mas o alvo de toque continua com 44px */
+.ugl-icon-button--sm::before {
+  content: '';
+  position: absolute;
+  inset: calc((var(--ugl-icon-button-size-sm) - var(--ugl-touch-target)) / 2);
+}
+
+.ugl-icon-button--md {
+  width: var(--ugl-touch-target);
+  height: var(--ugl-touch-target);
+}
+
+.ugl-icon-button--lg {
+  width: var(--ugl-icon-button-size-lg);
+  height: var(--ugl-icon-button-size-lg);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ugl-icon-button--tinted {
+  background-color: var(--ugl-color-fill-field);
+  color: var(--ugl-color-icon-accent);
+}
+
+.ugl-icon-button--immersive {
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+}
+
+.ugl-icon-button--immersive:hover:not(:disabled),
+.ugl-icon-button--immersive:active:not(:disabled) {
+  background-color: var(--ugl-color-immersive-control-pressed);
+}
+
+.ugl-icon-button--bar {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-icon-button--bar:hover:not(:disabled),
+.ugl-icon-button--bar:active:not(:disabled) {
+  background-color: var(--ugl-color-immersive-control);
+}
+
+.ugl-icon-button--immersive:focus-visible,
+.ugl-icon-button--bar:focus-visible {
+  outline-color: var(--ugl-color-immersive-accent);
+}
+
+/* ==========================================================================
+   Tom quando pressionado
+   ========================================================================== */
+
+.ugl-icon-button--pressed-favorite {
+  color: var(--ugl-color-brand-favorite);
+}
+
+.ugl-icon-button--immersive.ugl-icon-button--pressed-favorite,
+.ugl-icon-button--bar.ugl-icon-button--pressed-favorite {
+  color: var(--ugl-color-immersive-favorite);
+}
+
+.ugl-icon-button--pressed-accent {
+  color: var(--ugl-color-icon-accent);
+}
+
+.ugl-icon-button--immersive.ugl-icon-button--pressed-accent,
+.ugl-icon-button--bar.ugl-icon-button--pressed-accent {
+  color: var(--ugl-color-immersive-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-icon-button {
+    transition: none;
+  }
+
+  .ugl-icon-button:active:not(:disabled) {
+    transform: none;
+  }
+}

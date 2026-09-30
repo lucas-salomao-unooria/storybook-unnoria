@@ -1,0 +1,119 @@
+/**
+ * Estilos do Componente ConfirmDialog — Design System Unoogaleria
+ * Alerta central de 300px sobre o véu, na camada de diálogo da tela. Sem
+ * desfoque atrás do véu: o alerta interrompe, não decora.
+ */
+
+.ugl-confirm-dialog-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ugl-z-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: calc(var(--ugl-safe-area-top) + var(--ugl-spacing-l)) var(--ugl-gutter)
+    calc(var(--ugl-safe-area-bottom) + var(--ugl-spacing-l));
+  background-color: var(--ugl-color-overlay-scrim);
+  animation: ugl-confirm-dialog-fade var(--ugl-transition-base);
+}
+
+.ugl-confirm-dialog {
+  /* Largura do alerta: fixa, para a pergunta quebrar sempre no mesmo lugar */
+  --ugl-confirm-dialog-width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xl);
+  box-sizing: border-box;
+  width: var(--ugl-confirm-dialog-width);
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: var(--ugl-spacing-xxl) var(--ugl-spacing-xl) var(--ugl-spacing-xl);
+  overflow-y: auto;
+  border-radius: var(--ugl-radius-l);
+  background-color: var(--ugl-color-background-elevated);
+  color: var(--ugl-color-text-primary);
+  box-shadow: var(--ugl-elevation-overlay);
+  font-family: var(--ugl-font-sans);
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-border-default) transparent;
+  animation: ugl-confirm-dialog-in var(--ugl-transition-base);
+}
+
+.ugl-confirm-dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xs);
+  text-align: center;
+}
+
+.ugl-confirm-dialog__title {
+  margin: 0;
+  font-size: var(--ugl-font-title-md-size);
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: var(--ugl-font-title-md-line);
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-confirm-dialog__description {
+  margin: 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+.ugl-confirm-dialog__body {
+  margin-top: var(--ugl-spacing-xs);
+  text-align: left;
+}
+
+.ugl-confirm-dialog__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ugl-spacing-xs);
+}
+
+.ugl-confirm-dialog--busy .ugl-confirm-dialog__actions {
+  cursor: progress;
+}
+
+.ugl-confirm-dialog--busy .ugl-confirm-dialog__actions > * {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ugl-confirm-dialog-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ugl-confirm-dialog-in {
+  from {
+    transform: scale(1.06);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-confirm-dialog-layer,
+  .ugl-confirm-dialog {
+    animation: none;
+  }
+}

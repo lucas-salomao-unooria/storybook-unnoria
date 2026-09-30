@@ -1,0 +1,183 @@
+/**
+ * Estilos do Componente Toast — Design System Unoogaleria
+ * Cápsula em cores invertidas que flutua dentro do contêiner posicionado (a
+ * tela do aparelho), nunca na janela. O recuo soma a área segura, o espaço da
+ * margem e `--ugl-toast-offset`, que chega do componente.
+ */
+
+.ugl-toast {
+  /* Largura máxima: a tela de 390px menos as duas margens laterais */
+  --ugl-toast-max-width: calc(var(--ugl-screen-width) - 2 * var(--ugl-gutter));
+  /* Altura mínima do aviso: uma linha de texto com a ação de 44px */
+  --ugl-toast-min-height: 52px;
+  /* Distância percorrida na entrada */
+  --ugl-toast-travel: var(--ugl-spacing-xs);
+
+  position: absolute;
+  left: var(--ugl-gutter);
+  right: var(--ugl-gutter);
+  z-index: var(--ugl-z-toast);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-toast--bottom {
+  bottom: calc(var(--ugl-safe-area-bottom) + var(--ugl-spacing-l) + var(--ugl-toast-offset, 0px));
+}
+
+.ugl-toast--top {
+  top: calc(var(--ugl-safe-area-top) + var(--ugl-spacing-xs) + var(--ugl-toast-offset, 0px));
+}
+
+.ugl-toast__body {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-xs);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ugl-toast-max-width);
+  min-height: var(--ugl-toast-min-height);
+  padding: var(--ugl-spacing-3xs) var(--ugl-spacing-3xs) var(--ugl-spacing-3xs) var(--ugl-spacing-l);
+  border-radius: var(--ugl-radius-m);
+  background-color: var(--ugl-color-toast-surface);
+  box-shadow: var(--ugl-elevation-overlay);
+  color: var(--ugl-color-toast-text);
+  pointer-events: auto;
+  animation: ugl-toast-enter-bottom var(--ugl-transition-slow) both;
+}
+
+.ugl-toast--top .ugl-toast__body {
+  animation-name: ugl-toast-enter-top;
+}
+
+/* Sem ação nem fechar, o texto ganha o recuo simétrico */
+.ugl-toast__body:not(:has(button)) {
+  padding-right: var(--ugl-spacing-l);
+}
+
+.ugl-toast__icon {
+  flex-shrink: 0;
+}
+
+.ugl-toast__message {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: var(--ugl-spacing-s) 0;
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+/* ==========================================================================
+   Ação e fechar: alvos de 44px
+   ========================================================================== */
+
+.ugl-toast__action,
+.ugl-toast__close {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--ugl-touch-target);
+  height: var(--ugl-touch-target);
+  margin: 0;
+  border: none;
+  border-radius: var(--ugl-radius-s);
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-toast__action {
+  padding: 0 var(--ugl-spacing-m);
+  color: var(--ugl-color-toast-action);
+  font-family: inherit;
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  white-space: nowrap;
+}
+
+.ugl-toast__close {
+  width: var(--ugl-touch-target);
+  padding: 0;
+  color: var(--ugl-color-toast-text);
+}
+
+/*
+ * Realce sobre a superfície invertida: a camada `state-*` do tema seria da cor
+ * errada aqui (clara sobre claro no escuro), então o realce é a própria cor da
+ * ação em baixa opacidade de camada.
+ */
+.ugl-toast__action::after,
+.ugl-toast__close::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ugl-transition-fast);
+}
+
+.ugl-toast__action:hover::after,
+.ugl-toast__close:hover::after {
+  opacity: 0.12;
+}
+
+.ugl-toast__action:active::after,
+.ugl-toast__close:active::after {
+  opacity: 0.2;
+}
+
+.ugl-toast__action:focus-visible,
+.ugl-toast__close:focus-visible {
+  outline: 2px solid var(--ugl-color-toast-action);
+  outline-offset: -2px;
+}
+
+@keyframes ugl-toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ugl-toast-travel));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ugl-toast-enter-top {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ugl-toast-travel)));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-toast__body {
+    animation: none;
+  }
+
+  .ugl-toast__action,
+  .ugl-toast__close,
+  .ugl-toast__action::after,
+  .ugl-toast__close::after {
+    transition: none;
+  }
+}

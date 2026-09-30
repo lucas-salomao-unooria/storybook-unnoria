@@ -1,0 +1,142 @@
+/**
+ * Estilos do Componente SearchField — Design System Unoogaleria
+ * Campo de 44px (o alvo de toque do módulo) em `fill-field`, com a lupa à
+ * esquerda, o disco de limpar à direita e o "Cancelar" fora do campo. O botão
+ * de limpar nativo do navegador é escondido: o do componente tem nome acessível.
+ */
+
+.ugl-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-search-field__box {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--ugl-spacing-xxs);
+  box-sizing: border-box;
+  min-width: 0;
+  height: var(--ugl-touch-target);
+  padding-left: var(--ugl-spacing-m);
+  border-radius: var(--ugl-radius-m);
+  background-color: var(--ugl-color-fill-field);
+  color: var(--ugl-color-icon-secondary);
+  transition: box-shadow var(--ugl-transition-fast);
+}
+
+.ugl-search-field__box:focus-within {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 0;
+}
+
+.ugl-search-field__icon {
+  flex-shrink: 0;
+}
+
+.ugl-search-field__control {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ugl-spacing-m) 0 0;
+  border: none;
+  background: none;
+  color: var(--ugl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.ugl-search-field__control::placeholder {
+  color: var(--ugl-color-text-placeholder);
+  opacity: 1;
+}
+
+.ugl-search-field__control::-webkit-search-cancel-button,
+.ugl-search-field__control::-webkit-search-decoration {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Com o disco de limpar visível, o texto não precisa do recuo direito */
+.ugl-search-field__box:has(.ugl-search-field__clear) .ugl-search-field__control {
+  padding-right: 0;
+}
+
+/* ==========================================================================
+   Limpar: alvo de 44px com um disco de 20px dentro
+   ========================================================================== */
+
+.ugl-search-field__clear {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--ugl-touch-target);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--ugl-radius-m);
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-search-field__clear-disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ugl-icon-size-sm);
+  height: var(--ugl-icon-size-sm);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-icon-secondary);
+  color: var(--ugl-color-background-primary);
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-search-field__clear:hover .ugl-search-field__clear-disc,
+.ugl-search-field__clear:active .ugl-search-field__clear-disc {
+  background-color: var(--ugl-color-icon-primary);
+}
+
+.ugl-search-field__clear:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: -4px;
+}
+
+/* ==========================================================================
+   Cancelar e desabilitado
+   ========================================================================== */
+
+.ugl-search-field__cancel {
+  flex-shrink: 0;
+}
+
+.ugl-search-field--disabled .ugl-search-field__box {
+  opacity: 0.4;
+}
+
+.ugl-search-field--disabled .ugl-search-field__control {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-search-field__box,
+  .ugl-search-field__clear-disc {
+    transition: none;
+  }
+}

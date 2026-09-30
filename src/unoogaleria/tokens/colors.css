@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Unoogaleria
+   Todo valor é um literal copiado da paleta da Plataforma Unooria
+   (`src/unooria/tokens/colors.css` e `elevation.css`); o comentário ao lado de
+   cada linha nomeia o token de origem. O módulo NÃO consome `--unooria-*` em
+   tempo de execução — um módulo de marca nunca lê tokens de outro (AGENTS.md,
+   1.3) —, e `scripts/verificar-paridade-unoogaleria.mjs` falha o build se um
+   literal se afastar da origem. `colors.css` e `colors.ts` saem da mesma tabela.
+
+   Dois temas, ambos sobre a escala roxa (`brandpurple`):
+   - claro: telas em branco e lavanda (50–300), acento em 600;
+   - escuro: telas em roxo profundo (700–950), acento em 400.
+   O tema escuro NÃO é derivado do claro por cálculo: cada valor de cada tema é
+   um degrau nomeado da Unooria.
+
+   A superfície IMERSIVA (visualizador e editor), a mídia e o aparelho do mockup
+   são invariantes: fotografia se vê sobre fundo escuro nos dois temas.
+   ========================================================================== */
+
+:root,
+[data-ugl-theme='light'] {
+  /** Fundo das telas: biblioteca, álbuns e busca */
+  --ugl-color-background-primary: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Fundo de listas agrupadas e da tela atrás dos cartões */
+  --ugl-color-background-secondary: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Mídia ainda não carregada, cápsulas e blocos sutis */
+  --ugl-color-background-tertiary: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Folhas inferiores, menus e diálogos */
+  --ugl-color-background-elevated: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Barras translúcidas sobre a grade (topo, abas e seleção) */
+  --ugl-color-surface-bar: rgba(255, 255, 255, 0.90); /* --unooria-color-opacity-neutrallight-900 */
+  /** Títulos, rótulos e texto de alto contraste */
+  --ugl-color-text-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Datas, contagens, metadados e abas inativas */
+  --ugl-color-text-secondary: #475157; /* --unooria-color-neutral-700 */
+  /** Espaço reservado dos campos */
+  --ugl-color-text-placeholder: #536167; /* --unooria-color-neutral-600 */
+  /** Ações de texto: "Selecionar", "Ver tudo", links */
+  --ugl-color-text-accent: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Rótulo e glifo sobre o preenchimento de ação e o círculo de seleção */
+  --ugl-color-text-on-action: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Ações destrutivas em texto: "Excluir", "Apagar tudo" */
+  --ugl-color-text-danger: #C11414; /* --unooria-color-danger-700 */
+  /** Rótulo sobre o botão destrutivo preenchido */
+  --ugl-color-text-on-danger: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Glifos ativos das barras e das linhas de lista */
+  --ugl-color-icon-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Glifos inativos, de apoio e setas de navegação */
+  --ugl-color-icon-secondary: #617379; /* --unooria-color-neutral-500 */
+  /** Glifo da aba ativa e das linhas de álbum */
+  --ugl-color-icon-accent: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Divisores entre linhas e fios de barra */
+  --ugl-color-border-subtle: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Contorno de cartões e do botão secundário */
+  --ugl-color-border-default: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Contorno de campo e de controle (gráfico ≥ 3:1) */
+  --ugl-color-border-control: #617379; /* --unooria-color-neutral-500 */
+  /** Botão primário, aba ativa, controle selecionado e círculo de seleção */
+  --ugl-color-action-primary: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Estado pressionado da ação primária */
+  --ugl-color-action-pressed: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Ação primária desabilitada */
+  --ugl-color-action-disabled: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Botão destrutivo preenchido (excluir de vez) */
+  --ugl-color-action-danger: #E31A1A; /* --unooria-color-danger-600 */
+  /** Preenchimento do campo de busca, dos chips e do controle segmentado */
+  --ugl-color-fill-field: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Realce de hover sobre qualquer superfície */
+  --ugl-color-state-hover: rgba(14, 16, 57, 0.05); /* --unooria-color-opacity-brandpurple-50 */
+  /** Realce de pressionado sobre qualquer superfície */
+  --ugl-color-state-pressed: rgba(14, 16, 57, 0.10); /* --unooria-color-opacity-brandpurple-100 */
+  /** Anel de foco de 2px (gráfico ≥ 3:1) */
+  --ugl-color-focus-ring: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Coração de favorito fora do visualizador */
+  --ugl-color-brand-favorite: #E31A1A; /* --unooria-color-danger-600 */
+  /** Confirmação: salvo, restaurado, copiado */
+  --ugl-color-status-success: #008257; /* --unooria-color-success-700 */
+  /** Prazo curto na lixeira ("1 dia") */
+  --ugl-color-status-warning: #B73506; /* --unooria-color-warning-700 */
+  /** Véu atrás de folhas e diálogos */
+  --ugl-color-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+  /** Fundo do aviso passageiro (cores invertidas) */
+  --ugl-color-toast-surface: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto do aviso passageiro */
+  --ugl-color-toast-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Ação do aviso passageiro ("Desfazer") */
+  --ugl-color-toast-action: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Folhas, menus, diálogos, avisos e o controle flutuante */
+  --ugl-elevation-overlay: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+}
+
+[data-ugl-theme='dark'] {
+  /** Fundo das telas: biblioteca, álbuns e busca */
+  --ugl-color-background-primary: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Fundo de listas agrupadas e da tela atrás dos cartões */
+  --ugl-color-background-secondary: #080922; /* --unooria-color-brandpurple-950 */
+  /** Mídia ainda não carregada, cápsulas e blocos sutis */
+  --ugl-color-background-tertiary: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Folhas inferiores, menus e diálogos */
+  --ugl-color-background-elevated: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Barras translúcidas sobre a grade (topo, abas e seleção) */
+  --ugl-color-surface-bar: rgba(14, 16, 57, 0.90); /* --unooria-color-opacity-brandpurple-900 */
+  /** Títulos, rótulos e texto de alto contraste */
+  --ugl-color-text-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Datas, contagens, metadados e abas inativas */
+  --ugl-color-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Espaço reservado dos campos */
+  --ugl-color-text-placeholder: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Ações de texto: "Selecionar", "Ver tudo", links */
+  --ugl-color-text-accent: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Rótulo e glifo sobre o preenchimento de ação e o círculo de seleção */
+  --ugl-color-text-on-action: #080922; /* --unooria-color-brandpurple-950 */
+  /** Ações destrutivas em texto: "Excluir", "Apagar tudo" */
+  --ugl-color-text-danger: #FFA1A1; /* --unooria-color-danger-300 */
+  /** Rótulo sobre o botão destrutivo preenchido */
+  --ugl-color-text-on-danger: #080922; /* --unooria-color-brandpurple-950 */
+  /** Glifos ativos das barras e das linhas de lista */
+  --ugl-color-icon-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Glifos inativos, de apoio e setas de navegação */
+  --ugl-color-icon-secondary: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Glifo da aba ativa e das linhas de álbum */
+  --ugl-color-icon-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Divisores entre linhas e fios de barra */
+  --ugl-color-border-subtle: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno de cartões e do botão secundário */
+  --ugl-color-border-default: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno de campo e de controle (gráfico ≥ 3:1) */
+  --ugl-color-border-control: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Botão primário, aba ativa, controle selecionado e círculo de seleção */
+  --ugl-color-action-primary: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Estado pressionado da ação primária */
+  --ugl-color-action-pressed: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Ação primária desabilitada */
+  --ugl-color-action-disabled: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Botão destrutivo preenchido (excluir de vez) */
+  --ugl-color-action-danger: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Preenchimento do campo de busca, dos chips e do controle segmentado */
+  --ugl-color-fill-field: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Realce de hover sobre qualquer superfície */
+  --ugl-color-state-hover: rgba(255, 255, 255, 0.10); /* --unooria-color-opacity-neutrallight-100 */
+  /** Realce de pressionado sobre qualquer superfície */
+  --ugl-color-state-pressed: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Anel de foco de 2px (gráfico ≥ 3:1) */
+  --ugl-color-focus-ring: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Coração de favorito fora do visualizador */
+  --ugl-color-brand-favorite: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Confirmação: salvo, restaurado, copiado */
+  --ugl-color-status-success: #26E197; /* --unooria-color-success-400 */
+  /** Prazo curto na lixeira ("1 dia") */
+  --ugl-color-status-warning: #FFB74A; /* --unooria-color-warning-300 */
+  /** Véu atrás de folhas e diálogos */
+  --ugl-color-overlay-scrim: rgba(14, 16, 57, 0.70); /* --unooria-color-opacity-brandpurple-700 */
+  /** Fundo do aviso passageiro (cores invertidas) */
+  --ugl-color-toast-surface: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Texto do aviso passageiro */
+  --ugl-color-toast-text: #080922; /* --unooria-color-brandpurple-950 */
+  /** Ação do aviso passageiro ("Desfazer") */
+  --ugl-color-toast-action: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Folhas, menus, diálogos, avisos e o controle flutuante */
+  --ugl-elevation-overlay: 0px 0px 8px 4px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-2 */
+}
+
+/* ==========================================================================
+   Invariantes entre temas e gradientes compostos
+
+   Os gradientes usam `var()`. Uma propriedade personalizada com `var()` é
+   resolvida NO elemento em que é declarada; declarada só em `:root`, ela
+   congelaria os valores do tema claro dentro de um contêiner escuro (a lição da
+   seção 2.9). Por isso o bloco se repete em todo `[data-ugl-theme]`.
+   ========================================================================== */
+
+:root,
+[data-ugl-theme] {
+  /** Fundo do visualizador e do editor, nos dois temas */
+  --ugl-color-immersive-surface: #080922; /* --unooria-color-brandpurple-950 */
+  /** Barras do visualizador e do editor sobre a mídia */
+  --ugl-color-immersive-bar: rgba(14, 16, 57, 0.70); /* --unooria-color-opacity-brandpurple-700 */
+  /** Texto e glifo sobre a superfície imersiva e sobre mídia */
+  --ugl-color-immersive-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Metadado sobre a superfície imersiva (hora, lugar) */
+  --ugl-color-immersive-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Ferramenta ativa, trilha preenchida e filtro escolhido no editor */
+  --ugl-color-immersive-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Rótulo sobre o acento imersivo */
+  --ugl-color-immersive-text-on-accent: #080922; /* --unooria-color-brandpurple-950 */
+  /** Fundo dos botões circulares sobre mídia */
+  --ugl-color-immersive-control: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Botão circular pressionado sobre mídia */
+  --ugl-color-immersive-control-pressed: rgba(255, 255, 255, 0.30); /* --unooria-color-opacity-neutrallight-300 */
+  /** Trilha vazia do deslizador e da linha do tempo */
+  --ugl-color-immersive-track: rgba(255, 255, 255, 0.40); /* --unooria-color-opacity-neutrallight-400 */
+  /** Fio e contorno sobre a superfície imersiva */
+  --ugl-color-immersive-border: rgba(255, 255, 255, 0.30); /* --unooria-color-opacity-neutrallight-300 */
+  /** Coração de favorito no visualizador */
+  --ugl-color-immersive-favorite: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Ação de excluir no visualizador */
+  --ugl-color-immersive-danger: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Cápsula da duração e dos selos sobre a miniatura */
+  --ugl-color-media-scrim: rgba(14, 16, 57, 0.60); /* --unooria-color-opacity-brandpurple-600 */
+  /** Véu claro sobre a miniatura selecionada */
+  --ugl-color-media-veil-selected: rgba(255, 255, 255, 0.30); /* --unooria-color-opacity-neutrallight-300 */
+  /** Texto e glifo sobre miniatura e capa (sempre branco) */
+  --ugl-color-media-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Corpo do aparelho do mockup e ilha da câmera */
+  --ugl-color-device-body: #080922; /* --unooria-color-brandpurple-950 */
+  /** Aro metálico do aparelho */
+  --ugl-color-device-edge: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Botões laterais do aparelho */
+  --ugl-color-device-button: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Lente da câmera frontal */
+  --ugl-color-device-lens: #34375C; /* --unooria-color-brandpurple-800 */
+
+  /** Véu do topo da mídia, atrás da barra do visualizador */
+  --ugl-gradient-media-top: linear-gradient(180deg, var(--ugl-color-media-scrim) 0%, transparent 100%);
+  /** Véu da base da mídia, atrás do título de capas e memórias */
+  --ugl-gradient-media-bottom: linear-gradient(180deg, transparent 40%, var(--ugl-color-media-scrim) 100%);
+}

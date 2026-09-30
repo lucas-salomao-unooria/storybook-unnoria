@@ -32,7 +32,7 @@ const FONTE = 'fonts.css';
 
 /** Folhas publicadas e as seções que cada uma deve cobrir. */
 const AGREGADOS = [
-  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube', 'unoochat', 'unoovista', 'unooriaai'], excluir: [FONTE] },
+  { arquivo: 'styles.css', secoes: ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube', 'unoochat', 'unoovista', 'unooriaai', 'unoogaleria'], excluir: [FONTE] },
   { arquivo: 'styles-unooria.css', secoes: ['unooria'], excluir: [FONTE] },
   { arquivo: 'styles-instanooria.css', secoes: ['instanooria'], excluir: [FONTE] },
   { arquivo: 'styles-chatgpt.css', secoes: ['chatgpt'], excluir: [FONTE] },
@@ -42,6 +42,7 @@ const AGREGADOS = [
   { arquivo: 'styles-unoochat.css', secoes: ['unoochat'], excluir: [FONTE] },
   { arquivo: 'styles-unoovista.css', secoes: ['unoovista'], excluir: [FONTE] },
   { arquivo: 'styles-unooriaai.css', secoes: ['unooriaai'], excluir: [FONTE] },
+  { arquivo: 'styles-unoogaleria.css', secoes: ['unoogaleria'], excluir: [FONTE] },
 
   /*
    * As folhas de fonte, do outro lado: cada uma cobre exatamente o `fonts.css`
@@ -55,6 +56,7 @@ const AGREGADOS = [
   { arquivo: 'fonts-unoochat.css', secoes: ['unoochat'], apenas: [FONTE] },
   { arquivo: 'fonts-unoovista.css', secoes: ['unoovista'], apenas: [FONTE] },
   { arquivo: 'fonts-unooriaai.css', secoes: ['unooriaai'], apenas: [FONTE] },
+  { arquivo: 'fonts-unoogaleria.css', secoes: ['unoogaleria'], apenas: [FONTE] },
 ];
 
 /** Todo `*.css` de tokens e de componentes de uma seção, como caminho relativo. */

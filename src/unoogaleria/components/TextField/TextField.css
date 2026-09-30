@@ -1,0 +1,202 @@
+/**
+ * Estilos do Componente TextField — Design System Unoogaleria
+ * Rótulo acima, campo com contorno de controle (gráfico ≥ 3:1) e, abaixo, a
+ * mensagem de apoio ou de erro à esquerda e o contador à direita. O foco soma
+ * 1px de sombra ao contorno de 1px, formando o anel de 2px.
+ */
+
+.ugl-text-field {
+  /* Altura mínima do campo de uma linha: o alvo de toque do módulo */
+  --ugl-text-field-min-height: var(--ugl-touch-target);
+  /* Centra o glifo de 16px na linha de 18px da legenda */
+  --ugl-text-field-icon-nudge: 1px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xxs);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--ugl-font-sans);
+  color: var(--ugl-color-text-primary);
+}
+
+.ugl-text-field__label {
+  color: var(--ugl-color-text-primary);
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+}
+
+.ugl-text-field__control {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ugl-text-field-min-height);
+  margin: 0;
+  padding: var(--ugl-spacing-s) var(--ugl-spacing-m);
+  border: 1px solid var(--ugl-color-border-control);
+  border-radius: var(--ugl-radius-m);
+  background-color: var(--ugl-color-background-primary);
+  color: var(--ugl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color var(--ugl-transition-fast),
+    box-shadow var(--ugl-transition-fast);
+}
+
+textarea.ugl-text-field__control {
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-border-default) transparent;
+}
+
+.ugl-text-field__control::placeholder {
+  color: var(--ugl-color-text-placeholder);
+  opacity: 1;
+}
+
+.ugl-text-field__control:hover:not(:disabled) {
+  border-color: var(--ugl-color-icon-primary);
+}
+
+.ugl-text-field__control:focus-visible,
+.ugl-text-field__control:focus {
+  border-color: var(--ugl-color-focus-ring);
+  box-shadow: 0 0 0 1px var(--ugl-color-focus-ring);
+}
+
+.ugl-text-field--invalid .ugl-text-field__control,
+.ugl-text-field--invalid .ugl-text-field__control:hover:not(:disabled) {
+  border-color: var(--ugl-color-text-danger);
+}
+
+.ugl-text-field--invalid .ugl-text-field__control:focus {
+  box-shadow: 0 0 0 1px var(--ugl-color-text-danger);
+}
+
+.ugl-text-field--disabled .ugl-text-field__control {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   Rodapé: mensagem e contador
+   ========================================================================== */
+
+.ugl-text-field__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ugl-spacing-m);
+}
+
+.ugl-text-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ugl-spacing-3xs);
+  margin: 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+}
+
+.ugl-text-field__message--error {
+  color: var(--ugl-color-text-danger);
+}
+
+.ugl-text-field__message-icon {
+  margin-top: var(--ugl-text-field-icon-nudge);
+}
+
+.ugl-text-field__counter {
+  flex-shrink: 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  font-variant-numeric: tabular-nums;
+}
+
+.ugl-text-field__counter--over {
+  color: var(--ugl-color-text-danger);
+  font-weight: var(--ugl-font-caption-strong-weight);
+}
+
+.ugl-text-field__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Imersiva: sobre o visualizador e o editor, em qualquer tema
+   ========================================================================== */
+
+.ugl-text-field--immersive,
+.ugl-text-field--immersive .ugl-text-field__label {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-text-field--immersive .ugl-text-field__control {
+  border-color: var(--ugl-color-immersive-track);
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-text-field--immersive .ugl-text-field__control::placeholder {
+  color: var(--ugl-color-immersive-text-secondary);
+}
+
+.ugl-text-field--immersive .ugl-text-field__control:hover:not(:disabled) {
+  border-color: var(--ugl-color-immersive-text-secondary);
+}
+
+.ugl-text-field--immersive .ugl-text-field__control:focus {
+  border-color: var(--ugl-color-immersive-accent);
+  box-shadow: 0 0 0 1px var(--ugl-color-immersive-accent);
+}
+
+.ugl-text-field--immersive .ugl-text-field__message,
+.ugl-text-field--immersive .ugl-text-field__counter {
+  color: var(--ugl-color-immersive-text-secondary);
+}
+
+.ugl-text-field--immersive.ugl-text-field--invalid .ugl-text-field__control,
+.ugl-text-field--immersive .ugl-text-field__message--error,
+.ugl-text-field--immersive .ugl-text-field__counter--over {
+  border-color: var(--ugl-color-immersive-danger);
+  color: var(--ugl-color-immersive-danger);
+}
+
+.ugl-text-field--immersive.ugl-text-field--invalid .ugl-text-field__control {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-text-field--immersive.ugl-text-field--invalid .ugl-text-field__control:focus {
+  box-shadow: 0 0 0 1px var(--ugl-color-immersive-danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-text-field__control {
+    transition: none;
+  }
+}

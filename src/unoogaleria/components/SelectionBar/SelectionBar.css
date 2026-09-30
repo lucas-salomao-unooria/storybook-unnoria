@@ -1,0 +1,71 @@
+/**
+ * Estilos do Componente SelectionBar — Design System Unoogaleria
+ * Barra translúcida com desfoque e fio superior, na altura de
+ * `--ugl-toolbar-height`, com a área segura da barra de gesto abaixo.
+ */
+
+.ugl-selection-bar {
+  position: relative;
+  z-index: var(--ugl-z-bar);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 100%;
+  padding-bottom: var(--ugl-safe-area-bottom, 0px);
+  background-color: var(--ugl-color-surface-bar);
+  box-shadow: var(--ugl-elevation-hairline-top);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-selection-bar--floating {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* O rótulo fica no centro da barra: os dois lados crescem por igual */
+.ugl-selection-bar__content {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  box-sizing: border-box;
+  min-height: var(--ugl-toolbar-height);
+  padding: 0 var(--ugl-spacing-3xs);
+}
+
+.ugl-selection-bar__group {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: var(--ugl-spacing-4xs);
+}
+
+.ugl-selection-bar__group--end {
+  justify-content: flex-end;
+}
+
+.ugl-selection-bar__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ugl-color-text-primary);
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ugl-selection-bar .ugl-selection-bar__action {
+  color: var(--ugl-color-icon-accent);
+}
+
+.ugl-selection-bar .ugl-selection-bar__action--danger {
+  color: var(--ugl-color-text-danger);
+}

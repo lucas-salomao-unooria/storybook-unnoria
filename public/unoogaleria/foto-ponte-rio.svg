@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Ponte sobre o rio ao entardecer">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34375C"/><stop offset="0.4" stop-color="#8B85AC"/><stop offset="0.7" stop-color="#FBB076"/><stop offset="1" stop-color="#FFD388"/></linearGradient>
+<linearGradient id="river" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8833F"/><stop offset="0.35" stop-color="#8B85AC"/><stop offset="1" stop-color="#34375C"/></linearGradient>
+<linearGradient id="open" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBB076"/><stop offset="1" stop-color="#F8833F"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFEBC6"/><stop offset="1" stop-color="#FFEBC6" stop-opacity="0"/></radialGradient>
+<g id="br"><rect x="110" y="420" width="1380" height="36" fill="#080922"/><rect x="110" y="456" width="1380" height="104" fill="#0E1039"/><path d="M110 420V392M1490 420V392" stroke="#080922" stroke-width="10"/><path d="M110 396H1490" stroke="#080922" stroke-width="6"/><path d="M140 396V420M220 396V420M300 396V420M380 396V420M460 396V420M540 396V420M620 396V420M700 396V420M780 396V420M860 396V420M940 396V420M1020 396V420M1100 396V420M1180 396V420M1260 396V420M1340 396V420M1420 396V420" stroke="#34375C" stroke-width="4"/>
+<path d="M160 560V508A135 62 0 0 1 430 508V560Z" fill="url(#open)"/><path d="M490 560V508A135 62 0 0 1 760 508V560Z" fill="url(#open)"/><path d="M820 560V508A135 62 0 0 1 1090 508V560Z" fill="url(#open)"/><path d="M1150 560V508A135 62 0 0 1 1420 508V560Z" fill="url(#open)"/>
+<path d="M160 508A135 62 0 0 1 430 508M490 508A135 62 0 0 1 760 508M820 508A135 62 0 0 1 1090 508M1150 508A135 62 0 0 1 1420 508" fill="none" stroke="#34375C" stroke-width="8"/></g></defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1180" cy="430" r="300" fill="url(#glow)"/><circle cx="1180" cy="430" r="64" fill="#FFF8EB"/>
+<path d="M100 240Q260 210 440 250Q300 280 100 240Z" fill="#FDD1AB" opacity=".6"/><path d="M1000 200Q1200 170 1420 210Q1240 250 1000 200Z" fill="#FEEAD6" opacity=".5"/><path d="M500 330Q640 310 780 340Q640 370 500 330Z" fill="#FFD388" opacity=".6"/>
+<path d="M0 520L200 450L420 500L620 440L860 510L1100 470L1340 520L1600 460V560H0Z" fill="#57547D"/>
+<rect y="560" width="1600" height="340" fill="url(#river)"/>
+<g fill="#FFD388"><rect x="1040" y="590" width="280" height="8" rx="4" opacity=".9"/><rect x="1090" y="620" width="180" height="8" rx="4" opacity=".7"/><rect x="1010" y="652" width="340" height="8" rx="4" opacity=".6"/><rect x="1100" y="690" width="160" height="8" rx="4" opacity=".5"/></g>
+<use href="#br" transform="translate(0 1120) scale(1 -1)" opacity=".3"/>
+<use href="#br"/>
+<g fill="#FFD388"><circle cx="220" cy="386" r="7"/><circle cx="540" cy="386" r="7"/><circle cx="860" cy="386" r="7"/><circle cx="1180" cy="386" r="7"/><circle cx="1420" cy="386" r="7"/></g>
+<path d="M0 620Q400 600 800 630T1600 620V900H0Z" fill="#34375C" opacity=".35"/>
+<path d="M0 800Q300 770 620 800T1240 790T1600 800V900H0Z" fill="#0E1039"/>
+<path d="M0 560Q70 520 130 560V600H0Z" fill="#0E1039"/><path d="M1600 560Q1520 510 1440 560V600H1600Z" fill="#0E1039"/>
+<g fill="#080922"><path d="M60 800L90 690L120 800Z"/><path d="M100 810L140 680L180 810Z"/><path d="M1460 800L1490 700L1520 800Z"/><path d="M1500 810L1540 690L1580 810Z"/></g>
+<g fill="none" stroke="#34375C" stroke-width="4" stroke-linecap="round"><path d="M620 250Q632 236 644 250Q656 236 668 250"/><path d="M700 280Q710 268 720 280Q730 268 740 280"/></g>
+<g><path d="M700 740l80 -14l-14 30z" fill="#080922"/><path d="M700 740h80" stroke="#FFD388" stroke-width="3" opacity=".6"/></g>
+</svg>

@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos, Movimento e Camadas — Unoogaleria
+   Medidas do módulo, sobre a tela de 390×844. A régua de espaçamento é a fina
+   que as linhas de altura fixa exigem; os tamanhos de ícone e o desfoque das
+   barras são literais da Plataforma Unooria, com a origem no comentário.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --ugl-spacing-4xs: 2px;
+  --ugl-spacing-3xs: 4px;
+  --ugl-spacing-xxs: 6px;
+  --ugl-spacing-xs: 8px;
+  --ugl-spacing-s: 10px;
+  --ugl-spacing-m: 12px;
+  --ugl-spacing-l: 16px;
+  --ugl-spacing-xl: 20px;
+  --ugl-spacing-xxl: 24px;
+  --ugl-spacing-3xl: 32px;
+  --ugl-spacing-4xl: 48px;
+
+  /* Margem lateral padrão das telas */
+  --ugl-gutter: 16px;
+
+  /* Espaço entre miniaturas da grade: fino, para a grade ler como um mosaico */
+  --ugl-grid-gap: 2px;
+
+  /* Raios de borda */
+  --ugl-radius-xs: 4px;
+  --ugl-radius-s: 8px;
+  --ugl-radius-m: 12px;
+  --ugl-radius-l: 16px;
+  --ugl-radius-xl: 24px;
+  --ugl-radius-full: 1000px;
+
+  /* Dimensões estruturais da tela */
+  --ugl-screen-width: 390px;
+  --ugl-screen-height: 844px;
+  --ugl-statusbar-height: 47px;
+  --ugl-home-indicator-height: 34px;
+  --ugl-topbar-height: 44px;
+  --ugl-tabbar-height: 50px;
+  --ugl-toolbar-height: 50px;
+  --ugl-touch-target: 44px;
+
+  /*
+   * Áreas seguras. Valem 0 fora de um aparelho; o `PhoneFrame` as redefine na
+   * tela com a altura da barra de status e da barra de gesto, e barras, folhas e
+   * o visualizador as somam ao próprio recuo.
+   */
+  --ugl-safe-area-top: 0px;
+  --ugl-safe-area-bottom: 0px;
+
+  /* Tamanhos de ícone (degraus de --unooria-icon-size-*) */
+  --ugl-icon-size-xs: 16px; /* --unooria-icon-size-3xs */
+  --ugl-icon-size-sm: 20px; /* --unooria-icon-size-xs */
+  --ugl-icon-size-md: 24px; /* --unooria-icon-size-s */
+  --ugl-icon-size-lg: 32px; /* --unooria-icon-size-m */
+  --ugl-icon-size-xl: 48px; /* --unooria-icon-size-xl */
+
+  /* Avatares (pessoas na busca e contatos no compartilhamento) */
+  --ugl-avatar-sm: 32px;
+  --ugl-avatar-md: 48px;
+  --ugl-avatar-lg: 64px;
+
+  /* Desfoque das barras translúcidas sobre a grade */
+  --ugl-blur-bar: 16px; /* --unooria-blur-400 */
+
+  /* Movimento */
+  --ugl-transition-fast: 120ms ease;
+  --ugl-transition-base: 200ms ease;
+  --ugl-transition-slow: 320ms cubic-bezier(0.2, 0, 0, 1);
+
+  /* Camadas, de baixo para cima, dentro da tela */
+  --ugl-z-bar: 10;
+  --ugl-z-viewer: 20;
+  --ugl-z-sheet: 30;
+  --ugl-z-dialog: 40;
+  --ugl-z-toast: 50;
+  --ugl-z-statusbar: 60;
+}
+
+/*
+ * Fios de 1px. Compostos com `var()` de cor, então declarados em todo
+ * `[data-ugl-theme]` (ver o comentário de `colors.css`): declarados só em
+ * `:root`, o fio ficaria com a cor do tema claro dentro de um contêiner escuro.
+ */
+:root,
+[data-ugl-theme] {
+  --ugl-elevation-hairline-bottom: 0 1px 0 0 var(--ugl-color-border-subtle);
+  --ugl-elevation-hairline-top: 0 -1px 0 0 var(--ugl-color-border-subtle);
+}

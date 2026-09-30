@@ -1,0 +1,59 @@
+/**
+ * Folha de estilos do Design System Unoogaleria.
+ *
+ * Importe este arquivo para registrar os tokens `--ugl-*` e os estilos dos
+ * componentes do módulo `src/unoogaleria/`.
+ *
+ * FONTES: esta folha **não** declara `@font-face`. Os componentes só citam
+ * `var(--ugl-font-sans)`, com pilha de fallback. A família é opt-in:
+ *
+ *     import '@unooria/design-system/fonts/unoogaleria.css';
+ *
+ * É explícito de propósito — um app que resolva a tipografia por `next/font`
+ * não escreve essa linha. Ver a seção 4.6 do AGENTS.md. Os ícones são fonte de
+ * ligadura: sem a folha de fonte (ou o Material Symbols do próprio app), o nome
+ * do ícone aparece como texto.
+ */
+
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unoogaleria)
+ * ---------------------------------------------------- */
+@import './unoogaleria/tokens/typography.css';
+@import './unoogaleria/tokens/colors.css';
+@import './unoogaleria/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unoogaleria)
+ * ---------------------------------------------------- */
+@import './unoogaleria/components/ActionMenu/ActionMenu.css';
+@import './unoogaleria/components/AlbumCard/AlbumCard.css';
+@import './unoogaleria/components/Avatar/Avatar.css';
+@import './unoogaleria/components/BottomSheet/BottomSheet.css';
+@import './unoogaleria/components/Button/Button.css';
+@import './unoogaleria/components/Chip/Chip.css';
+@import './unoogaleria/components/ConfirmDialog/ConfirmDialog.css';
+@import './unoogaleria/components/EmptyState/EmptyState.css';
+@import './unoogaleria/components/Filmstrip/Filmstrip.css';
+@import './unoogaleria/components/FilterPicker/FilterPicker.css';
+@import './unoogaleria/components/GalleryApp/GalleryApp.css';
+@import './unoogaleria/components/HighlightCard/HighlightCard.css';
+@import './unoogaleria/components/Icon/Icon.css';
+@import './unoogaleria/components/IconButton/IconButton.css';
+@import './unoogaleria/components/InfoPanel/InfoPanel.css';
+@import './unoogaleria/components/ListRow/ListRow.css';
+@import './unoogaleria/components/MediaGrid/MediaGrid.css';
+@import './unoogaleria/components/MediaThumbnail/MediaThumbnail.css';
+@import './unoogaleria/components/MediaViewer/MediaViewer.css';
+@import './unoogaleria/components/PhoneFrame/PhoneFrame.css';
+@import './unoogaleria/components/PhotoEditor/PhotoEditor.css';
+@import './unoogaleria/components/SearchField/SearchField.css';
+@import './unoogaleria/components/SectionHeader/SectionHeader.css';
+@import './unoogaleria/components/SegmentedControl/SegmentedControl.css';
+@import './unoogaleria/components/SelectionBar/SelectionBar.css';
+@import './unoogaleria/components/ShareSheet/ShareSheet.css';
+@import './unoogaleria/components/Slider/Slider.css';
+@import './unoogaleria/components/TabBar/TabBar.css';
+@import './unoogaleria/components/TextField/TextField.css';
+@import './unoogaleria/components/Toast/Toast.css';
+@import './unoogaleria/components/TopBar/TopBar.css';
+@import './unoogaleria/components/VideoControls/VideoControls.css';

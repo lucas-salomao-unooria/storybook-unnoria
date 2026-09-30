@@ -1,0 +1,145 @@
+/**
+ * Estilos do Componente Chip — Design System Unoogaleria
+ * Pílula de filtro e de sugestão. O realce de hover e de pressionado é uma
+ * camada translúcida (`state-*`), para valer sobre qualquer preenchimento; a
+ * área de toque passa de 44px por uma camada invisível.
+ */
+
+.ugl-chip {
+  /* Alturas do chip: sem degrau na régua de tamanhos, que só publica o alvo de 44px */
+  --ugl-chip-height-sm: 32px;
+  --ugl-chip-height-md: 40px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ugl-spacing-xxs);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ugl-radius-full);
+  background: none;
+  color: var(--ugl-color-text-primary);
+  font-family: var(--ugl-font-sans);
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ugl-transition-fast),
+    border-color var(--ugl-transition-fast),
+    color var(--ugl-transition-fast),
+    transform var(--ugl-transition-fast);
+}
+
+/* Área de toque de 44px: estende o alvo acima e abaixo sem mudar o desenho */
+.ugl-chip::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--ugl-touch-target);
+  transform: translateY(-50%);
+}
+
+/* Camada de realce (hover e pressionado) */
+.ugl-chip::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-chip:hover:not(:disabled)::after {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-chip:active:not(:disabled)::after {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-chip:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ugl-chip:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ugl-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.ugl-chip__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ugl-chip__trailing {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ugl-chip--sm {
+  height: var(--ugl-chip-height-sm);
+  padding: 0 var(--ugl-spacing-m);
+}
+
+.ugl-chip--md {
+  height: var(--ugl-chip-height-md);
+  padding: 0 var(--ugl-spacing-l);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ugl-chip--filled {
+  background-color: var(--ugl-color-fill-field);
+}
+
+.ugl-chip--outline {
+  border-color: var(--ugl-color-border-default);
+}
+
+/* Selecionado: o mesmo preenchimento de ação nas duas variantes */
+.ugl-chip--selected {
+  border-color: var(--ugl-color-action-primary);
+  background-color: var(--ugl-color-action-primary);
+  color: var(--ugl-color-text-on-action);
+}
+
+.ugl-chip--selected:active:not(:disabled) {
+  border-color: var(--ugl-color-action-pressed);
+  background-color: var(--ugl-color-action-pressed);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-chip,
+  .ugl-chip::after {
+    transition: none;
+  }
+
+  .ugl-chip:active:not(:disabled) {
+    transform: none;
+  }
+}

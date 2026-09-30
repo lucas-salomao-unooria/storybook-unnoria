@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Xícara de café e pão de queijo sobre a mesa de madeira">
+<defs><linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B73506"/><stop offset="1" stop-color="#7A2614"/></linearGradient><radialGradient id="coffee" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#7A230D"/><stop offset="1" stop-color="#421008"/></radialGradient><radialGradient id="roll" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#FFD388"/><stop offset="0.6" stop-color="#FFB74A"/><stop offset="1" stop-color="#F8833F"/></radialGradient>
+<g id="pao"><circle r="100" fill="url(#roll)"/><path d="M-60 -20Q-20 -60 30 -50M-30 30Q20 10 60 20M10 -10Q40 -30 50 -60" fill="none" stroke="#DD5202" stroke-width="6" stroke-linecap="round" opacity=".55"/><ellipse cx="-34" cy="-40" rx="30" ry="16" fill="#FFF8EB" opacity=".45" transform="rotate(-30 -34 -40)"/></g></defs>
+<rect width="1080" height="1080" fill="url(#wood)"/>
+<g stroke="#421008" stroke-width="6" opacity=".55"><path d="M0 180H1080M0 380H1080M0 600H1080M0 820H1080M0 1000H1080"/></g>
+<g stroke="#421008" stroke-width="3" opacity=".3" fill="none"><path d="M60 100Q300 130 560 90T1040 120M40 280Q320 250 600 290T1060 270M80 480Q360 510 640 470T1040 500M60 700Q300 670 580 710T1040 690M50 910Q320 940 600 900T1060 930"/></g>
+<g transform="rotate(-14 880 260)"><rect x="700" y="130" width="360" height="260" rx="14" fill="#CCC9DE"/><path d="M700 210H1060M700 290H1060" stroke="#AAA5C2" stroke-width="6"/><rect x="700" y="130" width="360" height="260" rx="14" fill="none" stroke="#8B85AC" stroke-width="4"/></g>
+<ellipse cx="452" cy="572" rx="300" ry="290" fill="#080922" opacity=".3"/>
+<circle cx="440" cy="540" r="290" fill="#F7F6FA"/><circle cx="440" cy="540" r="290" fill="none" stroke="#DFDDEB" stroke-width="8"/><circle cx="440" cy="540" r="220" fill="#EFEEF5"/>
+<circle cx="440" cy="540" r="165" fill="#FFFFFF"/><circle cx="440" cy="540" r="165" fill="none" stroke="#DFDDEB" stroke-width="6"/>
+<path d="M590 470A88 88 0 0 1 590 625" fill="none" stroke="#FFFFFF" stroke-width="44" stroke-linecap="round" transform="translate(40 -6)"/>
+<path d="M590 470A88 88 0 0 1 590 625" fill="none" stroke="#DFDDEB" stroke-width="6" stroke-linecap="round" transform="translate(40 -6)" opacity=".0"/>
+<circle cx="440" cy="540" r="128" fill="url(#coffee)"/>
+<path d="M376 560Q406 500 452 500Q500 502 512 548Q500 600 440 608Q392 604 376 560Z" fill="#FDD1AB" opacity=".9"/>
+<path d="M410 540Q440 500 470 540Q440 590 410 540Z" fill="#FEEAD6"/>
+<path d="M326 480Q350 430 410 416" fill="none" stroke="#FFEBC6" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+<rect x="640" y="360" width="26" height="170" rx="13" transform="rotate(32 650 400)" fill="#CBD4D6"/><ellipse cx="612" cy="348" rx="34" ry="22" transform="rotate(32 612 348)" fill="#CBD4D6"/>
+<g><ellipse cx="800" cy="840" rx="250" ry="190" fill="#22272A" opacity=".3"/><ellipse cx="810" cy="830" rx="250" ry="180" fill="#FFFFFF"/><ellipse cx="810" cy="830" rx="250" ry="180" fill="none" stroke="#E4E8E9" stroke-width="8"/></g>
+<use href="#pao" x="700" y="790"/><use href="#pao" x="880" y="760" transform="rotate(40 880 760)"/><use href="#pao" x="830" y="900" transform="scale(.9) translate(92 100)"/>
+<g fill="#F97607" opacity=".9"><circle cx="280" cy="900" r="10"/><circle cx="320" cy="960" r="7"/><circle cx="250" cy="980" r="6"/></g>
+<g fill="#FFEBC6"><circle cx="300" cy="930" r="6"/><circle cx="350" cy="910" r="5"/><circle cx="220" cy="940" r="5"/></g>
+</svg>
