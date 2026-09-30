@@ -1,0 +1,273 @@
+/**
+ * Estilos do Componente InfoPanel — Design System Unoogaleria
+ * Conteúdo do painel de informações: legenda, lista de definição de metadados,
+ * cartão do lugar, retratos e álbuns. Não pinta fundo — herda a superfície da
+ * folha em que o produto o coloca.
+ */
+
+.ugl-info-panel {
+  /* Recuo do valor: o glifo de 20px mais o espaço até o termo */
+  --ugl-info-panel-value-inset: calc(var(--ugl-icon-size-sm) + var(--ugl-spacing-m));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xl);
+  color: var(--ugl-color-text-primary);
+  font-family: var(--ugl-font-sans);
+}
+
+/* ==========================================================================
+   Legenda
+   ========================================================================== */
+
+.ugl-info-panel__caption {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ugl-touch-target);
+  margin: 0;
+  padding: var(--ugl-spacing-s) var(--ugl-spacing-m);
+  border: none;
+  border-radius: var(--ugl-radius-s);
+  background-color: var(--ugl-color-fill-field);
+  color: var(--ugl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+  resize: none;
+  field-sizing: content;
+  scrollbar-width: thin;
+}
+
+.ugl-info-panel__caption::placeholder {
+  color: var(--ugl-color-text-placeholder);
+  opacity: 1;
+}
+
+.ugl-info-panel__caption:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 0;
+}
+
+.ugl-info-panel__caption-text {
+  margin: 0;
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   Metadados
+   ========================================================================== */
+
+.ugl-info-panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-m);
+  margin: 0;
+}
+
+.ugl-info-panel__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-4xs);
+}
+
+.ugl-info-panel__term {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-m);
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+}
+
+.ugl-info-panel__row-icon {
+  color: var(--ugl-color-icon-secondary);
+}
+
+.ugl-info-panel__value {
+  margin: 0 0 0 var(--ugl-info-panel-value-inset);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ugl-info-panel__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Seções: lugar, pessoas e álbuns
+   ========================================================================== */
+
+.ugl-info-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-xs);
+}
+
+.ugl-info-panel__heading {
+  margin: 0;
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+}
+
+.ugl-info-panel__place {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ugl-touch-target);
+  margin: 0;
+  padding: var(--ugl-spacing-m);
+  border: none;
+  border-radius: var(--ugl-radius-m);
+  background-color: var(--ugl-color-fill-field);
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+  text-align: left;
+}
+
+.ugl-info-panel__place--action {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-info-panel__place--action:hover {
+  background-image: linear-gradient(var(--ugl-color-state-hover), var(--ugl-color-state-hover));
+}
+
+.ugl-info-panel__place--action:active {
+  background-image: linear-gradient(var(--ugl-color-state-pressed), var(--ugl-color-state-pressed));
+}
+
+.ugl-info-panel__place--action:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ugl-info-panel__place-icon {
+  color: var(--ugl-color-icon-accent);
+}
+
+.ugl-info-panel__place-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ugl-info-panel__people,
+.ugl-info-panel__albums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ugl-spacing-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ugl-info-panel__person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ugl-spacing-3xs);
+  width: var(--ugl-avatar-lg);
+}
+
+.ugl-info-panel__person-name {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ugl-info-panel__albums {
+  gap: var(--ugl-spacing-xs);
+}
+
+.ugl-info-panel__album {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ugl-spacing-xxs);
+  padding: var(--ugl-spacing-xxs) var(--ugl-spacing-m);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-fill-field);
+  color: var(--ugl-color-text-accent);
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+}
+
+/* ==========================================================================
+   Variante imersiva
+   ========================================================================== */
+
+.ugl-info-panel--immersive {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-info-panel--immersive .ugl-info-panel__term,
+.ugl-info-panel--immersive .ugl-info-panel__row-icon {
+  color: var(--ugl-color-immersive-text-secondary);
+}
+
+.ugl-info-panel--immersive .ugl-info-panel__caption,
+.ugl-info-panel--immersive .ugl-info-panel__place,
+.ugl-info-panel--immersive .ugl-info-panel__album {
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-info-panel--immersive .ugl-info-panel__caption::placeholder {
+  color: var(--ugl-color-immersive-text-secondary);
+}
+
+.ugl-info-panel--immersive .ugl-info-panel__place-icon {
+  color: var(--ugl-color-immersive-accent);
+}
+
+.ugl-info-panel--immersive .ugl-info-panel__place--action:hover,
+.ugl-info-panel--immersive .ugl-info-panel__place--action:active {
+  background-image: none;
+  background-color: var(--ugl-color-immersive-control-pressed);
+}
+
+.ugl-info-panel--immersive .ugl-info-panel__caption:focus-visible,
+.ugl-info-panel--immersive .ugl-info-panel__place--action:focus-visible {
+  outline-color: var(--ugl-color-immersive-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-info-panel__place--action {
+    transition: none;
+  }
+}

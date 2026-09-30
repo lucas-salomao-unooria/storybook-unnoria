@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente SectionHeader — Design System Unoogaleria
+ * Cabeçalho de grupo com título, lugar e ação de texto. Colante, vira uma faixa
+ * translúcida com desfoque, como as barras sobre a grade.
+ */
+
+.ugl-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ugl-spacing-xs);
+  box-sizing: border-box;
+  min-height: var(--ugl-touch-target);
+  padding: 0 var(--ugl-spacing-xs) 0 var(--ugl-gutter);
+  font-family: var(--ugl-font-sans);
+  color: var(--ugl-color-text-primary);
+}
+
+.ugl-section-header--lg {
+  padding-top: var(--ugl-spacing-xs);
+  padding-bottom: var(--ugl-spacing-3xs);
+}
+
+.ugl-section-header--sticky {
+  position: sticky;
+  top: var(--ugl-section-header-sticky-top, 0px);
+  z-index: 1;
+  background-color: var(--ugl-color-surface-bar);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+}
+
+.ugl-section-header__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: var(--ugl-spacing-3xs) 0;
+}
+
+.ugl-section-header__title {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ugl-color-text-primary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+  letter-spacing: var(--ugl-font-title-sm-tracking);
+}
+
+.ugl-section-header--lg .ugl-section-header__title {
+  font-size: var(--ugl-font-title-lg-size);
+  font-weight: var(--ugl-font-title-lg-weight);
+  line-height: var(--ugl-font-title-lg-line);
+  letter-spacing: var(--ugl-font-title-lg-tracking);
+}
+
+.ugl-section-header__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ugl-color-text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--ugl-font-caption-size);
+  font-weight: var(--ugl-font-caption-weight);
+  line-height: var(--ugl-font-caption-line);
+  letter-spacing: var(--ugl-font-caption-tracking);
+}
+
+.ugl-section-header__action {
+  flex-shrink: 0;
+}

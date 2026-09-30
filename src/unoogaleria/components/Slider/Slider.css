@@ -1,0 +1,204 @@
+/**
+ * Estilos do Componente Slider — Design System Unoogaleria
+ * O `<input type="range">` nativo fica por cima, transparente, e recebe ponteiro
+ * e foco; a trilha, o preenchimento e o botão são desenhados por baixo. A trilha
+ * é recuada meia largura do botão de cada lado, que é exatamente onde o
+ * navegador centraliza o botão nativo nas pontas — por isso as duas camadas
+ * coincidem em qualquer valor.
+ */
+
+.ugl-slider {
+  /* Diâmetro do botão: alvo visual; o alvo de toque é a faixa de 44px inteira */
+  --ugl-slider-thumb-size: 20px;
+  /* Espessura da trilha */
+  --ugl-slider-track-height: 4px;
+  /* Altura da marca de origem e das marcas de referência */
+  --ugl-slider-mark-height: 12px;
+  --ugl-slider-mark-width: 2px;
+
+  --ugl-slider-label-color: var(--ugl-color-text-primary);
+  --ugl-slider-value-color: var(--ugl-color-text-secondary);
+  --ugl-slider-rail-color: var(--ugl-color-border-default);
+  --ugl-slider-fill-color: var(--ugl-color-action-primary);
+  --ugl-slider-thumb-color: var(--ugl-color-action-primary);
+  --ugl-slider-mark-color: var(--ugl-color-icon-secondary);
+  --ugl-slider-focus-color: var(--ugl-color-focus-ring);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ugl-spacing-4xs);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-slider--immersive {
+  --ugl-slider-label-color: var(--ugl-color-immersive-text);
+  --ugl-slider-value-color: var(--ugl-color-immersive-text-secondary);
+  --ugl-slider-rail-color: var(--ugl-color-immersive-track);
+  --ugl-slider-fill-color: var(--ugl-color-immersive-accent);
+  --ugl-slider-thumb-color: var(--ugl-color-immersive-text);
+  --ugl-slider-mark-color: var(--ugl-color-immersive-text-secondary);
+  --ugl-slider-focus-color: var(--ugl-color-immersive-accent);
+}
+
+/* ==========================================================================
+   Rótulo e valor
+   ========================================================================== */
+
+.ugl-slider__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ugl-spacing-xs);
+}
+
+.ugl-slider__label {
+  color: var(--ugl-slider-label-color);
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+}
+
+.ugl-slider__label--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ugl-slider__value {
+  margin-left: auto;
+  color: var(--ugl-slider-value-color);
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Controle
+   ========================================================================== */
+
+.ugl-slider__control {
+  position: relative;
+  height: var(--ugl-touch-target);
+}
+
+.ugl-slider__input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: pan-y;
+}
+
+.ugl-slider__input::-webkit-slider-thumb {
+  width: var(--ugl-slider-thumb-size);
+  height: var(--ugl-touch-target);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ugl-slider__input::-moz-range-thumb {
+  width: var(--ugl-slider-thumb-size);
+  height: var(--ugl-touch-target);
+  border: 0;
+}
+
+.ugl-slider__rail {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--ugl-slider-thumb-size) / 2);
+  right: calc(var(--ugl-slider-thumb-size) / 2);
+  height: var(--ugl-slider-track-height);
+  transform: translateY(-50%);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-slider-rail-color);
+  pointer-events: none;
+}
+
+.ugl-slider__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--ugl-slider-fill-start);
+  width: var(--ugl-slider-fill-size);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-slider-fill-color);
+}
+
+.ugl-slider__origin,
+.ugl-slider__tick {
+  position: absolute;
+  top: 50%;
+  width: var(--ugl-slider-mark-width);
+  height: var(--ugl-slider-mark-height);
+  transform: translate(-50%, -50%);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-slider-mark-color);
+}
+
+.ugl-slider__tick {
+  height: calc(var(--ugl-slider-mark-height) / 2);
+}
+
+.ugl-slider__thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--ugl-slider-position);
+  width: var(--ugl-slider-thumb-size);
+  height: var(--ugl-slider-thumb-size);
+  transform: translate(-50%, -50%);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-slider-thumb-color);
+  box-shadow: var(--ugl-elevation-overlay);
+  transition: transform var(--ugl-transition-fast);
+}
+
+.ugl-slider__input:active + .ugl-slider__rail .ugl-slider__thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.ugl-slider__input:focus-visible + .ugl-slider__rail .ugl-slider__thumb {
+  outline: 2px solid var(--ugl-slider-focus-color);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Desabilitado
+   ========================================================================== */
+
+.ugl-slider--disabled {
+  opacity: 0.4;
+}
+
+.ugl-slider--disabled .ugl-slider__input {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-slider__thumb {
+    transition: none;
+  }
+
+  .ugl-slider__input:active + .ugl-slider__rail .ugl-slider__thumb {
+    transform: translate(-50%, -50%);
+  }
+}

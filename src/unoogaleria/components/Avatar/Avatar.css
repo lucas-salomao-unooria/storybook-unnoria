@@ -1,0 +1,75 @@
+/**
+ * Estilos do Componente Avatar — Design System Unoogaleria
+ * Círculo nos diâmetros `--ugl-avatar-*`. As iniciais usam o degrau de título
+ * proporcional ao diâmetro; o anel é um contorno afastado, que não muda a caixa.
+ */
+
+.ugl-avatar {
+  /* Espessura e afastamento do anel de destaque */
+  --ugl-avatar-ring-width: 2px;
+  --ugl-avatar-ring-gap: 2px;
+
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ugl-avatar-md);
+  height: var(--ugl-avatar-md);
+  overflow: hidden;
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-background-tertiary);
+  color: var(--ugl-color-text-accent);
+  font-family: var(--ugl-font-sans);
+  vertical-align: middle;
+  user-select: none;
+}
+
+.ugl-avatar--sm {
+  width: var(--ugl-avatar-sm);
+  height: var(--ugl-avatar-sm);
+}
+
+.ugl-avatar--md {
+  width: var(--ugl-avatar-md);
+  height: var(--ugl-avatar-md);
+}
+
+.ugl-avatar--lg {
+  width: var(--ugl-avatar-lg);
+  height: var(--ugl-avatar-lg);
+}
+
+.ugl-avatar--ring {
+  overflow: visible;
+  outline: var(--ugl-avatar-ring-width) solid var(--ugl-color-action-primary);
+  outline-offset: var(--ugl-avatar-ring-gap);
+}
+
+.ugl-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.ugl-avatar__initials {
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: 1;
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-avatar--sm .ugl-avatar__initials {
+  font-size: var(--ugl-font-caption-strong-size);
+  font-weight: var(--ugl-font-caption-strong-weight);
+}
+
+.ugl-avatar--md .ugl-avatar__initials {
+  font-size: var(--ugl-font-title-md-size);
+}
+
+.ugl-avatar--lg .ugl-avatar__initials {
+  font-size: var(--ugl-font-heading-size);
+}

@@ -441,3 +441,50 @@
 @import './unooriaai/components/Toggle/Toggle.css';
 @import './unooriaai/components/TopicColumn/TopicColumn.css';
 @import './unooriaai/components/WebSidebar/WebSidebar.css';
+
+/* ====================================================
+ * UNOOGALERIA — início (gerado)
+ * ==================================================== */
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unoogaleria)
+ * ---------------------------------------------------- */
+@import './unoogaleria/tokens/typography.css';
+@import './unoogaleria/tokens/colors.css';
+@import './unoogaleria/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unoogaleria)
+ * ---------------------------------------------------- */
+@import './unoogaleria/components/ActionMenu/ActionMenu.css';
+@import './unoogaleria/components/AlbumCard/AlbumCard.css';
+@import './unoogaleria/components/Avatar/Avatar.css';
+@import './unoogaleria/components/BottomSheet/BottomSheet.css';
+@import './unoogaleria/components/Button/Button.css';
+@import './unoogaleria/components/Chip/Chip.css';
+@import './unoogaleria/components/ConfirmDialog/ConfirmDialog.css';
+@import './unoogaleria/components/EmptyState/EmptyState.css';
+@import './unoogaleria/components/Filmstrip/Filmstrip.css';
+@import './unoogaleria/components/FilterPicker/FilterPicker.css';
+@import './unoogaleria/components/GalleryApp/GalleryApp.css';
+@import './unoogaleria/components/HighlightCard/HighlightCard.css';
+@import './unoogaleria/components/Icon/Icon.css';
+@import './unoogaleria/components/IconButton/IconButton.css';
+@import './unoogaleria/components/InfoPanel/InfoPanel.css';
+@import './unoogaleria/components/ListRow/ListRow.css';
+@import './unoogaleria/components/MediaGrid/MediaGrid.css';
+@import './unoogaleria/components/MediaThumbnail/MediaThumbnail.css';
+@import './unoogaleria/components/MediaViewer/MediaViewer.css';
+@import './unoogaleria/components/PhoneFrame/PhoneFrame.css';
+@import './unoogaleria/components/PhotoEditor/PhotoEditor.css';
+@import './unoogaleria/components/SearchField/SearchField.css';
+@import './unoogaleria/components/SectionHeader/SectionHeader.css';
+@import './unoogaleria/components/SegmentedControl/SegmentedControl.css';
+@import './unoogaleria/components/SelectionBar/SelectionBar.css';
+@import './unoogaleria/components/ShareSheet/ShareSheet.css';
+@import './unoogaleria/components/Slider/Slider.css';
+@import './unoogaleria/components/TabBar/TabBar.css';
+@import './unoogaleria/components/TextField/TextField.css';
+@import './unoogaleria/components/Toast/Toast.css';
+@import './unoogaleria/components/TopBar/TopBar.css';
+@import './unoogaleria/components/VideoControls/VideoControls.css';
+/* UNOOGALERIA — fim */

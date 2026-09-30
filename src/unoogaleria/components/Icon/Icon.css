@@ -1,0 +1,99 @@
+/**
+ * Estilos do Componente Icon — Design System Unoogaleria
+ * Glifos do Material Symbols Rounded (peso 300), a biblioteca de ícones da
+ * Plataforma Unooria. O glifo é texto de ligadura: a caixa é quadrada e o
+ * excedente é cortado, para que a fonte ausente não vaze o nome do ícone.
+ */
+
+.ugl-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--ugl-icon-size-md);
+  height: var(--ugl-icon-size-md);
+  overflow: hidden;
+  vertical-align: middle;
+  font-family: var(--ugl-icon-font-family);
+  font-size: var(--ugl-icon-size-md);
+  font-style: normal;
+  font-weight: normal;
+  font-optical-sizing: auto;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-transform: none;
+  word-wrap: normal;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  color: var(--ugl-color-icon-primary);
+  transition: color var(--ugl-transition-fast);
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ugl-icon--size-xs {
+  width: var(--ugl-icon-size-xs);
+  height: var(--ugl-icon-size-xs);
+  font-size: var(--ugl-icon-size-xs);
+}
+
+.ugl-icon--size-sm {
+  width: var(--ugl-icon-size-sm);
+  height: var(--ugl-icon-size-sm);
+  font-size: var(--ugl-icon-size-sm);
+}
+
+.ugl-icon--size-md {
+  width: var(--ugl-icon-size-md);
+  height: var(--ugl-icon-size-md);
+  font-size: var(--ugl-icon-size-md);
+}
+
+.ugl-icon--size-lg {
+  width: var(--ugl-icon-size-lg);
+  height: var(--ugl-icon-size-lg);
+  font-size: var(--ugl-icon-size-lg);
+}
+
+.ugl-icon--size-xl {
+  width: var(--ugl-icon-size-xl);
+  height: var(--ugl-icon-size-xl);
+  font-size: var(--ugl-icon-size-xl);
+}
+
+/* ==========================================================================
+   Tons semânticos
+   ========================================================================== */
+
+.ugl-icon--tone-primary {
+  color: var(--ugl-color-icon-primary);
+}
+
+.ugl-icon--tone-secondary {
+  color: var(--ugl-color-icon-secondary);
+}
+
+.ugl-icon--tone-accent {
+  color: var(--ugl-color-icon-accent);
+}
+
+.ugl-icon--tone-danger {
+  color: var(--ugl-color-text-danger);
+}
+
+.ugl-icon--tone-favorite {
+  color: var(--ugl-color-brand-favorite);
+}
+
+.ugl-icon--tone-on-media {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-icon--tone-inherit {
+  color: inherit;
+}

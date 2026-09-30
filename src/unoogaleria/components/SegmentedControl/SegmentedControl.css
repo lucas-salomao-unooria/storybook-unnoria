@@ -1,0 +1,139 @@
+/**
+ * Estilos do Componente SegmentedControl — Design System Unoogaleria
+ * Trilha em cápsula com segmentos de mesma largura e um indicador que desliza
+ * sob o segmento escolhido. `--ugl-segmented-count` e `--ugl-segmented-index`
+ * chegam do componente por estilo em linha.
+ */
+
+.ugl-segmented {
+  /* Alturas do controle: sem degrau na régua de tamanhos, que só publica o alvo de 44px */
+  --ugl-segmented-height-sm: 32px;
+  --ugl-segmented-height-md: 40px;
+  /* Recuo do indicador dentro da trilha */
+  --ugl-segmented-inset: var(--ugl-spacing-4xs);
+
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: repeat(var(--ugl-segmented-count, 1), minmax(0, 1fr));
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--ugl-segmented-inset);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-fill-field);
+  font-family: var(--ugl-font-sans);
+}
+
+.ugl-segmented--full {
+  display: grid;
+  width: 100%;
+}
+
+.ugl-segmented--sm {
+  height: var(--ugl-segmented-height-sm);
+}
+
+.ugl-segmented--md {
+  height: var(--ugl-segmented-height-md);
+}
+
+.ugl-segmented--floating {
+  background-color: var(--ugl-color-surface-bar);
+  box-shadow: var(--ugl-elevation-overlay);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+}
+
+/* ==========================================================================
+   Indicador deslizante
+   ========================================================================== */
+
+.ugl-segmented__indicator {
+  position: absolute;
+  top: var(--ugl-segmented-inset);
+  bottom: var(--ugl-segmented-inset);
+  left: var(--ugl-segmented-inset);
+  width: calc((100% - 2 * var(--ugl-segmented-inset)) / var(--ugl-segmented-count, 1));
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-action-primary);
+  transform: translateX(calc(var(--ugl-segmented-index, 0) * 100%));
+  transition: transform var(--ugl-transition-slow);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Segmentos
+   ========================================================================== */
+
+.ugl-segmented__option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ugl-spacing-3xs);
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ugl-spacing-l);
+  border: none;
+  border-radius: var(--ugl-radius-full);
+  background: none;
+  color: var(--ugl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ugl-transition-fast),
+    color var(--ugl-transition-base);
+}
+
+.ugl-segmented--sm .ugl-segmented__option {
+  padding: 0 var(--ugl-spacing-m);
+}
+
+/* Área de toque de 44px, sem mudar o desenho */
+.ugl-segmented__option::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--ugl-touch-target);
+  transform: translateY(-50%);
+}
+
+.ugl-segmented__option:hover:not(.ugl-segmented__option--checked) {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-segmented__option:active:not(.ugl-segmented__option--checked) {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-segmented__option--checked {
+  color: var(--ugl-color-text-on-action);
+}
+
+.ugl-segmented__option:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ugl-segmented__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-segmented__indicator,
+  .ugl-segmented__option {
+    transition: none;
+  }
+}

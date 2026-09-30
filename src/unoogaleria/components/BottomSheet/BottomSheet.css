@@ -1,0 +1,235 @@
+/**
+ * Estilos do Componente BottomSheet — Design System Unoogaleria
+ * Folha inferior modal, posicionada na tela do aparelho (nunca na janela): véu
+ * `overlay-scrim`, painel em `background-elevated` com `radius-xl` no topo e
+ * `--ugl-elevation-overlay`. A variante imersiva usa a superfície invariante do
+ * visualizador, para abrir sobre a mídia sem clarear a tela.
+ */
+
+.ugl-bottom-sheet-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ugl-z-sheet);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--ugl-color-overlay-scrim);
+  animation: ugl-bottom-sheet-fade var(--ugl-transition-base);
+}
+
+.ugl-bottom-sheet-layer--dismissable {
+  cursor: pointer;
+}
+
+.ugl-bottom-sheet {
+  /* Alça: barra de 36×5px num alvo de toque de 44px, sem token equivalente */
+  --ugl-bottom-sheet-grip-width: 36px;
+  --ugl-bottom-sheet-grip-height: 5px;
+  /* Folga entre o topo da folha cheia e a barra de status */
+  --ugl-bottom-sheet-top-gap: var(--ugl-spacing-xs);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: calc(100% - var(--ugl-safe-area-top) - var(--ugl-bottom-sheet-top-gap));
+  padding-bottom: var(--ugl-safe-area-bottom);
+  border-radius: var(--ugl-radius-xl) var(--ugl-radius-xl) 0 0;
+  background-color: var(--ugl-color-background-elevated);
+  color: var(--ugl-color-text-primary);
+  box-shadow: var(--ugl-elevation-overlay);
+  font-family: var(--ugl-font-sans);
+  cursor: auto;
+  outline: none;
+  animation: ugl-bottom-sheet-rise var(--ugl-transition-slow);
+  transition: height var(--ugl-transition-slow);
+}
+
+/* ==========================================================================
+   Alturas
+   ========================================================================== */
+
+.ugl-bottom-sheet--height-auto {
+  height: auto;
+}
+
+.ugl-bottom-sheet--height-half {
+  height: 50%;
+}
+
+.ugl-bottom-sheet--height-full {
+  height: calc(100% - var(--ugl-safe-area-top) - var(--ugl-bottom-sheet-top-gap));
+}
+
+/* ==========================================================================
+   Alça
+   ========================================================================== */
+
+.ugl-bottom-sheet__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--ugl-touch-target);
+  margin: 0 0 calc(-1 * var(--ugl-spacing-m));
+  padding: 0;
+  border: none;
+  border-radius: var(--ugl-radius-xl) var(--ugl-radius-xl) 0 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ugl-bottom-sheet__grip {
+  width: var(--ugl-bottom-sheet-grip-width);
+  height: var(--ugl-bottom-sheet-grip-height);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-border-control);
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-bottom-sheet__handle:hover .ugl-bottom-sheet__grip {
+  background-color: var(--ugl-color-icon-primary);
+}
+
+.ugl-bottom-sheet__handle:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: -4px;
+}
+
+/* ==========================================================================
+   Cabeçalho, corpo e rodapé
+   ========================================================================== */
+
+.ugl-bottom-sheet__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ugl-spacing-m);
+  flex-shrink: 0;
+  padding: var(--ugl-spacing-m) var(--ugl-gutter) var(--ugl-spacing-xs);
+}
+
+.ugl-bottom-sheet__header--no-handle {
+  padding-top: var(--ugl-spacing-l);
+}
+
+.ugl-bottom-sheet__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ugl-spacing-4xs);
+  min-width: 0;
+  min-height: var(--ugl-touch-target);
+}
+
+.ugl-bottom-sheet__title {
+  margin: 0;
+  font-size: var(--ugl-font-title-md-size);
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: var(--ugl-font-title-md-line);
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-bottom-sheet__description {
+  margin: 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+.ugl-bottom-sheet__close {
+  flex-shrink: 0;
+}
+
+.ugl-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--ugl-spacing-xs) var(--ugl-gutter) var(--ugl-spacing-l);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-border-default) transparent;
+}
+
+.ugl-bottom-sheet__footer {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--ugl-spacing-xs);
+  padding: var(--ugl-spacing-m) var(--ugl-gutter);
+  box-shadow: var(--ugl-elevation-hairline-top);
+}
+
+/* ==========================================================================
+   Variante imersiva
+   ========================================================================== */
+
+.ugl-bottom-sheet--immersive {
+  background-color: var(--ugl-color-immersive-surface);
+  color: var(--ugl-color-immersive-text);
+  box-shadow: 0 -1px 0 0 var(--ugl-color-immersive-border);
+}
+
+.ugl-bottom-sheet--immersive .ugl-bottom-sheet__description {
+  color: var(--ugl-color-immersive-text-secondary);
+}
+
+.ugl-bottom-sheet--immersive .ugl-bottom-sheet__grip {
+  background-color: var(--ugl-color-immersive-track);
+}
+
+.ugl-bottom-sheet--immersive .ugl-bottom-sheet__handle:hover .ugl-bottom-sheet__grip {
+  background-color: var(--ugl-color-immersive-text);
+}
+
+.ugl-bottom-sheet--immersive .ugl-bottom-sheet__handle:focus-visible {
+  outline-color: var(--ugl-color-immersive-accent);
+}
+
+.ugl-bottom-sheet--immersive .ugl-bottom-sheet__body {
+  scrollbar-color: var(--ugl-color-immersive-border) transparent;
+}
+
+.ugl-bottom-sheet--immersive .ugl-bottom-sheet__footer {
+  box-shadow: 0 -1px 0 0 var(--ugl-color-immersive-border);
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ugl-bottom-sheet-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ugl-bottom-sheet-rise {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-bottom-sheet-layer,
+  .ugl-bottom-sheet {
+    animation: none;
+    transition: none;
+  }
+
+  .ugl-bottom-sheet__grip {
+    transition: none;
+  }
+}

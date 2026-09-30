@@ -1,0 +1,176 @@
+/**
+ * Estilos do Componente Button — Design System Unoogaleria
+ * Cápsula de texto com glifo opcional. Todas as cores vêm de `--ugl-*`; o
+ * realce de hover e de pressionado é uma camada translúcida (`state-*`), para
+ * valer sobre qualquer preenchimento.
+ */
+
+.ugl-button {
+  /* Alturas do pequeno e do grande: sem token (o médio é --ugl-touch-target) */
+  --ugl-button-height-sm: 32px;
+  --ugl-button-height-lg: 52px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ugl-spacing-xxs);
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ugl-radius-full);
+  background: none;
+  font-family: var(--ugl-font-sans);
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ugl-transition-fast),
+    border-color var(--ugl-transition-fast),
+    color var(--ugl-transition-fast),
+    transform var(--ugl-transition-fast);
+}
+
+.ugl-button::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-button:hover:not(:disabled)::after {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-button:active:not(:disabled)::after {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ugl-button:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ugl-button:disabled {
+  cursor: not-allowed;
+}
+
+.ugl-button__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ugl-button--sm {
+  height: var(--ugl-button-height-sm);
+  padding: 0 var(--ugl-spacing-m);
+}
+
+.ugl-button--md {
+  height: var(--ugl-touch-target);
+  padding: 0 var(--ugl-spacing-l);
+}
+
+.ugl-button--lg {
+  height: var(--ugl-button-height-lg);
+  padding: 0 var(--ugl-spacing-xl);
+  font-size: var(--ugl-font-title-sm-size);
+  font-weight: var(--ugl-font-title-sm-weight);
+  line-height: var(--ugl-font-title-sm-line);
+}
+
+.ugl-button--full {
+  display: flex;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ugl-button--primary {
+  background-color: var(--ugl-color-action-primary);
+  color: var(--ugl-color-text-on-action);
+}
+
+.ugl-button--primary:active:not(:disabled) {
+  background-color: var(--ugl-color-action-pressed);
+}
+
+.ugl-button--primary:disabled {
+  background-color: var(--ugl-color-action-disabled);
+}
+
+.ugl-button--secondary {
+  border-color: var(--ugl-color-border-default);
+  background-color: var(--ugl-color-background-primary);
+  color: var(--ugl-color-text-accent);
+}
+
+.ugl-button--tertiary {
+  color: var(--ugl-color-text-accent);
+}
+
+.ugl-button--tertiary.ugl-button--sm,
+.ugl-button--danger-tertiary.ugl-button--sm {
+  padding: 0 var(--ugl-spacing-xs);
+}
+
+.ugl-button--danger {
+  background-color: var(--ugl-color-action-danger);
+  color: var(--ugl-color-text-on-danger);
+}
+
+.ugl-button--danger-tertiary {
+  color: var(--ugl-color-text-danger);
+}
+
+.ugl-button--immersive {
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-button--immersive:hover:not(:disabled)::after,
+.ugl-button--immersive:active:not(:disabled)::after {
+  background-color: var(--ugl-color-immersive-control-pressed);
+}
+
+.ugl-button--immersive:focus-visible {
+  outline-color: var(--ugl-color-immersive-accent);
+}
+
+/* Desabilitado das variantes sem preenchimento próprio */
+.ugl-button--secondary:disabled,
+.ugl-button--tertiary:disabled,
+.ugl-button--danger:disabled,
+.ugl-button--danger-tertiary:disabled,
+.ugl-button--immersive:disabled {
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-button,
+  .ugl-button::after {
+    transition: none;
+  }
+
+  .ugl-button:active:not(:disabled) {
+    transform: none;
+  }
+}

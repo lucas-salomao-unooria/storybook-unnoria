@@ -1,0 +1,145 @@
+/**
+ * Estilos do Componente MediaGrid — Design System Unoogaleria
+ * Grade de rolagem própria que preenche o contêiner. Corre por baixo da barra
+ * de status e das barras sobrepostas: o recuo é a área segura mais o recuo da
+ * barra (`topInset` / `bottomInset`), e os cabeçalhos colam logo abaixo dele.
+ */
+
+.ugl-media-grid {
+  /* Valores que o componente redefine inline a partir das props */
+  --ugl-media-grid-columns: 3;
+  --ugl-media-grid-gap: var(--ugl-grid-gap);
+  --ugl-media-grid-top-inset: 0px;
+  --ugl-media-grid-bottom-inset: 0px;
+  /** Altura do cabeçalho colante do grupo: o alvo mínimo de toque */
+  --ugl-media-grid-header-height: var(--ugl-touch-target);
+
+  --ugl-media-grid-top: calc(var(--ugl-safe-area-top, 0px) + var(--ugl-media-grid-top-inset));
+  --ugl-media-grid-bottom: calc(var(--ugl-safe-area-bottom, 0px) + var(--ugl-media-grid-bottom-inset));
+  /*
+   * O cabeçalho cola na borda do CONTEÚDO do contêiner de rolagem, isto é, já
+   * abaixo do `padding-top` que abre espaço para a barra. Somar o recuo aqui de
+   * novo o fazia colar duas barras abaixo, por cima da primeira linha de fotos
+   * (medido: 182px em vez de 91px no aparelho).
+   */
+  --ugl-section-header-sticky-top: 0px;
+
+  position: relative;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: var(--ugl-media-grid-top) 0 var(--ugl-media-grid-bottom);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-border-default) transparent;
+  /* As setas rolam a miniatura focada para fora da barra e do cabeçalho colante */
+  scroll-padding-top: calc(var(--ugl-media-grid-top) + var(--ugl-media-grid-header-height));
+  scroll-padding-bottom: var(--ugl-media-grid-bottom);
+  /* A largura da grade dá o tamanho intrínseco dos grupos fora da tela */
+  container-type: inline-size;
+  /* O navegador rola na vertical; a pinça e o arraste lateral ficam com a grade */
+  touch-action: pan-y;
+  background-color: var(--ugl-color-background-primary);
+  color: var(--ugl-color-text-primary);
+  font-family: var(--ugl-font-sans);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.ugl-media-grid--no-headers {
+  --ugl-media-grid-header-height: 0px;
+}
+
+/* ==========================================================================
+   Grupos
+   ========================================================================== */
+
+.ugl-media-grid__section {
+  /* Grupo fora da tela não pinta; o tamanho reservado é o que ele terá */
+  content-visibility: auto;
+  contain-intrinsic-block-size: calc(
+    var(--ugl-media-grid-header-height) +
+      var(--ugl-media-grid-rows) *
+      (100cqi - (var(--ugl-media-grid-columns) - 1) * var(--ugl-media-grid-gap)) /
+      var(--ugl-media-grid-columns) +
+      (var(--ugl-media-grid-rows) - 1) * var(--ugl-media-grid-gap)
+  );
+}
+
+.ugl-media-grid--no-headers .ugl-media-grid__section + .ugl-media-grid__section {
+  margin-top: var(--ugl-media-grid-gap);
+}
+
+.ugl-media-grid__list {
+  display: grid;
+  grid-template-columns: repeat(var(--ugl-media-grid-columns), minmax(0, 1fr));
+  gap: var(--ugl-media-grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ugl-media-grid__cell {
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Vazio, rodapé e anúncio
+   ========================================================================== */
+
+.ugl-media-grid__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ugl-spacing-m);
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: var(--ugl-spacing-3xl) var(--ugl-gutter);
+  text-align: center;
+}
+
+.ugl-media-grid__empty-text {
+  margin: 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-body-lg-size);
+  font-weight: var(--ugl-font-body-lg-weight);
+  line-height: var(--ugl-font-body-lg-line);
+  letter-spacing: var(--ugl-font-body-lg-tracking);
+}
+
+.ugl-media-grid__footer {
+  padding: var(--ugl-spacing-xl) var(--ugl-gutter);
+  color: var(--ugl-color-text-secondary);
+  text-align: center;
+  font-size: var(--ugl-font-label-size);
+  font-weight: var(--ugl-font-label-weight);
+  line-height: var(--ugl-font-label-line);
+  letter-spacing: var(--ugl-font-label-tracking);
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ugl-media-grid__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-media-grid {
+    scroll-behavior: auto;
+  }
+}

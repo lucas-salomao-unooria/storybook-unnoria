@@ -1,0 +1,77 @@
+/**
+ * Estilos do Componente EmptyState — Design System Unoogaleria
+ * Coluna centralizada: medalhão com o glifo de 48px, título, apoio e ação.
+ */
+
+.ugl-empty-state {
+  /* Diâmetro do medalhão: o glifo de 48px com 24px de folga de cada lado */
+  --ugl-empty-state-medallion: 96px;
+  /* Largura de leitura do texto de apoio */
+  --ugl-empty-state-measure: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ugl-spacing-3xl) var(--ugl-gutter);
+  font-family: var(--ugl-font-sans);
+  text-align: center;
+}
+
+.ugl-empty-state__medallion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ugl-empty-state-medallion);
+  height: var(--ugl-empty-state-medallion);
+  margin-bottom: var(--ugl-spacing-l);
+  border-radius: var(--ugl-radius-full);
+  background-color: var(--ugl-color-fill-field);
+  color: var(--ugl-color-icon-accent);
+}
+
+.ugl-empty-state__title {
+  max-width: var(--ugl-empty-state-measure);
+  margin: 0;
+  color: var(--ugl-color-text-primary);
+  font-size: var(--ugl-font-title-md-size);
+  font-weight: var(--ugl-font-title-md-weight);
+  line-height: var(--ugl-font-title-md-line);
+  letter-spacing: var(--ugl-font-title-md-tracking);
+}
+
+.ugl-empty-state__description {
+  max-width: var(--ugl-empty-state-measure);
+  margin: var(--ugl-spacing-xs) 0 0;
+  color: var(--ugl-color-text-secondary);
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+}
+
+.ugl-empty-state__action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ugl-spacing-xs);
+  margin-top: var(--ugl-spacing-xl);
+}
+
+/* ==========================================================================
+   Imersiva
+   ========================================================================== */
+
+.ugl-empty-state--immersive .ugl-empty-state__medallion {
+  background-color: var(--ugl-color-immersive-control);
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-empty-state--immersive .ugl-empty-state__title {
+  color: var(--ugl-color-immersive-text);
+}
+
+.ugl-empty-state--immersive .ugl-empty-state__description {
+  color: var(--ugl-color-immersive-text-secondary);
+}

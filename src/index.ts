@@ -17,4 +17,5 @@ export * as UnootubeUI from './unootube';
 export * as UnoochatUI from './unoochat';
 export * as UnoovistaUI from './unoovista';
 export * as UnooriaAIUI from './unooriaai';
+export * as UnoogaleriaUI from './unoogaleria';
 export * from './unooria';

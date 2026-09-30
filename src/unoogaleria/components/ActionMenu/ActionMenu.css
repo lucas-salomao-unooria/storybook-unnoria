@@ -1,0 +1,179 @@
+/**
+ * Estilos do Componente ActionMenu — Design System Unoogaleria
+ * Menu suspenso posicionado na tela do aparelho: cartão elevado com `radius-m`,
+ * ações de 44px e glifo à direita. A camada transparente atrás do menu recebe
+ * o toque fora e fecha — o toque não atravessa para a grade.
+ */
+
+.ugl-action-menu-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ugl-z-sheet);
+}
+
+.ugl-action-menu {
+  /* Largura do cartão: cabe o rótulo mais longo ("Adicionar a um álbum") */
+  --ugl-action-menu-min-width: 232px;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: var(--ugl-action-menu-min-width);
+  max-width: calc(100% - 2 * var(--ugl-spacing-xs));
+  padding: var(--ugl-spacing-3xs) 0;
+  overflow-y: auto;
+  border-radius: var(--ugl-radius-m);
+  background-color: var(--ugl-color-background-elevated);
+  color: var(--ugl-color-text-primary);
+  box-shadow: var(--ugl-elevation-overlay);
+  font-family: var(--ugl-font-sans);
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ugl-color-border-default) transparent;
+  animation: ugl-action-menu-in var(--ugl-transition-base);
+}
+
+/* Sem âncora: abaixo da barra superior, rente à margem direita */
+.ugl-action-menu--default-position {
+  top: calc(var(--ugl-safe-area-top) + var(--ugl-topbar-height));
+  right: var(--ugl-gutter);
+}
+
+.ugl-action-menu--bottom-end {
+  transform-origin: top right;
+}
+
+.ugl-action-menu--bottom-start {
+  transform-origin: top left;
+}
+
+.ugl-action-menu--top-end {
+  transform-origin: bottom right;
+}
+
+.ugl-action-menu--top-start {
+  transform-origin: bottom left;
+}
+
+/* ==========================================================================
+   Itens
+   ========================================================================== */
+
+.ugl-action-menu__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ugl-spacing-l);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ugl-touch-target);
+  margin: 0;
+  padding: var(--ugl-spacing-s) var(--ugl-spacing-l);
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--ugl-font-body-md-size);
+  font-weight: var(--ugl-font-body-md-weight);
+  line-height: var(--ugl-font-body-md-line);
+  letter-spacing: var(--ugl-font-body-md-tracking);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ugl-transition-fast);
+}
+
+.ugl-action-menu__item:hover:not([aria-disabled='true']) {
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-action-menu__item:active:not([aria-disabled='true']) {
+  background-color: var(--ugl-color-state-pressed);
+}
+
+.ugl-action-menu__item:focus-visible {
+  outline: 2px solid var(--ugl-color-focus-ring);
+  outline-offset: -2px;
+  background-color: var(--ugl-color-state-hover);
+}
+
+.ugl-action-menu__item[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.ugl-action-menu__item--danger {
+  color: var(--ugl-color-text-danger);
+}
+
+.ugl-action-menu__label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ugl-action-menu__divider {
+  flex-shrink: 0;
+  height: 1px;
+  margin: var(--ugl-spacing-3xs) 0;
+  background-color: var(--ugl-color-border-subtle);
+}
+
+/* ==========================================================================
+   Variante imersiva
+   ========================================================================== */
+
+.ugl-action-menu--immersive {
+  background-color: var(--ugl-color-immersive-bar);
+  color: var(--ugl-color-immersive-text);
+  box-shadow: 0 0 0 1px var(--ugl-color-immersive-border);
+  backdrop-filter: blur(var(--ugl-blur-bar));
+  -webkit-backdrop-filter: blur(var(--ugl-blur-bar));
+  scrollbar-color: var(--ugl-color-immersive-border) transparent;
+}
+
+.ugl-action-menu--immersive .ugl-action-menu__item:hover:not([aria-disabled='true']),
+.ugl-action-menu--immersive .ugl-action-menu__item:focus-visible {
+  background-color: var(--ugl-color-immersive-control);
+}
+
+.ugl-action-menu--immersive .ugl-action-menu__item:active:not([aria-disabled='true']) {
+  background-color: var(--ugl-color-immersive-control-pressed);
+}
+
+.ugl-action-menu--immersive .ugl-action-menu__item:focus-visible {
+  outline-color: var(--ugl-color-immersive-accent);
+}
+
+.ugl-action-menu--immersive .ugl-action-menu__item--danger {
+  color: var(--ugl-color-immersive-danger);
+}
+
+.ugl-action-menu--immersive .ugl-action-menu__divider {
+  background-color: var(--ugl-color-immersive-border);
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ugl-action-menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugl-action-menu,
+  .ugl-action-menu__item {
+    animation: none;
+    transition: none;
+  }
+}
