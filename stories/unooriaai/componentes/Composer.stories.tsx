@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { Composer } from '../../../src/unooriaai/components/Composer';
 import {
   UnooriaDocShell,
@@ -109,6 +110,11 @@ const ComposerDocumentationPage = () => {
               'Sem texto para enviar, o alvo de envio fica num tom mais suave (`--uai-text-soft-40`) e volta ao texto primário no hover e no foco.',
           },
           {
+            subject: 'Campo só controlado quando há value',
+            detail:
+              'Sem `value`, o componente não guarda o texto em estado: repassa `defaultValue` ao input e, ao enviar, lê e limpa o próprio nó. O preenchimento automático e os gerenciadores de senha escrevem direto no DOM, e um estado interno os apagaria na primeira re-renderização (seção 4.5.1). A estrutura de origem do `Composer` guardava o texto em estado e passava `value` sempre; aqui a regra vale como no `ChatInput`. A prop `defaultValue` é aditiva. A estória `Estados` guarda a regra com `play`.',
+          },
+          {
             subject: 'Estados e responsividade',
             detail:
               'Foco no compositor troca o contorno para `--uai-border-brand`; hover nos alvos usa `--uai-fill-8`; anel de foco de 2px; desabilitado a 40%. Abaixo de 800px o compositor ocupa toda a largura, porque os 760px fixos não cabem.',
@@ -207,7 +213,16 @@ const ComposerDocumentationPage = () => {
       <UaiDocPropsTable
         title="Composer"
         rows={[
-          { name: 'value', type: 'string', description: 'Texto do campo (uso controlado).' },
+          {
+            name: 'value',
+            type: 'string',
+            description: 'Texto do campo (uso controlado). O campo só é controlado quando informado.',
+          },
+          {
+            name: 'defaultValue',
+            type: 'string',
+            description: 'Texto inicial do campo (uso não controlado). Ignorado quando há value.',
+          },
           {
             name: 'onValueChange',
             type: '(value: string) => void',
@@ -295,6 +310,7 @@ const meta: Meta<typeof Composer> = {
   parameters: { layout: 'padded' },
   argTypes: {
     value: { control: 'text', description: 'Texto do campo (uso controlado).' },
+    defaultValue: { control: 'text', description: 'Texto inicial (modo não controlado).' },
     placeholder: { control: 'text', description: 'Texto do placeholder.' },
     hideLeadingActions: { control: 'boolean', description: 'Oculta voz e anexo.' },
     voiceLabel: { control: 'text', description: 'Rótulo acessível do alvo de voz.' },
@@ -359,10 +375,12 @@ export const ExemploDeComposicao: Story = {
 };
 
 /**
- * Compositor controlado, com a lista das mensagens enviadas.
+ * Compositor controlado e compositor não controlado lado a lado, com a lista
+ * das mensagens enviadas. Guarda a regra 4.5.1: sem `value`, o texto mora no
+ * DOM (e enviar o limpa); com `value`, quem manda é o consumidor.
  */
 export const Estados: Story = {
-  render: function CompositorControlado() {
+  render: function CompositorControladoENaoControlado() {
     const [texto, setTexto] = React.useState('');
     const [historico, setHistorico] = React.useState<string[]>([]);
 
@@ -370,12 +388,24 @@ export const Estados: Story = {
       <UaiDocStage direction="column" align="flex-start" width={800}>
         <Composer
           block
+          aria-label="Compositor controlado"
+          placeholder="Controlado"
           value={texto}
           onValueChange={setTexto}
           onSend={(valor) => {
             if (!valor.trim()) return;
             setHistorico((prev) => [...prev, valor]);
             setTexto('');
+          }}
+        />
+        <Composer
+          block
+          aria-label="Compositor não controlado"
+          placeholder="Não controlado"
+          defaultValue="Rascunho inicial"
+          onSend={(valor) => {
+            if (!valor.trim()) return;
+            setHistorico((prev) => [...prev, valor]);
           }}
         />
         <ul
@@ -393,5 +423,30 @@ export const Estados: Story = {
         </ul>
       </UaiDocStage>
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const controlado = canvas.getByPlaceholderText('Controlado') as HTMLInputElement;
+    const naoControlado = canvas.getByPlaceholderText('Não controlado') as HTMLInputElement;
+    const envios = canvas.getAllByRole('button', { name: 'Enviar mensagem' });
+
+    // Controlado: o consumidor limpa o campo ao enviar.
+    await userEvent.type(controlado, 'Olá, Unooria');
+    await expect(controlado.value).toBe('Olá, Unooria');
+    await userEvent.click(envios[0]);
+    await expect(canvas.getByText('Olá, Unooria')).toBeInTheDocument();
+    await expect(controlado.value).toBe('');
+
+    // Não controlado: começa em defaultValue, e enviar limpa o próprio nó.
+    await expect(naoControlado.value).toBe('Rascunho inicial');
+    await userEvent.click(envios[1]);
+    await expect(canvas.getByText('Rascunho inicial')).toBeInTheDocument();
+    await expect(naoControlado.value).toBe('');
+
+    // Escrita direta no nó (como o preenchimento automático) sobrevive a uma
+    // re-renderização: o campo não é reconciliado de volta para vazio.
+    naoControlado.value = 'Texto injetado';
+    await userEvent.type(controlado, 'x');
+    await expect(naoControlado.value).toBe('Texto injetado');
   },
 };

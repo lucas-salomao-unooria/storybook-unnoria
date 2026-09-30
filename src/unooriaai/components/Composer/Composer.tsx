@@ -37,6 +37,7 @@ const ComposerRoot = React.forwardRef<HTMLFormElement, UaiComposerProps>(
   (
     {
       value,
+      defaultValue,
       onValueChange,
       placeholder = 'Escreva uma mensagem',
       onSend,
@@ -56,20 +57,19 @@ const ComposerRoot = React.forwardRef<HTMLFormElement, UaiComposerProps>(
     },
     ref
   ) => {
-    const [internalValue, setInternalValue] = React.useState('');
+    const fieldRef = React.useRef<HTMLInputElement | null>(null);
     const isControlled = value !== undefined;
-    const currentValue = isControlled ? value : internalValue;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!isControlled) setInternalValue(event.target.value);
       onValueChange?.(event.target.value);
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       if (disabled) return;
-      onSend?.(currentValue);
-      if (!isControlled) setInternalValue('');
+      const text = isControlled ? (value as string) : (fieldRef.current?.value ?? '');
+      onSend?.(text);
+      if (!isControlled && fieldRef.current) fieldRef.current.value = '';
     };
 
     const classes = ['uai-composer', block ? 'uai-composer--block' : '', className]
@@ -109,9 +109,10 @@ const ComposerRoot = React.forwardRef<HTMLFormElement, UaiComposerProps>(
           ))}
 
         <input
+          ref={fieldRef}
           className="uai-composer__field"
           type="text"
-          value={currentValue}
+          {...(isControlled ? { value: value as string } : { defaultValue })}
           placeholder={placeholder}
           onChange={handleChange}
           disabled={disabled}
@@ -139,6 +140,11 @@ ComposerRoot.displayName = 'Composer';
  * Compositor translúcido de 760 × 56 com padding 16/20, raio 16 e contorno de
  * 1px em `--uai-web-composer-border`. A trilha interna tem quatro alvos com 8px
  * de intervalo: voz, anexo, campo e envio.
+ *
+ * O campo só é controlado quando o consumidor passa `value` (+
+ * `onValueChange`): sem ele, o texto mora no DOM — o preenchimento automático
+ * escreve direto no nó — e `defaultValue` é o valor inicial. Em modo não
+ * controlado, enviar limpa o campo escrevendo no próprio nó (seção 4.5.1).
  *
  * Não confundir com o `ChatInput`: aquele é o campo de 600 × 48 da conversa
  * padrão, com um único alvo redondo.

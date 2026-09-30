@@ -8,9 +8,18 @@ import type { UaiTheme } from '../../tokens';
  * com a trilha de quatro alvos: voz, anexo, campo e envio.
  */
 export interface UaiComposerProps
-  extends Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit' | 'children'> {
-  /** Texto do campo (uso controlado). */
+  extends Omit<
+    React.HTMLAttributes<HTMLFormElement>,
+    'onSubmit' | 'children' | 'defaultValue'
+  > {
+  /**
+   * Texto do campo (uso controlado). O campo só é controlado quando este valor
+   * é informado.
+   */
   value?: string;
+
+  /** Texto inicial do campo (uso não controlado). Ignorado quando há `value`. */
+  defaultValue?: string;
 
   /** Notifica cada alteração do texto. */
   onValueChange?: (value: string) => void;
