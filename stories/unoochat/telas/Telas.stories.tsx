@@ -847,6 +847,31 @@ export const TodasAsTelas: Story = {
   render: () => <ScreenGallery ids={SCREENS.map((item) => item.id)} />,
 };
 
+/**
+ * As três abas principais lado a lado, com alternador de tema.
+ */
+export const AbasPrincipais: Story = {
+  name: '🎨 Abas principais',
+  render: () => <ScreenGallery ids={TABS} />,
+};
+
+/**
+ * Fluxo completo de conversa: conversa aberta, foto enviada, folha de anexos e
+ * diálogo de silenciar. Abre no tema escuro, como a composição da documentação.
+ */
+export const FluxoDeConversa: Story = {
+  name: '🎨 Fluxo de conversa',
+  render: () => <ScreenGallery ids={CONVERSATION_FLOW} initial="dark" />,
+};
+
+/**
+ * Telas de chamada de voz e de vídeo.
+ */
+export const Chamadas: Story = {
+  name: '🎨 Chamadas',
+  render: () => <ScreenGallery ids={CALLS} />,
+};
+
 const telaUnica = (id: string): Story => {
   const definition = SCREENS.find((item) => item.id === id);
   return {
