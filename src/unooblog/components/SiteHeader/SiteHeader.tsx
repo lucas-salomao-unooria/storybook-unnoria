@@ -10,7 +10,7 @@ import './SiteHeader.css';
  * Componente SiteHeader — Design System Unooblog
  *
  * Cabeçalho do site: barra de `--ubl-site-header-height` (64px) na superfície
- * translúcida `--ubl-color-surface-bar` (sem desfoque), com fio inferior de 1px.
+ * translúcida `--ubl-color-surface-bar` com desfoque (`--ubl-blur-bar`), e fio inferior de 1px.
  * À esquerda a marca (o `Logo`, ou o slot `logo`); depois a navegação principal,
  * com o item ativo marcado por sublinhado de 2px e `aria-current="page"`; à
  * direita a busca, o alternador claro/escuro (`aria-pressed`) e as `actions`.
@@ -106,7 +106,7 @@ export const SiteHeader = React.forwardRef<HTMLElement, UblSiteHeaderProps>(
         {...restProps}
       >
         <div className="ubl-site-header__bar">
-          {homeHref !== undefined || onHome ? (
+          {homeHref !== undefined ? (
             <a
               className="ubl-site-header__brand ubl-site-header__brand--link"
               href={homeHref}
@@ -115,6 +115,15 @@ export const SiteHeader = React.forwardRef<HTMLElement, UblSiteHeaderProps>(
             >
               {brandContent}
             </a>
+          ) : onHome ? (
+            <button
+              type="button"
+              className="ubl-site-header__brand ubl-site-header__brand--link"
+              aria-label={siteName}
+              onClick={onHome}
+            >
+              {brandContent}
+            </button>
           ) : (
             <div className="ubl-site-header__brand" role="img" aria-label={siteName}>
               {brandContent}

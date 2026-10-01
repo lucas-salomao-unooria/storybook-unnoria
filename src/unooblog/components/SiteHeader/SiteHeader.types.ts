@@ -96,9 +96,11 @@ export interface UblSiteHeaderProps extends Omit<React.HTMLAttributes<HTMLElemen
   homeHref?: string;
 
   /**
-   * Chamado ao acionar a marca (voltar ao início).
+   * Chamado ao acionar a marca (voltar ao início). Sem `homeHref`, a marca vira um
+   * botão (e não um link sem destino); com `homeHref`, é um link e o evento permite
+   * cancelar a navegação.
    */
-  onHome?: () => void;
+  onHome?: (event: React.MouseEvent<HTMLElement>) => void;
 
   /**
    * Nome acessível do marco de navegação.

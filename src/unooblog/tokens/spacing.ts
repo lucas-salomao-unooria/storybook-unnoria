@@ -106,6 +106,11 @@ export const ublIconSizes = {
 } as const;
 
 /**
+ * Desfoque da barra do site, em pixels, com o degrau de origem na Unooria.
+ */
+export const ublBlur = { bar: { px: 16, unooria: '--unooria-blur-400' } } as const;
+
+/**
  * Diâmetros de avatar em pixels.
  */
 export const ublAvatarSizes = { sm: 24, md: 32, lg: 48, xl: 72 } as const;

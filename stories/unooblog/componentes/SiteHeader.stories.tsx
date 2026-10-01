@@ -100,7 +100,7 @@ const HeaderDemo: React.FC<{
 
 /**
  * Cabeçalho `sticky` dentro de um contêiner de rolagem: o texto corre por baixo
- * da barra translúcida, sem desfoque.
+ * da barra translúcida, com desfoque.
  */
 const HeaderPegajoso: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme }) => (
   <div
@@ -129,7 +129,7 @@ const HeaderPegajoso: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme }) => (
       {Array.from({ length: 10 }, (_, indice) => (
         <p key={indice} style={{ margin: '0 0 16px' }}>
           Parágrafo {indice + 1}: o cabeçalho fica colado ao topo do contêiner de rolagem, e a cor
-          translúcida deixa ver o texto passando por baixo, sem desfoque de fundo.
+          translúcida, com desfoque, deixa o texto passando por baixo apenas insinuado.
         </p>
       ))}
     </div>
@@ -168,7 +168,7 @@ const SiteHeaderDocumentationPage = () => (
         fecha e devolve o foco ao botão.
       </UblDocCard>
       <UblDocCard icon="📌" title="Cola no topo">
-        Com <code>sticky</code> (padrão) a barra acompanha a rolagem; a cor é translúcida, sem desfoque.
+        Com <code>sticky</code> (padrão) a barra acompanha a rolagem; a cor é translúcida e a barra desfoca o que passa por baixo.
       </UblDocCard>
     </UblDocGrid>
 
@@ -182,7 +182,7 @@ const SiteHeaderDocumentationPage = () => (
       layout="Linha: marca · navegação · busca, tema e ações · 64px de altura · fio inferior de 1px"
       specs={[
         { label: 'Altura', value: '--ubl-site-header-height (64px)' },
-        { label: 'Superfície', value: '--ubl-color-surface-bar (translúcida, sem backdrop-filter)' },
+        { label: 'Superfície', value: '--ubl-color-surface-bar (translúcida) + --ubl-blur-bar (desfoque de 16px)' },
         { label: 'Fio', value: '--ubl-elevation-hairline-bottom (1px em border-subtle)' },
         { label: 'Item ativo', value: 'Sublinhado de 2px em --ubl-color-action-primary · peso bold' },
         { label: 'Alvos', value: 'Links e botões de 44px (--ubl-touch-target)' },
@@ -194,9 +194,9 @@ const SiteHeaderDocumentationPage = () => (
     <UblDocDecisions
       items={[
         {
-          subject: 'Translúcido, sem desfoque',
+          subject: 'Translúcido, com desfoque',
           detail:
-            'a barra usa só a cor translúcida --ubl-color-surface-bar. backdrop-filter pesa em aparelhos de entrada e muda o contraste com o fundo que passa por baixo; a cor a 90% já deixa o texto de baixo apenas insinuado.',
+            'a barra usa a cor translúcida --ubl-color-surface-bar e o desfoque --ubl-blur-bar (16px, literal de --unooria-blur-400), como a barra da Unoogaleria. Sem o desfoque, o texto e o código que passam por baixo ficavam legíveis através da barra e competiam com a navegação; só a captura de tela acusou, os testes passavam.',
         },
         {
           subject: 'Menu como divulgação (disclosure)',

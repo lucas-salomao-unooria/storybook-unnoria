@@ -265,11 +265,14 @@
 
 /* O véu e o texto: o corpo desce à base da capa, sobre o gradiente */
 .ubl-post-card--featured .ubl-post-card__body {
+  position: relative;
   align-self: end;
   gap: var(--ubl-spacing-xs);
-  padding: var(--ubl-spacing-5xl) var(--ubl-spacing-l) var(--ubl-spacing-l);
+  /* Mais véu, e mais cedo: sobre uma capa clara o título caía na zona ainda quase
+     transparente do degradê. O corpo é posicionado para pintar acima da capa. */
+  padding: calc(var(--ubl-spacing-5xl) + var(--ubl-spacing-4xl)) var(--ubl-spacing-l) var(--ubl-spacing-l);
   border-radius: 0 0 var(--ubl-radius-xl) var(--ubl-radius-xl);
-  background: var(--ubl-gradient-media-bottom);
+  background: linear-gradient(180deg, transparent 0%, var(--ubl-color-media-scrim) 45%);
 }
 
 .ubl-post-card--featured .ubl-post-card__title {

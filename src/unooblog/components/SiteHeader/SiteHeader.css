@@ -1,8 +1,8 @@
 /**
  * Estilos do Componente SiteHeader — Design System Unooblog
  * Barra de --ubl-site-header-height (64px) em --ubl-color-surface-bar, translúcida
- * e SEM desfoque (sem desfoque de fundo: pesa no Chromebook de entrada), com fio
- * inferior de 1px. Largo e médio: marca, navegação e ferramentas na mesma linha.
+ * com desfoque de fundo (--ubl-blur-bar, degrau --unooria-blur-400), como a barra
+ * da Unoogaleria, e fio inferior de 1px. Largo e médio: marca, navegação e ferramentas na mesma linha.
  * Compacto (contêiner abaixo de 640px): a navegação vira uma lista que abre
  * logo abaixo da barra, acionada pelo botão de menu.
  */
@@ -30,6 +30,8 @@
   height: var(--ubl-site-header-height);
   padding-inline: max(var(--ubl-gutter), calc((100% - var(--ubl-page-width)) / 2));
   background-color: var(--ubl-color-surface-bar);
+  -webkit-backdrop-filter: blur(var(--ubl-blur-bar));
+  backdrop-filter: blur(var(--ubl-blur-bar));
   box-shadow: var(--ubl-elevation-hairline-bottom);
 }
 
@@ -48,6 +50,14 @@
   border-radius: var(--ubl-radius-s);
   color: var(--ubl-color-text-primary);
   text-decoration: none;
+}
+
+button.ubl-site-header__brand {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
 }
 
 .ubl-site-header__brand--link {
