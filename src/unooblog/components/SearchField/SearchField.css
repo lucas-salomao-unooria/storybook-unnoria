@@ -1,0 +1,159 @@
+/**
+ * Estilos do Componente SearchField — Design System Unooblog
+ * Campo de 44px (o alvo de toque do módulo) em `fill-field`, com contorno de 1px
+ * em `border-control` (limite de componente ≥ 3:1), cápsula (`radius-full`), lupa-botão à esquerda e
+ * disco de limpar à direita. O botão de limpar nativo do navegador é escondido:
+ * o do componente tem nome acessível. O rótulo é oculto à vista.
+ */
+
+.ubl-search-field {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ubl-font-sans);
+}
+
+/* Rótulo visível só ao leitor de tela */
+.ubl-search-field__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.ubl-search-field__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  height: var(--ubl-touch-target);
+  border: 1px solid var(--ubl-color-border-control);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-fill-field);
+  color: var(--ubl-color-icon-secondary);
+  transition: border-color var(--ubl-transition-fast);
+}
+
+.ubl-search-field__box:focus-within {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 0;
+  border-color: var(--ubl-color-focus-ring);
+}
+
+.ubl-search-field__submit,
+.ubl-search-field__clear {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ubl-touch-target);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ubl-search-field__submit:hover:not(:disabled) {
+  color: var(--ubl-color-icon-primary);
+}
+
+.ubl-search-field__submit:focus-visible,
+.ubl-search-field__clear:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: -4px;
+}
+
+.ubl-search-field__submit:disabled {
+  cursor: not-allowed;
+}
+
+.ubl-search-field__control {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ubl-spacing-m) 0 0;
+  border: none;
+  background: none;
+  color: var(--ubl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.ubl-search-field__control::placeholder {
+  color: var(--ubl-color-text-muted);
+  opacity: 1;
+}
+
+.ubl-search-field__control::-webkit-search-cancel-button,
+.ubl-search-field__control::-webkit-search-decoration {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Com o disco de limpar visível, o texto não precisa do recuo direito */
+.ubl-search-field__box:has(.ubl-search-field__clear) .ubl-search-field__control {
+  padding-right: 0;
+}
+
+/* ==========================================================================
+   Limpar: alvo de 44px com um disco de 20px dentro
+   ========================================================================== */
+
+.ubl-search-field__clear-disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ubl-icon-size-sm);
+  height: var(--ubl-icon-size-sm);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-icon-secondary);
+  color: var(--ubl-color-background-card);
+  transition: background-color var(--ubl-transition-fast);
+}
+
+.ubl-search-field__clear:hover .ubl-search-field__clear-disc,
+.ubl-search-field__clear:active .ubl-search-field__clear-disc {
+  background-color: var(--ubl-color-icon-primary);
+}
+
+/* ==========================================================================
+   Desabilitado
+   ========================================================================== */
+
+.ubl-search-field--disabled .ubl-search-field__box {
+  opacity: 0.4;
+}
+
+.ubl-search-field--disabled .ubl-search-field__control {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-search-field__box,
+  .ubl-search-field__clear-disc {
+    transition: none;
+  }
+}

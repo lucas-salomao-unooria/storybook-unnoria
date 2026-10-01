@@ -1,0 +1,229 @@
+/**
+ * Estilos do Componente SiteHeader — Design System Unooblog
+ * Barra de --ubl-site-header-height (64px) em --ubl-color-surface-bar, translúcida
+ * e SEM desfoque (sem desfoque de fundo: pesa no Chromebook de entrada), com fio
+ * inferior de 1px. Largo e médio: marca, navegação e ferramentas na mesma linha.
+ * Compacto (contêiner abaixo de 640px): a navegação vira uma lista que abre
+ * logo abaixo da barra, acionada pelo botão de menu.
+ */
+
+.ubl-site-header {
+  container-type: inline-size;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-site-header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--ubl-z-bar);
+}
+
+.ubl-site-header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xxl);
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--ubl-site-header-height);
+  padding-inline: max(var(--ubl-gutter), calc((100% - var(--ubl-page-width)) / 2));
+  background-color: var(--ubl-color-surface-bar);
+  box-shadow: var(--ubl-elevation-hairline-bottom);
+}
+
+/* ==========================================================================
+   Marca
+   ========================================================================== */
+
+.ubl-site-header__brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0;
+  border-radius: var(--ubl-radius-s);
+  color: var(--ubl-color-text-primary);
+  text-decoration: none;
+}
+
+.ubl-site-header__brand--link {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ubl-site-header__brand--link:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Navegação principal
+   ========================================================================== */
+
+.ubl-site-header__nav {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.ubl-site-header__list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--ubl-spacing-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-site-header__item {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.ubl-site-header__link {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0 var(--ubl-spacing-m);
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--ubl-color-text-secondary);
+  font-family: inherit;
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast);
+}
+
+.ubl-site-header__link:hover {
+  background-color: var(--ubl-color-state-hover);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-site-header__link:active {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-site-header__link:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: -4px;
+}
+
+/* Ativo: sublinhado de 2px, peso maior e texto primário (nunca só a cor) */
+.ubl-site-header__link--active,
+.ubl-site-header__link--active:hover {
+  border-bottom-color: var(--ubl-color-action-primary);
+  color: var(--ubl-color-text-primary);
+  font-weight: var(--ubl-font-weight-bold);
+}
+
+/* ==========================================================================
+   Ferramentas
+   ========================================================================== */
+
+.ubl-site-header__tools {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+  margin-inline-start: auto;
+}
+
+.ubl-site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  margin-inline-start: var(--ubl-spacing-xs);
+}
+
+/* O botão de menu só existe no compacto */
+.ubl-site-header__menu-button {
+  display: none;
+}
+
+/* ==========================================================================
+   Compacto: a navegação vira uma lista que abre sob a barra
+   ========================================================================== */
+
+@container (max-width: 639px) {
+  .ubl-site-header__bar {
+    gap: var(--ubl-spacing-m);
+  }
+
+  .ubl-site-header__menu-button {
+    display: inline-flex;
+  }
+
+  .ubl-site-header__nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    padding: var(--ubl-spacing-xs) var(--ubl-gutter) var(--ubl-spacing-l);
+    background-color: var(--ubl-color-background-elevated);
+    box-shadow: var(--ubl-elevation-overlay);
+  }
+
+  .ubl-site-header--menu-open .ubl-site-header__nav {
+    display: flex;
+  }
+
+  .ubl-site-header__list {
+    flex-direction: column;
+    gap: var(--ubl-spacing-4xs);
+    width: 100%;
+  }
+
+  .ubl-site-header__item {
+    display: block;
+  }
+
+  .ubl-site-header__link {
+    width: 100%;
+    min-height: var(--ubl-touch-target);
+    border-bottom: none;
+    border-inline-start: 3px solid transparent;
+    border-radius: var(--ubl-radius-s);
+  }
+
+  .ubl-site-header__link--active,
+  .ubl-site-header__link--active:hover {
+    border-inline-start-color: var(--ubl-color-action-primary);
+    background-color: var(--ubl-color-fill-field);
+  }
+
+  .ubl-site-header__link:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+@container (min-width: 640px) {
+  .ubl-site-header__bar {
+    padding-inline: max(var(--ubl-gutter-wide), calc((100% - var(--ubl-page-width)) / 2));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-site-header__link {
+    transition: none;
+  }
+}
