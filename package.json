@@ -61,6 +61,11 @@
       "import": "./dist/unoogaleria/index.mjs",
       "require": "./dist/unoogaleria/index.cjs"
     },
+    "./unoojornal": {
+      "types": "./dist/unoojornal/index.d.ts",
+      "import": "./dist/unoojornal/index.mjs",
+      "require": "./dist/unoojornal/index.cjs"
+    },
     "./styles.css": "./dist/styles.css",
     "./unooria.css": "./dist/styles-unooria.css",
     "./instanooria.css": "./dist/styles-instanooria.css",
@@ -72,6 +77,7 @@
     "./unoovista.css": "./dist/styles-unoovista.css",
     "./unooriaai.css": "./dist/styles-unooriaai.css",
     "./unoogaleria.css": "./dist/styles-unoogaleria.css",
+    "./unoojornal.css": "./dist/styles-unoojornal.css",
     "./fonts/unooria.css": "./dist/fonts/unooria.css",
     "./fonts/chatgpt.css": "./dist/fonts/chatgpt.css",
     "./fonts/whatsappmobile.css": "./dist/fonts/whatsappmobile.css",
@@ -81,6 +87,7 @@
     "./fonts/unoovista.css": "./dist/fonts/unoovista.css",
     "./fonts/unooriaai.css": "./dist/fonts/unooriaai.css",
     "./fonts/unoogaleria.css": "./dist/fonts/unoogaleria.css",
+    "./fonts/unoojornal.css": "./dist/fonts/unoojornal.css",
     "./dist/*": "./dist/*"
   },
   "files": [
@@ -100,7 +107,7 @@
     "test": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "build:package": "npm run verificar:css && npm run verificar:paridade-unoochat && npm run verificar:paridade-unoovista && npm run verificar:paridade-unooriaai && npm run verificar:paridade-unoogaleria && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist && node scripts/corrigir-specifiers.mjs && node scripts/verificar-esm.mjs",
+    "build:package": "npm run verificar:css && npm run verificar:paridade-unoochat && npm run verificar:paridade-unoovista && npm run verificar:paridade-unooriaai && npm run verificar:paridade-unoogaleria && npm run verificar:paridade-unoojornal && tsup && tsc -p tsconfig.build.json --emitDeclarationOnly --declaration --outDir dist && node scripts/corrigir-specifiers.mjs && node scripts/verificar-esm.mjs",
     "prepublishOnly": "npm run build:package",
     "verificar:css": "node scripts/verificar-css-agregado.mjs",
     "fontes": "node scripts/baixar-fontes.mjs",
@@ -108,7 +115,9 @@
     "verificar:paridade-unoochat": "node scripts/verificar-paridade-unoochat.mjs",
     "verificar:paridade-unoovista": "node scripts/verificar-paridade-unoovista.mjs",
     "verificar:paridade-unooriaai": "node scripts/verificar-paridade-unooriaai.mjs",
-    "verificar:paridade-unoogaleria": "node scripts/verificar-paridade-unoogaleria.mjs"
+    "verificar:paridade-unoogaleria": "node scripts/verificar-paridade-unoogaleria.mjs",
+    "verificar:paridade-unoojornal": "node scripts/verificar-paridade-unoojornal.mjs",
+    "gerar:tokens-unoojornal": "node scripts/gerar-tokens-unoojornal.mjs"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

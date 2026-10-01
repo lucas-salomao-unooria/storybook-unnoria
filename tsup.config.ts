@@ -114,6 +114,7 @@ export default defineConfig([
       'styles-unoovista': 'src/styles-unoovista.css',
       'styles-unooriaai': 'src/styles-unooriaai.css',
       'styles-unoogaleria': 'src/styles-unoogaleria.css',
+      'styles-unoojornal': 'src/styles-unoojornal.css',
 
       /*
        * Folhas de fonte, opt-in. Ficam separadas das folhas de componente para
@@ -130,6 +131,7 @@ export default defineConfig([
       'fonts/unoovista': 'src/fonts-unoovista.css',
       'fonts/unooriaai': 'src/fonts-unooriaai.css',
       'fonts/unoogaleria': 'src/fonts-unoogaleria.css',
+      'fonts/unoojornal': 'src/fonts-unoojornal.css',
     },
     esbuildOptions(options) {
       /* Os arquivos de fonte ao lado das folhas que os declaram. */
