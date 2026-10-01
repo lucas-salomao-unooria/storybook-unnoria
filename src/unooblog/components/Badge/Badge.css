@@ -1,0 +1,90 @@
+/**
+ * Estilos do Componente Badge — Design System Unooblog
+ * Cápsula de 20px (sm) ou 28px (md). Status em fundo translúcido `fill-*` com
+ * contorno e glifo em `status-*`; o texto é sempre `text-primary`.
+ */
+
+.ubl-badge {
+  /* Alturas do selo: sem token na régua de tamanhos */
+  --ubl-badge-height-sm: 20px;
+  --ubl-badge-height-md: 28px;
+  /* Cor do glifo e do contorno do tom corrente */
+  --ubl-badge-accent: var(--ubl-color-border-control);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+  box-sizing: border-box;
+  max-width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-fill-field);
+  color: var(--ubl-color-text-secondary);
+  font-family: var(--ubl-font-sans);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.ubl-badge--sm {
+  height: var(--ubl-badge-height-sm);
+  padding: 0 var(--ubl-spacing-xs);
+  font-size: var(--ubl-font-caption-strong-size);
+  line-height: var(--ubl-font-caption-strong-line);
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+}
+
+.ubl-badge--md {
+  height: var(--ubl-badge-height-md);
+  padding: 0 var(--ubl-spacing-m);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-badge__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ubl-badge__icon {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Tons
+   ========================================================================== */
+
+.ubl-badge--accent {
+  background-color: var(--ubl-color-action-primary);
+  color: var(--ubl-color-text-on-action);
+}
+
+.ubl-badge--success {
+  --ubl-badge-accent: var(--ubl-color-status-success);
+  background-color: var(--ubl-color-fill-success);
+}
+
+.ubl-badge--warning {
+  --ubl-badge-accent: var(--ubl-color-status-warning);
+  background-color: var(--ubl-color-fill-warning);
+}
+
+.ubl-badge--info {
+  --ubl-badge-accent: var(--ubl-color-status-info);
+  background-color: var(--ubl-color-fill-info);
+}
+
+.ubl-badge--success,
+.ubl-badge--warning,
+.ubl-badge--info {
+  border-color: var(--ubl-badge-accent);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-badge--success .ubl-badge__icon,
+.ubl-badge--warning .ubl-badge__icon,
+.ubl-badge--info .ubl-badge__icon {
+  color: var(--ubl-badge-accent);
+}

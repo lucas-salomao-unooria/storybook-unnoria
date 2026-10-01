@@ -11,3 +11,4 @@ export * from './UnvDocKit';
 export * from './UaiDocKit';
 export * from './UglDocKit';
 export * from './UjnDocKit';
+export * from './UblDocKit';

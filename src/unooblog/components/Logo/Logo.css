@@ -1,0 +1,26 @@
+/**
+ * Estilos do Componente Logo — Design System Unooblog
+ * Símbolo da Unooria no roxo de ação e letras na cor do texto. Todas as cores
+ * são tokens; o vetor não tem preenchimento literal.
+ */
+
+.ubl-logo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.ubl-logo__symbol {
+  fill: var(--ubl-color-action-primary);
+}
+
+.ubl-logo__wordmark {
+  fill: var(--ubl-color-text-primary);
+}
+
+/* Herda a cor do elemento pai: uma tinta só */
+.ubl-logo--tone-inherit .ubl-logo__symbol,
+.ubl-logo--tone-inherit .ubl-logo__wordmark {
+  fill: currentColor;
+}

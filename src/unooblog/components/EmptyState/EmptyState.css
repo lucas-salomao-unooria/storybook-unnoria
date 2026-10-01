@@ -1,0 +1,61 @@
+/**
+ * Estilos do Componente EmptyState — Design System Unooblog
+ * Coluna centralizada: medalhão circular com o glifo de 32px, título, apoio e
+ * ação.
+ */
+
+.ubl-empty-state {
+  /* Diâmetro do medalhão: o glifo de 32px com 16px de folga de cada lado */
+  --ubl-empty-state-medallion: 80px;
+  /* Largura de leitura do texto de apoio */
+  --ubl-empty-state-measure: 360px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ubl-spacing-4xl) var(--ubl-gutter);
+  font-family: var(--ubl-font-sans);
+  text-align: center;
+}
+
+.ubl-empty-state__medallion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ubl-empty-state-medallion);
+  height: var(--ubl-empty-state-medallion);
+  margin-bottom: var(--ubl-spacing-l);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-background-subtle);
+  color: var(--ubl-color-icon-accent);
+}
+
+.ubl-empty-state__title {
+  max-width: var(--ubl-empty-state-measure);
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-empty-state__description {
+  max-width: var(--ubl-empty-state-measure);
+  margin: var(--ubl-spacing-xs) 0 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+.ubl-empty-state__action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ubl-spacing-xs);
+  margin-top: var(--ubl-spacing-xl);
+}

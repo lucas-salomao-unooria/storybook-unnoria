@@ -1,0 +1,36 @@
+/**
+ * Estilos do Componente TextArea — Design System Unooblog
+ * O desenho do campo vem de `TextField.css` (classes `ubl-text-field*`); aqui
+ * ficam só a área de texto (sem redimensionar, com rolagem fina) e o rodapé com
+ * a mensagem à esquerda e o contador à direita.
+ */
+
+.ubl-text-area__control {
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ubl-color-border-default) transparent;
+}
+
+.ubl-text-area__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ubl-spacing-m);
+}
+
+.ubl-text-area__counter {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ubl-text-area__counter--over {
+  color: var(--ubl-color-text-danger);
+  font-weight: var(--ubl-font-label-weight);
+}

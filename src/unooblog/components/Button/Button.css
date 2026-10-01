@@ -1,0 +1,173 @@
+/**
+ * Estilos do Componente Button — Design System Unooblog
+ * Botão em cápsula (raio `full`) com glifo opcional. Todas as cores vêm de `--ubl-*`; o
+ * realce de hover e de pressionado é uma camada translúcida (`state-*`), que
+ * vale sobre qualquer preenchimento. O desabilitado vale para `<button disabled>`
+ * e para o botão-link (`.ubl-button--disabled`, com `aria-disabled`).
+ */
+
+.ubl-button {
+  /* Alturas do pequeno e do grande: sem token (o médio é --ubl-touch-target) */
+  --ubl-button-height-sm: 32px;
+  --ubl-button-height-lg: 52px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ubl-spacing-xxs);
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  font-family: var(--ubl-font-sans);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast),
+    transform var(--ubl-transition-fast);
+}
+
+/* Camada de realce de hover e de pressionado */
+.ubl-button::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ubl-transition-fast);
+}
+
+.ubl-button:hover:not(:disabled, .ubl-button--disabled)::after {
+  background-color: var(--ubl-color-state-hover);
+}
+
+.ubl-button:active:not(:disabled, .ubl-button--disabled)::after {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-button:active:not(:disabled, .ubl-button--disabled) {
+  transform: scale(0.98);
+}
+
+.ubl-button:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-button:is(:disabled, .ubl-button--disabled) {
+  cursor: not-allowed;
+}
+
+.ubl-button__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ubl-button--sm {
+  height: var(--ubl-button-height-sm);
+  padding: 0 var(--ubl-spacing-l);
+}
+
+.ubl-button--md {
+  height: var(--ubl-touch-target);
+  padding: 0 var(--ubl-spacing-xl);
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+}
+
+.ubl-button--lg {
+  height: var(--ubl-button-height-lg);
+  padding: 0 var(--ubl-spacing-xxl);
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+}
+
+.ubl-button--full {
+  display: flex;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ubl-button--primary {
+  background-color: var(--ubl-color-action-primary);
+  color: var(--ubl-color-text-on-action);
+}
+
+.ubl-button--primary:active:not(:disabled, .ubl-button--disabled) {
+  background-color: var(--ubl-color-action-pressed);
+}
+
+.ubl-button--primary:is(:disabled, .ubl-button--disabled) {
+  background-color: var(--ubl-color-action-disabled);
+}
+
+.ubl-button--danger {
+  background-color: var(--ubl-color-action-danger);
+  color: var(--ubl-color-text-on-danger);
+}
+
+/* O destrutivo não tem token de pressionado: vale a camada translúcida de `::after` */
+.ubl-button--danger:is(:disabled, .ubl-button--disabled) {
+  background-color: var(--ubl-color-action-disabled);
+  color: var(--ubl-color-text-on-action);
+}
+
+.ubl-button--secondary {
+  border-color: var(--ubl-color-border-control);
+  background-color: transparent;
+  color: var(--ubl-color-text-accent);
+}
+
+.ubl-button--ghost {
+  color: var(--ubl-color-text-accent);
+}
+
+/* O ghost sublinha o rótulo no hover e no foco: é o que o distingue de texto solto */
+.ubl-button--ghost:hover:not(:disabled, .ubl-button--disabled) .ubl-button__label,
+.ubl-button--ghost:focus-visible .ubl-button__label {
+  text-decoration: underline;
+  text-underline-offset: var(--ubl-spacing-3xs);
+}
+
+.ubl-button--ghost.ubl-button--sm {
+  padding: 0 var(--ubl-spacing-m);
+}
+
+/* Desabilitado das variantes sem preenchimento próprio */
+.ubl-button--secondary:is(:disabled, .ubl-button--disabled),
+.ubl-button--ghost:is(:disabled, .ubl-button--disabled) {
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-button,
+  .ubl-button::after {
+    transition: none;
+  }
+
+  .ubl-button:active:not(:disabled, .ubl-button--disabled) {
+    transform: none;
+  }
+}
