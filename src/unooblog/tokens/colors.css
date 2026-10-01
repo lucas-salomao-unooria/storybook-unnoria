@@ -1,0 +1,226 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Unooblog
+   Todo valor é um literal copiado da paleta da Plataforma Unooria
+   (`src/unooria/tokens/colors.css` e `elevation.css`); o comentário ao lado de
+   cada linha nomeia o token de origem. O módulo NÃO consome `--unooria-*` em
+   tempo de execução — um módulo de marca nunca lê tokens de outro (AGENTS.md,
+   1.3) —, e `scripts/verificar-paridade-unooblog.mjs` falha o build se um
+   literal se afastar da origem. `colors.css` e `colors.ts` saem da mesma tabela
+   (`scripts/gerar-tokens-unooblog.mjs`).
+
+   Dois temas, ambos sobre a escala roxa (`brandpurple`):
+   - claro: telas em branco e lavanda (50–300), acento em 600;
+   - escuro: telas em roxo profundo (700–950), acento em 400.
+   O tema escuro NÃO é derivado do claro por cálculo: cada valor de cada tema é
+   um degrau nomeado da Unooria.
+
+   O BLOCO DE CÓDIGO, a mídia e o aparelho do mockup são invariantes: o código
+   vive sobre fundo escuro nos dois temas (leitura de código em claro cansa e
+   perde o contraste das cores de destaque), e sobre a capa o texto é sempre
+   branco.
+   ========================================================================== */
+
+:root,
+[data-ubl-theme='light'] {
+  /** Fundo da página e da coluna de leitura */
+  --ubl-color-background-page: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Cartões de post, autor, série e newsletter */
+  --ubl-color-background-card: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Capa ainda não carregada, comentários respondidos e blocos sutis */
+  --ubl-color-background-subtle: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Menus, folhas inferiores e diálogos */
+  --ubl-color-background-elevated: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Cabeçalho do site translúcido sobre a rolagem */
+  --ubl-color-surface-bar: rgba(255, 255, 255, 0.90); /* --unooria-color-opacity-neutrallight-900 */
+  /** Títulos, corpo do post e texto de alto contraste */
+  --ubl-color-text-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Subtítulo, resumo, autoria e metadados */
+  --ubl-color-text-secondary: #475157; /* --unooria-color-neutral-700 */
+  /** Tempo de leitura, legendas e espaço reservado dos campos */
+  --ubl-color-text-muted: #536167; /* --unooria-color-neutral-600 */
+  /** Links, tópicos e ações de texto */
+  --ubl-color-text-accent: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Rótulo sobre o preenchimento de ação */
+  --ubl-color-text-on-action: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Ações destrutivas em texto e erro de campo */
+  --ubl-color-text-danger: #C11414; /* --unooria-color-danger-700 */
+  /** Rótulo sobre o botão destrutivo preenchido */
+  --ubl-color-text-on-danger: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Glifos ativos da navegação e das barras */
+  --ubl-color-icon-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Glifos de apoio e setas */
+  --ubl-color-icon-secondary: #617379; /* --unooria-color-neutral-500 */
+  /** Glifo de destaque: post salvo, autor seguido */
+  --ubl-color-icon-accent: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Divisores e contorno de cartão */
+  --ubl-color-border-subtle: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Contorno de superfície e de controle desabilitado */
+  --ubl-color-border-default: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Contorno de campo e de controle (gráfico ≥ 3:1) */
+  --ubl-color-border-control: #617379; /* --unooria-color-neutral-500 */
+  /** Botão primário, item ativo, progresso de leitura e sumário ativo */
+  --ubl-color-action-primary: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Estado pressionado da ação primária */
+  --ubl-color-action-pressed: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Ação primária desabilitada */
+  --ubl-color-action-disabled: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Botão destrutivo preenchido */
+  --ubl-color-action-danger: #E31A1A; /* --unooria-color-danger-600 */
+  /** Preenchimento de campo, de chip e do controle segmentado */
+  --ubl-color-fill-field: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Realce de hover sobre qualquer superfície */
+  --ubl-color-state-hover: rgba(14, 16, 57, 0.05); /* --unooria-color-opacity-brandpurple-50 */
+  /** Realce de pressionado sobre qualquer superfície */
+  --ubl-color-state-pressed: rgba(14, 16, 57, 0.10); /* --unooria-color-opacity-brandpurple-100 */
+  /** Anel de foco de 2px (gráfico ≥ 3:1) */
+  --ubl-color-focus-ring: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Coração de curtida quando ativo */
+  --ubl-color-brand-like: #E31A1A; /* --unooria-color-danger-600 */
+  /** Barra e glifo do aviso informativo */
+  --ubl-color-status-info: #005CE6; /* --unooria-color-info-700 */
+  /** Barra e glifo da dica e confirmação de inscrição */
+  --ubl-color-status-success: #008257; /* --unooria-color-success-700 */
+  /** Barra e glifo do aviso de atenção */
+  --ubl-color-status-warning: #B73506; /* --unooria-color-warning-700 */
+  /** Fundo translúcido do aviso informativo */
+  --ubl-color-fill-info: rgba(0, 134, 255, 0.10); /* --unooria-color-opacity-info-100 */
+  /** Fundo translúcido da dica */
+  --ubl-color-fill-success: rgba(1, 181, 116, 0.10); /* --unooria-color-opacity-success-100 */
+  /** Fundo translúcido do aviso de atenção */
+  --ubl-color-fill-warning: rgba(249, 118, 7, 0.10); /* --unooria-color-opacity-warning-100 */
+  /** Véu atrás de folhas e diálogos */
+  --ubl-color-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+  /** Fundo do aviso passageiro (cores invertidas) */
+  --ubl-color-toast-surface: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto do aviso passageiro */
+  --ubl-color-toast-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Ação do aviso passageiro ("Desfazer") */
+  --ubl-color-toast-action: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Menus, folhas, diálogos e avisos */
+  --ubl-elevation-overlay: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+}
+
+[data-ubl-theme='dark'] {
+  /** Fundo da página e da coluna de leitura */
+  --ubl-color-background-page: #080922; /* --unooria-color-brandpurple-950 */
+  /** Cartões de post, autor, série e newsletter */
+  --ubl-color-background-card: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Capa ainda não carregada, comentários respondidos e blocos sutis */
+  --ubl-color-background-subtle: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Menus, folhas inferiores e diálogos */
+  --ubl-color-background-elevated: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Cabeçalho do site translúcido sobre a rolagem */
+  --ubl-color-surface-bar: rgba(14, 16, 57, 0.90); /* --unooria-color-opacity-brandpurple-900 */
+  /** Títulos, corpo do post e texto de alto contraste */
+  --ubl-color-text-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Subtítulo, resumo, autoria e metadados */
+  --ubl-color-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Tempo de leitura, legendas e espaço reservado dos campos */
+  --ubl-color-text-muted: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Links, tópicos e ações de texto */
+  --ubl-color-text-accent: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Rótulo sobre o preenchimento de ação */
+  --ubl-color-text-on-action: #080922; /* --unooria-color-brandpurple-950 */
+  /** Ações destrutivas em texto e erro de campo */
+  --ubl-color-text-danger: #FFA1A1; /* --unooria-color-danger-300 */
+  /** Rótulo sobre o botão destrutivo preenchido */
+  --ubl-color-text-on-danger: #080922; /* --unooria-color-brandpurple-950 */
+  /** Glifos ativos da navegação e das barras */
+  --ubl-color-icon-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Glifos de apoio e setas */
+  --ubl-color-icon-secondary: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Glifo de destaque: post salvo, autor seguido */
+  --ubl-color-icon-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Divisores e contorno de cartão */
+  --ubl-color-border-subtle: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno de superfície e de controle desabilitado */
+  --ubl-color-border-default: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno de campo e de controle (gráfico ≥ 3:1) */
+  --ubl-color-border-control: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Botão primário, item ativo, progresso de leitura e sumário ativo */
+  --ubl-color-action-primary: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Estado pressionado da ação primária */
+  --ubl-color-action-pressed: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Ação primária desabilitada */
+  --ubl-color-action-disabled: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Botão destrutivo preenchido */
+  --ubl-color-action-danger: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Preenchimento de campo, de chip e do controle segmentado */
+  --ubl-color-fill-field: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Realce de hover sobre qualquer superfície */
+  --ubl-color-state-hover: rgba(255, 255, 255, 0.10); /* --unooria-color-opacity-neutrallight-100 */
+  /** Realce de pressionado sobre qualquer superfície */
+  --ubl-color-state-pressed: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Anel de foco de 2px (gráfico ≥ 3:1) */
+  --ubl-color-focus-ring: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Coração de curtida quando ativo */
+  --ubl-color-brand-like: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Barra e glifo do aviso informativo */
+  --ubl-color-status-info: #26D4FF; /* --unooria-color-info-300 */
+  /** Barra e glifo da dica e confirmação de inscrição */
+  --ubl-color-status-success: #26E197; /* --unooria-color-success-400 */
+  /** Barra e glifo do aviso de atenção */
+  --ubl-color-status-warning: #FFB74A; /* --unooria-color-warning-300 */
+  /** Fundo translúcido do aviso informativo */
+  --ubl-color-fill-info: rgba(0, 134, 255, 0.10); /* --unooria-color-opacity-info-100 */
+  /** Fundo translúcido da dica */
+  --ubl-color-fill-success: rgba(1, 181, 116, 0.10); /* --unooria-color-opacity-success-100 */
+  /** Fundo translúcido do aviso de atenção */
+  --ubl-color-fill-warning: rgba(249, 118, 7, 0.10); /* --unooria-color-opacity-warning-100 */
+  /** Véu atrás de folhas e diálogos */
+  --ubl-color-overlay-scrim: rgba(14, 16, 57, 0.70); /* --unooria-color-opacity-brandpurple-700 */
+  /** Fundo do aviso passageiro (cores invertidas) */
+  --ubl-color-toast-surface: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Texto do aviso passageiro */
+  --ubl-color-toast-text: #080922; /* --unooria-color-brandpurple-950 */
+  /** Ação do aviso passageiro ("Desfazer") */
+  --ubl-color-toast-action: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Menus, folhas, diálogos e avisos */
+  --ubl-elevation-overlay: 0px 0px 8px 4px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-2 */
+}
+
+/* ==========================================================================
+   Invariantes entre temas e gradientes compostos
+
+   Uma propriedade personalizada com `var()` é resolvida NO elemento em que é
+   declarada; declarada só em `:root`, ela congelaria os valores do tema claro
+   dentro de um contêiner escuro (a lição da seção 2.9). Por isso este bloco se
+   repete em todo `[data-ubl-theme]`.
+   ========================================================================== */
+
+:root,
+[data-ubl-theme] {
+  /** Fundo do bloco de código, nos dois temas */
+  --ubl-color-code-surface: #080922; /* --unooria-color-brandpurple-950 */
+  /** Texto do bloco de código */
+  --ubl-color-code-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Nome do arquivo, linguagem e numeração das linhas */
+  --ubl-color-code-text-muted: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Linha destacada e confirmação de cópia */
+  --ubl-color-code-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Fio entre a barra e o corpo do bloco de código */
+  --ubl-color-code-border: rgba(255, 255, 255, 0.30); /* --unooria-color-opacity-neutrallight-300 */
+  /** Fundo do botão de copiar em hover */
+  --ubl-color-code-control: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Véu da base da capa, atrás de texto sobre a mídia */
+  --ubl-color-media-scrim: rgba(14, 16, 57, 0.60); /* --unooria-color-opacity-brandpurple-600 */
+  /** Texto sobre a capa (sempre branco) */
+  --ubl-color-media-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Corpo do aparelho do mockup e ilha da câmera */
+  --ubl-color-device-body: #080922; /* --unooria-color-brandpurple-950 */
+  /** Aro metálico do aparelho */
+  --ubl-color-device-edge: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Botões laterais do aparelho */
+  --ubl-color-device-button: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Lente da câmera frontal */
+  --ubl-color-device-lens: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Barra do navegador do mockup de área de trabalho */
+  --ubl-color-device-chrome: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Campo de endereço do mockup de área de trabalho */
+  --ubl-color-device-chrome-field: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto do endereço no mockup de área de trabalho */
+  --ubl-color-device-chrome-text: #CBD4D6; /* --unooria-color-neutraldark-900 */
+
+  /** Véu da base da capa, atrás do título sobre a mídia */
+  --ubl-gradient-media-bottom: linear-gradient(180deg, transparent 40%, var(--ubl-color-media-scrim) 100%);
+}

@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos, Movimento e Camadas — Unooblog
+   Medidas do módulo, sobre a página de 1440px (conteúdo de 1120px, coluna de leitura
+   de 680px) e sobre a tela de 390×844 do mockup móvel. Os tamanhos de ícone são literais
+   da Plataforma Unooria, com a origem no comentário.
+
+   Pontos de quebra: são de CONTÊINER (`@container`), nunca de janela — o
+   blog aparece em quadros de documentação mais estreitos que a janela.
+   Largo ≥ 960px (leitura com sumário lateral), médio ≥ 640px, compacto abaixo.
+   Variáveis CSS não entram em `@container`, por isso os valores só constam aqui.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --ubl-spacing-4xs: 2px;
+  --ubl-spacing-3xs: 4px;
+  --ubl-spacing-xxs: 6px;
+  --ubl-spacing-xs: 8px;
+  --ubl-spacing-s: 10px;
+  --ubl-spacing-m: 12px;
+  --ubl-spacing-l: 16px;
+  --ubl-spacing-xl: 20px;
+  --ubl-spacing-xxl: 24px;
+  --ubl-spacing-3xl: 32px;
+  --ubl-spacing-4xl: 48px;
+  --ubl-spacing-5xl: 64px;
+
+  /* Margem lateral padrão: estreita no móvel, larga na página */
+  --ubl-gutter: 16px;
+  --ubl-gutter-wide: 48px;
+
+  /* Raios de borda: o blog é macio; cartões em l, capas em m, controles em cápsula */
+  --ubl-radius-xs: 4px;
+  --ubl-radius-s: 8px;
+  --ubl-radius-m: 12px;
+  --ubl-radius-l: 16px;
+  --ubl-radius-xl: 24px;
+  --ubl-radius-full: 1000px;
+
+  /* Dimensões estruturais da página */
+  --ubl-page-width: 1120px;
+  --ubl-reading-width: 680px;
+  --ubl-sidebar-width: 320px;
+  --ubl-toc-width: 240px;
+  --ubl-site-header-height: 64px;
+  --ubl-progress-height: 3px;
+  --ubl-touch-target: 44px;
+
+  /* Quadros de documentação */
+  --ubl-desktop-width: 1440px;
+  --ubl-desktop-height: 1024px;
+  --ubl-desktop-chrome-height: 40px;
+  --ubl-screen-width: 390px;
+  --ubl-screen-height: 844px;
+  --ubl-statusbar-height: 47px;
+  --ubl-home-indicator-height: 34px;
+
+  /*
+   * Áreas seguras. Valem 0 fora de um aparelho; o `PhoneFrame` as redefine na
+   * tela com a altura da barra de status e da barra de gesto, e barras, folhas
+   * e o leitor as somam ao próprio recuo.
+   */
+  --ubl-safe-area-top: 0px;
+  --ubl-safe-area-bottom: 0px;
+
+  /* Tamanhos de ícone (degraus de --unooria-icon-size-*) */
+  --ubl-icon-size-xs: 16px; /* --unooria-icon-size-3xs */
+  --ubl-icon-size-sm: 20px; /* --unooria-icon-size-xs */
+  --ubl-icon-size-md: 24px; /* --unooria-icon-size-s */
+  --ubl-icon-size-lg: 32px; /* --unooria-icon-size-m */
+
+  /* Avatares de autoria e de comentário */
+  --ubl-avatar-sm: 24px;
+  --ubl-avatar-md: 32px;
+  --ubl-avatar-lg: 48px;
+  --ubl-avatar-xl: 72px;
+
+  /* Movimento */
+  --ubl-transition-fast: 120ms ease;
+  --ubl-transition-base: 200ms ease;
+  --ubl-transition-slow: 320ms cubic-bezier(0.2, 0, 0, 1);
+
+  /* Camadas, de baixo para cima */
+  --ubl-z-bar: 10;
+  --ubl-z-progress: 15;
+  --ubl-z-sheet: 30;
+  --ubl-z-dialog: 40;
+  --ubl-z-toast: 50;
+  --ubl-z-statusbar: 60;
+}
+
+/*
+ * Fios de 1px. Compostos com `var()` de cor, então declarados em todo
+ * `[data-ubl-theme]` (ver o comentário de `colors.css`): declarados só em
+ * `:root`, o fio ficaria com a cor do tema claro dentro de um contêiner escuro.
+ */
+:root,
+[data-ubl-theme] {
+  --ubl-elevation-hairline-bottom: 0 1px 0 0 var(--ubl-color-border-subtle);
+  --ubl-elevation-hairline-top: 0 -1px 0 0 var(--ubl-color-border-subtle);
+}
