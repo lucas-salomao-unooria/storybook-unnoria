@@ -1,0 +1,95 @@
+/**
+ * TypingIndicator - Design System Unooria
+ *
+ * Design próprio. Três pontos de 8px em `brandpurple-500` (3,4:1 sobre o
+ * branco, acima dos 3:1 de elemento gráfico) com 4px entre eles; a frase em
+ * `body-xs` (14/20) `neutral-700`. A pulsação dura 1,2s e escalona 150ms por
+ * ponto; com movimento reduzido ela para e a frase aparece.
+ */
+
+@keyframes unooria-typing-indicator-pulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.unooria-typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs);
+  min-height: 24px;
+  color: var(--unooria-color-neutral-700);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: var(--unooria-size-body-xs);
+  line-height: var(--unooria-line-height-body-xs);
+}
+
+.unooria-typing-indicator__dots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs);
+}
+
+.unooria-typing-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--unooria-radius-full, 1000px);
+  background-color: var(--unooria-color-brandpurple-500);
+  animation: unooria-typing-indicator-pulse 1.2s ease-in-out infinite;
+}
+
+.unooria-typing-indicator__dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.unooria-typing-indicator__dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+/* Sem `showLabel`, a frase existe só para o leitor de tela. */
+.unooria-typing-indicator:not(.unooria-typing-indicator--with-label) .unooria-typing-indicator__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.unooria-typing-indicator--theme-dark,
+[data-theme='dark'] .unooria-typing-indicator {
+  color: var(--unooria-color-neutraldark-900);
+}
+
+.unooria-typing-indicator--theme-dark .unooria-typing-indicator__dot,
+[data-theme='dark'] .unooria-typing-indicator__dot {
+  background-color: var(--unooria-color-brandpurple-400);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-typing-indicator__dot {
+    animation: none;
+    opacity: 1;
+  }
+
+  /* Sem animação, quem diz "está escrevendo" é a frase — visível sempre. */
+  .unooria-typing-indicator:not(.unooria-typing-indicator--with-label) .unooria-typing-indicator__label {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
