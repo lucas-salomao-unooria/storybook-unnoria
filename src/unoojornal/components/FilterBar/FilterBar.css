@@ -1,0 +1,37 @@
+/**
+ * Estilos do Componente FilterBar — Design System Unoojornal
+ * Linha de pílulas com folga de 8px. Larga e média: as pílulas quebram de
+ * linha. Compacta (contêiner abaixo de 640px): uma linha só, que rola na
+ * horizontal com barra fina e sem encolher as pílulas.
+ */
+
+.ujn-filter-bar {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--ujn-font-sans);
+}
+
+.ujn-filter-bar__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+  box-sizing: border-box;
+  padding: var(--ujn-spacing-3xs) var(--ujn-spacing-3xs);
+}
+
+.ujn-filter-bar__list > * {
+  flex-shrink: 0;
+}
+
+@container (max-width: 639px) {
+  .ujn-filter-bar__list {
+    flex-wrap: nowrap;
+    padding-block: var(--ujn-spacing-xs);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ujn-color-border-default) transparent;
+  }
+}
