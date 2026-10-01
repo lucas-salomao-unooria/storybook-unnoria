@@ -1,0 +1,126 @@
+/**
+ * Estilos do Componente Tag — Design System Unoojornal
+ * Etiqueta reta (raio `xs`) em caixa alta, no degrau `kicker`. As cores são
+ * tokens; hover e pressionado são uma camada translúcida (`state-*`).
+ */
+
+.ujn-tag {
+  /* Alturas da etiqueta: sem token na régua do módulo */
+  --ujn-tag-height-sm: 20px;
+  --ujn-tag-height-md: 24px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ujn-radius-xs);
+  background: none;
+  font-family: var(--ujn-font-sans);
+  font-size: var(--ujn-font-kicker-size);
+  font-weight: var(--ujn-font-kicker-weight);
+  line-height: var(--ujn-font-kicker-line);
+  letter-spacing: var(--ujn-font-kicker-tracking);
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.ujn-tag--sm {
+  min-height: var(--ujn-tag-height-sm);
+  padding: 0 var(--ujn-spacing-xs);
+}
+
+.ujn-tag--md {
+  min-height: var(--ujn-tag-height-md);
+  padding: 0 var(--ujn-spacing-m);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ujn-tag--outline {
+  border-color: var(--ujn-color-border-default);
+  color: var(--ujn-color-text-accent);
+}
+
+.ujn-tag--accent {
+  background-color: var(--ujn-color-fill-field);
+  color: var(--ujn-color-text-accent);
+}
+
+.ujn-tag--neutral {
+  background-color: var(--ujn-color-background-subtle);
+  color: var(--ujn-color-text-secondary);
+}
+
+/* ==========================================================================
+   Interativa (link ou botão)
+   ========================================================================== */
+
+.ujn-tag--interactive {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ujn-transition-fast),
+    border-color var(--ujn-transition-fast),
+    color var(--ujn-transition-fast);
+}
+
+/* Camada de realce de hover e de pressionado */
+.ujn-tag--interactive::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ujn-transition-fast);
+}
+
+/* O desenho tem 20/24px, mas o alvo de toque continua com 44px */
+.ujn-tag--interactive::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--ujn-touch-target));
+  height: var(--ujn-touch-target);
+  transform: translate(-50%, -50%);
+}
+
+.ujn-tag--interactive:hover::after {
+  background-color: var(--ujn-color-state-hover);
+}
+
+.ujn-tag--interactive:active::after {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-tag--interactive:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ujn-tag--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.ujn-tag--disabled:hover::after,
+.ujn-tag--disabled:active::after {
+  background-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-tag--interactive,
+  .ujn-tag--interactive::after {
+    transition: none;
+  }
+}

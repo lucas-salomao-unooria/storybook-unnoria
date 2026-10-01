@@ -1,0 +1,210 @@
+/* ==========================================================================
+   Tokens de Cores — Design System Unoojornal
+   Todo valor é um literal copiado da paleta da Plataforma Unooria
+   (`src/unooria/tokens/colors.css` e `elevation.css`); o comentário ao lado de
+   cada linha nomeia o token de origem. O módulo NÃO consome `--unooria-*` em
+   tempo de execução — um módulo de marca nunca lê tokens de outro (AGENTS.md,
+   1.3) —, e `scripts/verificar-paridade-unoojornal.mjs` falha o build se um
+   literal se afastar da origem. `colors.css` e `colors.ts` saem da mesma tabela
+   (`scripts/gerar-tokens-unoojornal.mjs`).
+
+   Dois temas, ambos sobre a escala roxa (`brandpurple`):
+   - claro: telas em branco e lavanda (50–300), acento em 600;
+   - escuro: telas em roxo profundo (700–950), acento em 400.
+   O tema escuro NÃO é derivado do claro por cálculo: cada valor de cada tema é
+   um degrau nomeado da Unooria.
+
+   O RODAPÉ escuro, a mídia e o aparelho do mockup são invariantes: o rodapé é
+   a única superfície escura do jornal claro (e, no tema escuro, continua um
+   degrau acima da página). Sobre fotografia o texto é sempre branco.
+   ========================================================================== */
+
+:root,
+[data-ujn-theme='light'] {
+  /** Fundo da página: o papel atrás das colunas */
+  --ujn-color-background-page: #F7F6FA; /* --unooria-color-brandpurple-50 */
+  /** Cartões, caixas laterais e a coluna de leitura */
+  --ujn-color-background-card: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Mídia ainda não carregada, tarja de data e blocos sutis */
+  --ujn-color-background-subtle: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Menus, folhas inferiores e diálogos */
+  --ujn-color-background-elevated: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Barra superior translúcida do leitor de matéria */
+  --ujn-color-surface-bar: rgba(255, 255, 255, 0.90); /* --unooria-color-opacity-neutrallight-900 */
+  /** Títulos, rótulos e texto de alto contraste */
+  --ujn-color-text-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Resumos, autoria, datas e metadados */
+  --ujn-color-text-secondary: #475157; /* --unooria-color-neutral-700 */
+  /** Tempo de leitura, legendas e espaço reservado dos campos */
+  --ujn-color-text-muted: #536167; /* --unooria-color-neutral-600 */
+  /** Kicker, links e ações de texto */
+  --ujn-color-text-accent: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Rótulo sobre o preenchimento de ação e sobre a pílula selecionada */
+  --ujn-color-text-on-action: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Ações destrutivas em texto e erro de campo */
+  --ujn-color-text-danger: #C11414; /* --unooria-color-danger-700 */
+  /** Rótulo sobre o botão destrutivo preenchido */
+  --ujn-color-text-on-danger: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Glifos ativos da navegação e das barras */
+  --ujn-color-icon-primary: #22272A; /* --unooria-color-neutral-950 */
+  /** Glifos de apoio e setas */
+  --ujn-color-icon-secondary: #617379; /* --unooria-color-neutral-500 */
+  /** Glifo de destaque: matéria salva, item ativo */
+  --ujn-color-icon-accent: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Divisores entre itens da lista e contorno de cartão */
+  --ujn-color-border-subtle: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Contorno do botão secundário e da pílula em repouso */
+  --ujn-color-border-default: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Fio grosso e fio duplo do cabeçalho: a tinta do jornal (gráfico ≥ 3:1) */
+  --ujn-color-border-rule: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Contorno de campo e de controle (gráfico ≥ 3:1) */
+  --ujn-color-border-control: #617379; /* --unooria-color-neutral-500 */
+  /** Botão primário, pílula selecionada, progresso de leitura e item ativo */
+  --ujn-color-action-primary: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Estado pressionado da ação primária */
+  --ujn-color-action-pressed: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Ação primária desabilitada */
+  --ujn-color-action-disabled: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Botão destrutivo preenchido */
+  --ujn-color-action-danger: #E31A1A; /* --unooria-color-danger-600 */
+  /** Preenchimento de campo, de etiqueta de destaque e de pílula em repouso */
+  --ujn-color-fill-field: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Realce de hover sobre qualquer superfície */
+  --ujn-color-state-hover: rgba(14, 16, 57, 0.05); /* --unooria-color-opacity-brandpurple-50 */
+  /** Realce de pressionado sobre qualquer superfície */
+  --ujn-color-state-pressed: rgba(14, 16, 57, 0.10); /* --unooria-color-opacity-brandpurple-100 */
+  /** Anel de foco de 2px (gráfico ≥ 3:1) */
+  --ujn-color-focus-ring: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Marcador "Atualizado agora" e confirmação de envio da carta */
+  --ujn-color-status-live: #008257; /* --unooria-color-success-700 */
+  /** Nota de correção publicada */
+  --ujn-color-status-warning: #B73506; /* --unooria-color-warning-700 */
+  /** Véu atrás de folhas e diálogos */
+  --ujn-color-overlay-scrim: rgba(14, 16, 57, 0.50); /* --unooria-color-opacity-brandpurple-500 */
+  /** Fundo do aviso passageiro (cores invertidas) */
+  --ujn-color-toast-surface: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto do aviso passageiro */
+  --ujn-color-toast-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Ação do aviso passageiro ("Desfazer") */
+  --ujn-color-toast-action: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Menus, folhas, diálogos e avisos */
+  --ujn-elevation-overlay: 0px 0px 10px 0px rgba(14, 16, 57, 0.3); /* --unooria-elevation-brand-secondary */
+}
+
+[data-ujn-theme='dark'] {
+  /** Fundo da página: o papel atrás das colunas */
+  --ujn-color-background-page: #080922; /* --unooria-color-brandpurple-950 */
+  /** Cartões, caixas laterais e a coluna de leitura */
+  --ujn-color-background-card: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Mídia ainda não carregada, tarja de data e blocos sutis */
+  --ujn-color-background-subtle: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Menus, folhas inferiores e diálogos */
+  --ujn-color-background-elevated: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Barra superior translúcida do leitor de matéria */
+  --ujn-color-surface-bar: rgba(14, 16, 57, 0.90); /* --unooria-color-opacity-brandpurple-900 */
+  /** Títulos, rótulos e texto de alto contraste */
+  --ujn-color-text-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Resumos, autoria, datas e metadados */
+  --ujn-color-text-secondary: #CBD4D6; /* --unooria-color-neutraldark-900 */
+  /** Tempo de leitura, legendas e espaço reservado dos campos */
+  --ujn-color-text-muted: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Kicker, links e ações de texto */
+  --ujn-color-text-accent: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Rótulo sobre o preenchimento de ação e sobre a pílula selecionada */
+  --ujn-color-text-on-action: #080922; /* --unooria-color-brandpurple-950 */
+  /** Ações destrutivas em texto e erro de campo */
+  --ujn-color-text-danger: #FFA1A1; /* --unooria-color-danger-300 */
+  /** Rótulo sobre o botão destrutivo preenchido */
+  --ujn-color-text-on-danger: #080922; /* --unooria-color-brandpurple-950 */
+  /** Glifos ativos da navegação e das barras */
+  --ujn-color-icon-primary: #F5F5F5; /* --unooria-color-neutraldark-950 */
+  /** Glifos de apoio e setas */
+  --ujn-color-icon-secondary: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Glifo de destaque: matéria salva, item ativo */
+  --ujn-color-icon-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Divisores entre itens da lista e contorno de cartão */
+  --ujn-color-border-subtle: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Contorno do botão secundário e da pílula em repouso */
+  --ujn-color-border-default: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Fio grosso e fio duplo do cabeçalho: a tinta do jornal (gráfico ≥ 3:1) */
+  --ujn-color-border-rule: #DFDDEB; /* --unooria-color-brandpurple-200 */
+  /** Contorno de campo e de controle (gráfico ≥ 3:1) */
+  --ujn-color-border-control: #A7B5B9; /* --unooria-color-neutraldark-800 */
+  /** Botão primário, pílula selecionada, progresso de leitura e item ativo */
+  --ujn-color-action-primary: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Estado pressionado da ação primária */
+  --ujn-color-action-pressed: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Ação primária desabilitada */
+  --ujn-color-action-disabled: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Botão destrutivo preenchido */
+  --ujn-color-action-danger: #FF6A6A; /* --unooria-color-danger-400 */
+  /** Preenchimento de campo, de etiqueta de destaque e de pílula em repouso */
+  --ujn-color-fill-field: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Realce de hover sobre qualquer superfície */
+  --ujn-color-state-hover: rgba(255, 255, 255, 0.10); /* --unooria-color-opacity-neutrallight-100 */
+  /** Realce de pressionado sobre qualquer superfície */
+  --ujn-color-state-pressed: rgba(255, 255, 255, 0.20); /* --unooria-color-opacity-neutrallight-200 */
+  /** Anel de foco de 2px (gráfico ≥ 3:1) */
+  --ujn-color-focus-ring: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Marcador "Atualizado agora" e confirmação de envio da carta */
+  --ujn-color-status-live: #26E197; /* --unooria-color-success-400 */
+  /** Nota de correção publicada */
+  --ujn-color-status-warning: #FFB74A; /* --unooria-color-warning-300 */
+  /** Véu atrás de folhas e diálogos */
+  --ujn-color-overlay-scrim: rgba(14, 16, 57, 0.70); /* --unooria-color-opacity-brandpurple-700 */
+  /** Fundo do aviso passageiro (cores invertidas) */
+  --ujn-color-toast-surface: #EFEEF5; /* --unooria-color-brandpurple-100 */
+  /** Texto do aviso passageiro */
+  --ujn-color-toast-text: #080922; /* --unooria-color-brandpurple-950 */
+  /** Ação do aviso passageiro ("Desfazer") */
+  --ujn-color-toast-action: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Menus, folhas, diálogos e avisos */
+  --ujn-elevation-overlay: 0px 0px 8px 4px rgba(255, 255, 255, 0.1); /* --unooria-elevation-neutral-2 */
+}
+
+/* ==========================================================================
+   Invariantes entre temas e gradientes compostos
+
+   Uma propriedade personalizada com `var()` é resolvida NO elemento em que é
+   declarada; declarada só em `:root`, ela congelaria os valores do tema claro
+   dentro de um contêiner escuro (a lição da seção 2.9). Por isso este bloco se
+   repete em todo `[data-ujn-theme]`.
+   ========================================================================== */
+
+:root,
+[data-ujn-theme] {
+  /** Fundo do rodapé escuro, nos dois temas */
+  --ujn-color-footer-surface: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto principal do rodapé */
+  --ujn-color-footer-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Descrição e direitos autorais do rodapé */
+  --ujn-color-footer-text-secondary: #CCC9DE; /* --unooria-color-brandpurple-300 */
+  /** Título das colunas e links do rodapé */
+  --ujn-color-footer-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Fio que separa o rodapé da última linha de direitos */
+  --ujn-color-footer-border: rgba(255, 255, 255, 0.30); /* --unooria-color-opacity-neutrallight-300 */
+  /** Véu da base da fotografia, atrás de texto sobre a mídia */
+  --ujn-color-media-scrim: rgba(14, 16, 57, 0.60); /* --unooria-color-opacity-brandpurple-600 */
+  /** Texto sobre fotografia (sempre branco) */
+  --ujn-color-media-text: #FFFFFF; /* --unooria-color-neutral-50 */
+  /** Corpo do aparelho do mockup e ilha da câmera */
+  --ujn-color-device-body: #080922; /* --unooria-color-brandpurple-950 */
+  /** Aro metálico do aparelho */
+  --ujn-color-device-edge: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Botões laterais do aparelho */
+  --ujn-color-device-button: #57547D; /* --unooria-color-brandpurple-700 */
+  /** Lente da câmera frontal */
+  --ujn-color-device-lens: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Barra do navegador do mockup de área de trabalho */
+  --ujn-color-device-chrome: #34375C; /* --unooria-color-brandpurple-800 */
+  /** Campo de endereço do mockup de área de trabalho */
+  --ujn-color-device-chrome-field: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto do endereço no mockup de área de trabalho */
+  --ujn-color-device-chrome-text: #CBD4D6; /* --unooria-color-neutraldark-900 */
+
+  /** Véu da base da fotografia, atrás do texto sobre a mídia */
+  --ujn-gradient-media-bottom: linear-gradient(180deg, transparent 40%, var(--ujn-color-media-scrim) 100%);
+
+  /** Fio duplo da tinta: 3px, vão de 2px e 1px (altura total de 6px) */
+  --ujn-gradient-rule-double: linear-gradient(180deg, var(--ujn-color-border-rule) 0 3px, transparent 3px 5px, var(--ujn-color-border-rule) 5px 6px);
+}

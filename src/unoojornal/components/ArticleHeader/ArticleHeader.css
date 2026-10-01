@@ -1,0 +1,154 @@
+/**
+ * Estilos do Componente ArticleHeader — Design System Unoojornal
+ * Chapéu, título, linha de apoio e assinatura. A raiz é o contêiner de consulta:
+ * o título cai de `headline-xl` para `headline` abaixo de 960px e para
+ * `title-lg` abaixo de 640px, pelos tokens da escala.
+ */
+
+.ujn-article-header {
+  box-sizing: border-box;
+  container-type: inline-size;
+  width: 100%;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+  text-align: center;
+}
+
+.ujn-article-header--start {
+  text-align: start;
+}
+
+/* A coluna é limitada à de leitura; o contêiner de consulta é a raiz, inteira */
+.ujn-article-header__inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ujn-spacing-l);
+  width: 100%;
+  max-width: var(--ujn-reading-width);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ujn-article-header--start .ujn-article-header__inner {
+  align-items: flex-start;
+}
+
+.ujn-article-header__title {
+  margin: 0;
+  font-size: var(--ujn-font-headline-xl-size);
+  font-weight: var(--ujn-font-headline-xl-weight);
+  line-height: var(--ujn-font-headline-xl-line);
+  letter-spacing: var(--ujn-font-headline-xl-tracking);
+  color: var(--ujn-color-text-primary);
+  text-wrap: balance;
+}
+
+.ujn-article-header__deck {
+  margin: 0;
+  font-size: var(--ujn-font-deck-size);
+  font-weight: var(--ujn-font-deck-weight);
+  line-height: var(--ujn-font-deck-line);
+  letter-spacing: var(--ujn-font-deck-tracking);
+  color: var(--ujn-color-text-secondary);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   Assinatura
+   ========================================================================== */
+
+.ujn-article-header__byline {
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-m);
+  padding-top: var(--ujn-spacing-l);
+  border-top: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+  text-align: start;
+}
+
+.ujn-article-header__authorship {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-4xs);
+  min-width: 0;
+}
+
+.ujn-article-header__author,
+.ujn-article-header__meta {
+  margin: 0;
+}
+
+.ujn-article-header__author {
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-article-header__by {
+  font-weight: var(--ujn-font-body-sm-weight);
+  color: var(--ujn-color-text-secondary);
+}
+
+.ujn-article-header__role {
+  margin-left: var(--ujn-spacing-xs);
+  font-weight: var(--ujn-font-body-sm-weight);
+  color: var(--ujn-color-text-secondary);
+}
+
+.ujn-article-header__role::before {
+  margin-right: var(--ujn-spacing-xs);
+  content: '·';
+}
+
+.ujn-article-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs) var(--ujn-spacing-l);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+  color: var(--ujn-color-text-muted);
+}
+
+.ujn-article-header__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs);
+}
+
+/* ==========================================================================
+   Contêiner médio e compacto
+   ========================================================================== */
+
+@container (max-width: 959px) {
+  .ujn-article-header__title {
+    font-size: var(--ujn-font-headline-size);
+    font-weight: var(--ujn-font-headline-weight);
+    line-height: var(--ujn-font-headline-line);
+    letter-spacing: var(--ujn-font-headline-tracking);
+  }
+}
+
+@container (max-width: 639px) {
+  .ujn-article-header__inner {
+    gap: var(--ujn-spacing-m);
+  }
+
+  .ujn-article-header__title {
+    font-size: var(--ujn-font-title-lg-size);
+    font-weight: var(--ujn-font-title-lg-weight);
+    line-height: var(--ujn-font-title-lg-line);
+    letter-spacing: var(--ujn-font-title-lg-tracking);
+  }
+
+  .ujn-article-header__deck {
+    font-size: var(--ujn-font-body-lg-size);
+    line-height: var(--ujn-font-body-lg-line);
+  }
+}

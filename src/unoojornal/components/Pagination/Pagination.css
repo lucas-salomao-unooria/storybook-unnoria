@@ -1,0 +1,123 @@
+/**
+ * Estilos do Componente Pagination — Design System Unoojornal
+ * Botões quadrados de 44px (alvo de toque) com raio de 4px: o jornal é reto.
+ * A página atual é o preenchimento de ação. Larga: lista de números. Compacta
+ * (contêiner abaixo de 640px): "Página N de M" entre as duas setas.
+ */
+
+.ujn-pagination {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--ujn-font-sans);
+}
+
+.ujn-pagination__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ujn-spacing-xs);
+  margin: 0;
+  padding: var(--ujn-spacing-xs) 0;
+  list-style: none;
+}
+
+.ujn-pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.ujn-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--ujn-touch-target);
+  height: var(--ujn-touch-target);
+  margin: 0;
+  padding: 0 var(--ujn-spacing-xs);
+  border: 1px solid transparent;
+  border-radius: var(--ujn-radius-s);
+  background: none;
+  color: var(--ujn-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-weight-medium);
+  line-height: var(--ujn-font-label-lg-line);
+  letter-spacing: var(--ujn-font-label-lg-tracking);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ujn-transition-fast),
+    border-color var(--ujn-transition-fast),
+    color var(--ujn-transition-fast);
+}
+
+.ujn-pagination__page:hover {
+  background-color: var(--ujn-color-state-hover);
+  border-color: var(--ujn-color-border-default);
+}
+
+.ujn-pagination__page:active {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-pagination__page:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ujn-pagination__page--current,
+.ujn-pagination__page--current:hover {
+  border-color: var(--ujn-color-action-primary);
+  background-color: var(--ujn-color-action-primary);
+  color: var(--ujn-color-text-on-action);
+  font-weight: var(--ujn-font-weight-bold);
+  cursor: default;
+}
+
+.ujn-pagination__dots {
+  min-width: var(--ujn-spacing-xxl);
+  color: var(--ujn-color-text-muted);
+  font-size: var(--ujn-font-label-lg-size);
+  line-height: var(--ujn-font-label-lg-line);
+  user-select: none;
+}
+
+/* O resumo só aparece no compacto */
+.ujn-pagination__summary {
+  display: none;
+  min-width: 0;
+  padding-inline: var(--ujn-spacing-xs);
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  white-space: nowrap;
+}
+
+@container (max-width: 639px) {
+  .ujn-pagination__item--page {
+    display: none;
+  }
+
+  .ujn-pagination__summary {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .ujn-pagination__list {
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-pagination__page {
+    transition: none;
+  }
+}

@@ -1,0 +1,203 @@
+/**
+ * Estilos do Componente BottomSheet — Design System Unoojornal
+ * Folha inferior modal, posicionada na tela do aparelho (nunca na janela): véu
+ * `overlay-scrim`, painel em `background-elevated` com `radius-l` no topo e
+ * `--ujn-elevation-overlay`.
+ */
+
+.ujn-bottom-sheet-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ujn-z-sheet);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--ujn-color-overlay-scrim);
+  animation: ujn-bottom-sheet-fade var(--ujn-transition-base);
+}
+
+.ujn-bottom-sheet-layer--dismissable {
+  cursor: pointer;
+}
+
+.ujn-bottom-sheet {
+  /* Alça: barra de 36×5px num alvo de toque de 44px, sem token equivalente */
+  --ujn-bottom-sheet-grip-width: 36px;
+  --ujn-bottom-sheet-grip-height: 5px;
+  /* Folga entre o topo da folha cheia e a barra de status */
+  --ujn-bottom-sheet-top-gap: var(--ujn-spacing-xs);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: calc(100% - var(--ujn-safe-area-top) - var(--ujn-bottom-sheet-top-gap));
+  padding-bottom: var(--ujn-safe-area-bottom);
+  border-radius: var(--ujn-radius-l) var(--ujn-radius-l) 0 0;
+  background-color: var(--ujn-color-background-elevated);
+  color: var(--ujn-color-text-primary);
+  box-shadow: var(--ujn-elevation-overlay);
+  font-family: var(--ujn-font-sans);
+  cursor: auto;
+  outline: none;
+  animation: ujn-bottom-sheet-rise var(--ujn-transition-slow);
+  transition: height var(--ujn-transition-slow);
+}
+
+/* ==========================================================================
+   Alturas
+   ========================================================================== */
+
+.ujn-bottom-sheet--height-auto {
+  height: auto;
+}
+
+.ujn-bottom-sheet--height-half {
+  height: 50%;
+}
+
+.ujn-bottom-sheet--height-full {
+  height: calc(100% - var(--ujn-safe-area-top) - var(--ujn-bottom-sheet-top-gap));
+}
+
+/* ==========================================================================
+   Alça
+   ========================================================================== */
+
+.ujn-bottom-sheet__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--ujn-touch-target);
+  margin: 0 0 calc(-1 * var(--ujn-spacing-m));
+  padding: 0;
+  border: none;
+  border-radius: var(--ujn-radius-l) var(--ujn-radius-l) 0 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-bottom-sheet__grip {
+  width: var(--ujn-bottom-sheet-grip-width);
+  height: var(--ujn-bottom-sheet-grip-height);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-border-control);
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-bottom-sheet__handle:hover .ujn-bottom-sheet__grip {
+  background-color: var(--ujn-color-icon-primary);
+}
+
+.ujn-bottom-sheet__handle:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: -4px;
+}
+
+/* ==========================================================================
+   Cabeçalho, corpo e rodapé
+   ========================================================================== */
+
+.ujn-bottom-sheet__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ujn-spacing-m);
+  flex-shrink: 0;
+  padding: var(--ujn-spacing-m) var(--ujn-gutter) var(--ujn-spacing-xs);
+}
+
+.ujn-bottom-sheet__header--no-handle {
+  padding-top: var(--ujn-spacing-l);
+}
+
+.ujn-bottom-sheet__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ujn-spacing-4xs);
+  min-width: 0;
+  min-height: var(--ujn-touch-target);
+}
+
+.ujn-bottom-sheet__title {
+  margin: 0;
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+.ujn-bottom-sheet__description {
+  margin: 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+}
+
+/* Alvo de toque mínimo de 44px, qualquer que seja o tamanho do botão */
+.ujn-bottom-sheet__close {
+  flex-shrink: 0;
+  min-width: var(--ujn-touch-target);
+  min-height: var(--ujn-touch-target);
+}
+
+.ujn-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--ujn-spacing-xs) var(--ujn-gutter) var(--ujn-spacing-l);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ujn-color-border-default) transparent;
+}
+
+.ujn-bottom-sheet__footer {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--ujn-spacing-xs);
+  padding: var(--ujn-spacing-m) var(--ujn-gutter);
+  box-shadow: var(--ujn-elevation-hairline-top);
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ujn-bottom-sheet-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ujn-bottom-sheet-rise {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-bottom-sheet-layer,
+  .ujn-bottom-sheet {
+    animation: none;
+    transition: none;
+  }
+
+  .ujn-bottom-sheet__grip {
+    transition: none;
+  }
+}

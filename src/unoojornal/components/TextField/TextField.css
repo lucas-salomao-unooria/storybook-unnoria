@@ -1,0 +1,152 @@
+/**
+ * Estilos do Componente TextField — Design System Unoojornal
+ * Rótulo acima, campo com contorno de controle (gráfico ≥ 3:1) e, abaixo, a
+ * mensagem de apoio ou de erro. O foco soma 1px de sombra ao contorno de 1px,
+ * formando o anel de 2px. Estas classes também servem ao `TextArea`.
+ */
+
+.ujn-text-field {
+  /* Recuo lateral do campo com glifo: 12px de folga + 20px de glifo + 8px de vão */
+  --ujn-text-field-icon-inset: calc(var(--ujn-spacing-m) + var(--ujn-icon-size-sm) + var(--ujn-spacing-xs));
+  /* Centra o glifo de 16px na linha de 18px da legenda */
+  --ujn-text-field-icon-nudge: 1px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xxs);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-text-field__label {
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+}
+
+.ujn-text-field__required {
+  color: var(--ujn-color-text-danger);
+}
+
+.ujn-text-field__wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ujn-text-field__icon {
+  position: absolute;
+  left: var(--ujn-spacing-m);
+  pointer-events: none;
+}
+
+.ujn-text-field__control {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ujn-touch-target);
+  margin: 0;
+  padding: var(--ujn-spacing-s) var(--ujn-spacing-m);
+  border: 1px solid var(--ujn-color-border-control);
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-background-card);
+  color: var(--ujn-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ujn-font-body-lg-size);
+  font-weight: var(--ujn-font-body-lg-weight);
+  line-height: var(--ujn-font-body-lg-line);
+  letter-spacing: var(--ujn-font-body-lg-tracking);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color var(--ujn-transition-fast),
+    box-shadow var(--ujn-transition-fast);
+}
+
+.ujn-text-field--with-icon .ujn-text-field__control {
+  padding-left: var(--ujn-text-field-icon-inset);
+}
+
+.ujn-text-field__control::placeholder {
+  color: var(--ujn-color-text-muted);
+  opacity: 1;
+}
+
+.ujn-text-field__control:hover:not(:disabled) {
+  border-color: var(--ujn-color-icon-primary);
+}
+
+.ujn-text-field__control:focus-visible,
+.ujn-text-field__control:focus {
+  border-color: var(--ujn-color-focus-ring);
+  box-shadow: 0 0 0 1px var(--ujn-color-focus-ring);
+}
+
+.ujn-text-field--invalid .ujn-text-field__control,
+.ujn-text-field--invalid .ujn-text-field__control:hover:not(:disabled) {
+  border-color: var(--ujn-color-text-danger);
+}
+
+.ujn-text-field--invalid .ujn-text-field__control:focus {
+  box-shadow: 0 0 0 1px var(--ujn-color-text-danger);
+}
+
+.ujn-text-field--disabled .ujn-text-field__control {
+  cursor: not-allowed;
+  border-color: var(--ujn-color-border-default);
+  background-color: var(--ujn-color-background-subtle);
+  color: var(--ujn-color-text-muted);
+}
+
+.ujn-text-field--disabled .ujn-text-field__label {
+  color: var(--ujn-color-text-muted);
+}
+
+/* ==========================================================================
+   Mensagem de apoio ou de erro
+   ========================================================================== */
+
+.ujn-text-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ujn-spacing-3xs);
+  margin: 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+.ujn-text-field__message--error {
+  color: var(--ujn-color-text-danger);
+}
+
+.ujn-text-field__message-icon {
+  margin-top: var(--ujn-text-field-icon-nudge);
+}
+
+.ujn-text-field__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-text-field__control {
+    transition: none;
+  }
+}

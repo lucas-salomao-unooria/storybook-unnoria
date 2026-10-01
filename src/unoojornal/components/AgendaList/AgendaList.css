@@ -1,0 +1,144 @@
+/**
+ * Estilos dos Componentes AgendaList e AgendaList.Item — Design System Unoojornal
+ * Cartão plano com fio de 1px. A tarja de data tem o dia em `title-md` e o mês
+ * em `kicker` (caixa alta), sobre `background-subtle`.
+ */
+
+.ujn-agenda-list {
+  /* Lado da tarja de data: dia de 30px de linha mais mês de 18px e respiro */
+  --ujn-agenda-date-size: 56px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-l);
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--ujn-spacing-xl);
+  border: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+  border-radius: var(--ujn-radius-xs);
+  background-color: var(--ujn-color-background-card);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-agenda-list__title {
+  margin: 0;
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+.ujn-agenda-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ==========================================================================
+   Item
+   ========================================================================== */
+
+.ujn-agenda-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-m);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: var(--ujn-radius-xs);
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-agenda-item--interactive:hover {
+  background-color: var(--ujn-color-state-hover);
+}
+
+.ujn-agenda-item__date {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ujn-agenda-date-size);
+  height: var(--ujn-agenda-date-size);
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-background-subtle);
+}
+
+.ujn-agenda-item__day {
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-weight-bold);
+  line-height: var(--ujn-font-label-lg-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ujn-agenda-item__month {
+  color: var(--ujn-color-text-accent);
+  font-size: var(--ujn-font-kicker-size);
+  font-weight: var(--ujn-font-kicker-weight);
+  line-height: var(--ujn-font-kicker-line);
+  letter-spacing: var(--ujn-font-kicker-tracking);
+  text-transform: uppercase;
+}
+
+.ujn-agenda-item__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ujn-agenda-item__title {
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-agenda-item__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* O ::after estende o alvo do link ao item inteiro */
+.ujn-agenda-item__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ujn-agenda-item--interactive:hover .ujn-agenda-item__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-agenda-item__link:focus-visible {
+  outline: none;
+}
+
+.ujn-agenda-item__link:focus-visible::after {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--ujn-radius-xs);
+}
+
+.ujn-agenda-item__time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs);
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}

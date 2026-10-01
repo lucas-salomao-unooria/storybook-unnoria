@@ -1,0 +1,38 @@
+/**
+ * Estilos do Componente GalleryGrid — Design System Unoojornal
+ * O contêiner declara `container-type`; quem muda de coluna é a grade interna,
+ * porque uma regra de `@container` só atinge os descendentes.
+ */
+
+.ujn-gallery-grid {
+  container-type: inline-size;
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ujn-font-sans);
+}
+
+.ujn-gallery-grid__cells {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ujn-spacing-xl) var(--ujn-spacing-l);
+}
+
+@container (min-width: 400px) {
+  .ujn-gallery-grid__cells {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 960px) {
+  .ujn-gallery-grid--cols-2 .ujn-gallery-grid__cells {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ujn-gallery-grid--cols-3 .ujn-gallery-grid__cells {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ujn-gallery-grid--cols-4 .ujn-gallery-grid__cells {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

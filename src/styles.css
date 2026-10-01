@@ -496,3 +496,61 @@
 @import './unoogaleria/components/TopBar/TopBar.css';
 @import './unoogaleria/components/VideoControls/VideoControls.css';
 /* UNOOGALERIA — fim */
+
+/* ====================================================
+ * UNOOJORNAL — início (gerado)
+ * ==================================================== */
+/* ----------------------------------------------------
+ * Tokens de Fundação (Unoojornal)
+ * ---------------------------------------------------- */
+@import './unoojornal/tokens/typography.css';
+@import './unoojornal/tokens/colors.css';
+@import './unoojornal/tokens/spacing.css';
+
+/* ----------------------------------------------------
+ * Estilos dos Componentes (Unoojornal)
+ * ---------------------------------------------------- */
+@import './unoojornal/components/AgendaList/AgendaList.css';
+@import './unoojornal/components/ArticleBody/ArticleBody.css';
+@import './unoojornal/components/ArticleCard/ArticleCard.css';
+@import './unoojornal/components/ArticleHeader/ArticleHeader.css';
+@import './unoojornal/components/ArticleListItem/ArticleListItem.css';
+@import './unoojornal/components/ArticleTopBar/ArticleTopBar.css';
+@import './unoojornal/components/Avatar/Avatar.css';
+@import './unoojornal/components/BottomSheet/BottomSheet.css';
+@import './unoojornal/components/Button/Button.css';
+@import './unoojornal/components/Byline/Byline.css';
+@import './unoojornal/components/CorrectionNote/CorrectionNote.css';
+@import './unoojornal/components/DesktopFrame/DesktopFrame.css';
+@import './unoojornal/components/EditionBar/EditionBar.css';
+@import './unoojornal/components/EmptyState/EmptyState.css';
+@import './unoojornal/components/FeaturedStory/FeaturedStory.css';
+@import './unoojornal/components/Figure/Figure.css';
+@import './unoojornal/components/FilterBar/FilterBar.css';
+@import './unoojornal/components/FilterPill/FilterPill.css';
+@import './unoojornal/components/Footer/Footer.css';
+@import './unoojornal/components/GalleryGrid/GalleryGrid.css';
+@import './unoojornal/components/GalleryImage/GalleryImage.css';
+@import './unoojornal/components/Icon/Icon.css';
+@import './unoojornal/components/IconButton/IconButton.css';
+@import './unoojornal/components/Logo/Logo.css';
+@import './unoojornal/components/MainNav/MainNav.css';
+@import './unoojornal/components/Masthead/Masthead.css';
+@import './unoojornal/components/Modal/Modal.css';
+@import './unoojornal/components/NavLink/NavLink.css';
+@import './unoojornal/components/NewsApp/NewsApp.css';
+@import './unoojornal/components/OpinionBox/OpinionBox.css';
+@import './unoojornal/components/Pagination/Pagination.css';
+@import './unoojornal/components/PhoneFrame/PhoneFrame.css';
+@import './unoojornal/components/PullQuote/PullQuote.css';
+@import './unoojornal/components/ReadingProgress/ReadingProgress.css';
+@import './unoojornal/components/RelatedArticles/RelatedArticles.css';
+@import './unoojornal/components/Rule/Rule.css';
+@import './unoojornal/components/SearchField/SearchField.css';
+@import './unoojornal/components/SectionHeading/SectionHeading.css';
+@import './unoojornal/components/ShareBar/ShareBar.css';
+@import './unoojornal/components/Tag/Tag.css';
+@import './unoojornal/components/TextArea/TextArea.css';
+@import './unoojornal/components/TextField/TextField.css';
+@import './unoojornal/components/Toast/Toast.css';
+/* UNOOJORNAL — fim */

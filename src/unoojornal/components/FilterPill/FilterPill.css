@@ -1,0 +1,103 @@
+/**
+ * Estilos do Componente FilterPill — Design System Unoojornal
+ * Pílula de 38px (padding de 8px, contorno de 1px e linha de 20px) com alvo de
+ * toque de 44px garantido por um pseudoelemento invisível. O raio é a pílula
+ * completa — uma das duas formas redondas do jornal.
+ */
+
+.ujn-filter-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ujn-spacing-xxs);
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--ujn-spacing-xs) var(--ujn-spacing-l);
+  border: 1px solid var(--ujn-color-border-control);
+  border-radius: var(--ujn-radius-full);
+  background-color: transparent;
+  color: var(--ujn-color-text-primary);
+  font-family: var(--ujn-font-sans);
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ujn-transition-fast),
+    border-color var(--ujn-transition-fast),
+    color var(--ujn-transition-fast);
+}
+
+/* Alvo de toque de 44px sem aumentar a pílula */
+.ujn-filter-pill::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block: min(0px, calc((100% - var(--ujn-touch-target)) / 2));
+}
+
+.ujn-filter-pill:hover:not(:disabled) {
+  background-color: var(--ujn-color-fill-field);
+}
+
+.ujn-filter-pill:active:not(:disabled) {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-filter-pill:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Selecionada
+   ========================================================================== */
+
+.ujn-filter-pill--selected {
+  border-color: var(--ujn-color-action-primary);
+  background-color: var(--ujn-color-action-primary);
+  color: var(--ujn-color-text-on-action);
+}
+
+.ujn-filter-pill--selected:hover:not(:disabled),
+.ujn-filter-pill--selected:active:not(:disabled) {
+  border-color: var(--ujn-color-action-pressed);
+  background-color: var(--ujn-color-action-pressed);
+}
+
+.ujn-filter-pill__check {
+  margin-inline-start: calc(var(--ujn-spacing-3xs) * -1);
+}
+
+/* ==========================================================================
+   Contagem
+   ========================================================================== */
+
+.ujn-filter-pill__count {
+  color: var(--ujn-color-text-secondary);
+  font-weight: var(--ujn-font-weight-regular);
+}
+
+.ujn-filter-pill--selected .ujn-filter-pill__count {
+  color: inherit;
+}
+
+/* ==========================================================================
+   Desabilitada
+   ========================================================================== */
+
+.ujn-filter-pill:disabled {
+  border-color: var(--ujn-color-border-subtle);
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-filter-pill {
+    transition: none;
+  }
+}

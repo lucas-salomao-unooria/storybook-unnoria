@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente Rule — Design System Unoojornal
+ * O fio é um bloco sem conteúdo. O fio duplo horizontal usa o gradiente do
+ * módulo (3px, vão de 2px, 1px); na vertical o mesmo desenho sai de duas bordas.
+ */
+
+.ujn-rule {
+  display: block;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ==========================================================================
+   Horizontal
+   ========================================================================== */
+
+.ujn-rule--horizontal {
+  width: 100%;
+}
+
+.ujn-rule--horizontal.ujn-rule--thin {
+  height: var(--ujn-rule-thin);
+  background-color: var(--ujn-color-border-subtle);
+}
+
+.ujn-rule--horizontal.ujn-rule--thin.ujn-rule--ink {
+  background-color: var(--ujn-color-border-rule);
+}
+
+.ujn-rule--horizontal.ujn-rule--thick {
+  height: var(--ujn-rule-thick);
+  background-color: var(--ujn-color-border-rule);
+}
+
+.ujn-rule--horizontal.ujn-rule--double {
+  height: var(--ujn-rule-double-height);
+  background-image: var(--ujn-gradient-rule-double);
+  background-repeat: no-repeat;
+}
+
+/* ==========================================================================
+   Vertical
+   ========================================================================== */
+
+.ujn-rule--vertical {
+  align-self: stretch;
+  height: auto;
+  min-height: 100%;
+}
+
+.ujn-rule--vertical.ujn-rule--thin {
+  width: var(--ujn-rule-thin);
+  background-color: var(--ujn-color-border-subtle);
+}
+
+.ujn-rule--vertical.ujn-rule--thin.ujn-rule--ink {
+  background-color: var(--ujn-color-border-rule);
+}
+
+.ujn-rule--vertical.ujn-rule--thick {
+  width: var(--ujn-rule-thick);
+  background-color: var(--ujn-color-border-rule);
+}
+
+/* Duas bordas: 3px à esquerda, vão de 2px e 1px à direita (6px no total) */
+.ujn-rule--vertical.ujn-rule--double {
+  width: var(--ujn-rule-double-height);
+  border-style: solid;
+  border-color: var(--ujn-color-border-rule);
+  border-width: 0 var(--ujn-rule-thin) 0 var(--ujn-rule-thick);
+}

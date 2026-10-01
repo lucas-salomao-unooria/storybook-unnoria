@@ -1,0 +1,66 @@
+/**
+ * Estilos do Componente NavLink — Design System Unoojornal
+ * Item de 44px (alvo de toque) com sublinhado de 2px: transparente em repouso,
+ * na cor de ação no hover e no ativo. O sublinhado é uma borda, não sombra; o
+ * ativo ainda ganha peso de fonte e glifo preenchido, e o foco, anel de 2px.
+ */
+
+.ujn-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ujn-spacing-xxs);
+  box-sizing: border-box;
+  min-height: var(--ujn-nav-height);
+  margin: 0;
+  padding: 0 var(--ujn-spacing-s);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--ujn-color-text-secondary);
+  font-family: var(--ujn-font-sans);
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-weight-medium);
+  line-height: var(--ujn-font-label-lg-line);
+  letter-spacing: var(--ujn-font-label-lg-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--ujn-transition-fast),
+    border-color var(--ujn-transition-fast),
+    background-color var(--ujn-transition-fast);
+}
+
+.ujn-nav-link:hover {
+  border-bottom-color: var(--ujn-color-action-primary);
+  background-color: var(--ujn-color-state-hover);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-nav-link:active {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-nav-link:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.ujn-nav-link--active {
+  border-bottom-color: var(--ujn-color-action-primary);
+  color: var(--ujn-color-text-primary);
+  font-weight: var(--ujn-font-weight-bold);
+}
+
+.ujn-nav-link__label {
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-nav-link {
+    transition: none;
+  }
+}

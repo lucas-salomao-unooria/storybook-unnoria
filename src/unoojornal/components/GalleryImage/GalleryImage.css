@@ -1,0 +1,102 @@
+/**
+ * Estilos do Componente GalleryImage — Design System Unoojornal
+ * Quadro 5:214 (estrutura): imagem com cantos `s` e legenda por baixo. O hover
+ * é um véu `state-hover` sobre a imagem, sem sombra nem escala.
+ */
+
+.ujn-gallery-image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xs);
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-gallery-image__frame {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-background-subtle);
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-gallery-image--ratio-3-2 .ujn-gallery-image__frame {
+  aspect-ratio: 3 / 2;
+}
+
+.ujn-gallery-image--ratio-4-5 .ujn-gallery-image__frame {
+  aspect-ratio: 4 / 5;
+}
+
+.ujn-gallery-image--ratio-1-1 .ujn-gallery-image__frame {
+  aspect-ratio: 1 / 1;
+}
+
+.ujn-gallery-image__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+.ujn-gallery-image--interactive .ujn-gallery-image__frame {
+  cursor: pointer;
+}
+
+/* Véu de realce: o hover e o pressionado sobre a fotografia */
+.ujn-gallery-image--interactive .ujn-gallery-image__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-gallery-image--interactive .ujn-gallery-image__frame:hover::after {
+  background-color: var(--ujn-color-state-hover);
+}
+
+.ujn-gallery-image--interactive .ujn-gallery-image__frame:active::after {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-gallery-image__frame:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ujn-gallery-image__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-4xs);
+}
+
+.ujn-gallery-image__text {
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-gallery-image__credit {
+  color: var(--ujn-color-text-muted);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}

@@ -1,0 +1,98 @@
+import React from 'react';
+import { ujnIcons } from './IconGlyphs';
+import type { UjnIconProps } from './Icon.types';
+import './Icon.css';
+
+/**
+ * Menor e maior `opsz` que o Material Symbols Rounded aceita.
+ */
+const OPSZ_MIN = 20;
+const OPSZ_MAX = 48;
+
+/**
+ * Componente Icon — Design System Unoojornal
+ *
+ * Renderiza os glifos da biblioteca de ícones da Plataforma Unooria (Material
+ * Symbols Rounded, peso 300) por ligadura. `size` governa a aresta da caixa do
+ * glifo; o eixo óptico acompanha o tamanho, como no `Icon` da plataforma. O
+ * glifo herda `currentColor` do tom escolhido.
+ *
+ * A fonte precisa estar carregada — `@unooria/design-system/fonts/unoojornal.css`
+ * ou o Material Symbols do próprio app.
+ */
+export const Icon = React.forwardRef<HTMLSpanElement, UjnIconProps>(
+  (
+    {
+      name,
+      size = 'md',
+      tone = 'primary',
+      theme,
+      rotate = 0,
+      flipX = false,
+      flipY = false,
+      filled,
+      title,
+      className = '',
+      style,
+      ...restProps
+    },
+    ref
+  ) => {
+    const definition = ujnIcons[name] as { ligature: string; filled?: boolean; flipX?: boolean };
+
+    if (!definition) {
+      return null;
+    }
+
+    const isNumericSize = typeof size === 'number';
+    const isFilled = filled ?? definition.filled ?? false;
+
+    const classes = [
+      'ujn-icon',
+      isNumericSize ? '' : `ujn-icon--size-${size}`,
+      `ujn-icon--tone-${tone}`,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const transforms = [
+      rotate ? `rotate(${rotate}deg)` : '',
+      flipX !== Boolean(definition.flipX) ? 'scaleX(-1)' : '',
+      flipY ? 'scaleY(-1)' : '',
+    ].filter(Boolean);
+
+    const opticalSize = isNumericSize
+      ? Math.min(OPSZ_MAX, Math.max(OPSZ_MIN, Math.round(size)))
+      : undefined;
+
+    const resolvedStyle: React.CSSProperties = {
+      ...(isNumericSize ? { width: size, height: size, fontSize: size } : {}),
+      fontVariationSettings: `'FILL' ${isFilled ? 1 : 0}, 'wght' 300, 'GRAD' 0${
+        opticalSize ? `, 'opsz' ${opticalSize}` : ''
+      }`,
+      ...(transforms.length ? { transform: transforms.join(' ') } : {}),
+      ...style,
+    };
+
+    const accessibilityProps = title
+      ? { role: 'img', 'aria-label': title }
+      : { 'aria-hidden': true };
+
+    return (
+      <span
+        ref={ref}
+        data-ujn-theme={theme}
+        data-ujn-icon={name}
+        className={classes}
+        style={resolvedStyle}
+        {...accessibilityProps}
+        {...restProps}
+      >
+        {definition.ligature}
+      </span>
+    );
+  }
+);
+
+Icon.displayName = 'Icon';

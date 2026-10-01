@@ -1,0 +1,50 @@
+/**
+ * Estilos do Componente MainNav — Design System Unoojornal
+ * Linha de 44px sobre a página, com fio de 1px embaixo. Larga: links centrados
+ * com folga de 24px. Compacta (contêiner abaixo de 640px): a linha rola na
+ * horizontal com barra fina e sem quebrar o rótulo.
+ */
+
+.ujn-main-nav {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--ujn-color-background-page);
+  box-shadow: var(--ujn-elevation-hairline-bottom);
+  font-family: var(--ujn-font-sans);
+}
+
+.ujn-main-nav__list {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--ujn-spacing-xxl);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 var(--ujn-gutter);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ujn-color-border-default) transparent;
+}
+
+.ujn-main-nav__item {
+  display: flex;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+}
+
+@container (min-width: 960px) {
+  .ujn-main-nav__list {
+    padding-inline: var(--ujn-gutter-wide);
+  }
+}
+
+@container (max-width: 639px) {
+  .ujn-main-nav__list {
+    justify-content: flex-start;
+    gap: var(--ujn-spacing-xxs);
+  }
+}

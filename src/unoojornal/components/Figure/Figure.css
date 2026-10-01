@@ -1,0 +1,54 @@
+/**
+ * Estilos do Componente Figure — Design System Unoojornal
+ * Quadro 3:2 com raio de 2px (o jornal é reto), legenda abaixo e crédito em
+ * linha própria. Sem sombra: a imagem se separa da página pela própria tinta.
+ */
+
+.ujn-figure {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xs);
+  width: 100%;
+  margin: 0;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-figure__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--ujn-radius-xs);
+  background-color: var(--ujn-color-background-subtle);
+}
+
+.ujn-figure__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ujn-figure__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-4xs);
+}
+
+.ujn-figure__text {
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+  color: var(--ujn-color-text-secondary);
+}
+
+.ujn-figure__credit {
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+  color: var(--ujn-color-text-muted);
+}

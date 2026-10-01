@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente ReadingProgress — Design System Unoojornal
+ * Faixa de 4px: trilha em border-subtle e preenchimento em action-primary.
+ * A faixa em si é plana; nenhum texto vive nela.
+ */
+
+.ujn-reading-progress {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--ujn-progress-height);
+  overflow: hidden;
+  background-color: var(--ujn-color-border-subtle);
+}
+
+.ujn-reading-progress__fill {
+  display: block;
+  height: 100%;
+  background-color: var(--ujn-color-action-primary);
+  transition: width var(--ujn-transition-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-reading-progress__fill {
+    transition: none;
+  }
+}

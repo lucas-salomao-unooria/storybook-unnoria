@@ -1,0 +1,203 @@
+/**
+ * Estilos do Componente PhoneFrame — Design System Unoojornal
+ * Aparelho genérico de 390×844px: corpo, aro, botões laterais, ilha da câmera,
+ * barra de status e barra de gesto, nas cores invariantes do módulo. A tela é o
+ * bloco de contenção de todas as sobreposições da página.
+ */
+
+.ujn-phone-frame {
+  /* Medidas do aparelho: próprias do cromo genérico, sem token equivalente */
+  --ujn-phone-frame-bezel: 12px;
+  --ujn-phone-frame-radius: 62px;
+  --ujn-phone-frame-screen-radius: 50px;
+  --ujn-phone-frame-island-width: 124px;
+  --ujn-phone-frame-island-height: 36px;
+  --ujn-phone-frame-lens: 12px;
+  --ujn-phone-frame-button-width: 3px;
+  --ujn-phone-frame-indicator-width: 134px;
+  --ujn-phone-frame-indicator-height: 5px;
+
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  font-family: var(--ujn-font-sans);
+}
+
+/* ==========================================================================
+   Corpo do aparelho
+   ========================================================================== */
+
+.ujn-phone-frame--bezel {
+  width: calc(var(--ujn-screen-width) + 2 * var(--ujn-phone-frame-bezel));
+  height: calc(var(--ujn-screen-height) + 2 * var(--ujn-phone-frame-bezel));
+  padding: var(--ujn-phone-frame-bezel);
+  border-radius: var(--ujn-phone-frame-radius);
+  background-color: var(--ujn-color-device-body);
+  box-shadow:
+    0 0 0 2px var(--ujn-color-device-edge),
+    var(--ujn-elevation-overlay);
+}
+
+.ujn-phone-frame--screen {
+  width: var(--ujn-screen-width);
+  height: var(--ujn-screen-height);
+}
+
+.ujn-phone-frame__button {
+  position: absolute;
+  width: var(--ujn-phone-frame-button-width);
+  border-radius: var(--ujn-radius-xs);
+  background-color: var(--ujn-color-device-button);
+}
+
+.ujn-phone-frame__button--action {
+  top: 150px;
+  left: calc(-1 * var(--ujn-phone-frame-button-width));
+  height: 32px;
+}
+
+.ujn-phone-frame__button--volume-up {
+  top: 210px;
+  left: calc(-1 * var(--ujn-phone-frame-button-width));
+  height: 62px;
+}
+
+.ujn-phone-frame__button--volume-down {
+  top: 286px;
+  left: calc(-1 * var(--ujn-phone-frame-button-width));
+  height: 62px;
+}
+
+.ujn-phone-frame__button--power {
+  top: 240px;
+  right: calc(-1 * var(--ujn-phone-frame-button-width));
+  height: 100px;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
+.ujn-phone-frame__screen {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--ujn-screen-width);
+  height: var(--ujn-screen-height);
+  overflow: hidden;
+  border-radius: var(--ujn-phone-frame-screen-radius);
+  background-color: var(--ujn-color-background-page);
+  color: var(--ujn-color-text-primary);
+  /* Torna a tela o bloco de contenção até de `position: fixed` */
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+.ujn-phone-frame--screen .ujn-phone-frame__screen {
+  box-shadow: 0 0 0 1px var(--ujn-color-border-default);
+}
+
+.ujn-phone-frame__screen--status-bar {
+  --ujn-safe-area-top: var(--ujn-statusbar-height);
+}
+
+.ujn-phone-frame__screen--home-indicator {
+  --ujn-safe-area-bottom: var(--ujn-home-indicator-height);
+}
+
+.ujn-phone-frame__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Barra de status e ilha da câmera
+   ========================================================================== */
+
+.ujn-phone-frame__status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--ujn-z-statusbar);
+  display: grid;
+  grid-template-columns: 1fr var(--ujn-phone-frame-island-width) 1fr;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--ujn-statusbar-height);
+  padding: 0 var(--ujn-spacing-xxl);
+  color: var(--ujn-color-text-primary);
+  pointer-events: none;
+  transition: color var(--ujn-transition-base);
+}
+
+.ujn-phone-frame__time {
+  justify-self: center;
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-label-lg-weight);
+  line-height: var(--ujn-font-label-lg-line);
+  letter-spacing: var(--ujn-font-label-lg-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ujn-phone-frame__island {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  height: var(--ujn-phone-frame-island-height);
+  padding-right: var(--ujn-spacing-m);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-device-body);
+}
+
+.ujn-phone-frame__lens {
+  width: var(--ujn-phone-frame-lens);
+  height: var(--ujn-phone-frame-lens);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-device-lens);
+}
+
+.ujn-phone-frame__indicators {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs);
+}
+
+/* ==========================================================================
+   Barra de gesto
+   ========================================================================== */
+
+.ujn-phone-frame__home-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: var(--ujn-spacing-xs);
+  z-index: var(--ujn-z-statusbar);
+  width: var(--ujn-phone-frame-indicator-width);
+  height: var(--ujn-phone-frame-indicator-height);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-text-primary);
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: background-color var(--ujn-transition-base);
+}
+
+/* ==========================================================================
+   Escala de exibição
+   ========================================================================== */
+
+.ujn-phone-frame-scaler {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ujn-phone-frame-scaler__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}

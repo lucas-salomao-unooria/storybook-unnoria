@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System Unoojornal
+   Família e escala da Plataforma Unooria (`src/unooria/tokens/typography.css`):
+   Open Sans, com tamanhos e alturas de linha nos degraus da escala Unooria
+   (valores de área de trabalho, a primeira declaração da origem). O comentário
+   de cada linha nomeia o token de origem. Sem letter-spacing, como na escala da
+   plataforma: as variáveis `-tracking` existem apenas para que o componente
+   nunca invente um valor. Nenhum corpo abaixo de 12px.
+
+   ARQUIVO GERADO da mesma tabela que `typography.ts`
+   (`scripts/gerar-tokens-unoojornal.mjs`).
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --ujn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Biblioteca de ícones da Plataforma Unooria (--unooria-icon-font-family) */
+  --ujn-icon-font-family: 'Material Symbols Rounded', sans-serif;
+
+  /* Pesos */
+  --ujn-font-weight-regular: 400; /* --unooria-weight-regular */
+  --ujn-font-weight-medium: 500; /* --unooria-weight-medium */
+  --ujn-font-weight-semibold: 600; /* --unooria-weight-semibold */
+  --ujn-font-weight-bold: 700; /* --unooria-weight-bold */
+
+  /* Masthead — Nome da publicação no cabeçalho. */
+  --ujn-font-masthead-size: 60px; /* --unooria-size-heading-4xl */
+  --ujn-font-masthead-weight: 700; /* --unooria-weight-bold */
+  --ujn-font-masthead-line: 78px; /* --unooria-line-height-heading-4xl */
+  --ujn-font-masthead-tracking: 0px;
+
+  /* Headline/XL — Título da matéria aberta. */
+  --ujn-font-headline-xl-size: 48px; /* --unooria-size-heading-xxxl */
+  --ujn-font-headline-xl-weight: 700; /* --unooria-weight-bold */
+  --ujn-font-headline-xl-line: 64px; /* --unooria-line-height-heading-xxxl */
+  --ujn-font-headline-xl-tracking: 0px;
+
+  /* Headline — Título da matéria de capa. */
+  --ujn-font-headline-size: 34px; /* --unooria-size-heading-xxl */
+  --ujn-font-headline-weight: 700; /* --unooria-weight-bold */
+  --ujn-font-headline-line: 48px; /* --unooria-line-height-heading-xxl */
+  --ujn-font-headline-tracking: 0px;
+
+  /* Title/Large — Título de seção e da caixa de opinião. */
+  --ujn-font-title-lg-size: 24px; /* --unooria-size-title-xl */
+  --ujn-font-title-lg-weight: 700; /* --unooria-weight-bold */
+  --ujn-font-title-lg-line: 34px; /* --unooria-line-height-title-xl */
+  --ujn-font-title-lg-tracking: 0px;
+
+  /* Title/Medium — Título de item de lista e de cartão. */
+  --ujn-font-title-md-size: 20px; /* --unooria-size-title-l */
+  --ujn-font-title-md-weight: 600; /* --unooria-weight-semibold */
+  --ujn-font-title-md-line: 30px; /* --unooria-line-height-title-l */
+  --ujn-font-title-md-tracking: 0px;
+
+  /* Deck — Linha fina sob o título da matéria. */
+  --ujn-font-deck-size: 20px; /* --unooria-size-title-l */
+  --ujn-font-deck-weight: 400; /* --unooria-weight-regular */
+  --ujn-font-deck-line: 30px; /* --unooria-line-height-title-l */
+  --ujn-font-deck-tracking: 0px;
+
+  /* Body/Large — Corpo da matéria aberta. */
+  --ujn-font-body-lg-size: 18px; /* --unooria-size-body-m */
+  --ujn-font-body-lg-weight: 400; /* --unooria-weight-regular */
+  --ujn-font-body-lg-line: 28px; /* --unooria-line-height-body-m */
+  --ujn-font-body-lg-tracking: 0px;
+
+  /* Body/Medium — Resumo do item de lista, texto de caixas e campos. */
+  --ujn-font-body-md-size: 16px; /* --unooria-size-body-s */
+  --ujn-font-body-md-weight: 400; /* --unooria-weight-regular */
+  --ujn-font-body-md-line: 24px; /* --unooria-line-height-body-s */
+  --ujn-font-body-md-tracking: 0px;
+
+  /* Body/Small — Autoria, legenda e texto de apoio. */
+  --ujn-font-body-sm-size: 14px; /* --unooria-size-body-xs */
+  --ujn-font-body-sm-weight: 400; /* --unooria-weight-regular */
+  --ujn-font-body-sm-line: 20px; /* --unooria-line-height-body-xs */
+  --ujn-font-body-sm-tracking: 0px;
+
+  /* Quote — Citação em destaque (itálico). */
+  --ujn-font-quote-size: 24px; /* --unooria-size-title-xl */
+  --ujn-font-quote-weight: 400; /* --unooria-weight-regular */
+  --ujn-font-quote-line: 34px; /* --unooria-line-height-title-xl */
+  --ujn-font-quote-tracking: 0px;
+
+  /* Label/Large — Rótulo de botão. */
+  --ujn-font-label-lg-size: 16px; /* --unooria-size-body-s */
+  --ujn-font-label-lg-weight: 600; /* --unooria-weight-semibold */
+  --ujn-font-label-lg-line: 24px; /* --unooria-line-height-body-s */
+  --ujn-font-label-lg-tracking: 0px;
+
+  /* Label — Navegação, pílulas de filtro e ações de texto. */
+  --ujn-font-label-size: 14px; /* --unooria-size-body-xs */
+  --ujn-font-label-weight: 600; /* --unooria-weight-semibold */
+  --ujn-font-label-line: 20px; /* --unooria-line-height-body-xs */
+  --ujn-font-label-tracking: 0px;
+
+  /* Kicker — Categoria sobre o título (caixa alta). */
+  --ujn-font-kicker-size: 12px; /* --unooria-size-body-xxs */
+  --ujn-font-kicker-weight: 600; /* --unooria-weight-semibold */
+  --ujn-font-kicker-line: 18px; /* --unooria-line-height-body-xxs */
+  --ujn-font-kicker-tracking: 0px;
+
+  /* Caption — Tempo de leitura, hora e direitos autorais. */
+  --ujn-font-caption-size: 12px; /* --unooria-size-body-xxs */
+  --ujn-font-caption-weight: 400; /* --unooria-weight-regular */
+  --ujn-font-caption-line: 18px; /* --unooria-line-height-body-xxs */
+  --ujn-font-caption-tracking: 0px;
+
+}
+
+/* ==========================================================================
+   Classes utilitárias
+   ========================================================================== */
+
+.ujn-text {
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+  margin: 0;
+}
+
+.ujn-text--masthead {
+  font-size: var(--ujn-font-masthead-size);
+  font-weight: var(--ujn-font-masthead-weight);
+  line-height: var(--ujn-font-masthead-line);
+  letter-spacing: var(--ujn-font-masthead-tracking);
+}
+
+.ujn-text--headline-xl {
+  font-size: var(--ujn-font-headline-xl-size);
+  font-weight: var(--ujn-font-headline-xl-weight);
+  line-height: var(--ujn-font-headline-xl-line);
+  letter-spacing: var(--ujn-font-headline-xl-tracking);
+}
+
+.ujn-text--headline {
+  font-size: var(--ujn-font-headline-size);
+  font-weight: var(--ujn-font-headline-weight);
+  line-height: var(--ujn-font-headline-line);
+  letter-spacing: var(--ujn-font-headline-tracking);
+}
+
+.ujn-text--title-lg {
+  font-size: var(--ujn-font-title-lg-size);
+  font-weight: var(--ujn-font-title-lg-weight);
+  line-height: var(--ujn-font-title-lg-line);
+  letter-spacing: var(--ujn-font-title-lg-tracking);
+}
+
+.ujn-text--title-md {
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+.ujn-text--deck {
+  font-size: var(--ujn-font-deck-size);
+  font-weight: var(--ujn-font-deck-weight);
+  line-height: var(--ujn-font-deck-line);
+  letter-spacing: var(--ujn-font-deck-tracking);
+}
+
+.ujn-text--body-lg {
+  font-size: var(--ujn-font-body-lg-size);
+  font-weight: var(--ujn-font-body-lg-weight);
+  line-height: var(--ujn-font-body-lg-line);
+  letter-spacing: var(--ujn-font-body-lg-tracking);
+}
+
+.ujn-text--body-md {
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+}
+
+.ujn-text--body-sm {
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-text--quote {
+  font-size: var(--ujn-font-quote-size);
+  font-weight: var(--ujn-font-quote-weight);
+  line-height: var(--ujn-font-quote-line);
+  letter-spacing: var(--ujn-font-quote-tracking);
+  font-style: italic;
+}
+
+.ujn-text--label-lg {
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-label-lg-weight);
+  line-height: var(--ujn-font-label-lg-line);
+  letter-spacing: var(--ujn-font-label-lg-tracking);
+}
+
+.ujn-text--label {
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+}
+
+.ujn-text--kicker {
+  font-size: var(--ujn-font-kicker-size);
+  font-weight: var(--ujn-font-kicker-weight);
+  line-height: var(--ujn-font-kicker-line);
+  letter-spacing: var(--ujn-font-kicker-tracking);
+  text-transform: uppercase;
+}
+
+.ujn-text--caption {
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+.ujn-text--secondary {
+  color: var(--ujn-color-text-secondary);
+}
+
+.ujn-text--accent {
+  color: var(--ujn-color-text-accent);
+}

@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente Modal — Design System Unoojornal
+ * Diálogo centrado na tela do aparelho ou do quadro de navegador (nunca na
+ * janela): véu `overlay-scrim`, cartão em `background-elevated` com `radius-m` e
+ * `--ujn-elevation-overlay`. Cabeçalho, corpo rolável e rodapé de ações.
+ */
+
+.ujn-modal-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ujn-z-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--ujn-spacing-xxl) var(--ujn-gutter);
+  background-color: var(--ujn-color-overlay-scrim);
+  animation: ujn-modal-fade var(--ujn-transition-base);
+}
+
+.ujn-modal-layer--dismissable {
+  cursor: pointer;
+}
+
+.ujn-modal {
+  /* Larguras do diálogo: medidas de composição do módulo, sem token equivalente */
+  --ujn-modal-width-sm: 360px;
+  --ujn-modal-width-md: 560px;
+  /* Distância percorrida na entrada */
+  --ujn-modal-travel: var(--ujn-spacing-l);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  border-radius: var(--ujn-radius-m);
+  background-color: var(--ujn-color-background-elevated);
+  color: var(--ujn-color-text-primary);
+  box-shadow: var(--ujn-elevation-overlay);
+  font-family: var(--ujn-font-sans);
+  cursor: auto;
+  outline: none;
+  animation: ujn-modal-rise var(--ujn-transition-slow);
+}
+
+.ujn-modal--sm {
+  max-width: var(--ujn-modal-width-sm);
+}
+
+.ujn-modal--md {
+  max-width: var(--ujn-modal-width-md);
+}
+
+/* ==========================================================================
+   Cabeçalho, corpo e rodapé
+   ========================================================================== */
+
+.ujn-modal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ujn-spacing-m);
+  flex-shrink: 0;
+  padding: var(--ujn-spacing-xl) var(--ujn-spacing-xl) var(--ujn-spacing-xs) var(--ujn-spacing-xxl);
+}
+
+.ujn-modal__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ujn-spacing-3xs);
+  min-width: 0;
+  min-height: var(--ujn-touch-target);
+}
+
+.ujn-modal__title {
+  margin: 0;
+  font-size: var(--ujn-font-title-lg-size);
+  font-weight: var(--ujn-font-title-lg-weight);
+  line-height: var(--ujn-font-title-lg-line);
+  letter-spacing: var(--ujn-font-title-lg-tracking);
+}
+
+.ujn-modal__description {
+  margin: 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+}
+
+/* Alvo de toque mínimo de 44px, qualquer que seja o tamanho do botão */
+.ujn-modal__close {
+  flex-shrink: 0;
+  min-width: var(--ujn-touch-target);
+  min-height: var(--ujn-touch-target);
+}
+
+.ujn-modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--ujn-spacing-xs) var(--ujn-spacing-xxl) var(--ujn-spacing-xl);
+  font-size: var(--ujn-font-body-lg-size);
+  font-weight: var(--ujn-font-body-lg-weight);
+  line-height: var(--ujn-font-body-lg-line);
+  letter-spacing: var(--ujn-font-body-lg-tracking);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ujn-color-border-default) transparent;
+}
+
+.ujn-modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: var(--ujn-spacing-xs);
+  padding: var(--ujn-spacing-m) var(--ujn-spacing-xxl);
+  box-shadow: var(--ujn-elevation-hairline-top);
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ujn-modal-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ujn-modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ujn-modal-travel));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-modal-layer,
+  .ujn-modal {
+    animation: none;
+  }
+}

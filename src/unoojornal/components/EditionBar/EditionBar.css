@@ -1,0 +1,101 @@
+/**
+ * Estilos do Componente EditionBar — Design System Unoojornal
+ * Faixa de 40px sobre a camada sutil, com fio de 1px embaixo. Três zonas em
+ * grade: instituição, edição centrada, data e atualização. O contêiner é o
+ * invólucro; as regras de `@container` valem para o `__inner`.
+ */
+
+.ujn-edition-bar {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--ujn-color-background-subtle);
+  box-shadow: var(--ujn-elevation-hairline-bottom);
+  color: var(--ujn-color-text-secondary);
+  font-family: var(--ujn-font-sans);
+}
+
+.ujn-edition-bar__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: var(--ujn-spacing-l);
+  box-sizing: border-box;
+  min-height: var(--ujn-edition-bar-height);
+  padding: var(--ujn-spacing-3xs) var(--ujn-gutter);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+.ujn-edition-bar__institution {
+  min-width: 0;
+  color: var(--ujn-color-text-primary);
+  font-weight: var(--ujn-font-weight-semibold);
+}
+
+.ujn-edition-bar__edition {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ujn-edition-bar__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0 var(--ujn-spacing-m);
+  min-width: 0;
+  text-align: right;
+}
+
+.ujn-edition-bar__date {
+  white-space: nowrap;
+}
+
+.ujn-edition-bar__updated {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xxs);
+  white-space: nowrap;
+}
+
+.ujn-edition-bar__dot {
+  flex-shrink: 0;
+  width: var(--ujn-spacing-xs);
+  height: var(--ujn-spacing-xs);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-status-live);
+}
+
+/* ==========================================================================
+   Médio: a edição ainda cabe, mas a faixa perde o recuo largo
+   ========================================================================== */
+
+@container (min-width: 960px) {
+  .ujn-edition-bar__inner {
+    padding-inline: var(--ujn-gutter-wide);
+  }
+}
+
+/* ==========================================================================
+   Compacto: a edição se esconde; instituição sobre a data
+   ========================================================================== */
+
+@container (max-width: 639px) {
+  .ujn-edition-bar__inner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+    padding-block: var(--ujn-spacing-xs);
+  }
+
+  .ujn-edition-bar__edition {
+    display: none;
+  }
+
+  .ujn-edition-bar__meta {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}

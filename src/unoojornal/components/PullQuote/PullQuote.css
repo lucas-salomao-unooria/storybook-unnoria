@@ -1,0 +1,37 @@
+/**
+ * Estilos do Componente PullQuote — Design System Unoojornal
+ * Filete de --ujn-rule-thick em action-primary à esquerda, citação em itálico
+ * e legenda discreta. Plano: sem fundo, sem sombra.
+ */
+
+.ujn-pull-quote {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-m);
+  margin: 0;
+  padding: var(--ujn-spacing-xs) 0 var(--ujn-spacing-xs) var(--ujn-spacing-xxl);
+  border-inline-start: var(--ujn-rule-thick) solid var(--ujn-color-action-primary);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-pull-quote__text {
+  margin: 0;
+  font-size: var(--ujn-font-quote-size);
+  font-style: italic;
+  font-weight: var(--ujn-font-quote-weight);
+  line-height: var(--ujn-font-quote-line);
+  letter-spacing: var(--ujn-font-quote-tracking);
+  color: var(--ujn-color-text-primary);
+  text-wrap: balance;
+}
+
+.ujn-pull-quote__cite {
+  font-size: var(--ujn-font-label-size);
+  font-style: normal;
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  color: var(--ujn-color-text-secondary);
+}

@@ -1,0 +1,125 @@
+/**
+ * Estilos do Componente DesktopFrame — Design System Unoojornal
+ * Janela de navegador genérica: barra de 40px (três pontos de janela e campo de
+ * endereço) e tela de 1440×1024px, nas cores invariantes do aparelho. A tela é o
+ * bloco de contenção de todas as sobreposições da página.
+ */
+
+.ujn-desktop-frame {
+  /* Medidas do cromo genérico, sem token equivalente */
+  --ujn-desktop-frame-dot: 12px;
+  --ujn-desktop-frame-address-width: 560px;
+  --ujn-desktop-frame-address-height: 28px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: var(--ujn-desktop-frame-width, var(--ujn-desktop-width));
+  overflow: hidden;
+  border-radius: var(--ujn-radius-m);
+  background-color: var(--ujn-color-device-chrome);
+  box-shadow:
+    0 0 0 2px var(--ujn-color-device-edge),
+    var(--ujn-elevation-overlay);
+  font-family: var(--ujn-font-sans);
+}
+
+/* ==========================================================================
+   Barra do navegador
+   ========================================================================== */
+
+.ujn-desktop-frame__chrome {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  height: var(--ujn-desktop-chrome-height);
+  padding: 0 var(--ujn-spacing-l);
+  background-color: var(--ujn-color-device-chrome);
+  color: var(--ujn-color-device-chrome-text);
+}
+
+.ujn-desktop-frame__dots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+}
+
+.ujn-desktop-frame__dot {
+  width: var(--ujn-desktop-frame-dot);
+  height: var(--ujn-desktop-frame-dot);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-device-button);
+}
+
+/* O campo de endereço fica no centro da barra, qualquer que seja a largura */
+.ujn-desktop-frame__address {
+  position: absolute;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+  box-sizing: border-box;
+  width: min(var(--ujn-desktop-frame-address-width), 60%);
+  height: var(--ujn-desktop-frame-address-height);
+  padding: 0 var(--ujn-spacing-m);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-device-chrome-field);
+  color: var(--ujn-color-device-chrome-text);
+  transform: translateX(-50%);
+}
+
+.ujn-desktop-frame__url {
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
+.ujn-desktop-frame__screen {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--ujn-desktop-frame-height, var(--ujn-desktop-height));
+  overflow: hidden;
+  background-color: var(--ujn-color-background-page);
+  color: var(--ujn-color-text-primary);
+  /* Torna a tela o bloco de contenção até de `position: fixed` */
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+.ujn-desktop-frame__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Escala de exibição
+   ========================================================================== */
+
+.ujn-desktop-frame-scaler {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ujn-desktop-frame-scaler__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}

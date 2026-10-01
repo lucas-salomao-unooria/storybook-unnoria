@@ -1,0 +1,159 @@
+/**
+ * Estilos do Componente SearchField — Design System Unoojornal
+ * Campo de 44px (o alvo de toque do módulo) em `fill-field`, com contorno de 1px
+ * em `border-control` (limite de componente ≥ 3:1), lupa-botão à esquerda e
+ * disco de limpar à direita. O botão de limpar nativo do navegador é escondido:
+ * o do componente tem nome acessível. O rótulo é oculto à vista.
+ */
+
+.ujn-search-field {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ujn-font-sans);
+}
+
+/* Rótulo visível só ao leitor de tela */
+.ujn-search-field__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.ujn-search-field__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  height: var(--ujn-touch-target);
+  border: 1px solid var(--ujn-color-border-control);
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-fill-field);
+  color: var(--ujn-color-icon-secondary);
+  transition: border-color var(--ujn-transition-fast);
+}
+
+.ujn-search-field__box:focus-within {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 0;
+  border-color: var(--ujn-color-focus-ring);
+}
+
+.ujn-search-field__submit,
+.ujn-search-field__clear {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ujn-touch-target);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--ujn-radius-s);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-search-field__submit:hover:not(:disabled) {
+  color: var(--ujn-color-icon-primary);
+}
+
+.ujn-search-field__submit:focus-visible,
+.ujn-search-field__clear:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: -4px;
+}
+
+.ujn-search-field__submit:disabled {
+  cursor: not-allowed;
+}
+
+.ujn-search-field__control {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ujn-spacing-m) 0 0;
+  border: none;
+  background: none;
+  color: var(--ujn-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.ujn-search-field__control::placeholder {
+  color: var(--ujn-color-text-muted);
+  opacity: 1;
+}
+
+.ujn-search-field__control::-webkit-search-cancel-button,
+.ujn-search-field__control::-webkit-search-decoration {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Com o disco de limpar visível, o texto não precisa do recuo direito */
+.ujn-search-field__box:has(.ujn-search-field__clear) .ujn-search-field__control {
+  padding-right: 0;
+}
+
+/* ==========================================================================
+   Limpar: alvo de 44px com um disco de 20px dentro
+   ========================================================================== */
+
+.ujn-search-field__clear-disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ujn-icon-size-sm);
+  height: var(--ujn-icon-size-sm);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-icon-secondary);
+  color: var(--ujn-color-background-card);
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-search-field__clear:hover .ujn-search-field__clear-disc,
+.ujn-search-field__clear:active .ujn-search-field__clear-disc {
+  background-color: var(--ujn-color-icon-primary);
+}
+
+/* ==========================================================================
+   Desabilitado
+   ========================================================================== */
+
+.ujn-search-field--disabled .ujn-search-field__box {
+  opacity: 0.4;
+}
+
+.ujn-search-field--disabled .ujn-search-field__control {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-search-field__box,
+  .ujn-search-field__clear-disc {
+    transition: none;
+  }
+}

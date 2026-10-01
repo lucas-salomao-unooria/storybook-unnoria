@@ -1,0 +1,162 @@
+/**
+ * Estilos do Componente Button — Design System Unoojornal
+ * Botão reto (raio `s`) com glifo opcional. Todas as cores vêm de `--ujn-*`; o
+ * realce de hover e de pressionado é uma camada translúcida (`state-*`), que
+ * vale sobre qualquer preenchimento. O desabilitado vale para `<button disabled>`
+ * e para o botão-link (`.ujn-button--disabled`, com `aria-disabled`).
+ */
+
+.ujn-button {
+  /* Alturas do pequeno e do grande: sem token (o médio é --ujn-touch-target) */
+  --ujn-button-height-sm: 32px;
+  --ujn-button-height-lg: 52px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ujn-spacing-xxs);
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ujn-radius-s);
+  background: none;
+  font-family: var(--ujn-font-sans);
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ujn-transition-fast),
+    border-color var(--ujn-transition-fast),
+    color var(--ujn-transition-fast),
+    transform var(--ujn-transition-fast);
+}
+
+/* Camada de realce de hover e de pressionado */
+.ujn-button::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-button:hover:not(:disabled, .ujn-button--disabled)::after {
+  background-color: var(--ujn-color-state-hover);
+}
+
+.ujn-button:active:not(:disabled, .ujn-button--disabled)::after {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-button:active:not(:disabled, .ujn-button--disabled) {
+  transform: scale(0.98);
+}
+
+.ujn-button:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ujn-button:is(:disabled, .ujn-button--disabled) {
+  cursor: not-allowed;
+}
+
+.ujn-button__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ujn-button--sm {
+  height: var(--ujn-button-height-sm);
+  padding: 0 var(--ujn-spacing-m);
+}
+
+.ujn-button--md {
+  height: var(--ujn-touch-target);
+  padding: 0 var(--ujn-spacing-l);
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-label-lg-weight);
+  line-height: var(--ujn-font-label-lg-line);
+}
+
+.ujn-button--lg {
+  height: var(--ujn-button-height-lg);
+  padding: 0 var(--ujn-spacing-xl);
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-label-lg-weight);
+  line-height: var(--ujn-font-label-lg-line);
+}
+
+.ujn-button--full {
+  display: flex;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ujn-button--primary {
+  background-color: var(--ujn-color-action-primary);
+  color: var(--ujn-color-text-on-action);
+}
+
+.ujn-button--primary:active:not(:disabled, .ujn-button--disabled) {
+  background-color: var(--ujn-color-action-pressed);
+}
+
+.ujn-button--primary:is(:disabled, .ujn-button--disabled) {
+  background-color: var(--ujn-color-action-disabled);
+}
+
+.ujn-button--secondary {
+  border-color: var(--ujn-color-border-control);
+  background-color: transparent;
+  color: var(--ujn-color-text-accent);
+}
+
+.ujn-button--ghost {
+  color: var(--ujn-color-text-accent);
+}
+
+/* O ghost sublinha o rótulo no hover e no foco: é o que o distingue de texto solto */
+.ujn-button--ghost:hover:not(:disabled, .ujn-button--disabled) .ujn-button__label,
+.ujn-button--ghost:focus-visible .ujn-button__label {
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-button--ghost.ujn-button--sm {
+  padding: 0 var(--ujn-spacing-xs);
+}
+
+/* Desabilitado das variantes sem preenchimento próprio */
+.ujn-button--secondary:is(:disabled, .ujn-button--disabled),
+.ujn-button--ghost:is(:disabled, .ujn-button--disabled) {
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-button,
+  .ujn-button::after {
+    transition: none;
+  }
+
+  .ujn-button:active:not(:disabled, .ujn-button--disabled) {
+    transform: none;
+  }
+}

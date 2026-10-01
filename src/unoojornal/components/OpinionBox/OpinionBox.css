@@ -1,0 +1,124 @@
+/**
+ * Estilos do Componente OpinionBox — Design System Unoojornal
+ * Cartão plano: fio de 1px, raio `xs`, barra de 3px em `action-primary` à
+ * esquerda como pista de que é a voz da redação. A citação usa o degrau
+ * `quote`, em itálico.
+ */
+
+.ujn-opinion-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-m);
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--ujn-spacing-xl) var(--ujn-spacing-xl) var(--ujn-spacing-xl) var(--ujn-spacing-xxl);
+  border: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+  border-left: var(--ujn-rule-thick) solid var(--ujn-color-action-primary);
+  border-radius: var(--ujn-radius-xs);
+  background-color: var(--ujn-color-background-card);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-opinion-box--interactive:hover {
+  background-color: var(--ujn-color-state-hover);
+}
+
+.ujn-opinion-box__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+  margin: 0;
+  color: var(--ujn-color-text-accent);
+  font-size: var(--ujn-font-kicker-size);
+  font-weight: var(--ujn-font-kicker-weight);
+  line-height: var(--ujn-font-kicker-line);
+  letter-spacing: var(--ujn-font-kicker-tracking);
+  text-transform: uppercase;
+}
+
+.ujn-opinion-box__title {
+  margin: 0;
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+/* O link é o título; o ::after estende o alvo ao cartão inteiro */
+.ujn-opinion-box__link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-opinion-box__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ujn-opinion-box--interactive:hover .ujn-opinion-box__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-opinion-box__link:focus-visible {
+  outline: none;
+}
+
+.ujn-opinion-box__link:focus-visible::after {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.ujn-opinion-box__quote {
+  margin: 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-quote-size);
+  font-style: italic;
+  font-weight: var(--ujn-font-quote-weight);
+  line-height: var(--ujn-font-quote-line);
+  letter-spacing: var(--ujn-font-quote-tracking);
+}
+
+.ujn-opinion-box__quote > p {
+  margin: 0;
+}
+
+.ujn-opinion-box__author {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ujn-spacing-3xs) var(--ujn-spacing-xs);
+  margin: 0;
+  font-size: var(--ujn-font-body-sm-size);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-opinion-box__author-name {
+  color: var(--ujn-color-text-primary);
+  font-weight: var(--ujn-font-weight-bold);
+}
+
+.ujn-opinion-box__meta {
+  color: var(--ujn-color-text-secondary);
+  font-weight: var(--ujn-font-body-sm-weight);
+}
+
+.ujn-opinion-box__meta::before {
+  content: '· ';
+}
