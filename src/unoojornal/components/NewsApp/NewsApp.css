@@ -53,8 +53,10 @@
   scrollbar-color: var(--ujn-color-border-default) transparent;
 }
 
-/* Recebe o foco por programa ao trocar de tela; não é um alvo do teclado */
-.ujn-news-app__main:focus {
+/* Recebem o foco por programa ao trocar de tela (a tela e o título da matéria);
+   não são alvos do teclado, então não desenham contorno */
+.ujn-news-app__main:focus,
+.ujn-news-app [tabindex='-1']:focus {
   outline: none;
 }
 
