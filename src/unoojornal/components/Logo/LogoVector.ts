@@ -42,12 +42,12 @@
  *    É PROIBIDO reescrever como `<text>`: o fallback de fonte deformaria a
  *    marca. Para regerar, repita as etapas a a d e atualize este bloco.
  *
- * `viewBox` do lockup: `0 0 135.91 25.0`. O componente deriva a largura do
+ * `viewBox` do lockup: `0 0 135.91 25`. O componente deriva a largura do
  * `viewBox`, de modo que quem informa só `height` acompanha a proporção.
  */
 
 /** `viewBox` do lockup completo (“Un” + símbolo + “jornal”). */
-export const ujnLogoViewBox = '0 0 135.91 25.0';
+export const ujnLogoViewBox = '0 0 135.91 25';
 
 /** Largura nominal do lockup no `viewBox`. */
 export const ujnLogoWidth = 135.91;

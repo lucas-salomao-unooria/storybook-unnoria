@@ -404,7 +404,9 @@ export const Acionamento: Story = {
     await userEvent.click(button);
     await expect(filterSpy).toHaveBeenCalledTimes(1);
 
-    // A informativa não é interativa: Tab vai direto à etiqueta-botão
+    // A informativa não é interativa: Tab vai direto à etiqueta-botão. O clique
+    // anterior deixou o foco nela, então o foco sai do documento antes do Tab.
+    button.blur();
     await userEvent.tab();
     await expect(button).toHaveFocus();
     await userEvent.keyboard('{Enter}');

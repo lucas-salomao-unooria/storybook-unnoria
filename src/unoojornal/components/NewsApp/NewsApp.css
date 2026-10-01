@@ -1,0 +1,292 @@
+/**
+ * Estilos do Componente NewsApp — Design System Unoojornal
+ * Só o arranjo das telas: cada peça (cabeçalho, listas, matéria, camadas) traz o
+ * próprio estilo. O app ocupa o contêiner posicionado mais próximo — a tela do
+ * `PhoneFrame` ou do `DesktopFrame` — e se arranja por CONTÊINER, não por janela:
+ * duas colunas com a barra lateral a partir de 960px, uma coluna abaixo disso.
+ * Variáveis CSS não entram em `@container`, por isso os pontos de quebra (960px
+ * largo, 640px compacto) constam aqui como literais, como em `spacing.css`.
+ */
+
+.ujn-news-app {
+  /* Largura do campo de busca na página larga */
+  --ujn-news-app-search-width: 420px;
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container: ujn-news / inline-size;
+  background-color: var(--ujn-color-background-page);
+  color: var(--ujn-color-text-primary);
+  font-family: var(--ujn-font-sans);
+}
+
+/* A casca soma a área segura superior; as camadas (diálogo, folha, aviso) cobrem a tela inteira */
+.ujn-news-app__shell {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: var(--ujn-safe-area-top);
+  background-color: var(--ujn-color-background-page);
+}
+
+/* A barra da matéria já soma a área segura superior ao próprio recuo */
+.ujn-news-app__shell--bar {
+  padding-top: 0;
+}
+
+/* ==========================================================================
+   Rolagem da tela
+   ========================================================================== */
+
+.ujn-news-app__main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+  padding-bottom: var(--ujn-safe-area-bottom);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ujn-color-border-default) transparent;
+}
+
+/* Recebe o foco por programa ao trocar de tela; não é um alvo do teclado */
+.ujn-news-app__main:focus {
+  outline: none;
+}
+
+.ujn-news-app__page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.ujn-news-app__header {
+  flex-shrink: 0;
+}
+
+.ujn-news-app__screen {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Largura da página
+   ========================================================================== */
+
+.ujn-news-app__wrap {
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--ujn-gutter);
+}
+
+.ujn-news-app__screen-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-3xl);
+  padding-block: var(--ujn-spacing-xxl) var(--ujn-spacing-4xl);
+}
+
+/* Coluna de leitura: matéria, agenda, busca e salvos */
+.ujn-news-app__reading {
+  width: 100%;
+  max-width: var(--ujn-reading-width);
+  margin-inline: auto;
+}
+
+@container ujn-news (min-width: 960px) {
+  .ujn-news-app__wrap {
+    max-width: calc(var(--ujn-page-width) + 2 * var(--ujn-gutter-wide));
+    padding-inline: var(--ujn-gutter-wide);
+  }
+}
+
+/* ==========================================================================
+   Ferramentas: busca e matérias salvas
+   ========================================================================== */
+
+.ujn-news-app__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+  padding-block: var(--ujn-spacing-m);
+}
+
+.ujn-news-app__tools .ujn-search-field {
+  flex: 1 1 auto;
+}
+
+@container ujn-news (min-width: 960px) {
+  .ujn-news-app__tools {
+    justify-content: flex-end;
+  }
+
+  .ujn-news-app__tools .ujn-search-field {
+    flex: 0 1 var(--ujn-news-app-search-width);
+  }
+}
+
+/* ==========================================================================
+   Colunas: lista à esquerda, barra lateral à direita (largo)
+   ========================================================================== */
+
+.ujn-news-app__columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ujn-spacing-3xl);
+}
+
+@container ujn-news (min-width: 960px) {
+  .ujn-news-app__columns {
+    grid-template-columns: minmax(0, 1fr) var(--ujn-sidebar-width);
+    align-items: start;
+  }
+}
+
+.ujn-news-app__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-m);
+  min-width: 0;
+}
+
+.ujn-news-app__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xxl);
+  min-width: 0;
+}
+
+.ujn-news-app__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-l);
+  min-width: 0;
+}
+
+.ujn-news-app__section--first {
+  margin-block-start: 0;
+}
+
+/* ==========================================================================
+   Lista de matérias
+   ========================================================================== */
+
+.ujn-news-app__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ujn-news-app__list-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  background-color: var(--ujn-color-background-card);
+}
+
+.ujn-news-app__list-item > .ujn-article-list-item {
+  flex: 1 1 auto;
+}
+
+/* Com o botão de remover ao lado, o fio da base é da linha inteira */
+.ujn-news-app__list-item--removable {
+  border-bottom: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+}
+
+.ujn-news-app__list-item--removable > .ujn-article-list-item {
+  border-bottom: 0;
+}
+
+.ujn-news-app__remove {
+  flex-shrink: 0;
+  margin: var(--ujn-spacing-l) var(--ujn-spacing-xs) 0 0;
+}
+
+/* ==========================================================================
+   Busca, salvos e agenda
+   ========================================================================== */
+
+.ujn-news-app__status {
+  min-height: var(--ujn-font-body-sm-line);
+  margin: 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-news-app__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ujn-spacing-xs);
+}
+
+.ujn-news-app__toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ujn-news-app__agenda {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xxl);
+}
+
+/* ==========================================================================
+   Matéria
+   ========================================================================== */
+
+.ujn-news-app__article > .ujn-news-app__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-3xl);
+  padding-block: var(--ujn-spacing-xxl) var(--ujn-spacing-4xl);
+}
+
+.ujn-news-app__article-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ujn-spacing-m);
+  margin-bottom: var(--ujn-spacing-xl);
+  padding-block: var(--ujn-spacing-xs);
+  border-block: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+}
+
+.ujn-news-app__text-size {
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+}
+
+/* ==========================================================================
+   Camadas: carta e foto ampliada
+   ========================================================================== */
+
+.ujn-news-app__letter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-l);
+}
+
+.ujn-news-app__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-background-subtle);
+}

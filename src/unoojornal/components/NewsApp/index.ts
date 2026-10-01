@@ -1,3 +1,6 @@
+export { NewsApp } from './NewsApp';
+export type { UjnNewsAppProps, UjnNewsRoute, UjnNewsPublication } from './NewsApp.types';
+export { ujnDefaultSections } from './NewsApp.defaults';
 export {
   ujnNewsReducer,
   ujnCreateNewsState,

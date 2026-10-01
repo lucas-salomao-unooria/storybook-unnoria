@@ -29,7 +29,9 @@
 .ujn-article-top-bar__bar {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  /* A coluna central é a que sobra: o Masthead interno é um contêiner de consulta,
+     tem largura intrínseca zero e uma coluna `auto` o espremeria a nada. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
   align-items: center;
   gap: var(--ujn-spacing-l);
   min-height: var(--ujn-article-bar-height);
@@ -137,6 +139,7 @@
 
 @container (max-width: 639px) {
   .ujn-article-top-bar__bar {
+    grid-template-columns: var(--ujn-touch-target) minmax(0, 1fr) var(--ujn-touch-target);
     gap: var(--ujn-spacing-xs);
     padding: 0 var(--ujn-spacing-xs);
   }

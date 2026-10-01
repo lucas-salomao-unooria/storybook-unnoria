@@ -504,7 +504,9 @@ export const Acionamento: Story = {
     await userEvent.click(disabled);
     await expect(disabledSpy).not.toHaveBeenCalled();
 
-    // Tab pula o desabilitado e vai ao "Enviar"
+    // Clicar no desabilitado tira o foco do documento; devolve-o ao primeiro botão
+    // e então o Tab pula o desabilitado e vai ao "Enviar"
+    read.focus();
     await userEvent.tab();
     await expect(canvas.getByRole('button', { name: 'Enviar' })).toHaveFocus();
     await userEvent.keyboard('{Enter}');
