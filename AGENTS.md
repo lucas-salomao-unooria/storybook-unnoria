@@ -12,7 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Este documento é a referência arquitetural e técnica obrigatória para o desenvolvimento de componentes, tokens e documentação interativa no Storybook da **Plataforma Unooria**.
 
-> **Paridade obrigatória**: `AGENTS.md` e `GEMINI.md` compartilham o mesmo corpo normativo (seções 1 a 15) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
+> **Paridade obrigatória**: `AGENTS.md` e `GEMINI.md` compartilham o mesmo corpo normativo (seções 1 a 16) e diferem apenas neste cabeçalho. Ao alterar uma regra, **altere os dois arquivos na mesma edição**.
 
 ---
 
@@ -33,10 +33,10 @@ Este documento é a referência arquitetural e técnica obrigatória para o dese
 - Reservado para todas as estórias, documentações interativas e playgrounds do Storybook.
 - **REGRA CRÍTICA / PROIBIDO**: nenhum arquivo `.stories.tsx` vive em `src/`, e nenhum componente de produção vive em `stories/`.
 - **Plataforma Unooria**: `stories/unooria/components/[NomeComponente].stories.tsx` e `stories/unooria/fundamentos/` (`Colors`, `Typography`, `Spacing`, `Elevation`, `Blur`, `Grids`, `GridsWidgets`, `Icons`, `Logo`).
-- **Marcas**: cada uma usa o mesmo trio de subpastas — `stories/[marca]/fundamentos/`, `stories/[marca]/componentes/` e `stories/[marca]/telas/` — mais um `stories/[marca]/fixtures.ts` com o conteúdo de demonstração compartilhado. Vale para `instanooria`, `chatgpt`, `whatsappmobile`, `tiktooria`, `unootube`, `unoochat`, `unoovista`, `unooriaai`, `unoogaleria` e `unoojornal`.
+- **Marcas**: cada uma usa o mesmo trio de subpastas — `stories/[marca]/fundamentos/`, `stories/[marca]/componentes/` e `stories/[marca]/telas/` — mais um `stories/[marca]/fixtures.ts` com o conteúdo de demonstração compartilhado. Vale para `instanooria`, `chatgpt`, `whatsappmobile`, `tiktooria`, `unootube`, `unoochat`, `unoovista`, `unooriaai`, `unoogaleria`, `unoojornal` e `unooblog`.
 - **Inconsistência conhecida**: a Plataforma Unooria usa `components/` (em inglês) e as marcas usam `componentes/`. É assim no repositório; ao criar uma estória, siga a convenção da pasta que já existe.
 - **Recursos rasterizados** exportados do Figma ficam em `public/[marca]/` e são sempre informados por prop (`src`, `avatarSrc`, `coverSrc`, `portraitSrc`), **nunca embutidos no pacote**.
-- **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`, `UniDocKit`, `UncDocKit`, `UnvDocKit`, `UaiDocKit`, `UglDocKit`, `UjnDocKit`).
+- **Componentes Utilitários de Documentação**: `.storybook/components/` reúne a moldura compartilhada (`UnooriaDocShell`, `UnooriaDocHeader`, `UnooriaDocSectionHeader`) e um kit de seções por marca (`InstaDocKit`, `GptDocKit`, `WaDocKit`, `TikDocKit`, `UniDocKit`, `UncDocKit`, `UnvDocKit`, `UaiDocKit`, `UglDocKit`, `UjnDocKit`, `UblDocKit`).
 
 ### 1.3. Módulos Multimarca (`src/whatsappmobile/`, `src/instanooria/`, `src/chatgpt/`, `src/tiktooria/`)
 O pacote publica **dez design systems** em um único artefato NPM:
@@ -54,8 +54,9 @@ O pacote publica **dez design systems** em um único artefato NPM:
 | UnooriaAI | `src/unooriaai/` | `UnooriaAIUI` | `--uai-*` / `.uai-*` | `data-uai-theme="light \| dark"` | 25 | — (estrutura de `src/chatgpt/`; identidade da Plataforma Unooria) |
 | Unoogaleria | `src/unoogaleria/` | `UnoogaleriaUI` | `--ugl-*` / `.ugl-*` | `data-ugl-theme="light \| dark"` + superfície imersiva invariante | 32 | — (identidade da Plataforma Unooria; galeria de fotos e vídeos com o app completo — ver seção 14) |
 | Unoojornal | `src/unoojornal/` | `UnoojornalUI` | `--ujn-*` / `.ujn-*` | `data-ujn-theme="light \| dark"` + rodapé escuro invariante | 43 | Jornal da Escola (estrutura editorial; identidade da Plataforma Unooria, com o app completo — ver seção 15) |
+| Unooblog | `src/unooblog/` | `UnooblogUI` | `--ubl-*` / `.ubl-*` | `data-ubl-theme="light \| dark"` + código em superfície escura invariante | 45 | — (identidade da Plataforma Unooria; blog de leitura longa com o app completo — ver seção 16) |
 
-- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`, `UnoochatUI`, `UnoovistaUI`, `UnooriaAIUI`, `UnoogaleriaUI`, `UnoojornalUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
+- Cada marca vive em seu próprio módulo sob `src/`, com **namespace de tokens e prefixo de classes CSS exclusivos**, e é exportada do `src/index.ts` **apenas como namespace** (`WhatsAppMobileUI`, `InstanooriaUI`, `ChatGPTUI`, `TikTooriaUI`, `UnootubeUI`, `UnoochatUI`, `UnoovistaUI`, `UnooriaAIUI`, `UnoogaleriaUI`, `UnoojornalUI`, `UnooblogUI`). Só a Plataforma Unooria também é exportada na raiz — as marcas nunca, para evitar colisão de nomes (`Avatar`, `Badge`, `Button`, `TabBar` e `PhoneFrame` existem em mais de uma).
 - **ChatGPT** (cliente de conversa com IA da Unooria, derivado do arquivo Figma "ChatGPT UI Kit (AI Chat) (Community)"):
   - Código de produção: `src/chatgpt/tokens/` e `src/chatgpt/components/[NomeComponente]/`.
   - Estórias: `stories/chatgpt/fundamentos/`, `stories/chatgpt/componentes/` e `stories/chatgpt/telas/`.
@@ -115,7 +116,13 @@ O pacote publica **dez design systems** em um único artefato NPM:
   - Conteúdo de demonstração compartilhado: `stories/unoojornal/fixtures.ts`. Ilustrações SVG geradas da paleta da Unooria por `scripts/gerar-ilustracoes-unoojornal.mjs`: `public/unoojornal/`.
   - **Estrutura vem do Figma, cor e fonte vêm da Unooria.** Os tokens de cor, de tipografia, de tamanho de ícone e de elevação são literais copiados de `src/unooria/tokens/`, com o token de origem no comentário; `scripts/gerar-tokens-unoojornal.mjs` os gera e `scripts/verificar-paridade-unoojornal.mjs` guarda a paridade.
   - Prefixo de variáveis CSS: `--ujn-*`. Prefixo de classes: `.ujn-*`. Atributo de tema: `data-ujn-theme="light | dark"`.
-- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. **O Unoochat, o Unoovista, o UnooriaAI, a Unoogaleria e o Unoojornal também não leem `--unooria-*` em tempo de execução**: eles copiam os literais (seções 2.8, 2.9, 2.10, 2.11 e 2.12), e a paridade é guardada por script. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube e `var(--unc-*)` fora do Unoochat e `var(--unv-*)` fora do Unoovista e `var(--uai-*)` fora do UnooriaAI e `var(--ugl-*)` fora da Unoogaleria e `var(--ujn-*)` fora do Unoojornal — são marcas com hierarquias cromáticas distintas.
+- **Unooblog** (blog de leitura longa com identidade da Plataforma Unooria e composição própria, com o aplicativo completo pronto para o mockup — ver seção 16):
+  - Código de produção: `src/unooblog/tokens/`, `src/unooblog/content/` (modelo editorial), `src/unooblog/hooks/` e `src/unooblog/components/[NomeComponente]/`.
+  - Estórias: `stories/unooblog/fundamentos/`, `stories/unooblog/componentes/` e `stories/unooblog/telas/`.
+  - Conteúdo de demonstração compartilhado: `stories/unooblog/fixtures.ts`. Ilustrações SVG geradas da paleta da Unooria por `scripts/gerar-ilustracoes-unooblog.mjs`: `public/unooblog/`.
+  - **Sem arquivo Figma de origem.** Os tokens de cor, de tipografia, de tamanho de ícone, de desfoque e de elevação são literais copiados de `src/unooria/tokens/`, com o token de origem no comentário; `scripts/gerar-tokens-unooblog.mjs` os gera e `scripts/verificar-paridade-unooblog.mjs` guarda a paridade.
+  - Prefixo de variáveis CSS: `--ubl-*`. Prefixo de classes: `.ubl-*`. Atributo de tema: `data-ubl-theme="light | dark"`.
+- **REGRA CRÍTICA**: um módulo de marca **NUNCA** consome tokens de outro. **O Unoochat, o Unoovista, o UnooriaAI, a Unoogaleria, o Unoojornal e o Unooblog também não leem `--unooria-*` em tempo de execução**: eles copiam os literais (seções 2.8, 2.9, 2.10, 2.11, 2.12 e 2.13), e a paridade é guardada por script. É proibido usar `var(--unooria-*)` dentro do Instanooria, do ChatGPT ou do WhatsApp Mobile, `var(--insta-*)` fora do Instanooria, `var(--gpt-*)` fora do ChatGPT `var(--wa-*)` fora do WhatsApp Mobile, `var(--tik-*)` fora do Tik Tooria e `var(--uni-*)` fora do Unootube e `var(--unc-*)` fora do Unoochat e `var(--unv-*)` fora do Unoovista e `var(--uai-*)` fora do UnooriaAI e `var(--ugl-*)` fora da Unoogaleria e `var(--ujn-*)` fora do Unoojornal e `var(--ubl-*)` fora do Unooblog — são marcas com hierarquias cromáticas distintas.
 
 ---
 
@@ -294,6 +301,21 @@ Todo componente, estilo ou documentação do Unoojornal **DEVE** consumir exclus
 - **Medidas**: escala `--ujn-spacing-4xs` (2px) a `-5xl` (64px), calhas `--ujn-gutter` (16px) e `-gutter-wide` (80px), raios `--ujn-radius-xs|s|m|l|full` (2/4/8/12/1000px — o jornal é reto), página `--ujn-page-width` (1280px), coluna de leitura `--ujn-reading-width` (740px), barra lateral `--ujn-sidebar-width` (384px), `--ujn-touch-target` (44px), ícones `--ujn-icon-size-xs|sm|md|lg` (16/20/24/32px, degraus de `--unooria-icon-size-*`) e **camadas** `--ujn-z-*`. **Pontos de quebra são de contêiner** (`@container`: largo ≥ 960px, médio ≥ 640px, compacto abaixo), porque o jornal aparece em quadros de documentação mais estreitos que a janela.
 - **Áreas seguras**: `--ujn-safe-area-top` e `--ujn-safe-area-bottom` valem 0 fora do aparelho; o `PhoneFrame` as redefine na tela e toda barra, folha e o leitor as somam ao próprio recuo.
 
+### 2.13. Tokens do Unooblog (`src/unooblog/tokens/`)
+Todo componente, estilo ou documentação do Unooblog **DEVE** consumir exclusivamente as variáveis `--ubl-*`. Como o Unoojornal, o Unooblog **não tem arquivo de design de origem**: a identidade é a da **Plataforma Unooria** — paleta roxa, Open Sans e Material Symbols — e a **composição é própria** (seção 16.1). Cada token de cor, de tipografia, de tamanho de ícone, de desfoque e de elevação é uma **cópia literal** do valor da plataforma, com o nome do token de origem no comentário da linha. **O módulo nunca lê `--unooria-*` em tempo de execução** (seção 1.3): `scripts/verificar-paridade-unooblog.mjs` (encadeado no `build:package`) reprova o build se um literal divergir da origem. `colors.css` e `colors.ts`, `typography.css` e `typography.ts` saem de `scripts/gerar-tokens-unooblog.mjs` (`npm run gerar:tokens-unooblog`), sobre o motor compartilhado `scripts/lib/gerar-tokens-marca.mjs`, que lê os literais da Unooria e **recusa gravar** se algum par de contraste ficar abaixo do mínimo.
+
+- **Dois temas, ambos sobre a escala `brandpurple`**: `:root, [data-ubl-theme='light']` e `[data-ubl-theme='dark']`. Claro: página **branca** (`neutral-50`), cartões em lavanda (`brandpurple-50`), acento `brandpurple-600` (`#716C98`). Escuro: página em `brandpurple-950`, cartões em `-900`, acento `brandpurple-400` (`#AAA5C2`). **É PROIBIDO derivar um tema por cálculo.**
+- **Camadas «página → cartão → sutil»**: `--ubl-color-background-page`, `-card`, `-subtle` e `-elevated`, mais `--ubl-color-surface-bar` (cabeçalho translúcido). É o **inverso do jornal** (papel lavanda, cartões brancos). No escuro, `-subtle`, `-elevated` e `--ubl-color-fill-field` coincidem em `brandpurple-800`: a distinção vem do halo de `--ubl-elevation-overlay`.
+- **Texto** (`--ubl-color-text-primary|secondary|muted|accent|on-action|danger|on-danger`), **ícones** (`-icon-primary|secondary|accent`), **bordas** (`-border-subtle|default|control`) e **ações** (`-action-primary|pressed|disabled|danger`, `-fill-field`, `-state-hover|pressed`, `-focus-ring`). **O limite de um controle usa `--ubl-color-border-control`** (≥ 3:1); `-border-default` só serve a superfícies e a controles desabilitados.
+- **Marca e status**: `--ubl-color-brand-like` (coração de curtida) e os tons dos avisos, `-status-info|success|warning` (barra e glifo) com fundos translúcidos **nomeados**, `-fill-info|success|warning` (`opacity-*-100` da Unooria, nunca `color-mix`).
+- **Invariantes entre temas**: o **código** (`--ubl-color-code-surface|text|text-muted|accent|border|control`, `brandpurple-950`) — vive sobre fundo escuro nos dois temas —, a mídia (`--ubl-color-media-scrim|text`, texto sempre branco sobre a capa) e o aparelho do mockup (`--ubl-color-device-*`).
+- **Contraste medido, nos dois temas**: 60 pares de uso real (texto ≥ 4,5:1, gráfico ≥ 3:1), inclusive o título sobre uma **capa branca** (pior caso). Menor razão de texto: 4,74:1 no claro e 4,86:1 no escuro; menor razão gráfica: 4,39:1 e 4,07:1. A tabela é o export `ublContrastPairs` e aparece em `Unooblog/Fundamentos/Cores`.
+- **Tokens compostos com `var()` se declaram em todo `[data-ubl-theme]`**, nunca só em `:root` (a lição da seção 2.9): `--ubl-gradient-media-bottom` e `--ubl-elevation-hairline-*`.
+- **Tipografia**: Open Sans via `--ubl-font-sans`, Material Symbols via `--ubl-icon-font-family` e **pilha monoespaçada do sistema** via `--ubl-font-mono` (a Unooria não publica fonte monoespaçada; é a única família sem origem na plataforma e não traz arquivo de fonte). Escala de **15 estilos** (`display` 60/78, `heading-1|2|3|4`, `lead`, `prose` 18/28, `body-lg|md`, `quote` em itálico, `label-lg|label`, `caption`, `caption-strong`, `code`) nos degraus de área de trabalho da Unooria, cada um citando o `--unooria-size-*` de origem. **Sem `letter-spacing`** e nenhum corpo abaixo de 12px. Não entra serifa.
+- **Medidas**: escala `--ubl-spacing-4xs` (2px) a `-5xl` (64px), calhas `--ubl-gutter` (16px) e `-gutter-wide` (48px), **raios macios** `--ubl-radius-xs|s|m|l|xl|full` (4/8/12/16/24/1000px), página `--ubl-page-width` (1120px), **coluna de leitura** `--ubl-reading-width` (680px, ~68 caracteres), sumário `--ubl-toc-width` (240px), barra lateral `--ubl-sidebar-width` (320px), cabeçalho `--ubl-site-header-height` (64px), progresso `--ubl-progress-height` (3px), `--ubl-touch-target` (44px), ícones `--ubl-icon-size-xs|sm|md|lg` (16/20/24/32px), avatares `--ubl-avatar-sm|md|lg|xl` (24/32/48/72px), desfoque `--ubl-blur-bar` (16px, `--unooria-blur-400`) e **camadas** `--ubl-z-*`. **Pontos de quebra são de contêiner** (`@container`: largo ≥ 960px, médio ≥ 640px, compacto abaixo).
+- **Elevação**: a superfície é plana; `--ubl-elevation-overlay`, por tema (`--unooria-elevation-brand-secondary` no claro, `-neutral-2` no escuro), se aplica **apenas** a menus, diálogos, folhas e avisos.
+- **Áreas seguras**: `--ubl-safe-area-top` e `--ubl-safe-area-bottom` valem 0 fora do aparelho; o `PhoneFrame` as redefine na tela.
+
 ---
 
 ## 3. Convenção Oficial de Documentação em Componentes (Padrão Ouro)
@@ -410,6 +432,7 @@ export default meta;
   - **UnooriaAI**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unooriaai/components/Icon/IconGlyphs.ts` (ver seção 13.4). O logotipo é marca original, em contornos de Open Sans Bold.
   - **Unoogaleria**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unoogaleria/components/Icon/IconGlyphs.ts` (ver seção 14.4).
   - **Unoojornal**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unoojornal/components/Icon/IconGlyphs.ts` (ver seção 15.4). O logotipo é marca original, em contornos de Open Sans Bold.
+  - **Unooblog**: **não tem dado vetorial próprio** — usa a biblioteca da Plataforma Unooria (Material Symbols Rounded, por ligadura), registrada em `src/unooblog/components/Icon/IconGlyphs.ts` (ver seção 16.4). O logotipo é marca original, em contornos de Open Sans Bold.
   - **ChatGPT**: **não tem biblioteca vetorial** — o arquivo de origem usa caracteres tipográficos, registrados em `src/chatgpt/tokens/glyphs.ts` (ver seção 7.4).
 - Ao adicionar um glifo novo, exporte o SVG do Figma, copie os atributos (`d`, `cx/cy/r`, `x/y/width/height`) **sem edição** e preencha `figmaName`, `viewBox` e `usage` — mais `figmaNode` nos registros que o preveem.
 - Quando o arquivo reaproveita o mesmo vetor girado ou espelhado, use as props `rotate` / `flipX` / `flipY` em vez de duplicar o caminho com coordenadas reescritas.
@@ -422,7 +445,7 @@ export default meta;
 
 O pacote é emitido **sem bundling**: um arquivo de saída por arquivo de origem (`bundle: false` em `tsup.config.ts`), preservando o grafo de módulos.
 
-- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**112 dos 211** na última medição, em 25/09/2026, sobre a 0.2.4 com as extensões do Instanooria: 2/40 na Plataforma Unooria, 12/28 no Instanooria, 21/25 no ChatGPT, 20/39 no WhatsApp Mobile, 32/35 no Tik Tooria e 25/44 no Unootube, 12/31 no Unoovista; a Unoogaleria, medida em 30/09/2026 sobre a 0.2.8, tem 8/32 — a galeria é interativa por natureza; o Unoojornal, medido na mesma data sobre a 0.2.9, tem 21/43). Para recontar depois de um `npm run build:package`:
+- **`'use client'` vale por arquivo.** O esbuild descarta silenciosamente a diretiva de qualquer módulo que não seja entry point; com bundle único, só a do topo de `src/index.ts` sobrevivia e marcava o pacote inteiro como client. **É PROIBIDO declarar `'use client'` em `src/index.ts`** ou nos barris de marca — isso anularia todos os componentes que hoje rodam como Server Components (**112 dos 211** na última medição, em 25/09/2026, sobre a 0.2.4 com as extensões do Instanooria: 2/40 na Plataforma Unooria, 12/28 no Instanooria, 21/25 no ChatGPT, 20/39 no WhatsApp Mobile, 32/35 no Tik Tooria e 25/44 no Unootube, 12/31 no Unoovista; a Unoogaleria, medida em 30/09/2026 sobre a 0.2.8, tem 8/32 — a galeria é interativa por natureza; o Unoojornal, medido na mesma data sobre a 0.2.9, tem 21/43; o Unooblog, 19/45). Para recontar depois de um `npm run build:package`:
   ```bash
   for d in dist/*/components/*/; do n=$(basename "$d"); f="$d$n.mjs"; \
     [ -f "$f" ] && { head -3 "$f" | grep -q 'use client' && echo client || echo server; }; \
@@ -494,7 +517,7 @@ componente não oferece nada disso e ainda concorre com o que o `next/font`
 declara. Sendo opt-in, um app que resolva a tipografia por lá simplesmente não
 escreve a linha.
 
-- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*`, `--unc-*`, `--unv-*`, `--uai-*`, `--ugl-*`, `--ujn-*` e `--unooria-*` têm folha de
+- **`--uni-*`, `--gpt-*`, `--wa-*`, `--tik-*`, `--unc-*`, `--unv-*`, `--uai-*`, `--ugl-*`, `--ujn-*`, `--ubl-*` e `--unooria-*` têm folha de
   fonte.** O Instanooria não: usa SF Pro, fonte de sistema da Apple.
 - **A Plataforma Unooria e o Unoochat são os casos críticos.** O Unoochat usa a mesma fonte de ligadura (Material Symbols Rounded, 5,1 MB) — os `.woff2` não são duplicados (`src/fonts/material-symbols-rounded/` é compartilhado).
 - **A Plataforma Unooria é o caso crítico.** Os ícones dela são uma **fonte de
@@ -518,13 +541,13 @@ escreve a linha.
 ## 5. Validação Obrigatória e Critérios de Aceite
 Antes de considerar qualquer tarefa de componente ou documentação concluída:
 0. Ao tocar no Unootube, conferir **antes de registrar um glifo novo** se ele já existe: os dois arquivos de origem redesenham vários dos mesmos vetores, apenas transladados ou escalados. A análise de repetição vive no bloco `shorts` de `IconPaths.ts`.
-1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube, `src/unoochat/tokens/` para o Unoochat, `src/unoovista/tokens/` para o Unoovista, `src/unooriaai/tokens/` para o UnooriaAI, `src/unoogaleria/tokens/` para a Unoogaleria, `src/unoojornal/tokens/` para o Unoojornal), sem hexadecimais avulsos e sem mistura entre marcas.
+1. Validar que **todos os estilos e cores consomem as variáveis CSS do módulo correspondente** (`src/unooria/tokens/` para a Plataforma Unooria, `src/instanooria/tokens/` para o Instanooria, `src/chatgpt/tokens/` para o ChatGPT, `src/whatsappmobile/tokens/` para o WhatsApp Mobile, `src/tiktooria/tokens/` para o Tik Tooria, `src/unootube/tokens/` para o Unootube, `src/unoochat/tokens/` para o Unoochat, `src/unoovista/tokens/` para o Unoovista, `src/unooriaai/tokens/` para o UnooriaAI, `src/unoogaleria/tokens/` para a Unoogaleria, `src/unoojornal/tokens/` para o Unoojornal, `src/unooblog/tokens/` para o Unooblog), sem hexadecimais avulsos e sem mistura entre marcas.
 2. Executar `npx tsc --noEmit` e garantir **0 erros de compilação TypeScript**.
-3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`, `src/styles-unoochat.css`, `src/styles-unoovista.css`, `src/styles-unooriaai.css`, `src/styles-unoogaleria.css`, `src/styles-unoojornal.css`).
+3. Executar `node scripts/verificar-css-agregado.mjs` e garantir que **todo CSS de token e de componente está nas folhas agregadas** publicadas (`src/styles.css`, `src/styles-unooria.css`, `src/styles-instanooria.css`, `src/styles-chatgpt.css`, `src/styles-whatsappmobile.css`, `src/styles-tiktooria.css`, `src/styles-unootube.css`, `src/styles-unoochat.css`, `src/styles-unoovista.css`, `src/styles-unooriaai.css`, `src/styles-unoogaleria.css`, `src/styles-unoojornal.css`, `src/styles-unooblog.css`).
 4. Executar `npm run build-storybook` e validar o **build sem falhas do Storybook**.
 5. Executar `npm run lint` e garantir **0 erros e 0 warnings**.
 6. Executar `npm test` e garantir que **todas as estórias renderizam** — a suíte Vitest monta cada estória em um Chromium real.
-7. Ao tocar no Unoochat, executar `npm run verificar:paridade-unoochat`; ao tocar no Unoovista, `npm run verificar:paridade-unoovista`; ao tocar no UnooriaAI, `npm run verificar:paridade-unooriaai`; ao tocar na Unoogaleria, `npm run verificar:paridade-unoogaleria`; ao tocar no Unoojornal, `npm run verificar:paridade-unoojornal`. Garanta que todo literal com origem na Plataforma Unooria continua igual a ela.
+7. Ao tocar no Unoochat, executar `npm run verificar:paridade-unoochat`; ao tocar no Unoovista, `npm run verificar:paridade-unoovista`; ao tocar no UnooriaAI, `npm run verificar:paridade-unooriaai`; ao tocar na Unoogaleria, `npm run verificar:paridade-unoogaleria`; ao tocar no Unoojornal, `npm run verificar:paridade-unoojornal`; ao tocar no Unooblog, `npm run verificar:paridade-unooblog`. Garanta que todo literal com origem na Plataforma Unooria continua igual a ela.
 8. Executar `npm run build:package` e garantir que o pacote é emitido sem falhas, com os tipos gerados pelo `tsc` (ver seção 4.5).
 
 ### 5.1. Registro de Desvios em Relação ao Figma (Plataforma Unooria)
@@ -1177,3 +1200,66 @@ Não há «desvios em relação ao Figma» no sentido estrito, porque cor e font
 - **Progresso de leitura**: `setProgress` só vai a `onAction` a cada 5 pontos e só para a frente; `markRead` sai uma vez, ao passar de 80% (matéria que cabe inteira na tela conta como lida após 400ms).
 - **`readingMinutes` das fixtures é fixo**, e não bate com `ujnReadingTime(body)` (os corpos de demonstração são curtos); um produto deve derivar o valor dos blocos.
 - **Um `play` que clica e depois usa Tab parte do foco do clique**: clicar num botão desabilitado ou numa etiqueta-botão move o foco; o teste devolve o foco antes do Tab.
+
+## 16. Design System Unooblog (Seção `Unooblog` do Storybook)
+
+O **Unooblog** é o blog da Plataforma Unooria: leitura longa em coluna única, sumário lateral, séries, tópicos, autoria, comentários em fio e newsletter. A identidade é a da plataforma — paleta roxa, Open Sans e Material Symbols, em tema claro e escuro — e a **composição é própria**. Criado em 2026-09-30, o módulo publica também o **aplicativo completo** (`BlogApp`), pronto para rodar dentro do mockup de desktop (`DesktopFrame`) ou de celular (`PhoneFrame`).
+
+### 16.1. Origem, Motivo e Regras
+- **Origem**: não há arquivo Figma. A identidade vem da Plataforma Unooria (seção 2.13); a estrutura de componentes e do aplicativo segue o **padrão do Unoojornal** (seção 15), com o desenho próprio do blog.
+- **Distinto do Unoojornal por composição, não só por cor**: o jornal é institucional e periódico (faixa de edição, capa, seções, fio duplo, cartões retos, papel lavanda); o blog é de **autoria e de leitura longa** — página branca com cartões lavanda, cantos macios, coluna de ~68 caracteres com sumário que acompanha a rolagem, autor sempre presente, séries, tópicos, comentários em fio, código em superfície escura. Os dois módulos coexistem e **nenhum consome o outro**: os componentes genéricos (`Button`, `TextField`, `Modal`…) nasceram de cópias do jornal e foram redesenhados.
+- **Sem bitmap de terceiros**: `public/unooblog/` guarda 12 capas SVG 16:9 e 6 retratos, geradas da paleta da Unooria por `scripts/gerar-ilustracoes-unooblog.mjs` (com semente). Tudo entra por prop (`coverSrc`, `avatarSrc`), **nunca embutido no pacote**.
+- **Nome fictício só nas fixtures**: «Caderno Aberto» vive em `stories/unooblog/fixtures.ts`; os componentes recebem o nome do site por prop.
+- **Data fixa nas estórias**: `ublDemoNow` é 30/09/2026 10:00, em São Paulo. Toda data é lida num **fuso explícito** (`UBL_DEFAULT_TIME_ZONE`), com nomes de mês e de dia em tabelas fixas, sem `Intl`.
+- **Sobreposições ficam na tela, não na janela**: diálogo, folha, aviso e menu são `position: absolute` dentro do contêiner posicionado mais próximo (a tela do `PhoneFrame` ou do `DesktopFrame`). **É PROIBIDO usar portal.**
+- **O texto do post é uma lista de blocos tipados, não HTML**: o `PostBody` renderiza `UblBlock`, e o sumário lê os mesmos blocos. Nenhum componente usa `dangerouslySetInnerHTML`.
+- **O aplicativo não troca o tema por conta própria**: o botão do cabeçalho chama `onToggleTheme` e `themeMode` só escolhe o glifo; quem decide o `data-ubl-theme` é o contêiner.
+- **Idioma**: todo texto padrão é pt-BR.
+
+### 16.2. Títulos das Estórias
+- **Fundamentos**: `Unooblog/Fundamentos/[Cores | Tipografia | Espaçamento & Layout | Elevação & Gradientes | Ícones]`.
+- **Componentes**: `Unooblog/Componentes/[NomeComponente]`.
+- **Telas compostas**: `Unooblog/Telas/Telas Compostas` — todas são o `BlogApp` real, em `DesktopFrame` ou `PhoneFrame`; as que dependem de interação chegam ao estado pelo `play`, clicando como uma pessoa faria. Nenhuma tela é réplica desenhada à parte.
+
+### 16.3. Componentes Oficiais (45)
+**Fundação**: `Icon`, `Logo`, `Avatar` (`AvatarGroup`), `Button`, `IconButton`, `Divider`, `Badge`, `TopicChip`, `SegmentedControl`.
+**Navegação**: `SiteHeader`, `SiteFooter`, `Breadcrumb`, `Pagination`, `SearchField`, `TableOfContents`, `ReadingProgress`.
+**Feed**: `PostMeta`, `PostCard` (`cover`, `horizontal`, `compact`, `featured`), `PostList`, `SeriesCard`, `TopicCloud`, `AuthorCard`, `NewsletterSignup`.
+**Leitura**: `PostHeader`, `PostBody`, `CodeBlock`, `Callout`, `Blockquote`, `Figure`, `ShareBar`, `ReactionBar`, `PostNavigation`, `RelatedPosts`.
+**Comentários**: `CommentItem`, `CommentThread`, `CommentComposer`.
+**Camadas, avisos e formulário**: `Toast`, `Modal`, `BottomSheet`, `EmptyState`, `TextField`, `TextArea`.
+**Documentação**: `DesktopFrame`, `PhoneFrame`. **Aplicativo**: `BlogApp`.
+
+- **Modelo editorial compartilhado** em `src/unooblog/content/`: `UblPost`, `UblAuthor`, `UblTopic`, `UblSeries`, `UblComment`, `UblBlock` (`paragraph`, `heading`, `quote`, `code`, `callout`, `figure`, `list`) e os utilitários `ublFormatDate`, `ublTimeAgo`, `ublReadingTime`, `ublNormalizeSearch`, `ublMatchesQuery`, `ublHeadingId`, `ublTableOfContents` e `ublCodePoints`. **Datas SEMPRE por esses utilitários.**
+- **Hooks** em `src/unooblog/hooks/`: `useModalFocus` (com pilha de camadas) e `useControllableState`, cópias dos do Unoojornal — um módulo de marca nunca consome outro.
+- **`BlogApp`**: início com destaque, tópicos e séries; post com sumário, progresso, reações, autoria, navegação, relacionados e comentários; tópicos, séries, autores, busca e salvos. O estado é guardado por um redutor puro exportado (`blogState.ts`: `ublBlogReducer`, `ublCreateBlogState` e os seletores `ublSelectLatest`, `-Featured`, `-Saved`, `-ByTopic`, `-ByAuthor`, `-BySeries`, `-Related`, `-Comments`, `-Unread`, `ublCommentCount`, `ublLikeCount`, `ublFollowerCount`, `ublTopicCounts` e os validadores `ublValidateComment` e `ublValidateEmail`); `onAction` recebe cada operação antes de ela acontecer e `onStateChange`, o estado depois. **«Desfazer»** vale para excluir comentário e remover dos salvos (a ação `replace` devolve o estado inteiro). Busca sem acento e por início de palavra; o comentário conta em **code points** (1 a 1000).
+- **Campos de entrada** (seção 4.5.1): `TextField`, `TextArea`, `SearchField`, `CommentComposer` e `NewsletterSignup` só são controlados quando o consumidor passa `value`; as estórias `play` guardam a regra.
+- **Diálogo composto se nomeia sozinho** (seção 4.3): `Modal` e `BottomSheet` ligam `aria-labelledby` ao título renderizado.
+- **Fronteira cliente/servidor** (seção 4.5): 19 dos 45 componentes rodam como Server Components (medido em 2026-09-30 sobre a 0.2.9); são `'use client'` os que têm estado, efeito ou repassam função a um filho.
+- **É PROIBIDO ampliar esse conjunto sem registrar a decisão** na estória correspondente, com o `UblDocDecisions`.
+
+### 16.4. Iconografia: Biblioteca da Unooria
+- **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou trazido de outra biblioteca. O registro `src/unooblog/components/Icon/IconGlyphs.ts` (`ublIcons`) aponta cada nome para uma **ligadura do Material Symbols Rounded, peso 300** (com `filled` quando o estado exige), conferida no quadro `6024:2923` (`src/unooria/tokens/figma_icons_node_6024_2923.json`). **Todo nome do registro existe nesse quadro**; o sumário usa `toc`.
+- **Substitutos**, porque o quadro não publica o glifo: tema claro → `wb_sunny` (não há `light_mode`), expandir → `keyboard_arrow_down` (não há `expand_more`), salvar em repouso → `bookmark` sem preenchimento (não há `bookmark_border`), desfazer → `replay`. O registro **não tem `print`**: o blog não imprime.
+- **A fonte é de ligadura**: sem `@unooria/design-system/fonts/unooblog.css` (ou o Material Symbols do app), o nome do ícone aparece como texto (seção 4.6).
+- **Logotipo (`Logo/LogoVector.ts`)**: marca original **Un∞blog**. O símbolo é o isótipo oficial da Unooria (copiado como literal do `Logo` do Unoojornal, o que não viola a regra 1.3) ocupando o vão do «oo»; «Un» e «blog» são **contornos de Open Sans Bold** gerados por transformação única da curva da fonte (nunca `<text>`). `viewBox` do lockup `0 0 117 25`. A técnica está no comentário do arquivo.
+
+### 16.5. Kit de Documentação
+As estórias do Unooblog usam o `UnooriaDocShell` como moldura e `.storybook/components/UblDocKit.tsx`: `UblDocGrid`, `UblDocCard`, `UblDocSpecs`, `UblDocDecisions`, `UblDocAnatomy`, `UblDocStage` (props `theme` e `surface`: `page`, `card`, `subtle`, `elevated` e `code`), `UblDocPractices`, **`UblDocThemeSwitcher`**, `UblDocPropsTable` e `UblDocTokenSwatch`. Seção 2 intitulada «Especificações técnicas»; seção 6 atendida pelo `UblDocThemeSwitcher`. Barras de seção em `#716C98` (`brandpurple-600`). O `UblDocDecisions` é obrigatório em toda estória.
+
+### 16.6. Registro de Decisões de Design
+Não há «desvios em relação ao Figma», porque não há arquivo. O que se registra, com o `UblDocDecisions` em cada estória, é toda escolha que não seja mera aplicação de um token. Decisões de 2026-09-30 com consequência ampla:
+- **Página branca e cartões lavanda**, o inverso do jornal, e **cantos macios** (12/16px nos cartões, cápsula nos controles): é o que distingue o blog por composição.
+- **Código sempre em superfície escura**, nos dois temas, **sem realce de sintaxe**: o bloco é uma região rolável e focável pelo teclado, com nome que cita arquivo, linguagem e linhas destacadas; copiar usa `navigator.clipboard` em try/catch e anuncia o resultado em região `aria-live`.
+- **Avisos com fundo translúcido nomeado** (`opacity-*-100` da Unooria) e **tom também em texto oculto** («Dica:», «Atenção:»): o estado nunca depende só da cor; o título do aviso é parágrafo, e não cabeçalho, para não entrar no sumário.
+- **Cabeçalho do site translúcido com desfoque** (`--ubl-blur-bar`, literal de `--unooria-blur-400`, como a barra da Unoogaleria): sem o desfoque o texto e o código que passam por baixo ficavam legíveis através da barra. Só a captura de tela acusou — os testes passavam.
+- **`PostCard` `featured`**: o corpo (título, resumo e véu) é posicionado, porque a capa, posicionada, pintava por cima dele e o texto sumia; o véu chega ao `media-scrim` em 45% porque sobre uma capa clara o título caía na zona ainda transparente do degradê. Também só a captura acusou.
+- **Tópico e série no `PostCard` são `Badge`**, e não `TopicChip`: um chip clicável dentro do cartão criaria um segundo ponto de foco; o cartão inteiro é um alvo único, pelo título.
+- **O destaque do início não se repete no feed** e some quando um tópico é escolhido: evita dois botões com o mesmo nome e um cartão duplicado.
+- **Progresso de leitura medido até o fim do texto**, e não da página: comentários e rodapé não contam como leitura. `setProgress` sai a cada 5 pontos e só avança; `markRead` sai uma vez, ao passar de 80%.
+- **Compartilhar abre um diálogo com o link** (folha inferior no compacto) e «Copiar link»; não usa `navigator.share`, que abriria um seletor nativo que o app não controla.
+- **O `CommentComposer` limpa remontando o `TextArea`**, e não escrevendo no nó: escrever por fora deixava o contador defasado, e a digitação seguinte voltava a anexar ao texto antigo (reproduzido).
+- **Sumário**: itens de 36px na barra lateral (a coluna só existe no largo) e 44px no bloco recolhível do compacto; o item ativo leva barra lateral e `aria-current="location"`.
+- **Contorno de controle em `border-control`** (≥ 3:1), como no jornal.
+- **`readingMinutes` das fixtures é derivado do corpo** (`ublReadingTime`): os textos de demonstração são curtos e dão 2 a 4 minutos.
+- **Pilha monoespaçada do sistema**: a Unooria não publica fonte monoespaçada, e uma nova exigiria arquivos de fonte e sairia da paridade.
