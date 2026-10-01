@@ -1,0 +1,262 @@
+/**
+ * ChatHistory - Design System Unooria
+ *
+ * Design próprio, na régua do `ListSectionItem`: linha de 56px mínimos, recuo
+ * 8px 12px, raio 8px, título `body-xs` semibold (14/20) numa linha só com
+ * reticências e a data em `body-xxs` (12/18) `neutral-700`.
+ * - Ativa: fundo `brandpurple-100` e barra de 3px `brandpurple-600` à esquerda
+ *   (a barra é a pista não cromática: a ativa também é a única com traço).
+ * - Excluir: o `Button` `ghost` `sm` quadrado de 36px com o glifo `delete`;
+ *   aparece sempre (não só no hover), porque no toque não há hover.
+ * - Confirmação: a linha vira `danger-50` com fio `danger-200`, a pergunta e o
+ *   título, e os dois botões `sm` (Cancelar `ghost`, Excluir `danger`).
+ * - Carregando: três esqueletos em `neutral-150` com brilho; parado com
+ *   movimento reduzido.
+ */
+
+@keyframes unooria-chat-history-shimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.unooria-chat-history {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--unooria-color-neutral-950);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  outline: none;
+}
+
+.unooria-chat-history__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-4xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.unooria-chat-history__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--unooria-spacing-xxxs);
+  min-height: 56px;
+  padding-right: var(--unooria-spacing-xxxs);
+  border-radius: var(--unooria-radius-m, 8px);
+}
+
+.unooria-chat-history__item:hover:not(.unooria-chat-history__item--confirming) {
+  background-color: var(--unooria-color-neutral-100);
+}
+
+.unooria-chat-history__item--active,
+.unooria-chat-history__item--active:hover:not(.unooria-chat-history__item--confirming) {
+  background-color: var(--unooria-color-brandpurple-100);
+}
+
+.unooria-chat-history__item--active::before {
+  content: '';
+  position: absolute;
+  top: var(--unooria-spacing-xxs);
+  bottom: var(--unooria-spacing-xxs);
+  left: 0;
+  width: 3px;
+  border-radius: var(--unooria-radius-full, 1000px);
+  background-color: var(--unooria-color-brandpurple-600);
+}
+
+.unooria-chat-history__select {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-4xs);
+  min-width: 0;
+  padding: var(--unooria-spacing-xxs) var(--unooria-spacing-xs);
+  border: 0;
+  border-radius: var(--unooria-radius-m, 8px);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.unooria-chat-history__select:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--unooria-color-brandnavy-800);
+}
+
+.unooria-chat-history__title {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: var(--unooria-size-body-xs);
+  font-weight: var(--unooria-weight-semibold);
+  line-height: var(--unooria-line-height-body-xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unooria-chat-history__date {
+  color: var(--unooria-color-neutral-700);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+}
+
+.unooria-chat-history .unooria-chat-history__delete {
+  flex-shrink: 0;
+  width: 36px;
+  min-width: 36px;
+  padding: 0;
+}
+
+/* Confirmação na própria linha */
+.unooria-chat-history__item--confirming {
+  border: 1px solid var(--unooria-color-danger-200);
+  background-color: var(--unooria-color-danger-50);
+}
+
+.unooria-chat-history__confirm {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--unooria-spacing-xxs);
+  min-width: 0;
+  padding: var(--unooria-spacing-xxs) var(--unooria-spacing-xxs) var(--unooria-spacing-xxs) var(--unooria-spacing-xs);
+}
+
+.unooria-chat-history__confirm-text {
+  display: flex;
+  flex: 1 1 160px;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+}
+
+.unooria-chat-history__confirm-question {
+  color: var(--unooria-color-danger-700);
+  font-size: var(--unooria-size-body-xs);
+  font-weight: var(--unooria-weight-semibold);
+  line-height: var(--unooria-line-height-body-xs);
+}
+
+.unooria-chat-history__confirm-title {
+  overflow: hidden;
+  color: var(--unooria-color-neutral-700);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unooria-chat-history__confirm-actions {
+  display: flex;
+  gap: var(--unooria-spacing-xxxs);
+}
+
+/* Carregando */
+.unooria-chat-history__loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs);
+}
+
+.unooria-chat-history__skeleton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--unooria-spacing-xxs);
+  min-height: 56px;
+  padding: 0 var(--unooria-spacing-xs);
+}
+
+.unooria-chat-history__skeleton-line {
+  display: block;
+  width: 80%;
+  height: 12px;
+  border-radius: var(--unooria-radius-full, 1000px);
+  background-color: var(--unooria-color-neutral-150);
+  animation: unooria-chat-history-shimmer 1.4s ease-in-out infinite;
+}
+
+.unooria-chat-history__skeleton-line--short {
+  width: 40%;
+  height: 10px;
+}
+
+.unooria-chat-history__empty {
+  margin: var(--unooria-spacing-s) 0;
+}
+
+.unooria-chat-history__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-chat-history--theme-dark {
+  color: var(--unooria-color-neutraldark-950);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__item:hover:not(.unooria-chat-history__item--confirming) {
+  background-color: var(--unooria-color-neutraldark-200);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__item--active,
+.unooria-chat-history--theme-dark .unooria-chat-history__item--active:hover:not(.unooria-chat-history__item--confirming) {
+  background-color: var(--unooria-color-brandpurple-800);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__item--active::before {
+  background-color: var(--unooria-color-brandpurple-400);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__date,
+.unooria-chat-history--theme-dark .unooria-chat-history__confirm-title {
+  color: var(--unooria-color-neutraldark-900);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__select:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--unooria-color-brandnavy-400);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__item--confirming {
+  border-color: var(--unooria-color-opacity-danger-500);
+  background-color: var(--unooria-color-opacity-danger-100);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__confirm-question {
+  color: var(--unooria-color-danger-300);
+}
+
+.unooria-chat-history--theme-dark .unooria-chat-history__skeleton-line {
+  background-color: var(--unooria-color-neutraldark-200);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-chat-history__skeleton-line {
+    animation: none;
+  }
+}

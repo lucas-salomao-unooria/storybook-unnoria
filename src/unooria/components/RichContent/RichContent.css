@@ -1,0 +1,265 @@
+/**
+ * RichContent - Design System Unooria
+ *
+ * A tipografia de uma resposta escrita: os degraus da escala da seção, sem
+ * degrau novo.
+ * - corpo `body-s` (16/24; 14/20 abaixo de 768px, como toda a seção);
+ * - h1 `title-l` (20/30), h2 `body-m` (18/28), h3 e h4 `body-s` — pesos 700, 700,
+ *   700 e 600. Numa resposta de chat, um h1 do tamanho de página seria grito;
+ * - espaço entre blocos de 12px (`spacing-xs`), antes de título 16px;
+ * - link `brandnavy-800` sublinhado (5,5:1 sobre o branco), `brandnavy-400` no
+ *   escuro;
+ * - citação com fio de 3px `brandpurple-300` e texto `neutral-700`;
+ * - código em `--unooria-font-mono`, sobre `neutral-100`, raio 4px;
+ * - tabela com fio 1px `neutral-150` e cabeçalho `neutral-100`.
+ *
+ * Todo seletor é descendente de `.unooria-rich-content`: nada vaza para fora.
+ */
+
+.unooria-rich-content {
+  color: var(--unooria-color-neutral-950);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: var(--unooria-size-body-s);
+  line-height: var(--unooria-line-height-body-s);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.unooria-rich-content > :first-child {
+  margin-top: 0;
+}
+
+.unooria-rich-content > :last-child {
+  margin-bottom: 0;
+}
+
+.unooria-rich-content :where(p, ul, ol, blockquote, pre, hr, .unooria-rich-content__table-scroll, table) {
+  margin: 0 0 var(--unooria-spacing-xs);
+}
+
+/* Títulos */
+.unooria-rich-content :where(h1, h2, h3, h4) {
+  margin: var(--unooria-spacing-s) 0 var(--unooria-spacing-xxs);
+  color: var(--unooria-color-neutral-950);
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-rich-content h1 {
+  font-size: var(--unooria-size-title-l);
+  line-height: var(--unooria-line-height-title-l);
+}
+
+.unooria-rich-content h2 {
+  font-size: var(--unooria-size-body-m);
+  line-height: var(--unooria-line-height-body-m);
+}
+
+.unooria-rich-content h3 {
+  font-size: var(--unooria-size-body-s);
+  line-height: var(--unooria-line-height-body-s);
+}
+
+.unooria-rich-content h4 {
+  font-size: var(--unooria-size-body-s);
+  line-height: var(--unooria-line-height-body-s);
+  font-weight: var(--unooria-weight-semibold);
+}
+
+/* Ênfase */
+.unooria-rich-content strong,
+.unooria-rich-content b {
+  font-weight: var(--unooria-weight-bold);
+}
+
+.unooria-rich-content em,
+.unooria-rich-content i {
+  font-style: italic;
+}
+
+/* Listas */
+.unooria-rich-content :where(ul, ol) {
+  padding-left: var(--unooria-spacing-m);
+}
+
+.unooria-rich-content li {
+  margin: 0 0 var(--unooria-spacing-xxxs);
+}
+
+.unooria-rich-content li > :where(ul, ol) {
+  margin: var(--unooria-spacing-xxxs) 0 0;
+}
+
+.unooria-rich-content li::marker {
+  color: var(--unooria-color-neutral-700);
+}
+
+/* Links */
+.unooria-rich-content a {
+  color: var(--unooria-color-brandnavy-800);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  border-radius: var(--unooria-radius-s, 4px);
+}
+
+.unooria-rich-content a:hover {
+  color: var(--unooria-color-brandnavy-900);
+}
+
+.unooria-rich-content a:focus-visible {
+  outline: 2px solid var(--unooria-color-brandnavy-800);
+  outline-offset: 2px;
+}
+
+/* Citação */
+.unooria-rich-content blockquote {
+  padding: 0 0 0 var(--unooria-spacing-s);
+  border-left: 3px solid var(--unooria-color-brandpurple-300);
+  color: var(--unooria-color-neutral-700);
+}
+
+/* Código */
+.unooria-rich-content code {
+  padding: 1px var(--unooria-spacing-xxxs);
+  border-radius: var(--unooria-radius-s, 4px);
+  background-color: var(--unooria-color-neutral-100);
+  font-family: var(--unooria-font-mono);
+  font-size: 0.875em;
+}
+
+.unooria-rich-content pre {
+  padding: var(--unooria-spacing-xs);
+  border-radius: var(--unooria-radius-m, 8px);
+  background-color: var(--unooria-color-neutral-100);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--unooria-scrollbar-thumb) var(--unooria-scrollbar-track);
+}
+
+.unooria-rich-content pre code {
+  padding: 0;
+  background: none;
+  font-size: var(--unooria-size-body-xs);
+  line-height: var(--unooria-line-height-body-xs);
+  overflow-wrap: normal;
+  white-space: pre;
+}
+
+/* Fio */
+.unooria-rich-content hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--unooria-color-neutral-150);
+}
+
+/* Tabelas */
+.unooria-rich-content table {
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--unooria-size-body-xs);
+  line-height: var(--unooria-line-height-body-xs);
+}
+
+.unooria-rich-content :where(th, td) {
+  padding: var(--unooria-spacing-xxs) var(--unooria-spacing-xs);
+  border: 1px solid var(--unooria-color-neutral-150);
+  text-align: left;
+  vertical-align: top;
+}
+
+.unooria-rich-content th {
+  background-color: var(--unooria-color-neutral-100);
+  font-weight: var(--unooria-weight-semibold);
+}
+
+/*
+ * Com o `RichContentTable`, a faixa rola e a tabela mantém as colunas: as
+ * células não quebram palavra, e a tabela cresce o quanto o conteúdo pedir.
+ */
+.unooria-rich-content__table-scroll {
+  max-width: 100%;
+  padding-bottom: var(--unooria-spacing-xxxs);
+}
+
+.unooria-rich-content__table-scroll:focus-visible {
+  outline: 2px solid var(--unooria-color-brandnavy-800);
+  outline-offset: 2px;
+  border-radius: var(--unooria-radius-s, 4px);
+}
+
+.unooria-rich-content .unooria-rich-content__table-scroll > table {
+  max-width: none;
+  margin: 0;
+}
+
+.unooria-rich-content .unooria-rich-content__table-scroll :where(th, td) {
+  overflow-wrap: normal;
+  min-width: 96px;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-rich-content--theme-dark,
+[data-theme='dark'] .unooria-rich-content {
+  color: var(--unooria-color-neutraldark-950);
+}
+
+.unooria-rich-content--theme-dark :where(h1, h2, h3, h4),
+[data-theme='dark'] .unooria-rich-content :where(h1, h2, h3, h4) {
+  color: var(--unooria-color-neutraldark-950);
+}
+
+.unooria-rich-content--theme-dark li::marker,
+.unooria-rich-content--theme-dark blockquote,
+[data-theme='dark'] .unooria-rich-content li::marker,
+[data-theme='dark'] .unooria-rich-content blockquote {
+  color: var(--unooria-color-neutraldark-900);
+}
+
+.unooria-rich-content--theme-dark blockquote,
+[data-theme='dark'] .unooria-rich-content blockquote {
+  border-left-color: var(--unooria-color-brandpurple-600);
+}
+
+.unooria-rich-content--theme-dark a,
+[data-theme='dark'] .unooria-rich-content a {
+  color: var(--unooria-color-brandnavy-400);
+}
+
+.unooria-rich-content--theme-dark a:hover,
+[data-theme='dark'] .unooria-rich-content a:hover {
+  color: var(--unooria-color-brandnavy-300);
+}
+
+.unooria-rich-content--theme-dark a:focus-visible,
+.unooria-rich-content--theme-dark .unooria-rich-content__table-scroll:focus-visible,
+[data-theme='dark'] .unooria-rich-content a:focus-visible,
+[data-theme='dark'] .unooria-rich-content .unooria-rich-content__table-scroll:focus-visible {
+  outline-color: var(--unooria-color-brandnavy-400);
+}
+
+.unooria-rich-content--theme-dark :where(code, pre, th),
+[data-theme='dark'] .unooria-rich-content :where(code, pre, th) {
+  background-color: var(--unooria-color-neutraldark-200);
+}
+
+.unooria-rich-content--theme-dark pre code,
+[data-theme='dark'] .unooria-rich-content pre code {
+  background: none;
+}
+
+.unooria-rich-content--theme-dark :where(th, td),
+.unooria-rich-content--theme-dark hr,
+[data-theme='dark'] .unooria-rich-content :where(th, td),
+[data-theme='dark'] .unooria-rich-content hr {
+  border-color: var(--unooria-color-neutraldark-200);
+}
+
+/* A faixa de rolagem da tabela, no escuro: o polegar claro do `ScrollBar`. */
+.unooria-rich-content--theme-dark .unooria-rich-content__table-scroll,
+.unooria-rich-content--theme-dark pre,
+[data-theme='dark'] .unooria-rich-content .unooria-rich-content__table-scroll,
+[data-theme='dark'] .unooria-rich-content pre {
+  scrollbar-color: var(--unooria-scrollbar-dark-thumb) var(--unooria-scrollbar-dark-track);
+}

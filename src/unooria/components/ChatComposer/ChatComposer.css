@@ -1,0 +1,95 @@
+/**
+ * ChatComposer - Design System Unooria
+ *
+ * O `TextArea` do pacote numa linha só (46px: 24px de linha, 10px de recuo e o
+ * fio de 1px), que cresce até `maxRows`, com o botão quadrado de 44px (o
+ * `Button` `md`) à direita, alinhado à base do campo. O contador "12/4.000"
+ * fica sob o campo, à direita, em `body-xxs` (12/18) — o `TextArea` tem o
+ * contador por frase ("Você usou 12 de 4.000 caracteres."), que aqui entra só
+ * como descrição do campo: numa conversa, a frase sempre visível pesaria mais
+ * que a própria mensagem.
+ */
+
+.unooria-chat-composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxxs);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+}
+
+.unooria-chat-composer__row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--unooria-spacing-xxs);
+}
+
+.unooria-chat-composer__field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* O rodapé do `TextArea` fica vazio aqui (sem contador nem ajuda): sem ele, sobra o `gap`. */
+.unooria-chat-composer__field .unooria-textarea__footer:empty {
+  display: none;
+}
+
+.unooria-chat-composer .unooria-chat-composer__input {
+  min-height: 46px;
+  resize: none;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--unooria-scrollbar-thumb) var(--unooria-scrollbar-track);
+}
+
+/* O botão quadrado: o `Button` `md` sem rótulo, com 44 x 44 e 1px acima da base do campo. */
+.unooria-chat-composer .unooria-chat-composer__action {
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  margin-bottom: 1px;
+}
+
+.unooria-chat-composer__counter {
+  margin: 0;
+  padding-right: calc(44px + var(--unooria-spacing-xxs));
+  color: var(--unooria-color-neutral-700);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.unooria-chat-composer__counter--limit {
+  color: var(--unooria-color-danger-700);
+  font-weight: var(--unooria-weight-semibold);
+}
+
+.unooria-chat-composer__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-chat-composer--theme-dark .unooria-chat-composer__counter {
+  color: var(--unooria-color-neutraldark-900);
+}
+
+.unooria-chat-composer--theme-dark .unooria-chat-composer__counter--limit {
+  color: var(--unooria-color-danger-300);
+}
+
+.unooria-chat-composer--theme-dark .unooria-chat-composer__input {
+  scrollbar-color: var(--unooria-scrollbar-dark-thumb) var(--unooria-scrollbar-dark-track);
+}
