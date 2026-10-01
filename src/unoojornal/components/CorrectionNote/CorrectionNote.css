@@ -1,0 +1,63 @@
+/**
+ * Estilos do Componente CorrectionNote — Design System Unoojornal
+ * Caixa em superfície sutil com filete de --ujn-rule-thick à esquerda. A cor do
+ * filete e do glifo muda por variante; o glifo e o título mudam também, para que
+ * a variante não dependa só da cor.
+ */
+
+.ujn-correction-note {
+  --ujn-correction-note-accent: var(--ujn-color-action-primary);
+  --ujn-correction-note-icon: var(--ujn-color-icon-accent);
+
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--ujn-spacing-l);
+  width: 100%;
+  padding: var(--ujn-spacing-xl) var(--ujn-spacing-xxl);
+  border-inline-start: var(--ujn-rule-thick) solid var(--ujn-correction-note-accent);
+  border-radius: 0 var(--ujn-radius-s) var(--ujn-radius-s) 0;
+  background-color: var(--ujn-color-background-subtle);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-correction-note--correction {
+  --ujn-correction-note-accent: var(--ujn-color-status-warning);
+  --ujn-correction-note-icon: var(--ujn-color-status-warning);
+}
+
+.ujn-correction-note__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  color: var(--ujn-correction-note-icon);
+}
+
+.ujn-correction-note__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xs);
+  min-width: 0;
+}
+
+.ujn-correction-note__title {
+  margin: 0;
+  font-size: var(--ujn-font-label-lg-size);
+  font-weight: var(--ujn-font-label-lg-weight);
+  line-height: var(--ujn-font-label-lg-line);
+  letter-spacing: var(--ujn-font-label-lg-tracking);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-correction-note__text {
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+  color: var(--ujn-color-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.ujn-correction-note__action {
+  margin-top: var(--ujn-spacing-xs);
+}

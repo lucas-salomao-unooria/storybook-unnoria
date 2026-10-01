@@ -1,0 +1,159 @@
+/**
+ * Estilos do Componente ArticleBody — Design System Unoojornal
+ * Prosa em coluna de leitura. O tamanho do texto é decidido por duas variáveis
+ * locais (`--ujn-article-body-size` e `-line`), apontadas para a escala por
+ * `textSize`; subtítulos e listas derivam delas.
+ */
+
+.ujn-article-body {
+  /* Corpo e altura de linha do texto corrido, trocados por `textSize` */
+  --ujn-article-body-size: var(--ujn-font-body-lg-size);
+  --ujn-article-body-line: var(--ujn-font-body-lg-line);
+  --ujn-article-body-weight: var(--ujn-font-body-lg-weight);
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ujn-reading-width);
+  margin-right: auto;
+  margin-left: auto;
+  font-family: var(--ujn-font-sans);
+  font-size: var(--ujn-article-body-size);
+  font-weight: var(--ujn-article-body-weight);
+  line-height: var(--ujn-article-body-line);
+  letter-spacing: var(--ujn-font-body-lg-tracking);
+  color: var(--ujn-color-text-primary);
+  overflow-wrap: break-word;
+}
+
+.ujn-article-body--sm {
+  --ujn-article-body-size: var(--ujn-font-body-md-size);
+  --ujn-article-body-line: var(--ujn-font-body-md-line);
+  --ujn-article-body-weight: var(--ujn-font-body-md-weight);
+}
+
+.ujn-article-body--lg {
+  --ujn-article-body-size: var(--ujn-font-title-md-size);
+  --ujn-article-body-line: var(--ujn-font-title-md-line);
+  /* title-md é semibold; o texto corrido fica no peso regular */
+  --ujn-article-body-weight: var(--ujn-font-body-lg-weight);
+}
+
+/* ==========================================================================
+   Ritmo vertical
+   ========================================================================== */
+
+.ujn-article-body > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ujn-article-body > * + * {
+  margin-top: var(--ujn-spacing-xl);
+}
+
+.ujn-article-body > * + h2 {
+  margin-top: var(--ujn-spacing-4xl);
+}
+
+.ujn-article-body > * + h3 {
+  margin-top: var(--ujn-spacing-3xl);
+}
+
+/* Figuras, citações e notas respiram mais que os parágrafos */
+.ujn-article-body > * + figure,
+.ujn-article-body > * + aside,
+.ujn-article-body > figure + *,
+.ujn-article-body > aside + * {
+  margin-top: var(--ujn-spacing-3xl);
+}
+
+/* ==========================================================================
+   Texto
+   ========================================================================== */
+
+.ujn-article-body p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.ujn-article-body h2 {
+  font-size: var(--ujn-font-title-lg-size);
+  font-weight: var(--ujn-font-title-lg-weight);
+  line-height: var(--ujn-font-title-lg-line);
+  letter-spacing: var(--ujn-font-title-lg-tracking);
+  color: var(--ujn-color-text-primary);
+  text-wrap: balance;
+}
+
+.ujn-article-body h3 {
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+  color: var(--ujn-color-text-primary);
+  text-wrap: balance;
+}
+
+.ujn-article-body strong,
+.ujn-article-body b {
+  font-weight: var(--ujn-font-label-weight);
+}
+
+.ujn-article-body em,
+.ujn-article-body i {
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+.ujn-article-body a {
+  color: var(--ujn-color-text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: var(--ujn-rule-thin);
+  text-underline-offset: var(--ujn-spacing-3xs);
+  border-radius: var(--ujn-radius-xs);
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-article-body a:hover {
+  background-color: var(--ujn-color-state-hover);
+  text-decoration-thickness: var(--ujn-spacing-4xs);
+}
+
+.ujn-article-body a:active {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-article-body a:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Listas
+   ========================================================================== */
+
+.ujn-article-body ul,
+.ujn-article-body ol {
+  padding-inline-start: var(--ujn-spacing-xxl);
+}
+
+.ujn-article-body li {
+  padding-inline-start: var(--ujn-spacing-3xs);
+}
+
+.ujn-article-body li + li {
+  margin-top: var(--ujn-spacing-xs);
+}
+
+.ujn-article-body li::marker {
+  color: var(--ujn-color-text-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-article-body a {
+    transition: none;
+  }
+}

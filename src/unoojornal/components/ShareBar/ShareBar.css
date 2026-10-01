@@ -1,0 +1,15 @@
+/**
+ * Estilos do Componente ShareBar — Design System Unoojornal
+ * Linha de IconButtons. O tamanho de cada alvo é do IconButton (≥ 44px); a
+ * barra só os alinha e os deixa quebrar de linha em contêineres muito estreitos.
+ */
+
+.ujn-share-bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
