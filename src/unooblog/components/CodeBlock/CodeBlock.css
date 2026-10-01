@@ -1,0 +1,191 @@
+/**
+ * Estilos do Componente CodeBlock — Design System Unooblog
+ * Superfície INVARIANTE (`--ubl-color-code-*`): escura nos dois temas. Na
+ * página escura o fundo da página e o do bloco coincidem, então o contorno de
+ * 1px em `code-border` é o que delimita o bloco. Cantos macios (`radius-m`).
+ * Plano: sem sombra. Sem realce de sintaxe — o texto é todo `code-text`.
+ */
+
+.ubl-code-block {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--ubl-color-code-border);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-code-surface);
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-code-text);
+}
+
+/* ==========================================================================
+   Barra superior
+   ========================================================================== */
+
+.ubl-code-block__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ubl-spacing-m);
+  min-height: var(--ubl-touch-target);
+  padding-block: 0;
+  padding-inline: var(--ubl-spacing-l) var(--ubl-spacing-xs);
+  border-bottom: 1px solid var(--ubl-color-code-border);
+}
+
+.ubl-code-block__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  min-width: 0;
+  font-size: var(--ubl-font-caption-strong-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: var(--ubl-font-caption-strong-line);
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+  color: var(--ubl-color-code-text-muted);
+}
+
+.ubl-code-block__name {
+  overflow: hidden;
+  font-family: var(--ubl-font-mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ubl-code-block__language {
+  flex-shrink: 0;
+}
+
+.ubl-code-block__language::before {
+  margin-inline-end: var(--ubl-spacing-xs);
+  content: '·';
+}
+
+.ubl-code-block__copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+  min-width: var(--ubl-touch-target);
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0 var(--ubl-spacing-m);
+  border: 0;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  font-family: inherit;
+  font-size: var(--ubl-font-caption-strong-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: var(--ubl-font-caption-strong-line);
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+  color: var(--ubl-color-code-text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast);
+}
+
+.ubl-code-block__copy:hover {
+  background-color: var(--ubl-color-code-control);
+}
+
+.ubl-code-block__copy:active {
+  background-color: var(--ubl-color-code-border);
+}
+
+.ubl-code-block__copy:focus-visible,
+.ubl-code-block__scroll:focus-visible {
+  outline: 2px solid var(--ubl-color-code-accent);
+  outline-offset: -2px;
+}
+
+.ubl-code-block__copy--done {
+  color: var(--ubl-color-code-accent);
+}
+
+/* ==========================================================================
+   Corpo
+   ========================================================================== */
+
+.ubl-code-block__scroll {
+  overflow: auto;
+  scrollbar-width: thin;
+  padding-block: var(--ubl-spacing-m);
+}
+
+.ubl-code-block__pre {
+  margin: 0;
+  padding: 0;
+  font-family: var(--ubl-font-mono);
+  font-size: var(--ubl-font-code-size);
+  font-weight: var(--ubl-font-code-weight);
+  line-height: var(--ubl-font-code-line);
+  letter-spacing: var(--ubl-font-code-tracking);
+  tab-size: 2;
+  white-space: pre;
+}
+
+.ubl-code-block__code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  font: inherit;
+  color: var(--ubl-color-code-text);
+}
+
+.ubl-code-block__line {
+  display: flex;
+  min-height: var(--ubl-font-code-line);
+  padding-inline: var(--ubl-spacing-l);
+  border-inline-start: var(--ubl-spacing-3xs) solid transparent;
+}
+
+.ubl-code-block__line--highlighted {
+  border-inline-start-color: var(--ubl-color-code-accent);
+  background-color: var(--ubl-color-code-control);
+}
+
+.ubl-code-block__text {
+  flex: 1 1 auto;
+}
+
+.ubl-code-block__number {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: var(--ubl-spacing-xxl);
+  margin-inline-end: var(--ubl-spacing-l);
+  text-align: end;
+  color: var(--ubl-color-code-text-muted);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ==========================================================================
+   Anúncio da cópia: só para leitores de tela
+   ========================================================================== */
+
+.ubl-code-block__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-code-block__copy {
+    transition: none;
+  }
+}

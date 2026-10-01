@@ -1,0 +1,92 @@
+/**
+ * Estilos do Componente ReactionBar — Design System Unooblog
+ * Cápsulas de 44px com contorno de controle (`border-control`, ≥ 3:1). Curtido,
+ * a cápsula troca o contorno para `brand-like` e o fundo para `fill-field`, e
+ * o glifo vira o coração preenchido: o estado também é de forma. Salvar fica
+ * no fim da linha.
+ */
+
+.ubl-reaction-bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-reaction-bar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+  min-width: var(--ubl-touch-target);
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0 var(--ubl-spacing-l);
+  border: 1px solid var(--ubl-color-border-control);
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  font-family: inherit;
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  color: var(--ubl-color-text-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast);
+}
+
+.ubl-reaction-bar__button:hover {
+  background-color: var(--ubl-color-state-hover);
+}
+
+.ubl-reaction-bar__button:active {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-reaction-bar__button:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-reaction-bar__button--save {
+  margin-inline-start: auto;
+  padding: 0;
+}
+
+.ubl-reaction-bar__count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Curtido: coração em brand-like, contorno e fundo marcados */
+.ubl-reaction-bar__button--active {
+  border-color: var(--ubl-color-brand-like);
+  background-color: var(--ubl-color-fill-field);
+}
+
+.ubl-reaction-bar__button--active .ubl-icon {
+  color: var(--ubl-color-brand-like);
+}
+
+/* Salvo: marcador preenchido em acento */
+.ubl-reaction-bar__button--active-neutral {
+  border-color: var(--ubl-color-action-primary);
+  background-color: var(--ubl-color-fill-field);
+}
+
+.ubl-reaction-bar__button--active-neutral .ubl-icon {
+  color: var(--ubl-color-icon-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-reaction-bar__button {
+    transition: none;
+  }
+}

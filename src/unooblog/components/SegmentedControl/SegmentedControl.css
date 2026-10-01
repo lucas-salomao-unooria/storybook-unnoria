@@ -1,0 +1,135 @@
+/**
+ * Estilos do Componente SegmentedControl — Design System Unooblog
+ * Trilha em cápsula com segmentos de mesma largura e um indicador que desliza
+ * sob o segmento escolhido. `--ubl-segmented-count` e `--ubl-segmented-index`
+ * chegam do componente por estilo em linha. O contorno de 1px em `border-control`
+ * mantém o limite da trilha legível (≥ 3:1) sobre a página e sobre o cartão.
+ */
+
+.ubl-segmented {
+  /* Alturas do controle: sem degrau na régua de tamanhos, que só publica o alvo de 44px */
+  --ubl-segmented-height-sm: 32px;
+  --ubl-segmented-height-md: 40px;
+  /* Recuo do indicador dentro da trilha */
+  --ubl-segmented-inset: var(--ubl-spacing-4xs);
+
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: repeat(var(--ubl-segmented-count, 1), minmax(0, 1fr));
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--ubl-segmented-inset);
+  border: 1px solid var(--ubl-color-border-control);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-fill-field);
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-segmented--full {
+  display: grid;
+  width: 100%;
+}
+
+.ubl-segmented--sm {
+  height: var(--ubl-segmented-height-sm);
+}
+
+.ubl-segmented--md {
+  height: var(--ubl-segmented-height-md);
+}
+
+/* ==========================================================================
+   Indicador deslizante
+   O indicador se posiciona na borda de dentro do contorno de 1px da trilha.
+   ========================================================================== */
+
+.ubl-segmented__indicator {
+  position: absolute;
+  top: var(--ubl-segmented-inset);
+  bottom: var(--ubl-segmented-inset);
+  left: var(--ubl-segmented-inset);
+  width: calc((100% - 2 * var(--ubl-segmented-inset)) / var(--ubl-segmented-count, 1));
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-action-primary);
+  transform: translateX(calc(var(--ubl-segmented-index, 0) * 100%));
+  transition: transform var(--ubl-transition-slow);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Segmentos
+   ========================================================================== */
+
+.ubl-segmented__item {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ubl-spacing-3xs);
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ubl-spacing-l);
+  border: none;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  color: var(--ubl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    color var(--ubl-transition-base);
+}
+
+.ubl-segmented--sm .ubl-segmented__item {
+  padding: 0 var(--ubl-spacing-m);
+}
+
+/* Área de toque de 44px, sem mudar o desenho */
+.ubl-segmented__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--ubl-touch-target);
+  transform: translateY(-50%);
+}
+
+.ubl-segmented__item:hover:not(.ubl-segmented__item--checked) {
+  background-color: var(--ubl-color-state-hover);
+}
+
+.ubl-segmented__item:active:not(.ubl-segmented__item--checked) {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-segmented__item--checked {
+  color: var(--ubl-color-text-on-action);
+}
+
+.ubl-segmented__item:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-segmented__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-segmented__indicator,
+  .ubl-segmented__item {
+    transition: none;
+  }
+}

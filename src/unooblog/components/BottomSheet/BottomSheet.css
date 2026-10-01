@@ -1,0 +1,203 @@
+/**
+ * Estilos do Componente BottomSheet — Design System Unooblog
+ * Folha inferior modal, posicionada na tela do aparelho (nunca na janela): véu
+ * `overlay-scrim`, painel em `background-elevated` com `radius-l` no topo e
+ * `--ubl-elevation-overlay`.
+ */
+
+.ubl-bottom-sheet-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ubl-z-sheet);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--ubl-color-overlay-scrim);
+  animation: ubl-bottom-sheet-fade var(--ubl-transition-base);
+}
+
+.ubl-bottom-sheet-layer--dismissable {
+  cursor: pointer;
+}
+
+.ubl-bottom-sheet {
+  /* Alça: barra de 36×5px num alvo de toque de 44px, sem token equivalente */
+  --ubl-bottom-sheet-grip-width: 36px;
+  --ubl-bottom-sheet-grip-height: 5px;
+  /* Folga entre o topo da folha cheia e a barra de status */
+  --ubl-bottom-sheet-top-gap: var(--ubl-spacing-xs);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: calc(100% - var(--ubl-safe-area-top) - var(--ubl-bottom-sheet-top-gap));
+  padding-bottom: var(--ubl-safe-area-bottom);
+  border-radius: var(--ubl-radius-l) var(--ubl-radius-l) 0 0;
+  background-color: var(--ubl-color-background-elevated);
+  color: var(--ubl-color-text-primary);
+  box-shadow: var(--ubl-elevation-overlay);
+  font-family: var(--ubl-font-sans);
+  cursor: auto;
+  outline: none;
+  animation: ubl-bottom-sheet-rise var(--ubl-transition-slow);
+  transition: height var(--ubl-transition-slow);
+}
+
+/* ==========================================================================
+   Alturas
+   ========================================================================== */
+
+.ubl-bottom-sheet--height-auto {
+  height: auto;
+}
+
+.ubl-bottom-sheet--height-half {
+  height: 50%;
+}
+
+.ubl-bottom-sheet--height-full {
+  height: calc(100% - var(--ubl-safe-area-top) - var(--ubl-bottom-sheet-top-gap));
+}
+
+/* ==========================================================================
+   Alça
+   ========================================================================== */
+
+.ubl-bottom-sheet__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--ubl-touch-target);
+  margin: 0 0 calc(-1 * var(--ubl-spacing-m));
+  padding: 0;
+  border: none;
+  border-radius: var(--ubl-radius-l) var(--ubl-radius-l) 0 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ubl-bottom-sheet__grip {
+  width: var(--ubl-bottom-sheet-grip-width);
+  height: var(--ubl-bottom-sheet-grip-height);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-border-control);
+  transition: background-color var(--ubl-transition-fast);
+}
+
+.ubl-bottom-sheet__handle:hover .ubl-bottom-sheet__grip {
+  background-color: var(--ubl-color-icon-primary);
+}
+
+.ubl-bottom-sheet__handle:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: -4px;
+}
+
+/* ==========================================================================
+   Cabeçalho, corpo e rodapé
+   ========================================================================== */
+
+.ubl-bottom-sheet__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-m);
+  flex-shrink: 0;
+  padding: var(--ubl-spacing-m) var(--ubl-gutter) var(--ubl-spacing-xs);
+}
+
+.ubl-bottom-sheet__header--no-handle {
+  padding-top: var(--ubl-spacing-l);
+}
+
+.ubl-bottom-sheet__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ubl-spacing-4xs);
+  min-width: 0;
+  min-height: var(--ubl-touch-target);
+}
+
+.ubl-bottom-sheet__title {
+  margin: 0;
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-bottom-sheet__description {
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+/* Alvo de toque mínimo de 44px, qualquer que seja o tamanho do botão */
+.ubl-bottom-sheet__close {
+  flex-shrink: 0;
+  min-width: var(--ubl-touch-target);
+  min-height: var(--ubl-touch-target);
+}
+
+.ubl-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--ubl-spacing-xs) var(--ubl-gutter) var(--ubl-spacing-l);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ubl-color-border-default) transparent;
+}
+
+.ubl-bottom-sheet__footer {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--ubl-spacing-xs);
+  padding: var(--ubl-spacing-m) var(--ubl-gutter);
+  box-shadow: var(--ubl-elevation-hairline-top);
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ubl-bottom-sheet-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ubl-bottom-sheet-rise {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-bottom-sheet-layer,
+  .ubl-bottom-sheet {
+    animation: none;
+    transition: none;
+  }
+
+  .ubl-bottom-sheet__grip {
+    transition: none;
+  }
+}

@@ -1,0 +1,103 @@
+/**
+ * Estilos do Componente PostNavigation — Design System Unooblog
+ * Dois cartões lavanda de cantos macios (`radius-m`) em duas colunas a partir
+ * de 640px de contêiner e empilhados abaixo disso. O cartão do próximo post
+ * fica sempre na coluna da direita, mesmo sem o anterior.
+ */
+
+.ubl-post-navigation {
+  container-type: inline-size;
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-post-navigation__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ubl-spacing-l);
+}
+
+.ubl-post-navigation__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: var(--ubl-spacing-l);
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-background-card);
+  font-family: inherit;
+  text-align: start;
+  text-decoration: none;
+  color: var(--ubl-color-text-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast);
+}
+
+.ubl-post-navigation__card--next {
+  align-items: flex-end;
+  text-align: end;
+}
+
+.ubl-post-navigation__card:hover {
+  border-color: var(--ubl-color-border-default);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-post-navigation__card:active {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-post-navigation__card:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-post-navigation__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+  font-size: var(--ubl-font-caption-strong-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: var(--ubl-font-caption-strong-line);
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+  color: var(--ubl-color-text-accent);
+}
+
+.ubl-post-navigation__title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+  color: var(--ubl-color-text-primary);
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+@container (min-width: 640px) {
+  .ubl-post-navigation__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ubl-post-navigation__card--next {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-post-navigation__card {
+    transition: none;
+  }
+}

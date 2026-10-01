@@ -1,0 +1,28 @@
+/**
+ * Estilos do Componente ReadingProgress — Design System Unooblog
+ * Faixa de 3px (`--ubl-progress-height`): trilha em border-subtle e preenchimento em action-primary.
+ * A faixa em si é plana; nenhum texto vive nela.
+ */
+
+.ubl-reading-progress {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--ubl-progress-height);
+  overflow: hidden;
+  background-color: var(--ubl-color-border-subtle);
+}
+
+.ubl-reading-progress__fill {
+  display: block;
+  height: 100%;
+  background-color: var(--ubl-color-action-primary);
+  transition: width var(--ubl-transition-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-reading-progress__fill {
+    transition: none;
+  }
+}

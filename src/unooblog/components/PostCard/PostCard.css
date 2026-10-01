@@ -1,0 +1,351 @@
+/**
+ * Estilos do Componente PostCard — Design System Unooblog
+ * Cartão lavanda (`background-card`) sobre a página branca, cantos macios e fio
+ * de 1px; sem sombra. Hover só realça (`state-hover` sobre o fundo do cartão),
+ * foco é anel de 2px em volta do cartão inteiro. O título é o alvo e o ::after
+ * do link estende o clique ao cartão; salvar fica acima dele.
+ *
+ * Disposição por CONTÊINER: `horizontal` e `featured` são contêineres e se
+ * rearranjam pela largura do próprio cartão (nunca pela janela).
+ */
+
+.ubl-post-card {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-xl);
+  background-color: var(--ubl-color-background-card);
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+  transition: background-image var(--ubl-transition-fast);
+}
+
+.ubl-post-card--horizontal,
+.ubl-post-card--featured {
+  container-type: inline-size;
+}
+
+/* Hover: realce translúcido sobre o fundo do cartão, sem sombra */
+.ubl-post-card--interactive:hover {
+  background-image: linear-gradient(var(--ubl-color-state-hover), var(--ubl-color-state-hover));
+}
+
+.ubl-post-card__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+}
+
+/* ---------- Capa ---------- */
+
+.ubl-post-card__media {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--ubl-radius-l);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-post-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Corpo ---------- */
+
+.ubl-post-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--ubl-spacing-s);
+  min-width: 0;
+  padding: var(--ubl-spacing-m) var(--ubl-spacing-s) var(--ubl-spacing-xs);
+}
+
+.ubl-post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+}
+
+.ubl-post-card__read-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+  color: var(--ubl-color-text-muted);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-post-card__tags > .ubl-post-card__read-flag {
+  margin-left: auto;
+}
+
+.ubl-post-card__title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+/* O link é o título; o ::after estende o alvo ao cartão inteiro */
+.ubl-post-card__link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ubl-post-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.ubl-post-card--interactive:hover .ubl-post-card__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ubl-spacing-3xs);
+}
+
+.ubl-post-card__link:focus-visible {
+  outline: none;
+}
+
+.ubl-post-card__link:focus-visible::after {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-post-card__summary {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.ubl-post-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ubl-spacing-xs);
+  margin-top: auto;
+  padding-top: var(--ubl-spacing-xs);
+}
+
+.ubl-post-card__meta {
+  flex: 1 1 auto;
+}
+
+/* Botão de salvar: acima do pseudo-elemento, e nunca abre o post */
+.ubl-post-card__save {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  margin: calc(-1 * var(--ubl-spacing-xs)) calc(-1 * var(--ubl-spacing-xs)) calc(-1 * var(--ubl-spacing-xs)) 0;
+}
+
+/* ---------- Lido: tom discreto + selo "Lido" (o estado não é só cor) ---------- */
+
+.ubl-post-card--read .ubl-post-card__title,
+.ubl-post-card--read .ubl-post-card__summary {
+  color: var(--ubl-color-text-muted);
+}
+
+.ubl-post-card--read .ubl-post-card__meta {
+  --ubl-post-meta-author: var(--ubl-color-text-muted);
+  --ubl-post-meta-detail: var(--ubl-color-text-muted);
+}
+
+/* ---------- Horizontal: capa 4:3 à esquerda quando há largura ---------- */
+
+.ubl-post-card--horizontal .ubl-post-card__summary {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+@container (min-width: 480px) {
+  .ubl-post-card--horizontal .ubl-post-card__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: stretch;
+  }
+
+  .ubl-post-card--horizontal .ubl-post-card__media {
+    align-self: start;
+    aspect-ratio: 4 / 3;
+  }
+
+  .ubl-post-card--horizontal .ubl-post-card__body {
+    padding: var(--ubl-spacing-xs) var(--ubl-spacing-m) var(--ubl-spacing-xs) var(--ubl-spacing-l);
+  }
+}
+
+/* ---------- Compacto: sem capa, sobre a página, separado por fio ---------- */
+
+.ubl-post-card--compact {
+  border-width: 0 0 1px;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.ubl-post-card--compact .ubl-post-card__inner {
+  padding: var(--ubl-spacing-m) var(--ubl-spacing-xs);
+}
+
+.ubl-post-card--compact .ubl-post-card__body {
+  gap: var(--ubl-spacing-xs);
+  padding: 0;
+}
+
+.ubl-post-card--compact .ubl-post-card__title {
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+}
+
+.ubl-post-card--compact .ubl-post-card__footer {
+  padding-top: 0;
+}
+
+/* ---------- Destaque: capa 21:9 com texto sobre o véu da base ---------- */
+
+.ubl-post-card--featured {
+  border-width: 0;
+}
+
+.ubl-post-card--featured .ubl-post-card__inner {
+  display: grid;
+  padding: 0;
+}
+
+.ubl-post-card--featured .ubl-post-card__media,
+.ubl-post-card--featured .ubl-post-card__body {
+  grid-area: 1 / 1;
+}
+
+.ubl-post-card--featured .ubl-post-card__media {
+  aspect-ratio: 21 / 9;
+  border-radius: var(--ubl-radius-xl);
+}
+
+.ubl-post-card--featured.ubl-post-card--interactive:hover .ubl-post-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--ubl-color-state-hover);
+}
+
+/* O véu e o texto: o corpo desce à base da capa, sobre o gradiente */
+.ubl-post-card--featured .ubl-post-card__body {
+  position: relative;
+  align-self: end;
+  gap: var(--ubl-spacing-xs);
+  /* Mais véu, e mais cedo: sobre uma capa clara o título caía na zona ainda quase
+     transparente do degradê. O corpo é posicionado para pintar acima da capa. */
+  padding: calc(var(--ubl-spacing-5xl) + var(--ubl-spacing-4xl)) var(--ubl-spacing-l) var(--ubl-spacing-l);
+  border-radius: 0 0 var(--ubl-radius-xl) var(--ubl-radius-xl);
+  background: linear-gradient(180deg, transparent 0%, var(--ubl-color-media-scrim) 45%);
+}
+
+.ubl-post-card--featured .ubl-post-card__title {
+  color: var(--ubl-color-media-text);
+  font-size: var(--ubl-font-heading-3-size);
+  font-weight: var(--ubl-font-heading-3-weight);
+  line-height: var(--ubl-font-heading-3-line);
+  letter-spacing: var(--ubl-font-heading-3-tracking);
+}
+
+.ubl-post-card--featured .ubl-post-card__summary {
+  color: var(--ubl-color-media-text);
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.ubl-post-card--featured .ubl-post-card__meta {
+  --ubl-post-meta-author: var(--ubl-color-media-text);
+  --ubl-post-meta-detail: var(--ubl-color-media-text);
+}
+
+/* Selos sobre a capa: pílula opaca, para o contraste não depender da foto */
+.ubl-post-card__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--ubl-spacing-3xs);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-background-elevated);
+}
+
+.ubl-post-card--featured .ubl-post-card__tags > .ubl-post-card__pill:last-child:not(:first-child) {
+  margin-left: auto;
+}
+
+.ubl-post-card--featured .ubl-post-card__pill .ubl-post-card__read-flag {
+  padding: 0 var(--ubl-spacing-xs);
+}
+
+/* Salvar no destaque: pílula elevada no canto da capa */
+.ubl-post-card--featured .ubl-post-card__save {
+  position: absolute;
+  top: var(--ubl-spacing-m);
+  right: var(--ubl-spacing-m);
+  margin: 0;
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-background-elevated);
+}
+
+.ubl-post-card--featured .ubl-post-card__footer {
+  padding-top: var(--ubl-spacing-3xs);
+}
+
+@container (min-width: 640px) {
+  .ubl-post-card--featured .ubl-post-card__body {
+    gap: var(--ubl-spacing-s);
+    padding: var(--ubl-spacing-5xl) var(--ubl-spacing-xxl) var(--ubl-spacing-xxl);
+  }
+
+  .ubl-post-card--featured .ubl-post-card__title {
+    font-size: var(--ubl-font-heading-2-size);
+    font-weight: var(--ubl-font-heading-2-weight);
+    line-height: var(--ubl-font-heading-2-line);
+    letter-spacing: var(--ubl-font-heading-2-tracking);
+  }
+
+  .ubl-post-card--featured .ubl-post-card__summary {
+    max-width: var(--ubl-reading-width);
+    font-size: var(--ubl-font-body-lg-size);
+    line-height: var(--ubl-font-body-lg-line);
+  }
+}
+
+/* Salvo: o glifo preenchido já diz; o realce de acento reforça o marcador */
+.ubl-post-card--saved .ubl-post-card__save {
+  color: var(--ubl-color-icon-accent);
+}

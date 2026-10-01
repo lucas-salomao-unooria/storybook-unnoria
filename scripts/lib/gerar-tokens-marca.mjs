@@ -389,8 +389,8 @@ ${Object.entries(PESOS)
   margin: 0;
 }
 `);
-  for (const [, slug, , , , , italico, caixaAlta] of ESCALA) {
-    css.push(`.${p}-text--${slug} {
+  for (const [, slug, , , , , italico, caixaAlta, monoespaco] of ESCALA) {
+    css.push(`.${p}-text--${slug} {${monoespaco ? `\n  font-family: var(--${p}-font-mono);` : ''}
   font-size: var(--${p}-font-${slug}-size);
   font-weight: var(--${p}-font-${slug}-weight);
   line-height: var(--${p}-font-${slug}-line);

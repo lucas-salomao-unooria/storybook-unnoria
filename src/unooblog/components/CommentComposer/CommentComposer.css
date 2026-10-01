@@ -1,0 +1,58 @@
+/**
+ * Estilos do Componente CommentComposer — Design System Unooblog
+ * Avatar à esquerda; à direita, a área de texto (que traz rótulo, apoio e
+ * contador) e a fileira de ações alinhada ao fim. No contêiner estreito o
+ * avatar sai da frente do campo e o formulário ganha a largura toda. Sem cor
+ * solta: só tokens `--ubl-*`.
+ */
+
+.ubl-comment-composer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--ubl-spacing-m);
+  align-items: start;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+  container-type: inline-size;
+}
+
+.ubl-comment-composer__avatar {
+  /* Alinha o avatar à primeira linha do rótulo */
+  margin-top: var(--ubl-spacing-4xs);
+}
+
+.ubl-comment-composer__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-s);
+  min-width: 0;
+}
+
+.ubl-comment-composer__replying {
+  color: var(--ubl-color-text-accent);
+  font-weight: var(--ubl-font-weight-bold);
+}
+
+.ubl-comment-composer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--ubl-spacing-xs);
+}
+
+@container (max-width: 320px) {
+  .ubl-comment-composer {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--ubl-spacing-xs);
+  }
+
+  .ubl-comment-composer__avatar {
+    margin-top: 0;
+  }
+
+  .ubl-comment-composer__actions > * {
+    flex: 1 1 auto;
+  }
+}

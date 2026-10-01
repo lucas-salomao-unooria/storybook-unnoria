@@ -1,0 +1,164 @@
+/**
+ * Estilos do Componente SiteFooter — Design System Unooblog
+ * Camada lavanda (background-card) com fio superior de 1px em border-subtle.
+ * Compacto: marca e colunas empilhadas. Médio e largo (contêiner ≥ 640px): a
+ * marca à esquerda e as colunas de links à direita, na proporção 1 : 2.
+ */
+
+.ubl-site-footer {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--ubl-color-background-card);
+  box-shadow: var(--ubl-elevation-hairline-top);
+  color: var(--ubl-color-text-secondary);
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-site-footer__inner {
+  box-sizing: border-box;
+  padding: var(--ubl-spacing-3xl) max(var(--ubl-gutter), calc((100% - var(--ubl-page-width)) / 2))
+    var(--ubl-spacing-xxl);
+}
+
+.ubl-site-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ubl-spacing-3xl);
+}
+
+/* ==========================================================================
+   Marca, descrição e slot
+   ========================================================================== */
+
+.ubl-site-footer__about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-l);
+  min-width: 0;
+}
+
+.ubl-site-footer__brand {
+  display: flex;
+  align-items: center;
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-site-footer__description {
+  max-width: 36ch;
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+.ubl-site-footer__slot {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ==========================================================================
+   Colunas de links
+   ========================================================================== */
+
+.ubl-site-footer__nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--ubl-spacing-xxl) var(--ubl-spacing-3xl);
+  min-width: 0;
+}
+
+.ubl-site-footer__column {
+  min-width: 0;
+}
+
+.ubl-site-footer__heading {
+  margin: 0 0 var(--ubl-spacing-xs);
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-weight-bold);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-site-footer__links {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-site-footer__item {
+  margin: 0;
+  padding: 0;
+}
+
+.ubl-site-footer__link {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--ubl-radius-xs);
+  background: none;
+  color: var(--ubl-color-text-secondary);
+  font-family: inherit;
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--ubl-transition-fast);
+}
+
+.ubl-site-footer__link:hover {
+  color: var(--ubl-color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ubl-site-footer__link:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Direitos
+   ========================================================================== */
+
+.ubl-site-footer__copyright {
+  margin: var(--ubl-spacing-3xl) 0 0;
+  padding-top: var(--ubl-spacing-l);
+  border-top: 1px solid var(--ubl-color-border-subtle);
+  color: var(--ubl-color-text-muted);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+@container (min-width: 640px) {
+  .ubl-site-footer__inner {
+    padding-inline: max(var(--ubl-gutter-wide), calc((100% - var(--ubl-page-width)) / 2));
+  }
+
+  .ubl-site-footer__top {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--ubl-spacing-4xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-site-footer__link {
+    transition: none;
+  }
+}

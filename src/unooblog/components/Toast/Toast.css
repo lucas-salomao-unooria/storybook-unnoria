@@ -1,0 +1,184 @@
+/**
+ * Estilos do Componente Toast — Design System Unooblog
+ * Cartão de cantos macios (raio `m`), em cores invertidas, que flutua dentro do
+ * contêiner posicionado (a tela do aparelho ou do quadro de navegador), nunca
+ * na janela. O recuo soma a área segura, a margem e `--ubl-toast-offset`, que
+ * chega do componente.
+ */
+
+.ubl-toast {
+  /* Largura máxima do aviso: a tela de 390px menos as duas margens laterais */
+  --ubl-toast-max-width: calc(var(--ubl-screen-width) - 2 * var(--ubl-gutter));
+  /* Altura mínima do aviso: uma linha de texto com a ação de 44px */
+  --ubl-toast-min-height: 52px;
+  /* Distância percorrida na entrada */
+  --ubl-toast-travel: var(--ubl-spacing-xs);
+
+  position: absolute;
+  left: var(--ubl-gutter);
+  right: var(--ubl-gutter);
+  z-index: var(--ubl-z-toast);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-toast--bottom {
+  bottom: calc(var(--ubl-safe-area-bottom) + var(--ubl-spacing-l) + var(--ubl-toast-offset, 0px));
+}
+
+.ubl-toast--top {
+  top: calc(var(--ubl-safe-area-top) + var(--ubl-spacing-xs) + var(--ubl-toast-offset, 0px));
+}
+
+.ubl-toast__body {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ubl-toast-max-width);
+  min-height: var(--ubl-toast-min-height);
+  padding: var(--ubl-spacing-3xs) var(--ubl-spacing-3xs) var(--ubl-spacing-3xs) var(--ubl-spacing-l);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-toast-surface);
+  box-shadow: var(--ubl-elevation-overlay);
+  color: var(--ubl-color-toast-text);
+  pointer-events: auto;
+  animation: ubl-toast-enter-bottom var(--ubl-transition-slow) both;
+}
+
+.ubl-toast--top .ubl-toast__body {
+  animation-name: ubl-toast-enter-top;
+}
+
+/* Sem ação nem fechar, o texto ganha o recuo simétrico */
+.ubl-toast__body:not(:has(button)) {
+  padding-right: var(--ubl-spacing-l);
+}
+
+.ubl-toast__icon {
+  flex-shrink: 0;
+}
+
+.ubl-toast__message {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: var(--ubl-spacing-s) 0;
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+/* ==========================================================================
+   Ação e fechar: alvos de 44px
+   ========================================================================== */
+
+.ubl-toast__action,
+.ubl-toast__close {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--ubl-touch-target);
+  height: var(--ubl-touch-target);
+  margin: 0;
+  border: none;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ubl-transition-fast);
+}
+
+.ubl-toast__action {
+  padding: 0 var(--ubl-spacing-m);
+  color: var(--ubl-color-toast-action);
+  font-family: inherit;
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  white-space: nowrap;
+}
+
+.ubl-toast__close {
+  width: var(--ubl-touch-target);
+  padding: 0;
+  color: var(--ubl-color-toast-text);
+}
+
+/*
+ * Realce sobre a superfície invertida: a camada `state-*` do tema seria da cor
+ * errada aqui (clara sobre clara no escuro), então o realce é a própria cor da
+ * ação, em baixa opacidade de camada.
+ */
+.ubl-toast__action::after,
+.ubl-toast__close::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ubl-transition-fast);
+}
+
+.ubl-toast__action:hover::after,
+.ubl-toast__close:hover::after {
+  opacity: 0.12;
+}
+
+.ubl-toast__action:active::after,
+.ubl-toast__close:active::after {
+  opacity: 0.2;
+}
+
+.ubl-toast__action:focus-visible,
+.ubl-toast__close:focus-visible {
+  outline: 2px solid var(--ubl-color-toast-action);
+  outline-offset: -2px;
+}
+
+@keyframes ubl-toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ubl-toast-travel));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ubl-toast-enter-top {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ubl-toast-travel)));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-toast__body {
+    animation: none;
+  }
+
+  .ubl-toast__action,
+  .ubl-toast__close,
+  .ubl-toast__action::after,
+  .ubl-toast__close::after {
+    transition: none;
+  }
+}

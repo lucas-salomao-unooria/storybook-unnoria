@@ -132,6 +132,19 @@ const MARCAS = {
       },
     ],
   },
+  unooblog: {
+    prefixo: '--ubl',
+    familias: [
+      { nome: 'Open Sans', slug: 'open-sans', query: 'Open+Sans:ital,wght@0,300..800;1,300..800' },
+      {
+        nome: 'Material Symbols Rounded',
+        slug: 'material-symbols-rounded',
+        query:
+          'Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+        todosOsSubsets: true,
+      },
+    ],
+  },
   unooriaai: {
     prefixo: '--uai',
     familias: [
