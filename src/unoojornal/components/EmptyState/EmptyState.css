@@ -1,0 +1,61 @@
+/**
+ * Estilos do Componente EmptyState — Design System Unoojornal
+ * Coluna centralizada: medalhão circular com o glifo de 32px, título, apoio e
+ * ação.
+ */
+
+.ujn-empty-state {
+  /* Diâmetro do medalhão: o glifo de 32px com 16px de folga de cada lado */
+  --ujn-empty-state-medallion: 80px;
+  /* Largura de leitura do texto de apoio */
+  --ujn-empty-state-measure: 360px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ujn-spacing-4xl) var(--ujn-gutter);
+  font-family: var(--ujn-font-sans);
+  text-align: center;
+}
+
+.ujn-empty-state__medallion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ujn-empty-state-medallion);
+  height: var(--ujn-empty-state-medallion);
+  margin-bottom: var(--ujn-spacing-l);
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-background-subtle);
+  color: var(--ujn-color-icon-accent);
+}
+
+.ujn-empty-state__title {
+  max-width: var(--ujn-empty-state-measure);
+  margin: 0;
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+.ujn-empty-state__description {
+  max-width: var(--ujn-empty-state-measure);
+  margin: var(--ujn-spacing-xs) 0 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+}
+
+.ujn-empty-state__action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ujn-spacing-xs);
+  margin-top: var(--ujn-spacing-xl);
+}

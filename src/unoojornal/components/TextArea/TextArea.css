@@ -1,0 +1,36 @@
+/**
+ * Estilos do Componente TextArea — Design System Unoojornal
+ * O desenho do campo vem de `TextField.css` (classes `ujn-text-field*`); aqui
+ * ficam só a área de texto (sem redimensionar, com rolagem fina) e o rodapé com
+ * a mensagem à esquerda e o contador à direita.
+ */
+
+.ujn-text-area__control {
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ujn-color-border-default) transparent;
+}
+
+.ujn-text-area__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ujn-spacing-m);
+}
+
+.ujn-text-area__counter {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ujn-text-area__counter--over {
+  color: var(--ujn-color-text-danger);
+  font-weight: var(--ujn-font-label-weight);
+}

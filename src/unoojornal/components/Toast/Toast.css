@@ -1,0 +1,184 @@
+/**
+ * Estilos do Componente Toast — Design System Unoojornal
+ * Retângulo de cantos pequenos, em cores invertidas, que flutua dentro do
+ * contêiner posicionado (a tela do aparelho ou do quadro de navegador), nunca
+ * na janela. O recuo soma a área segura, a margem e `--ujn-toast-offset`, que
+ * chega do componente.
+ */
+
+.ujn-toast {
+  /* Largura máxima do aviso: a tela de 390px menos as duas margens laterais */
+  --ujn-toast-max-width: calc(var(--ujn-screen-width) - 2 * var(--ujn-gutter));
+  /* Altura mínima do aviso: uma linha de texto com a ação de 44px */
+  --ujn-toast-min-height: 52px;
+  /* Distância percorrida na entrada */
+  --ujn-toast-travel: var(--ujn-spacing-xs);
+
+  position: absolute;
+  left: var(--ujn-gutter);
+  right: var(--ujn-gutter);
+  z-index: var(--ujn-z-toast);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  font-family: var(--ujn-font-sans);
+}
+
+.ujn-toast--bottom {
+  bottom: calc(var(--ujn-safe-area-bottom) + var(--ujn-spacing-l) + var(--ujn-toast-offset, 0px));
+}
+
+.ujn-toast--top {
+  top: calc(var(--ujn-safe-area-top) + var(--ujn-spacing-xs) + var(--ujn-toast-offset, 0px));
+}
+
+.ujn-toast__body {
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ujn-toast-max-width);
+  min-height: var(--ujn-toast-min-height);
+  padding: var(--ujn-spacing-3xs) var(--ujn-spacing-3xs) var(--ujn-spacing-3xs) var(--ujn-spacing-l);
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-toast-surface);
+  box-shadow: var(--ujn-elevation-overlay);
+  color: var(--ujn-color-toast-text);
+  pointer-events: auto;
+  animation: ujn-toast-enter-bottom var(--ujn-transition-slow) both;
+}
+
+.ujn-toast--top .ujn-toast__body {
+  animation-name: ujn-toast-enter-top;
+}
+
+/* Sem ação nem fechar, o texto ganha o recuo simétrico */
+.ujn-toast__body:not(:has(button)) {
+  padding-right: var(--ujn-spacing-l);
+}
+
+.ujn-toast__icon {
+  flex-shrink: 0;
+}
+
+.ujn-toast__message {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: var(--ujn-spacing-s) 0;
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+}
+
+/* ==========================================================================
+   Ação e fechar: alvos de 44px
+   ========================================================================== */
+
+.ujn-toast__action,
+.ujn-toast__close {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--ujn-touch-target);
+  height: var(--ujn-touch-target);
+  margin: 0;
+  border: none;
+  border-radius: var(--ujn-radius-s);
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-toast__action {
+  padding: 0 var(--ujn-spacing-m);
+  color: var(--ujn-color-toast-action);
+  font-family: inherit;
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  white-space: nowrap;
+}
+
+.ujn-toast__close {
+  width: var(--ujn-touch-target);
+  padding: 0;
+  color: var(--ujn-color-toast-text);
+}
+
+/*
+ * Realce sobre a superfície invertida: a camada `state-*` do tema seria da cor
+ * errada aqui (clara sobre clara no escuro), então o realce é a própria cor da
+ * ação, em baixa opacidade de camada.
+ */
+.ujn-toast__action::after,
+.ujn-toast__close::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ujn-transition-fast);
+}
+
+.ujn-toast__action:hover::after,
+.ujn-toast__close:hover::after {
+  opacity: 0.12;
+}
+
+.ujn-toast__action:active::after,
+.ujn-toast__close:active::after {
+  opacity: 0.2;
+}
+
+.ujn-toast__action:focus-visible,
+.ujn-toast__close:focus-visible {
+  outline: 2px solid var(--ujn-color-toast-action);
+  outline-offset: -2px;
+}
+
+@keyframes ujn-toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ujn-toast-travel));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ujn-toast-enter-top {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ujn-toast-travel)));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ujn-toast__body {
+    animation: none;
+  }
+
+  .ujn-toast__action,
+  .ujn-toast__close,
+  .ujn-toast__action::after,
+  .ujn-toast__close::after {
+    transition: none;
+  }
+}
