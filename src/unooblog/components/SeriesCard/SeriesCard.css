@@ -1,0 +1,178 @@
+/**
+ * Estilos do Componente SeriesCard — Design System Unooblog
+ * Cartão lavanda de cantos macios; capa 16:9 no topo (ou à esquerda, no
+ * contêiner de 560px ou mais). A barra de progresso usa `action-primary` sobre
+ * `background-subtle`, em cápsula; o texto "x de N lidos" a acompanha.
+ */
+
+.ubl-series-card {
+  position: relative;
+  container-type: inline-size;
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-xl);
+  background-color: var(--ubl-color-background-card);
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+  transition: background-image var(--ubl-transition-fast);
+}
+
+.ubl-series-card--interactive:hover {
+  background-image: linear-gradient(var(--ubl-color-state-hover), var(--ubl-color-state-hover));
+}
+
+.ubl-series-card__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+}
+
+.ubl-series-card__media {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--ubl-radius-l);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-series-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ubl-series-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--ubl-spacing-s);
+  min-width: 0;
+  padding: var(--ubl-spacing-m) var(--ubl-spacing-s) var(--ubl-spacing-s);
+}
+
+.ubl-series-card__count {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+  color: var(--ubl-color-text-accent);
+  font-size: var(--ubl-font-caption-strong-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: var(--ubl-font-caption-strong-line);
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+}
+
+.ubl-series-card__title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-series-card__link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ubl-series-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.ubl-series-card--interactive:hover .ubl-series-card__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ubl-spacing-3xs);
+}
+
+.ubl-series-card__link:focus-visible {
+  outline: none;
+}
+
+.ubl-series-card__link:focus-visible::after {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-series-card__description {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* ---------- Progresso ---------- */
+
+.ubl-series-card__progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-3xs);
+  margin-top: auto;
+  padding-top: var(--ubl-spacing-xs);
+}
+
+.ubl-series-card__track {
+  overflow: hidden;
+  box-sizing: border-box;
+  height: var(--ubl-spacing-xs);
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-series-card__fill {
+  height: 100%;
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-action-primary);
+  transition: width var(--ubl-transition-base);
+}
+
+.ubl-series-card__progress-text {
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+/* ---------- Contêiner largo: capa à esquerda ---------- */
+
+@container (min-width: 560px) {
+  .ubl-series-card--with-cover .ubl-series-card__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: stretch;
+  }
+
+  .ubl-series-card--with-cover .ubl-series-card__media {
+    align-self: start;
+  }
+
+  .ubl-series-card--with-cover .ubl-series-card__body {
+    padding: var(--ubl-spacing-xs) var(--ubl-spacing-m) var(--ubl-spacing-xs) var(--ubl-spacing-l);
+  }
+}

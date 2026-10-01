@@ -1,0 +1,50 @@
+/**
+ * Estilos do Componente PostList — Design System Unooblog
+ * O invólucro é o contêiner (`container-type: inline-size`): o `<ul>` é
+ * descendente dele e por isso pode consultar a largura. Colunas: 1 abaixo de
+ * 640px, 2 a partir de 640px, e `columns` (2 ou 3) a partir de 960px.
+ */
+
+.ubl-post-list-container {
+  container-type: inline-size;
+  min-width: 0;
+}
+
+.ubl-post-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ubl-spacing-l);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-post-list--list {
+  gap: var(--ubl-spacing-m);
+}
+
+/* Cada item estica o cartão, para a grade ficar de alturas iguais */
+.ubl-post-list__item {
+  display: flex;
+  min-width: 0;
+}
+
+.ubl-post-list__item > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@container (min-width: 640px) {
+  .ubl-post-list--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ubl-spacing-xxl);
+  }
+}
+
+@container (min-width: 960px) {
+  .ubl-post-list--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
