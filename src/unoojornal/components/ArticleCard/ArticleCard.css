@@ -1,0 +1,125 @@
+/**
+ * Estilos do Componente ArticleCard — Design System Unoojornal
+ * Quadro 5:181 (estrutura): fotografia 3:2, etiqueta, título e rodapé com o
+ * tempo e a chamada. Plano: separa-se por fio de 1px; o hover troca a cor do
+ * fio e sublinha o título, sem `box-shadow`.
+ */
+
+.ujn-article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  border: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+  border-radius: var(--ujn-radius-s);
+  background-color: var(--ujn-color-background-card);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+  transition: border-color var(--ujn-transition-fast);
+}
+
+.ujn-article-card--interactive:hover {
+  border-color: var(--ujn-color-action-primary);
+}
+
+.ujn-article-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background-color: var(--ujn-color-background-subtle);
+}
+
+.ujn-article-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+.ujn-article-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ujn-spacing-s);
+  padding: var(--ujn-spacing-l);
+}
+
+.ujn-article-card__title {
+  margin: 0;
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+/* O link é o título; o ::after estende o alvo ao cartão inteiro */
+.ujn-article-card__link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-article-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ujn-article-card--interactive:hover .ujn-article-card__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-article-card__link:focus-visible {
+  outline: none;
+}
+
+.ujn-article-card__link:focus-visible::after {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.ujn-article-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ujn-spacing-m);
+  width: 100%;
+  margin-top: auto;
+}
+
+.ujn-article-card__time {
+  color: var(--ujn-color-text-muted);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+.ujn-article-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs);
+  margin-left: auto;
+  color: var(--ujn-color-text-accent);
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+}

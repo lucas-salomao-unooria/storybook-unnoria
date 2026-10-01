@@ -1,0 +1,79 @@
+/**
+ * Estilos do Componente SectionHeading — Design System Unoojornal
+ * Título `title-lg` à esquerda; texto de apoio ou ação com seta à direita. O
+ * fio opcional é de 1px em `border-subtle`.
+ */
+
+.ujn-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ujn-spacing-l);
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-section-heading--rule {
+  padding-bottom: var(--ujn-spacing-m);
+  border-bottom: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+}
+
+.ujn-section-heading__title {
+  min-width: 0;
+  margin: 0;
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-lg-size);
+  font-weight: var(--ujn-font-title-lg-weight);
+  line-height: var(--ujn-font-title-lg-line);
+  letter-spacing: var(--ujn-font-title-lg-tracking);
+}
+
+.ujn-section-heading__meta {
+  flex-shrink: 0;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-section-heading__action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs);
+  box-sizing: border-box;
+  min-height: var(--ujn-touch-target);
+  margin: 0;
+  padding: 0 var(--ujn-spacing-xs);
+  border: none;
+  border-radius: var(--ujn-radius-s);
+  background: none;
+  color: var(--ujn-color-text-accent);
+  font-family: inherit;
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--ujn-transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-section-heading__action:hover {
+  background-color: var(--ujn-color-state-hover);
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-section-heading__action:active {
+  background-color: var(--ujn-color-state-pressed);
+}
+
+.ujn-section-heading__action:focus-visible {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: 2px;
+}

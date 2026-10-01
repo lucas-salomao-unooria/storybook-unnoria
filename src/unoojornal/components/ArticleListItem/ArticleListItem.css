@@ -1,0 +1,175 @@
+/**
+ * Estilos do Componente ArticleListItem — Design System Unoojornal
+ * Quadro 5:133 (estrutura): etiqueta e tempo no alto, título `title-md`, resumo
+ * de duas linhas, assinatura. Hover e item atual ganham a barra lateral de 3px
+ * (`--ujn-rule-thick`) em `action-primary`; o hover só realça, sem sombra.
+ */
+
+.ujn-article-list-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ujn-spacing-s);
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--ujn-spacing-l) var(--ujn-spacing-l) var(--ujn-spacing-l) var(--ujn-spacing-xl);
+  border-bottom: var(--ujn-rule-thin) solid var(--ujn-color-border-subtle);
+  background-color: var(--ujn-color-background-card);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+  transition: background-color var(--ujn-transition-fast);
+}
+
+/* Barra lateral: invisível em repouso, presente no hover e no item atual */
+.ujn-article-list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--ujn-rule-thick);
+  background-color: transparent;
+  transition: background-color var(--ujn-transition-fast);
+}
+
+.ujn-article-list-item--interactive:hover {
+  background-color: var(--ujn-color-state-hover);
+}
+
+.ujn-article-list-item--interactive:hover::before,
+.ujn-article-list-item--current::before {
+  background-color: var(--ujn-color-action-primary);
+}
+
+.ujn-article-list-item--current {
+  background-color: var(--ujn-color-background-subtle);
+}
+
+.ujn-article-list-item__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xs);
+  min-width: 0;
+}
+
+.ujn-article-list-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ujn-spacing-xs);
+}
+
+.ujn-article-list-item__kicker {
+  color: var(--ujn-color-text-accent);
+  font-size: var(--ujn-font-kicker-size);
+  font-weight: var(--ujn-font-kicker-weight);
+  line-height: var(--ujn-font-kicker-line);
+  letter-spacing: var(--ujn-font-kicker-tracking);
+  text-transform: uppercase;
+}
+
+.ujn-article-list-item__time {
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+.ujn-article-list-item__read-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ujn-spacing-4xs);
+  margin-left: auto;
+  color: var(--ujn-color-text-muted);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-label-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+.ujn-article-list-item__title {
+  margin: 0;
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-title-md-size);
+  font-weight: var(--ujn-font-title-md-weight);
+  line-height: var(--ujn-font-title-md-line);
+  letter-spacing: var(--ujn-font-title-md-tracking);
+}
+
+/* O link é o título; o ::after estende o alvo ao item inteiro */
+.ujn-article-list-item__link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ujn-article-list-item__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ujn-article-list-item--interactive:hover .ujn-article-list-item__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-article-list-item__link:focus-visible {
+  outline: none;
+}
+
+/* O anel de foco contorna o item inteiro, por dentro */
+.ujn-article-list-item__link:focus-visible::after {
+  outline: 2px solid var(--ujn-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.ujn-article-list-item__summary {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ujn-color-text-secondary);
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.ujn-article-list-item__byline {
+  margin-top: var(--ujn-spacing-3xs);
+}
+
+/* Botão de salvar: acima do pseudo-elemento, e nunca abre a matéria */
+.ujn-article-list-item__save {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  margin: calc(-1 * var(--ujn-spacing-xs)) calc(-1 * var(--ujn-spacing-xs)) 0 0;
+}
+
+/* Lida: o texto vai para o tom muted (o selo "Lida" diz o mesmo em palavras) */
+.ujn-article-list-item--read .ujn-article-list-item__title,
+.ujn-article-list-item--read .ujn-article-list-item__summary,
+.ujn-article-list-item--read .ujn-article-list-item__kicker,
+.ujn-article-list-item--read .ujn-byline__author,
+.ujn-article-list-item--read .ujn-byline__detail {
+  color: var(--ujn-color-text-muted);
+}
+
+.ujn-article-list-item--read .ujn-article-list-item__title {
+  font-weight: var(--ujn-font-weight-medium);
+}

@@ -1,0 +1,68 @@
+/**
+ * Estilos do Componente Byline — Design System Unoojornal
+ * Autoria em negrito (`label`), papel e data em `body-sm`, tempo de leitura em
+ * `caption`. Na disposição `inline` o tempo de leitura é empurrado à direita.
+ */
+
+.ujn-byline {
+  display: flex;
+  align-items: center;
+  gap: var(--ujn-spacing-m);
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-secondary);
+}
+
+.ujn-byline__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ujn-byline--inline .ujn-byline__text {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--ujn-spacing-xs);
+}
+
+.ujn-byline__author {
+  color: var(--ujn-color-text-primary);
+  font-size: var(--ujn-font-label-size);
+  font-weight: var(--ujn-font-weight-bold);
+  line-height: var(--ujn-font-label-line);
+  letter-spacing: var(--ujn-font-label-tracking);
+}
+
+.ujn-byline__detail {
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+.ujn-byline__reading-time {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--ujn-spacing-3xs);
+  margin-left: auto;
+  color: var(--ujn-color-text-muted);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+  white-space: nowrap;
+}
+
+/* Empilhada: o tempo de leitura desce para baixo da data, alinhado ao texto */
+.ujn-byline--stacked {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.ujn-byline--stacked .ujn-byline__reading-time {
+  flex-basis: 100%;
+  margin-left: 0;
+}

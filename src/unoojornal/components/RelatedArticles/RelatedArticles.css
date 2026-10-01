@@ -1,0 +1,49 @@
+/**
+ * Estilos do Componente RelatedArticles — Design System Unoojornal
+ * Grade de cartões por contêiner: 1 coluna no compacto, 2 a partir de 640px e
+ * 3 a partir de 960px.
+ */
+
+.ujn-related-articles {
+  container-type: inline-size;
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-text-primary);
+}
+
+.ujn-related-articles__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xl);
+}
+
+.ujn-related-articles__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ujn-spacing-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ujn-related-articles__item {
+  display: flex;
+  min-width: 0;
+}
+
+.ujn-related-articles__item > .ujn-article-card {
+  flex: 1 1 auto;
+}
+
+@container (min-width: 640px) {
+  .ujn-related-articles__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 960px) {
+  .ujn-related-articles__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

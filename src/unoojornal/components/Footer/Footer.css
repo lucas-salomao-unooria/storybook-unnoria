@@ -1,0 +1,162 @@
+/**
+ * Estilos dos Componentes Footer e Footer.Column — Design System Unoojornal
+ * Superfície escura invariante (`--ujn-color-footer-*`): a mesma nos dois
+ * temas. Nome da publicação em `title-lg` na cor de destaque; cabeçalhos de
+ * coluna em caixa alta na mesma cor; fio da base em `footer-border`.
+ */
+
+.ujn-footer {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--ujn-color-footer-surface);
+  font-family: var(--ujn-font-sans);
+  color: var(--ujn-color-footer-text);
+}
+
+.ujn-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xxl);
+  box-sizing: border-box;
+  max-width: var(--ujn-page-width);
+  margin: 0 auto;
+  padding: var(--ujn-spacing-3xl) var(--ujn-gutter);
+}
+
+.ujn-footer__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ujn-spacing-3xl);
+}
+
+.ujn-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xs);
+  max-width: 28rem;
+}
+
+.ujn-footer__title {
+  margin: 0;
+  color: var(--ujn-color-footer-accent);
+  font-size: var(--ujn-font-title-lg-size);
+  font-weight: var(--ujn-font-title-lg-weight);
+  line-height: var(--ujn-font-title-lg-line);
+  letter-spacing: var(--ujn-font-title-lg-tracking);
+}
+
+.ujn-footer__description {
+  margin: 0;
+  color: var(--ujn-color-footer-text-secondary);
+  font-size: var(--ujn-font-body-md-size);
+  font-weight: var(--ujn-font-body-md-weight);
+  line-height: var(--ujn-font-body-md-line);
+  letter-spacing: var(--ujn-font-body-md-tracking);
+}
+
+.ujn-footer__columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ujn-spacing-xxl);
+}
+
+.ujn-footer__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-m);
+  min-width: 0;
+}
+
+.ujn-footer__heading {
+  margin: 0;
+  color: var(--ujn-color-footer-accent);
+  font-size: var(--ujn-font-kicker-size);
+  font-weight: var(--ujn-font-kicker-weight);
+  line-height: var(--ujn-font-kicker-line);
+  letter-spacing: var(--ujn-font-kicker-tracking);
+  text-transform: uppercase;
+}
+
+.ujn-footer__column-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ujn-spacing-xs);
+  color: var(--ujn-color-footer-text-secondary);
+  font-size: var(--ujn-font-body-sm-size);
+  font-weight: var(--ujn-font-body-sm-weight);
+  line-height: var(--ujn-font-body-sm-line);
+  letter-spacing: var(--ujn-font-body-sm-tracking);
+}
+
+/* Links dentro da coluna: alvo de 44px de altura, sem sublinhado em repouso */
+.ujn-footer__column-body a {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: var(--ujn-touch-target);
+  border-radius: var(--ujn-radius-xs);
+  color: var(--ujn-color-footer-text);
+  text-decoration: none;
+}
+
+.ujn-footer__column-body a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--ujn-spacing-3xs);
+}
+
+.ujn-footer__column-body a:focus-visible {
+  outline: 2px solid var(--ujn-color-footer-accent);
+  outline-offset: 2px;
+}
+
+.ujn-footer__column-body p {
+  margin: 0;
+}
+
+.ujn-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ujn-spacing-xs) var(--ujn-spacing-xl);
+  padding-top: var(--ujn-spacing-l);
+  border-top: var(--ujn-rule-thin) solid var(--ujn-color-footer-border);
+}
+
+.ujn-footer__copyright,
+.ujn-footer__note {
+  margin: 0;
+  color: var(--ujn-color-footer-text-secondary);
+  font-size: var(--ujn-font-caption-size);
+  font-weight: var(--ujn-font-caption-weight);
+  line-height: var(--ujn-font-caption-line);
+  letter-spacing: var(--ujn-font-caption-tracking);
+}
+
+@container (min-width: 640px) {
+  .ujn-footer__inner {
+    padding-right: var(--ujn-spacing-4xl);
+    padding-left: var(--ujn-spacing-4xl);
+  }
+
+  .ujn-footer__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 960px) {
+  .ujn-footer__inner {
+    padding-right: var(--ujn-gutter-wide);
+    padding-left: var(--ujn-gutter-wide);
+  }
+
+  .ujn-footer__main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--ujn-spacing-4xl);
+  }
+
+  .ujn-footer__columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
