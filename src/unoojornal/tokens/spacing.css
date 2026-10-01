@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Tokens de Espaçamento, Raios, Tamanhos, Movimento e Camadas — Unoojornal
+   Medidas do módulo, sobre a página de 1440px do jornal (conteúdo de 1280px) e
+   sobre a tela de 390×844 do mockup móvel. Os tamanhos de ícone são literais
+   da Plataforma Unooria, com a origem no comentário.
+
+   Pontos de quebra: são de CONTÊINER (`@container`), nunca de janela — o
+   jornal aparece em quadros de documentação mais estreitos que a janela.
+   Largo ≥ 960px (duas colunas e barra lateral), médio ≥ 640px, compacto abaixo.
+   Variáveis CSS não entram em `@container`, por isso os valores só constam aqui.
+   ========================================================================== */
+
+:root {
+  /* Escala de espaçamento */
+  --ujn-spacing-4xs: 2px;
+  --ujn-spacing-3xs: 4px;
+  --ujn-spacing-xxs: 6px;
+  --ujn-spacing-xs: 8px;
+  --ujn-spacing-s: 10px;
+  --ujn-spacing-m: 12px;
+  --ujn-spacing-l: 16px;
+  --ujn-spacing-xl: 20px;
+  --ujn-spacing-xxl: 24px;
+  --ujn-spacing-3xl: 32px;
+  --ujn-spacing-4xl: 48px;
+  --ujn-spacing-5xl: 64px;
+
+  /* Margem lateral padrão: estreita no móvel, larga na página */
+  --ujn-gutter: 16px;
+  --ujn-gutter-wide: 80px;
+
+  /* Raios de borda: o jornal é reto; só a pílula e o avatar arredondam */
+  --ujn-radius-xs: 2px;
+  --ujn-radius-s: 4px;
+  --ujn-radius-m: 8px;
+  --ujn-radius-l: 12px;
+  --ujn-radius-full: 1000px;
+
+  /* Dimensões estruturais da página */
+  --ujn-page-width: 1280px;
+  --ujn-reading-width: 740px;
+  --ujn-sidebar-width: 384px;
+  --ujn-edition-bar-height: 40px;
+  --ujn-nav-height: 44px;
+  --ujn-article-bar-height: 74px;
+  --ujn-progress-height: 4px;
+  --ujn-touch-target: 44px;
+
+  /* Fios da tinta: o fio duplo é 3px + vão de 2px + 1px (gradiente em colors.css) */
+  --ujn-rule-thin: 1px;
+  --ujn-rule-thick: 3px;
+  --ujn-rule-double-height: 6px;
+
+  /* Quadros de documentação */
+  --ujn-desktop-width: 1440px;
+  --ujn-desktop-height: 1024px;
+  --ujn-desktop-chrome-height: 40px;
+  --ujn-screen-width: 390px;
+  --ujn-screen-height: 844px;
+  --ujn-statusbar-height: 47px;
+  --ujn-home-indicator-height: 34px;
+
+  /*
+   * Áreas seguras. Valem 0 fora de um aparelho; o `PhoneFrame` as redefine na
+   * tela com a altura da barra de status e da barra de gesto, e barras, folhas
+   * e o leitor as somam ao próprio recuo.
+   */
+  --ujn-safe-area-top: 0px;
+  --ujn-safe-area-bottom: 0px;
+
+  /* Tamanhos de ícone (degraus de --unooria-icon-size-*) */
+  --ujn-icon-size-xs: 16px; /* --unooria-icon-size-3xs */
+  --ujn-icon-size-sm: 20px; /* --unooria-icon-size-xs */
+  --ujn-icon-size-md: 24px; /* --unooria-icon-size-s */
+  --ujn-icon-size-lg: 32px; /* --unooria-icon-size-m */
+
+  /* Avatares de autoria */
+  --ujn-avatar-sm: 24px;
+  --ujn-avatar-md: 32px;
+  --ujn-avatar-lg: 48px;
+
+  /* Movimento */
+  --ujn-transition-fast: 120ms ease;
+  --ujn-transition-base: 200ms ease;
+  --ujn-transition-slow: 320ms cubic-bezier(0.2, 0, 0, 1);
+
+  /* Camadas, de baixo para cima */
+  --ujn-z-bar: 10;
+  --ujn-z-progress: 15;
+  --ujn-z-sheet: 30;
+  --ujn-z-dialog: 40;
+  --ujn-z-toast: 50;
+  --ujn-z-statusbar: 60;
+}
+
+/*
+ * Fios de 1px. Compostos com `var()` de cor, então declarados em todo
+ * `[data-ujn-theme]` (ver o comentário de `colors.css`): declarados só em
+ * `:root`, o fio ficaria com a cor do tema claro dentro de um contêiner escuro.
+ */
+:root,
+[data-ujn-theme] {
+  --ujn-elevation-hairline-bottom: 0 1px 0 0 var(--ujn-color-border-subtle);
+  --ujn-elevation-hairline-top: 0 -1px 0 0 var(--ujn-color-border-subtle);
+}
