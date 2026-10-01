@@ -30,6 +30,7 @@
 /* ----------------------------------------------------
  * Estilos dos Componentes
  * ---------------------------------------------------- */
+@import './unooria/components/AgentAvatar/AgentAvatar.css';
 @import './unooria/components/AlertBox/AlertBox.css';
 @import './unooria/components/AudioPlayer/AudioPlayer.css';
 @import './unooria/components/Avatar/Avatar.css';
@@ -40,6 +41,11 @@
 @import './unooria/components/Button/Button.css';
 @import './unooria/components/Calendar/Calendar.css';
 @import './unooria/components/Card/Card.css';
+@import './unooria/components/ChatComposer/ChatComposer.css';
+@import './unooria/components/ChatHistory/ChatHistory.css';
+@import './unooria/components/ChatLauncher/ChatLauncher.css';
+@import './unooria/components/ChatMessage/ChatMessage.css';
+@import './unooria/components/ChatPanel/ChatPanel.css';
 @import './unooria/components/Checkbox/Checkbox.css';
 @import './unooria/components/Collapse/Collapse.css';
 @import './unooria/components/Cropper/Cropper.css';
@@ -63,6 +69,7 @@
 @import './unooria/components/PuzzleTrack/PuzzleTrack.css';
 @import './unooria/components/RadioButton/RadioButton.css';
 @import './unooria/components/RevealClue/RevealClue.css';
+@import './unooria/components/RichContent/RichContent.css';
 @import './unooria/components/RichTextEditor/RichTextEditor.css';
 @import './unooria/components/ScrollBar/ScrollBar.css';
 @import './unooria/components/SectionHeader/SectionHeader.css';
@@ -78,6 +85,7 @@
 @import './unooria/components/TimePicker/TimePicker.css';
 @import './unooria/components/Toggle/Toggle.css';
 @import './unooria/components/Tooltip/Tooltip.css';
+@import './unooria/components/TypingIndicator/TypingIndicator.css';
 @import './unooria/components/UploadFileModal/UploadFileModal.css';
 
 

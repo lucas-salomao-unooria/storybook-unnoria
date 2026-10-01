@@ -1,0 +1,187 @@
+/**
+ * ChatMessage - Design System Unooria
+ *
+ * Design próprio. As medidas vêm do pacote:
+ * - balão do professor: `brandpurple-100` (claro) / `brandpurple-800` (escuro),
+ *   raio de 16px (o do `Card` grande) com o canto de baixo do lado de quem fala
+ *   em 4px, recuo 8px 12px, até 85% da largura; texto `body-s` (16/24);
+ * - mensagem do agente: `AgentAvatar` `xs` (32px) e 12px até o texto, que ocupa
+ *   o resto da largura, sem balão;
+ * - aviso: fundo `warning-50`, fio `warning-200`, texto `warning-800` (8,9:1),
+ *   ícone `warning` — o aviso nunca é só cor;
+ * - fontes: `body-xxs` (12/18) `neutral-700`, ícone `menu_book`;
+ * - erro: texto `danger-700` (5,9:1) com ícone `error`, e o `Button` `ghost`
+ *   `sm` "Tentar de novo".
+ */
+
+.unooria-chat-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-xs);
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--unooria-color-neutral-950);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  font-size: var(--unooria-size-body-s);
+  line-height: var(--unooria-line-height-body-s);
+}
+
+.unooria-chat-message__avatar {
+  flex-shrink: 0;
+}
+
+.unooria-chat-message__column {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--unooria-spacing-xxs);
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Professor: balão à direita
+   ========================================================================== */
+
+.unooria-chat-message--professor {
+  justify-content: flex-end;
+}
+
+.unooria-chat-message--professor .unooria-chat-message__column {
+  flex: 0 1 auto;
+  align-items: flex-end;
+  max-width: 85%;
+}
+
+.unooria-chat-message--professor .unooria-chat-message__body {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--unooria-spacing-xxs) var(--unooria-spacing-xs);
+  border-radius: var(--unooria-radius-lg, 16px) var(--unooria-radius-lg, 16px) var(--unooria-radius-s, 4px)
+    var(--unooria-radius-lg, 16px);
+  background-color: var(--unooria-color-brandpurple-100);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.unooria-chat-message--professor.unooria-chat-message--enviando .unooria-chat-message__body {
+  opacity: 0.7;
+}
+
+.unooria-chat-message__meta {
+  color: var(--unooria-color-neutral-700);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+}
+
+/* ==========================================================================
+   Agente: o conteúdo em largura cheia, alinhado ao topo do avatar
+   ========================================================================== */
+
+.unooria-chat-message--agente .unooria-chat-message__body {
+  /* Centra a primeira linha (24px) no avatar de 32px. */
+  padding-top: var(--unooria-spacing-xxxs);
+  min-width: 0;
+}
+
+.unooria-chat-message__typing {
+  padding-top: var(--unooria-spacing-xxxs);
+}
+
+/* ==========================================================================
+   Aviso, fontes e erro
+   ========================================================================== */
+
+.unooria-chat-message__notice,
+.unooria-chat-message__sources,
+.unooria-chat-message__error-text {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--unooria-spacing-xxs);
+  margin: 0;
+}
+
+.unooria-chat-message__notice {
+  padding: var(--unooria-spacing-xxs) var(--unooria-spacing-xs);
+  border: 1px solid var(--unooria-color-warning-200);
+  border-radius: var(--unooria-radius-m, 8px);
+  background-color: var(--unooria-color-warning-50);
+  color: var(--unooria-color-warning-800);
+  font-size: var(--unooria-size-body-xs);
+  line-height: var(--unooria-line-height-body-xs);
+}
+
+.unooria-chat-message__sources {
+  color: var(--unooria-color-neutral-700);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+}
+
+.unooria-chat-message__sources-label {
+  font-weight: var(--unooria-weight-semibold);
+}
+
+.unooria-chat-message__source {
+  font-style: normal;
+}
+
+/* Os ícones alinham a primeira linha do texto ao lado. */
+.unooria-chat-message__notice-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.unooria-chat-message__sources-icon {
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.unooria-chat-message__error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs) var(--unooria-spacing-xs);
+}
+
+.unooria-chat-message__error-text {
+  color: var(--unooria-color-danger-700);
+  font-size: var(--unooria-size-body-xs);
+  line-height: var(--unooria-line-height-body-xs);
+}
+
+.unooria-chat-message__error-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-chat-message--theme-dark,
+[data-theme='dark'] .unooria-chat-message {
+  color: var(--unooria-color-neutraldark-950);
+}
+
+.unooria-chat-message--theme-dark.unooria-chat-message--professor .unooria-chat-message__body,
+[data-theme='dark'] .unooria-chat-message--professor .unooria-chat-message__body {
+  background-color: var(--unooria-color-brandpurple-800);
+}
+
+.unooria-chat-message--theme-dark .unooria-chat-message__meta,
+.unooria-chat-message--theme-dark .unooria-chat-message__sources,
+[data-theme='dark'] .unooria-chat-message__meta,
+[data-theme='dark'] .unooria-chat-message__sources {
+  color: var(--unooria-color-neutraldark-900);
+}
+
+.unooria-chat-message--theme-dark .unooria-chat-message__notice,
+[data-theme='dark'] .unooria-chat-message__notice {
+  border-color: var(--unooria-color-opacity-warning-500);
+  background-color: var(--unooria-color-opacity-warning-100);
+  color: var(--unooria-color-warning-200);
+}
+
+.unooria-chat-message--theme-dark .unooria-chat-message__error-text,
+[data-theme='dark'] .unooria-chat-message__error-text {
+  color: var(--unooria-color-danger-300);
+}

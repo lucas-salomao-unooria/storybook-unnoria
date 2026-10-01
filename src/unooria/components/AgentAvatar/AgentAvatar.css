@@ -1,0 +1,28 @@
+/**
+ * AgentAvatar - Design System Unooria
+ *
+ * Só troca o disco e o fio do `Avatar` por trás do mascote; tamanho, forma e
+ * recorte continuam sendo os do `Avatar`. Duas classes de especificidade para
+ * vencer `.unooria-avatar--light` / `--dark`, que redefinem as mesmas variáveis.
+ *
+ * Claro: disco `brandpurple-100` com fio `brandpurple-200` — o lilás da chama
+ * continua lido contra ele, e o rosto escuro mede mais de 15:1.
+ * Escuro: disco `brandpurple-800` com fio `brandpurple-600`, que separa o disco
+ * da superfície `neutraldark-50` sem acender (a chama clara faz o contraste).
+ */
+
+.unooria-agent-avatar.unooria-avatar {
+  --unooria-avatar-bg: var(--unooria-color-brandpurple-100);
+  --unooria-avatar-border: var(--unooria-color-brandpurple-200);
+}
+
+.unooria-agent-avatar.unooria-avatar--dark,
+[data-theme='dark'] .unooria-agent-avatar.unooria-avatar {
+  --unooria-avatar-bg: var(--unooria-color-brandpurple-800);
+  --unooria-avatar-border: var(--unooria-color-brandpurple-600);
+}
+
+/* O desenho é um busto quadrado: `contain` evita cortar a chama no topo. */
+.unooria-agent-avatar .unooria-avatar__img {
+  object-fit: contain;
+}

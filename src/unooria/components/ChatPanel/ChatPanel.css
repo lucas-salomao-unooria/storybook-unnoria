@@ -1,0 +1,316 @@
+/**
+ * ChatPanel - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de painel de conversa no Figma.
+ * - Superfície `neutral-50`, fio 1px `neutral-150`, raio 16px e a sombra de
+ *   marca `elevation-brand-secondary` — a do `BottomSheet`. SEM véu: não é modal.
+ * - Cabeçalho: `AgentAvatar` `sm` (40px), título `body-s` bold (16/24),
+ *   subtítulo `body-xxs` (12/18) `neutral-700`, ações `ChatPanelAction` de 36px;
+ *   fio 1px embaixo.
+ * - Corpo: `ScrollBar` vertical com recuo de 16px e 16px entre mensagens.
+ * - Rodapé: recuo de 12px 16px 16px, fio 1px em cima.
+ * - `compacto`: até 400 x 640px, acima do `ChatLauncher` (distância
+ *   `--unooria-chat-offset` + `--unooria-chat-launcher-size` + 16px).
+ * - `expandido`: até min(960px, 90vw) x 85vh, descendo até a borda (cobre o
+ *   `ChatLauncher`: o painel vem depois no DOM e fica por cima, no mesmo
+ *   `--unooria-chat-z-index`).
+ * - Abaixo de 600px: quase tela cheia, com 8px de margem e a área segura.
+ * - A troca de tamanho anima largura e altura em 200ms; com movimento reduzido,
+ *   não anima nada (nem a entrada).
+ */
+
+@keyframes unooria-chat-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.unooria-chat-panel {
+  --unooria-chat-panel-offset: var(--unooria-chat-offset, 24px);
+  --unooria-chat-panel-bottom: calc(
+    var(--unooria-chat-panel-offset) + var(--unooria-chat-launcher-size, 64px) + var(--unooria-spacing-s)
+  );
+  --unooria-chat-panel-width: min(400px, calc(100vw - 2 * var(--unooria-chat-panel-offset)));
+  --unooria-chat-panel-height: 640px;
+  --unooria-chat-panel-border: var(--unooria-color-neutral-150);
+
+  position: fixed;
+  bottom: calc(var(--unooria-chat-panel-bottom) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--unooria-chat-z-index, 1000);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--unooria-chat-panel-width);
+  height: min(
+    var(--unooria-chat-panel-height),
+    calc(100dvh - var(--unooria-chat-panel-bottom) - var(--unooria-chat-panel-offset) - env(safe-area-inset-bottom, 0px))
+  );
+  border: 1px solid var(--unooria-chat-panel-border);
+  border-radius: var(--unooria-radius-lg, 16px);
+  background-color: var(--unooria-color-neutral-50);
+  box-shadow: var(--unooria-elevation-brand-secondary);
+  color: var(--unooria-color-neutral-950);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  overflow: hidden;
+  transition:
+    width 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: unooria-chat-panel-in 160ms ease-out;
+}
+
+.unooria-chat-panel[hidden] {
+  display: none;
+}
+
+.unooria-chat-panel--bottom-right {
+  right: calc(var(--unooria-chat-panel-offset) + env(safe-area-inset-right, 0px));
+}
+
+.unooria-chat-panel--bottom-left {
+  left: calc(var(--unooria-chat-panel-offset) + env(safe-area-inset-left, 0px));
+}
+
+.unooria-chat-panel--expandido {
+  --unooria-chat-panel-bottom: var(--unooria-chat-panel-offset);
+  --unooria-chat-panel-width: min(960px, 90vw, calc(100vw - 2 * var(--unooria-chat-panel-offset)));
+  --unooria-chat-panel-height: 85vh;
+}
+
+/* No fluxo do documento (documentação): altura fixa e largura do contêiner. */
+.unooria-chat-panel--inline {
+  position: relative;
+  bottom: auto;
+  z-index: auto;
+  width: min(var(--unooria-chat-panel-inline-width, 400px), 100%);
+  height: var(--unooria-chat-panel-inline-height, 560px);
+}
+
+.unooria-chat-panel--inline.unooria-chat-panel--expandido {
+  --unooria-chat-panel-inline-width: 960px;
+  --unooria-chat-panel-inline-height: 640px;
+}
+
+/* Tela estreita: quase tela cheia, nos dois tamanhos. */
+@media (max-width: 599px) {
+  .unooria-chat-panel:not(.unooria-chat-panel--inline) {
+    top: calc(var(--unooria-spacing-xxs) + env(safe-area-inset-top, 0px));
+    right: calc(var(--unooria-spacing-xxs) + env(safe-area-inset-right, 0px));
+    bottom: calc(var(--unooria-spacing-xxs) + env(safe-area-inset-bottom, 0px));
+    left: calc(var(--unooria-spacing-xxs) + env(safe-area-inset-left, 0px));
+    width: auto;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   Cabeçalho
+   ========================================================================== */
+
+.unooria-chat-panel__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--unooria-spacing-xs);
+  padding: var(--unooria-spacing-xs) var(--unooria-spacing-xs) var(--unooria-spacing-xs) var(--unooria-spacing-s);
+  border-bottom: 1px solid var(--unooria-chat-panel-border);
+}
+
+.unooria-chat-panel__avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.unooria-chat-panel__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/*
+ * O título quebra em até duas linhas: "Agente de IA do professor" não cabe numa
+ * linha ao lado das quatro ações no compacto, e cortá-lo em "Agente de IA do p…"
+ * apagaria justamente o nome do produto.
+ */
+.unooria-chat-panel__title {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--unooria-size-body-s);
+  font-weight: var(--unooria-weight-bold);
+  line-height: var(--unooria-line-height-body-s);
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.unooria-chat-panel__subtitle {
+  margin: 0;
+  overflow: hidden;
+  color: var(--unooria-color-neutral-700);
+  font-size: var(--unooria-size-body-xxs);
+  line-height: var(--unooria-line-height-body-xxs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unooria-chat-panel__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--unooria-spacing-4xs);
+}
+
+/* O `Button` `ghost` `sm` quadrado: 36 x 36, sem recuo lateral. */
+.unooria-chat-panel .unooria-chat-panel__action {
+  width: 36px;
+  min-width: 36px;
+  padding: 0;
+}
+
+.unooria-chat-panel .unooria-chat-panel__action--pressed {
+  background-color: var(--unooria-color-brandpurple-100);
+}
+
+/* ==========================================================================
+   Corpo: coluna lateral + conversa
+   ========================================================================== */
+
+.unooria-chat-panel__main {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.unooria-chat-panel__sidebar {
+  flex: 0 0 280px;
+  box-sizing: border-box;
+  height: 100%;
+  padding: var(--unooria-spacing-xxs);
+  border-right: 1px solid var(--unooria-chat-panel-border);
+}
+
+/* No compacto, a coluna lateral toma o lugar da conversa. */
+.unooria-chat-panel--compacto .unooria-chat-panel__sidebar {
+  flex: 1 1 auto;
+  border-right: 0;
+}
+
+.unooria-chat-panel--compacto.unooria-chat-panel--with-sidebar .unooria-chat-panel__conversation {
+  display: none;
+}
+
+.unooria-chat-panel__conversation {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.unooria-chat-panel__viewport {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.unooria-chat-panel__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  outline: none;
+  /*
+   * Sem ancoragem de rolagem do navegador: quando o conteúdo acima muda de
+   * altura (a fonte de ícones chega, uma tabela termina de montar), o Chrome
+   * corrige o `scrollTop` e dispara `scroll` ANTES do ResizeObserver — e o
+   * painel concluía que a pessoa tinha saído do fim. Quem ancora é o painel.
+   */
+  overflow-anchor: none;
+}
+
+.unooria-chat-panel__body:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--unooria-color-brandnavy-800);
+}
+
+.unooria-chat-panel__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unooria-spacing-s);
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: var(--unooria-spacing-s);
+}
+
+/* Expandido: a conversa não passa de uma coluna de leitura confortável. */
+.unooria-chat-panel--expandido .unooria-chat-panel__content,
+.unooria-chat-panel--expandido .unooria-chat-panel__footer > * {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.unooria-chat-panel__jump {
+  position: absolute;
+  left: 50%;
+  bottom: var(--unooria-spacing-s);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.unooria-chat-panel__jump-button {
+  pointer-events: auto;
+}
+
+.unooria-chat-panel .unooria-chat-panel__jump-button {
+  background-color: var(--unooria-color-neutral-50);
+  box-shadow: var(--unooria-elevation-brand-secondary);
+}
+
+.unooria-chat-panel__footer {
+  flex-shrink: 0;
+  padding: var(--unooria-spacing-xs) var(--unooria-spacing-s) var(--unooria-spacing-s);
+  border-top: 1px solid var(--unooria-chat-panel-border);
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-chat-panel--theme-dark {
+  --unooria-chat-panel-border: var(--unooria-color-neutraldark-200);
+  background-color: var(--unooria-color-neutraldark-50);
+  box-shadow: var(--unooria-elevation-neutral-2);
+  color: var(--unooria-color-neutraldark-950);
+}
+
+.unooria-chat-panel--theme-dark .unooria-chat-panel__subtitle {
+  color: var(--unooria-color-neutraldark-900);
+}
+
+.unooria-chat-panel--theme-dark .unooria-chat-panel__action--pressed {
+  background-color: var(--unooria-color-brandpurple-800);
+}
+
+.unooria-chat-panel--theme-dark .unooria-chat-panel__body:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--unooria-color-brandnavy-400);
+}
+
+.unooria-chat-panel--theme-dark .unooria-chat-panel__jump-button {
+  background-color: var(--unooria-color-neutraldark-50);
+  box-shadow: var(--unooria-elevation-neutral-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-chat-panel {
+    transition: none;
+    animation: none;
+  }
+}
