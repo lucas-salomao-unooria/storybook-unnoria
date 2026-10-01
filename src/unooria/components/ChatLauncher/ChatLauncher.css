@@ -1,0 +1,134 @@
+/**
+ * ChatLauncher - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de botão flutuante no Figma.
+ * - Círculo de 64px (`--unooria-chat-launcher-size`), acima dos 52px do
+ *   `Button` `lg`: é o único ponto de entrada do agente na tela inteira.
+ * - Fundo `neutral-50` com anel de 2px `brandpurple-300` e a sombra de marca
+ *   `elevation-brand-secondary` (a do `BottomSheet`); o mascote ocupa 56px.
+ * - Foco: anel de 2px `brandnavy-800` afastado 2px, o mesmo desenho do foco do
+ *   `Button` (contorno de 2px com recuo).
+ * - Posição por variáveis que o produto pode trocar num ancestral qualquer
+ *   (`body`, a casca do hub): `--unooria-chat-offset` (24px), `--unooria-chat-z-index`
+ *   (1000, abaixo do véu do `Modal`, 9999, para um diálogo cobrir o chat).
+ *   A área segura do aparelho (`env(safe-area-inset-*)`) soma à distância.
+ */
+
+.unooria-chat-launcher {
+  --unooria-chat-launcher-ring: var(--unooria-color-brandpurple-300);
+
+  position: fixed;
+  bottom: calc(var(--unooria-chat-offset, 24px) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--unooria-chat-z-index, 1000);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--unooria-chat-launcher-size, 64px);
+  height: var(--unooria-chat-launcher-size, 64px);
+  padding: 0;
+  border: 2px solid var(--unooria-chat-launcher-ring);
+  border-radius: var(--unooria-radius-full, 1000px);
+  background-color: var(--unooria-color-neutral-50);
+  box-shadow: var(--unooria-elevation-brand-secondary);
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.unooria-chat-launcher--bottom-right {
+  right: calc(var(--unooria-chat-offset, 24px) + env(safe-area-inset-right, 0px));
+}
+
+.unooria-chat-launcher--bottom-left {
+  left: calc(var(--unooria-chat-offset, 24px) + env(safe-area-inset-left, 0px));
+}
+
+.unooria-chat-launcher--inline {
+  position: relative;
+  bottom: auto;
+  z-index: auto;
+}
+
+/* O mascote preenche o círculo, com 2px de folga para o anel. */
+.unooria-chat-launcher .unooria-chat-launcher__avatar {
+  --unooria-avatar-size: calc(var(--unooria-chat-launcher-size, 64px) - 8px);
+  pointer-events: none;
+}
+
+.unooria-chat-launcher:hover {
+  --unooria-chat-launcher-ring: var(--unooria-color-brandpurple-500);
+  transform: translateY(-2px);
+}
+
+.unooria-chat-launcher:active {
+  transform: translateY(0);
+}
+
+.unooria-chat-launcher:focus-visible {
+  box-shadow:
+    var(--unooria-elevation-brand-secondary),
+    0 0 0 2px var(--unooria-color-neutral-50),
+    0 0 0 4px var(--unooria-color-brandnavy-800);
+}
+
+/* Aberto: o anel fica no roxo de destaque — o botão mostra que é ele que está aberto. */
+.unooria-chat-launcher--expanded {
+  --unooria-chat-launcher-ring: var(--unooria-color-brandpurple-600);
+}
+
+.unooria-chat-launcher__badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: inline-flex;
+  pointer-events: none;
+}
+
+.unooria-chat-launcher__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-chat-launcher--theme-dark {
+  --unooria-chat-launcher-ring: var(--unooria-color-brandpurple-600);
+  background-color: var(--unooria-color-neutraldark-50);
+  box-shadow: var(--unooria-elevation-neutral-2);
+}
+
+.unooria-chat-launcher--theme-dark:hover {
+  --unooria-chat-launcher-ring: var(--unooria-color-brandpurple-400);
+}
+
+.unooria-chat-launcher--theme-dark.unooria-chat-launcher--expanded {
+  --unooria-chat-launcher-ring: var(--unooria-color-brandpurple-400);
+}
+
+.unooria-chat-launcher--theme-dark:focus-visible {
+  box-shadow:
+    var(--unooria-elevation-neutral-2),
+    0 0 0 2px var(--unooria-color-neutraldark-50),
+    0 0 0 4px var(--unooria-color-brandnavy-400);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unooria-chat-launcher {
+    transition: none;
+  }
+
+  .unooria-chat-launcher:hover {
+    transform: none;
+  }
+}
