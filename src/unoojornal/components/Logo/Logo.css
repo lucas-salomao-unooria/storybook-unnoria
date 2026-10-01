@@ -1,0 +1,26 @@
+/**
+ * Estilos do Componente Logo — Design System Unoojornal
+ * Símbolo da Unooria no roxo de ação e letras na cor do texto. Todas as cores
+ * são tokens; o vetor não tem preenchimento literal.
+ */
+
+.ujn-logo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.ujn-logo__symbol {
+  fill: var(--ujn-color-action-primary);
+}
+
+.ujn-logo__wordmark {
+  fill: var(--ujn-color-text-primary);
+}
+
+/* Herda a cor do elemento pai: uma tinta só */
+.ujn-logo--tone-inherit .ujn-logo__symbol,
+.ujn-logo--tone-inherit .ujn-logo__wordmark {
+  fill: currentColor;
+}

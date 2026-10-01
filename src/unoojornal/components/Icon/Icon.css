@@ -1,0 +1,89 @@
+/**
+ * Estilos do Componente Icon — Design System Unoojornal
+ * Glifos do Material Symbols Rounded (peso 300), a biblioteca de ícones da
+ * Plataforma Unooria. O glifo é texto de ligadura: a caixa é quadrada e o
+ * excedente é cortado, para que a fonte ausente não vaze o nome do ícone.
+ */
+
+.ujn-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--ujn-icon-size-md);
+  height: var(--ujn-icon-size-md);
+  overflow: hidden;
+  vertical-align: middle;
+  font-family: var(--ujn-icon-font-family);
+  font-size: var(--ujn-icon-size-md);
+  font-style: normal;
+  font-weight: normal;
+  font-optical-sizing: auto;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-transform: none;
+  word-wrap: normal;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+  color: var(--ujn-color-icon-primary);
+  transition: color var(--ujn-transition-fast);
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ujn-icon--size-xs {
+  width: var(--ujn-icon-size-xs);
+  height: var(--ujn-icon-size-xs);
+  font-size: var(--ujn-icon-size-xs);
+}
+
+.ujn-icon--size-sm {
+  width: var(--ujn-icon-size-sm);
+  height: var(--ujn-icon-size-sm);
+  font-size: var(--ujn-icon-size-sm);
+}
+
+.ujn-icon--size-md {
+  width: var(--ujn-icon-size-md);
+  height: var(--ujn-icon-size-md);
+  font-size: var(--ujn-icon-size-md);
+}
+
+.ujn-icon--size-lg {
+  width: var(--ujn-icon-size-lg);
+  height: var(--ujn-icon-size-lg);
+  font-size: var(--ujn-icon-size-lg);
+}
+
+/* ==========================================================================
+   Tons semânticos
+   ========================================================================== */
+
+.ujn-icon--tone-primary {
+  color: var(--ujn-color-icon-primary);
+}
+
+.ujn-icon--tone-secondary {
+  color: var(--ujn-color-icon-secondary);
+}
+
+.ujn-icon--tone-accent {
+  color: var(--ujn-color-icon-accent);
+}
+
+.ujn-icon--tone-danger {
+  color: var(--ujn-color-text-danger);
+}
+
+.ujn-icon--tone-on-media {
+  color: var(--ujn-color-media-text);
+}
+
+.ujn-icon--tone-inherit {
+  color: inherit;
+}

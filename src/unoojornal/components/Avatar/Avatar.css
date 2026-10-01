@@ -1,0 +1,55 @@
+/**
+ * Estilos do Componente Avatar — Design System Unoojornal
+ * Círculo nos diâmetros `--ujn-avatar-*`. As iniciais acompanham o diâmetro:
+ * 12px (o mínimo da escala) em 24px e 32px, 16px em 48px. Um diâmetro numérico
+ * entra pela propriedade local `--ujn-avatar-size`, e o corpo das iniciais é
+ * metade dele, nunca abaixo de 12px.
+ */
+
+.ujn-avatar {
+  /* Diâmetro corrente; os degraus nomeados apontam para --ujn-avatar-* */
+  --ujn-avatar-size: var(--ujn-avatar-md);
+
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ujn-avatar-size);
+  height: var(--ujn-avatar-size);
+  overflow: hidden;
+  border-radius: var(--ujn-radius-full);
+  background-color: var(--ujn-color-background-subtle);
+  color: var(--ujn-color-text-accent);
+  font-family: var(--ujn-font-sans);
+  vertical-align: middle;
+  user-select: none;
+}
+
+.ujn-avatar--sm {
+  --ujn-avatar-size: var(--ujn-avatar-sm);
+}
+
+.ujn-avatar--md {
+  --ujn-avatar-size: var(--ujn-avatar-md);
+}
+
+.ujn-avatar--lg {
+  --ujn-avatar-size: var(--ujn-avatar-lg);
+}
+
+.ujn-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.ujn-avatar__initials {
+  font-size: max(var(--ujn-font-caption-size), calc(var(--ujn-avatar-size) / 2.5));
+  font-weight: var(--ujn-font-label-weight);
+  line-height: 1;
+  letter-spacing: var(--ujn-font-label-tracking);
+}
