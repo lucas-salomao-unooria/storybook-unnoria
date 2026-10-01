@@ -1,0 +1,128 @@
+/**
+ * Estilos do Componente CommentItem — Design System Unooblog
+ * Avatar à esquerda e coluna de conteúdo à direita. O corpo usa o degrau
+ * `body-lg` (16/24): comentário é texto curto, e a prosa de 18/28 é do post. O
+ * destaque é `background-subtle`; a resposta se recua com um filete de
+ * `border-subtle`. Sem cor solta: só tokens `--ubl-*`.
+ */
+
+.ubl-comment-item {
+  --ubl-comment-item-rule: 2px;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--ubl-spacing-m);
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--ubl-spacing-l) 0;
+  border-radius: var(--ubl-radius-m);
+  color: var(--ubl-color-text-primary);
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-comment-item--reply {
+  padding-left: var(--ubl-spacing-l);
+  border-left: var(--ubl-comment-item-rule) solid var(--ubl-color-border-subtle);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ubl-comment-item--highlighted {
+  padding-right: var(--ubl-spacing-l);
+  padding-left: var(--ubl-spacing-l);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-comment-item__avatar {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.ubl-comment-item__main {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-3xs);
+  min-width: 0;
+}
+
+.ubl-comment-item__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--ubl-spacing-xs);
+  row-gap: 0;
+}
+
+.ubl-comment-item__author {
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-weight-bold);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-comment-item__date {
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-comment-item__text {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-body-lg-weight);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ubl-comment-item__mention {
+  color: var(--ubl-color-text-accent);
+  font-weight: var(--ubl-font-label-weight);
+}
+
+.ubl-comment-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  margin-top: var(--ubl-spacing-3xs);
+  margin-left: calc(var(--ubl-spacing-xs) * -1);
+}
+
+.ubl-comment-item__like {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-4xs);
+}
+
+.ubl-comment-item__likes {
+  min-width: 1ch;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.ubl-comment-item__delete {
+  margin-left: auto;
+}
+
+.ubl-comment-item__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
