@@ -1,0 +1,244 @@
+/**
+ * Estilos do Componente PostHeader — Design System Unooblog
+ * Trilha de tópicos, série, título, subtítulo, linha do autor e capa 16:9. A
+ * raiz é o contêiner de consulta: o título cai de `heading-1` para `heading-2`
+ * abaixo de 960px e para `heading-3` abaixo de 640px, pelos tokens da escala.
+ * A coluna de texto tem a largura de leitura; a capa usa a largura inteira da
+ * raiz, até `--ubl-page-width`.
+ */
+
+.ubl-post-header {
+  box-sizing: border-box;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xxl);
+  width: 100%;
+  max-width: var(--ubl-page-width);
+  margin-inline: auto;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+  text-align: start;
+}
+
+.ubl-post-header--center {
+  text-align: center;
+}
+
+.ubl-post-header__inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-l);
+  width: 100%;
+  max-width: var(--ubl-reading-width);
+  margin-inline: auto;
+}
+
+.ubl-post-header--center .ubl-post-header__inner {
+  align-items: center;
+}
+
+/* ==========================================================================
+   Tópicos e série
+   ========================================================================== */
+
+.ubl-post-header__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ubl-spacing-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-post-header--center .ubl-post-header__topics {
+  justify-content: center;
+}
+
+.ubl-post-header__series {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  margin: 0;
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  color: var(--ubl-color-text-secondary);
+}
+
+.ubl-post-header__series strong {
+  font-weight: var(--ubl-font-label-weight);
+  color: var(--ubl-color-text-accent);
+}
+
+/* ==========================================================================
+   Título e subtítulo
+   ========================================================================== */
+
+.ubl-post-header__title {
+  margin: 0;
+  font-size: var(--ubl-font-heading-1-size);
+  font-weight: var(--ubl-font-heading-1-weight);
+  line-height: var(--ubl-font-heading-1-line);
+  letter-spacing: var(--ubl-font-heading-1-tracking);
+  color: var(--ubl-color-text-primary);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.ubl-post-header__subtitle {
+  margin: 0;
+  font-size: var(--ubl-font-lead-size);
+  font-weight: var(--ubl-font-lead-weight);
+  line-height: var(--ubl-font-lead-line);
+  letter-spacing: var(--ubl-font-lead-tracking);
+  color: var(--ubl-color-text-secondary);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   Autoria
+   ========================================================================== */
+
+.ubl-post-header__author {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-m);
+  min-width: 0;
+  padding-top: var(--ubl-spacing-xs);
+  text-align: start;
+}
+
+.ubl-post-header__authorship {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-4xs);
+  min-width: 0;
+}
+
+.ubl-post-header__byline,
+.ubl-post-header__meta {
+  margin: 0;
+}
+
+.ubl-post-header__byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ubl-spacing-xs);
+  font-size: var(--ubl-font-label-lg-size);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+}
+
+.ubl-post-header__name {
+  font-weight: var(--ubl-font-label-lg-weight);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-post-header__role {
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-label-line);
+  color: var(--ubl-color-text-secondary);
+}
+
+.ubl-post-header__role::before {
+  margin-inline-end: var(--ubl-spacing-xs);
+  content: '·';
+}
+
+.ubl-post-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs) var(--ubl-spacing-l);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+  color: var(--ubl-color-text-muted);
+}
+
+.ubl-post-header__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+}
+
+/* ==========================================================================
+   Capa
+   ========================================================================== */
+
+.ubl-post-header__cover {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xs);
+  width: 100%;
+  margin: 0;
+}
+
+.ubl-post-header__cover-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--ubl-radius-l);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-post-header__cover-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ubl-post-header__cover-caption {
+  width: 100%;
+  max-width: var(--ubl-reading-width);
+  margin-inline: auto;
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+  color: var(--ubl-color-text-muted);
+}
+
+/* ==========================================================================
+   Contêiner médio e compacto
+   ========================================================================== */
+
+@container (max-width: 959px) {
+  .ubl-post-header__title {
+    font-size: var(--ubl-font-heading-2-size);
+    font-weight: var(--ubl-font-heading-2-weight);
+    line-height: var(--ubl-font-heading-2-line);
+    letter-spacing: var(--ubl-font-heading-2-tracking);
+  }
+}
+
+@container (max-width: 639px) {
+  .ubl-post-header__inner {
+    gap: var(--ubl-spacing-m);
+  }
+
+  .ubl-post-header__title {
+    font-size: var(--ubl-font-heading-3-size);
+    font-weight: var(--ubl-font-heading-3-weight);
+    line-height: var(--ubl-font-heading-3-line);
+    letter-spacing: var(--ubl-font-heading-3-tracking);
+  }
+
+  .ubl-post-header__subtitle {
+    font-size: var(--ubl-font-body-lg-size);
+    line-height: var(--ubl-font-body-lg-line);
+  }
+
+  .ubl-post-header__cover-frame {
+    border-radius: var(--ubl-radius-m);
+  }
+}

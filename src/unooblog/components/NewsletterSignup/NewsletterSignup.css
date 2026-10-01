@@ -1,0 +1,111 @@
+/**
+ * Estilos do Componente NewsletterSignup — Design System Unooblog
+ * Cartão lavanda de cantos macios. No contêiner de 640px ou mais, o texto fica
+ * à esquerda e o formulário à direita; abaixo disso, tudo em coluna. A
+ * confirmação usa `status-success` (barra de estado) e o glifo `checkCircle`.
+ */
+
+.ubl-newsletter-signup {
+  container-type: inline-size;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--ubl-spacing-xxl);
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-xl);
+  background-color: var(--ubl-color-background-card);
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-newsletter-signup__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xl);
+  min-width: 0;
+}
+
+.ubl-newsletter-signup__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-xs);
+  min-width: 0;
+}
+
+.ubl-newsletter-signup__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ubl-avatar-lg);
+  height: var(--ubl-avatar-lg);
+  margin-bottom: var(--ubl-spacing-xs);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-newsletter-signup__title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-3-size);
+  font-weight: var(--ubl-font-heading-3-weight);
+  line-height: var(--ubl-font-heading-3-line);
+  letter-spacing: var(--ubl-font-heading-3-tracking);
+}
+
+.ubl-newsletter-signup__description {
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-body-lg-weight);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+}
+
+.ubl-newsletter-signup__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-m);
+  min-width: 0;
+}
+
+/* Confirmação: glifo e texto, na cor de sucesso do glifo e primária do texto */
+.ubl-newsletter-signup__success {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-s);
+  margin: 0;
+  padding: var(--ubl-spacing-m) var(--ubl-spacing-l);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-fill-success);
+  color: var(--ubl-color-status-success);
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-weight-semibold);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+}
+
+.ubl-newsletter-signup__success > span {
+  color: var(--ubl-color-text-primary);
+}
+
+/* A região viva ocupa espaço só quando tem conteúdo */
+.ubl-newsletter-signup__live:empty {
+  display: none;
+}
+
+@container (min-width: 640px) {
+  .ubl-newsletter-signup__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--ubl-spacing-3xl);
+  }
+
+  .ubl-newsletter-signup__live {
+    grid-column: 2;
+  }
+
+  .ubl-newsletter-signup__intro {
+    grid-row: 1 / span 2;
+  }
+}

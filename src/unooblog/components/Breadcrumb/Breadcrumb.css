@@ -1,0 +1,90 @@
+/**
+ * Estilos do Componente Breadcrumb — Design System Unooblog
+ * Lista que quebra de linha. Links em texto secundário, sublinhados no hover; a
+ * página atual em texto primário e peso maior. Cada alvo tem 44px de altura
+ * (o alvo de toque do módulo); o separador é decorativo.
+ */
+
+.ubl-breadcrumb {
+  box-sizing: border-box;
+  max-width: 100%;
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.ubl-breadcrumb__link,
+.ubl-breadcrumb__current,
+.ubl-breadcrumb__text {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0 var(--ubl-spacing-3xs);
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  overflow-wrap: anywhere;
+}
+
+.ubl-breadcrumb__link {
+  border-radius: var(--ubl-radius-xs);
+  color: var(--ubl-color-text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--ubl-transition-fast);
+}
+
+.ubl-breadcrumb__link:hover {
+  color: var(--ubl-color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ubl-breadcrumb__link:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 0;
+}
+
+.ubl-breadcrumb__text {
+  color: var(--ubl-color-text-secondary);
+}
+
+.ubl-breadcrumb__current {
+  color: var(--ubl-color-text-primary);
+  font-weight: var(--ubl-font-weight-bold);
+}
+
+.ubl-breadcrumb__separator {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-inline: var(--ubl-spacing-4xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-breadcrumb__link {
+    transition: none;
+  }
+}

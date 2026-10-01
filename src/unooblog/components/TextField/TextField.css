@@ -1,0 +1,150 @@
+/**
+ * Estilos do Componente TextField — Design System Unooblog
+ * Rótulo acima, campo com contorno de controle (gráfico ≥ 3:1) e, abaixo, a
+ * mensagem de apoio ou de erro. O foco soma 1px de `outline` ao contorno de 1px,
+ * formando o anel de 2px. Cantos macios (raio `m`), como todo campo do blog. Estas classes também servem ao `TextArea`.
+ */
+
+.ubl-text-field {
+  /* Recuo lateral do campo com glifo: 12px de folga + 20px de glifo + 8px de vão */
+  --ubl-text-field-icon-inset: calc(var(--ubl-spacing-m) + var(--ubl-icon-size-sm) + var(--ubl-spacing-xs));
+  /* Centra o glifo de 16px na linha de 18px da legenda */
+  --ubl-text-field-icon-nudge: 1px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xxs);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-text-field__label {
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-text-field__required {
+  color: var(--ubl-color-text-danger);
+}
+
+.ubl-text-field__wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ubl-text-field__icon {
+  position: absolute;
+  left: var(--ubl-spacing-m);
+  pointer-events: none;
+}
+
+.ubl-text-field__control {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ubl-touch-target);
+  margin: 0;
+  padding: var(--ubl-spacing-s) var(--ubl-spacing-m);
+  border: 1px solid var(--ubl-color-border-control);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-background-card);
+  color: var(--ubl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-body-lg-weight);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--ubl-transition-fast);
+}
+
+.ubl-text-field--with-icon .ubl-text-field__control {
+  padding-left: var(--ubl-text-field-icon-inset);
+}
+
+.ubl-text-field__control::placeholder {
+  color: var(--ubl-color-text-muted);
+  opacity: 1;
+}
+
+.ubl-text-field__control:hover:not(:disabled) {
+  border-color: var(--ubl-color-icon-primary);
+}
+
+.ubl-text-field__control:focus-visible,
+.ubl-text-field__control:focus {
+  border-color: var(--ubl-color-focus-ring);
+  outline: 1px solid var(--ubl-color-focus-ring);
+}
+
+.ubl-text-field--invalid .ubl-text-field__control,
+.ubl-text-field--invalid .ubl-text-field__control:hover:not(:disabled) {
+  border-color: var(--ubl-color-text-danger);
+}
+
+.ubl-text-field--invalid .ubl-text-field__control:focus {
+  outline-color: var(--ubl-color-text-danger);
+}
+
+.ubl-text-field--disabled .ubl-text-field__control {
+  cursor: not-allowed;
+  border-color: var(--ubl-color-border-default);
+  background-color: var(--ubl-color-background-subtle);
+  color: var(--ubl-color-text-muted);
+}
+
+.ubl-text-field--disabled .ubl-text-field__label {
+  color: var(--ubl-color-text-muted);
+}
+
+/* ==========================================================================
+   Mensagem de apoio ou de erro
+   ========================================================================== */
+
+.ubl-text-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-3xs);
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-text-field__message--error {
+  color: var(--ubl-color-text-danger);
+}
+
+.ubl-text-field__message-icon {
+  margin-top: var(--ubl-text-field-icon-nudge);
+}
+
+.ubl-text-field__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-text-field__control {
+    transition: none;
+  }
+}

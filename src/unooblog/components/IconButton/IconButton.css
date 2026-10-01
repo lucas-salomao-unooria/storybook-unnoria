@@ -1,0 +1,140 @@
+/**
+ * Estilos do Componente IconButton — Design System Unooblog
+ * Alvo circular só com glifo (raio `full`: o blog é macio). O hover e o
+ * pressionado são uma camada translúcida (`state-*`); o selo de contagem usa o
+ * roxo de ação com o rótulo `text-on-action`.
+ */
+
+.ubl-icon-button {
+  /* Arestas do pequeno e do grande: sem token (o médio é --ubl-touch-target) */
+  --ubl-icon-button-size-sm: 32px;
+  --ubl-icon-button-size-lg: 56px;
+  /* Altura do selo de contagem */
+  --ubl-icon-button-badge-size: 18px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  color: var(--ubl-color-icon-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast),
+    transform var(--ubl-transition-fast);
+}
+
+.ubl-icon-button:hover:not(:disabled) {
+  background-color: var(--ubl-color-state-hover);
+}
+
+.ubl-icon-button:active:not(:disabled) {
+  background-color: var(--ubl-color-state-pressed);
+  transform: scale(0.94);
+}
+
+.ubl-icon-button:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-icon-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   Tamanhos
+   ========================================================================== */
+
+.ubl-icon-button--sm {
+  width: var(--ubl-icon-button-size-sm);
+  height: var(--ubl-icon-button-size-sm);
+}
+
+/* O pequeno desenha 32px, mas o alvo de toque continua com 44px */
+.ubl-icon-button--sm::before {
+  content: '';
+  position: absolute;
+  inset: calc((var(--ubl-icon-button-size-sm) - var(--ubl-touch-target)) / 2);
+}
+
+.ubl-icon-button--md {
+  width: var(--ubl-touch-target);
+  height: var(--ubl-touch-target);
+}
+
+.ubl-icon-button--lg {
+  width: var(--ubl-icon-button-size-lg);
+  height: var(--ubl-icon-button-size-lg);
+}
+
+/* ==========================================================================
+   Variantes
+   ========================================================================== */
+
+.ubl-icon-button--filled {
+  background-color: var(--ubl-color-fill-field);
+  color: var(--ubl-color-icon-accent);
+}
+
+.ubl-icon-button--outline {
+  border-color: var(--ubl-color-border-control);
+}
+
+/* ==========================================================================
+   Alternância (aria-pressed): o glifo preenchido ganha o tom de destaque
+   ========================================================================== */
+
+.ubl-icon-button--pressed {
+  color: var(--ubl-color-icon-accent);
+}
+
+.ubl-icon-button--outline.ubl-icon-button--pressed {
+  border-color: var(--ubl-color-icon-accent);
+}
+
+/* ==========================================================================
+   Selo de contagem
+   ========================================================================== */
+
+.ubl-icon-button__badge {
+  position: absolute;
+  top: calc(var(--ubl-spacing-3xs) * -1);
+  right: calc(var(--ubl-spacing-3xs) * -1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--ubl-icon-button-badge-size);
+  height: var(--ubl-icon-button-badge-size);
+  padding: 0 var(--ubl-spacing-3xs);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-action-primary);
+  color: var(--ubl-color-text-on-action);
+  font-family: var(--ubl-font-sans);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: 1;
+  letter-spacing: var(--ubl-font-caption-tracking);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-icon-button {
+    transition: none;
+  }
+
+  .ubl-icon-button:active:not(:disabled) {
+    transform: none;
+  }
+}

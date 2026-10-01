@@ -1,0 +1,37 @@
+/**
+ * Estilos do Componente TopicCloud — Design System Unooblog
+ * Região com título opcional e chips em fluxo (cápsulas, em `TopicChip`).
+ */
+
+.ubl-topic-cloud {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-m);
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-topic-cloud__title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-topic-cloud__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ubl-spacing-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-topic-cloud__item {
+  display: flex;
+  min-width: 0;
+}

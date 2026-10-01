@@ -1,0 +1,27 @@
+/**
+ * Estilos do Componente ShareBar — Design System Unooblog
+ * Os botões são IconButtons (≥ 44px); a barra só os alinha. Na vertical, a
+ * barra fica fixa abaixo do cabeçalho do site e não estica na linha da grade.
+ */
+
+.ubl-share-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-share-bar--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ubl-share-bar--vertical {
+  position: sticky;
+  top: calc(var(--ubl-site-header-height) + var(--ubl-spacing-xxl));
+  flex-direction: column;
+  align-self: flex-start;
+  width: max-content;
+}

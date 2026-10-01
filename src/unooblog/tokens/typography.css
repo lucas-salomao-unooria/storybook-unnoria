@@ -1,0 +1,245 @@
+/* ==========================================================================
+   Tokens de Tipografia — Design System Unooblog
+   Família e escala da Plataforma Unooria (`src/unooria/tokens/typography.css`):
+   Open Sans, com tamanhos e alturas de linha nos degraus da escala Unooria
+   (valores de área de trabalho, a primeira declaração da origem). O comentário
+   de cada linha nomeia o token de origem. Sem letter-spacing, como na escala da
+   plataforma: as variáveis `-tracking` existem apenas para que o componente
+   nunca invente um valor. Nenhum corpo abaixo de 12px.
+
+   ARQUIVO GERADO da mesma tabela que `typography.ts`
+   (`scripts/gerar-tokens-unooblog.mjs`).
+   ========================================================================== */
+
+:root {
+  /* Famílias */
+  --ubl-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Pilha monoespaçada do sistema: a Unooria não publica fonte monoespaçada */
+  --ubl-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* Biblioteca de ícones da Plataforma Unooria (--unooria-icon-font-family) */
+  --ubl-icon-font-family: 'Material Symbols Rounded', sans-serif;
+
+  /* Pesos */
+  --ubl-font-weight-regular: 400; /* --unooria-weight-regular */
+  --ubl-font-weight-medium: 500; /* --unooria-weight-medium */
+  --ubl-font-weight-semibold: 600; /* --unooria-weight-semibold */
+  --ubl-font-weight-bold: 700; /* --unooria-weight-bold */
+
+  /* Display — Título do post em destaque na capa do blog. */
+  --ubl-font-display-size: 60px; /* --unooria-size-heading-4xl */
+  --ubl-font-display-weight: 700; /* --unooria-weight-bold */
+  --ubl-font-display-line: 78px; /* --unooria-line-height-heading-4xl */
+  --ubl-font-display-tracking: 0px;
+
+  /* Heading/1 — Título do post aberto (h1). */
+  --ubl-font-heading-1-size: 48px; /* --unooria-size-heading-xxxl */
+  --ubl-font-heading-1-weight: 700; /* --unooria-weight-bold */
+  --ubl-font-heading-1-line: 64px; /* --unooria-line-height-heading-xxxl */
+  --ubl-font-heading-1-tracking: 0px;
+
+  /* Heading/2 — Título de seção do post (h2) e da página. */
+  --ubl-font-heading-2-size: 34px; /* --unooria-size-heading-xxl */
+  --ubl-font-heading-2-weight: 700; /* --unooria-weight-bold */
+  --ubl-font-heading-2-line: 48px; /* --unooria-line-height-heading-xxl */
+  --ubl-font-heading-2-tracking: 0px;
+
+  /* Heading/3 — Subtítulo de seção do post (h3) e título de cartão em destaque. */
+  --ubl-font-heading-3-size: 24px; /* --unooria-size-title-xl */
+  --ubl-font-heading-3-weight: 700; /* --unooria-weight-bold */
+  --ubl-font-heading-3-line: 34px; /* --unooria-line-height-title-xl */
+  --ubl-font-heading-3-tracking: 0px;
+
+  /* Heading/4 — Título de cartão, de série e de autor (h4). */
+  --ubl-font-heading-4-size: 20px; /* --unooria-size-title-l */
+  --ubl-font-heading-4-weight: 600; /* --unooria-weight-semibold */
+  --ubl-font-heading-4-line: 30px; /* --unooria-line-height-title-l */
+  --ubl-font-heading-4-tracking: 0px;
+
+  /* Lead — Subtítulo do post sob o título. */
+  --ubl-font-lead-size: 20px; /* --unooria-size-title-l */
+  --ubl-font-lead-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-lead-line: 30px; /* --unooria-line-height-title-l */
+  --ubl-font-lead-tracking: 0px;
+
+  /* Prose — Corpo do post: parágrafos, listas e comentários. */
+  --ubl-font-prose-size: 18px; /* --unooria-size-body-m */
+  --ubl-font-prose-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-prose-line: 28px; /* --unooria-line-height-body-m */
+  --ubl-font-prose-tracking: 0px;
+
+  /* Body/Large — Resumo do cartão, campos e texto de caixas. */
+  --ubl-font-body-lg-size: 16px; /* --unooria-size-body-s */
+  --ubl-font-body-lg-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-body-lg-line: 24px; /* --unooria-line-height-body-s */
+  --ubl-font-body-lg-tracking: 0px;
+
+  /* Body/Medium — Metadados, legenda e texto de apoio. */
+  --ubl-font-body-md-size: 14px; /* --unooria-size-body-xs */
+  --ubl-font-body-md-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-body-md-line: 20px; /* --unooria-line-height-body-xs */
+  --ubl-font-body-md-tracking: 0px;
+
+  /* Quote — Citação em bloco (itálico). */
+  --ubl-font-quote-size: 24px; /* --unooria-size-title-xl */
+  --ubl-font-quote-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-quote-line: 34px; /* --unooria-line-height-title-xl */
+  --ubl-font-quote-tracking: 0px;
+
+  /* Label/Large — Rótulo de botão. */
+  --ubl-font-label-lg-size: 16px; /* --unooria-size-body-s */
+  --ubl-font-label-lg-weight: 600; /* --unooria-weight-semibold */
+  --ubl-font-label-lg-line: 24px; /* --unooria-line-height-body-s */
+  --ubl-font-label-lg-tracking: 0px;
+
+  /* Label — Navegação, chips, abas e ações de texto. */
+  --ubl-font-label-size: 14px; /* --unooria-size-body-xs */
+  --ubl-font-label-weight: 600; /* --unooria-weight-semibold */
+  --ubl-font-label-line: 20px; /* --unooria-line-height-body-xs */
+  --ubl-font-label-tracking: 0px;
+
+  /* Caption — Data, contagem e direitos autorais. */
+  --ubl-font-caption-size: 12px; /* --unooria-size-body-xxs */
+  --ubl-font-caption-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-caption-line: 18px; /* --unooria-line-height-body-xxs */
+  --ubl-font-caption-tracking: 0px;
+
+  /* Caption/Strong — Selo, contagem destacada e rótulo de tópico. */
+  --ubl-font-caption-strong-size: 12px; /* --unooria-size-body-xxs */
+  --ubl-font-caption-strong-weight: 600; /* --unooria-weight-semibold */
+  --ubl-font-caption-strong-line: 18px; /* --unooria-line-height-body-xxs */
+  --ubl-font-caption-strong-tracking: 0px;
+
+  /* Code — Código em bloco e em linha (pilha monoespaçada do sistema). */
+  --ubl-font-code-size: 14px; /* --unooria-size-body-xs */
+  --ubl-font-code-weight: 400; /* --unooria-weight-regular */
+  --ubl-font-code-line: 20px; /* --unooria-line-height-body-xs */
+  --ubl-font-code-tracking: 0px;
+
+}
+
+/* ==========================================================================
+   Classes utilitárias
+   ========================================================================== */
+
+.ubl-text {
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+  margin: 0;
+}
+
+.ubl-text--display {
+  font-size: var(--ubl-font-display-size);
+  font-weight: var(--ubl-font-display-weight);
+  line-height: var(--ubl-font-display-line);
+  letter-spacing: var(--ubl-font-display-tracking);
+}
+
+.ubl-text--heading-1 {
+  font-size: var(--ubl-font-heading-1-size);
+  font-weight: var(--ubl-font-heading-1-weight);
+  line-height: var(--ubl-font-heading-1-line);
+  letter-spacing: var(--ubl-font-heading-1-tracking);
+}
+
+.ubl-text--heading-2 {
+  font-size: var(--ubl-font-heading-2-size);
+  font-weight: var(--ubl-font-heading-2-weight);
+  line-height: var(--ubl-font-heading-2-line);
+  letter-spacing: var(--ubl-font-heading-2-tracking);
+}
+
+.ubl-text--heading-3 {
+  font-size: var(--ubl-font-heading-3-size);
+  font-weight: var(--ubl-font-heading-3-weight);
+  line-height: var(--ubl-font-heading-3-line);
+  letter-spacing: var(--ubl-font-heading-3-tracking);
+}
+
+.ubl-text--heading-4 {
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-text--lead {
+  font-size: var(--ubl-font-lead-size);
+  font-weight: var(--ubl-font-lead-weight);
+  line-height: var(--ubl-font-lead-line);
+  letter-spacing: var(--ubl-font-lead-tracking);
+}
+
+.ubl-text--prose {
+  font-size: var(--ubl-font-prose-size);
+  font-weight: var(--ubl-font-prose-weight);
+  line-height: var(--ubl-font-prose-line);
+  letter-spacing: var(--ubl-font-prose-tracking);
+}
+
+.ubl-text--body-lg {
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-body-lg-weight);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+}
+
+.ubl-text--body-md {
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+.ubl-text--quote {
+  font-size: var(--ubl-font-quote-size);
+  font-weight: var(--ubl-font-quote-weight);
+  line-height: var(--ubl-font-quote-line);
+  letter-spacing: var(--ubl-font-quote-tracking);
+  font-style: italic;
+}
+
+.ubl-text--label-lg {
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+}
+
+.ubl-text--label {
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-text--caption {
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-text--caption-strong {
+  font-size: var(--ubl-font-caption-strong-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: var(--ubl-font-caption-strong-line);
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+}
+
+.ubl-text--code {
+  font-family: var(--ubl-font-mono);
+  font-size: var(--ubl-font-code-size);
+  font-weight: var(--ubl-font-code-weight);
+  line-height: var(--ubl-font-code-line);
+  letter-spacing: var(--ubl-font-code-tracking);
+}
+
+.ubl-text--secondary {
+  color: var(--ubl-color-text-secondary);
+}
+
+.ubl-text--accent {
+  color: var(--ubl-color-text-accent);
+}

@@ -1,0 +1,90 @@
+/**
+ * Estilos do Componente CommentThread — Design System Unooblog
+ * Seção de comentários: título com selo de contagem, lista sem marcadores e
+ * respostas numa lista aninhada, recuada pela largura do avatar mais o vão. Os
+ * comentários se separam por fios de 1px em `border-subtle`; o compositor de
+ * resposta abre sob o comentário respondido. Sem cor solta: só tokens `--ubl-*`.
+ */
+
+.ubl-comment-thread {
+  /* Recuo das respostas: o avatar `md` mais o vão até o texto */
+  --ubl-comment-thread-reply-inset: calc(var(--ubl-avatar-md) + var(--ubl-spacing-m));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-l);
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-comment-thread__header {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+}
+
+.ubl-comment-thread__title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-comment-thread__list,
+.ubl-comment-thread__replies {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-comment-thread__entry {
+  margin: 0;
+  padding: 0;
+}
+
+/* Fio entre os comentários-raiz (e a sua família de respostas) */
+.ubl-comment-thread__list > .ubl-comment-thread__entry + .ubl-comment-thread__entry {
+  border-top: 1px solid var(--ubl-color-border-subtle);
+}
+
+.ubl-comment-thread__replies {
+  margin-left: var(--ubl-comment-thread-reply-inset);
+  padding-bottom: var(--ubl-spacing-xs);
+}
+
+.ubl-comment-thread__replies > .ubl-comment-thread__entry > .ubl-comment-item {
+  padding-top: var(--ubl-spacing-s);
+  padding-bottom: var(--ubl-spacing-s);
+}
+
+.ubl-comment-thread__composer {
+  margin: 0 0 var(--ubl-spacing-s);
+  padding: var(--ubl-spacing-m);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-background-card);
+}
+
+.ubl-comment-thread__list .ubl-comment-thread__composer {
+  margin-left: var(--ubl-comment-thread-reply-inset);
+}
+
+.ubl-comment-thread__replies .ubl-comment-thread__composer {
+  margin-left: 0;
+}
+
+.ubl-comment-thread__empty {
+  margin: 0;
+  padding: var(--ubl-spacing-xxl) var(--ubl-spacing-l);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-background-card);
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-body-lg-weight);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+  text-align: center;
+}

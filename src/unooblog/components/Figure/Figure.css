@@ -1,0 +1,65 @@
+/**
+ * Estilos do Componente Figure — Design System Unooblog
+ * Quadro 16:9 de cantos macios, legenda abaixo e crédito em linha própria. Sem
+ * sombra: a imagem se separa da página pela própria tinta. Com `--wide`, a
+ * margem negativa estende a figura além da coluna de leitura, até o menor entre
+ * a largura do contêiner (`cqi`) e `--ubl-page-width`; sem contêiner, `cqi`
+ * cai para a largura da janela. Nunca vira margem positiva.
+ */
+
+.ubl-figure {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xs);
+  width: 100%;
+  margin: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-figure--wide {
+  width: auto;
+  margin-inline: min(0px, calc((100% - min(100cqi, var(--ubl-page-width))) / 2));
+}
+
+.ubl-figure__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-background-subtle);
+}
+
+.ubl-figure__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ubl-figure__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-4xs);
+  max-width: var(--ubl-reading-width);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.ubl-figure__text {
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  color: var(--ubl-color-text-secondary);
+}
+
+.ubl-figure__credit {
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+  color: var(--ubl-color-text-muted);
+}

@@ -1,0 +1,166 @@
+/**
+ * Estilos do Componente TableOfContents — Design System Unooblog
+ * Sidebar: coluna sticky de --ubl-toc-width, título "Neste post" em rótulo e uma
+ * trilha vertical de 2px em border-subtle; o item ativo leva a barra de 2px em
+ * action-primary por cima da trilha, texto primário e peso maior. Nível 3 recuado.
+ * Inline: <details> recolhível em cartão lavanda, com o chevron girando ao abrir.
+ * A altura de cada link é 36px na sidebar (só aparece no largo, com ponteiro) e
+ * 44px no bloco inline (toque).
+ */
+
+.ubl-toc {
+  box-sizing: border-box;
+  font-family: var(--ubl-font-sans);
+  /* Distância do topo em que a coluna gruda: abaixo do cabeçalho do site */
+  --ubl-toc-sticky-top: calc(var(--ubl-site-header-height) + var(--ubl-spacing-xxl));
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.ubl-toc--sidebar {
+  position: sticky;
+  top: var(--ubl-toc-sticky-top);
+  width: var(--ubl-toc-width);
+  max-width: 100%;
+  max-height: calc(100vh - var(--ubl-toc-sticky-top) - var(--ubl-spacing-xxl));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ubl-color-border-default) transparent;
+}
+
+.ubl-toc--sidebar .ubl-toc__title {
+  margin: 0 0 var(--ubl-spacing-m);
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-weight-bold);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+/* ==========================================================================
+   Lista e links (comuns às duas variantes)
+   ========================================================================== */
+
+.ubl-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-toc__item {
+  margin: 0;
+  padding: 0;
+}
+
+.ubl-toc__link {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: calc(var(--ubl-touch-target) - var(--ubl-spacing-xs));
+  margin: 0;
+  padding: var(--ubl-spacing-3xs) var(--ubl-spacing-m);
+  border-inline-start: 2px solid var(--ubl-color-border-subtle);
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast);
+}
+
+.ubl-toc__link--level-3 {
+  padding-inline-start: var(--ubl-spacing-xxl);
+}
+
+.ubl-toc__link:hover {
+  background-color: var(--ubl-color-state-hover);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-toc__link:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.ubl-toc__link--active,
+.ubl-toc__link--active:hover {
+  border-inline-start-color: var(--ubl-color-action-primary);
+  color: var(--ubl-color-text-primary);
+  font-weight: var(--ubl-font-weight-bold);
+}
+
+/* ==========================================================================
+   Inline (recolhível)
+   ========================================================================== */
+
+.ubl-toc--inline .ubl-toc__details {
+  box-sizing: border-box;
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-m);
+  background-color: var(--ubl-color-background-card);
+}
+
+.ubl-toc--inline .ubl-toc__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+  min-height: var(--ubl-touch-target);
+  padding: 0 var(--ubl-spacing-l);
+  border-radius: var(--ubl-radius-m);
+  color: var(--ubl-color-text-primary);
+  list-style: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ubl-toc--inline .ubl-toc__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ubl-toc--inline .ubl-toc__summary:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-toc--inline .ubl-toc__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+}
+
+.ubl-toc__chevron {
+  display: inline-flex;
+  transition: transform var(--ubl-transition-base);
+}
+
+.ubl-toc__details[open] .ubl-toc__chevron {
+  transform: rotate(180deg);
+}
+
+.ubl-toc--inline .ubl-toc__list {
+  padding: var(--ubl-spacing-3xs) var(--ubl-spacing-l) var(--ubl-spacing-l);
+}
+
+.ubl-toc--inline .ubl-toc__link {
+  min-height: var(--ubl-touch-target);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-toc__link,
+  .ubl-toc__chevron {
+    transition: none;
+  }
+}

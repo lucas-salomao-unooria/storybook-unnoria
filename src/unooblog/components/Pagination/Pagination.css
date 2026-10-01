@@ -1,0 +1,123 @@
+/**
+ * Estilos do Componente Pagination — Design System Unooblog
+ * Botões de 44px (alvo de toque) em cápsula: o blog é macio. As setas (IconButton outline) e o hover dos números usam o contorno de controle (`border-control`).
+ * A página atual é o preenchimento de ação. Larga: lista de números. Compacta
+ * (contêiner abaixo de 640px): "Página N de M" entre as duas setas.
+ */
+
+.ubl-pagination {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--ubl-font-sans);
+}
+
+.ubl-pagination__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ubl-spacing-xs);
+  margin: 0;
+  padding: var(--ubl-spacing-xs) 0;
+  list-style: none;
+}
+
+.ubl-pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.ubl-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--ubl-touch-target);
+  height: var(--ubl-touch-target);
+  margin: 0;
+  padding: 0 var(--ubl-spacing-xs);
+  border: 1px solid transparent;
+  border-radius: var(--ubl-radius-full);
+  background: none;
+  color: var(--ubl-color-text-primary);
+  font-family: inherit;
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-weight-medium);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ubl-transition-fast),
+    border-color var(--ubl-transition-fast),
+    color var(--ubl-transition-fast);
+}
+
+.ubl-pagination__page:hover {
+  background-color: var(--ubl-color-state-hover);
+  border-color: var(--ubl-color-border-control);
+}
+
+.ubl-pagination__page:active {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-pagination__page:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-pagination__page--current,
+.ubl-pagination__page--current:hover {
+  border-color: var(--ubl-color-action-primary);
+  background-color: var(--ubl-color-action-primary);
+  color: var(--ubl-color-text-on-action);
+  font-weight: var(--ubl-font-weight-bold);
+  cursor: default;
+}
+
+.ubl-pagination__dots {
+  min-width: var(--ubl-spacing-xxl);
+  color: var(--ubl-color-text-muted);
+  font-size: var(--ubl-font-label-lg-size);
+  line-height: var(--ubl-font-label-lg-line);
+  user-select: none;
+}
+
+/* O resumo só aparece no compacto */
+.ubl-pagination__summary {
+  display: none;
+  min-width: 0;
+  padding-inline: var(--ubl-spacing-xs);
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  white-space: nowrap;
+}
+
+@container (max-width: 639px) {
+  .ubl-pagination__item--page {
+    display: none;
+  }
+
+  .ubl-pagination__summary {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .ubl-pagination__list {
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-pagination__page {
+    transition: none;
+  }
+}

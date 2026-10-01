@@ -1,0 +1,78 @@
+/**
+ * Estilos do Componente Blockquote — Design System Unooblog
+ * `quote`: filete de 4px em action-primary à esquerda e itálico `quote`.
+ * `pull`: centralizada, em `heading-2` itálico (cai para `heading-3` abaixo de
+ * 640px de contêiner), com fios finos acima e abaixo. Plana: sem sombra.
+ */
+
+.ubl-blockquote {
+  container-type: inline-size;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-m);
+  width: 100%;
+  margin: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-blockquote__text {
+  margin: 0;
+  font-size: var(--ubl-font-quote-size);
+  font-style: italic;
+  font-weight: var(--ubl-font-quote-weight);
+  line-height: var(--ubl-font-quote-line);
+  letter-spacing: var(--ubl-font-quote-tracking);
+  color: var(--ubl-color-text-primary);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.ubl-blockquote__cite {
+  font-size: var(--ubl-font-label-size);
+  font-style: normal;
+  font-weight: var(--ubl-font-label-weight);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+  color: var(--ubl-color-text-secondary);
+}
+
+/* ==========================================================================
+   Variante quote
+   ========================================================================== */
+
+.ubl-blockquote--quote {
+  padding: var(--ubl-spacing-xs) 0 var(--ubl-spacing-xs) var(--ubl-spacing-xxl);
+  border-inline-start: var(--ubl-spacing-3xs) solid var(--ubl-color-action-primary);
+}
+
+/* ==========================================================================
+   Variante pull
+   ========================================================================== */
+
+.ubl-blockquote--pull {
+  align-items: center;
+  padding: var(--ubl-spacing-xxl) 0;
+  border-block: 1px solid var(--ubl-color-border-subtle);
+  text-align: center;
+}
+
+.ubl-blockquote__mark {
+  display: inline-flex;
+}
+
+.ubl-blockquote--pull .ubl-blockquote__text {
+  max-width: var(--ubl-reading-width);
+  font-size: var(--ubl-font-heading-2-size);
+  line-height: var(--ubl-font-heading-2-line);
+  letter-spacing: var(--ubl-font-heading-2-tracking);
+}
+
+@container (max-width: 639px) {
+  .ubl-blockquote--pull .ubl-blockquote__text {
+    font-size: var(--ubl-font-heading-3-size);
+    line-height: var(--ubl-font-heading-3-line);
+    letter-spacing: var(--ubl-font-heading-3-tracking);
+  }
+}

@@ -1,0 +1,74 @@
+/**
+ * Estilos do Componente PostMeta — Design System Unooblog
+ * Autoria em negrito (`label`), data, tempo de leitura e comentários em
+ * `caption`. As duas cores são variáveis locais: o cartão em destaque as
+ * redefine para o texto branco sobre a capa.
+ */
+
+.ubl-post-meta {
+  --ubl-post-meta-author: var(--ubl-color-text-primary);
+  --ubl-post-meta-detail: var(--ubl-color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-xs);
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-post-meta-detail);
+}
+
+.ubl-post-meta--stacked {
+  gap: var(--ubl-spacing-m);
+}
+
+.ubl-post-meta__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--ubl-spacing-xs);
+  min-width: 0;
+}
+
+.ubl-post-meta--stacked .ubl-post-meta__text {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.ubl-post-meta__author {
+  color: var(--ubl-post-meta-author);
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-weight-bold);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-post-meta__details {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--ubl-spacing-xs);
+  color: var(--ubl-post-meta-detail);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-post-meta__comments {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+}
+
+.ubl-post-meta__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

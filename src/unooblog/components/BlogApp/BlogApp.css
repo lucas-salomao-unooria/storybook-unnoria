@@ -1,0 +1,461 @@
+/**
+ * Estilos do Componente BlogApp — Design System Unooblog
+ * Só o arranjo das telas: cada peça (cabeçalho, cartões, post, comentários,
+ * camadas) traz o próprio estilo. O app ocupa o contêiner posicionado mais
+ * próximo — a tela do `PhoneFrame` ou do `DesktopFrame` — e se arranja por
+ * CONTÊINER, não por janela: o post ganha o sumário ao lado do texto a partir
+ * de 960px, e abaixo de 640px os filtros de tópico rolam na horizontal.
+ * Variáveis CSS não entram em `@container`, por isso os pontos de quebra (960px
+ * largo, 640px compacto) constam aqui como literais, como em `spacing.css`.
+ */
+
+.ubl-blog-app {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container: ubl-blog / inline-size;
+  background-color: var(--ubl-color-background-page);
+  color: var(--ubl-color-text-primary);
+  font-family: var(--ubl-font-sans);
+}
+
+/* A casca soma a área segura superior; as camadas (diálogo, folha, aviso) cobrem a tela inteira */
+.ubl-blog-app__shell {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: var(--ubl-safe-area-top);
+  background-color: var(--ubl-color-background-page);
+}
+
+/* A faixa de progresso de leitura cobre o topo da tela, acima do cabeçalho */
+.ubl-blog-app__progress {
+  position: absolute;
+  top: var(--ubl-safe-area-top);
+  right: 0;
+  left: 0;
+  z-index: var(--ubl-z-progress);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Rolagem da tela
+   ========================================================================== */
+
+.ubl-blog-app__main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+  padding-bottom: var(--ubl-safe-area-bottom);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ubl-color-border-default) transparent;
+}
+
+/* Recebem o foco por programa ao trocar de tela (a tela, o título, os intertítulos e a seção
+   de comentários); não são alvos do teclado, então não desenham contorno */
+.ubl-blog-app__main:focus,
+.ubl-blog-app [tabindex='-1']:focus {
+  outline: none;
+}
+
+.ubl-blog-app__page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.ubl-blog-app__screen {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Largura da página: a mesma régua do cabeçalho do site
+   ========================================================================== */
+
+.ubl-blog-app__wrap {
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: max(var(--ubl-gutter), calc((100% - var(--ubl-page-width)) / 2));
+}
+
+.ubl-blog-app__screen-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-4xl);
+  padding-block: var(--ubl-spacing-xxl) var(--ubl-spacing-5xl);
+}
+
+/* A trilha de navegação pertence ao título logo abaixo dela: aproxima os dois */
+.ubl-blog-app__screen-body > .ubl-breadcrumb {
+  margin-bottom: calc(-1 * var(--ubl-spacing-xl));
+}
+
+.ubl-blog-app__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Títulos de tela e de seção
+   ========================================================================== */
+
+.ubl-blog-app__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-l);
+  max-width: calc(var(--ubl-reading-width) + var(--ubl-spacing-5xl));
+  padding-top: var(--ubl-spacing-xl);
+}
+
+.ubl-blog-app__display,
+.ubl-blog-app__page-title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-display-size);
+  font-weight: var(--ubl-font-display-weight);
+  line-height: var(--ubl-font-display-line);
+  letter-spacing: var(--ubl-font-display-tracking);
+  text-wrap: balance;
+}
+
+.ubl-blog-app__page-title {
+  font-size: var(--ubl-font-heading-1-size);
+  font-weight: var(--ubl-font-heading-1-weight);
+  line-height: var(--ubl-font-heading-1-line);
+  letter-spacing: var(--ubl-font-heading-1-tracking);
+}
+
+.ubl-blog-app__lead {
+  max-width: var(--ubl-reading-width);
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-lead-size);
+  font-weight: var(--ubl-font-lead-weight);
+  line-height: var(--ubl-font-lead-line);
+  letter-spacing: var(--ubl-font-lead-tracking);
+}
+
+.ubl-blog-app__page-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-m);
+}
+
+.ubl-blog-app__status {
+  min-height: var(--ubl-font-body-md-line);
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+.ubl-blog-app__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xl);
+  min-width: 0;
+}
+
+.ubl-blog-app__section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ubl-spacing-xs) var(--ubl-spacing-l);
+}
+
+.ubl-blog-app__section-title {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-2-size);
+  font-weight: var(--ubl-font-heading-2-weight);
+  line-height: var(--ubl-font-heading-2-line);
+  letter-spacing: var(--ubl-font-heading-2-tracking);
+}
+
+@container ubl-blog (max-width: 959px) {
+  .ubl-blog-app__display {
+    font-size: var(--ubl-font-heading-1-size);
+    font-weight: var(--ubl-font-heading-1-weight);
+    line-height: var(--ubl-font-heading-1-line);
+    letter-spacing: var(--ubl-font-heading-1-tracking);
+  }
+
+  .ubl-blog-app__page-title {
+    font-size: var(--ubl-font-heading-2-size);
+    font-weight: var(--ubl-font-heading-2-weight);
+    line-height: var(--ubl-font-heading-2-line);
+    letter-spacing: var(--ubl-font-heading-2-tracking);
+  }
+}
+
+@container ubl-blog (max-width: 639px) {
+  .ubl-blog-app__screen-body {
+    gap: var(--ubl-spacing-3xl);
+    padding-block: var(--ubl-spacing-l) var(--ubl-spacing-4xl);
+  }
+
+  .ubl-blog-app__intro {
+    padding-top: var(--ubl-spacing-xs);
+  }
+
+  .ubl-blog-app__display {
+    font-size: var(--ubl-font-heading-2-size);
+    font-weight: var(--ubl-font-heading-2-weight);
+    line-height: var(--ubl-font-heading-2-line);
+    letter-spacing: var(--ubl-font-heading-2-tracking);
+  }
+
+  .ubl-blog-app__page-title {
+    font-size: var(--ubl-font-heading-3-size);
+    font-weight: var(--ubl-font-heading-3-weight);
+    line-height: var(--ubl-font-heading-3-line);
+    letter-spacing: var(--ubl-font-heading-3-tracking);
+  }
+
+  .ubl-blog-app__lead {
+    font-size: var(--ubl-font-body-lg-size);
+    line-height: var(--ubl-font-body-lg-line);
+  }
+
+  .ubl-blog-app__section-title {
+    font-size: var(--ubl-font-heading-3-size);
+    font-weight: var(--ubl-font-heading-3-weight);
+    line-height: var(--ubl-font-heading-3-line);
+    letter-spacing: var(--ubl-font-heading-3-tracking);
+  }
+}
+
+/* ==========================================================================
+   Tópicos: nuvem em fluxo; no compacto, uma faixa que rola na horizontal
+   ========================================================================== */
+
+.ubl-blog-app__topics {
+  min-width: 0;
+}
+
+.ubl-blog-app__topics--large .ubl-topic-cloud__list {
+  gap: var(--ubl-spacing-m);
+}
+
+@container ubl-blog (max-width: 639px) {
+  .ubl-blog-app__topics:not(.ubl-blog-app__topics--large) .ubl-topic-cloud__list {
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--ubl-gutter));
+    padding: var(--ubl-spacing-4xs) var(--ubl-gutter) var(--ubl-spacing-xs);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ubl-color-border-default) transparent;
+  }
+
+  .ubl-blog-app__topics:not(.ubl-blog-app__topics--large) .ubl-topic-cloud__item {
+    flex-shrink: 0;
+  }
+}
+
+.ubl-blog-app__definitions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ubl-spacing-l);
+  max-width: var(--ubl-reading-width);
+  margin: 0;
+}
+
+.ubl-blog-app__definition {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-3xs);
+  padding-top: var(--ubl-spacing-l);
+  border-top: 1px solid var(--ubl-color-border-subtle);
+}
+
+.ubl-blog-app__definition dt {
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-label-lg-size);
+  font-weight: var(--ubl-font-label-lg-weight);
+  line-height: var(--ubl-font-label-lg-line);
+  letter-spacing: var(--ubl-font-label-lg-tracking);
+}
+
+.ubl-blog-app__definition dd {
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+/* ==========================================================================
+   Listas: posts, séries, autoria
+   ========================================================================== */
+
+.ubl-blog-app__post-item {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ubl-blog-app__post-item > .ubl-post-card {
+  flex: 1 1 auto;
+}
+
+/* O botão de remover ocupa o lugar do de salvar, no canto inferior do cartão */
+.ubl-blog-app__remove {
+  position: absolute;
+  right: var(--ubl-spacing-xs);
+  bottom: var(--ubl-spacing-xs);
+  z-index: 2;
+}
+
+.ubl-blog-app__series-list,
+.ubl-blog-app__author-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ubl-spacing-l);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ubl-blog-app__series-item,
+.ubl-blog-app__author-item {
+  display: flex;
+  min-width: 0;
+}
+
+.ubl-blog-app__series-item > *,
+.ubl-blog-app__author-item > * {
+  flex: 1 1 auto;
+}
+
+@container ubl-blog (min-width: 640px) {
+  .ubl-blog-app__series-list,
+  .ubl-blog-app__author-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ubl-spacing-xxl);
+  }
+}
+
+.ubl-blog-app__toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Busca
+   ========================================================================== */
+
+.ubl-blog-app__search {
+  max-width: var(--ubl-reading-width);
+}
+
+.ubl-blog-app__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ubl-spacing-xs);
+}
+
+/* ==========================================================================
+   Newsletter
+   ========================================================================== */
+
+.ubl-blog-app__newsletter {
+  width: 100%;
+  max-width: calc(var(--ubl-reading-width) + var(--ubl-spacing-5xl));
+}
+
+/* ==========================================================================
+   Post
+   ========================================================================== */
+
+.ubl-blog-app__post-frame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-xl);
+  width: 100%;
+  min-width: 0;
+}
+
+.ubl-blog-app__post-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ubl-spacing-4xl);
+  min-width: 0;
+}
+
+/* A coluna de leitura: sumário, reações, texto, autoria, navegação e comentários */
+.ubl-blog-app__post-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ubl-spacing-3xl);
+  width: 100%;
+  min-width: 0;
+  max-width: var(--ubl-reading-width);
+  margin-inline: auto;
+}
+
+.ubl-blog-app__post-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ubl-spacing-m);
+  padding-block: var(--ubl-spacing-xs);
+  border-block: 1px solid var(--ubl-color-border-subtle);
+}
+
+/* A coluna do sumário se estica por toda a grade: é o que dá ao sumário fixo onde "grudar" */
+.ubl-blog-app__post-aside {
+  min-width: 0;
+}
+
+/* Largo: a trilha, o cabeçalho e o texto compartilham a borda esquerda, e o sumário fica ao lado */
+@container ubl-blog (min-width: 960px) {
+  .ubl-blog-app__post-frame {
+    max-width: calc(var(--ubl-reading-width) + var(--ubl-spacing-4xl) + var(--ubl-toc-width));
+    margin-inline: auto;
+  }
+
+  .ubl-blog-app__post-grid {
+    grid-template-columns: minmax(0, var(--ubl-reading-width)) var(--ubl-toc-width);
+  }
+
+  .ubl-blog-app__post-main {
+    margin-inline: 0;
+  }
+
+  .ubl-blog-app__post .ubl-post-header__inner,
+  .ubl-blog-app__post .ubl-post-header__cover-caption {
+    margin-inline: 0;
+  }
+}
+
+@container ubl-blog (max-width: 639px) {
+  .ubl-blog-app__post-main {
+    gap: var(--ubl-spacing-xxl);
+  }
+
+  .ubl-blog-app__post-grid {
+    gap: var(--ubl-spacing-xxl);
+  }
+}

@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente Modal — Design System Unooblog
+ * Diálogo centrado na tela do aparelho ou do quadro de navegador (nunca na
+ * janela): véu `overlay-scrim`, cartão em `background-elevated` com `radius-l` (cantos macios) e
+ * `--ubl-elevation-overlay`. Cabeçalho, corpo rolável e rodapé de ações.
+ */
+
+.ubl-modal-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ubl-z-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--ubl-spacing-xxl) var(--ubl-gutter);
+  background-color: var(--ubl-color-overlay-scrim);
+  animation: ubl-modal-fade var(--ubl-transition-base);
+}
+
+.ubl-modal-layer--dismissable {
+  cursor: pointer;
+}
+
+.ubl-modal {
+  /* Larguras do diálogo: medidas de composição do módulo, sem token equivalente */
+  --ubl-modal-width-sm: 360px;
+  --ubl-modal-width-md: 560px;
+  /* Distância percorrida na entrada */
+  --ubl-modal-travel: var(--ubl-spacing-l);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  border-radius: var(--ubl-radius-l);
+  background-color: var(--ubl-color-background-elevated);
+  color: var(--ubl-color-text-primary);
+  box-shadow: var(--ubl-elevation-overlay);
+  font-family: var(--ubl-font-sans);
+  cursor: auto;
+  outline: none;
+  animation: ubl-modal-rise var(--ubl-transition-slow);
+}
+
+.ubl-modal--sm {
+  max-width: var(--ubl-modal-width-sm);
+}
+
+.ubl-modal--md {
+  max-width: var(--ubl-modal-width-md);
+}
+
+/* ==========================================================================
+   Cabeçalho, corpo e rodapé
+   ========================================================================== */
+
+.ubl-modal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-m);
+  flex-shrink: 0;
+  padding: var(--ubl-spacing-xl) var(--ubl-spacing-xl) var(--ubl-spacing-xs) var(--ubl-spacing-xxl);
+}
+
+.ubl-modal__heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ubl-spacing-3xs);
+  min-width: 0;
+  min-height: var(--ubl-touch-target);
+}
+
+.ubl-modal__title {
+  margin: 0;
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-modal__description {
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+/* Alvo de toque mínimo de 44px, qualquer que seja o tamanho do botão */
+.ubl-modal__close {
+  flex-shrink: 0;
+  min-width: var(--ubl-touch-target);
+  min-height: var(--ubl-touch-target);
+}
+
+.ubl-modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--ubl-spacing-xs) var(--ubl-spacing-xxl) var(--ubl-spacing-xl);
+  font-size: var(--ubl-font-body-lg-size);
+  font-weight: var(--ubl-font-body-lg-weight);
+  line-height: var(--ubl-font-body-lg-line);
+  letter-spacing: var(--ubl-font-body-lg-tracking);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ubl-color-border-default) transparent;
+}
+
+.ubl-modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: var(--ubl-spacing-xs);
+  padding: var(--ubl-spacing-m) var(--ubl-spacing-xxl);
+  box-shadow: var(--ubl-elevation-hairline-top);
+}
+
+/* ==========================================================================
+   Movimento
+   ========================================================================== */
+
+@keyframes ubl-modal-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ubl-modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ubl-modal-travel));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-modal-layer,
+  .ubl-modal {
+    animation: none;
+  }
+}

@@ -1,0 +1,246 @@
+/**
+ * Estilos do Componente PostBody — Design System Unooblog
+ * Prosa em coluna de leitura. O tamanho do texto é decidido por três variáveis
+ * locais (`--ubl-post-body-size|weight|line`), apontadas para a escala por
+ * `textSize`; os componentes compostos (Blockquote, CodeBlock, Callout, Figure)
+ * trazem o próprio estilo. A coluna NÃO é contêiner de consulta: a figura
+ * `wide` precisa ler a largura do contêiner de fora da coluna.
+ */
+
+.ubl-post-body {
+  /* Corpo, peso e altura de linha do texto corrido, trocados por `textSize` */
+  --ubl-post-body-size: var(--ubl-font-prose-size);
+  --ubl-post-body-line: var(--ubl-font-prose-line);
+  --ubl-post-body-weight: var(--ubl-font-prose-weight);
+  --ubl-post-body-tracking: var(--ubl-font-prose-tracking);
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ubl-reading-width);
+  margin-inline: auto;
+  font-family: var(--ubl-font-sans);
+  font-size: var(--ubl-post-body-size);
+  font-weight: var(--ubl-post-body-weight);
+  line-height: var(--ubl-post-body-line);
+  letter-spacing: var(--ubl-post-body-tracking);
+  color: var(--ubl-color-text-primary);
+  overflow-wrap: break-word;
+}
+
+.ubl-post-body--sm {
+  --ubl-post-body-size: var(--ubl-font-body-lg-size);
+  --ubl-post-body-line: var(--ubl-font-body-lg-line);
+  --ubl-post-body-weight: var(--ubl-font-body-lg-weight);
+  --ubl-post-body-tracking: var(--ubl-font-body-lg-tracking);
+}
+
+.ubl-post-body--lg {
+  --ubl-post-body-size: var(--ubl-font-lead-size);
+  --ubl-post-body-line: var(--ubl-font-lead-line);
+  --ubl-post-body-weight: var(--ubl-font-lead-weight);
+  --ubl-post-body-tracking: var(--ubl-font-lead-tracking);
+}
+
+/* ==========================================================================
+   Ritmo vertical
+   ========================================================================== */
+
+.ubl-post-body > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ubl-post-body > * + * {
+  margin-top: var(--ubl-spacing-xl);
+}
+
+/* Subtítulos abrem seção: respiram mais que os parágrafos */
+.ubl-post-body > * + h2,
+.ubl-post-body > * + .ubl-post-body__heading:has(> h2) {
+  margin-top: var(--ubl-spacing-4xl);
+}
+
+.ubl-post-body > * + h3,
+.ubl-post-body > * + .ubl-post-body__heading:has(> h3) {
+  margin-top: var(--ubl-spacing-3xl);
+}
+
+/* Figuras, citações, avisos e código também */
+.ubl-post-body > * + figure,
+.ubl-post-body > * + aside,
+.ubl-post-body > * + .ubl-code-block,
+.ubl-post-body > figure + *,
+.ubl-post-body > aside + *,
+.ubl-post-body > .ubl-code-block + * {
+  margin-top: var(--ubl-spacing-3xl);
+}
+
+/* ==========================================================================
+   Texto
+   ========================================================================== */
+
+.ubl-post-body > p {
+  font-size: var(--ubl-post-body-size);
+  font-weight: var(--ubl-post-body-weight);
+  line-height: var(--ubl-post-body-line);
+  letter-spacing: var(--ubl-post-body-tracking);
+  text-wrap: pretty;
+}
+
+.ubl-post-body h2,
+.ubl-post-body h3 {
+  margin: 0;
+  min-width: 0;
+  color: var(--ubl-color-text-primary);
+  text-wrap: balance;
+  scroll-margin-top: calc(var(--ubl-site-header-height) + var(--ubl-spacing-l));
+}
+
+.ubl-post-body h2 {
+  font-size: var(--ubl-font-heading-3-size);
+  font-weight: var(--ubl-font-heading-3-weight);
+  line-height: var(--ubl-font-heading-3-line);
+  letter-spacing: var(--ubl-font-heading-3-tracking);
+}
+
+.ubl-post-body h3 {
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-post-body > p strong,
+.ubl-post-body > p b {
+  font-weight: var(--ubl-font-label-weight);
+}
+
+.ubl-post-body > p em,
+.ubl-post-body > p i {
+  font-style: italic;
+}
+
+/* Código em linha: o bloco tem o próprio estilo */
+.ubl-post-body > p code,
+.ubl-post-body > :where(ul, ol) code {
+  padding: 0 var(--ubl-spacing-3xs);
+  border-radius: var(--ubl-radius-xs);
+  background-color: var(--ubl-color-fill-field);
+  font-family: var(--ubl-font-mono);
+  font-size: var(--ubl-font-code-size);
+}
+
+/* ==========================================================================
+   Subtítulo com âncora
+   ========================================================================== */
+
+.ubl-post-body__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+}
+
+.ubl-post-body__anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--ubl-touch-target);
+  height: var(--ubl-touch-target);
+  margin-block: calc(var(--ubl-spacing-xs) * -1);
+  border-radius: var(--ubl-radius-full);
+  color: var(--ubl-color-text-accent);
+  text-decoration: none;
+  opacity: 0;
+  transition:
+    opacity var(--ubl-transition-fast),
+    background-color var(--ubl-transition-fast);
+}
+
+.ubl-post-body__heading:hover .ubl-post-body__anchor,
+.ubl-post-body__anchor:focus-visible {
+  opacity: 1;
+}
+
+.ubl-post-body__anchor:hover {
+  background-color: var(--ubl-color-state-hover);
+}
+
+.ubl-post-body__anchor:active {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-post-body__anchor:focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Sem ponteiro que paire, a âncora fica sempre visível, mais discreta */
+@media (hover: none) {
+  .ubl-post-body__anchor {
+    opacity: 0.6;
+  }
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+.ubl-post-body :where(p, li) a:not(.ubl-post-body__anchor) {
+  color: var(--ubl-color-text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--ubl-spacing-3xs);
+  border-radius: var(--ubl-radius-xs);
+  transition: background-color var(--ubl-transition-fast);
+}
+
+.ubl-post-body :where(p, li) a:not(.ubl-post-body__anchor):hover {
+  background-color: var(--ubl-color-state-hover);
+  text-decoration-thickness: var(--ubl-spacing-4xs);
+}
+
+.ubl-post-body :where(p, li) a:not(.ubl-post-body__anchor):active {
+  background-color: var(--ubl-color-state-pressed);
+}
+
+.ubl-post-body :where(p, li) a:not(.ubl-post-body__anchor):focus-visible {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Listas
+   ========================================================================== */
+
+.ubl-post-body > ul,
+.ubl-post-body > ol {
+  padding-inline-start: var(--ubl-spacing-xxl);
+}
+
+.ubl-post-body > ul {
+  list-style: disc outside;
+}
+
+.ubl-post-body > ol {
+  list-style: decimal outside;
+}
+
+.ubl-post-body > :where(ul, ol) > li {
+  padding-inline-start: var(--ubl-spacing-3xs);
+}
+
+.ubl-post-body > :where(ul, ol) > li + li {
+  margin-top: var(--ubl-spacing-xs);
+}
+
+.ubl-post-body > :where(ul, ol) > li::marker {
+  color: var(--ubl-color-text-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubl-post-body a,
+  .ubl-post-body__anchor {
+    transition: none;
+  }
+}

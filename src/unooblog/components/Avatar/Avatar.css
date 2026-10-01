@@ -1,0 +1,98 @@
+/**
+ * Estilos do Componente Avatar — Design System Unooblog
+ * Círculo nos diâmetros `--ubl-avatar-*`. As iniciais acompanham o diâmetro:
+ * 12px (o mínimo da escala) em 24px e 32px, 16px em 48px, 28px em 72px. Um diâmetro numérico
+ * entra pela propriedade local `--ubl-avatar-size`, e o corpo das iniciais é
+ * metade dele, nunca abaixo de 12px.
+ */
+
+.ubl-avatar {
+  /* Diâmetro corrente; os degraus nomeados apontam para --ubl-avatar-* */
+  --ubl-avatar-size: var(--ubl-avatar-md);
+
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ubl-avatar-size);
+  height: var(--ubl-avatar-size);
+  overflow: hidden;
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-background-subtle);
+  color: var(--ubl-color-text-accent);
+  font-family: var(--ubl-font-sans);
+  vertical-align: middle;
+  user-select: none;
+}
+
+.ubl-avatar--sm {
+  --ubl-avatar-size: var(--ubl-avatar-sm);
+}
+
+.ubl-avatar--md {
+  --ubl-avatar-size: var(--ubl-avatar-md);
+}
+
+.ubl-avatar--lg {
+  --ubl-avatar-size: var(--ubl-avatar-lg);
+}
+
+.ubl-avatar--xl {
+  --ubl-avatar-size: var(--ubl-avatar-xl);
+}
+
+.ubl-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.ubl-avatar__initials {
+  font-size: max(var(--ubl-font-caption-size), calc(var(--ubl-avatar-size) / 2.5));
+  font-weight: var(--ubl-font-label-weight);
+  line-height: 1;
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+/* ---------- AvatarGroup ---------- */
+
+.ubl-avatar-group {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--ubl-font-sans);
+}
+
+/* Sobreposição de um quarto do diâmetro; o anel (`outline`, que segue o raio) na cor da página separa os retratos;
+   sobre um cartão, `--ubl-avatar-group-ring` o troca pela cor do cartão */
+.ubl-avatar-group__item {
+  margin-inline-start: calc(var(--ubl-avatar-group-size) / -4);
+  border-radius: var(--ubl-radius-full);
+  outline: 2px solid var(--ubl-avatar-group-ring, var(--ubl-color-background-page));
+}
+
+.ubl-avatar-group__item:first-child {
+  margin-inline-start: 0;
+}
+
+.ubl-avatar-group__more {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ubl-avatar-group-size);
+  height: var(--ubl-avatar-group-size);
+  margin-inline-start: calc(var(--ubl-avatar-group-size) / -4);
+  border-radius: var(--ubl-radius-full);
+  background-color: var(--ubl-color-fill-field);
+  outline: 2px solid var(--ubl-avatar-group-ring, var(--ubl-color-background-page));
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-caption-strong-size);
+  font-weight: var(--ubl-font-caption-strong-weight);
+  line-height: 1;
+  letter-spacing: var(--ubl-font-caption-strong-tracking);
+}

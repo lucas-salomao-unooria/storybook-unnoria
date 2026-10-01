@@ -1,0 +1,175 @@
+/**
+ * Estilos do Componente AuthorCard — Design System Unooblog
+ * `card`: cartão lavanda de cantos macios, avatar de 72px à esquerda e texto à
+ * direita (empilhado e centralizado abaixo de 400px de contêiner). `inline`:
+ * linha sem fundo, avatar de 32px, nome e cargo, botão à direita.
+ */
+
+.ubl-author-card {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  font-family: var(--ubl-font-sans);
+  color: var(--ubl-color-text-primary);
+}
+
+.ubl-author-card__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ubl-spacing-l);
+  min-width: 0;
+}
+
+.ubl-author-card--card {
+  container-type: inline-size;
+  padding: var(--ubl-spacing-xxl);
+  border: 1px solid var(--ubl-color-border-subtle);
+  border-radius: var(--ubl-radius-xl);
+  background-color: var(--ubl-color-background-card);
+  transition: background-image var(--ubl-transition-fast);
+}
+
+.ubl-author-card--card.ubl-author-card--interactive:hover {
+  background-image: linear-gradient(var(--ubl-color-state-hover), var(--ubl-color-state-hover));
+}
+
+.ubl-author-card--inline {
+  padding: var(--ubl-spacing-xs) 0;
+}
+
+.ubl-author-card--inline .ubl-author-card__inner {
+  align-items: center;
+  gap: var(--ubl-spacing-m);
+}
+
+.ubl-author-card__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--ubl-spacing-s);
+  min-width: 0;
+}
+
+.ubl-author-card--inline .ubl-author-card__content {
+  gap: 0;
+}
+
+.ubl-author-card__identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ubl-author-card__name {
+  margin: 0;
+  color: var(--ubl-color-text-primary);
+  font-size: var(--ubl-font-heading-4-size);
+  font-weight: var(--ubl-font-heading-4-weight);
+  line-height: var(--ubl-font-heading-4-line);
+  letter-spacing: var(--ubl-font-heading-4-tracking);
+}
+
+.ubl-author-card--inline .ubl-author-card__name {
+  font-size: var(--ubl-font-label-size);
+  font-weight: var(--ubl-font-weight-bold);
+  line-height: var(--ubl-font-label-line);
+  letter-spacing: var(--ubl-font-label-tracking);
+}
+
+.ubl-author-card__link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* O ::after do nome estende o alvo ao cartão inteiro */
+.ubl-author-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.ubl-author-card--interactive:hover .ubl-author-card__link {
+  text-decoration: underline;
+  text-underline-offset: var(--ubl-spacing-3xs);
+}
+
+.ubl-author-card__link:focus-visible {
+  outline: none;
+}
+
+.ubl-author-card__link:focus-visible::after {
+  outline: 2px solid var(--ubl-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.ubl-author-card__role {
+  margin: 0;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+}
+
+.ubl-author-card--inline .ubl-author-card__role {
+  font-size: var(--ubl-font-caption-size);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-author-card__followers {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ubl-spacing-3xs);
+  margin: var(--ubl-spacing-3xs) 0 0;
+  color: var(--ubl-color-text-muted);
+  font-size: var(--ubl-font-caption-size);
+  font-weight: var(--ubl-font-caption-weight);
+  line-height: var(--ubl-font-caption-line);
+  letter-spacing: var(--ubl-font-caption-tracking);
+}
+
+.ubl-author-card__bio {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ubl-color-text-secondary);
+  font-size: var(--ubl-font-body-md-size);
+  font-weight: var(--ubl-font-body-md-weight);
+  line-height: var(--ubl-font-body-md-line);
+  letter-spacing: var(--ubl-font-body-md-tracking);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* Seguir: acima do pseudo-elemento, e nunca abre o perfil */
+.ubl-author-card__follow {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.ubl-author-card--inline .ubl-author-card__follow {
+  align-self: center;
+}
+
+/* Contêiner estreito: avatar em cima, tudo centralizado */
+@container (max-width: 399px) {
+  .ubl-author-card--card .ubl-author-card__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ubl-author-card--card .ubl-author-card__content {
+    align-items: center;
+  }
+
+  .ubl-author-card--card .ubl-author-card__follow {
+    align-self: center;
+  }
+}
