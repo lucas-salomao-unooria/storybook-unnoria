@@ -307,6 +307,40 @@ export const unvPollOptions = [
 ];
 
 /**
+ * Sequência de demonstração da figurinha de enquete (StoryPoll): uma pergunta
+ * por segmento da história, sem gabarito — a figurinha devolve só o id.
+ */
+export const unvStoryPolls = [
+  {
+    id: "p1",
+    question: "Como o app escolheu o que apareceu para você?",
+    options: [
+      { id: "a", label: "Pelo que eu curti antes" },
+      { id: "b", label: "Por sorteio, a cada vez" },
+      { id: "c", label: "Pelo horário em que abri" },
+    ],
+  },
+  {
+    id: "p2",
+    question: "O que você faria para ver outros assuntos?",
+    options: [
+      { id: "a", label: "Buscar outros temas" },
+      { id: "b", label: "Esperar o app mudar sozinho" },
+    ],
+  },
+  {
+    id: "p3",
+    question: "Quem decide o que entra no seu feed?",
+    options: [
+      { id: "a", label: "Uma regra do app" },
+      { id: "b", label: "A escola" },
+      { id: "c", label: "Os colegas" },
+      { id: "d", label: "Ninguém" },
+    ],
+  },
+];
+
+/**
  * Blocos de demonstração da seleção múltipla (quatro colunas, como na tela de
  * adicionar imagem).
  */
