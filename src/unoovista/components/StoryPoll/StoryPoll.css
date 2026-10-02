@@ -5,8 +5,11 @@
  * - figurinha flutuante em `background-elevated` com `--unv-elevation-overlay`
  *   e `--unv-radius-xl`: é uma camada SOBRE a mídia, não conteúdo da tela — por
  *   isso não usa o cartão em `background-primary` da `DmPoll`;
- * - pergunta centralizada em `title-lg`; opções em cápsulas (`radius-full`) de
- *   largura total, `fill-field` e alvo de 44px, com o rótulo à esquerda e a
+ * - pergunta centralizada em `title-lg`; opções em cápsulas de largura total,
+ *   com raio FIXO de metade do alvo de toque (22px) e não `radius-full`: numa
+ *   linha só dá a mesma cápsula, e quando a opção quebra em várias linhas os
+ *   cantos continuam de 22px — com `radius-full` a curva vira um semicírculo do
+ *   tamanho da altura e come o começo e o fim do texto; `fill-field` e alvo de 44px, com o rótulo à esquerda e a
  *   marca à direita (a marca em anel de `border-control`, ≥ 3:1, diz que a
  *   linha é tocável). O contorno é `border-default`, não `border-subtle`: no
  *   escuro, `background-elevated`, `fill-field` e `border-subtle` têm o mesmo
@@ -33,6 +36,7 @@
   color: var(--unv-color-text-primary);
   font-family: var(--unv-font-sans);
   --unv-story-poll-mark-size: 20px; /* diâmetro visual do anel; o alvo de toque é o botão de 44px que o contém */
+  --unv-story-poll-option-radius: calc(var(--unv-touch-target) / 2); /* cápsula numa linha, cantos fixos em várias */
 }
 
 /* Sobre a mídia da história: centralizada no palco. */
@@ -72,7 +76,7 @@
   min-height: var(--unv-touch-target);
   padding: var(--unv-spacing-xs) var(--unv-spacing-m) var(--unv-spacing-xs) var(--unv-spacing-l);
   border: 1px solid var(--unv-color-border-default);
-  border-radius: var(--unv-radius-full);
+  border-radius: var(--unv-story-poll-option-radius);
   background-color: var(--unv-color-fill-field);
   color: var(--unv-color-text-primary);
   font-family: inherit;
