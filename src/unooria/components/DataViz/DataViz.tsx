@@ -1039,6 +1039,11 @@ export const MetricCard: React.FC<MetricCardProps> = ({
    * ausente — a etiqueta agora só aparece quando alguém informa o número.
    */
   tagText,
+  /**
+   * Até a 0.2.13 a prop existia no tipo e NÃO era desenhada: o consumidor
+   * passava a explicação da métrica e ela sumia em silêncio.
+   */
+  description,
   theme = 'light',
   className = '',
   style,
@@ -1059,6 +1064,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           </span>
         ) : null}
       </div>
+      {description ? <p className="unooria-metric-card__description">{description}</p> : null}
     </div>
   );
 };

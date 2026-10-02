@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import {
   BarChart,
   PositiveNegativeBarChart,
@@ -148,6 +149,7 @@ const METRIC_CARD_PROPS = [
   { name: 'value', type: 'string | number', default: 'undefined', desc: 'Valor numérico de destaque em 40px/48px Bold.' },
   { name: 'variant', type: "'up' | 'down'", default: "'up'", desc: "Variante de tendência: 'up' (badge verde com call_made) ou 'down' (badge vermelho com call_received)." },
   { name: 'tagText', type: 'string', default: 'undefined', desc: 'Texto da variação percentual exibido junto à tag (ex: "+15.4%").' },
+  { name: 'description', type: 'string', default: 'undefined', desc: 'Explicação curta da métrica, abaixo do valor. Com ela o card cresce (min-height de 128px). Desenhada desde a 0.2.14 — antes era aceita e ignorada.' },
   { name: 'theme', type: "'light' | 'dark'", default: "'light'", desc: 'Tema Claro ou Escuro.' },
 ];
 
@@ -434,6 +436,12 @@ const DataVizDocumentationPage = () => {
           value="3.2%"
           variant="down"
           tagText="-2.4%"
+        />
+
+        <MetricCard
+          title="Invisibilidade média da turma"
+          value="—"
+          description="Aparece quando você liberar a Galeria Oculta: antes, a lousa contaria à turma o que a galeria vai mostrar."
         />
 
         <StackedProgressBar
@@ -1031,4 +1039,29 @@ export const PlaygroundRankingCard: StoryObj<typeof RankingCard> = {
       <RankingCard {...args} />
     </div>
   ),
+};
+
+/**
+ * MetricCard com descrição: até a 0.2.13 a prop era aceita e NÃO desenhada.
+ * O teste cobra que o texto chega à tela e que o card sem ela segue com 128px.
+ */
+export const MetricCardComDescricao: StoryObj<typeof MetricCard> = {
+  name: '🎯 MetricCard com descrição',
+  render: () => (
+    <div style={{ display: 'flex', gap: 24, padding: 24, backgroundColor: '#F8FAFC', alignItems: 'flex-start' }}>
+      <MetricCard title="Jurados que votaram" value="2 de 40" />
+      <MetricCard
+        title="Invisibilidade média da turma"
+        value="—"
+        description="Aparece quando você liberar a Galeria Oculta: antes, a lousa contaria à turma o que a galeria vai mostrar."
+      />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    await expect(tela.getByText(/Aparece quando você liberar a Galeria Oculta/)).toBeVisible();
+    const [semDescricao, comDescricao] = Array.from(canvasElement.querySelectorAll<HTMLElement>('.unooria-metric-card'));
+    await expect(semDescricao.getBoundingClientRect().height).toBe(128);
+    await expect(comDescricao.getBoundingClientRect().height).toBeGreaterThan(128);
+  },
 };
