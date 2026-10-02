@@ -18,7 +18,7 @@ import {
   UnvDocThemeSwitcher,
   UnvDocPropsTable,
 } from '../../../.storybook/components';
-import { unvAvatars, unvStoryFrames, unvStoryPolls } from '../fixtures';
+import { unvAvatars, unvStoryFrames, unvStoryPollLonga, unvStoryPolls } from '../fixtures';
 
 const [PRIMEIRA] = unvStoryPolls;
 const [OPCAO_CURTI, OPCAO_SORTEIO] = PRIMEIRA.options;
@@ -113,7 +113,7 @@ const StoryPollDocumentationPage = () => (
       specs={[
         { label: 'Figurinha', value: 'background-elevated · elevation-overlay · 24px de raio' },
         { label: 'Pergunta', value: 'title-lg · Open Sans 600 · 18/28px · centralizada' },
-        { label: 'Opção', value: '44px · cápsula · fill-field · title-sm' },
+        { label: 'Opção', value: '44px · raio de 22px (cápsula numa linha) · fill-field · title-sm' },
         { label: 'Marca', value: 'anel de 20px em border-control, à direita' },
         { label: 'Votada', value: 'action-primary · text-on-action · marca cheia com check' },
         { label: 'Travada', value: 'text-secondary sobre fill-field' },
@@ -148,9 +148,14 @@ const StoryPollDocumentationPage = () => (
             'o seletor .unv-story-viewer__overlay > .unv-story-poll posiciona a figurinha no meio do palco, com spacing-xxl nas laterais; fora do visualizador ela é um bloco comum, até 320px.',
         },
         {
-          subject: 'Token local',
+          subject: 'Raio fixo de 22px, não radius-full',
           detail:
-            '--unv-story-poll-mark-size (20px): o diâmetro visual do anel; o alvo de toque é a cápsula de 44px.',
+            'numa linha, a opção de 44px com raio de 22px é a mesma cápsula. Quando o texto quebra em várias linhas, radius-full vira um semicírculo do tamanho da altura e a curva come o começo e o fim do texto; com o raio fixo, os cantos ficam de 22px e o texto não encosta. Corrigido na 0.2.13.',
+        },
+        {
+          subject: 'Tokens locais',
+          detail:
+            '--unv-story-poll-mark-size (20px): o diâmetro visual do anel; o alvo de toque é a cápsula de 44px. --unv-story-poll-option-radius (metade do alvo de toque): o raio da opção.',
         },
       ]}
     />
@@ -348,6 +353,18 @@ export const Estados: Story = {
     await expect(args.onVote).toHaveBeenCalledTimes(1);
     await expect(args.onVote).toHaveBeenCalledWith(OPCAO_CURTI.id);
   },
+};
+
+/**
+ * Opções longas: o texto quebra em várias linhas e os cantos não o cortam.
+ */
+export const OpcoesLongas: Story = {
+  name: 'Opções longas',
+  render: () => (
+    <div data-unv-theme="dark" style={{ width: 345, padding: 16, backgroundColor: 'var(--unv-color-background-secondary)' }}>
+      <StoryPoll question={unvStoryPollLonga.question} options={unvStoryPollLonga.options} />
+    </div>
+  ),
 };
 
 /**

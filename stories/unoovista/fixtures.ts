@@ -341,6 +341,19 @@ export const unvStoryPolls = [
 ];
 
 /**
+ * Uma figurinha com alternativas LONGAS (quatro linhas na largura do celular):
+ * é o caso que mostrou a curva do `radius-full` comendo o texto.
+ */
+export const unvStoryPollLonga = {
+  question: "Como a sua curtida chegou até o servidor, longe da escola?",
+  options: [
+    { id: "a", label: "Viajou inteira, de uma vez só, direto do celular para o servidor, sem passar por nenhum equipamento." },
+    { id: "b", label: "Foi dividida em pacotes numerados, que passaram por equipamentos diferentes e foram remontados no servidor." },
+    { id: "c", label: "Ficou guardada só no celular, e o servidor adivinhou em qual projeto você votou." },
+  ],
+};
+
+/**
  * Blocos de demonstração da seleção múltipla (quatro colunas, como na tela de
  * adicionar imagem).
  */
