@@ -326,6 +326,7 @@
   --metric-border: #e4e8e9;
   --metric-title: #22272a;
   --metric-value: #22272a;
+  --metric-description: #536167; /* --unooria-color-neutral-600 */
 
   display: flex;
   flex-direction: column;
@@ -333,7 +334,9 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 301px;
-  height: 128px;
+  /* min-height, e não height: sem descrição o card continua com 128px; com
+     ela, cresce em vez de transbordar. */
+  min-height: 128px;
   padding: 16px;
   background-color: var(--metric-bg);
   border: 1px solid var(--metric-border);
@@ -351,6 +354,7 @@
   --metric-border: rgba(255, 255, 255, 0.1);
   --metric-title: #f5f5f5;
   --metric-value: #ffffff;
+  --metric-description: #a7b5b9; /* --unooria-color-neutraldark-800 */
 }
 
 .unooria-metric-card__title {
@@ -376,6 +380,14 @@
   font-weight: 700;
   color: var(--metric-value);
   white-space: nowrap;
+}
+
+.unooria-metric-card__description {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--metric-description);
 }
 
 .unooria-metric-card__tag {
