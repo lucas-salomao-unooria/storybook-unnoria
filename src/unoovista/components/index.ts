@@ -37,3 +37,4 @@ export * from './StoryComposer';
 export * from './InlineHint';
 export * from './GestureHint';
 export * from './Snackbar';
+export * from './StoryPoll';

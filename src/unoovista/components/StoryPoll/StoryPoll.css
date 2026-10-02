@@ -1,0 +1,157 @@
+/**
+ * Estilos do Componente StoryPoll — Design System Unoovista
+ *
+ * Decisões do módulo (registradas na estória):
+ * - figurinha flutuante em `background-elevated` com `--unv-elevation-overlay`
+ *   e `--unv-radius-xl`: é uma camada SOBRE a mídia, não conteúdo da tela — por
+ *   isso não usa o cartão em `background-primary` da `DmPoll`;
+ * - pergunta centralizada em `title-lg`; opções em cápsulas (`radius-full`) de
+ *   largura total, `fill-field` e alvo de 44px, com o rótulo à esquerda e a
+ *   marca à direita (a marca em anel de `border-control`, ≥ 3:1, diz que a
+ *   linha é tocável). O contorno é `border-default`, não `border-subtle`: no
+ *   escuro, `background-elevated`, `fill-field` e `border-subtle` têm o mesmo
+ *   valor, e a cápsula sumiria dentro da figurinha;
+ * - a opção votada usa `action-primary` com `text-on-action` (4,88:1 no claro,
+ *   8,27:1 no escuro) e a marca vira disco com o glifo `check` — a escolha não
+ *   depende só da cor;
+ * - dentro da camada `children` do `StoryViewer`, a figurinha se centraliza
+ *   sozinha no palco, com o respiro de `spacing-xxl` nas laterais. Fora dele, é
+ *   um bloco comum.
+ */
+
+.unv-story-poll {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 220px;
+  max-width: 320px;
+  padding: var(--unv-spacing-l);
+  border-radius: var(--unv-radius-xl);
+  background-color: var(--unv-color-background-elevated);
+  box-shadow: var(--unv-elevation-overlay);
+  color: var(--unv-color-text-primary);
+  font-family: var(--unv-font-sans);
+  --unv-story-poll-mark-size: 20px; /* diâmetro visual do anel; o alvo de toque é o botão de 44px que o contém */
+}
+
+/* Sobre a mídia da história: centralizada no palco. */
+.unv-story-viewer__overlay > .unv-story-poll {
+  position: absolute;
+  top: 50%;
+  left: var(--unv-spacing-xxl);
+  right: var(--unv-spacing-xxl);
+  width: auto;
+  margin-inline: auto;
+  transform: translateY(-50%);
+}
+
+.unv-story-poll__question {
+  margin: 0 0 var(--unv-spacing-m);
+  color: var(--unv-color-text-primary);
+  font-size: var(--unv-font-title-lg-size);
+  font-weight: var(--unv-font-title-lg-weight);
+  line-height: var(--unv-font-title-lg-line);
+  letter-spacing: var(--unv-font-title-lg-tracking);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.unv-story-poll__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unv-spacing-xs);
+}
+
+.unv-story-poll__option {
+  display: flex;
+  align-items: center;
+  gap: var(--unv-spacing-m);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--unv-touch-target);
+  padding: var(--unv-spacing-xs) var(--unv-spacing-m) var(--unv-spacing-xs) var(--unv-spacing-l);
+  border: 1px solid var(--unv-color-border-default);
+  border-radius: var(--unv-radius-full);
+  background-color: var(--unv-color-fill-field);
+  color: var(--unv-color-text-primary);
+  font-family: inherit;
+  font-size: var(--unv-font-title-sm-size);
+  font-weight: var(--unv-font-title-sm-weight);
+  line-height: var(--unv-font-title-sm-line);
+  letter-spacing: var(--unv-font-title-sm-tracking);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color var(--unv-transition-fast),
+    border-color var(--unv-transition-fast), color var(--unv-transition-fast);
+}
+
+.unv-story-poll__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Marca à direita: anel de 20px; votada, disco cheio com o glifo `check` do registro. */
+.unv-story-poll__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: var(--unv-story-poll-mark-size);
+  height: var(--unv-story-poll-mark-size);
+  border: 2px solid var(--unv-color-border-control);
+  border-radius: var(--unv-radius-full);
+}
+
+.unv-story-poll__option:hover:not([aria-disabled='true']) {
+  border-color: var(--unv-color-action-primary);
+}
+
+.unv-story-poll__option:focus-visible {
+  outline: 2px solid var(--unv-color-action-primary);
+  outline-offset: 2px;
+}
+
+.unv-story-poll__option--chosen,
+.unv-story-poll__option--chosen:hover:not([aria-disabled='true']) {
+  border-color: var(--unv-color-action-primary);
+  background-color: var(--unv-color-action-primary);
+  color: var(--unv-color-text-on-action);
+}
+
+.unv-story-poll__option--chosen .unv-story-poll__mark {
+  border-color: var(--unv-color-text-on-action);
+  background-color: var(--unv-color-text-on-action);
+  color: var(--unv-color-action-primary);
+}
+
+.unv-story-poll__option[aria-disabled='true'] {
+  cursor: default;
+}
+
+.unv-story-poll__option[aria-disabled='true']:not(.unv-story-poll__option--chosen) {
+  color: var(--unv-color-text-secondary);
+}
+
+.unv-story-poll__sent {
+  margin: var(--unv-spacing-m) 0 0;
+  color: var(--unv-color-text-secondary);
+  font-size: var(--unv-font-label-md-size);
+  font-weight: var(--unv-font-label-md-weight);
+  line-height: var(--unv-font-label-md-line);
+  letter-spacing: var(--unv-font-label-md-tracking);
+  text-align: center;
+}
+
+.unv-story-poll__sent:empty {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unv-story-poll__option {
+    transition: none;
+  }
+}
