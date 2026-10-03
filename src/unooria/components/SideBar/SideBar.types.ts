@@ -71,6 +71,17 @@ export interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
   topItems?: SideBarItemData[];
   bottomItems?: SideBarItemData[];
   appsItems?: SideBarAppItem[];
+  /**
+   * Exibe o botão de aplicativos ("Iniciativas") no topo da barra. Padrão
+   * `true`. Passe `false` quando o produto não tem painel de aplicativos: o
+   * botão, sozinho, abriria um painel vazio — um item de menu que não leva a
+   * lugar nenhum. Com `false`, o painel também não abre, mesmo com `isAppsOpen`.
+   */
+  showApps?: boolean;
+  /** Rótulo do botão de aplicativos. Padrão `"Iniciativas"`. */
+  appsLabel?: React.ReactNode;
+  /** Dica (tooltip) do botão de aplicativos. Padrão `"Iniciativas & Apps"`. */
+  appsTooltip?: string;
   isAppsOpen?: boolean;
   onAppsToggle?: (isOpen: boolean) => void;
   showNaiAssistant?: boolean;

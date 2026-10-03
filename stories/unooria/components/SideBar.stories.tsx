@@ -212,6 +212,9 @@ const SideBarDocumentationPage = () => {
               { prop: 'topItems', type: 'SideBarItemData[]', default: '-', desc: 'Lista de itens da parte superior.' },
               { prop: 'bottomItems', type: 'SideBarItemData[]', default: '-', desc: 'Lista de itens da parte inferior.' },
               { prop: 'appsItems', type: 'SideBarAppItem[]', default: '-', desc: 'Lista de itens para o painel de aplicativos.' },
+              { prop: 'showApps', type: 'boolean', default: 'true', desc: 'Exibe o botão de aplicativos no topo. Use false quando o produto não tem painel de aplicativos: o botão sozinho abriria um painel vazio.' },
+              { prop: 'appsLabel', type: 'React.ReactNode', default: "'Iniciativas'", desc: 'Rótulo do botão de aplicativos.' },
+              { prop: 'appsTooltip', type: 'string', default: "'Iniciativas & Apps'", desc: 'Dica (tooltip) do botão de aplicativos.' },
               { prop: 'isAppsOpen', type: 'boolean', default: 'false', desc: 'Define se o painel de aplicativos está aberto.' },
               { prop: 'onAppsToggle', type: '(isOpen: boolean) => void', default: '-', desc: 'Evento disparado ao alternar o painel de apps.' },
               { prop: 'showNaiAssistant', type: 'boolean', default: 'false', desc: 'Exibe o widget do assistente NAI.' },
@@ -274,10 +277,25 @@ const meta: Meta<typeof SideBar> = {
       control: 'boolean',
       description: 'Exibe o widget flutuante do assistente NAI',
     },
+    showApps: {
+      control: 'boolean',
+      description: 'Exibe o botão de aplicativos ("Iniciativas") no topo da barra',
+    },
+    appsLabel: {
+      control: 'text',
+      description: 'Rótulo do botão de aplicativos',
+    },
+    appsTooltip: {
+      control: 'text',
+      description: 'Dica (tooltip) do botão de aplicativos',
+    },
   },
   args: {
     theme: 'light',
     showNaiAssistant: true,
+    showApps: true,
+    appsLabel: 'Iniciativas',
+    appsTooltip: 'Iniciativas & Apps',
     items: sampleSideItems,
     appsItems: sampleAppsList,
   },
@@ -310,6 +328,17 @@ export const ComPainelDeAppsAberto: Story = {
         appsItems={sampleAppsList}
         isAppsOpen={true}
       />
+    </div>
+  ),
+};
+
+export const SemBotaoDeApps: Story = {
+  name: '🚫 Sem o Botão de Apps',
+  render: () => (
+    <div style={{ padding: 40, display: 'flex', backgroundColor: '#F8FAFC', borderRadius: 12, minHeight: 450 }}>
+      {/* O produto que não tem painel de aplicativos esconde o botão: sozinho,
+          ele abriria um painel vazio. A seção do topo some junto. */}
+      <SideBar items={sampleSideItems} showApps={false} />
     </div>
   ),
 };
