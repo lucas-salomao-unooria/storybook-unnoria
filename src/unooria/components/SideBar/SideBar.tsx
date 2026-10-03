@@ -119,6 +119,9 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
       topItems = [],
       bottomItems = [],
       appsItems = [],
+      showApps = true,
+      appsLabel = 'Iniciativas',
+      appsTooltip = 'Iniciativas & Apps',
       isAppsOpen: controlledAppsOpen,
       onAppsToggle,
       showNaiAssistant = false,
@@ -141,7 +144,8 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
 
     const isControlled = controlledActiveId !== undefined;
     const currentActiveId = isControlled ? controlledActiveId : uncontrolledActiveId;
-    const isAppsPanelOpen = controlledAppsOpen !== undefined ? controlledAppsOpen : internalAppsOpen;
+    const isAppsPanelOpen =
+      showApps && (controlledAppsOpen !== undefined ? controlledAppsOpen : internalAppsOpen);
 
     const handleItemClick = (id: string, e: React.MouseEvent<HTMLElement>) => {
       if (!isControlled) {
@@ -182,25 +186,31 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
           data-theme={theme}
           {...restProps}
         >
-          {/* Seção Superior (ex: Botão de Apps/Iniciativas) */}
-          <div className="unooria-sidebar__section">
-            <SideBarItem
-              id="apps-toggle"
-              label="Iniciativas"
-              icon={<AppsGridIcon />}
-              tooltip="Iniciativas & Apps"
-              onClick={toggleAppsPanel}
-              active={isAppsPanelOpen}
-            />
-            {topItems.map((item) => (
-              <SideBarItem
-                key={item.id}
-                {...item}
-                active={item.active ?? item.id === currentActiveId}
-                onClick={(e) => handleItemClick(item.id, e)}
-              />
-            ))}
-          </div>
+          {/* Seção Superior (ex: Botão de Apps/Iniciativas). Sem o botão de
+              apps e sem `topItems`, a seção não é desenhada: um bloco vazio
+              deixaria um respiro sem conteúdo no topo da barra. */}
+          {(showApps || topItems.length > 0) && (
+            <div className="unooria-sidebar__section">
+              {showApps && (
+                <SideBarItem
+                  id="apps-toggle"
+                  label={appsLabel}
+                  icon={<AppsGridIcon />}
+                  tooltip={appsTooltip}
+                  onClick={toggleAppsPanel}
+                  active={isAppsPanelOpen}
+                />
+              )}
+              {topItems.map((item) => (
+                <SideBarItem
+                  key={item.id}
+                  {...item}
+                  active={item.active ?? item.id === currentActiveId}
+                  onClick={(e) => handleItemClick(item.id, e)}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Seção Central de Navegação */}
           {items.length > 0 && (
