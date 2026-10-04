@@ -123,7 +123,18 @@ export interface StackedSegment {
   value: number;
   amountText?: string;
   color: string;
+  /**
+   * Como o segmento é desenhado. `'solid'` (padrão) é preenchido com `color`;
+   * `'dashed'` não tem preenchimento e leva contorno TRACEJADO em `color` — na
+   * barra e no marcador da legenda. Serve à categoria que é AUSÊNCIA, e não um
+   * valor a mais (ex.: "não avaliado" num painel de níveis): sólida, ela seria
+   * lida como mais um nível.
+   */
+  pattern?: StackedSegmentPattern;
 }
+
+/** O desenho de um segmento da barra empilhada. */
+export type StackedSegmentPattern = 'solid' | 'dashed';
 
 /**
  * Item de Ranking para o Top Courses / Ranking Card.

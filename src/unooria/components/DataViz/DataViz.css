@@ -172,6 +172,13 @@
   flex-shrink: 0;
 }
 
+/* O marcador da legenda do segmento tracejado: anel tracejado, sem miolo. */
+.unooria-dataviz__indicator-dot--dashed {
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1.5px dashed var(--segment-color, var(--chart-subtitle));
+}
+
 /* ==========================================================================
    Área Principal do Gráfico (Canvas SVG + Eixos)
    ========================================================================== */
@@ -433,6 +440,25 @@
   height: 100%;
   transition: width 0.3s ease;
   cursor: pointer;
+}
+
+/* O segmento TRACEJADO (`pattern: 'dashed'`): a ausência, não um valor a
+   mais. Sem preenchimento, contorno tracejado na cor do segmento; o fundo da
+   barra aparece por dentro. O raio acompanha a barra só nas pontas. */
+.unooria-stacked-progress__segment--dashed {
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1.5px dashed var(--segment-color, var(--chart-subtitle));
+}
+
+.unooria-stacked-progress__segment--dashed:first-child {
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.unooria-stacked-progress__segment--dashed:last-child {
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
 
 .unooria-stacked-progress__segment:hover {
