@@ -154,7 +154,7 @@ const METRIC_CARD_PROPS = [
 ];
 
 const STACKED_PROGRESS_PROPS = [
-  { name: 'segments', type: 'StackedSegment[]', default: '[]', desc: 'Lista de segmentos com proporção (value), cor, rótulo e texto opcional.' },
+  { name: 'segments', type: 'StackedSegment[]', default: '[]', desc: "Lista de segmentos com proporção (value), cor, rótulo e texto opcional. `pattern: 'dashed'` desenha o segmento sem preenchimento e com contorno tracejado (na barra e na legenda) — para a categoria que é ausência, não um valor a mais." },
   { name: 'totalValue', type: 'string | number', default: 'undefined', desc: 'Valor total exibido no topo do card de 606px.' },
   { name: 'title', type: 'string', default: 'undefined', desc: 'Título principal do card.' },
   { name: 'subtitle', type: 'string', default: 'undefined', desc: 'Subtítulo contextual.' },
@@ -452,6 +452,20 @@ const DataVizDocumentationPage = () => {
             { label: 'Abertas', value: 450, amountText: '450', color: '#2F4F7F' },
             { label: 'Em análise', value: 300, amountText: '300', color: '#7FA5E2' },
             { label: 'Concluídas', value: 250, amountText: '250', color: '#A4BDE9' },
+          ]}
+        />
+
+        {/* `pattern: 'dashed'`: a categoria que é AUSÊNCIA (aqui, quem não foi
+            avaliado) não pode parecer mais um nível. */}
+        <StackedProgressBar
+          title="EF05CO08"
+          subtitle="Segmento tracejado: quem não foi avaliado"
+          totalValue={40}
+          segments={[
+            { label: 'Atingiu', value: 18, amountText: '18', color: '#01B574' },
+            { label: 'Em processo', value: 9, amountText: '9', color: '#7FA5E2' },
+            { label: 'Não atingiu', value: 5, amountText: '5', color: '#DD5202' },
+            { label: 'Não avaliado', value: 8, amountText: '8', color: '#617379', pattern: 'dashed' },
           ]}
         />
 
@@ -1063,5 +1077,46 @@ export const MetricCardComDescricao: StoryObj<typeof MetricCard> = {
     const [semDescricao, comDescricao] = Array.from(canvasElement.querySelectorAll<HTMLElement>('.unooria-metric-card'));
     await expect(semDescricao.getBoundingClientRect().height).toBe(128);
     await expect(comDescricao.getBoundingClientRect().height).toBeGreaterThan(128);
+  },
+};
+
+export const StackedProgressBarTracejado: StoryObj<typeof StackedProgressBar> = {
+  name: '🎯 StackedProgressBar com segmento tracejado',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: 24, backgroundColor: '#F8FAFC', alignItems: 'flex-start' }}>
+      <StackedProgressBar
+        title="EF05CO08"
+        subtitle="Quem não foi avaliado é ausência, não mais um nível: segmento tracejado"
+        totalValue={40}
+        segments={[
+          { label: 'Atingiu', value: 18, amountText: '18', color: '#01B574' },
+          { label: 'Em processo', value: 9, amountText: '9', color: '#7FA5E2' },
+          { label: 'Não atingiu', value: 5, amountText: '5', color: '#DD5202' },
+          { label: 'Não avaliado', value: 8, amountText: '8', color: '#617379', pattern: 'dashed' },
+        ]}
+      />
+      <StackedProgressBar
+        title="EF05CO04"
+        subtitle="Com o tracejado em zero, a barra não desenha traço solto"
+        totalValue={40}
+        segments={[
+          { label: 'Atingiu', value: 30, amountText: '30', color: '#01B574' },
+          { label: 'Em processo', value: 10, amountText: '10', color: '#7FA5E2' },
+          { label: 'Não avaliado', value: 0, amountText: '0', color: '#617379', pattern: 'dashed' },
+        ]}
+      />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const [comAusencia, semAusencia] = Array.from(canvasElement.querySelectorAll<HTMLElement>('.unooria-stacked-progress-card'));
+    // O tracejado é contorno, sem preenchimento — na barra e na legenda.
+    const segmento = comAusencia.querySelector<HTMLElement>('.unooria-stacked-progress__segment--dashed');
+    await expect(segmento).not.toBeNull();
+    await expect(getComputedStyle(segmento!).borderTopStyle).toBe('dashed');
+    await expect(getComputedStyle(segmento!).backgroundColor).toBe('rgba(0, 0, 0, 0)');
+    await expect(comAusencia.querySelector('.unooria-dataviz__indicator-dot--dashed')).not.toBeNull();
+    // Em zero, nenhum contorno solto na barra; a legenda continua dizendo "0".
+    await expect(semAusencia.querySelector('.unooria-stacked-progress__segment--dashed')).toBeNull();
+    await expect(within(semAusencia).getByText(/Não avaliado/)).toBeVisible();
   },
 };

@@ -1112,11 +1112,16 @@ export const StackedProgressBar: React.FC<StackedProgressBarProps> = ({
         {segments.map((seg, idx) => (
           <div
             key={idx}
-            className="unooria-stacked-progress__segment"
-            style={{
-              width: `${(seg.value / total) * 100}%`,
-              backgroundColor: seg.color,
-            }}
+            /* Tracejado só com valor: com largura zero, o contorno ainda
+               desenharia um traço solto na barra. */
+            className={`unooria-stacked-progress__segment${
+              seg.pattern === 'dashed' && seg.value > 0 ? ' unooria-stacked-progress__segment--dashed' : ''
+            }`}
+            style={
+              seg.pattern === 'dashed'
+                ? ({ width: `${(seg.value / total) * 100}%`, '--segment-color': seg.color } as React.CSSProperties)
+                : { width: `${(seg.value / total) * 100}%`, backgroundColor: seg.color }
+            }
             onMouseEnter={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const parentRect = e.currentTarget.closest('.unooria-dataviz-card')?.getBoundingClientRect();
@@ -1141,7 +1146,16 @@ export const StackedProgressBar: React.FC<StackedProgressBarProps> = ({
           const pct = Math.round((seg.value / total) * 100);
           return (
             <div key={idx} className="unooria-stacked-progress__legend-item">
-              <span className="unooria-dataviz__indicator-dot" style={{ backgroundColor: seg.color }} />
+              <span
+                className={`unooria-dataviz__indicator-dot${
+                  seg.pattern === 'dashed' ? ' unooria-dataviz__indicator-dot--dashed' : ''
+                }`}
+                style={
+                  seg.pattern === 'dashed'
+                    ? ({ '--segment-color': seg.color } as React.CSSProperties)
+                    : { backgroundColor: seg.color }
+                }
+              />
               <span>{seg.label}:</span>
               <span className="unooria-stacked-progress__amount">{seg.amountText || seg.value} ({pct}%)</span>
             </div>

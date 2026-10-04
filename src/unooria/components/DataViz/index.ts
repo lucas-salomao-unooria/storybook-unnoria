@@ -38,6 +38,7 @@ export type {
   RadarAxis,
   RadialBarPoint,
   StackedSegment,
+  StackedSegmentPattern,
   DataVizTheme,
   DataVizPaletteColor,
 } from './DataViz.types';
