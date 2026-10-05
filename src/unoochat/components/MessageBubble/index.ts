@@ -7,4 +7,5 @@ export type {
   UncMessageInviteProps,
   UncMessageDirection,
   UncMessageDelivery,
+  UncSenderTone,
 } from './MessageBubble.types';

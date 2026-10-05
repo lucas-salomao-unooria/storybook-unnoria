@@ -17,6 +17,14 @@ export type UncMessageDirection = 'out' | 'in';
 export type UncMessageDelivery = 'none' | 'sent' | 'read';
 
 /**
+ * Tom do nome do remetente em conversa de grupo: `--unc-color-sender-1` a
+ * `--unc-color-sender-8`, um por família da paleta (roxo, azul-marinho,
+ * laranja, vermelho, azul, verde, âmbar e cinza), todos ≥ 4,5:1 sobre o balão
+ * recebido nos dois temas. Dê o mesmo tom a cada pessoa em toda a conversa.
+ */
+export type UncSenderTone = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+/**
  * Propriedades do componente MessageBubble do Unoochat.
  */
 export interface UncMessageBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -66,6 +74,12 @@ export interface UncMessageBubbleProps extends React.HTMLAttributes<HTMLDivEleme
    * grupo. Extensão.
    */
   sender?: React.ReactNode;
+
+  /**
+   * Cor do nome do remetente (`sender`), de 1 a 8, para distinguir as pessoas
+   * de um grupo. Ausente, o nome fica em `--unc-color-accent`. Extensão.
+   */
+  senderTone?: UncSenderTone;
 
   /**
    * Rótulo da mensagem encaminhada, exibido acima do conteúdo com o glifo

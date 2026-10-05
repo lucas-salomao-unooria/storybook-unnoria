@@ -162,6 +162,18 @@
   line-height: 1.2;
 }
 
+/* Tom do remetente (`senderTone`): oito famílias da paleta, para distinguir as
+   pessoas de um grupo. Todos ≥ 4,5:1 sobre o balão recebido nos dois temas.
+   Valem também no `TypingIndicator`, que reaproveita esta classe. */
+.unc-messagebubble__sender--tone-1 { color: var(--unc-color-sender-1); }
+.unc-messagebubble__sender--tone-2 { color: var(--unc-color-sender-2); }
+.unc-messagebubble__sender--tone-3 { color: var(--unc-color-sender-3); }
+.unc-messagebubble__sender--tone-4 { color: var(--unc-color-sender-4); }
+.unc-messagebubble__sender--tone-5 { color: var(--unc-color-sender-5); }
+.unc-messagebubble__sender--tone-6 { color: var(--unc-color-sender-6); }
+.unc-messagebubble__sender--tone-7 { color: var(--unc-color-sender-7); }
+.unc-messagebubble__sender--tone-8 { color: var(--unc-color-sender-8); }
+
 /* Selo "Encaminhada": metadado do balão, em itálico, com o glifo `forward`. */
 .unc-messagebubble__forwarded {
   display: inline-flex;

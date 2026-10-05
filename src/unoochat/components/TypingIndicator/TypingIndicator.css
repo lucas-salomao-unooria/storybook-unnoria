@@ -1,0 +1,92 @@
+/**
+ * Estilos do Componente TypingIndicator — Design System Unoochat
+ *
+ * O balão é o do `MessageBubble` recebido (`.unc-messagebubble--in`, com a
+ * cauda e o remetente dele); aqui só entram os três pontos. Cada ponto tem 8px,
+ * em `--unc-color-text-bubble-meta` — a cor dos metadados do balão, que passa
+ * de 4,5:1 sobre o balão recebido nos dois temas, acima dos 3:1 de elemento
+ * gráfico. A fileira tem a altura de uma linha do texto do balão, para o
+ * indicador ocupar o mesmo espaço da mensagem que vai substituir.
+ *
+ * A pulsação dura 1,2s e escalona 150ms por ponto; com movimento reduzido ela
+ * para e a frase do `aria-label` aparece ao lado dos pontos.
+ */
+
+@keyframes unc-typingindicator-pulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.unc-typingindicator__body {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-xs);
+  min-height: calc(var(--unc-font-body-md-size) * 1.3);
+}
+
+.unc-typingindicator__dots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--unc-spacing-3xs);
+  padding: 0 var(--unc-spacing-3xs);
+}
+
+.unc-typingindicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--unc-radius-full);
+  background-color: var(--unc-color-text-bubble-meta);
+  animation: unc-typingindicator-pulse 1.2s ease-in-out infinite;
+}
+
+.unc-typingindicator__dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.unc-typingindicator__dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+/* A frase existe para o leitor de tela; na tela, quem diz "digitando" são os
+   pontos em movimento. */
+.unc-typingindicator__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unc-typingindicator__dot {
+    animation: none;
+    opacity: 1;
+  }
+
+  /* Sem animação, os pontos parados não dizem nada: a frase aparece, nos
+     metadados do balão. */
+  .unc-typingindicator__label {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    color: var(--unc-color-text-bubble-meta);
+    font-size: var(--unc-font-caption-size);
+    font-style: italic;
+  }
+}
