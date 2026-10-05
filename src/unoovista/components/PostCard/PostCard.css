@@ -262,6 +262,20 @@
   box-shadow: var(--unv-elevation-overlay);
 }
 
+/*
+ * Só o salvar (`actions={[]}`): a barra encosta à direita. Sobre a mídia, a
+ * pílula encolhe ao tamanho do botão — uma pílula da largura do post com um
+ * botão só na ponta parece vazia, não enxuta.
+ */
+.unv-post-card__actions--save-only {
+  justify-content: flex-end;
+}
+
+.unv-post-card__media + .unv-post-card__actions--save-only {
+  width: max-content;
+  margin-left: auto;
+}
+
 .unv-post-card__action {
   display: inline-flex;
   align-items: center;
