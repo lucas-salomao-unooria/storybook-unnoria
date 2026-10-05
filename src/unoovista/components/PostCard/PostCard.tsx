@@ -6,6 +6,7 @@ import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import type {
+  UnvPostAction,
   UnvPostActionsProps,
   UnvPostCaptionProps,
   UnvPostCardProps,
@@ -200,11 +201,14 @@ const PostCardMedia: React.FC<UnvPostMediaProps> = ({
 PostCardMedia.displayName = 'PostCard.Media';
 
 /**
- * Barra de ações da publicação: curtir, comentar e compartilhar à esquerda,
- * salvar à direita. Logo depois da mídia, vira uma pílula sobreposta à base
+ * Barra de ações da publicação: curtir, comentar e compartilhar à esquerda
+ * (as que `actions` pedir), salvar à direita. Logo depois da mídia, vira uma pílula sobreposta à base
  * dela; solta, é uma linha simples.
  */
+const TODAS_AS_ACOES: readonly UnvPostAction[] = ['like', 'comment', 'share'];
+
 const PostCardActions: React.FC<UnvPostActionsProps> = ({
+  actions = TODAS_AS_ACOES,
   liked = false,
   saved = false,
   currentIndex = 1,
@@ -216,80 +220,97 @@ const PostCardActions: React.FC<UnvPostActionsProps> = ({
   theme,
   className = '',
   ...restProps
-}) => (
-  <div
-    data-unv-theme={theme}
-    className={['unv-post-card__actions', className].filter(Boolean).join(' ')}
-    {...restProps}
-  >
-    <div className="unv-post-card__actions-group">
+}) => {
+  const mostra = new Set(actions);
+  return (
+    <div
+      data-unv-theme={theme}
+      className={[
+        'unv-post-card__actions',
+        mostra.size === 0 ? 'unv-post-card__actions--save-only' : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      {...restProps}
+    >
+      {mostra.size > 0 && (
+        <div className="unv-post-card__actions-group">
+          {mostra.has('like') && (
+            <button
+              type="button"
+              className={[
+                'unv-post-card__action',
+                liked ? 'unv-post-card__action--liked' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              onClick={onLike}
+              aria-pressed={liked}
+              aria-label={liked ? 'Descurtir publicação' : 'Curtir publicação'}
+            >
+              <Icon name={liked ? 'heartFilled' : 'heart'} size="md" tone="inherit" theme={theme} />
+            </button>
+          )}
+
+          {mostra.has('comment') && (
+            <button
+              type="button"
+              className="unv-post-card__action"
+              onClick={onComment}
+              aria-label="Comentar publicação"
+            >
+              <Icon name="comment" size="md" tone="inherit" theme={theme} />
+            </button>
+          )}
+
+          {mostra.has('share') && (
+            <button
+              type="button"
+              className="unv-post-card__action"
+              onClick={onShare}
+              aria-label="Compartilhar publicação"
+            >
+              <Icon name="share" size="md" tone="inherit" theme={theme} />
+            </button>
+          )}
+        </div>
+      )}
+
+      {totalCount > 1 && (
+        <div className="unv-post-card__pagination" aria-hidden="true">
+          {Array.from({ length: totalCount }, (_, index) => (
+            <span
+              key={index}
+              className={[
+                'unv-post-card__dot',
+                index + 1 === currentIndex ? 'unv-post-card__dot--active' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            />
+          ))}
+        </div>
+      )}
+
       <button
         type="button"
         className={[
           'unv-post-card__action',
-          liked ? 'unv-post-card__action--liked' : '',
+          'unv-post-card__action--save',
+          saved ? 'unv-post-card__action--saved' : '',
         ]
           .filter(Boolean)
           .join(' ')}
-        onClick={onLike}
-        aria-pressed={liked}
-        aria-label={liked ? 'Descurtir publicação' : 'Curtir publicação'}
+        onClick={onSave}
+        aria-pressed={saved}
+        aria-label={saved ? 'Remover dos salvos' : 'Salvar publicação'}
       >
-        <Icon name={liked ? 'heartFilled' : 'heart'} size="md" tone="inherit" theme={theme} />
-      </button>
-
-      <button
-        type="button"
-        className="unv-post-card__action"
-        onClick={onComment}
-        aria-label="Comentar publicação"
-      >
-        <Icon name="comment" size="md" tone="inherit" theme={theme} />
-      </button>
-
-      <button
-        type="button"
-        className="unv-post-card__action"
-        onClick={onShare}
-        aria-label="Compartilhar publicação"
-      >
-        <Icon name="share" size="md" tone="inherit" theme={theme} />
+        <Icon name={saved ? 'bookmarkFilled' : 'bookmark'} size="md" tone="inherit" theme={theme} />
       </button>
     </div>
-
-    {totalCount > 1 && (
-      <div className="unv-post-card__pagination" aria-hidden="true">
-        {Array.from({ length: totalCount }, (_, index) => (
-          <span
-            key={index}
-            className={[
-              'unv-post-card__dot',
-              index + 1 === currentIndex ? 'unv-post-card__dot--active' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-          />
-        ))}
-      </div>
-    )}
-
-    <button
-      type="button"
-      className={[
-        'unv-post-card__action',
-        'unv-post-card__action--save',
-        saved ? 'unv-post-card__action--saved' : '',
-      ]
-        .filter(Boolean)
-        .join(' ')}
-      onClick={onSave}
-      aria-pressed={saved}
-      aria-label={saved ? 'Remover dos salvos' : 'Salvar publicação'}
-    >
-      <Icon name={saved ? 'bookmarkFilled' : 'bookmark'} size="md" tone="inherit" theme={theme} />
-    </button>
-  </div>
-);
+  );
+};
 
 PostCardActions.displayName = 'PostCard.Actions';
 

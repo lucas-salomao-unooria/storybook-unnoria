@@ -3,6 +3,7 @@ export type {
   UnvPostCardProps,
   UnvPostHeaderProps,
   UnvPostMediaProps,
+  UnvPostAction,
   UnvPostActionsProps,
   UnvPostLikesProps,
   UnvPostCaptionProps,

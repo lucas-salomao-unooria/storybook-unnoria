@@ -254,7 +254,7 @@ const PostCardDocumentationPage = () => (
             },
             {
               name: 'PostCard.Actions',
-              role: 'Pílula elevada sobre a base da mídia: curtir, comentar e compartilhar; salvar à direita.',
+              role: 'Pílula elevada sobre a base da mídia: curtir, comentar e compartilhar (escolhidas por `actions`); salvar à direita.',
               token: '--unv-color-background-elevated · --unv-elevation-overlay',
             },
             {
@@ -760,6 +760,41 @@ export const ComposicaoModular: Story = {
           <PostCard.Media src={unvPhotos.desk} alt="Estação de trabalho" aspectRatio={1.4} />
           <PostCard.Actions saved />
           <PostCard.Caption username="diego.nunes">Setup novo.</PostCard.Caption>
+        </PostCard>
+      </div>
+    </UnvDocStage>
+  ),
+};
+
+/**
+ * Só as ações que fazem algo na tela (`actions`). Com `[]`, sobra o salvar, e a
+ * pílula encolhe ao tamanho dele, encostada à direita.
+ */
+export const AcoesEscolhidas: Story = {
+  name: 'Só as Ações que Fazem Algo',
+  render: () => (
+    <UnvDocStage surface="secondary" align="flex-start" padding={24}>
+      <div style={{ width: 320 }}>
+        <PostCard>
+          <PostCard.Header username="bruno.alves" avatarSrc={unvAvatars.theoAndrade} />
+          <PostCard.Media src={unvPhotos.forest} alt="Floresta" />
+          <PostCard.Actions actions={[]} />
+          <PostCard.Caption username="bruno.alves">Só salvar: a pílula de um botão.</PostCard.Caption>
+        </PostCard>
+      </div>
+      <div style={{ width: 320 }}>
+        <PostCard>
+          <PostCard.Header username="bruno.alves" avatarSrc={unvAvatars.theoAndrade} />
+          <PostCard.Media src={unvPhotos.mountains} alt="Montanhas" />
+          <PostCard.Actions actions={['like']} saved />
+          <PostCard.Caption username="bruno.alves">Curtir e salvar.</PostCard.Caption>
+        </PostCard>
+      </div>
+      <div style={{ width: 320 }}>
+        <PostCard>
+          <PostCard.Header username="bruno.alves" avatarSrc={unvAvatars.theoAndrade} />
+          <PostCard.Actions actions={[]} saved />
+          <PostCard.Caption username="bruno.alves">Solta, sem mídia: o salvar à direita.</PostCard.Caption>
         </PostCard>
       </div>
     </UnvDocStage>

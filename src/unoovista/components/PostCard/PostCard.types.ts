@@ -101,11 +101,21 @@ export interface UnvPostMediaProps extends React.HTMLAttributes<HTMLDivElement> 
   theme?: UnvTheme;
 }
 
+/** As ações à esquerda da barra. Salvar não entra: ele sempre aparece, à direita. */
+export type UnvPostAction = 'like' | 'comment' | 'share';
+
 /**
  * Propriedades da barra de ações da publicação. Logo depois de `PostCard.Media`,
  * ela vira uma pílula sobreposta à base da mídia; solta, é uma linha simples.
  */
 export interface UnvPostActionsProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Quais ações aparecem à esquerda, na ordem fixa do app (curtir, comentar,
+   * compartilhar). Padrão: as três. Uma ação que não faz nada na tela é um
+   * botão morto: quem usa o post só para salvar passa `[]`, e a barra vira a
+   * pílula de um botão só, encostada à direita.
+   */
+  actions?: readonly UnvPostAction[];
   /** Estado de curtida da publicação */
   liked?: boolean;
   /** Estado de salvamento da publicação */
