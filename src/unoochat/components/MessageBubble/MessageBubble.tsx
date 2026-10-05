@@ -207,7 +207,8 @@ MessageInvite.displayName = 'MessageBubble.Invite';
  * usa `--unc-color-surface-bubble-in`.
  *
  * `sender` e `forwardedLabel` são extensões: o nome de quem escreve em conversa
- * de grupo e o selo de mensagem encaminhada.
+ * de grupo e o selo de mensagem encaminhada. `senderTone` (1 a 8) pinta o nome
+ * com um dos tons `--unc-color-sender-*`, para distinguir as pessoas do grupo.
  */
 const MessageBubbleRoot = React.forwardRef<HTMLDivElement, UncMessageBubbleProps>(
   (
@@ -220,6 +221,7 @@ const MessageBubbleRoot = React.forwardRef<HTMLDivElement, UncMessageBubbleProps
       tail = true,
       maxWidth = 240,
       sender,
+      senderTone,
       forwardedLabel,
       className = '',
       style,
@@ -245,7 +247,18 @@ const MessageBubbleRoot = React.forwardRef<HTMLDivElement, UncMessageBubbleProps
         }
         {...restProps}
       >
-        {sender && <span className="unc-messagebubble__sender">{sender}</span>}
+        {sender && (
+          <span
+            className={[
+              'unc-messagebubble__sender',
+              senderTone ? `unc-messagebubble__sender--tone-${senderTone}` : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+          >
+            {sender}
+          </span>
+        )}
 
         {forwardedLabel && (
           <span className="unc-messagebubble__forwarded">

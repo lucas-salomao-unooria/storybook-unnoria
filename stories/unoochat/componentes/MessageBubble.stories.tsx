@@ -15,7 +15,8 @@ import {
   UncDocThemeSwitcher,
   type UncDocTheme,
 } from '../../../.storybook/components';
-import { MessageBubble, ChatWallpaper, DateChip } from '../../../src/unoochat';
+import { MessageBubble, ChatWallpaper, DateChip, TypingIndicator } from '../../../src/unoochat';
+import type { UncSenderTone } from '../../../src/unoochat';
 import { expect, userEvent, within } from 'storybook/test';
 import { uncWallpaperFor, uncSamplePhoto } from '../fixtures';
 
@@ -153,6 +154,44 @@ const ExtensoesDeGrupo: React.FC = () => (
 );
 
 /**
+ * `#RRGGBB` no formato que `getComputedStyle().color` devolve.
+ */
+const hexParaRgb = (hex: string): string => {
+  const [r, g, b] = [1, 3, 5].map((inicio) => parseInt(hex.slice(inicio, inicio + 2), 16));
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+/**
+ * Os oito tons de remetente, com o nome da família de cada um. Nomes fictícios.
+ */
+const TONS_DO_REMETENTE: { tone: UncSenderTone; nome: string; familia: string }[] = [
+  { tone: 1, nome: 'Ana Beatriz', familia: 'roxo' },
+  { tone: 2, nome: 'Bruno Reis', familia: 'azul-marinho' },
+  { tone: 3, nome: 'Camila Duarte', familia: 'laranja' },
+  { tone: 4, nome: 'Davi Lucas', familia: 'vermelho' },
+  { tone: 5, nome: 'Elisa Moura', familia: 'azul' },
+  { tone: 6, nome: 'Felipe Nunes', familia: 'verde' },
+  { tone: 7, nome: 'Gabriela Lima', familia: 'âmbar' },
+  { tone: 8, nome: 'Heitor Prado', familia: 'cinza' },
+];
+
+/**
+ * Um balão recebido por tom, de 1 a 8, mais o balão sem `senderTone`.
+ */
+const TonsDoRemetente: React.FC = () => (
+  <Thread>
+    <MessageBubble direction="in" sender="Sem senderTone (acento)" time="08:00">
+      Sem a prop, o nome fica no acento.
+    </MessageBubble>
+    {TONS_DO_REMETENTE.map(({ tone, nome, familia }) => (
+      <MessageBubble key={tone} direction="in" sender={nome} senderTone={tone} time={`08:0${tone}`}>
+        {`senderTone={${tone}} · ${familia}`}
+      </MessageBubble>
+    ))}
+  </Thread>
+);
+
+/**
  * Trecho de conversa sobre a textura do tema.
  */
 const ConversaEmContexto: React.FC<{ theme: UncDocTheme }> = ({ theme }) => (
@@ -250,6 +289,11 @@ const MessageBubbleDocumentationPage = () => (
             '`sender` (remetente em `--unc-color-accent`, em negrito) e `forwardedLabel` (selo "Encaminhada", com o glifo `forward`, nos metadados) não têm par na Plataforma Unooria, que não modela conversa em grupo nem mensagem encaminhada.',
         },
         {
+          subject: 'Tons do remetente (`senderTone`)',
+          detail:
+            'em grupo, a cor distingue quem fala. `senderTone` (1 a 8) troca a cor do nome por `--unc-color-sender-1` a `-8`: uma família da paleta da Unooria por tom (roxo, azul-marinho, laranja, vermelho, azul, verde, âmbar e cinza), no degrau que passa de 4,5:1 sobre o balão recebido em cada tema e mantém os oito distantes entre si. O tom N é da mesma família nos dois temas, então a pessoa não muda de cor quando o tema muda. No claro, as famílias quentes da paleta só passam de 4,5:1 sobre o branco em degraus escuros, e o par mais próximo (vermelho e âmbar) fica em ΔE2000 de 9,6; no escuro, o mais próximo fica em 15,5. Sem a prop, o nome segue em `--unc-color-accent`, como antes. O `TypingIndicator` aceita o mesmo `senderTone`.',
+        },
+        {
           subject: 'Mídia desenhada',
           detail:
             'sem `src`, `MessageBubble.Media` exibe os `children` na moldura e se anuncia como imagem pelo `alt`. É para o produto que desenha a mídia a partir do texto em vez de servir arquivo.',
@@ -277,7 +321,7 @@ const MessageBubbleDocumentationPage = () => (
       zones={[
         { name: 'Balão', role: 'Superfície com raio de 8px e alinhamento pela direção.', token: '--unc-color-surface-bubble-out · --unc-color-surface-bubble-in' },
         { name: 'Cauda', role: 'Triângulo na base, do lado correspondente à direção.', token: 'prop tail' },
-        { name: 'Remetente e encaminhada', role: 'Nome de quem escreveu e selo de mensagem encaminhada, no topo do balão.', token: '--unc-color-accent · --unc-color-text-bubble-meta' },
+        { name: 'Remetente e encaminhada', role: 'Nome de quem escreveu (com senderTone, num dos oito tons) e selo de mensagem encaminhada, no topo do balão.', token: '--unc-color-accent · --unc-color-sender-1…8 · --unc-color-text-bubble-meta' },
         { name: 'Conteúdo', role: 'Texto simples ou os subcomponentes Media, Document, LinkPreview e Invite.', token: '--unc-color-text-bubble' },
         { name: 'Media', role: 'Miniatura com raio de 5px e proporção configurável, com imagem ou mídia desenhada.', token: 'MessageBubble.Media' },
         { name: 'Document', role: 'Faixa com ícone de PDF, nome e metadados.', token: '--unc-color-surface-bubble-out-strip' },
@@ -289,6 +333,7 @@ const MessageBubbleDocumentationPage = () => (
     <PorTema label="Variantes e estados">{() => <VariantesDoBalao />}</PorTema>
     <PorTema label="Anexos">{() => <Anexos />}</PorTema>
     <PorTema label="Extensões de grupo">{() => <ExtensoesDeGrupo />}</PorTema>
+    <PorTema label="Tons do remetente (senderTone)">{() => <TonsDoRemetente />}</PorTema>
 
     <UnooriaDocSectionHeader
       barColor={BAR}
@@ -351,6 +396,7 @@ const MessageBubbleDocumentationPage = () => (
         { name: 'tail', type: 'boolean', default: 'true', description: 'Desenha a cauda triangular na base do balão.' },
         { name: 'maxWidth', type: 'number', default: '240', description: 'Largura máxima do balão em pixels.' },
         { name: 'sender', type: 'React.ReactNode', description: 'Extensão: remetente no topo do balão, em conversa de grupo.' },
+        { name: 'senderTone', type: '1 | 2 | 3 | 4 | 5 | 6 | 7 | 8', description: 'Extensão: cor do nome do remetente (--unc-color-sender-N). Ausente, o nome fica em --unc-color-accent.' },
         { name: 'forwardedLabel', type: 'React.ReactNode', description: 'Extensão: selo de mensagem encaminhada, como "Encaminhada".' },
         { name: 'className', type: 'string', description: 'Classe CSS adicional.' },
       ]}
@@ -411,6 +457,11 @@ const meta: Meta<typeof MessageBubble> = {
     tail: { control: 'boolean', description: 'Desenha a cauda triangular.' },
     maxWidth: { control: { type: 'range', min: 120, max: 360, step: 5 }, description: 'Largura máxima em pixels.' },
     sender: { control: 'text', description: 'Extensão: remetente em conversa de grupo.' },
+    senderTone: {
+      control: 'select',
+      options: [undefined, 1, 2, 3, 4, 5, 6, 7, 8],
+      description: 'Extensão: tom do nome do remetente (1 a 8). Ausente, o acento.',
+    },
     forwardedLabel: { control: 'text', description: 'Extensão: selo de encaminhada.' },
   },
   args: {
@@ -630,4 +681,52 @@ export const MidiaAcionavel: Story = {
     await userEvent.click(tela.getByRole('button', { name: 'Fotografia enviada' }));
     await expect(contador).toHaveTextContent('Aberturas: 3');
   },
+};
+
+/**
+ * Os oito tons do remetente nos dois temas, mais o balão sem `senderTone`. O
+ * `play` confere que cada tom vira a classe do modificador e a cor do token, e
+ * que sem a prop o nome continua no acento.
+ */
+export const TonsDoRemetenteNosDoisTemas: Story = {
+  name: 'TonsDoRemetente',
+  render: () => <PorTema label="senderTone de 1 a 8">{() => <TonsDoRemetente />}</PorTema>,
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    for (const { tone, nome } of TONS_DO_REMETENTE) {
+      const nomes = tela.getAllByText(nome);
+      await expect(nomes).toHaveLength(2);
+      for (const elemento of nomes) {
+        await expect(elemento).toHaveClass(`unc-messagebubble__sender--tone-${tone}`);
+        const token = getComputedStyle(elemento).getPropertyValue(`--unc-color-sender-${tone}`).trim();
+        await expect(token).toMatch(/^#[0-9A-F]{6}$/i);
+        await expect(getComputedStyle(elemento).color).toBe(hexParaRgb(token));
+      }
+    }
+    for (const semTom of tela.getAllByText('Sem senderTone (acento)')) {
+      await expect(semTom.className).toBe('unc-messagebubble__sender');
+      const acento = getComputedStyle(semTom).getPropertyValue('--unc-color-accent').trim();
+      await expect(getComputedStyle(semTom).color).toBe(hexParaRgb(acento));
+    }
+  },
+};
+
+/**
+ * O balão de grupo seguido do indicador de digitação da mesma pessoa, com o
+ * mesmo tom.
+ */
+export const RemetenteDigitando: Story = {
+  name: 'RemetenteDigitando',
+  render: () => (
+    <PorTema label="Mesmo tom no balão e no indicador">
+      {() => (
+        <Thread>
+          <MessageBubble direction="in" sender="Camila Duarte" senderTone={3} time="08:25">
+            Alguém sabe quem mandou essa foto primeiro?
+          </MessageBubble>
+          <TypingIndicator sender="Felipe Nunes" senderTone={6} />
+        </Thread>
+      )}
+    </PorTema>
+  ),
 };

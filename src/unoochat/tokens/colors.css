@@ -43,6 +43,16 @@
   --unc-color-accent: #716C98; /* --unooria-color-brandpurple-600 */
   /** Seta de chamada efetuada */
   --unc-color-accent-call-out: #00A369; /* --unooria-color-success-600 */
+  /** Nome do remetente em conversa de grupo (`MessageBubble` e `TypingIndicator` com `senderTone`).
+      Oito famílias da paleta, uma por tom, todas ≥ 4,5:1 sobre --unc-color-surface-bubble-in. */
+  --unc-color-sender-1: #716C98; /* --unooria-color-brandpurple-600 (roxo) */
+  --unc-color-sender-2: #2F4F7F; /* --unooria-color-brandnavy-900 (azul-marinho) */
+  --unc-color-sender-3: #7A2614; /* --unooria-color-brandorange-900 (laranja) */
+  --unc-color-sender-4: #E31A1A; /* --unooria-color-danger-600 (vermelho) */
+  --unc-color-sender-5: #006BFF; /* --unooria-color-info-600 (azul) */
+  --unc-color-sender-6: #008257; /* --unooria-color-success-700 (verde) */
+  --unc-color-sender-7: #B73506; /* --unooria-color-warning-700 (âmbar) */
+  --unc-color-sender-8: #617379; /* --unooria-color-neutral-500 (cinza) */
   /** Seta de chamada recebida ou perdida */
   --unc-color-danger-call-in: #E31A1A; /* --unooria-color-danger-600 */
   /** Botão de encerrar chamada */
@@ -141,6 +151,16 @@
   --unc-color-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
   /** Seta de chamada efetuada */
   --unc-color-accent-call-out: #26E197; /* --unooria-color-success-400 */
+  /** Nome do remetente em conversa de grupo (`MessageBubble` e `TypingIndicator` com `senderTone`).
+      Oito famílias da paleta, uma por tom, todas ≥ 4,5:1 sobre --unc-color-surface-bubble-in. */
+  --unc-color-sender-1: #AAA5C2; /* --unooria-color-brandpurple-400 (roxo) */
+  --unc-color-sender-2: #7FA5E2; /* --unooria-color-brandnavy-600 (azul-marinho) */
+  --unc-color-sender-3: #FDD1AB; /* --unooria-color-brandorange-200 (laranja) */
+  --unc-color-sender-4: #FFA1A1; /* --unooria-color-danger-300 (vermelho) */
+  --unc-color-sender-5: #26D4FF; /* --unooria-color-info-300 (azul) */
+  --unc-color-sender-6: #26E197; /* --unooria-color-success-400 (verde) */
+  --unc-color-sender-7: #FF9C20; /* --unooria-color-warning-400 (âmbar) */
+  --unc-color-sender-8: #A7B5B9; /* --unooria-color-neutral-300 (cinza) */
   /** Seta de chamada recebida ou perdida */
   --unc-color-danger-call-in: #FF6A6A; /* --unooria-color-danger-400 */
   /** Botão de encerrar chamada */

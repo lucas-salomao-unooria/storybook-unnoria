@@ -127,6 +127,63 @@ export const uncAccentColors: Record<string, UncColorToken> = {
 };
 
 /**
+ * Nome do remetente em conversa de grupo: oito tons, um por família da paleta
+ * da Unooria, escolhidos para ficarem distintos entre si e acima de 4,5:1 sobre
+ * `--unc-color-surface-bubble-in` em cada tema. Usados pela prop `senderTone`
+ * do `MessageBubble` e do `TypingIndicator`.
+ */
+export const uncSenderColors: Record<string, UncColorToken> = {
+  tone1: {
+    cssVar: '--unc-color-sender-1',
+    light: { value: '#716C98', unooria: '--unooria-color-brandpurple-600' },
+    dark: { value: '#AAA5C2', unooria: '--unooria-color-brandpurple-400' },
+    usage: 'Remetente em conversa de grupo, tom 1 (roxo)',
+  },
+  tone2: {
+    cssVar: '--unc-color-sender-2',
+    light: { value: '#2F4F7F', unooria: '--unooria-color-brandnavy-900' },
+    dark: { value: '#7FA5E2', unooria: '--unooria-color-brandnavy-600' },
+    usage: 'Remetente em conversa de grupo, tom 2 (azul-marinho)',
+  },
+  tone3: {
+    cssVar: '--unc-color-sender-3',
+    light: { value: '#7A2614', unooria: '--unooria-color-brandorange-900' },
+    dark: { value: '#FDD1AB', unooria: '--unooria-color-brandorange-200' },
+    usage: 'Remetente em conversa de grupo, tom 3 (laranja)',
+  },
+  tone4: {
+    cssVar: '--unc-color-sender-4',
+    light: { value: '#E31A1A', unooria: '--unooria-color-danger-600' },
+    dark: { value: '#FFA1A1', unooria: '--unooria-color-danger-300' },
+    usage: 'Remetente em conversa de grupo, tom 4 (vermelho)',
+  },
+  tone5: {
+    cssVar: '--unc-color-sender-5',
+    light: { value: '#006BFF', unooria: '--unooria-color-info-600' },
+    dark: { value: '#26D4FF', unooria: '--unooria-color-info-300' },
+    usage: 'Remetente em conversa de grupo, tom 5 (azul)',
+  },
+  tone6: {
+    cssVar: '--unc-color-sender-6',
+    light: { value: '#008257', unooria: '--unooria-color-success-700' },
+    dark: { value: '#26E197', unooria: '--unooria-color-success-400' },
+    usage: 'Remetente em conversa de grupo, tom 6 (verde)',
+  },
+  tone7: {
+    cssVar: '--unc-color-sender-7',
+    light: { value: '#B73506', unooria: '--unooria-color-warning-700' },
+    dark: { value: '#FF9C20', unooria: '--unooria-color-warning-400' },
+    usage: 'Remetente em conversa de grupo, tom 7 (âmbar)',
+  },
+  tone8: {
+    cssVar: '--unc-color-sender-8',
+    light: { value: '#617379', unooria: '--unooria-color-neutral-500' },
+    dark: { value: '#A7B5B9', unooria: '--unooria-color-neutral-300' },
+    usage: 'Remetente em conversa de grupo, tom 8 (cinza)',
+  },
+};
+
+/**
  * Severidades, chamada e bateria.
  */
 export const uncStatusColors: Record<string, UncColorToken> = {
@@ -354,6 +411,7 @@ export const uncAttachmentColors: Record<string, UncColorToken> = {
 export const uncColorTokens = {
   surface: uncSurfaceColors,
   accent: uncAccentColors,
+  sender: uncSenderColors,
   status: uncStatusColors,
   text: uncTextColors,
   icon: uncIconColors,

@@ -20,6 +20,7 @@ import {
   uncColorTokens,
   uncSurfaceColors,
   uncAccentColors,
+  uncSenderColors,
   uncStatusColors,
   uncTextColors,
   uncIconColors,
@@ -272,6 +273,12 @@ const CONTRAST_PAIRS: ContrastPair[] = [
   { label: 'Metadado do balão sobre balão enviado', fg: uncTextColors.bubbleMeta, bg: uncSurfaceColors.bubbleOut, minimum: 4.5 },
   { label: 'Metadado do balão sobre balão recebido', fg: uncTextColors.bubbleMeta, bg: uncSurfaceColors.bubbleIn, minimum: 4.5 },
   { label: 'Contorno de caixa de seleção sobre canvas', fg: uncBorderColors.control, bg: uncSurfaceColors.canvas, minimum: 3 },
+  ...Object.entries(uncSenderColors).map(([key, token]) => ({
+    label: `Remetente ${key.replace('tone', 'tom ')} sobre balão recebido`,
+    fg: token,
+    bg: uncSurfaceColors.bubbleIn,
+    minimum: 4.5 as const,
+  })),
 ];
 
 const ratioCell = (ratio: number, minimum: number): React.ReactNode => {
@@ -599,6 +606,11 @@ const CoresDocumentationPage = () => (
             'no tema claro o enviado é brandpurple-200 e o recebido é branco; no escuro o enviado é brandpurple-700 e o recebido brandpurple-800. O texto do balão passa de 4,5:1 nas quatro combinações (seção 5).',
         },
         {
+          subject: 'Oito tons de remetente, um por família',
+          detail:
+            '--unc-color-sender-1 a -8 distinguem as pessoas de um grupo (prop senderTone do MessageBubble e do TypingIndicator). Cada tom é uma família da paleta (roxo, azul-marinho, laranja, vermelho, azul, verde, âmbar e cinza), a mesma nos dois temas, no degrau que passa de 4,5:1 sobre o balão recebido e afasta os oito entre si. No claro, laranja, vermelho e âmbar só passam de 4,5:1 sobre o branco em degraus escuros, e o par mais próximo fica em ΔE2000 de 9,6; no escuro, em 15,5.',
+        },
+        {
           subject: 'Cor do texto sobre o acento acompanha o tema',
           detail:
             '--unc-color-text-on-accent e --unc-color-icon-on-accent são brancos no claro e brandpurple-950 no escuro, porque o acento escuro é um degrau claro. Branco sobre brandpurple-400 mediria abaixo de 3:1.',
@@ -622,10 +634,12 @@ const CoresDocumentationPage = () => (
     <UnooriaDocSectionHeader
       barColor={BAR}
       title="4. Grupos de tokens"
-      description="Acento, severidades e chamada, texto, ícones, bordas e anexos, com o token de origem da Unooria."
+      description="Acento, tons do remetente, severidades e chamada, texto, ícones, bordas e anexos, com o token de origem da Unooria."
     />
     <h4 style={{ margin: '0 0 12px', fontSize: 15, color: DOC_TEXT }}>Acento</h4>
     <SwatchGroup tokens={uncAccentColors} />
+    <h4 style={{ margin: '0 0 12px', fontSize: 15, color: DOC_TEXT }}>Tons do remetente</h4>
+    <SwatchGroup tokens={uncSenderColors} />
     <h4 style={{ margin: '0 0 12px', fontSize: 15, color: DOC_TEXT }}>Severidades e chamada</h4>
     <SwatchGroup tokens={uncStatusColors} />
     <h4 style={{ margin: '0 0 12px', fontSize: 15, color: DOC_TEXT }}>Texto</h4>
@@ -743,6 +757,7 @@ const CoresDocumentationPage = () => (
       [
         ['Superfícies', uncSurfaceColors],
         ['Acento', uncAccentColors],
+        ['Tons do remetente', uncSenderColors],
         ['Severidades e chamada', uncStatusColors],
         ['Texto', uncTextColors],
         ['Ícones', uncIconColors],

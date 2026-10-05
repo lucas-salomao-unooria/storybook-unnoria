@@ -267,6 +267,7 @@
 @import './unoochat/components/TextButton/TextButton.css';
 @import './unoochat/components/Toast/Toast.css';
 @import './unoochat/components/TopBar/TopBar.css';
+@import './unoochat/components/TypingIndicator/TypingIndicator.css';
 
 /* ----------------------------------------------------
  * Tokens de Fundação (Tik Tooria)
