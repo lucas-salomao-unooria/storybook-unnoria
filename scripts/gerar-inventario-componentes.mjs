@@ -11,11 +11,9 @@
  * saída estática, e ele fica em `https://storybook-dev.unooria.com/ds-componentes.json`,
  * sempre do mesmo commit que o Storybook no ar.
  *
- * A leitura é a mesma do script Python, de propósito — os dois precisam
- * produzir a mesma lista: parte de `src/<marca>/index.ts`, segue os
- * `export * from './...'` e recolhe os nomes em PascalCase declarados
- * (`export const|function|class`) ou reexportados por nome
- * (`export { A, B as C } from`), descartando `type`, `*Props` e `*Context`.
+ * A leitura mora em `lib/inventario-componentes.mjs`, compartilhada com
+ * `inventario-para-o-gerador.mjs` (o que grava no bucket do gerador a cada
+ * versão publicada): as marcas são TODAS as pastas `src/<marca>/` com index.
  *
  *     node scripts/gerar-inventario-componentes.mjs                 # imprime no stdout
  *     node scripts/gerar-inventario-componentes.mjs saida.json      # grava no arquivo
@@ -29,51 +27,9 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { SECAO_PARA_MARCA, agoraIso, lerMarcas } from './lib/inventario-componentes.mjs';
+
 const raiz = process.cwd();
-const MARCAS = ['unooria', 'instanooria', 'chatgpt', 'whatsappmobile', 'tiktooria', 'unootube', 'unoochat', 'unoovista', 'unooriaai', 'unoogaleria', 'unoojornal', 'unooblog'];
-/** Nome da seção na esteira do gerador (`secao_ds`) → pasta da marca aqui. */
-const SECAO_PARA_MARCA = { unitube: 'unootube' };
-
-const RE_REEXPORTA = /export\s+\*\s+from\s+['"](\.[^'"]+)['"]/g;
-const RE_NOMEADO = /export\s+\{([^}]+)\}\s+from/g;
-const RE_DECLARA = /export\s+(?:const|function|class|default\s+function)\s+([A-Z][A-Za-z0-9]+)/g;
-const RE_NOME = /^[A-Z][A-Za-z0-9]+$/;
-
-/** `Path.with_suffix` do Python: troca a extensão do último segmento, se houver. */
-function comSufixo(base, sufixo) {
-  const nome = path.basename(base);
-  const ponto = nome.lastIndexOf('.');
-  const semExt = ponto > 0 && ponto < nome.length - 1 ? nome.slice(0, ponto) : nome;
-  return path.join(path.dirname(base), semExt + sufixo);
-}
-
-function arquivo(base) {
-  const candidatos = [
-    comSufixo(base, '.ts'),
-    comSufixo(base, '.tsx'),
-    path.join(base, 'index.ts'),
-    path.join(base, 'index.tsx'),
-  ];
-  return candidatos.find((c) => fs.existsSync(c) && fs.statSync(c).isFile()) ?? null;
-}
-
-function exportados(caminho, vistos) {
-  if (vistos.has(caminho)) return new Set();
-  vistos.add(caminho);
-  const texto = fs.readFileSync(caminho, 'utf8');
-  const nomes = new Set([...texto.matchAll(RE_DECLARA)].map((m) => m[1]));
-  for (const [, grupo] of texto.matchAll(RE_NOMEADO)) {
-    for (const item of grupo.split(',')) {
-      const nome = item.split(' as ').pop().trim();
-      if (RE_NOME.test(nome) && !item.trim().startsWith('type ')) nomes.add(nome);
-    }
-  }
-  for (const [, rel] of texto.matchAll(RE_REEXPORTA)) {
-    const alvo = arquivo(path.resolve(path.dirname(caminho), rel));
-    if (alvo) for (const n of exportados(alvo, vistos)) nomes.add(n);
-  }
-  return nomes;
-}
 
 function git(...args) {
   try {
@@ -84,16 +40,11 @@ function git(...args) {
 }
 
 const pacote = JSON.parse(fs.readFileSync(path.join(raiz, 'package.json'), 'utf8'));
-const marcas = {};
-for (const marca of MARCAS) {
-  const entrada = arquivo(path.join(raiz, 'src', marca));
-  if (!entrada) continue;
-  marcas[marca] = [...exportados(entrada, new Set())]
-    .filter((n) => !n.endsWith('Props') && !n.endsWith('Context'))
-    .sort();
+const { marcas, vazias } = lerMarcas(raiz);
+if (!Object.keys(marcas).length) {
+  console.error('nenhuma marca em src/ (pasta com index.ts) — rode da raiz do repositório');
+  process.exit(1);
 }
-
-const vazias = MARCAS.filter((m) => !marcas[m]?.length);
 if (vazias.length) {
   console.error(`inventário sem componentes para: ${vazias.join(', ')}`);
   process.exit(1);
@@ -104,7 +55,7 @@ const dados = {
   data_commit: process.env.DS_DATA_COMMIT || git('log', '-1', '--format=%cs') || null,
   pacote: pacote.name,
   versao: pacote.version,
-  sincronizado_em: new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00'),
+  sincronizado_em: agoraIso(),
   secao_para_marca: SECAO_PARA_MARCA,
   marcas,
 };

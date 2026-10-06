@@ -21,6 +21,7 @@
    - [Uso de Tokens e Variáveis CSS](#uso-de-tokens-e-variáveis-css)
 6. [Componentes Disponíveis](#-componentes-disponíveis)
 7. [Scripts de Desenvolvimento](#-scripts-de-desenvolvimento)
+   - [Inventário de Componentes para o Gerador de Missões](#inventário-de-componentes-para-o-gerador-de-missões)
 8. [Estrutura do Pacote](#-estrutura-do-pacote)
 9. [Guia de Versionamento e Publicação no NPM](#-guia-de-versionamento-e-publicação-no-npm)
    - [1. Configuração do Secret no GitHub](#1-configuração-do-secret-no-github)
@@ -281,6 +282,34 @@ No repositório do Design System:
 | `npm run build:package` | Compila o pacote NPM gerando a pasta `dist/` via `tsup` |
 | `npm run typecheck` | Executa a verificação estrita de tipos TypeScript (`tsc --noEmit`) |
 | `npm run lint` | Executa a análise estática de código com ESLint |
+| `npm run inventario:gerador -- --saida <dir>` | Gera localmente o inventário de componentes que o gerador de missões lê (ver abaixo) |
+| `npm run test:inventario` | Testa o inventário (`node --test`, sem dependência) |
+
+### Inventário de Componentes para o Gerador de Missões
+
+**O que é.** A lista dos componentes públicos de cada marca do pacote, por versão. Marca é **toda** pasta `src/<marca>/` que tenha `index.ts` ou `index.tsx` — não existe lista fixa, então uma marca nova entra sozinha. Os nomes saem dos `export const|function|class` em PascalCase e dos `export { … } from`, seguindo os `export * from` a partir do `index`; tipos (`type`) e nomes terminados em `Props` ou `Context` ficam de fora. A leitura mora em `scripts/lib/inventario-componentes.mjs` e é a mesma do `/ds-componentes.json` servido pelo Storybook.
+
+**Quem lê.** O gerador de missões (repositório `gerador-missoes`). No início de cada execução ele lê `design-system/atual.json`, fixa a versão para a execução inteira e confere contra `ds-componentes.json` todo nome de componente que os agentes dele chamam de "do DS". A seção `unitube` do gerador corresponde à marca `unootube` (campo `secao_para_marca`).
+
+**Onde fica.** No bucket `gs://entre-redes-dev-adk-artifacts/base-plataforma/`:
+
+```
+design-system/
+├── atual.json                  # ponteiro para a versão vigente, gravado POR ÚLTIMO (Cache-Control: no-store)
+└── <versao>/
+    └── ds-componentes.json     # { commit, data_commit, pacote, versao, sincronizado_em, secao_para_marca, marcas }
+```
+
+**Quando é gravado.** Pelo job `inventario` do `publish-npm.yml`, depois de cada `npm publish` bem-sucedido. O job é separado do de publicação: se o inventário falhar, a versão continua no npm e o erro aparece num job vermelho só dele. Para regravar à mão, rode o workflow em **Actions > Publicar Pacote no NPM > Run workflow** marcando `somente_inventario`. A autenticação usa as variáveis do repositório `WIF_PROVIDER` e `DEPLOY_SA`.
+
+**Comando local** (não envia nada):
+
+```bash
+node scripts/inventario-para-o-gerador.mjs --saida /tmp/ds
+# grava /tmp/ds/design-system/<versao>/ds-componentes.json e /tmp/ds/design-system/atual.json
+```
+
+`--enviar gs://…/base-plataforma` gera num temporário e sobe com o `gcloud`: primeiro a pasta da versão, depois o `atual.json`. Marca sem componente nenhum é aviso (entra com lista vazia); nenhuma marca é erro.
 
 ---
 

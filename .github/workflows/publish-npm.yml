@@ -3,11 +3,24 @@ name: Publicar Pacote no NPM
 # Roda SOMENTE quando uma versão é publicada:
 #   npm version patch && git push --follow-tags
 # Nada aqui toca o Cloud Run.
+#
+# Depois do `npm publish`, um job SEPARADO grava o inventário de componentes
+# no bucket que o gerador de missões lê (`base-plataforma/design-system/`).
+# Separado de propósito: se o inventário falhar, a versão no npm continua
+# publicada e o erro aparece isolado, num job vermelho só dele.
+#
+# À mão (Actions > Run workflow), marque `somente_inventario` para regravar o
+# inventário da versão do ref escolhido sem tentar publicar de novo no npm.
 on:
   push:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      somente_inventario:
+        description: 'Só regravar o inventário do gerador de missões (não publica no npm)'
+        type: boolean
+        default: false
 
 concurrency:
   group: publish-npm-${{ github.ref }}
@@ -16,6 +29,7 @@ concurrency:
 jobs:
   publish:
     name: Build & Publicar @unooria/design-system
+    if: ${{ !inputs.somente_inventario }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -45,3 +59,41 @@ jobs:
         run: npm publish --access public --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Inventário de componentes por marca para o gerador de missões. Lê só o
+  # código-fonte (sem `npm ci`) e sobe a pasta da versão ANTES do ponteiro
+  # `atual.json`, para quem lê nunca pegar uma versão pela metade.
+  # WIF_PROVIDER e DEPLOY_SA são variáveis do repositório (Settings > Secrets
+  # and variables > Actions > Variables); a SA só escreve em base-plataforma/.
+  inventario:
+    name: Inventário de Componentes para o Gerador de Missões
+    needs: publish
+    if: ${{ !cancelled() && (needs.publish.result == 'success' || (inputs.somente_inventario && needs.publish.result == 'skipped')) }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: 📥 Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🧪 Testar o Inventário
+        run: node --test scripts/inventario-para-o-gerador.test.mjs
+
+      - name: 🔐 Autenticar no Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: ${{ vars.DEPLOY_SA }}
+
+      - name: ☁️ Configurar Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: 🧾 Enviar Inventário ao Bucket do Gerador
+        run: node scripts/inventario-para-o-gerador.mjs --enviar gs://entre-redes-dev-adk-artifacts/base-plataforma
