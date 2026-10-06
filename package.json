@@ -119,6 +119,8 @@
     "verificar:css": "node scripts/verificar-css-agregado.mjs",
     "fontes": "node scripts/baixar-fontes.mjs",
     "inventario": "node scripts/gerar-inventario-componentes.mjs",
+    "inventario:gerador": "node scripts/inventario-para-o-gerador.mjs",
+    "test:inventario": "node --test scripts/inventario-para-o-gerador.test.mjs",
     "verificar:paridade-unoochat": "node scripts/verificar-paridade-unoochat.mjs",
     "verificar:paridade-unoovista": "node scripts/verificar-paridade-unoovista.mjs",
     "verificar:paridade-unooriaai": "node scripts/verificar-paridade-unooriaai.mjs",

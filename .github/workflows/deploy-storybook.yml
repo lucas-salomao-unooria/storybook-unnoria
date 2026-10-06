@@ -46,6 +46,10 @@ jobs:
       - name: 🧾 Verificar Inventário de Componentes
         run: npm run inventario -- "$RUNNER_TEMP/ds-componentes.json"
 
+      # O inventário que o gerador de missões lê do bucket (publish-npm.yml).
+      - name: 🧪 Testar o Inventário do Gerador
+        run: npm run test:inventario
+
   # 2. Build da imagem e deploy. Só em push para master.
   deploy:
     name: Build & Deploy no Cloud Run
