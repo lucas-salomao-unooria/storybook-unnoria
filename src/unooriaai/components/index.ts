@@ -44,3 +44,9 @@ export * from './TopicColumn';
 export * from './SidebarRow';
 export * from './Composer';
 export * from './WebSidebar';
+
+/* ----------------------------------------------------------------
+ * Extensões do módulo (sem par na estrutura de origem)
+ * ---------------------------------------------------------------- */
+
+export * from './ChoicePoll';

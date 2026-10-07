@@ -30,6 +30,7 @@
 @import './unooriaai/components/Button/Button.css';
 @import './unooriaai/components/ChatBubble/ChatBubble.css';
 @import './unooriaai/components/ChatInput/ChatInput.css';
+@import './unooriaai/components/ChoicePoll/ChoicePoll.css';
 @import './unooriaai/components/Composer/Composer.css';
 @import './unooriaai/components/Divider/Divider.css';
 @import './unooriaai/components/FeatureCard/FeatureCard.css';

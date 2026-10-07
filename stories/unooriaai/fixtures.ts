@@ -156,3 +156,44 @@ export const uaiSettings = [
 
 /** Itens do rodapé da barra lateral. */
 export const uaiSidebarFooter = ['Minha conta', 'Novidades e ajuda', 'Sair'] as const;
+
+/**
+ * Enquete de escolha única que encerra uma resposta (`ChoicePoll`). Nenhuma
+ * opção é marcada como "certa": quem corrige, se houver correção, é o servidor.
+ */
+export const uaiPollQuestion = 'Antes de compartilhar o alerta, o que você faria primeiro?';
+
+/** Opções curtas da enquete de demonstração. */
+export const uaiPollOptions = [
+  { id: 'fonte', label: 'Procurar a fonte oficial do aviso' },
+  { id: 'grupo', label: 'Mandar no grupo da turma' },
+  { id: 'esperar', label: 'Esperar alguém confirmar' },
+  { id: 'ignorar', label: 'Ignorar a mensagem' },
+];
+
+/** A mesma pergunta com opções em frases inteiras, de duas a três linhas. */
+export const uaiPollQuestionLong =
+  'A IA respondeu que uma tempestade forte deve atingir a cidade amanhã à tarde e sugeriu suspender as aulas. Qual destas atitudes deixa a decisão mais confiável?';
+
+/** Opções longas, para conferir a quebra de linha e o alvo de toque. */
+export const uaiPollOptionsLong = [
+  {
+    id: 'defesa-civil',
+    label:
+      'Conferir o alerta no site da Defesa Civil e no serviço de meteorologia antes de repassar qualquer orientação para a turma.',
+  },
+  {
+    id: 'pedir-fontes',
+    label:
+      'Pedir à IA as fontes da previsão e checar se elas existem e se foram publicadas hoje, e não em outra data.',
+  },
+  {
+    id: 'compartilhar',
+    label:
+      'Compartilhar a resposta da IA do jeito que veio, porque um aviso de tempestade é urgente e não dá tempo de conferir.',
+  },
+  {
+    id: 'perguntar-de-novo',
+    label: 'Fazer a mesma pergunta de novo até a IA dar uma resposta diferente.',
+  },
+];
