@@ -5,7 +5,7 @@ name: Publicar Pacote no NPM
 # Nada aqui toca o Cloud Run.
 #
 # Depois do `npm publish`, um job SEPARADO grava o inventário de componentes
-# no bucket que o gerador de missões lê (`base-plataforma/design-system/`).
+# no bucket que o gerador de missões lê (`gs://entre-redes-dev-base-plataforma/design-system/`).
 # Separado de propósito: se o inventário falhar, a versão no npm continua
 # publicada e o erro aparece isolado, num job vermelho só dele.
 #
@@ -64,7 +64,8 @@ jobs:
   # código-fonte (sem `npm ci`) e sobe a pasta da versão ANTES do ponteiro
   # `atual.json`, para quem lê nunca pegar uma versão pela metade.
   # WIF_PROVIDER e DEPLOY_SA são variáveis do repositório (Settings > Secrets
-  # and variables > Actions > Variables); a SA só escreve em base-plataforma/.
+  # and variables > Actions > Variables); a SA só escreve no bucket da base
+  # (`entre-redes-dev-base-plataforma`) e não tem acesso ao bucket das sessões do gerador.
   inventario:
     name: Inventário de Componentes para o Gerador de Missões
     needs: publish
@@ -96,4 +97,4 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
 
       - name: 🧾 Enviar Inventário ao Bucket do Gerador
-        run: node scripts/inventario-para-o-gerador.mjs --enviar gs://entre-redes-dev-adk-artifacts/base-plataforma
+        run: node scripts/inventario-para-o-gerador.mjs --enviar gs://entre-redes-dev-base-plataforma
