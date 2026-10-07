@@ -1,6 +1,6 @@
 /**
  * Inventário de componentes do DS para o gerador de missões, gravado no
- * layout `base-plataforma/design-system/` que o gerador lê do bucket.
+ * layout `design-system/` do bucket da base da plataforma, que o gerador lê.
  *
  * Quem lê: o gerador de missões (repositório gerador-missoes), que no início
  * de cada execução lê `design-system/atual.json`, fixa a versão para a
@@ -19,7 +19,7 @@
  * Uso:
  *
  *     node scripts/inventario-para-o-gerador.mjs --saida /tmp/ds
- *     node scripts/inventario-para-o-gerador.mjs --enviar gs://entre-redes-dev-adk-artifacts/base-plataforma
+ *     node scripts/inventario-para-o-gerador.mjs --enviar gs://entre-redes-dev-base-plataforma
  *
  * `--saida` grava numa pasta local. `--enviar` gera num temporário e sobe com
  * o `gcloud`: primeiro a pasta da versão inteira, e SÓ DEPOIS o `atual.json`

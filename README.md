@@ -291,7 +291,7 @@ No repositório do Design System:
 
 **Quem lê.** O gerador de missões (repositório `gerador-missoes`). No início de cada execução ele lê `design-system/atual.json`, fixa a versão para a execução inteira e confere contra `ds-componentes.json` todo nome de componente que os agentes dele chamam de "do DS". A seção `unitube` do gerador corresponde à marca `unootube` (campo `secao_para_marca`).
 
-**Onde fica.** No bucket `gs://entre-redes-dev-adk-artifacts/base-plataforma/`:
+**Onde fica.** No bucket próprio `gs://entre-redes-dev-base-plataforma/`, que o gerador monta só para leitura. Até 07/10/2026 era o prefixo `base-plataforma/` do bucket das sessões do gerador, que o listava como uma missão e o apagou duas vezes pelo botão de excluir:
 
 ```
 design-system/
@@ -309,7 +309,7 @@ node scripts/inventario-para-o-gerador.mjs --saida /tmp/ds
 # grava /tmp/ds/design-system/<versao>/ds-componentes.json e /tmp/ds/design-system/atual.json
 ```
 
-`--enviar gs://…/base-plataforma` gera num temporário e sobe com o `gcloud`: primeiro a pasta da versão, depois o `atual.json`. Marca sem componente nenhum é aviso (entra com lista vazia); nenhuma marca é erro.
+`--enviar gs://entre-redes-dev-base-plataforma` gera num temporário e sobe com o `gcloud`: primeiro a pasta da versão, depois o `atual.json`. Marca sem componente nenhum é aviso (entra com lista vazia); nenhuma marca é erro.
 
 ---
 
