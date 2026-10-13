@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 import { ListSectionItemProps } from './ListSectionItem.types';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Toggle } from '../Toggle/Toggle';
@@ -60,6 +60,9 @@ export const ListSectionItem = forwardRef<HTMLDivElement, ListSectionItemProps>(
     ]
       .filter(Boolean)
       .join(' ');
+
+    // O checkbox leva o nome do TÍTULO do item: sem ele, "caixa de seleção" e nada mais (WCAG 4.1.2).
+    const titleId = `unooria-list-section-item-${useId()}-title`;
 
     const handleCheckboxChange = (checkedVal: boolean) => {
       onCheckChange?.(checkedVal);
@@ -131,6 +134,7 @@ export const ListSectionItem = forwardRef<HTMLDivElement, ListSectionItemProps>(
               onClick={(e) => e.stopPropagation()}
             >
               <Checkbox
+                aria-labelledby={titleId}
                 checked={checked}
                 onChange={handleCheckboxChange}
                 disabled={disabled}
@@ -147,7 +151,7 @@ export const ListSectionItem = forwardRef<HTMLDivElement, ListSectionItemProps>(
               <span className="unooria-list-section-item__category">{category}</span>
             )}
 
-            <h4 className="unooria-list-section-item__title">{title}</h4>
+            <h4 className="unooria-list-section-item__title" id={titleId}>{title}</h4>
 
             {description && (
               <p className="unooria-list-section-item__description">{description}</p>

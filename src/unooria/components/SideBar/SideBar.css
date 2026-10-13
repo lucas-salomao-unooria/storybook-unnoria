@@ -216,7 +216,7 @@
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.9);
   border: none;
-  color: #6487C2;
+  color: var(--unooria-color-brandnavy-800, #49699F);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -228,7 +228,7 @@
 }
 
 .unooria-sidebar__app-btn:hover {
-  background-color: #6487C2;
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   color: #FFFFFF;
 }
 
@@ -241,7 +241,7 @@
   align-items: center;
   padding: 0 0 0 16px;
   height: 39px;
-  background-color: #6487C2;
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   border-radius: 12px 0px 0px 12px;
   color: #FFFFFF;
   cursor: pointer;

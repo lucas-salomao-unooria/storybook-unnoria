@@ -120,7 +120,7 @@
   border: none;
   border-radius: var(--unooria-spacing-xxs, 8px);
   background-color: var(--unooria-color-opacity-neutrallight-700, rgba(255, 255, 255, 0.7));
-  color: var(--unooria-color-brandnavy-700, #6487c2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   cursor: pointer;
   outline: none;
   box-sizing: border-box;
@@ -175,7 +175,7 @@
 .unooria-header-menu__item[aria-disabled='true']:hover,
 .unooria-header-menu__item[aria-disabled='true']:active {
   background-color: var(--unooria-color-opacity-neutrallight-700, rgba(255, 255, 255, 0.7));
-  color: var(--unooria-color-brandnavy-700, #6487c2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 /* --------------------------------------------------------------------------

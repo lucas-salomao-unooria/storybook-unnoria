@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useState, useEffect } from 'react';
+import React, { forwardRef, useState, useEffect, useCallback } from 'react';
 import { TabsProps } from './Tab.types';
 import { Tab, TabsContext } from './Tab';
 import { TabList } from './TabList';
@@ -53,6 +53,18 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
 
     const [activeValue, setActiveValueState] = useState<string | number | undefined>(initialValue);
 
+    const [paineis, setPaineis] = useState<ReadonlySet<string | number>>(() => new Set());
+    const registrarPainel = useCallback((valor: string | number) => {
+      setPaineis((atual) => (atual.has(valor) ? atual : new Set(atual).add(valor)));
+      return () =>
+        setPaineis((atual) => {
+          if (!atual.has(valor)) return atual;
+          const proximo = new Set(atual);
+          proximo.delete(valor);
+          return proximo;
+        });
+    }, []);
+
     useEffect(() => {
       if (controlledValue !== undefined) {
         setActiveValueState(controlledValue);
@@ -87,6 +99,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
       size,
       fullWidth,
       theme,
+      paineis,
+      registrarPainel,
     };
 
     return (

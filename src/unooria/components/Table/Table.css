@@ -177,22 +177,22 @@
 
 .unooria-table-cell__tag--success {
   background-color: var(--unooria-color-opacity-success-100, rgba(1, 181, 116, 0.10));
-  color: var(--unooria-color-success-500, #01B574);
+  color: var(--unooria-color-success-800, #006746); /* o 500 dava 2,2:1 (WCAG 1.4.3) */
 }
 
 .unooria-table-cell__tag--warning {
   background-color: var(--unooria-color-opacity-warning-100, rgba(249, 118, 7, 0.10));
-  color: var(--unooria-color-warning-500, #F97607);
+  color: var(--unooria-color-warning-700, #B73506); /* o 500 dava 2,5:1 */
 }
 
 .unooria-table-cell__tag--danger {
   background-color: var(--unooria-color-opacity-danger-100, rgba(227, 26, 26, 0.10));
-  color: var(--unooria-color-danger-600, #E31A1A);
+  color: var(--unooria-color-danger-700, #C11414); /* o 600 dava 4,0:1 */
 }
 
 .unooria-table-cell__tag--brand {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.15));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 /* 3. Avatar */
@@ -207,7 +207,7 @@
   height: 36px;
   border-radius: 50%;
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.20));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   display: flex;
   align-items: center;
   justify-content: center;

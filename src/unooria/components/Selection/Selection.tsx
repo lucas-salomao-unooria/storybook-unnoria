@@ -97,7 +97,10 @@ export const SelectionOption = forwardRef<HTMLDivElement, SelectionOptionProps>(
         {...rest}
       >
         {showCheckbox && (
-          <span className="unooria-selection-option__mark" aria-hidden="true">
+          /* `inert`: a caixinha é só desenho. O `<input tabIndex=-1>` do
+             Checkbox dentro de `role="option"` era controle aninhado (WCAG
+             4.1.2) — o leitor de tela podia parar nele. */
+          <span className="unooria-selection-option__mark" aria-hidden="true" inert>
             <Checkbox
               size="md"
               theme={theme}
@@ -613,6 +616,9 @@ const SelectionRoot = forwardRef<HTMLDivElement, SelectionProps>(
             floating={!inlineBox}
             maxHeight={maxBoxHeight}
             className={boxClassName}
+            /* A lista leva o nome do campo (WCAG 4.1.2): sem ele o leitor de
+               tela anunciava só "lista". */
+            aria-labelledby={label ? `${baseId}-label` : undefined}
             aria-multiselectable={multiple || undefined}
           >
             {children ??

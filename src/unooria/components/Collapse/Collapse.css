@@ -276,7 +276,8 @@
 }
 
 .unooria-collapse--theme-dark .unooria-collapse__progress-label {
-  color: var(--unooria-color-neutraldark-700, #7C8E94);
+  /* O 700 dava 4,42:1 sobre o fundo escuro (WCAG 1.4.3). */
+  color: var(--unooria-color-neutral-300, #A7B5B9);
 }
 
 /* ==========================================================================

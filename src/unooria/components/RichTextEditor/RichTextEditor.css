@@ -102,7 +102,7 @@
 
 .unooria-rte__btn:hover {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-rte__btn:active {
@@ -111,7 +111,7 @@
 
 .unooria-rte__btn--active {
   background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-rte__btn-icon-label {
@@ -149,7 +149,7 @@
 
 .unooria-rte__font-size-btn:hover {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-rte__font-size-display {
@@ -215,7 +215,7 @@
 
 .unooria-rte__dropdown-item:hover {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-rte__dropdown-item-left {
@@ -360,7 +360,7 @@
 
 .unooria-rte__body code {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Courier New', Courier, monospace;
@@ -378,7 +378,7 @@
 }
 
 .unooria-rte__body a {
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   text-decoration: underline;
   cursor: pointer;
 }

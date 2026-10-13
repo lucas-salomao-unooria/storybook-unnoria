@@ -83,9 +83,9 @@
   color: #FFFFFF;
 }
 
-/* Warning (Figma: #DD5202) */
+/* Warning (Figma: #DD5202 → warning-700: o branco sobre #DD5202 dava 3,98:1) */
 .unooria-badge--variant-warning {
-  background-color: #DD5202;
+  background-color: #B73506;
   color: #FFFFFF;
 }
 
@@ -120,7 +120,8 @@
 
 /* Aliases Adicionais da Plataforma */
 .unooria-badge--variant-primary {
-  background-color: #6487C2;
+  /* brandnavy-800: o branco sobre o 700 (#6487C2) dava 3,63:1 */
+  background-color: #49699F;
   color: #FFFFFF;
 }
 
