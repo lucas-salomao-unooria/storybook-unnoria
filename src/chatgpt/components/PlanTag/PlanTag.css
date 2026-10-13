@@ -18,7 +18,8 @@
   padding: var(--gpt-spacing-1) var(--gpt-spacing-2);
   border-radius: var(--gpt-radius-sm);
   background-color: var(--gpt-color-purple-400);
-  color: var(--gpt-color-white);
+  /* Texto escuro sobre o lilás: o branco dava 2,1:1 (WCAG 1.4.3). */
+  color: var(--gpt-color-gray-800);
   font-family: var(--gpt-font-sans);
   font-size: var(--gpt-font-body-xs-size);
   font-weight: var(--gpt-font-weight-regular);

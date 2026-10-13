@@ -67,7 +67,7 @@ a.gpt-card:focus-visible {
   font-size: var(--gpt-font-body-xs-size);
   font-weight: var(--gpt-font-weight-regular);
   line-height: var(--gpt-font-body-xs-line);
-  color: var(--gpt-text-soft-50);
+  color: var(--gpt-text-soft-60);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

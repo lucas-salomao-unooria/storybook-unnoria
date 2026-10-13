@@ -423,6 +423,13 @@ export default meta;
 - Navegação completa por teclado (ESC para fechar modais/menus, Tab/Shift+Tab com focus trapping, Enter/Espaço para acionamento).
 - **Diálogo composto se nomeia sozinho.** Todo componente com `role="dialog"` que oferece subcomponente de título (`Modal.Title` na Plataforma Unooria, `Modal.Header` no ChatGPT, no Unootube e no UnooriaAI) liga `aria-labelledby` a ele automaticamente — na composição manual E pelo atalho `title` —, e `Modal.Description` a `aria-describedby`. O título se anuncia ao diálogo pelo contexto, com o id que de fato renderizou (o `id` passado, ou o de `useId`). Precedência: `aria-labelledby` explícito manda; com `aria-label` explícito o diálogo **não** recebe `aria-labelledby`, que venceria o `aria-label` no cálculo do nome e o calaria sem aviso. Medido em 25/09/2026, na 0.2.2: o composto saía sem nome, o leitor de tela anunciava só "diálogo" e `getByRole('dialog', { name })` não achava nada — eram 34 diálogos assim no monorepo consumidor. As estórias com `play` de cada `Modal` guardam a regra.
 
+- **Contraste WCAG 2.2 AA é medido, não estimado (0.2.20).** Texto: 4,5:1; texto grande e elemento que não é texto (borda de campo, fundo de *checkbox*, ícone): 3:1. Três regras que a medição com o axe cobrou, em todas as seções:
+  - **`brandnavy-700` é cor de CONTROLE, não de texto**: contra branco dá 3,62:1 — passa como fundo de *checkbox*/rádio/*toggle*, reprova como texto ou com rótulo branco por cima. Texto e botão cheio no `800`; o *hover* escurece (`900`), nunca clareia. No escuro, texto azul no `600` e botão cheio claro com rótulo ESCURO.
+  - **Tom semântico `500` não é cor de texto** (sucesso, aviso, info): use `700`/`800` no claro e `400` no escuro.
+  - **Nada de `opacity` em texto**: a descrição do `FeedbackAlert` (0,92) e o texto sutil (0,8) reprovavam com o token certo. Hierarquia vem do peso e do tamanho.
+  - Os clones que imitam app real (Instanooria, ChatGPT, WhatsApp Mobile) ficaram com cinzas e azuis um pouco mais escuros que o original, por decisão do dono do produto: fidelidade não justifica texto ilegível.
+- **Corpo fechado sai do foco com `inert`**, não só com `aria-hidden` (foco fantasma); **área que rola recebe `tabIndex={0}`**; e `aria-controls` só aponta para elemento que EXISTE.
+
 ### 4.4. Iconografia Derivada do Figma
 - **REGRA CRÍTICA / PROIBIDO**: nenhum glifo pode ser desenhado à mão, aproximado ou substituído por outra biblioteca de ícones. Todo dado vetorial é o **export SVG literal do nó do Figma**, com o `viewBox` original preservado — **não normalizado para 24×24**.
 - Cada marca com biblioteca vetorial mantém o próprio registro, e é nele que o dado literal vive:

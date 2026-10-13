@@ -43,7 +43,7 @@
 }
 
 .gpt-chat-input__field::placeholder {
-  color: var(--gpt-text-soft-40);
+  color: var(--gpt-text-soft-60);
 }
 
 .gpt-chat-input__send {

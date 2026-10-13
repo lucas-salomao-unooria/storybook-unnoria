@@ -97,7 +97,7 @@
  * sem texto para enviar. Ele volta a 100% no hover e no foco.
  */
 .gpt-composer__action--send {
-  color: var(--gpt-text-soft-40);
+  color: var(--gpt-text-soft-60);
 }
 
 .gpt-composer__action--send:hover:not(:disabled),

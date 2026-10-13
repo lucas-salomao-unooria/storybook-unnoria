@@ -35,7 +35,7 @@
   font-family: var(--gpt-font-sans);
   font-size: var(--gpt-font-body-sm-size);
   line-height: 1;
-  color: var(--gpt-text-soft-40);
+  color: var(--gpt-text-soft-60);
 }
 
 .gpt-search-input__field {
@@ -54,7 +54,7 @@
 }
 
 .gpt-search-input__field::placeholder {
-  color: var(--gpt-text-soft-40);
+  color: var(--gpt-text-soft-60);
 }
 
 .gpt-search-input__field::-webkit-search-cancel-button {

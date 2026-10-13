@@ -26,7 +26,9 @@ export const Chip = React.forwardRef<HTMLButtonElement, UnvChipProps>(
       <button
         ref={ref}
         type="button"
-        aria-pressed={selected}
+        /* Com papel de rádio/opção, o estado é `aria-checked`/`aria-selected` de
+           quem chama: `aria-pressed` ali é atributo proibido (WCAG 4.1.2). */
+        aria-pressed={restProps.role === 'radio' || restProps.role === 'option' || restProps.role === 'menuitemradio' ? undefined : selected}
         data-unv-theme={theme}
         className={classes}
         {...restProps}

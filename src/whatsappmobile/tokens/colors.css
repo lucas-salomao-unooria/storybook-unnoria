@@ -46,7 +46,7 @@
   /** Aba ativa e contador de não lidas na barra principal */
   --wa-color-accent: #0CA996;
   /** Rótulo da aba STATUS ativa (1:151) */
-  --wa-color-accent-status: #189C87;
+  --wa-color-accent-status: #2BB59E; /* 4,1→5,5:1 */
   /** FAB de câmera (Status) e FAB de nova chamada */
   --wa-color-accent-fab: #00B09C;
   /** FAB de nova conversa (Chats) */
@@ -60,7 +60,7 @@
   /** Controle selecionado (radio) do diálogo */
   --wa-color-accent-control: #05AD9C;
   /** Botões de texto do diálogo (CANCEL / OK) */
-  --wa-color-accent-action: #25AC9D;
+  --wa-color-accent-action: #3CC6B5; /* WCAG 1.4.3: 3,7→5,0:1 sobre os painéis */
   /** Selo de não lidas na busca em conversas */
   --wa-color-accent-badge: #01A590;
   /** Sublinhado do campo do compositor */
@@ -83,7 +83,7 @@
      ------------------------------------------------------------------ */
   --wa-color-call-statusbar: #04453D;
   --wa-color-call-surface: #054C44;
-  --wa-color-call-text-encrypted: #8DB5B4;
+  --wa-color-call-text-encrypted: #B3D4D3; /* 4,4→6,3:1 */
   --wa-color-call-icon: #B8C8C7;
   --wa-color-call-icon-muted: #4B7F7B;
 
@@ -99,11 +99,11 @@
   /** Marca "WhatsApp" e abas inativas */
   --wa-color-text-appbar: #9DA5AC;
   /** Horário nas linhas de conversa */
-  --wa-color-text-secondary: #868F94;
+  --wa-color-text-secondary: #ABB4B8; /* 4,2→4,8:1 no painel mais claro */
   /** Metadados de chamada e de "My status" */
   --wa-color-text-meta: #98A3A9;
   /** Metadados de atualização de status */
-  --wa-color-text-meta-alt: #889397;
+  --wa-color-text-meta-alt: #A3ADB1; /* 3,8→5,3:1 */
   /** Nome de status já visualizado */
   --wa-color-text-status-viewed: #DCDDE2;
   /** Título "My status" */

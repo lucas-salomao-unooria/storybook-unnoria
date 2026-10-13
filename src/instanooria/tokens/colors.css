@@ -15,8 +15,9 @@
 
   /* Texto */
   --insta-color-text-primary: #262626;
-  --insta-color-text-secondary: #8E8E93;
-  --insta-color-text-link: #3897F0;
+  /* WCAG 1.4.3 (ADR-162 da plataforma): o #8E8E93 do app real dá 3,3:1 no branco */
+  --insta-color-text-secondary: #6E6E73;
+  --insta-color-text-link: #0A6CCB; /* o #3897F0 do app real dá 3,1:1 */
   --insta-color-text-placeholder: rgba(60, 60, 67, 0.6);
 
   /* Ícones */
@@ -29,7 +30,7 @@
   --insta-color-border-bar: #A6A6AA;
 
   /* Ações */
-  --insta-color-action-primary: #3897F0;
+  --insta-color-action-primary: #0A6CCB; /* branco sobre ele: 5,2:1 (era 3,1) */
   --insta-color-action-disabled: #9FC4F2;
   --insta-color-action-secondary-border: #DBDBDB;
 

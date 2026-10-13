@@ -34,5 +34,5 @@
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  color: var(--gpt-text-soft-50);
+  color: var(--gpt-text-soft-60);
 }

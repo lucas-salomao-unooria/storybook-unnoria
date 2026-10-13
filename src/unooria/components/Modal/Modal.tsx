@@ -283,7 +283,15 @@ export const ModalBody = forwardRef<HTMLDivElement, ModalBodyProps>(
       .join(' ');
 
     return (
-      <div ref={ref} className={classes} style={customStyle} {...restProps}>
+      <div
+        ref={ref}
+        className={classes}
+        style={customStyle}
+        /* Corpo que rola recebe foco: sem ele, quem só usa teclado não alcança
+           o texto abaixo da dobra (WCAG 2.1.1). Quem chama pode sobrescrever. */
+        tabIndex={scrollable ? 0 : undefined}
+        {...restProps}
+      >
         {children}
       </div>
     );

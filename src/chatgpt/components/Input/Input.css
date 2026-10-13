@@ -40,7 +40,7 @@
 }
 
 .gpt-input__field::placeholder {
-  color: var(--gpt-text-soft-40);
+  color: var(--gpt-text-soft-60);
 }
 
 /* ==========================================================================
@@ -62,10 +62,10 @@
 }
 
 .gpt-input--disabled .gpt-input__field {
-  color: var(--gpt-text-soft-30);
+  color: var(--gpt-text-soft-60);
   cursor: not-allowed;
 }
 
 .gpt-input--disabled .gpt-input__field::placeholder {
-  color: var(--gpt-text-soft-30);
+  color: var(--gpt-text-soft-60);
 }
