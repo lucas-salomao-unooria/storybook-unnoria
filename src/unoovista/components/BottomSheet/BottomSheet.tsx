@@ -122,7 +122,9 @@ export const BottomSheet = React.forwardRef<HTMLElement, UnvBottomSheetProps>(
                 {title}
               </h2>
             )}
-            <div className="unv-bottom-sheet__body">{children}</div>
+            <div className="unv-bottom-sheet__body" tabIndex={0}>
+              {children}
+            </div>
           </div>
         </div>
       );
@@ -173,7 +175,9 @@ export const BottomSheet = React.forwardRef<HTMLElement, UnvBottomSheetProps>(
           </span>
         </button>
 
-        <div id={bodyId} className="unv-bottom-sheet__body" hidden={!isOpen}>
+        {/* O corpo rola: recebe foco para o teclado alcançar o que está abaixo
+            da dobra (WCAG 2.1.1). */}
+        <div id={bodyId} className="unv-bottom-sheet__body" hidden={!isOpen} tabIndex={0}>
           {children}
         </div>
       </section>
