@@ -84,6 +84,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Alvo de 24px mesmo com o ícone de 19: área de toque mínima (WCAG 2.5.8). */
+  min-width: 24px;
+  min-height: 24px;
   padding: 0;
   border: none;
   background: transparent;
