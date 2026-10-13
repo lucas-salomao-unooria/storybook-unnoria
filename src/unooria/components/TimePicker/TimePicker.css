@@ -384,6 +384,6 @@
 
 .unooria-timepicker--theme-dark .unooria-timepicker__cell--selected,
 [data-theme="dark"] .unooria-timepicker__cell--selected {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2) !important;
+  background-color: var(--unooria-color-brandnavy-800, #49699F) !important;
   color: #FFFFFF !important;
 }

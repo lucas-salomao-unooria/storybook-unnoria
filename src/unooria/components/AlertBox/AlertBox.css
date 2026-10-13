@@ -309,7 +309,7 @@
 
 /* Botão Preenchido (Filled / Primário) */
 .unooria-alertbox__btn--filled {
-  background-color: #6487C2;
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   color: #FFFFFF;
   border-color: transparent;
 }

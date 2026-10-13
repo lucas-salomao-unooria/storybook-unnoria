@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.12));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
   flex-shrink: 0;
 }
 

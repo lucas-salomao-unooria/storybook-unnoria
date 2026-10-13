@@ -137,7 +137,7 @@
    -------------------------------------------------------------------------- */
 .unooria-checkbox--checked .unooria-checkbox__control,
 .unooria-checkbox--indeterminate .unooria-checkbox__control {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   border-color: var(--unooria-color-brandnavy-700, #6487C2);
   color: #FFFFFF;
 }

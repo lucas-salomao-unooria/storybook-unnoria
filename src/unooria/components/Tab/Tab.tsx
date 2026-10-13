@@ -13,6 +13,13 @@ export interface TabsContextType {
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   theme?: 'light' | 'dark';
+  /**
+   * Os painéis que EXISTEM. A aba só declara `aria-controls` para painel
+   * registrado: quem usa as abas como navegação (a URL é o estado) não
+   * renderiza `TabPanel`, e o id apontado não existia — WCAG 4.1.2.
+   */
+  paineis?: ReadonlySet<string | number>;
+  registrarPainel?: (value: string | number) => () => void;
 }
 
 export const TabsContext = React.createContext<TabsContextType | null>(null);
@@ -72,7 +79,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
         type="button"
         role="tab"
         aria-selected={isSelected}
-        aria-controls={`tabpanel-${value}`}
+        aria-controls={context?.paineis?.has(value) ? `tabpanel-${value}` : undefined}
         id={`tab-${value}`}
         tabIndex={isSelected ? 0 : -1}
         disabled={disabled}

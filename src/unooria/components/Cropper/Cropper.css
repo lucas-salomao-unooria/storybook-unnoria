@@ -38,8 +38,10 @@
   --cropper-subtitle: #617379;
   --cropper-slider-track: rgba(34, 39, 42, 0.1);
   --cropper-slider-thumb: #6487c2;
-  --cropper-primary: #6487c2;
-  --cropper-primary-hover: #7fa5e2;
+  /* 800 e hover 900 (WCAG 1.4.3): o 700 dava 3,62:1 como texto e com o branco por cima, e o hover CLAREAVA para #7fa5e2 (2,5:1). */
+  --cropper-primary: #49699f;
+  --cropper-primary-hover: #2f4f7f;
+  --cropper-on-primary: #ffffff;
   --cropper-danger: #bf340f;
   --cropper-danger-hover: #dd5202;
 
@@ -73,8 +75,10 @@
   --cropper-subtitle: #a7b5b9;
   --cropper-slider-track: rgba(255, 255, 255, 0.15);
   --cropper-slider-thumb: #7fa5e2;
+  /* Escuro: o texto segue claro (6:1 sobre o fundo), mas o botão cheio leva texto ESCURO — o branco sobre #7fa5e2 dava 2,5:1. */
   --cropper-primary: #7fa5e2;
   --cropper-primary-hover: #8fafe5;
+  --cropper-on-primary: #22272a;
   --cropper-danger: #e31a1a;
   --cropper-danger-hover: #ff4d4d;
 }
@@ -318,7 +322,7 @@
 /* Botão Filled Primário (Salvar) */
 .unooria-cropper__btn--filled {
   background-color: var(--cropper-primary);
-  color: #ffffff;
+  color: var(--cropper-on-primary, #ffffff);
 }
 
 .unooria-cropper__btn--filled:hover {

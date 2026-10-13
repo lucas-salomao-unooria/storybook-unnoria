@@ -112,7 +112,8 @@
 /* 6. Brand */
 .unooria-tag--brand {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.15));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  /* 800: o 700 sobre o fundo translúcido dava 3,1 a 3,3:1 (WCAG 1.4.3) */
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-tag--brand:hover,
@@ -121,7 +122,7 @@
 }
 
 .unooria-tag--brand .unooria-tag__icon {
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 /* 7. Outline */
@@ -248,6 +249,14 @@
 .unooria-tag--theme-dark,
 [data-theme="dark"] .unooria-tag {
   color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+/* Brand no escuro: o 800 do tema claro dava 2,3:1 sobre o fundo escuro. */
+.unooria-tag--theme-dark.unooria-tag--brand,
+[data-theme="dark"] .unooria-tag--brand,
+.unooria-tag--theme-dark.unooria-tag--brand .unooria-tag__icon,
+[data-theme="dark"] .unooria-tag--brand .unooria-tag__icon {
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
 }
 
 .unooria-tag--theme-dark.unooria-tag--neutral,

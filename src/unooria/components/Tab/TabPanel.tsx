@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useEffect } from 'react';
 import { TabPanelProps } from './Tab.types';
 import { TabsContext } from './Tab';
 import './Tab.css';
@@ -14,6 +14,10 @@ export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(
     const context = useContext(TabsContext);
 
     const isSelected = context ? context.activeValue === value : false;
+
+    // Registra-se mesmo fechado: a aba aponta `aria-controls` só para painel que existe.
+    const registrar = context?.registrarPainel;
+    useEffect(() => registrar?.(value), [registrar, value]);
 
     if (!isSelected) {
       return null;

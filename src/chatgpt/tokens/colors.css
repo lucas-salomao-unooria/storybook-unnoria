@@ -38,7 +38,7 @@
   --gpt-color-green-500: #34C759;
   --gpt-color-green-600: #1AC69C;
 
-  --gpt-color-red-500: #FF4747;
+  --gpt-color-red-500: #D42F2F; /* WCAG 1.4.3: branco sobre o #FF4747 dava 3,4:1 */
   --gpt-color-red-600: #E60019;
 
   --gpt-color-orange-400: #FFAC60;
@@ -127,7 +127,7 @@
   --gpt-web-suggestion: var(--gpt-color-gray-50);
   --gpt-web-composer-fill: rgba(255, 255, 255, 0.8);
   --gpt-web-composer-border: rgba(0, 0, 0, 0.2);
-  --gpt-web-composer-placeholder: rgba(0, 0, 0, 0.2);
+  --gpt-web-composer-placeholder: rgba(0, 0, 0, 0.55); /* 0.2 dava 1,6:1 */
   --gpt-web-veil: rgba(255, 255, 255, 0.1);
   --gpt-web-hairline: rgba(0, 0, 0, 0.1);
   --gpt-web-accent: var(--gpt-color-black);

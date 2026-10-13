@@ -41,6 +41,8 @@
   --unc-color-surface-bubble-in: #FFFFFF; /* --unooria-color-neutral-50 */
   /** Aba ativa, FABs, selo de não lidas, ações de texto do diálogo, sublinhado do campo e controle selecionado */
   --unc-color-accent: #716C98; /* --unooria-color-brandpurple-600 */
+  /** Acento como TEXTO sobre superfície tingida (convite no balão): o 600 dava 3,0:1 (WCAG 1.4.3) */
+  --unc-color-accent-strong: #34375C; /* --unooria-color-brandpurple-800 */
   /** Seta de chamada efetuada */
   --unc-color-accent-call-out: #00A369; /* --unooria-color-success-600 */
   /** Nome do remetente em conversa de grupo (`MessageBubble` e `TypingIndicator` com `senderTone`).
@@ -61,6 +63,8 @@
   --unc-color-warning-battery: #F97607; /* --unooria-color-warning-500 */
   /** Barra de status da tela de chamada */
   --unc-color-call-statusbar: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto e ícones da status bar da chamada: o fundo é escuro nos DOIS temas (WCAG 1.4.3) */
+  --unc-color-call-statusbar-fg: #F5F5F5; /* --unooria-color-neutraldark-950 */
   /** Fundo da tela de chamada */
   --unc-color-call-surface: #34375C; /* --unooria-color-brandpurple-800 */
   /** Aviso de criptografia na chamada */
@@ -149,6 +153,8 @@
   --unc-color-surface-bubble-in: #34375C; /* --unooria-color-brandpurple-800 */
   /** Aba ativa, FABs, selo de não lidas, ações de texto do diálogo, sublinhado do campo e controle selecionado */
   --unc-color-accent: #AAA5C2; /* --unooria-color-brandpurple-400 */
+  /** Acento como TEXTO sobre superfície tingida (convite no balão) */
+  --unc-color-accent-strong: #AAA5C2; /* --unooria-color-brandpurple-400 */
   /** Seta de chamada efetuada */
   --unc-color-accent-call-out: #26E197; /* --unooria-color-success-400 */
   /** Nome do remetente em conversa de grupo (`MessageBubble` e `TypingIndicator` com `senderTone`).
@@ -169,6 +175,8 @@
   --unc-color-warning-battery: #F97607; /* --unooria-color-warning-500 */
   /** Barra de status da tela de chamada */
   --unc-color-call-statusbar: #0E1039; /* --unooria-color-brandpurple-900 */
+  /** Texto e ícones da status bar da chamada: o fundo é escuro nos DOIS temas (WCAG 1.4.3) */
+  --unc-color-call-statusbar-fg: #F5F5F5; /* --unooria-color-neutraldark-950 */
   /** Fundo da tela de chamada */
   --unc-color-call-surface: #34375C; /* --unooria-color-brandpurple-800 */
   /** Aviso de criptografia na chamada */

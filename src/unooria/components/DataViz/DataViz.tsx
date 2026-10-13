@@ -592,7 +592,14 @@ export const PieChart: React.FC<PieChartProps> = ({
           </svg>
         </div>
 
-        <div className="unooria-dataviz__donut-legend">
+        <div
+          className="unooria-dataviz__donut-legend"
+          /* A legenda rola (max-height): sem foco, quem usa só teclado não
+             alcança os itens escondidos (WCAG 2.1.1). */
+          tabIndex={0}
+          role="group"
+          aria-label="Legenda"
+        >
           {data.map((item, idx) => (
             <div key={idx} className="unooria-dataviz__donut-legend-item">
               <span className="unooria-dataviz__donut-legend-label">
@@ -702,7 +709,14 @@ export const SemiDonutChart: React.FC<SemiDonutChartProps> = ({
           </svg>
         </div>
 
-        <div className="unooria-dataviz__donut-legend">
+        <div
+          className="unooria-dataviz__donut-legend"
+          /* A legenda rola (max-height): sem foco, quem usa só teclado não
+             alcança os itens escondidos (WCAG 2.1.1). */
+          tabIndex={0}
+          role="group"
+          aria-label="Legenda"
+        >
           {data.map((item, idx) => (
             <div key={idx} className="unooria-dataviz__donut-legend-item">
               <span className="unooria-dataviz__donut-legend-label">
@@ -903,7 +917,14 @@ export const RadarChart: React.FC<RadarChartProps> = ({
         </div>
 
         {/* Legenda dos Indicadores */}
-        <div className="unooria-dataviz__donut-legend">
+        <div
+          className="unooria-dataviz__donut-legend"
+          /* A legenda rola (max-height): sem foco, quem usa só teclado não
+             alcança os itens escondidos (WCAG 2.1.1). */
+          tabIndex={0}
+          role="group"
+          aria-label="Legenda"
+        >
           {series.map((item, idx) => (
             <div key={idx} className="unooria-dataviz__donut-legend-item">
               <span className="unooria-dataviz__donut-legend-label">
@@ -1006,7 +1027,14 @@ export const RadialBarChart: React.FC<RadialBarChartProps> = ({
           </svg>
         </div>
 
-        <div className="unooria-dataviz__donut-legend">
+        <div
+          className="unooria-dataviz__donut-legend"
+          /* A legenda rola (max-height): sem foco, quem usa só teclado não
+             alcança os itens escondidos (WCAG 2.1.1). */
+          tabIndex={0}
+          role="group"
+          aria-label="Legenda"
+        >
           {data.map((item, idx) => (
             <div key={idx} className="unooria-dataviz__donut-legend-item">
               <span className="unooria-dataviz__donut-legend-label">

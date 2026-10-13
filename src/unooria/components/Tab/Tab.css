@@ -141,7 +141,8 @@
   height: 22px;
   border-radius: 1000px;
   padding: 0 6px;
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  /* 800, não 700: o branco sobre o 700 dava 3,62:1 (WCAG 1.4.3) */
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   color: #FFFFFF;
   font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
   font-size: 10px;

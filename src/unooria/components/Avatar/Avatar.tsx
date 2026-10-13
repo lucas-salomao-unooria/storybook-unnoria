@@ -177,7 +177,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       if (badgeCount !== undefined) {
         const displayCount = badgeCount > 99 ? '99+' : badgeCount;
         return (
-          <span className="unooria-avatar__badge" aria-label={`${badgeCount} notificações`}>
+          <span className="unooria-avatar__badge" role="img" aria-label={`${badgeCount} notificações`}>
             {displayCount}
           </span>
         );
@@ -192,7 +192,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       }
 
       // Badge simples em dot
-      return <span className="unooria-avatar__badge unooria-avatar__badge--dot" aria-label="Nova notificação" />;
+      return <span className="unooria-avatar__badge unooria-avatar__badge--dot" role="img" aria-label="Nova notificação" />;
     };
 
     return (
@@ -215,6 +215,9 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         {status !== 'none' && (
           <span
             className={`unooria-avatar__status unooria-avatar__status--${status}`}
+            /* `role="img"`: `aria-label` num <span> sem papel é proibido
+               (WCAG 4.1.2) e o leitor de tela o ignorava. */
+            role="img"
             aria-label={`Status: ${status}`}
           />
         )}

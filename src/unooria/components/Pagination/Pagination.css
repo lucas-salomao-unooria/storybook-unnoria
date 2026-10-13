@@ -44,7 +44,7 @@
 .unooria-pagination__page-btn:hover:not(:disabled):not(.unooria-pagination__page-btn--active) {
   background-color: var(--unooria-color-opacity-brandnavy-100, rgba(127, 165, 226, 0.10));
   border-color: var(--unooria-color-brandnavy-600, #7FA5E2);
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-pagination__page-btn:focus-visible {
@@ -53,7 +53,7 @@
 
 /* Botão de Página Ativa (Figma: #6487C2) */
 .unooria-pagination__page-btn--active {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   color: var(--unooria-color-neutral-50, #FFFFFF);
   border-color: transparent;
   font-weight: 600;
@@ -96,7 +96,7 @@
 
 .unooria-pagination__nav-btn:hover:not(:disabled) {
   background-color: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-800, #49699F);
 }
 
 .unooria-pagination__nav-btn:active:not(:disabled) {
@@ -246,7 +246,7 @@
 
 .unooria-pagination--theme-dark .unooria-pagination__page-btn--active,
 [data-theme="dark"] .unooria-pagination .unooria-pagination__page-btn--active {
-  background-color: var(--unooria-color-brandnavy-700, #6487C2);
+  background-color: var(--unooria-color-brandnavy-800, #49699F);
   color: var(--unooria-color-neutral-50, #FFFFFF);
   border-color: transparent;
 }

@@ -22,6 +22,10 @@
 
 .unc-statusbar--call {
   background-color: var(--unc-color-call-statusbar);
+  /* O fundo da chamada é escuro nos dois temas: o primeiro plano do tema claro
+     (#22272A) dava 1,2:1. Redefinir a variável leva relógio, rede e bateria juntos. */
+  --unc-color-statusbar-fg: var(--unc-color-call-statusbar-fg);
+  color: var(--unc-color-call-statusbar-fg);
 }
 
 .unc-statusbar--transparent {

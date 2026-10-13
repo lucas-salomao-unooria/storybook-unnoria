@@ -159,7 +159,9 @@
 
 .unooria-button--light.unooria-button--variant-primary:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--light.unooria-button--variant-primary.unooria-button--state-hover {
-  background-color: var(--unooria-color-brandnavy-600, #7FA5E2);
+  /* A alternativa do review, adotada pela ADR-162: o 600 dava 2,51:1 com o
+     rótulo branco (WCAG 1.4.3); o brandpurple-800 dá 11,37:1 e ainda clareia. */
+  background-color: var(--unooria-color-brandpurple-800, #34375C);
 }
 
 .unooria-button--light.unooria-button--variant-primary:active:not(:disabled):not(.unooria-button--disabled),
@@ -556,7 +558,8 @@
 
 .unooria-button--dark.unooria-button--variant-secondary:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-secondary.unooria-button--state-hover {
-  background-color: var(--unooria-color-brandpurple-500, #8B85AC);
+  /* Escurece, não clareia: o branco sobre o 500 dava 3,47:1 (WCAG 1.4.3). */
+  background-color: var(--unooria-color-brandpurple-700, #57547D);
 }
 
 .unooria-button--dark.unooria-button--variant-secondary:active:not(:disabled):not(.unooria-button--disabled),
@@ -644,19 +647,21 @@
 /* Danger - Dark */
 .unooria-button--dark.unooria-button--variant-danger,
 [data-theme="dark"] .unooria-button--variant-danger {
-  background-color: var(--unooria-color-danger-500, #F83B3B);
+  /* 600: o branco sobre o 500 dava 3,69:1 (WCAG 1.4.3) */
+  background-color: var(--unooria-color-danger-600, #E31A1A);
   color: #FFFFFF;
   border-color: transparent;
 }
 
 .unooria-button--dark.unooria-button--variant-danger:hover:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-danger.unooria-button--state-hover {
-  background-color: var(--unooria-color-danger-400, #FF6A6A);
+  /* O branco sobre o 400 dava 2,79:1 e sobre o 300 (ativo) 1,93:1 (WCAG 1.4.3). */
+  background-color: var(--unooria-color-danger-700, #C11414);
 }
 
 .unooria-button--dark.unooria-button--variant-danger:active:not(:disabled):not(.unooria-button--disabled),
 .unooria-button--dark.unooria-button--variant-danger.unooria-button--state-active {
-  background-color: var(--unooria-color-danger-300, #FFA1A1);
+  background-color: var(--unooria-color-danger-800, #9F1515);
 }
 
 .unooria-button--dark.unooria-button--variant-danger:focus-visible,
@@ -673,7 +678,7 @@
 .unooria-button--dark.unooria-button--variant-light,
 [data-theme="dark"] .unooria-button--variant-light {
   background-color: var(--unooria-color-opacity-neutrallight-900, rgba(255, 255, 255, 0.90));
-  color: var(--unooria-color-brandnavy-700, #6487C2);
+  color: var(--unooria-color-brandnavy-600, #7FA5E2);
   border-color: transparent;
 }
 

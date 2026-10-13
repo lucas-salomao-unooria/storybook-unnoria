@@ -314,6 +314,11 @@ export const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>(
         role="region"
         aria-labelledby={context?.headerId}
         aria-hidden={!effectiveIsOpen}
+        /* `inert` tira o corpo fechado do FOCO, não só da árvore de
+           acessibilidade: sem ele, o Tab entrava em botão dentro de
+           `aria-hidden` e o leitor de tela não anunciava nada (foco fantasma,
+           WCAG 2.4.3 e 4.1.2). */
+        inert={!effectiveIsOpen || undefined}
         className={`unooria-collapse__body ${effectiveIsOpen ? 'unooria-collapse__body--open' : ''} ${className}`.trim()}
         style={style}
         {...rest}

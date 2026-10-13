@@ -21,8 +21,9 @@
   --cal-text-outside: #a7b5b9;
   --cal-weekday-text: #383e41;
 
-  --cal-primary: #6487c2;
-  --cal-primary-hover: #7fa5e2;
+  /* 800 e hover 900 (WCAG 1.4.3): o 700 dava 3,62:1 como texto e com o branco por cima, e o hover CLAREAVA para #7fa5e2 (2,5:1). */
+  --cal-primary: #49699f;
+  --cal-primary-hover: #2f4f7f;
   --cal-primary-text: #ffffff;
 
   --cal-hover-bg: rgba(127, 165, 226, 0.1);
@@ -67,9 +68,10 @@
   --cal-text-outside: rgba(255, 255, 255, 0.3);
   --cal-weekday-text: #f5f5f5;
 
+  /* Escuro: o texto segue claro (6:1 sobre o fundo), mas o botão cheio leva texto ESCURO — o branco sobre #7fa5e2 dava 2,5:1. */
   --cal-primary: #7fa5e2;
   --cal-primary-hover: #8fafe5;
-  --cal-primary-text: #ffffff;
+  --cal-primary-text: #22272a;
 
   --cal-hover-bg: rgba(127, 165, 226, 0.2);
   --cal-range-bg: rgba(127, 165, 226, 0.25);

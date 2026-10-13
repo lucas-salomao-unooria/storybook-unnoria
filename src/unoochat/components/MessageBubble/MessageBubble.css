@@ -310,7 +310,7 @@
   border: 0;
   border-top: var(--unc-divider-width) solid var(--unc-color-border-divider);
   background: transparent;
-  color: var(--unc-color-accent);
+  color: var(--unc-color-accent-strong);
   font-family: var(--unc-font-sans);
   font-size: var(--unc-font-body-md-size);
   font-weight: var(--unc-font-weight-bold);
