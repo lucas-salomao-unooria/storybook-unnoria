@@ -28,6 +28,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       size = 'md',
       clickable = true,
       showConnector = true,
+      showIcons = true,
       fillCompletedConnectors = true,
       theme = 'light',
       children,
@@ -86,6 +87,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
               status: stepStatus,
               size,
               theme,
+              showIcon: childProps.showIcon !== undefined ? childProps.showIcon : showIcons,
               clickable: childProps.clickable !== undefined ? childProps.clickable : clickable,
               onStepClick: () => {
                 childProps.onStepClick?.();
@@ -170,6 +172,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
               optional={step.optional}
               disabled={step.disabled}
               clickable={isStepClickable}
+              showIcon={showIcons}
               size={size}
               theme={theme}
               onStepClick={() => onStepClick?.(index, step)}

@@ -16,6 +16,19 @@ import type { UnooriaTheme } from '../../tokens';
 export type PuzzleBlockState = 'idle' | 'placed' | 'returned' | 'locked';
 
 /**
+ * Escala do bloco.
+ *
+ * - `md`: a peça de 64px da bandeja — o alvo de quem toca num tablet, com o
+ *   rótulo em caixa alta.
+ * - `sm`: a peça COMPACTA, para a vaga estreita de uma calha em duas colunas
+ *   num celular de 375px. Rótulo em caixa normal (14px), alvo de
+ *   44px e quebra só entre PALAVRAS: o `md` quebra em qualquer letra
+ *   (`overflow-wrap: anywhere`), e numa vaga de ~100px isso partia "AVANÇADA"
+ *   em "AVANÇAD/A".
+ */
+export type PuzzleBlockSize = 'md' | 'sm';
+
+/**
  * Propriedades do componente PuzzleBlock da Plataforma Unooria.
  *
  * Uma peça de quebra-cabeça que se toca para encaixar numa calha
@@ -76,6 +89,12 @@ export interface PuzzleBlockProps extends Omit<React.ButtonHTMLAttributes<HTMLBu
    * manda (o `aria-pressed` continua seguindo a prop).
    */
   selected?: boolean;
+
+  /**
+   * Escala do bloco. Ver `PuzzleBlockSize`.
+   * @default 'md'
+   */
+  size?: PuzzleBlockSize;
 
   /**
    * Tema visual.

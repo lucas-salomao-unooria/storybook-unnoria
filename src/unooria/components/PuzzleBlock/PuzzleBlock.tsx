@@ -33,6 +33,9 @@ const temConteudo = (no: React.ReactNode): boolean =>
  * ganha contorno de 2px na peça inteira e o glifo `check_circle`. Sem a prop,
  * o bloco não recebe `aria-pressed` — o comportamento de antes.
  *
+ * `size="sm"` é a peça compacta da vaga estreita (alvo de 44px, rótulo em caixa
+ * normal, quebra só entre palavras); o `md` de sempre é o padrão.
+ *
  * `locked` usa `aria-disabled`, não `disabled`: o bloco continua no Tab e é
  * lido ("Fonte, indisponível"), mas o toque não chama `onClick`. Um `disabled`
  * nativo o tiraria da navegação, e a chave formada sumiria para quem não vê.
@@ -46,6 +49,7 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
       state = 'idle',
       returnedLabel = 'Voltou para a bandeja',
       selected,
+      size = 'md',
       theme = 'light',
       className = '',
       type = 'button',
@@ -89,6 +93,7 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
       'unooria-puzzle-block',
       `unooria-puzzle-block--${state}`,
       escolhido ? 'unooria-puzzle-block--selected' : '',
+      size === 'sm' ? 'unooria-puzzle-block--size-sm' : '',
       theme === 'dark' ? 'unooria-puzzle-block--theme-dark' : '',
       className,
     ]

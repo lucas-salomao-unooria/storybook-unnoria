@@ -236,6 +236,36 @@
   line-height: 20px;
 }
 
+/* `xs`: a barra de etapas compacta de uma tela de celular (375px) — rótulo de
+   12px, alvo de 28px, vão de 8px. Com `showIcons={false}` e sem conector,
+   quatro etapas cabem em 343px. */
+.unooria-stepper--horizontal.unooria-stepper--size-xs {
+  gap: var(--unooria-spacing-xxs, 8px);
+}
+
+.unooria-stepper--size-xs .unooria-step {
+  height: 28px;
+  min-height: 28px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.unooria-stepper--size-xs .unooria-step__icon-wrapper {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+}
+
+.unooria-stepper--size-xs .unooria-step__label {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+.unooria-stepper--size-xs .unooria-stepper__connector-horizontal {
+  min-width: 12px;
+}
+
 .unooria-stepper--size-lg .unooria-step {
   height: 56px;
   min-height: 56px;

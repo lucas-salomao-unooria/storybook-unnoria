@@ -197,6 +197,40 @@
 }
 
 /* ==========================================================================
+   Tamanho compacto (`size="sm"`)
+   A vaga estreita de uma calha em duas colunas num celular de 375px (a
+   classificação da exp01em1b). Alvo de 44px (WCAG 2.5.5), o encaixe um pouco
+   menor, rótulo de 14px em caixa normal, e quebra só entre PALAVRAS: o
+   `anywhere` do `md` partia "AVANÇADA" em "AVANÇAD/A" numa vaga de ~100px.
+   ========================================================================== */
+
+.unooria-puzzle-block--size-sm {
+  --unooria-puzzle-block-knob: 7px;
+  min-height: 44px;
+}
+
+.unooria-puzzle-block--size-sm .unooria-puzzle-block__body {
+  gap: var(--unooria-spacing-xxs, 8px);
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-xs, 12px) var(--unooria-spacing-xxs, 8px)
+    var(--unooria-spacing-s, 16px);
+}
+
+.unooria-puzzle-block--size-sm .unooria-puzzle-block__label {
+  font-size: var(--unooria-size-body-xs, 14px);
+  line-height: var(--unooria-line-height-body-s, 20px);
+  letter-spacing: normal;
+  text-transform: none;
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+
+.unooria-puzzle-block--size-sm .unooria-puzzle-block__description {
+  font-size: var(--unooria-size-body-xxs, 12px);
+  line-height: 16px;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================================================
    Estados (tema claro)
    ========================================================================== */
 
