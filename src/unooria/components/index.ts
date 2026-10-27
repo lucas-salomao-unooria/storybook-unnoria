@@ -9,6 +9,7 @@ export * from './Breadcrumb';
 export * from './Button';
 export * from './Calendar';
 export * from './Card';
+export * from './Certificate';
 export * from './ChatComposer';
 export * from './ChatHistory';
 export * from './ChatLauncher';

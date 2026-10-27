@@ -1,0 +1,130 @@
+/**
+ * Certificate - Design System Unooria
+ *
+ * Design próprio: a seção não tem quadro de certificado. As medidas vêm do
+ * pacote — fio de 1px e raio de 16px do `Card`, recuo de 24px, título no degrau
+ * `title-l` (18/28 no aparelho, 20/30 na área de trabalho) e o `Badge` `md` da
+ * salvaguarda sem alteração. O que faz dele um certificado, e não um cartão:
+ *   - a moldura dupla (o fio do cartão e um segundo fio recuado 8px, feito com
+ *     `outline` negativo, sem elemento a mais);
+ *   - o medalhão de 64px com o glifo em `brandnavy-800` sobre `brandnavy-50`
+ *     (5,18:1), com anel de 2px e halo de 4px;
+ *   - o rodapé sob fio tracejado.
+ * Cores só por token (seção 2). Contraste medido: título `neutral-950` sobre
+ * `neutral-50` 15,09:1; texto `neutral-700` 8,13:1; no escuro, título
+ * `neutraldark-950` 13,84:1 e texto `neutraldark-900` 10,01:1 sobre
+ * `neutraldark-50`; glifo do medalhão escuro `brandnavy-100` sobre `-900`
+ * 7,13:1.
+ */
+
+.unooria-certificate {
+  --unooria-certificate-surface: var(--unooria-color-neutral-50, #FFFFFF);
+  --unooria-certificate-border: var(--unooria-color-neutral-150, #E4E8E9);
+  --unooria-certificate-frame: var(--unooria-color-neutral-200, #CBD4D6);
+  --unooria-certificate-title: var(--unooria-color-neutral-950, #22272A);
+  --unooria-certificate-text: var(--unooria-color-neutral-700, #475157);
+  --unooria-certificate-seal-fill: var(--unooria-color-brandnavy-50, #F5F8FC);
+  --unooria-certificate-seal-ring: var(--unooria-color-brandnavy-800, #49699F);
+  --unooria-certificate-seal-halo: var(--unooria-color-brandnavy-100, #E8EFFA);
+  --unooria-certificate-seal-icon: var(--unooria-color-brandnavy-800, #49699F);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unooria-spacing-s, 16px);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--unooria-spacing-m, 24px);
+  border: 1px solid var(--unooria-certificate-border);
+  border-radius: 16px;
+  outline: 1px solid var(--unooria-certificate-frame);
+  outline-offset: -9px;
+  background-color: var(--unooria-certificate-surface);
+  color: var(--unooria-certificate-text);
+  font-family: var(--unooria-font-sans, 'Open Sans', sans-serif);
+  text-align: center;
+}
+
+/* O medalhão: glifo num círculo com anel e halo. Decorativo (aria-hidden). */
+.unooria-certificate__seal {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  margin-top: var(--unooria-spacing-xxs, 8px);
+  border: 2px solid var(--unooria-certificate-seal-ring);
+  border-radius: 50%;
+  background-color: var(--unooria-certificate-seal-fill);
+  box-shadow: 0 0 0 4px var(--unooria-certificate-seal-halo);
+  color: var(--unooria-certificate-seal-icon);
+}
+
+.unooria-certificate__seal-icon {
+  color: inherit;
+}
+
+.unooria-certificate__title {
+  max-width: 100%;
+  margin: 0;
+  color: var(--unooria-certificate-title);
+  font-size: var(--unooria-size-title-l, 20px);
+  font-weight: var(--unooria-weight-bold, 700);
+  line-height: var(--unooria-line-height-title-l, 30px);
+  overflow-wrap: anywhere;
+}
+
+.unooria-certificate__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--unooria-spacing-xxs, 8px);
+  max-width: 100%;
+  color: var(--unooria-certificate-text);
+  font-size: var(--unooria-size-body-s, 14px);
+  line-height: var(--unooria-line-height-body-s, 20px);
+  overflow-wrap: anywhere;
+}
+
+.unooria-certificate__body > * {
+  margin: 0;
+}
+
+/* A salvaguarda é um `Badge`, que é `inline-flex` de altura mínima fixa:
+   aqui ela pode quebrar linha sem estourar o cartão estreito. */
+.unooria-certificate .unooria-certificate__safeguard {
+  max-width: 100%;
+  height: auto;
+  text-align: left;
+  white-space: normal;
+}
+
+.unooria-certificate__footer {
+  align-self: stretch;
+  padding-top: var(--unooria-spacing-xs, 12px);
+  border-top: 1px dashed var(--unooria-certificate-frame);
+  color: var(--unooria-certificate-text);
+  font-size: var(--unooria-size-body-s, 14px);
+  line-height: var(--unooria-line-height-body-s, 20px);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   Tema escuro
+   ========================================================================== */
+
+.unooria-certificate--theme-dark {
+  --unooria-certificate-surface: var(--unooria-color-neutraldark-50, #22272A);
+  --unooria-certificate-border: var(--unooria-color-neutraldark-200, #3D4448);
+  --unooria-certificate-frame: var(--unooria-color-neutraldark-300, #475157);
+  --unooria-certificate-title: var(--unooria-color-neutraldark-950, #F5F5F5);
+  --unooria-certificate-text: var(--unooria-color-neutraldark-900, #CBD4D6);
+  --unooria-certificate-seal-fill: var(--unooria-color-brandnavy-900, #2F4F7F);
+  --unooria-certificate-seal-ring: var(--unooria-color-brandnavy-400, #A4BDE9);
+  --unooria-certificate-seal-halo: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  --unooria-certificate-seal-icon: var(--unooria-color-brandnavy-100, #E8EFFA);
+}
