@@ -50,3 +50,4 @@ export * from './WebSidebar';
  * ---------------------------------------------------------------- */
 
 export * from './ChoicePoll';
+export * from './SessionDivider';

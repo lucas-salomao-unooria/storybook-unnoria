@@ -210,6 +210,11 @@ const PuzzleBlockDocumentationPage: React.FC = () => {
           O bloco não tem prop de “certo”: um componente que soubesse o gabarito o entregaria no bundle.
           Quem corrige é a api (regra 3 da plataforma).
         </Cartao>
+        <Cartao icone="☝️" titulo="Escolher antes de encaixar">
+          Com <code>selected</code>, o bloco vira botão de alternância (<code>aria-pressed</code>): é o
+          primeiro tempo de “toca o cartão, toca a vaga”, quando há mais de uma calha. O segundo é o{' '}
+          <code>onSlotActivate</code> do <code>PuzzleTrack</code>.
+        </Cartao>
         <Cartao icone="↩️" titulo="Aviso escrito">
           Quando a isca volta para a bandeja, o bloco diz “Voltou para a bandeja” com o glifo{' '}
           <code>replay</code>, e treme uma vez — sem tremida com movimento reduzido.
@@ -234,12 +239,16 @@ const PuzzleBlockDocumentationPage: React.FC = () => {
           Repouso em <code>neutral-50</code> com fio <code>neutral-400</code> (3,4:1).{' '}
           <code>placed</code> em <code>brandnavy-600</code>, a cor de destaque da seção 2.1, com rótulo{' '}
           <code>brandpurple-950</code> (7,8:1). <code>returned</code> com fio <code>warning-600</code>;{' '}
-          <code>locked</code> em <code>success-100</code> com fio <code>success-700</code>.
+          <code>locked</code> em <code>success-100</code> com fio <code>success-700</code>.{' '}
+          <code>selected</code>: fio de 2px em <code>brandnavy-800</code> sobre <code>brandnavy-50</code>{' '}
+          (5,18:1) e o glifo <code>check_circle</code> preenchido; no escuro, fio{' '}
+          <code>brandnavy-400</code> sobre véu <code>opacity-brandnavy-200</code> (5,52:1).
         </Cartao>
         <Cartao icone="🔣" titulo="Glifos: todos do quadro">
           Todos os glifos vêm do quadro de ícones da seção (<code>6024:2923</code>), pelo nome da
           ligadura do Material Symbols Rounded, peso 300 — nada desenhado, nada de outra biblioteca: o
-          aviso de volta usa <code>replay</code>, o travado usa <code>lock</code>, e os blocos da
+          aviso de volta usa <code>replay</code>, o travado usa <code>lock</code>, o escolhido usa{' '}
+          <code>check_circle</code>, e os blocos da
           demonstração usam <code>account_balance</code>, <code>calendar_month</code>,{' '}
           <code>history_edu</code> e <code>photo_camera</code>. <code>undo</code> e{' '}
           <code>draw</code>, os primeiros candidatos, ficaram de fora por não estarem no quadro.
@@ -297,6 +306,17 @@ const PuzzleBlockDocumentationPage: React.FC = () => {
           <PuzzleBlock {...FOTO_BONITA} state="returned" returnedLabel="Tente outro bloco" />
         </Exemplo>
       </Palco>
+      <Palco rotulo="selected — o primeiro tempo de “toca o cartão, toca a vaga”">
+        <Exemplo legenda="sem a prop: sem aria-pressed (o de sempre)">
+          <PuzzleBlock {...FONTE} />
+        </Exemplo>
+        <Exemplo legenda="selected={false}: aria-pressed=false">
+          <PuzzleBlock {...FONTE} selected={false} />
+        </Exemplo>
+        <Exemplo legenda="selected: aria-pressed=true, fio de 2px e check_circle">
+          <PuzzleBlock {...FONTE} selected />
+        </Exemplo>
+      </Palco>
 
       <UnooriaDocSectionHeader title="5. Boas Práticas" description="Regras de uso do bloco." />
       <Praticas
@@ -343,6 +363,9 @@ const PuzzleBlockDocumentationPage: React.FC = () => {
             <PuzzleBlock {...bloco} state={estado} theme={tema} />
           </Exemplo>
         ))}
+        <Exemplo legenda="selected" escuro={escuro}>
+          <PuzzleBlock {...FONTE} selected theme={tema} />
+        </Exemplo>
       </Palco>
 
       <UnooriaDocSectionHeader
@@ -365,6 +388,12 @@ const PuzzleBlockDocumentationPage: React.FC = () => {
             tipo: 'string',
             padrao: "'Voltou para a bandeja'",
             descricao: 'Aviso escrito do estado returned, também na descrição acessível.',
+          },
+          {
+            nome: 'selected',
+            tipo: 'boolean',
+            descricao:
+              'Escolhido, à espera da vaga. Presente (true ou false), aplica aria-pressed; ausente, nada muda. Fio de 2px e check_circle quando true.',
           },
           { nome: 'theme', tipo: "'light' | 'dark'", padrao: "'light'", descricao: 'Tema visual.' },
           { nome: 'className', tipo: 'string', descricao: 'Classe CSS adicional.' },
@@ -390,6 +419,7 @@ const meta: Meta<typeof PuzzleBlock> = {
       description: 'Momento da jogada.',
     },
     returnedLabel: { control: 'text', description: 'Aviso do estado returned.' },
+    selected: { control: 'boolean', description: 'Escolhido, à espera da vaga (aria-pressed).' },
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema visual.' },
     disabled: { control: 'boolean', description: 'Desabilitado nativo (sai do Tab).' },
     className: { control: 'text', description: 'Classe CSS adicional.' },
@@ -477,5 +507,72 @@ export const Estados: Story = {
     await expect(autoria).toBeEnabled();
     await userEvent.click(autoria);
     await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+
+/**
+ * `selected`: o primeiro tempo de "toca o cartão, toca a vaga". O bloco vira
+ * botão de alternância só quando a prop existe — sem ela, nenhum `aria-pressed`.
+ */
+export const Selecionado: Story = {
+  render: () => {
+    const Bandeja = () => {
+      const [escolhido, setEscolhido] = useState<string | null>(null);
+      return (
+        <div style={{ display: 'grid', gap: 16, maxWidth: 360 }}>
+          {[FONTE, DATA].map((bloco) => (
+            <PuzzleBlock
+              key={bloco.label}
+              {...bloco}
+              selected={escolhido === bloco.label}
+              onClick={() => setEscolhido((atual) => (atual === bloco.label ? null : bloco.label))}
+            />
+          ))}
+          <PuzzleBlock {...AUTORIA} />
+          <PuzzleBlock {...FOTO_BONITA} state="locked" selected />
+        </div>
+      );
+    };
+    return <Bandeja />;
+  },
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const fonte = tela.getByRole('button', { name: 'Fonte' });
+    const data = tela.getByRole('button', { name: 'Data' });
+
+    // Com a prop: botão de alternância, ainda não pressionado.
+    await expect(fonte).toHaveAttribute('aria-pressed', 'false');
+    await expect(fonte).not.toHaveAttribute('data-selected');
+
+    // Sem a prop: o bloco de antes, sem aria-pressed.
+    await expect(tela.getByRole('button', { name: 'Autoria' })).not.toHaveAttribute('aria-pressed');
+
+    // Escolher: pressionado, marcado e com o glifo (não só cor).
+    await userEvent.click(fonte);
+    await expect(fonte).toHaveAttribute('aria-pressed', 'true');
+    await expect(fonte).toHaveAttribute('data-selected', 'true');
+    await expect(fonte).toHaveClass('unooria-puzzle-block--selected');
+    await expect(fonte.querySelector('.unooria-puzzle-block__check')).not.toBeNull();
+
+    // Escolher outro troca a escolha; o nome continua só o rótulo.
+    await userEvent.click(data);
+    await expect(fonte).toHaveAttribute('aria-pressed', 'false');
+    await expect(data).toHaveAttribute('aria-pressed', 'true');
+    await expect(tela.getByRole('button', { name: 'Data', pressed: true })).toBe(data);
+
+    // Teclado: Espaço desfaz a escolha.
+    data.focus();
+    await userEvent.keyboard(' ');
+    await expect(data).toHaveAttribute('aria-pressed', 'false');
+
+    // Travado e escolhido: o visual de travado manda — sem o check e sem a classe.
+    const foto = tela.getByRole('button', { name: 'Foto bonita' });
+    await expect(foto).toHaveAttribute('aria-disabled', 'true');
+    await expect(foto).not.toHaveClass('unooria-puzzle-block--selected');
+    await expect(foto.querySelector('.unooria-puzzle-block__check')).toBeNull();
+
+    // Deixa um escolhido à vista, para a inspeção visual da estória.
+    await userEvent.click(fonte);
+    await expect(fonte).toHaveAttribute('aria-pressed', 'true');
   },
 };

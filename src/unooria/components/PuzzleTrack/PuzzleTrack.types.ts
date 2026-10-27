@@ -58,6 +58,34 @@ export interface PuzzleTrackProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   status?: React.ReactNode;
 
   /**
+   * Torna a VAGA VAZIA acionável: o segundo tempo do toque sequencial "toca o
+   * cartão, toca a vaga" (o primeiro é o `selected` do `PuzzleBlock`). Com a
+   * prop, cada vaga vazia vira um `<button type="button">` — toque, clique,
+   * Enter e Espaço chamam a função com o índice da vaga (base 0). Sem a prop,
+   * a vaga continua sendo só desenho, como antes.
+   *
+   * O NOME do botão é o `emptySlotLabel` da vaga. Quando a vaga é acionável,
+   * escreva-o como ação ("Colocar em Dados Fornecidos"), não como estado.
+   *
+   * Vagas ocupadas nunca viram botão: o bloco encaixado já é um, e botão
+   * dentro de botão é HTML inválido. Não há arraste nem soltura — a mesma
+   * decisão do `PuzzleBlock`: o toque sequencial faz a mesma coisa sem excluir
+   * teclado, leitor de tela e touchpad.
+   *
+   * É uma função: num app Next com Server Components, quem a passa precisa ser
+   * Client Component.
+   */
+  onSlotActivate?: (index: number) => void;
+
+  /**
+   * Vagas acionáveis à espera ("nenhum cartão escolhido ainda"). As vagas
+   * continuam no Tab e legíveis, com `aria-disabled`, mas o toque não chama
+   * `onSlotActivate`. Sem `onSlotActivate`, não faz nada.
+   * @default false
+   */
+  slotsDisabled?: boolean;
+
+  /**
    * Tema visual.
    * @default 'light'
    */

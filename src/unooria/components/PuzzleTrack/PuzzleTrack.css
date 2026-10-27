@@ -156,6 +156,56 @@
 }
 
 /* ==========================================================================
+   A vaga acionável (`onSlotActivate`): a mesma silhueta, num <button>.
+   O tracejado continua dizendo "vazio"; o que muda é que ela responde ao
+   ponteiro e ao foco. Repouso igual ao da vaga de desenho, para quem já usa a
+   calha não ver diferença até tocar.
+   ========================================================================== */
+
+.unooria-puzzle-track__socket--action {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Foco: o anel do `PuzzleBlock` (2px, `brandpurple-950`). */
+.unooria-puzzle-track__socket--action:focus-visible {
+  outline: 2px solid var(--unooria-color-brandpurple-950, #080922);
+  outline-offset: 2px;
+}
+
+/* À espera (`slotsDisabled`): focável e legível, sem convite ao toque. */
+.unooria-puzzle-track__socket--action[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* Hover só onde há ponteiro (no toque ele "gruda"). Fio `brandnavy-800` sobre
+   `brandnavy-50`: 5,18:1; o número em `brandnavy-800`, também 5,18:1. */
+@media (hover: hover) {
+  .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover {
+    --unooria-puzzle-track-fill: var(--unooria-color-brandnavy-50, #F5F8FC);
+    --unooria-puzzle-track-border: var(--unooria-color-brandnavy-800, #49699F);
+  }
+
+  .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover .unooria-puzzle-track__socket-number {
+    color: var(--unooria-color-brandnavy-800, #49699F);
+  }
+}
+
+.unooria-puzzle-track__socket--action:not([aria-disabled='true']):active {
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
    A linha de status (aria-live). Sem texto, não ocupa espaço — mas continua
    no DOM, que é o que faz a primeira mensagem ser anunciada.
    ========================================================================== */
@@ -241,9 +291,31 @@
   color: var(--unooria-color-success-300, #63F2B5);
 }
 
+/* Vaga acionável no escuro: foco claro; hover em véu azul sobre a vaga. */
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket--action:focus-visible {
+  outline-color: var(--unooria-color-neutraldark-950, #F5F5F5);
+}
+
+@media (hover: hover) {
+  .unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover {
+    --unooria-puzzle-track-fill: var(--unooria-color-brandnavy-900, #2F4F7F);
+    --unooria-puzzle-track-border: var(--unooria-color-brandnavy-400, #A4BDE9);
+  }
+
+  .unooria-puzzle-track--theme-dark
+    .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover
+    .unooria-puzzle-track__socket-number {
+    color: var(--unooria-color-brandnavy-100, #E8EFFA);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .unooria-puzzle-track,
   .unooria-puzzle-track__slots {
     transition: none;
+  }
+
+  .unooria-puzzle-track__socket--action:not([aria-disabled='true']):active {
+    transform: none;
   }
 }

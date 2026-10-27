@@ -61,6 +61,23 @@ export interface PuzzleBlockProps extends Omit<React.ButtonHTMLAttributes<HTMLBu
   returnedLabel?: string;
 
   /**
+   * O bloco está ESCOLHIDO e espera o próximo toque — o primeiro tempo do toque
+   * sequencial "toca o cartão, toca a vaga" (ver `onSlotActivate` no
+   * `PuzzleTrack`). É ortogonal a `state`: pensado para `idle`, na bandeja.
+   *
+   * Com a prop presente (`true` ou `false`), o botão vira um botão de
+   * alternância: recebe `aria-pressed`, e o leitor de tela diz "Fonte, botão
+   * de alternância, pressionado". Sem a prop, nada muda — nem o atributo nem o
+   * visual —, então quem já usa o bloco não sente diferença. Um
+   * `aria-pressed` passado à mão vence.
+   *
+   * O visual não depende só de cor: o contorno da peça inteira passa a 2px e
+   * aparece o glifo `check_circle` à direita. Em `locked`, o visual de travado
+   * manda (o `aria-pressed` continua seguindo a prop).
+   */
+  selected?: boolean;
+
+  /**
    * Tema visual.
    * @default 'light'
    */

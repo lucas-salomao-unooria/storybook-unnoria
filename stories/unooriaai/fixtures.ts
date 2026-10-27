@@ -197,3 +197,17 @@ export const uaiPollOptionsLong = [
     label: 'Fazer a mesma pergunta de novo até a IA dar uma resposta diferente.',
   },
 ];
+
+/**
+ * Separadores de sessão (`SessionDivider`): uma conversa contínua atravessada
+ * por três sessões de estudantes diferentes, com o horário de cada uma.
+ */
+export const uaiSessionLabels = [
+  'Sessão 1/3: Lucas (21h10)',
+  'Sessão 2/3: Ana (23h45)',
+  'Sessão 3/3: Rafael (07h05)',
+] as const;
+
+/** Um separador longo, para o caso de quebra de linha em tela estreita. */
+export const uaiSessionLabelLong =
+  'Sessão 2/3: Ana — retomada depois de uma pausa de 2 horas e 35 minutos (23h45)';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, within } from 'storybook/test';
+import { expect, userEvent, within } from 'storybook/test';
 import {
   Collapse,
   CollapseHeader,
@@ -1306,5 +1306,67 @@ export const NivelDoTituloPelaProp: Story = {
     const tela = within(canvasElement);
     await expect(tela.getByText('Sem a prop: segue h4').tagName).toBe('H4');
     await expect(tela.getByText('Com a prop: vira h3').tagName).toBe('H3');
+  },
+};
+
+/**
+ * O corpo FECHADO sai do foco, e não só da árvore de acessibilidade.
+ *
+ * `aria-hidden` sozinho deixava o Tab entrar em controles que o leitor de tela
+ * não anuncia (foco fantasma, WCAG 2.4.3 e 4.1.2) — o defeito que prendeu 30
+ * botões invisíveis no Tab de uma experiência do monorepo consumidor. Desde a
+ * 0.2.20 o corpo fechado leva `inert`. O teste cobra as duas formas de montar
+ * a sanfona (atalho declarativo e composição com `Collapse.Body`) e as duas
+ * pontas: fechado, o NAVEGADOR recusa o foco no botão de dentro; aberto, aceita.
+ *
+ * O teste usa `focus()`, e não `userEvent.tab()`: o Tab do user-event é
+ * simulado e calcula a ordem por conta própria, sem conhecer `inert` — ele
+ * tentaria focar o botão inerte, o navegador recusaria, e o foco ficaria
+ * parado. Quem garante o comportamento é o navegador, e é ele que se mede.
+ */
+export const CorpoFechadoForaDoFoco: Story = {
+  name: 'Corpo fechado fica inert (o foco não entra)',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 420 }}>
+      <Collapse theme="light" variant="bordered" title="Atalho declarativo">
+        <button type="button">Botão do atalho</button>
+      </Collapse>
+      <Collapse theme="light" variant="bordered">
+        <CollapseHeader>
+          <CollapseTitle>Composição manual</CollapseTitle>
+        </CollapseHeader>
+        <CollapseBody>
+          <button type="button">Botão da composição</button>
+        </CollapseBody>
+      </Collapse>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const [atalho, composicao] = tela.getAllByRole('button', { expanded: false });
+    const doAtalho = canvasElement.querySelector('button[type="button"]') as HTMLButtonElement;
+    const daComposicao = Array.from(canvasElement.querySelectorAll('button')).find(
+      (b) => b.textContent === 'Botão da composição'
+    ) as HTMLButtonElement;
+
+    // Fechado: o corpo é inert e aria-hidden, e o foco não entra.
+    for (const botao of [doAtalho, daComposicao]) {
+      const corpo = botao.closest('.unooria-collapse__body') as HTMLElement;
+      await expect(corpo).toHaveAttribute('inert');
+      await expect(corpo).toHaveAttribute('aria-hidden', 'true');
+      botao.focus();
+      await expect(botao).not.toHaveFocus();
+    }
+
+    // Aberto: o inert sai e o botão de dentro recebe foco.
+    await userEvent.click(atalho);
+    await userEvent.click(composicao);
+    for (const botao of [doAtalho, daComposicao]) {
+      const corpo = botao.closest('.unooria-collapse__body') as HTMLElement;
+      await expect(corpo).not.toHaveAttribute('inert');
+      await expect(corpo).toHaveAttribute('aria-hidden', 'false');
+      botao.focus();
+      await expect(botao).toHaveFocus();
+    }
   },
 };
