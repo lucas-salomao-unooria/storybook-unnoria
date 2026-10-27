@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 import { Stepper } from '../../../src/unooria/components/Stepper/Stepper';
 import { Step } from '../../../src/unooria/components/Stepper/Step';
 import { Icon } from '../../../src/unooria/components/Icon/Icon';
@@ -566,7 +567,7 @@ const meta: Meta<typeof Stepper> = {
     },
     size: {
       control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg'],
       description: 'Tamanho visual',
       defaultValue: 'md',
     },
@@ -578,6 +579,11 @@ const meta: Meta<typeof Stepper> = {
     showConnector: {
       control: 'boolean',
       description: 'Exibe linhas de conexão',
+      defaultValue: true,
+    },
+    showIcons: {
+      control: 'boolean',
+      description: 'Exibe o glifo de cada etapa',
       defaultValue: true,
     },
     fillCompletedConnectors: {
@@ -752,4 +758,44 @@ export const ComposicaoModularDeclarativa: Story = {
       </Stepper>
     </div>
   ),
+};
+
+/**
+ * `size="xs"` + `showIcons={false}` + `showConnector={false}`: a barra de
+ * etapas SÓ DE TEXTO de uma tela de celular (a exp01em1b, 375px). Quatro etapas
+ * numa linha de 343px, a atual com o rótulo inteiro e o peso semibold; o
+ * estado se lê pelo texto e pelo `aria-current`, não pelo glifo.
+ */
+export const CompactaSemIcones: Story = {
+  name: 'Compacta só de texto (celular)',
+  render: () => (
+    <div style={{ width: '343px', padding: '0', backgroundColor: '#FFFFFF' }} data-testid="moldura-343">
+      <Stepper
+        size="xs"
+        showIcons={false}
+        showConnector={false}
+        clickable={false}
+        currentStep={2}
+        steps={[
+          { id: 3, label: 'Etapa 3', status: 'completed' },
+          { id: 4, label: 'Etapa 4', status: 'completed' },
+          { id: 5, label: 'Etapa 5: Reconstruir', status: 'selected' },
+          { id: 6, label: 'Etapa 6', status: 'default' },
+        ]}
+      />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const moldura = tela.getByTestId('moldura-343');
+    // Sem glifo nenhum: nem o `add`, nem o `check` da concluída.
+    await expect(moldura.querySelector('.unooria-step__icon-wrapper')).toBeNull();
+    await expect(moldura.querySelector('.unooria-stepper__connector-horizontal')).toBeNull();
+    // A atual é a única com aria-current.
+    const atual = tela.getByRole('button', { name: 'Etapa 5: Reconstruir' });
+    await expect(atual).toHaveAttribute('aria-current', 'step');
+    // Cabe: a barra não passa da moldura de 343px.
+    const barra = moldura.querySelector('.unooria-stepper') as HTMLElement;
+    await expect(barra.scrollWidth).toBeLessThanOrEqual(343);
+  },
 };

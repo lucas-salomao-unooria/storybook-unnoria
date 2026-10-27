@@ -11,9 +11,14 @@ export type StepStatus = 'default' | 'selected' | 'completed' | 'error' | 'disab
 export type StepperOrientation = 'horizontal' | 'vertical';
 
 /**
- * Tamanho visual do Stepper
+ * Tamanho visual do Stepper.
+ *
+ * `xs` é a barra de etapas COMPACTA de uma tela de celular (375px): rótulo de
+ * 12px, alvo de 28px e o vão entre as etapas reduzido. Junto de
+ * `showIcons={false}` e `showConnector={false}`, quatro etapas cabem numa
+ * linha de 343px ("Etapa 3 · Etapa 4 · Etapa 5: Reconstruir · Etapa 6").
  */
-export type StepperSize = 'sm' | 'md' | 'lg';
+export type StepperSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /**
  * Definição individual de uma etapa (Step)
@@ -101,6 +106,15 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   showConnector?: boolean;
 
   /**
+   * Se falso, as etapas não desenham o glifo (o `add` padrão, o `check` da
+   * concluída ou o `icon` informado): sobra só o rótulo, e o estado se lê pelo
+   * peso e pela cor do texto e pelo `aria-current` da etapa atual. É a barra
+   * só de texto de uma tela estreita.
+   * @default true
+   */
+  showIcons?: boolean;
+
+  /**
    * Se verdadeiro, preenche os conectores de etapas já concluídas com a cor de destaque (Brand Navy).
    * @default true
    */
@@ -167,6 +181,12 @@ export interface StepProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
    * Se a etapa é clicável.
    */
   clickable?: boolean;
+
+  /**
+   * Se falso, a etapa não desenha o glifo. Ver `showIcons` no `Stepper`.
+   * @default true
+   */
+  showIcon?: boolean;
 
   /**
    * Tamanho visual.

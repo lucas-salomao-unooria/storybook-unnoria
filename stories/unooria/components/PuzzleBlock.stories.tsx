@@ -576,3 +576,35 @@ export const Selecionado: Story = {
     await expect(fonte).toHaveAttribute('aria-pressed', 'true');
   },
 };
+
+/**
+ * `size="sm"`: a peça COMPACTA da vaga estreita — a calha em duas colunas da
+ * classificação da exp01em1b, num celular de 375px. Rótulo em caixa normal e
+ * quebra só entre palavras: "Trilha Avançada" nunca vira "TRILHA AVANÇAD/A".
+ */
+export const Compacto: Story = {
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, width: 300 }}>
+      <div style={{ display: 'grid', gap: 8 }}>
+        <PuzzleBlock label="Trilha Avançada" state="placed" size="sm" />
+        <PuzzleBlock label="Nome e Turma" state="placed" size="sm" />
+      </div>
+      <div style={{ display: 'grid', gap: 8 }}>
+        <PuzzleBlock label="Horário (23h45)" state="placed" size="sm" />
+        <PuzzleBlock label="Modelo Aparelho" state="placed" size="sm" />
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const trilha = tela.getByRole('button', { name: 'Trilha Avançada' });
+    await expect(trilha).toHaveClass('unooria-puzzle-block--size-sm');
+    // Alvo de toque de pelo menos 44px.
+    await expect(trilha.getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
+    // Caixa normal: o CSS não sobe para maiúsculas.
+    const rotulo = trilha.querySelector('.unooria-puzzle-block__label') as HTMLElement;
+    await expect(getComputedStyle(rotulo).textTransform).toBe('none');
+    await expect(getComputedStyle(rotulo).overflowWrap).toBe('break-word');
+    // Sem a prop, o bloco de sempre (md).
+  },
+};

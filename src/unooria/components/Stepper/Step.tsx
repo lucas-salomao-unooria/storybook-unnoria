@@ -19,6 +19,7 @@ export const Step = forwardRef<HTMLButtonElement, StepProps>(
       status = 'default',
       optional = false,
       clickable = true,
+      showIcon = true,
       size = 'md',
       theme = 'light',
       onStepClick,
@@ -48,7 +49,7 @@ export const Step = forwardRef<HTMLButtonElement, StepProps>(
     // Ícone do Step: usa 'check' se concluído (a menos que tenha ícone customizado), ou o ícone configurado
     const iconName = status === 'completed' && icon === 'add' ? 'check' : icon;
 
-    const iconSize = size === 'sm' ? 'xs' : size === 'lg' ? 'm' : 's';
+    const iconSize = size === 'sm' || size === 'xs' ? 'xs' : size === 'lg' ? 'm' : 's';
 
     return (
       <button
@@ -63,10 +64,12 @@ export const Step = forwardRef<HTMLButtonElement, StepProps>(
         data-theme={theme}
         {...rest}
       >
-        {/* Ícone */}
-        <div className="unooria-step__icon-wrapper">
-          <Icon name={iconName} size={iconSize} color="currentColor" />
-        </div>
+        {/* Ícone (some com `showIcon={false}`: a barra só de texto) */}
+        {showIcon && (
+          <div className="unooria-step__icon-wrapper">
+            <Icon name={iconName} size={iconSize} color="currentColor" />
+          </div>
+        )}
 
         {/* Textos (Rótulo + Opcional + Descrição) */}
         <div className="unooria-step__content">
