@@ -1,0 +1,41 @@
+/**
+ * Estilos do Componente SessionDivider — Design System UnooriaAI
+ *
+ * Grade de três colunas: fio, texto, fio. Os fios são o traço de 1px do
+ * `Divider` (`--uai-fill-10`) e têm largura mínima de `--uai-spacing-6` (16px),
+ * para que o separador continue parecendo separador mesmo com texto longo.
+ * Texto em `caption` (12/18px), peso médio, `--uai-text-secondary` — 8,13:1
+ * sobre `--uai-bg-primary` no claro e 12,09:1 no escuro (tabela
+ * `uaiContrastPairs`). Nenhum token novo.
+ */
+
+.uai-session-divider {
+  display: grid;
+  grid-template-columns: minmax(var(--uai-spacing-6), 1fr) auto minmax(var(--uai-spacing-6), 1fr);
+  align-items: center;
+  gap: var(--uai-spacing-4);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--uai-spacing-2) 0;
+  font-family: var(--uai-font-sans);
+}
+
+.uai-session-divider__line {
+  display: block;
+  height: 1px;
+  background-color: var(--uai-fill-10);
+}
+
+.uai-session-divider__label {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  color: var(--uai-text-secondary);
+  font-size: var(--uai-font-caption-size);
+  font-weight: var(--uai-font-weight-medium);
+  line-height: var(--uai-font-caption-line);
+  letter-spacing: var(--uai-font-caption-tracking);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
