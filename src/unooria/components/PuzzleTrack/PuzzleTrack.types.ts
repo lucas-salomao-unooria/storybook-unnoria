@@ -27,14 +27,24 @@ export interface PuzzleTrackProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   slots: React.ReactNode[];
 
   /**
-   * Texto acessível de uma vaga vazia, a partir do índice (base 0). A vaga
-   * mostra só o número; este texto é o que o leitor de tela lê no lugar dele.
+   * Texto acessível de uma vaga vazia, a partir do índice (base 0). Por padrão
+   * a vaga mostra só o número, e este texto é o que o leitor de tela lê no
+   * lugar dele; com `showEmptySlotLabel`, é ele que aparece na vaga.
    *
    * É uma função: num app Next com Server Components, quem a passa precisa ser
    * Client Component (função não atravessa a fronteira servidor/cliente).
    * @default (index) => `Vaga ${index + 1}, vazia`
    */
   emptySlotLabel?: (index: number) => React.ReactNode;
+
+  /**
+   * Mostra o `emptySlotLabel` DENTRO da vaga vazia, como texto visível, no
+   * lugar do número ("[Solte o cartão aqui]", "Colocar em Dados Fornecidos").
+   * O nome acessível não muda: é o mesmo texto, agora lido de onde se vê, em
+   * vez de uma cópia escondida. Sem a prop, a vaga é a de antes — só o número.
+   * @default false
+   */
+  showEmptySlotLabel?: boolean;
 
   /**
    * A chave está formada. A calha vira um bloco só, com fundo de sucesso, e a
