@@ -27,6 +27,10 @@ const rotuloDeVagaPadrao = (indice: number): React.ReactNode => `Vaga ${indice +
  * a interação inteira na mão do consumidor — a calha não precisa saber se o
  * bloco chegou por toque, por teclado ou por uma resposta da api.
  *
+ * Com `onSlotActivate`, a vaga VAZIA vira botão: é o segundo tempo do toque
+ * sequencial "toca o cartão, toca a vaga" (o primeiro é o `selected` do
+ * `PuzzleBlock`). Sem a prop, a calha é a de antes — só desenho.
+ *
  * Três decisões de acessibilidade:
  *   - A raiz é `role="group"` nomeada pelo `label` (por `aria-labelledby`, e daí
  *     o `useId` e o `'use client'`). Entrando nela pelo Tab, o leitor de tela
@@ -47,6 +51,8 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
       complete = false,
       completeLabel = 'Chave do Editor formada',
       status,
+      onSlotActivate,
+      slotsDisabled = false,
       theme = 'light',
       className = '',
       style,
@@ -62,9 +68,12 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
     // explícito manda, e um `aria-label` explícito não é calado pelo nosso.
     const nomeadoPor = ariaLabelledBy ?? (ariaLabel ? undefined : rotuloId);
 
+    const acionavel = typeof onSlotActivate === 'function';
+
     const classes = [
       'unooria-puzzle-track',
       complete ? 'unooria-puzzle-track--complete' : '',
+      acionavel ? 'unooria-puzzle-track--actionable' : '',
       theme === 'dark' ? 'unooria-puzzle-track--theme-dark' : '',
       className,
     ]
@@ -106,7 +115,23 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
                   .filter(Boolean)
                   .join(' ')}
               >
-                {vazia ? (
+                {vazia && acionavel ? (
+                  // `aria-disabled`, e não `disabled`: a vaga à espera continua
+                  // no Tab e legível, como o `locked` do `PuzzleBlock`.
+                  <button
+                    type="button"
+                    className="unooria-puzzle-track__socket unooria-puzzle-track__socket--action"
+                    aria-disabled={slotsDisabled || undefined}
+                    data-slot-index={indice}
+                    onClick={slotsDisabled ? undefined : () => onSlotActivate?.(indice)}
+                  >
+                    <span className="unooria-puzzle-track__socket-shape" aria-hidden="true" />
+                    <span className="unooria-puzzle-track__socket-number" aria-hidden="true">
+                      {indice + 1}
+                    </span>
+                    <span className="unooria-puzzle-track__sr-only">{emptySlotLabel(indice)}</span>
+                  </button>
+                ) : vazia ? (
                   <span className="unooria-puzzle-track__socket">
                     <span className="unooria-puzzle-track__socket-shape" aria-hidden="true" />
                     <span className="unooria-puzzle-track__socket-number" aria-hidden="true">

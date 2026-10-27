@@ -387,6 +387,12 @@ const PuzzleTrackDocumentationPage: React.FC = () => {
           A calha não decide nada: <code>slots</code>, <code>complete</code> e <code>status</code> vêm
           do consumidor, que os recebe da api.
         </Cartao>
+        <Cartao icone="👉" titulo="Vaga acionável">
+          Com <code>onSlotActivate</code>, a vaga VAZIA vira botão: “toca o cartão (<code>selected</code>{' '}
+          do <code>PuzzleBlock</code>), toca a vaga”. Serve quando há mais de uma calha — duas colunas
+          de classificação, por exemplo. <code>slotsDisabled</code> a deixa à espera, no Tab e legível.
+          Sem arraste nem soltura, de propósito.
+        </Cartao>
       </Grade>
 
       <UnooriaDocSectionHeader
@@ -533,6 +539,18 @@ const PuzzleTrackDocumentationPage: React.FC = () => {
           },
           { nome: 'complete', tipo: 'boolean', padrao: 'false', descricao: 'Chave formada: fundo de sucesso, vagas unidas.' },
           {
+            nome: 'onSlotActivate',
+            tipo: '(index: number) => void',
+            descricao:
+              'Torna a vaga VAZIA um <button>: toque, clique, Enter e Espaço chamam a função com o índice (base 0). O nome do botão é o emptySlotLabel. Ausente, a vaga é só desenho.',
+          },
+          {
+            nome: 'slotsDisabled',
+            tipo: 'boolean',
+            padrao: 'false',
+            descricao: 'Vagas acionáveis à espera: aria-disabled, no Tab e legíveis, sem chamar onSlotActivate.',
+          },
+          {
             nome: 'completeLabel',
             tipo: 'React.ReactNode',
             padrao: "'Chave do Editor formada'",
@@ -558,6 +576,8 @@ const meta: Meta<typeof PuzzleTrack> = {
     complete: { control: 'boolean', description: 'Chave formada.' },
     completeLabel: { control: 'text', description: 'Texto do sucesso.' },
     status: { control: 'text', description: 'Linha de status (aria-live="polite").' },
+    onSlotActivate: { action: 'onSlotActivate', description: 'Torna a vaga vazia acionável (índice).' },
+    slotsDisabled: { control: 'boolean', description: 'Vagas acionáveis à espera (aria-disabled).' },
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema visual.' },
     className: { control: 'text', description: 'Classe CSS adicional.' },
   },
@@ -727,5 +747,146 @@ export const Estados: Story = {
     for (const peca of naFormada.getAllByRole('button')) {
       await expect(peca).toHaveAttribute('aria-disabled', 'true');
     }
+  },
+};
+
+/* ---------------------------------------------------------------------------
+   "Toca o cartão, toca a coluna": duas calhas (colunas de classificação), uma
+   bandeja, `selected` no bloco e `onSlotActivate` na vaga vazia. A alocação é
+   estado local da estória; na missão, quem confere é a api.
+   ------------------------------------------------------------------------- */
+
+const COLUNAS = [
+  { id: 'fornecidos', nome: 'Dados Fornecidos' },
+  { id: 'observados', nome: 'Dados Observados' },
+] as const;
+
+type ColunaId = (typeof COLUNAS)[number]['id'];
+
+const CARTOES = [
+  { id: 'idade', label: 'Idade informada no cadastro' },
+  { id: 'cliques', label: 'Cliques nas últimas 24 horas' },
+  { id: 'cep', label: 'CEP digitado no formulário' },
+];
+
+const ColunasDemo: React.FC = () => {
+  const [alocacao, setAlocacao] = useState<Record<string, ColunaId>>({});
+  const [escolhido, setEscolhido] = useState<string | null>(null);
+  const naBandeja = CARTOES.filter((c) => !alocacao[c.id]);
+
+  const colocar = (coluna: ColunaId) => {
+    if (!escolhido) return;
+    setAlocacao((a) => ({ ...a, [escolhido]: coluna }));
+    setEscolhido(null);
+  };
+
+  const devolver = (id: string) =>
+    setAlocacao((a) => {
+      const nova = { ...a };
+      delete nova[id];
+      return nova;
+    });
+
+  return (
+    <div style={{ display: 'grid', gap: 16, maxWidth: 720 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 16 }}>
+        {COLUNAS.map((coluna) => {
+          const nesta = CARTOES.filter((c) => alocacao[c.id] === coluna.id);
+          return (
+            <PuzzleTrack
+              key={coluna.id}
+              label={`${coluna.nome} (${nesta.length})`}
+              slots={[
+                ...nesta.map((c) => (
+                  <PuzzleBlock key={c.id} label={c.label} state="placed" onClick={() => devolver(c.id)} />
+                )),
+                null,
+              ]}
+              emptySlotLabel={() => `Colocar em ${coluna.nome}`}
+              onSlotActivate={() => colocar(coluna.id)}
+              slotsDisabled={!escolhido}
+              status={escolhido ? 'Toque na vaga da coluna.' : undefined}
+            />
+          );
+        })}
+      </div>
+      <div role="group" aria-label="Cartões" style={{ display: 'grid', gap: 8 }}>
+        {naBandeja.map((c) => (
+          <PuzzleBlock
+            key={c.id}
+            label={c.label}
+            selected={escolhido === c.id}
+            onClick={() => setEscolhido((s) => (s === c.id ? null : c.id))}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/**
+ * Vaga acionável: escolher o cartão (`selected`) e tocar a vaga da coluna
+ * (`onSlotActivate`), por ponteiro e por teclado. Sem cartão escolhido, a vaga
+ * está à espera (`slotsDisabled`): no Tab, legível, e o toque não faz nada.
+ */
+export const VagaAcionavel: Story = {
+  name: 'Vaga acionável (toca o cartão, toca a coluna)',
+  render: () => <ColunasDemo />,
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const fornecidos = () => within(tela.getByRole('group', { name: /^Dados Fornecidos/ }));
+    const observados = () => within(tela.getByRole('group', { name: /^Dados Observados/ }));
+    const cartoes = within(tela.getByRole('group', { name: 'Cartões' }));
+
+    // À espera: a vaga é um botão nomeado pela ação, focável, aria-disabled.
+    const vaga = fornecidos().getByRole('button', { name: 'Colocar em Dados Fornecidos' });
+    await expect(vaga).toHaveAttribute('type', 'button');
+    await expect(vaga).toHaveAttribute('aria-disabled', 'true');
+    await userEvent.click(vaga);
+    await expect(fornecidos().queryByRole('button', { name: 'Idade informada no cadastro' })).not.toBeInTheDocument();
+
+    // Toca o cartão (selected), toca a vaga (onSlotActivate).
+    await userEvent.click(cartoes.getByRole('button', { name: 'Idade informada no cadastro' }));
+    await expect(cartoes.getByRole('button', { name: 'Idade informada no cadastro' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    const vagaAtiva = fornecidos().getByRole('button', { name: 'Colocar em Dados Fornecidos' });
+    await expect(vagaAtiva).not.toHaveAttribute('aria-disabled');
+    await userEvent.click(vagaAtiva);
+    await expect(
+      fornecidos().getByRole('button', { name: 'Idade informada no cadastro' })
+    ).toHaveAttribute('data-state', 'placed');
+    await expect(cartoes.queryByRole('button', { name: 'Idade informada no cadastro' })).not.toBeInTheDocument();
+
+    // Só teclado: Enter escolhe o cartão, Enter na vaga da outra coluna o coloca.
+    cartoes.getByRole('button', { name: 'Cliques nas últimas 24 horas' }).focus();
+    await userEvent.keyboard('{Enter}');
+    observados().getByRole('button', { name: 'Colocar em Dados Observados' }).focus();
+    await userEvent.keyboard('{Enter}');
+    await expect(observados().getByRole('button', { name: 'Cliques nas últimas 24 horas' })).toBeInTheDocument();
+
+    // Espaço também aciona a vaga.
+    cartoes.getByRole('button', { name: 'CEP digitado no formulário' }).focus();
+    await userEvent.keyboard(' ');
+    fornecidos().getByRole('button', { name: 'Colocar em Dados Fornecidos' }).focus();
+    await userEvent.keyboard(' ');
+    await expect(fornecidos().getByRole('button', { name: 'CEP digitado no formulário' })).toBeInTheDocument();
+
+    // A vaga ocupada nunca é botão da calha: só o bloco encaixado é.
+    await expect(fornecidos().getAllByRole('listitem')).toHaveLength(3);
+  },
+};
+
+/**
+ * Sem `onSlotActivate`, a vaga vazia continua sendo só desenho — o
+ * comportamento de antes, para quem já usa a calha.
+ */
+export const VagaSemAcao: Story = {
+  render: () => <PuzzleTrack label="Chave do Editor" slots={[null, null]} />,
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    await expect(tela.queryByRole('button')).not.toBeInTheDocument();
+    await expect(tela.getByText('Vaga 1, vazia')).toBeInTheDocument();
   },
 };
