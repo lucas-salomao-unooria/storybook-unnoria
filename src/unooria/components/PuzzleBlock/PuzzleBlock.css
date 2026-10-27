@@ -126,7 +126,8 @@
 }
 
 .unooria-puzzle-block__icon,
-.unooria-puzzle-block__lock {
+.unooria-puzzle-block__lock,
+.unooria-puzzle-block__check {
   flex-shrink: 0;
   color: var(--unooria-puzzle-block-icon);
 }
@@ -225,6 +226,19 @@
   cursor: default;
 }
 
+/* Escolhido (`selected`): o primeiro tempo do toque sequencial "toca o
+   cartão, toca a vaga". Não depende só de cor — o fio da peça INTEIRA (corpo,
+   recorte e saliência) passa a 2px e aparece o `check_circle` preenchido. O
+   anel de foco continua sendo o `outline`, então foco e escolha convivem sem
+   um apagar o outro. Fio `brandnavy-800` sobre `brandnavy-50`: 5,18:1 (gráfico,
+   WCAG 1.4.11 pede 3:1); rótulo `neutral-950` sobre `brandnavy-50`: 14,17:1. */
+.unooria-puzzle-block--selected {
+  --unooria-puzzle-block-stroke: 2px;
+  --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-50, #F5F8FC);
+  --unooria-puzzle-block-border: var(--unooria-color-brandnavy-800, #49699F);
+  --unooria-puzzle-block-icon: var(--unooria-color-brandnavy-800, #49699F);
+}
+
 /* Hover só onde há ponteiro: no toque, o hover "gruda" depois do toque e o
    bloco pareceria selecionado sem estar. */
 @media (hover: hover) {
@@ -239,6 +253,13 @@
 
   .unooria-puzzle-block--returned:not(:disabled):hover {
     --unooria-puzzle-block-fill: var(--unooria-color-warning-100, #FFEBC6);
+  }
+
+  /* Depois do hover de `idle`, que tem a mesma especificidade e trocaria o
+     fundo do escolhido pelo de repouso sob o ponteiro. */
+  .unooria-puzzle-block--selected:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-brandnavy-100, #E8EFFA);
+    --unooria-puzzle-block-border: var(--unooria-color-brandnavy-900, #2F4F7F);
   }
 }
 
@@ -303,6 +324,16 @@
   --unooria-puzzle-block-icon: var(--unooria-color-success-300, #63F2B5);
 }
 
+/* Escolhido no escuro: véu azul translúcido sobre a superfície OPACA (a mesma
+   razão do `returned` acima) e fio `brandnavy-400` — 5,52:1 sobre o fundo
+   composto; rótulo `neutraldark-950` 9,64:1, pergunta `neutraldark-900` 6,97:1. */
+.unooria-puzzle-block--theme-dark.unooria-puzzle-block--selected {
+  --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-50, #22272A);
+  --unooria-puzzle-block-tint: var(--unooria-color-opacity-brandnavy-200, rgba(127, 165, 226, 0.20));
+  --unooria-puzzle-block-border: var(--unooria-color-brandnavy-400, #A4BDE9);
+  --unooria-puzzle-block-icon: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
 @media (hover: hover) {
   .unooria-puzzle-block--theme-dark.unooria-puzzle-block--idle:not(:disabled):hover {
     --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-200, #3D4448);
@@ -316,6 +347,12 @@
   .unooria-puzzle-block--theme-dark.unooria-puzzle-block--returned:not(:disabled):hover {
     --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-50, #22272A);
     --unooria-puzzle-block-tint: var(--unooria-color-opacity-warning-300, rgba(249, 118, 7, 0.30));
+  }
+
+  .unooria-puzzle-block--theme-dark.unooria-puzzle-block--selected:not(:disabled):hover {
+    --unooria-puzzle-block-fill: var(--unooria-color-neutraldark-50, #22272A);
+    --unooria-puzzle-block-tint: var(--unooria-color-opacity-brandnavy-300, rgba(127, 165, 226, 0.30));
+    --unooria-puzzle-block-border: var(--unooria-color-brandnavy-300, #BDD0EF);
   }
 }
 

@@ -28,6 +28,11 @@ const temConteudo = (no: React.ReactNode): boolean =>
  * em vez de uma frase comprida a cada bloco. É isso que pede `useId` — e, com
  * ele, o `'use client'` (seção 4.5 do AGENTS.md).
  *
+ * `selected` (opcional) é o primeiro tempo do toque sequencial "toca o cartão,
+ * toca a vaga": o bloco escolhido vira botão de alternância (`aria-pressed`),
+ * ganha contorno de 2px na peça inteira e o glifo `check_circle`. Sem a prop,
+ * o bloco não recebe `aria-pressed` — o comportamento de antes.
+ *
  * `locked` usa `aria-disabled`, não `disabled`: o bloco continua no Tab e é
  * lido ("Fonte, indisponível"), mas o toque não chama `onClick`. Um `disabled`
  * nativo o tiraria da navegação, e a chave formada sumiria para quem não vê.
@@ -40,6 +45,7 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
       icon,
       state = 'idle',
       returnedLabel = 'Voltou para a bandeja',
+      selected,
       theme = 'light',
       className = '',
       type = 'button',
@@ -48,6 +54,7 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
       'aria-labelledby': ariaLabelledBy,
       'aria-describedby': ariaDescribedBy,
       'aria-disabled': ariaDisabled,
+      'aria-pressed': ariaPressed,
       ...rest
     },
     ref
@@ -60,6 +67,12 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
     const travado = state === 'locked';
     const voltou = state === 'returned';
     const temDescricao = temConteudo(description);
+    // Só vira botão de alternância quando o consumidor fala de seleção: sem a
+    // prop, o `aria-pressed` não aparece e o bloco é o de sempre.
+    const pressionado = ariaPressed ?? selected;
+    // O visual de escolhido não se soma ao de travado: com a chave formada, o
+    // cadeado e o fundo de sucesso mandam. O `aria-pressed` segue a prop.
+    const escolhido = selected === true && !travado;
 
     // `aria-labelledby` explícito manda; com `aria-label` explícito o botão NÃO
     // recebe o nosso `aria-labelledby`, que venceria o `aria-label` no cálculo
@@ -75,6 +88,7 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
     const classes = [
       'unooria-puzzle-block',
       `unooria-puzzle-block--${state}`,
+      escolhido ? 'unooria-puzzle-block--selected' : '',
       theme === 'dark' ? 'unooria-puzzle-block--theme-dark' : '',
       className,
     ]
@@ -87,10 +101,12 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
         type={type}
         className={classes}
         data-state={state}
+        data-selected={escolhido ? 'true' : undefined}
         aria-label={ariaLabel}
         aria-labelledby={nomeadoPor}
         aria-describedby={descritoPor}
         aria-disabled={travado ? true : ariaDisabled}
+        aria-pressed={pressionado}
         // Sem função nova aqui dentro: o `onClick` do consumidor passa direto,
         // ou some quando travado. Assim o toque num bloco travado não faz nada,
         // pelo mouse, pelo toque ou por Enter/Espaço.
@@ -121,6 +137,9 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
             )}
           </span>
 
+          {escolhido && (
+            <Icon name="check_circle" size="xs" fill className="unooria-puzzle-block__check" />
+          )}
           {travado && <Icon name="lock" size="xs" className="unooria-puzzle-block__lock" />}
         </span>
       </button>
