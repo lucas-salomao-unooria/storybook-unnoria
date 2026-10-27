@@ -155,6 +155,23 @@
   border: 0;
 }
 
+/* O rótulo à vista (`showEmptySlotLabel`), no lugar do número. Recuo lateral de
+   16px para o texto não encostar no recorte de 9px da esquerda nem na saliência
+   da direita. `neutral-700` sobre `neutral-100`: 7,46:1. */
+.unooria-puzzle-track__socket-text {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--unooria-spacing-xxs, 8px) var(--unooria-spacing-s, 16px);
+  color: var(--unooria-color-neutral-700, #475157);
+  font-size: var(--unooria-size-body-s, 16px);
+  font-weight: var(--unooria-weight-semibold, 600);
+  line-height: var(--unooria-line-height-body-s, 24px);
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
 /* ==========================================================================
    A vaga acionável (`onSlotActivate`): a mesma silhueta, num <button>.
    O tracejado continua dizendo "vazio"; o que muda é que ela responde ao
@@ -196,7 +213,8 @@
     --unooria-puzzle-track-border: var(--unooria-color-brandnavy-800, #49699F);
   }
 
-  .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover .unooria-puzzle-track__socket-number {
+  .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover .unooria-puzzle-track__socket-number,
+  .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover .unooria-puzzle-track__socket-text {
     color: var(--unooria-color-brandnavy-800, #49699F);
   }
 }
@@ -273,7 +291,8 @@
   --unooria-puzzle-track-border: var(--unooria-color-neutraldark-800, #A7B5B9);
 }
 
-.unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket-number {
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket-number,
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__socket-text {
   color: var(--unooria-color-neutraldark-900, #CBD4D6);
 }
 
@@ -304,7 +323,10 @@
 
   .unooria-puzzle-track--theme-dark
     .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover
-    .unooria-puzzle-track__socket-number {
+    .unooria-puzzle-track__socket-number,
+  .unooria-puzzle-track--theme-dark
+    .unooria-puzzle-track__socket--action:not([aria-disabled='true']):hover
+    .unooria-puzzle-track__socket-text {
     color: var(--unooria-color-brandnavy-100, #E8EFFA);
   }
 }

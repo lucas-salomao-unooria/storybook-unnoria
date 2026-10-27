@@ -393,6 +393,11 @@ const PuzzleTrackDocumentationPage: React.FC = () => {
           de classificação, por exemplo. <code>slotsDisabled</code> a deixa à espera, no Tab e legível.
           Sem arraste nem soltura, de propósito.
         </Cartao>
+        <Cartao icone="🏷️" titulo="Rótulo à vista">
+          Com <code>showEmptySlotLabel</code>, a vaga vazia mostra o <code>emptySlotLabel</code> no lugar
+          do número — “[Solte o cartão aqui]” à espera, “Colocar em Dados Fornecidos” com cartão
+          escolhido. O nome acessível é o mesmo texto, sem cópia escondida.
+        </Cartao>
       </Grade>
 
       <UnooriaDocSectionHeader
@@ -535,7 +540,13 @@ const PuzzleTrackDocumentationPage: React.FC = () => {
             nome: 'emptySlotLabel',
             tipo: '(index: number) => React.ReactNode',
             padrao: '(i) => `Vaga ${i + 1}, vazia`',
-            descricao: 'Texto acessível da vaga vazia (índice base 0).',
+            descricao: 'Texto acessível da vaga vazia (índice base 0). À vista com showEmptySlotLabel.',
+          },
+          {
+            nome: 'showEmptySlotLabel',
+            tipo: 'boolean',
+            padrao: 'false',
+            descricao: 'Mostra o emptySlotLabel na vaga vazia, no lugar do número. O nome acessível não muda.',
           },
           { nome: 'complete', tipo: 'boolean', padrao: 'false', descricao: 'Chave formada: fundo de sucesso, vagas unidas.' },
           {
@@ -573,6 +584,7 @@ const meta: Meta<typeof PuzzleTrack> = {
     label: { control: 'text', description: 'Título da calha (nomeia o grupo).' },
     slots: { control: false, description: 'Conteúdo de cada vaga; null é vaga vazia.' },
     emptySlotLabel: { control: false, description: 'Texto acessível da vaga vazia, a partir do índice.' },
+    showEmptySlotLabel: { control: 'boolean', description: 'Mostra o rótulo na vaga vazia, no lugar do número.' },
     complete: { control: 'boolean', description: 'Chave formada.' },
     completeLabel: { control: 'text', description: 'Texto do sucesso.' },
     status: { control: 'text', description: 'Linha de status (aria-live="polite").' },
@@ -769,7 +781,7 @@ const CARTOES = [
   { id: 'cep', label: 'CEP digitado no formulário' },
 ];
 
-const ColunasDemo: React.FC = () => {
+const ColunasDemo: React.FC<{ rotuloVisivel?: boolean }> = ({ rotuloVisivel = false }) => {
   const [alocacao, setAlocacao] = useState<Record<string, ColunaId>>({});
   const [escolhido, setEscolhido] = useState<string | null>(null);
   const naBandeja = CARTOES.filter((c) => !alocacao[c.id]);
@@ -802,10 +814,13 @@ const ColunasDemo: React.FC = () => {
                 )),
                 null,
               ]}
-              emptySlotLabel={() => `Colocar em ${coluna.nome}`}
+              emptySlotLabel={
+                rotuloVisivel && !escolhido ? () => '[Solte o cartão aqui]' : () => `Colocar em ${coluna.nome}`
+              }
+              showEmptySlotLabel={rotuloVisivel}
               onSlotActivate={() => colocar(coluna.id)}
               slotsDisabled={!escolhido}
-              status={escolhido ? 'Toque na vaga da coluna.' : undefined}
+              status={escolhido && !rotuloVisivel ? 'Toque na vaga da coluna.' : undefined}
             />
           );
         })}
@@ -888,5 +903,71 @@ export const VagaSemAcao: Story = {
     const tela = within(canvasElement);
     await expect(tela.queryByRole('button')).not.toBeInTheDocument();
     await expect(tela.getByText('Vaga 1, vazia')).toBeInTheDocument();
+  },
+};
+
+/**
+ * Rótulo à vista (`showEmptySlotLabel`): a vaga vazia mostra o texto no lugar
+ * do número, como o andaime da E5 da exp01em1b — "[Solte o cartão aqui]" à
+ * espera e a ação "Colocar em …" com cartão escolhido. O nome acessível é o
+ * mesmo texto, lido de onde se vê.
+ */
+export const RotuloVisivel: Story = {
+  name: 'Rótulo à vista na vaga vazia',
+  render: () => <ColunasDemo rotuloVisivel />,
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const fornecidos = () => within(tela.getByRole('group', { name: /^Dados Fornecidos/ }));
+    const cartoes = within(tela.getByRole('group', { name: 'Cartões' }));
+
+    // À espera: o andaime aparece escrito, e é ele o nome do botão.
+    const vaga = fornecidos().getByRole('button', { name: '[Solte o cartão aqui]' });
+    await expect(vaga).toHaveAttribute('aria-disabled', 'true');
+    await expect(within(vaga).getByText('[Solte o cartão aqui]')).toBeVisible();
+    // Nem número, nem cópia escondida: o texto à vista é o nome.
+    await expect(vaga.querySelector('.unooria-puzzle-track__socket-number')).toBeNull();
+    await expect(vaga.querySelector('.unooria-puzzle-track__sr-only')).toBeNull();
+
+    // Com cartão escolhido, a vaga mostra a ação.
+    await userEvent.click(cartoes.getByRole('button', { name: 'Idade informada no cadastro' }));
+    const vagaAtiva = fornecidos().getByRole('button', { name: 'Colocar em Dados Fornecidos' });
+    await expect(vagaAtiva).not.toHaveAttribute('aria-disabled');
+    await expect(within(vagaAtiva).getByText('Colocar em Dados Fornecidos')).toBeVisible();
+    await userEvent.click(vagaAtiva);
+    await expect(fornecidos().getByRole('button', { name: 'Idade informada no cadastro' })).toHaveAttribute(
+      'data-state',
+      'placed'
+    );
+    await expect(fornecidos().getByRole('button', { name: '[Solte o cartão aqui]' })).toBeInTheDocument();
+  },
+};
+
+/**
+ * Rótulo à vista na vaga de desenho (sem `onSlotActivate`) e no tema escuro:
+ * o texto aparece no lugar do número também ali.
+ */
+export const RotuloVisivelSemAcao: Story = {
+  render: () => (
+    <div style={{ display: 'grid', gap: 16 }}>
+      <PuzzleTrack label="Claro" slots={[null]} showEmptySlotLabel emptySlotLabel={() => '[Solte o cartão aqui]'} />
+      <div style={{ padding: 16, background: 'var(--unooria-color-neutraldark-100)' }}>
+        <PuzzleTrack
+          label="Escuro"
+          theme="dark"
+          slots={[null]}
+          showEmptySlotLabel
+          emptySlotLabel={() => '[Solte o cartão aqui]'}
+        />
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    await expect(tela.queryByRole('button')).not.toBeInTheDocument();
+    for (const texto of tela.getAllByText('[Solte o cartão aqui]')) {
+      await expect(texto).toBeVisible();
+      await expect(texto).toHaveClass('unooria-puzzle-track__socket-text');
+    }
+    await expect(tela.queryByText('1')).not.toBeInTheDocument();
   },
 };

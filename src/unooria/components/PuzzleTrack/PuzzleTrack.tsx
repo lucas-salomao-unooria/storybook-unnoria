@@ -19,7 +19,8 @@ const rotuloDeVagaPadrao = (indice: number): React.ReactNode => `Vaga ${indice +
  *
  * A calha da "Chave do Editor": uma fileira de vagas em forma de peça, onde os
  * `PuzzleBlock` se encaixam por toque. Cada vaga vazia é um encaixe tracejado
- * com o número da posição; com `complete`, as vagas se juntam num bloco só, com
+ * com o número da posição (ou, com `showEmptySlotLabel`, com o próprio rótulo
+ * à vista); com `complete`, as vagas se juntam num bloco só, com
  * fundo de sucesso e o glifo `key`.
  *
  * A calha não tem gabarito nem estado: `slots`, `complete` e `status` vêm de
@@ -48,6 +49,7 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
       label,
       slots,
       emptySlotLabel = rotuloDeVagaPadrao,
+      showEmptySlotLabel = false,
       complete = false,
       completeLabel = 'Chave do Editor formada',
       status,
@@ -86,6 +88,21 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
       ...style,
       '--unooria-puzzle-track-count': Math.max(slots.length, 1),
     } as React.CSSProperties;
+
+    // O miolo da vaga vazia. Por padrão, o número à vista e o rótulo só para o
+    // leitor de tela; com `showEmptySlotLabel`, o rótulo à vista e nada
+    // escondido — o nome acessível é o mesmo texto, sem cópia.
+    const miolo = (indice: number) =>
+      showEmptySlotLabel ? (
+        <span className="unooria-puzzle-track__socket-text">{emptySlotLabel(indice)}</span>
+      ) : (
+        <>
+          <span className="unooria-puzzle-track__socket-number" aria-hidden="true">
+            {indice + 1}
+          </span>
+          <span className="unooria-puzzle-track__sr-only">{emptySlotLabel(indice)}</span>
+        </>
+      );
 
     return (
       <div
@@ -126,18 +143,12 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
                     onClick={slotsDisabled ? undefined : () => onSlotActivate?.(indice)}
                   >
                     <span className="unooria-puzzle-track__socket-shape" aria-hidden="true" />
-                    <span className="unooria-puzzle-track__socket-number" aria-hidden="true">
-                      {indice + 1}
-                    </span>
-                    <span className="unooria-puzzle-track__sr-only">{emptySlotLabel(indice)}</span>
+                    {miolo(indice)}
                   </button>
                 ) : vazia ? (
                   <span className="unooria-puzzle-track__socket">
                     <span className="unooria-puzzle-track__socket-shape" aria-hidden="true" />
-                    <span className="unooria-puzzle-track__socket-number" aria-hidden="true">
-                      {indice + 1}
-                    </span>
-                    <span className="unooria-puzzle-track__sr-only">{emptySlotLabel(indice)}</span>
+                    {miolo(indice)}
                   </span>
                 ) : (
                   vaga
