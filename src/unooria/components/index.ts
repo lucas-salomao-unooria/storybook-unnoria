@@ -44,6 +44,7 @@ export * from './ScrollBar';
 export * from './SectionHeader';
 export * from './Selection';
 export * from './SideBar';
+export * from './Slider';
 export * from './Snackbar';
 export * from './SpeechBubble';
 export * from './Stepper';
