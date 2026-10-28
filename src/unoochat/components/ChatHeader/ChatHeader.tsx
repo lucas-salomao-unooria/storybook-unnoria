@@ -12,6 +12,10 @@ import './ChatHeader.css';
  * Cabeçalho da tela de conversa. Faixa de 52px com seta de voltar de 38px,
  * avatar de 32px, nome em `--unc-font-title-lg-*` e as ações de vídeo, voz e
  * menu separadas por 24px, com o telefone girado -127,81°.
+ *
+ * Com `trailing`, o slot ocupa o lugar dos botões de chamada (vídeo e voz) e o
+ * "Mais opções" só aparece com `onMenu` — ver a estória. Sem `trailing`, o
+ * DOM é exatamente o de antes.
  */
 export const ChatHeader = React.forwardRef<HTMLElement, UncChatHeaderProps>(
   (
@@ -25,64 +29,95 @@ export const ChatHeader = React.forwardRef<HTMLElement, UncChatHeaderProps>(
       onVoiceCall,
       onMenu,
       onOpenProfile,
+      trailing,
       className = '',
       ...restProps
     },
     ref
-  ) => (
-    <header
-      ref={ref as never}
-      className={['unc-chatheader', className].filter(Boolean).join(' ')}
-      {...restProps}
-    >
-      <button type="button" className="unc-chatheader__back" onClick={onBack} aria-label="Voltar">
-        <Icon name="back" size={24} tone="back" />
-      </button>
+  ) => {
+    const hasTrailing =
+      trailing !== undefined && trailing !== null && trailing !== false && trailing !== '';
 
-      <button
-        type="button"
-        className="unc-chatheader__identity"
-        onClick={onOpenProfile}
-        aria-label={`Abrir perfil de ${name}`}
+    return (
+      <header
+        ref={ref as never}
+        className={[
+          'unc-chatheader',
+          hasTrailing ? 'unc-chatheader--with-trailing' : '',
+          className,
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        {...restProps}
       >
-        <Avatar size="sm" src={avatarSrc} alt={name} initials={initials} />
-        <span className="unc-chatheader__text">
-          <span className="unc-chatheader__name">{name}</span>
-          {presence && <span className="unc-chatheader__presence">{presence}</span>}
-        </span>
-      </button>
-
-      <div className="unc-chatheader__actions">
-        <button
-          type="button"
-          className="unc-chatheader__action"
-          onClick={onVideoCall}
-          aria-label="Chamada de vídeo"
-        >
-          <Icon name="videoCall" size={24} tone="appbar" />
+        <button type="button" className="unc-chatheader__back" onClick={onBack} aria-label="Voltar">
+          <Icon name="back" size={24} tone="back" />
         </button>
 
         <button
           type="button"
-          className="unc-chatheader__action"
-          onClick={onVoiceCall}
-          aria-label="Chamada de voz"
+          className="unc-chatheader__identity"
+          onClick={onOpenProfile}
+          aria-label={`Abrir perfil de ${name}`}
         >
-          <Icon name="phone" size={22} tone="appbar" />
+          <Avatar size="sm" src={avatarSrc} alt={name} initials={initials} />
+          <span className="unc-chatheader__text">
+            <span className="unc-chatheader__name">{name}</span>
+            {presence && <span className="unc-chatheader__presence">{presence}</span>}
+          </span>
         </button>
 
-        <button
-          type="button"
-          className="unc-chatheader__action"
-          onClick={onMenu}
-          aria-label="Mais opções"
-          aria-haspopup="menu"
-        >
-          <Icon name="overflow" size={24} tone="appbar" rotate={90} />
-        </button>
-      </div>
-    </header>
-  )
+        {hasTrailing ? (
+          <>
+            <div className="unc-chatheader__trailing">{trailing}</div>
+            {onMenu && (
+              <div className="unc-chatheader__actions">
+                <button
+                  type="button"
+                  className="unc-chatheader__action"
+                  onClick={onMenu}
+                  aria-label="Mais opções"
+                  aria-haspopup="menu"
+                >
+                  <Icon name="overflow" size={24} tone="appbar" rotate={90} />
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="unc-chatheader__actions">
+            <button
+              type="button"
+              className="unc-chatheader__action"
+              onClick={onVideoCall}
+              aria-label="Chamada de vídeo"
+            >
+              <Icon name="videoCall" size={24} tone="appbar" />
+            </button>
+
+            <button
+              type="button"
+              className="unc-chatheader__action"
+              onClick={onVoiceCall}
+              aria-label="Chamada de voz"
+            >
+              <Icon name="phone" size={22} tone="appbar" />
+            </button>
+
+            <button
+              type="button"
+              className="unc-chatheader__action"
+              onClick={onMenu}
+              aria-label="Mais opções"
+              aria-haspopup="menu"
+            >
+              <Icon name="overflow" size={24} tone="appbar" rotate={90} />
+            </button>
+          </div>
+        )}
+      </header>
+    );
+  }
 );
 
 ChatHeader.displayName = 'ChatHeader';

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
+import { expect, within } from 'storybook/test';
 import {
   UnooriaDocShell,
   UnooriaDocHeader,
@@ -14,10 +15,20 @@ import {
   UncDocStage,
   UncDocThemeSwitcher,
 } from '../../../.storybook/components';
-import { ChatHeader, StatusBar } from '../../../src/unoochat';
+import { ChatHeader, Icon, MessageTag, StatusBar } from '../../../src/unoochat';
 import { uncAvatarPrincipal, uncAvatars } from '../fixtures';
 
 const BAR = '#716C98';
+
+/**
+ * Chip de status do slot `trailing`: um `MessageTag` com pictograma, como o da
+ * missão "O Porta-Voz dos Dados".
+ */
+const ChipDePublicacoes: React.FC<{ restantes?: number }> = ({ restantes = 3 }) => (
+  <MessageTag icon={<Icon name="document" size={14} tone="inherit" />}>
+    Publicações Oficiais Disponíveis: {restantes}/3
+  </MessageTag>
+);
 
 /**
  * Página de documentação rica do componente ChatHeader.
@@ -44,6 +55,10 @@ const ChatHeaderDocumentationPage = () => (
       <UncDocCard icon="📞" title="Três ações fixas">
         Vídeo (<code>videoCall</code>), voz (<code>phone</code>) e menu (<code>overflow</code>{' '}
         girado 90°), com 24px de espaço entre elas.
+      </UncDocCard>
+      <UncDocCard icon="🏷️" title="Slot à direita (trailing)">
+        A prop <code>trailing</code> recebe um chip de status — um <code>MessageTag</code> — no
+        lugar dos botões de chamada. O “Mais opções” fica só com <code>onMenu</code>.
       </UncDocCard>
       <UncDocCard icon="🟣" title="Presença opcional">
         A prop <code>presence</code> acrescenta a segunda linha (“online”, “digitando…”) em{' '}
@@ -78,6 +93,16 @@ const ChatHeaderDocumentationPage = () => (
             'o registro de ícones traz o menu horizontal (more_horiz); o cabeçalho o gira 90° com a prop rotate para obter o menu vertical, sem registrar um segundo glifo.',
         },
         {
+          subject: 'Slot trailing substitui as chamadas (2026-10-28)',
+          detail:
+            'com trailing, o conteúdo toma o lugar de vídeo e voz, e o menu só aparece se onMenu for informado. Um canal que exibe um status (a missão "O Porta-Voz dos Dados") não é uma conversa que se liga, e chip mais três glifos não cabem em 375px sem cortar o nome. A identidade guarda 104px (avatar e o começo do nome), o slot fica com o resto até metade da faixa, e o MessageTag quebra em linhas dentro dele. Sem trailing, o DOM é o de antes.',
+        },
+        {
+          subject: 'Conteúdo do slot: MessageTag, não Badge',
+          detail:
+            'o MessageTag (cápsula neutra com pictograma e rótulo por extenso) serve ao chip de status sem variante nova. O Badge não serve: é um selo numérico de não lidas, com role="img" e rótulo "N não lidas".',
+        },
+        {
           subject: 'Linha de presença',
           detail:
             'extensão da biblioteca: usa o degrau de 12px da escala da Unooria (--unc-font-caption-size) e a cor secundária, para manter a hierarquia entre nome e estado.',
@@ -93,6 +118,7 @@ const ChatHeaderDocumentationPage = () => (
         { name: 'Identidade', role: 'Avatar de 32px e nome, em um único alvo clicável.', token: '--unc-avatar-sm · --unc-color-text-primary' },
         { name: 'Presença', role: 'Segunda linha opcional de estado.', token: '--unc-color-text-secondary' },
         { name: 'Ações', role: 'Vídeo, voz e menu com espaçamento de 24px.', token: '--unc-color-icon-appbar' },
+        { name: 'Trailing', role: 'Slot opcional no lugar de vídeo e voz, até metade da faixa.', token: 'unc-chatheader__trailing' },
       ]}
     />
 
@@ -122,6 +148,17 @@ const ChatHeaderDocumentationPage = () => (
         </div>
         <div style={{ width: 411 }}>
           <ChatHeader name="Nome muito longo de um grupo de trabalho" avatarSrc={uncAvatars[3]} />
+        </div>
+        <div style={{ width: 375 }}>
+          <ChatHeader name="Porta-Voz" initials="PV" trailing={<ChipDePublicacoes />} />
+        </div>
+        <div style={{ width: 375 }}>
+          <ChatHeader
+            name="Porta-Voz"
+            initials="PV"
+            trailing={<ChipDePublicacoes restantes={1} />}
+            onMenu={() => undefined}
+          />
         </div>
       </UncDocStage>
     ))}
@@ -168,6 +205,7 @@ const ChatHeaderDocumentationPage = () => (
         { name: 'onVoiceCall', type: '(event) => void', description: 'Callback da chamada de voz.' },
         { name: 'onMenu', type: '(event) => void', description: 'Callback do menu de opções.' },
         { name: 'onOpenProfile', type: '(event) => void', description: 'Callback de toque no avatar ou no nome.' },
+        { name: 'trailing', type: 'React.ReactNode', description: 'Conteúdo à direita, como um MessageTag de status. Substitui vídeo e voz; o menu só aparece com onMenu. Ausente, o cabeçalho é o de sempre.' },
         { name: 'className', type: 'string', description: 'Classe CSS adicional.' },
       ]}
     />
@@ -183,6 +221,7 @@ const meta: Meta<typeof ChatHeader> = {
     presence: { control: 'text', description: 'Linha de presença.' },
     avatarSrc: { control: 'select', options: [uncAvatarPrincipal, ...uncAvatars], description: 'URL do avatar.' },
     initials: { control: 'text', description: 'Iniciais sem avatar.' },
+    trailing: { control: false, description: 'Slot à direita (ver a estória ComChipDeStatus).' },
   },
   args: { name: 'Amara Lima', presence: '', avatarSrc: uncAvatarPrincipal, initials: 'AL' },
 };
@@ -245,4 +284,39 @@ export const Estados: Story = {
       </div>
     </UncDocStage>
   ),
+};
+
+/**
+ * Slot `trailing` com o chip de status da missão: sem `onMenu`, nenhuma ação;
+ * com `onMenu`, só o "Mais opções". O `play` confere que as chamadas saem.
+ */
+export const ComChipDeStatus: Story = {
+  render: () => (
+    <UncDocStage surface="canvas" direction="column" align="stretch" gap={16} padding={20}>
+      <div style={{ width: 375 }} data-testid="sem-menu">
+        <StatusBar height={22} />
+        <ChatHeader name="Porta-Voz" presence="canal oficial" initials="PV" trailing={<ChipDePublicacoes />} />
+      </div>
+      <div style={{ width: 375 }} data-testid="com-menu">
+        <ChatHeader
+          name="Porta-Voz"
+          initials="PV"
+          trailing={<ChipDePublicacoes restantes={0} />}
+          onMenu={() => undefined}
+        />
+      </div>
+    </UncDocStage>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const semMenu = within(tela.getByTestId('sem-menu'));
+    const comMenu = within(tela.getByTestId('com-menu'));
+
+    await expect(semMenu.getByText('Publicações Oficiais Disponíveis: 3/3')).toBeVisible();
+    await expect(semMenu.queryByRole('button', { name: 'Chamada de vídeo' })).toBeNull();
+    await expect(semMenu.queryByRole('button', { name: 'Chamada de voz' })).toBeNull();
+    await expect(semMenu.queryByRole('button', { name: 'Mais opções' })).toBeNull();
+    await expect(comMenu.getByRole('button', { name: 'Mais opções' })).toBeVisible();
+    await expect(comMenu.queryByRole('button', { name: 'Chamada de vídeo' })).toBeNull();
+  },
 };
