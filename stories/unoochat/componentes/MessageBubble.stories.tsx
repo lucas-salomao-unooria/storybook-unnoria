@@ -304,6 +304,11 @@ const MessageBubbleDocumentationPage = () => (
             'com `onClick`, a moldura vira um `<button>` com o mesmo desenho, como a `LinkPreview` acionável; o nome dele é o `actionLabel` (ou o `alt`).',
         },
         {
+          subject: 'Documento acionável (2026-10-28)',
+          detail:
+            'com `onClick`, a faixa do `Document` vira um `<button>` com o mesmo desenho — abrir a nota anexa da missão "O Porta-Voz dos Dados" —, nomeado pelo `actionLabel` ou, sem ele, pelo conteúdo. Ganha alvo de 44px e o anel de foco do acento. Sem `onClick`, o DOM e o visual são os de antes.',
+        },
+        {
           subject: 'LinkPreview e Invite',
           detail:
             'a prévia de link e o convite usam a faixa de anexo do balão (`--unc-color-surface-bubble-out-strip`) e o raio de 5px da miniatura; a ação do convite é texto em `--unc-color-accent` sobre o divisor, com alvo de 48px.',
@@ -439,6 +444,8 @@ const MessageBubbleDocumentationPage = () => (
       rows={[
         { name: 'name', type: 'string', description: 'Nome do arquivo anexado. Obrigatório.' },
         { name: 'details', type: 'string[]', default: '[]', description: 'Metadados exibidos abaixo, separados por um ponto.' },
+        { name: 'onClick', type: '(event) => void', description: 'Extensão: torna a faixa um botão (abrir a nota anexa), com foco visível, Enter e Espaço e alvo de 44px. Ausente, a faixa é a de sempre.' },
+        { name: 'actionLabel', type: 'string', description: 'Nome acessível da ação quando há onClick, como "Abrir nota técnica". Ausente, o botão se anuncia pelo conteúdo.' },
       ]}
     />
   </UnooriaDocShell>
@@ -680,6 +687,58 @@ export const MidiaAcionavel: Story = {
     await expect(contador).toHaveTextContent('Aberturas: 2');
     await userEvent.click(tela.getByRole('button', { name: 'Fotografia enviada' }));
     await expect(contador).toHaveTextContent('Aberturas: 3');
+  },
+};
+
+/**
+ * Documento que abre a nota anexa: o contador prova clique, Enter e Espaço.
+ */
+const DocumentoQueAbre: React.FC = () => {
+  const [aberturas, setAberturas] = React.useState(0);
+  const abrir = () => setAberturas((n) => n + 1);
+  return (
+    <UncDocStage surface="base" padding={24} align="flex-start">
+      <Thread>
+        <MessageBubble direction="in" sender="Instituto de Pesquisa" time="10:12" maxWidth={260}>
+          <MessageBubble.Document
+            name="Nota técnica da pesquisa"
+            details={['3 páginas', 'PDF']}
+            actionLabel="Abrir nota técnica da pesquisa"
+            onClick={abrir}
+          />
+          Toque no documento para ler a nota.
+        </MessageBubble>
+        <MessageBubble direction="out" time="10:14" delivery="read" maxWidth={260}>
+          <MessageBubble.Document name="Relatório da visita" details={['12 páginas', 'PDF']} />
+        </MessageBubble>
+      </Thread>
+      <p role="status" style={{ margin: 0, color: 'var(--unc-color-text-secondary)', fontSize: 12 }}>
+        Aberturas: {aberturas}
+      </p>
+    </UncDocStage>
+  );
+};
+
+/**
+ * Documento acionável: com onClick a faixa vira botão, nomeado pelo
+ * actionLabel. Sem onClick (o segundo balão), continua uma faixa sem papel.
+ */
+export const DocumentoAcionavel: Story = {
+  render: () => <DocumentoQueAbre />,
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const nota = tela.getByRole('button', { name: 'Abrir nota técnica da pesquisa' });
+    const contador = tela.getByRole('status');
+
+    await expect(nota.tagName).toBe('BUTTON');
+    await userEvent.click(nota);
+    await expect(contador).toHaveTextContent('Aberturas: 1');
+    nota.focus();
+    await userEvent.keyboard('{Enter}');
+    await expect(contador).toHaveTextContent('Aberturas: 2');
+    await userEvent.keyboard(' ');
+    await expect(contador).toHaveTextContent('Aberturas: 3');
+    await expect(tela.queryByRole('button', { name: /Relatório da visita/ })).toBeNull();
   },
 };
 

@@ -74,31 +74,63 @@ MessageMedia.displayName = 'MessageBubble.Media';
 
 /**
  * Faixa de documento anexado em `--unc-color-surface-bubble-out-strip`.
+ *
+ * Com `onClick`, a faixa é um `<button>` com o mesmo desenho — abrir a nota
+ * anexa —, nomeado pelo `actionLabel` ou, sem ele, pelo próprio conteúdo.
  */
 const MessageDocument: React.FC<UncMessageDocumentProps> = ({
   name,
   details = [],
+  onClick,
+  actionLabel,
   className = '',
   ...restProps
-}) => (
-  <div
-    className={['unc-messagebubble__document', className].filter(Boolean).join(' ')}
-    {...restProps}
-  >
-    <Icon name="filePdf" size={22} tone="inherit" title="Documento PDF" />
-    <span className="unc-messagebubble__document-name">{name}</span>
-    {details.length > 0 && (
-      <span className="unc-messagebubble__document-details">
-        {details.map((detail, index) => (
-          <React.Fragment key={detail}>
-            {index > 0 && <span className="unc-messagebubble__document-separator" />}
-            <span>{detail}</span>
-          </React.Fragment>
-        ))}
-      </span>
-    )}
-  </div>
-);
+}) => {
+  const classes = [
+    'unc-messagebubble__document',
+    onClick ? 'unc-messagebubble__document--action' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const content = (
+    <>
+      <Icon name="filePdf" size={22} tone="inherit" title="Documento PDF" />
+      <span className="unc-messagebubble__document-name">{name}</span>
+      {details.length > 0 && (
+        <span className="unc-messagebubble__document-details">
+          {details.map((detail, index) => (
+            <React.Fragment key={detail}>
+              {index > 0 && <span className="unc-messagebubble__document-separator" />}
+              <span>{detail}</span>
+            </React.Fragment>
+          ))}
+        </span>
+      )}
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        className={classes}
+        onClick={onClick}
+        aria-label={actionLabel}
+        {...(restProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div className={classes} {...(restProps as React.HTMLAttributes<HTMLDivElement>)}>
+      {content}
+    </div>
+  );
+};
 
 MessageDocument.displayName = 'MessageBubble.Document';
 
