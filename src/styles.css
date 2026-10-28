@@ -263,6 +263,7 @@
 @import './unoochat/components/SettingsItem/SettingsItem.css';
 @import './unoochat/components/StatusBar/StatusBar.css';
 @import './unoochat/components/StatusListItem/StatusListItem.css';
+@import './unoochat/components/Switch/Switch.css';
 @import './unoochat/components/SystemMessage/SystemMessage.css';
 @import './unoochat/components/TabBar/TabBar.css';
 @import './unoochat/components/TextButton/TextButton.css';
