@@ -268,6 +268,8 @@ No seu arquivo CSS:
 | **`AlertBox`** | Caixa de alerta e notificações de status com severidades (info, success, warning, error, neutral). | `severity`, `title`, `description`, `theme`, `isDismissible`, `onDismiss`, `action` |
 | **`Badge`** | Etiqueta compacta para tags, status, categorias e contadores. | `variant`, `size`, `theme`, `icon`, `isDot` |
 | **`Breadcrumb`** | Navegação hierárquica em trilha de migalhas com suporte a truncamento e colapso de itens. | `items`, `maxItems`, `separator`, `theme`, `onItemClick` |
+| **`Slider`** | Régua de um valor (`input range` nativo) com origem, marcas, valor anunciado e rótulos visíveis das pontas. | `label`, `value`, `onChange`, `onChangeEnd`, `min`, `max`, `step`, `origin`, `ticks`, `formatValue`, `minLabel`, `maxLabel`, `theme` |
+| **`UnoochatUI.Switch`** | Interruptor do Unoochat (`button role="switch"` visível, alvo de 44px) com rótulo e descrição. | `checked`, `defaultChecked`, `onChange`, `label`, `description`, `labelPosition`, `disabled`, `name`, `value` |
 
 ---
 
