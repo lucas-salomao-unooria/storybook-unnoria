@@ -3,7 +3,8 @@
  *
  * Faixa de 52px: seta de voltar, avatar de 32px, nome em
  * `--unc-font-title-lg-*` e as três ações de vídeo, voz e menu com
- * espaçamento de 24px.
+ * espaçamento de 24px. Com o slot `trailing`, o conteúdo dele toma o lugar das
+ * ações de vídeo e voz.
  */
 
 .unc-chatheader {
@@ -79,6 +80,37 @@
   align-items: center;
   gap: var(--unc-spacing-xxl);
   flex-shrink: 0;
+}
+
+/* Slot `trailing`: ocupa o lugar dos botões de chamada. A identidade guarda
+   104px (avatar e o começo do nome) e o slot fica com o resto, até metade da
+   faixa; o conteúdo quebra em linhas, que cabem nos 52px. */
+.unc-chatheader--with-trailing .unc-chatheader__identity {
+  min-width: 104px;
+}
+
+.unc-chatheader__trailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 50%;
+  margin-left: var(--unc-spacing-xs);
+}
+
+.unc-chatheader__trailing > * {
+  max-width: 100%;
+}
+
+/* O `MessageTag` é `nowrap` no balão; no cabeçalho, quebra entre palavras. */
+.unc-chatheader__trailing .unc-messagetag {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.unc-chatheader__trailing + .unc-chatheader__actions {
+  margin-left: var(--unc-spacing-l);
 }
 
 .unc-chatheader__action {

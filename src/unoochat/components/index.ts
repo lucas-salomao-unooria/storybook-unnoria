@@ -45,3 +45,4 @@ export * from './Poll';
 export * from './MessageTag';
 export * from './Toast';
 export * from './TypingIndicator';
+export * from './Switch';

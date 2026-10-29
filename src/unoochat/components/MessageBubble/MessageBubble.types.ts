@@ -171,9 +171,22 @@ export interface UncMessageInviteProps extends Omit<React.HTMLAttributes<HTMLDiv
 /**
  * Propriedades do subcomponente de documento do balão.
  */
-export interface UncMessageDocumentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface UncMessageDocumentProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'onClick'> {
   /** Nome do arquivo */
   name: string;
   /** Metadados exibidos abaixo, como "1090 páginas" e "PDF" */
   details?: string[];
+  /**
+   * Callback de toque no documento — abrir a nota anexa. Quando informado, a
+   * faixa é renderizada como `<button>`, com o mesmo desenho, foco visível e
+   * acionamento por Enter e Espaço, como a `Media` e a `LinkPreview`.
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Nome acessível da AÇÃO, quando há `onClick` — como "Abrir nota técnica".
+   * Ausente, o botão se anuncia pelo conteúdo: "Documento PDF", o nome e os
+   * metadados.
+   */
+  actionLabel?: string;
 }
