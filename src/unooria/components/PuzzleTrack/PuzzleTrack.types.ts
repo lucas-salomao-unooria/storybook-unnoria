@@ -78,14 +78,38 @@ export interface PuzzleTrackProps extends Omit<React.HTMLAttributes<HTMLDivEleme
    * escreva-o como ação ("Colocar em Dados Fornecidos"), não como estado.
    *
    * Vagas ocupadas nunca viram botão: o bloco encaixado já é um, e botão
-   * dentro de botão é HTML inválido. Não há arraste nem soltura — a mesma
-   * decisão do `PuzzleBlock`: o toque sequencial faz a mesma coisa sem excluir
-   * teclado, leitor de tela e touchpad.
+   * dentro de botão é HTML inválido. O toque sequencial é o caminho PRINCIPAL:
+   * faz a mesma coisa que o arraste sem excluir teclado, leitor de tela e
+   * touchpad. O arraste, a mais, é o `onSlotDrop`.
    *
    * É uma função: num app Next com Server Components, quem a passa precisa ser
    * Client Component.
    */
   onSlotActivate?: (index: number) => void;
+
+  /**
+   * Torna CADA vaga — vazia ou ocupada — um alvo de SOLTURA para um
+   * `PuzzleBlock` arrastável (com `dragData`). Ao soltar o bloco numa vaga, a
+   * função é chamada com o índice da vaga (base 0) e o `dragData` do bloco, lido
+   * do `dataTransfer` pelo tipo `PUZZLE_BLOCK_DRAG_TYPE`
+   * (`application/x-unooria-puzzle-block`). Qualquer outra coisa arrastada (um
+   * texto, um arquivo, uma imagem) não é aceita, e a vaga nem se acende.
+   *
+   * Enquanto um bloco passa por cima, a vaga ganha um contorno de 2px e, se
+   * vazia, o fundo e o fio de realce do hover (`data-drop-target`). O que fazer
+   * com a soltura numa vaga OCUPADA — trocar, empurrar, recusar — é do
+   * consumidor: a calha só diz onde soltaram e o quê.
+   *
+   * É um caminho A MAIS, para quem tem mouse: o toque sequencial
+   * (`onSlotActivate`) segue sendo o caminho de teclado e leitor de tela, e as
+   * duas props convivem. `slotsDisabled` não bloqueia a soltura — ele diz
+   * "nenhum cartão escolhido ainda", e quem arrasta já traz o seu. Sem a prop,
+   * nada muda.
+   *
+   * É uma função: num app Next com Server Components, quem a passa precisa ser
+   * Client Component.
+   */
+  onSlotDrop?: (index: number, dragData: string) => void;
 
   /**
    * Vagas acionáveis à espera ("nenhum cartão escolhido ainda"). As vagas

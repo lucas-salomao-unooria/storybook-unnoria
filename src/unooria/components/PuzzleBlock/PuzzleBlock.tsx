@@ -1,8 +1,8 @@
 'use client';
 
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef, useId, useState } from 'react';
 import { Icon } from '../Icon/Icon';
-import type { PuzzleBlockProps } from './PuzzleBlock.types';
+import { PUZZLE_BLOCK_DRAG_TYPE, type PuzzleBlockProps } from './PuzzleBlock.types';
 import './PuzzleBlock.css';
 
 /** `0` é conteúdo; `null`, `undefined`, `false` e `''` não. */
@@ -14,9 +14,14 @@ const temConteudo = (no: React.ReactNode): boolean =>
  *
  * A peça da "Chave do Editor": um `<button>` com forma de quebra-cabeça — um
  * recorte à esquerda e uma saliência à direita, feitos só com CSS — que a
- * criança TOCA para encaixar na calha (`PuzzleTrack`). Não há arraste: num
- * Chromebook de escola e com leitor de tela, arrastar é a interação que mais
- * exclui, e o toque sequencial faz a mesma coisa com um botão comum.
+ * criança TOCA para encaixar na calha (`PuzzleTrack`). O caminho principal é o
+ * TOQUE: num Chromebook de escola e com leitor de tela, arrastar é a interação
+ * que mais exclui, e o toque sequencial faz a mesma coisa com um botão comum.
+ *
+ * Com `dragData`, o bloco também se ARRASTA (HTML5 drag and drop nativo, sem
+ * biblioteca): o `dragstart` grava o dado com o tipo `PUZZLE_BLOCK_DRAG_TYPE`,
+ * que a vaga do `PuzzleTrack` com `onSlotDrop` lê na soltura. É um caminho a
+ * mais para quem tem mouse; o toque continua funcionando igual.
  *
  * O bloco NÃO decide se é certo. Ele só desenha o `state` que o consumidor
  * informa, porque o gabarito mora no servidor — um bloco que soubesse a
@@ -50,10 +55,13 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
       returnedLabel = 'Voltou para a bandeja',
       selected,
       size = 'md',
+      dragData,
       theme = 'light',
       className = '',
       type = 'button',
       onClick,
+      onDragStart,
+      onDragEnd,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
       'aria-describedby': ariaDescribedBy,
@@ -64,6 +72,7 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
     ref
   ) => {
     const id = useId();
+    const [arrastando, setArrastando] = useState(false);
     const rotuloId = `${id}-rotulo`;
     const avisoId = `${id}-aviso`;
     const descricaoId = `${id}-descricao`;
@@ -77,6 +86,22 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
     // O visual de escolhido não se soma ao de travado: com a chave formada, o
     // cadeado e o fundo de sucesso mandam. O `aria-pressed` segue a prop.
     const escolhido = selected === true && !travado;
+    // A chave formada não se mexe: travado não arrasta, nem com `dragData`.
+    const arrastavel = dragData !== undefined && !travado;
+
+    const iniciarArraste = (evento: React.DragEvent<HTMLButtonElement>) => {
+      if (arrastavel) {
+        evento.dataTransfer.setData(PUZZLE_BLOCK_DRAG_TYPE, dragData);
+        evento.dataTransfer.effectAllowed = 'move';
+        setArrastando(true);
+      }
+      onDragStart?.(evento);
+    };
+
+    const encerrarArraste = (evento: React.DragEvent<HTMLButtonElement>) => {
+      setArrastando(false);
+      onDragEnd?.(evento);
+    };
 
     // `aria-labelledby` explícito manda; com `aria-label` explícito o botão NÃO
     // recebe o nosso `aria-labelledby`, que venceria o `aria-label` no cálculo
@@ -93,6 +118,8 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
       'unooria-puzzle-block',
       `unooria-puzzle-block--${state}`,
       escolhido ? 'unooria-puzzle-block--selected' : '',
+      arrastavel ? 'unooria-puzzle-block--draggable' : '',
+      arrastavel && arrastando ? 'unooria-puzzle-block--dragging' : '',
       size === 'sm' ? 'unooria-puzzle-block--size-sm' : '',
       theme === 'dark' ? 'unooria-puzzle-block--theme-dark' : '',
       className,
@@ -107,6 +134,11 @@ export const PuzzleBlock = forwardRef<HTMLButtonElement, PuzzleBlockProps>(
         className={classes}
         data-state={state}
         data-selected={escolhido ? 'true' : undefined}
+        data-dragging={arrastavel && arrastando ? 'true' : undefined}
+        // Sem `dragData`, nenhum atributo novo: o bloco é o de sempre.
+        draggable={arrastavel ? true : undefined}
+        onDragStart={arrastavel || onDragStart ? iniciarArraste : undefined}
+        onDragEnd={arrastavel || onDragEnd ? encerrarArraste : undefined}
         aria-label={ariaLabel}
         aria-labelledby={nomeadoPor}
         aria-describedby={descritoPor}

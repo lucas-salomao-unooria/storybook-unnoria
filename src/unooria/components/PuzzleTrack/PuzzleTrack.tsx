@@ -1,7 +1,8 @@
 'use client';
 
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef, useId, useState } from 'react';
 import { Icon } from '../Icon/Icon';
+import { PUZZLE_BLOCK_DRAG_TYPE } from '../PuzzleBlock/PuzzleBlock.types';
 import type { PuzzleTrackProps } from './PuzzleTrack.types';
 import './PuzzleTrack.css';
 
@@ -11,6 +12,10 @@ const vagaVazia = (vaga: React.ReactNode): boolean => vaga === null || vaga === 
 /** `0` é conteúdo; `null`, `undefined`, `false` e `''` não. */
 const temConteudo = (no: React.ReactNode): boolean =>
   no !== undefined && no !== null && no !== false && no !== '';
+
+/** O arraste traz um `PuzzleBlock`? Na passagem (`dragover`), só os TIPOS são legíveis, não o dado. */
+const trazBloco = (evento: React.DragEvent): boolean =>
+  Array.from(evento.dataTransfer?.types ?? []).includes(PUZZLE_BLOCK_DRAG_TYPE);
 
 const rotuloDeVagaPadrao = (indice: number): React.ReactNode => `Vaga ${indice + 1}, vazia`;
 
@@ -31,6 +36,10 @@ const rotuloDeVagaPadrao = (indice: number): React.ReactNode => `Vaga ${indice +
  * Com `onSlotActivate`, a vaga VAZIA vira botão: é o segundo tempo do toque
  * sequencial "toca o cartão, toca a vaga" (o primeiro é o `selected` do
  * `PuzzleBlock`). Sem a prop, a calha é a de antes — só desenho.
+ *
+ * Com `onSlotDrop`, cada vaga (vazia ou ocupada) também recebe a SOLTURA de um
+ * `PuzzleBlock` arrastado com `dragData`, e a função recebe o índice e o dado.
+ * É um caminho a mais; o toque segue sendo o principal.
  *
  * Três decisões de acessibilidade:
  *   - A raiz é `role="group"` nomeada pelo `label` (por `aria-labelledby`, e daí
@@ -54,6 +63,7 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
       completeLabel = 'Chave do Editor formada',
       status,
       onSlotActivate,
+      onSlotDrop,
       slotsDisabled = false,
       theme = 'light',
       className = '',
@@ -65,17 +75,54 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
     ref
   ) => {
     const rotuloId = useId();
+    // A vaga sobre a qual um bloco está passando agora, para o realce.
+    const [alvo, setAlvo] = useState<number | null>(null);
 
     // Mesma precedência do `PuzzleBlock` e do `Modal`: o `aria-labelledby`
     // explícito manda, e um `aria-label` explícito não é calado pelo nosso.
     const nomeadoPor = ariaLabelledBy ?? (ariaLabel ? undefined : rotuloId);
 
     const acionavel = typeof onSlotActivate === 'function';
+    const recebeSoltura = typeof onSlotDrop === 'function';
+
+    // Os ouvintes de soltura de uma vaga. Ficam no `<li>`, e não no botão da
+    // vaga vazia, para a vaga OCUPADA também receber (o bloco encaixado é do
+    // consumidor). `preventDefault` no `dragover` é o que autoriza o `drop`.
+    const ouvintesDeSoltura = (indice: number): React.LiHTMLAttributes<HTMLLIElement> =>
+      recebeSoltura
+        ? {
+            onDragEnter: (evento) => {
+              if (!trazBloco(evento)) return;
+              evento.preventDefault();
+              setAlvo(indice);
+            },
+            onDragOver: (evento) => {
+              if (!trazBloco(evento)) return;
+              evento.preventDefault();
+              evento.dataTransfer.dropEffect = 'move';
+              if (alvo !== indice) setAlvo(indice);
+            },
+            onDragLeave: (evento) => {
+              // Passar de um filho para outro da mesma vaga também dispara
+              // `dragleave`: só apaga quando o ponteiro sai da vaga de fato.
+              const destino = evento.relatedTarget as Node | null;
+              if (destino && evento.currentTarget.contains(destino)) return;
+              setAlvo((atual) => (atual === indice ? null : atual));
+            },
+            onDrop: (evento) => {
+              if (!trazBloco(evento)) return;
+              evento.preventDefault();
+              setAlvo(null);
+              onSlotDrop?.(indice, evento.dataTransfer.getData(PUZZLE_BLOCK_DRAG_TYPE));
+            },
+          }
+        : {};
 
     const classes = [
       'unooria-puzzle-track',
       complete ? 'unooria-puzzle-track--complete' : '',
       acionavel ? 'unooria-puzzle-track--actionable' : '',
+      recebeSoltura ? 'unooria-puzzle-track--droppable' : '',
       theme === 'dark' ? 'unooria-puzzle-track--theme-dark' : '',
       className,
     ]
@@ -124,13 +171,21 @@ export const PuzzleTrack = forwardRef<HTMLDivElement, PuzzleTrackProps>(
         <ol className="unooria-puzzle-track__slots" role="list">
           {slots.map((vaga, indice) => {
             const vazia = vagaVazia(vaga);
+            const realcada = recebeSoltura && alvo === indice;
             return (
               // A posição É a identidade da vaga: a chave por índice está certa aqui.
               <li
                 key={indice}
-                className={['unooria-puzzle-track__slot', vazia ? 'unooria-puzzle-track__slot--empty' : '']
+                className={[
+                  'unooria-puzzle-track__slot',
+                  vazia ? 'unooria-puzzle-track__slot--empty' : '',
+                  realcada ? 'unooria-puzzle-track__slot--drop-target' : '',
+                ]
                   .filter(Boolean)
                   .join(' ')}
+                data-slot-index={recebeSoltura ? indice : undefined}
+                data-drop-target={realcada ? 'true' : undefined}
+                {...ouvintesDeSoltura(indice)}
               >
                 {vazia && acionavel ? (
                   // `aria-disabled`, e não `disabled`: a vaga à espera continua
