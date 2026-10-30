@@ -44,6 +44,7 @@
 @import './unooriaai/components/PromptSuggestion/PromptSuggestion.css';
 @import './unooriaai/components/SearchInput/SearchInput.css';
 @import './unooriaai/components/SessionDivider/SessionDivider.css';
+@import './unooriaai/components/TypingIndicator/TypingIndicator.css';
 @import './unooriaai/components/SettingsRow/SettingsRow.css';
 @import './unooriaai/components/Sidebar/Sidebar.css';
 @import './unooriaai/components/SidebarRow/SidebarRow.css';
