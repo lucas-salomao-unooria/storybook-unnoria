@@ -1,6 +1,6 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, userEvent, within } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { PuzzleTrack } from '../../../src/unooria/components/PuzzleTrack';
 import type { PuzzleTrackProps } from '../../../src/unooria/components/PuzzleTrack';
 import { PuzzleBlock } from '../../../src/unooria/components/PuzzleBlock';
@@ -556,6 +556,12 @@ const PuzzleTrackDocumentationPage: React.FC = () => {
               'Torna a vaga VAZIA um <button>: toque, clique, Enter e Espaço chamam a função com o índice (base 0). O nome do botão é o emptySlotLabel. Ausente, a vaga é só desenho.',
           },
           {
+            nome: 'onSlotDrop',
+            tipo: '(index: number, dragData: string) => void',
+            descricao:
+              "Torna CADA vaga (vazia ou ocupada) alvo de soltura de um PuzzleBlock com dragData. Chama a função com o índice e o dado lido do dataTransfer pelo tipo 'application/x-unooria-puzzle-block'. Realce de 2px (data-drop-target) enquanto o bloco passa. Outros arrastes são ignorados; slotsDisabled não bloqueia. Caminho A MAIS: o toque segue igual.",
+          },
+          {
             nome: 'slotsDisabled',
             tipo: 'boolean',
             padrao: 'false',
@@ -589,6 +595,7 @@ const meta: Meta<typeof PuzzleTrack> = {
     completeLabel: { control: 'text', description: 'Texto do sucesso.' },
     status: { control: 'text', description: 'Linha de status (aria-live="polite").' },
     onSlotActivate: { action: 'onSlotActivate', description: 'Torna a vaga vazia acionável (índice).' },
+    onSlotDrop: { action: 'onSlotDrop', description: 'Torna cada vaga alvo de soltura (índice, dragData).' },
     slotsDisabled: { control: 'boolean', description: 'Vagas acionáveis à espera (aria-disabled).' },
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema visual.' },
     className: { control: 'text', description: 'Classe CSS adicional.' },
@@ -969,5 +976,337 @@ export const RotuloVisivelSemAcao: Story = {
       await expect(texto).toHaveClass('unooria-puzzle-track__socket-text');
     }
     await expect(tela.queryByText('1')).not.toBeInTheDocument();
+  },
+};
+
+/* ---------------------------------------------------------------------------
+   Arrastar e soltar (`dragData` no bloco, `onSlotDrop` na calha). O arraste é
+   um caminho A MAIS: nas duas demonstrações o toque sequencial continua
+   fazendo tudo, por ponteiro, toque e teclado.
+   ------------------------------------------------------------------------- */
+
+/** Dispara um evento de arraste com um `DataTransfer` compartilhado (o `userEvent` não arrasta). */
+const dispararArraste = (alvo: Element, tipo: string, dados: DataTransfer) =>
+  alvo.dispatchEvent(new DragEvent(tipo, { bubbles: true, cancelable: true, dataTransfer: dados }));
+
+/** O arraste inteiro de um bloco até uma vaga: pega, passa por cima, solta, larga. */
+const arrastar = (bloco: Element, vaga: Element) => {
+  const dados = new DataTransfer();
+  dispararArraste(bloco, 'dragstart', dados);
+  dispararArraste(vaga, 'dragenter', dados);
+  dispararArraste(vaga, 'dragover', dados);
+  dispararArraste(vaga, 'drop', dados);
+  dispararArraste(bloco, 'dragend', dados);
+};
+
+/** A vaga (o `<li>`) de índice `i` dentro de uma calha. */
+const vagaDe = (calha: HTMLElement, i: number) => calha.querySelectorAll('.unooria-puzzle-track__slot')[i] as HTMLElement;
+
+interface Criterio {
+  id: string;
+  label: string;
+}
+
+const CRITERIOS: Criterio[] = [
+  { id: 'finalidade', label: 'Para que o dado será usado' },
+  { id: 'quem', label: 'Quem vai ver o dado' },
+  { id: 'tempo', label: 'Por quanto tempo fica guardado' },
+];
+
+/**
+ * O RANKING: uma calha de 3 vagas, todas ocupadas, cada bloco arrastável.
+ * Soltar um bloco numa vaga o leva para aquela posição (os outros escorregam).
+ * Pelo toque: toca um bloco (`selected`), toca outro, e os dois trocam.
+ */
+const RankingDemo: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme = 'light' }) => {
+  const [ordem, setOrdem] = useState(() => CRITERIOS.map((c) => c.id));
+  const [escolhido, setEscolhido] = useState<string | null>(null);
+
+  const mover = (id: string, destino: number) =>
+    setOrdem((atual) => {
+      const sem = atual.filter((x) => x !== id);
+      sem.splice(destino, 0, id);
+      return sem;
+    });
+
+  const tocar = (id: string) => {
+    if (!escolhido || escolhido === id) {
+      setEscolhido(escolhido === id ? null : id);
+      return;
+    }
+    setOrdem((atual) => {
+      const nova = [...atual];
+      const a = nova.indexOf(escolhido);
+      const b = nova.indexOf(id);
+      [nova[a], nova[b]] = [nova[b], nova[a]];
+      return nova;
+    });
+    setEscolhido(null);
+  };
+
+  return (
+    <PuzzleTrack
+      label={theme === 'dark' ? 'Ranking dos critérios (escuro)' : 'Ranking dos critérios'}
+      theme={theme}
+      slots={ordem.map((id) => {
+        const criterio = CRITERIOS.find((c) => c.id === id) as Criterio;
+        return (
+          <PuzzleBlock
+            key={id}
+            label={criterio.label}
+            theme={theme}
+            state="placed"
+            dragData={id}
+            selected={escolhido === id}
+            onClick={() => tocar(id)}
+          />
+        );
+      })}
+      onSlotDrop={(indice, id) => {
+        if (CRITERIOS.some((c) => c.id === id)) mover(id, indice);
+      }}
+      status={escolhido ? 'Toque no critério com que ele vai trocar de lugar.' : undefined}
+    />
+  );
+};
+
+/**
+ * Ranking reordenável: arraste um critério para a posição que ele deve ocupar,
+ * ou toque em dois para trocá-los. Claro e escuro.
+ */
+export const RankingArrastavel: Story = {
+  name: 'Ranking reordenável (arrastar e soltar)',
+  render: () => (
+    <div style={{ display: 'grid', gap: 16, maxWidth: 960 }}>
+      <RankingDemo />
+      <div style={{ padding: 16, borderRadius: 12, background: 'var(--unooria-color-neutraldark-100)' }}>
+        <RankingDemo theme="dark" />
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const calhaEl = tela.getByRole('group', { name: 'Ranking dos critérios' });
+    const calha = within(calhaEl);
+    const nomes = () =>
+      calha.getAllByRole('button').map((b) => b.querySelector('.unooria-puzzle-block__label')?.textContent);
+
+    await expect(nomes()).toEqual(CRITERIOS.map((c) => c.label));
+    for (const bloco of calha.getAllByRole('button')) await expect(bloco).toHaveAttribute('draggable', 'true');
+
+    // Passar por cima acende a vaga; um texto qualquer arrastado não acende.
+    const texto = new DataTransfer();
+    texto.setData('text/plain', 'qualquer coisa');
+    dispararArraste(vagaDe(calhaEl, 0), 'dragover', texto);
+    await expect(vagaDe(calhaEl, 0)).not.toHaveAttribute('data-drop-target');
+
+    const dados = new DataTransfer();
+    dispararArraste(calha.getByRole('button', { name: 'Por quanto tempo fica guardado' }), 'dragstart', dados);
+    dispararArraste(vagaDe(calhaEl, 0), 'dragover', dados);
+    await waitFor(() => expect(vagaDe(calhaEl, 0)).toHaveAttribute('data-drop-target', 'true'));
+    await expect(getComputedStyle(vagaDe(calhaEl, 0)).outlineStyle).toBe('solid');
+    dispararArraste(vagaDe(calhaEl, 0), 'dragleave', dados);
+    await waitFor(() => expect(vagaDe(calhaEl, 0)).not.toHaveAttribute('data-drop-target'));
+    dispararArraste(calha.getByRole('button', { name: 'Por quanto tempo fica guardado' }), 'dragend', dados);
+
+    // Arrastar o terceiro para a primeira vaga o põe em primeiro.
+    arrastar(calha.getByRole('button', { name: 'Por quanto tempo fica guardado' }), vagaDe(calhaEl, 0));
+    await waitFor(() =>
+      expect(nomes()).toEqual(['Por quanto tempo fica guardado', 'Para que o dado será usado', 'Quem vai ver o dado'])
+    );
+    await expect(vagaDe(calhaEl, 0)).not.toHaveAttribute('data-drop-target');
+
+    // O toque continua: escolhe um, toca outro, e eles trocam.
+    await userEvent.click(calha.getByRole('button', { name: 'Para que o dado será usado' }));
+    await expect(calha.getByRole('button', { name: 'Para que o dado será usado' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    await userEvent.click(calha.getByRole('button', { name: 'Quem vai ver o dado' }));
+    await expect(nomes()).toEqual([
+      'Por quanto tempo fica guardado',
+      'Quem vai ver o dado',
+      'Para que o dado será usado',
+    ]);
+  },
+};
+
+interface BlocoDoProtocolo {
+  id: string;
+  label: string;
+  icon: string;
+}
+
+const BLOCOS_DO_PROTOCOLO: BlocoDoProtocolo[] = [
+  { id: 'origem', label: 'Conferir a origem', icon: 'account_balance' },
+  { id: 'data', label: 'Conferir a data', icon: 'calendar_month' },
+  { id: 'autoria', label: 'Conferir quem assina', icon: 'history_edu' },
+  { id: 'curtidas', label: 'Contar as curtidas', icon: 'share' },
+];
+
+/** Onde cada bloco está: no banco, numa das 3 verificações, ou no descarte. */
+type Lugar = 'banco' | 'descarte' | 0 | 1 | 2;
+
+const VERIFICACOES = ['Verificação 1', 'Verificação 2', 'Verificação 3'];
+
+/**
+ * O EDITOR DE PROTOCOLO: um banco de 4 blocos, 3 verificações de 1 vaga cada e
+ * uma Área de Descarte que recebe vários. Soltar numa verificação ocupada
+ * devolve o ocupante ao banco. Pelo toque: toca o bloco, toca a vaga.
+ */
+const EditorDemo: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme = 'light' }) => {
+  const [lugares, setLugares] = useState<Record<string, Lugar>>(() =>
+    Object.fromEntries(BLOCOS_DO_PROTOCOLO.map((b) => [b.id, 'banco' as Lugar]))
+  );
+  const [escolhido, setEscolhido] = useState<string | null>(null);
+
+  const levar = (id: string, destino: Lugar) => {
+    if (!BLOCOS_DO_PROTOCOLO.some((b) => b.id === id)) return;
+    setLugares((atual) => {
+      const novo = { ...atual };
+      // Verificação tem uma vaga só: quem estava nela volta ao banco.
+      if (typeof destino === 'number') {
+        for (const [outro, lugar] of Object.entries(novo)) if (lugar === destino && outro !== id) novo[outro] = 'banco';
+      }
+      novo[id] = destino;
+      return novo;
+    });
+    setEscolhido(null);
+  };
+
+  const blocoEm = (b: BlocoDoProtocolo) => (
+    <PuzzleBlock
+      key={b.id}
+      label={b.label}
+      icon={b.icon}
+      theme={theme}
+      size="sm"
+      state={lugares[b.id] === 'banco' ? 'idle' : 'placed'}
+      dragData={b.id}
+      selected={lugares[b.id] === 'banco' ? escolhido === b.id : undefined}
+      onClick={() =>
+        lugares[b.id] === 'banco' ? setEscolhido((s) => (s === b.id ? null : b.id)) : levar(b.id, 'banco')
+      }
+    />
+  );
+
+  const doLugar = (lugar: Lugar) => BLOCOS_DO_PROTOCOLO.filter((b) => lugares[b.id] === lugar);
+  const sufixo = theme === 'dark' ? ' (escuro)' : '';
+
+  return (
+    <div style={{ display: 'grid', gap: 16 }}>
+      <PuzzleTrack
+        label={`Banco de blocos${sufixo}`}
+        theme={theme}
+        slots={[...doLugar('banco').map(blocoEm), null]}
+        emptySlotLabel={() => 'Devolver ao banco'}
+        onSlotDrop={(_, id) => levar(id, 'banco')}
+        status={escolhido ? 'Agora toque na vaga de destino.' : undefined}
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: 16 }}>
+        {VERIFICACOES.map((nome, i) => (
+          <PuzzleTrack
+            key={nome}
+            label={`${nome}${sufixo}`}
+            theme={theme}
+            slots={[doLugar(i as Lugar).map(blocoEm)[0] ?? null]}
+            emptySlotLabel={() => `Colocar em ${nome}`}
+            onSlotActivate={() => escolhido && levar(escolhido, i as Lugar)}
+            slotsDisabled={!escolhido}
+            onSlotDrop={(_, id) => levar(id, i as Lugar)}
+          />
+        ))}
+      </div>
+      <PuzzleTrack
+        label={`Área de Descarte${sufixo}`}
+        theme={theme}
+        slots={[...doLugar('descarte').map(blocoEm), null]}
+        emptySlotLabel={() => 'Descartar'}
+        showEmptySlotLabel
+        onSlotActivate={() => escolhido && levar(escolhido, 'descarte')}
+        slotsDisabled={!escolhido}
+        onSlotDrop={(_, id) => levar(id, 'descarte')}
+      />
+    </div>
+  );
+};
+
+/**
+ * Editor de protocolo com descarte: arraste os blocos do banco para as três
+ * verificações (uma vaga cada) ou para a Área de Descarte (várias). Soltar numa
+ * verificação ocupada troca: o ocupante volta ao banco. O toque sequencial faz
+ * o mesmo, e tocar num bloco encaixado o devolve ao banco. Claro e escuro.
+ */
+export const EditorComDescarte: Story = {
+  name: 'Editor de protocolo com descarte (arrastar e soltar)',
+  render: () => (
+    <div style={{ display: 'grid', gap: 24, maxWidth: 960 }}>
+      <EditorDemo />
+      <div style={{ padding: 16, borderRadius: 12, background: 'var(--unooria-color-neutraldark-100)' }}>
+        <EditorDemo theme="dark" />
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const tela = within(canvasElement);
+    const calha = (nome: string) => tela.getByRole('group', { name: nome });
+    const banco = () => within(calha('Banco de blocos'));
+    const v = (n: number) => calha(`Verificação ${n}`);
+    const descarte = () => calha('Área de Descarte');
+
+    // Arrasta "Conferir a origem" do banco para a Verificação 1 (vaga vazia).
+    arrastar(banco().getByRole('button', { name: 'Conferir a origem' }), vagaDe(v(1), 0));
+    await waitFor(() => expect(within(v(1)).getByRole('button', { name: 'Conferir a origem' })).toBeInTheDocument());
+    await expect(banco().queryByRole('button', { name: 'Conferir a origem' })).not.toBeInTheDocument();
+
+    // Soltar numa verificação OCUPADA: o novo entra, o antigo volta ao banco.
+    arrastar(banco().getByRole('button', { name: 'Conferir a data' }), vagaDe(v(1), 0));
+    await waitFor(() => expect(within(v(1)).getByRole('button', { name: 'Conferir a data' })).toBeInTheDocument());
+    await expect(banco().getByRole('button', { name: 'Conferir a origem' })).toHaveAttribute('data-state', 'idle');
+
+    // A Área de Descarte recebe vários: dois blocos, um depois do outro.
+    arrastar(banco().getByRole('button', { name: 'Contar as curtidas' }), vagaDe(descarte(), 0));
+    await waitFor(() => expect(within(descarte()).getAllByRole('listitem')).toHaveLength(2));
+    arrastar(banco().getByRole('button', { name: 'Conferir quem assina' }), vagaDe(descarte(), 1));
+    await waitFor(() => expect(within(descarte()).getAllByRole('listitem')).toHaveLength(3));
+
+    // Do descarte de volta ao banco, também arrastando.
+    arrastar(within(descarte()).getByRole('button', { name: 'Conferir quem assina' }), vagaDe(calha('Banco de blocos'), 0));
+    await waitFor(() => expect(banco().getByRole('button', { name: 'Conferir quem assina' })).toBeInTheDocument());
+
+    // O toque sequencial segue igual: toca o bloco, toca a vaga da verificação.
+    await userEvent.click(banco().getByRole('button', { name: 'Conferir quem assina' }));
+    await userEvent.click(within(v(2)).getByRole('button', { name: 'Colocar em Verificação 2' }));
+    await expect(within(v(2)).getByRole('button', { name: 'Conferir quem assina' })).toHaveAttribute(
+      'data-state',
+      'placed'
+    );
+
+    // E por teclado: Enter no bloco, Enter na vaga do descarte.
+    banco().getByRole('button', { name: 'Conferir a origem' }).focus();
+    await userEvent.keyboard('{Enter}');
+    within(descarte()).getByRole('button', { name: 'Descartar' }).focus();
+    await userEvent.keyboard('{Enter}');
+    await expect(within(descarte()).getByRole('button', { name: 'Conferir a origem' })).toBeInTheDocument();
+  },
+};
+
+/**
+ * Sem `onSlotDrop`, a calha não aceita soltura: o arraste de um bloco passa por
+ * cima sem acender nem chamar nada — o comportamento de antes.
+ */
+export const SemSoltura: Story = {
+  render: () => (
+    <PuzzleTrack label="Chave do Editor" slots={[<PuzzleBlock key="f" label="Fonte" dragData="fonte" />, null]} />
+  ),
+  play: async ({ canvasElement }) => {
+    const calhaEl = within(canvasElement).getByRole('group', { name: 'Chave do Editor' });
+    const dados = new DataTransfer();
+    dispararArraste(within(calhaEl).getByRole('button', { name: 'Fonte' }), 'dragstart', dados);
+    const passou = dispararArraste(vagaDe(calhaEl, 1), 'dragover', dados);
+    // `dispatchEvent` devolve `true` quando ninguém chamou `preventDefault`: a soltura não é autorizada.
+    await expect(passou).toBe(true);
+    await expect(vagaDe(calhaEl, 1)).not.toHaveAttribute('data-drop-target');
+    await expect(vagaDe(calhaEl, 1)).not.toHaveAttribute('data-slot-index');
   },
 };

@@ -224,6 +224,29 @@
 }
 
 /* ==========================================================================
+   A vaga que recebe a soltura (`onSlotDrop`), enquanto um bloco passa por
+   cima. Não depende só de cor: a vaga inteira ganha um contorno de 2px, e a
+   vaga vazia pega o fundo e o fio do hover. Fio `brandnavy-800` sobre
+   `brandnavy-50`: 5,18:1; no escuro, `brandnavy-400` sobre `brandnavy-900`.
+   ========================================================================== */
+
+.unooria-puzzle-track__slot--drop-target {
+  border-radius: var(--unooria-radius-m, 12px);
+  outline: 2px solid var(--unooria-color-brandnavy-800, #49699F);
+  outline-offset: 2px;
+}
+
+.unooria-puzzle-track__slot--drop-target .unooria-puzzle-track__socket {
+  --unooria-puzzle-track-fill: var(--unooria-color-brandnavy-50, #F5F8FC);
+  --unooria-puzzle-track-border: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+.unooria-puzzle-track__slot--drop-target .unooria-puzzle-track__socket-number,
+.unooria-puzzle-track__slot--drop-target .unooria-puzzle-track__socket-text {
+  color: var(--unooria-color-brandnavy-800, #49699F);
+}
+
+/* ==========================================================================
    A linha de status (aria-live). Sem texto, não ocupa espaço — mas continua
    no DOM, que é o que faz a primeira mensagem ser anunciada.
    ========================================================================== */
@@ -329,6 +352,21 @@
     .unooria-puzzle-track__socket-text {
     color: var(--unooria-color-brandnavy-100, #E8EFFA);
   }
+}
+
+/* A soltura no escuro: contorno claro e véu azul na vaga vazia. */
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__slot--drop-target {
+  outline-color: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__slot--drop-target .unooria-puzzle-track__socket {
+  --unooria-puzzle-track-fill: var(--unooria-color-brandnavy-900, #2F4F7F);
+  --unooria-puzzle-track-border: var(--unooria-color-brandnavy-400, #A4BDE9);
+}
+
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__slot--drop-target .unooria-puzzle-track__socket-number,
+.unooria-puzzle-track--theme-dark .unooria-puzzle-track__slot--drop-target .unooria-puzzle-track__socket-text {
+  color: var(--unooria-color-brandnavy-100, #E8EFFA);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, fn, userEvent, within } from 'storybook/test';
-import { PuzzleBlock } from '../../../src/unooria/components/PuzzleBlock';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
+import { PUZZLE_BLOCK_DRAG_TYPE, PuzzleBlock } from '../../../src/unooria/components/PuzzleBlock';
 import type { PuzzleBlockState } from '../../../src/unooria/components/PuzzleBlock';
 import '../../../src/unooria/tokens/icons.css';
 import {
@@ -395,9 +395,20 @@ const PuzzleBlockDocumentationPage: React.FC = () => {
             descricao:
               'Escolhido, à espera da vaga. Presente (true ou false), aplica aria-pressed; ausente, nada muda. Fio de 2px e check_circle quando true.',
           },
+          {
+            nome: 'dragData',
+            tipo: 'string',
+            descricao:
+              "Torna o bloco arrastável (draggable): o dragstart grava este dado no dataTransfer com o tipo 'application/x-unooria-puzzle-block' (PUZZLE_BLOCK_DRAG_TYPE), que a vaga do PuzzleTrack com onSlotDrop lê. Caminho A MAIS: o toque segue igual. Translúcido enquanto arrastado; cursor grab/grabbing com ponteiro fino. Não arrasta em locked.",
+          },
           { nome: 'theme', tipo: "'light' | 'dark'", padrao: "'light'", descricao: 'Tema visual.' },
           { nome: 'className', tipo: 'string', descricao: 'Classe CSS adicional.' },
           { nome: 'onClick', tipo: '(e) => void', descricao: 'O toque. Não é chamado em locked.' },
+          {
+            nome: 'onDragStart / onDragEnd',
+            tipo: '(e: React.DragEvent) => void',
+            descricao: 'Repassados ao botão, depois do tratamento do dragData.',
+          },
           { nome: 'type', tipo: "'button' | 'submit' | 'reset'", padrao: "'button'", descricao: 'Tipo do botão nativo.' },
         ]}
       />
@@ -420,6 +431,7 @@ const meta: Meta<typeof PuzzleBlock> = {
     },
     returnedLabel: { control: 'text', description: 'Aviso do estado returned.' },
     selected: { control: 'boolean', description: 'Escolhido, à espera da vaga (aria-pressed).' },
+    dragData: { control: 'text', description: 'Torna o bloco arrastável, com este dado no dataTransfer.' },
     theme: { control: 'radio', options: ['light', 'dark'], description: 'Tema visual.' },
     disabled: { control: 'boolean', description: 'Desabilitado nativo (sai do Tab).' },
     className: { control: 'text', description: 'Classe CSS adicional.' },
@@ -606,5 +618,56 @@ export const Compacto: Story = {
     await expect(getComputedStyle(rotulo).textTransform).toBe('none');
     await expect(getComputedStyle(rotulo).overflowWrap).toBe('break-word');
     // Sem a prop, o bloco de sempre (md).
+  },
+};
+
+/** Dispara um evento de arraste com um `DataTransfer` compartilhado (o `userEvent` não arrasta). */
+const dispararArraste = (alvo: Element, tipo: string, dados: DataTransfer) =>
+  alvo.dispatchEvent(new DragEvent(tipo, { bubbles: true, cancelable: true, dataTransfer: dados }));
+
+/**
+ * `dragData`: o bloco ARRASTÁVEL, nos dois temas. O `dragstart` grava o dado com
+ * o tipo `application/x-unooria-puzzle-block`, e o bloco fica translúcido até o
+ * `dragend`. É um caminho a mais: o toque (`onClick`) segue igual, e em
+ * `locked` o bloco não se arrasta. Sem a prop, nada de `draggable`.
+ */
+export const Arrastavel: Story = {
+  name: 'Arrastável (dragData)',
+  args: { onClick: fn(), onDragEnd: fn() },
+  render: (args) => (
+    <div style={{ display: 'grid', gap: 16, maxWidth: 360 }}>
+      <PuzzleBlock {...FONTE} dragData="fonte" onClick={args.onClick} onDragEnd={args.onDragEnd} />
+      <PuzzleBlock label="Data" icon="calendar_month" dragData="data" state="locked" />
+      <PuzzleBlock label="Autoria" icon="history_edu" />
+      <div style={{ padding: 16, borderRadius: 12, background: 'var(--unooria-color-neutraldark-100)' }}>
+        <PuzzleBlock label="Fonte (escuro)" icon="account_balance" dragData="fonte-escuro" theme="dark" />
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement, args }) => {
+    const tela = within(canvasElement);
+    const fonte = tela.getByRole('button', { name: 'Fonte' });
+    await expect(fonte).toHaveAttribute('draggable', 'true');
+    await expect(fonte).toHaveClass('unooria-puzzle-block--draggable');
+
+    // O arraste grava o dado no tipo do pacote e deixa o bloco translúcido.
+    const dados = new DataTransfer();
+    dispararArraste(fonte, 'dragstart', dados);
+    await expect(dados.getData(PUZZLE_BLOCK_DRAG_TYPE)).toBe('fonte');
+    await expect(dados.types).not.toContain('text/plain');
+    await waitFor(() => expect(fonte).toHaveAttribute('data-dragging', 'true'));
+    await expect(Number(getComputedStyle(fonte).opacity)).toBeLessThan(1);
+    dispararArraste(fonte, 'dragend', dados);
+    await waitFor(() => expect(fonte).not.toHaveAttribute('data-dragging'));
+    await expect(args.onDragEnd).toHaveBeenCalledTimes(1);
+
+    // O toque continua sendo o caminho principal.
+    await userEvent.click(fonte);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+
+    // Travado não se arrasta; sem a prop, nenhum atributo novo.
+    await expect(tela.getByRole('button', { name: 'Data' })).not.toHaveAttribute('draggable');
+    await expect(tela.getByRole('button', { name: 'Autoria' })).not.toHaveAttribute('draggable');
+    await expect(tela.getByRole('button', { name: 'Fonte (escuro)' })).toHaveAttribute('draggable', 'true');
   },
 };

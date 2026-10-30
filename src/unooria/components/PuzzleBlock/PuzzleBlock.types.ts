@@ -29,6 +29,14 @@ export type PuzzleBlockState = 'idle' | 'placed' | 'returned' | 'locked';
 export type PuzzleBlockSize = 'md' | 'sm';
 
 /**
+ * O tipo do dado que o `PuzzleBlock` grava no `dataTransfer` ao ser arrastado
+ * (ver `dragData`). É um tipo PRÓPRIO do pacote, e não `text/plain`: a calha só
+ * aceita soltura de um bloco, e soltar um texto qualquer da página (ou de outra
+ * janela) nela não faz nada.
+ */
+export const PUZZLE_BLOCK_DRAG_TYPE = 'application/x-unooria-puzzle-block';
+
+/**
  * Propriedades do componente PuzzleBlock da Plataforma Unooria.
  *
  * Uma peça de quebra-cabeça que se toca para encaixar numa calha
@@ -89,6 +97,24 @@ export interface PuzzleBlockProps extends Omit<React.ButtonHTMLAttributes<HTMLBu
    * manda (o `aria-pressed` continua seguindo a prop).
    */
   selected?: boolean;
+
+  /**
+   * Torna o bloco ARRASTÁVEL, com este dado (o id do bloco, por exemplo). Com a
+   * prop, o botão recebe `draggable`, e o `dragstart` grava o dado no
+   * `dataTransfer` com o tipo `PUZZLE_BLOCK_DRAG_TYPE`
+   * (`application/x-unooria-puzzle-block`) — é o que a vaga do `PuzzleTrack`
+   * com `onSlotDrop` lê ao receber a soltura.
+   *
+   * O arraste é um caminho A MAIS, nunca o único: o toque sequencial ("toca o
+   * cartão, toca a vaga", com `selected` e `onSlotActivate`) continua sendo o
+   * caminho de teclado, leitor de tela e toque, e funciona igual com ou sem esta
+   * prop. Enquanto é arrastado, o bloco fica translúcido (`data-dragging`), e o
+   * cursor é `grab` / `grabbing` onde há ponteiro.
+   *
+   * Em `locked` o bloco não se arrasta (a chave formada não se mexe). Sem a
+   * prop, nada muda — nem o atributo nem o visual.
+   */
+  dragData?: string;
 
   /**
    * Escala do bloco. Ver `PuzzleBlockSize`.

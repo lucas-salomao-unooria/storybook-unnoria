@@ -197,6 +197,29 @@
 }
 
 /* ==========================================================================
+   Arrastável (`dragData`): um caminho A MAIS, para quem tem mouse. O cursor
+   diz "dá para pegar" só onde há ponteiro fino; no toque, o caminho é o toque
+   sequencial e o cursor não existe. Enquanto é arrastado, o bloco fica
+   translúcido no lugar de origem — a cópia que segue o ponteiro é a do
+   navegador. Sem transição de opacidade: o arraste já é movimento.
+   ========================================================================== */
+
+@media (pointer: fine) {
+  .unooria-puzzle-block--draggable:not(:disabled) {
+    cursor: grab;
+  }
+
+  .unooria-puzzle-block--draggable:not(:disabled):active,
+  .unooria-puzzle-block--dragging {
+    cursor: grabbing;
+  }
+}
+
+.unooria-puzzle-block--dragging {
+  opacity: var(--unooria-opacity-blur-500, 0.5);
+}
+
+/* ==========================================================================
    Tamanho compacto (`size="sm"`)
    A vaga estreita de uma calha em duas colunas num celular de 375px (a
    classificação da exp01em1b). Alvo de 44px (WCAG 2.5.5), o encaixe um pouco
